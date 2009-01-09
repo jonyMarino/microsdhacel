@@ -1,0 +1,3757 @@
+format 59
+"SD100"
+  revision 19
+  modified_by 3 "Nicolas"
+  cpp_root_dir "d:/Jony/HCS12/Codigo generado por uml/C++/"
+  idl_root_dir "d:/Jony/HCS12/Codigo generado por uml/"
+
+
+  
+  // class settings
+  default_attribute_visibility private default_relation_visibility private default_operation_visibility public
+  //class diagram settings
+  draw_all_relations yes hide_attributes no hide_operations no show_members_full_definition no show_members_visibility no show_members_stereotype no show_members_multiplicity no show_members_initialization no member_max_width 127 show_parameter_dir yes show_parameter_name yes package_name_in_tab no class_drawing_mode natural drawing_language uml show_context_mode no auto_label_position yes show_infonote no shadow yes show_stereotype_properties no
+  //use case diagram settings
+  package_name_in_tab no show_context no auto_label_position yes draw_all_relations yes class_drawing_mode actor shadow yes show_stereotype_properties no
+  //sequence diagram settings
+  show_full_operations_definition no write_horizontally yes class_drawing_mode natural drawing_language uml draw_all_relations yes shadow yes show_stereotype_properties no
+  //collaboration diagram settings
+  show_full_operations_definition no show_hierarchical_rank no write_horizontally yes drawing_language uml package_name_in_tab no show_context no draw_all_relations yes shadow yes show_stereotype_properties no
+  //object diagram settings
+   write_horizontally yes package_name_in_tab no show_context no auto_label_position yes draw_all_relations yes shadow yes show_stereotype_properties no
+  //component diagram settings
+  package_name_in_tab no show_context no auto_label_position yes draw_all_relations yes shadow yes
+  draw_component_as_icon no show_component_req_prov no show_component_rea no show_stereotype_properties no
+  //deployment diagram settings
+  package_name_in_tab no show_context no write_horizontally yes auto_label_position yes draw_all_relations yes shadow yes
+  draw_component_as_icon no show_component_req_prov no show_component_rea no show_stereotype_properties no
+  //state diagram settings
+  package_name_in_tab no show_context no auto_label_position yes write_trans_label_horizontally yes show_trans_definition no draw_all_relations yes shadow yes
+  show_activities yes region_horizontally yes drawing_language uml show_stereotype_properties no
+  //activity diagram settings
+  package_name_in_tab no show_context no show_opaque_action_definition no auto_label_position yes write_flow_label_horizontally no draw_all_relations yes shadow yes
+  show_infonote yes drawing_language uml show_stereotype_properties no
+  
+  class_color yellow duration_color transparent continuation_color gray note_color blue fragment_color transparent subject_color transparent usecase_color yellow package_color transparent component_color green artifact_color green deploymentnode_color gray state_color yellow stateaction_color transparent activity_color transparent activityregion_color transparent activityaction_color transparent parameterpin_color white 
+  font_size 8
+  diagram_format A4
+
+  mark_for_import
+  
+  ncouples 1
+  key "check-in-cmd" value "specify the command containing %file and %dir or %dironly"
+  classview 128002 "Alarmas"
+    //class diagram settings
+    draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
+    //collaboration diagram settings
+    show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default draw_all_relations default shadow default show_stereotype_properties default
+    //object diagram settings
+     write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default show_stereotype_properties default
+    //sequence diagram settings
+    show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default
+    //state diagram settings
+    package_name_in_tab default show_context default auto_label_position default write_trans_label_horizontally default show_trans_definition default draw_all_relations default shadow default
+    show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+    //class settings
+    //activity diagram settings
+    package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
+    show_infonote default drawing_language default show_stereotype_properties default
+    associated_deployment_view deploymentview_ref 131714 // Alarmas
+    classdiagram 128002 "Alarmas"
+      draw_all_relations no hide_attributes default hide_operations default show_members_full_definition default show_members_visibility yes show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
+      size A4
+    end
+
+    classdiagram 128130 "Retransmision"
+      draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility yes show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
+      size A4
+    end
+
+    classdiagram 128258 "Refrigeracion"
+      draw_all_relations no hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
+      size A4
+    end
+
+    classdiagram 128386 "De Valor"
+      draw_all_relations no hide_attributes default hide_operations default show_members_full_definition default show_members_visibility yes show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
+      size A4
+    end
+
+    classdiagram 130690 "Alarma de sensor"
+      draw_all_relations no hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
+      size A4
+    end
+
+    classdiagram 131970 "Alarma de control"
+      draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
+      size A4
+    end
+
+    class 128386 "Sensor"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl "${comment}${final}${visibility}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      python_2_2 python_decl "class ${name}${inherit}:
+${docstring}${members}
+"
+      idl_decl "${comment}${custom}struct ${name}{
+${inherit}
+${members}};
+"
+      explicit_switch_type ""
+      
+      extra_member 129154 "//%-"
+	
+	cpp "" ""
+	java ""
+	php ""
+	python ""
+	idl ""
+      end
+    end
+
+    class 128002 "Alarma"
+      abstract visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl "${comment}${abstract}${custom}struct ${name}${inherit} {
+${members}};
+"
+      explicit_switch_type ""
+      
+      operation 133506 "setLazo"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "lazo" explicit_type "int"
+	
+	
+	
+	
+	idl_decl "  ${comment}${oneway}${type} ${name}${(}${)}${raisesnl}${raises};
+"
+      end
+
+      operation 133634 "getLazo"
+	public explicit_return_type "int"
+	nparams 0
+	
+	
+	
+	
+	idl_decl "  ${comment}${oneway}${type} ${name}${(}${)}${raisesnl}${raises};
+"
+      end
+
+      operation 133762 "getAdaptadorSalida"
+	public explicit_return_type "int"
+	nparams 0
+	
+	
+	
+	
+	idl_decl "  ${comment}${oneway}${type} ${name}${(}${)}${raisesnl}${raises};
+"
+      end
+
+      operation 133890 "setAdaptadorSalida"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "adaptador" explicit_type "int"
+	
+	
+	
+	
+	idl_decl "  ${comment}${oneway}${type} ${name}${(}${)}${raisesnl}${raises};
+"
+      end
+
+      classrelation 148610 // <dependency>
+	relation 147970 -_->
+	  a default
+	    classrelation_ref 148610 // <dependency>
+	  b parent class_ref 129282 // PWM
+      end
+
+      classrelation 148738 // <dependency>
+	relation 148098 -_->
+	  a default
+	    classrelation_ref 148738 // <dependency>
+	  b parent class_ref 128386 // Sensor
+      end
+
+      classrelation 154626 // configuracion (<directional aggregation>)
+	relation 153986 o-->
+	  a role_name "configuracion" multiplicity "1" private
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    idl "  ${comment}${type} ${name};
+"
+	    classrelation_ref 154626 // configuracion (<directional aggregation>)
+	  b multiplicity "1" parent class_ref 128130 // AlarmaConf
+      end
+
+      operation 140546 "getConfiguracion"
+	public return_type class_ref 128130 // AlarmaConf
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+    end
+
+    class 128130 "AlarmaConf"
+      visibility package stereotype "struct"
+      cpp_decl "${comment}${template}struct ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl "${comment}${final}${visibility}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      python_2_2 python_decl "class ${name}${inherit}:
+${docstring}${members}
+"
+      idl_decl "${comment}struct ${name} {
+${members}};
+"
+      explicit_switch_type ""
+      
+      classrelation 140162 // retConf (<directional composition>)
+	relation 139522 *-->
+	  a role_name "retConf" multiplicity "1" private
+	    idl "  ${comment}${readonly}${attribute}${type} ${name};
+"
+	    classrelation_ref 140162 // retConf (<directional composition>)
+	  b multiplicity "1" parent class_ref 129154 // RetransmisionConf
+      end
+
+      attribute 131458 "lazo"
+	public type class_ref 128258 // fbyte
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl "  ${comment}${readonly}${attribute}${type} ${name};
+"
+      end
+    end
+
+    class 128258 "fbyte"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl "${comment}${abstract}${custom}valuetype ${name}${inherit} {
+${members}};
+"
+      explicit_switch_type ""
+      
+    end
+
+    class 128770 "AlarmaControl"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl "${comment}${abstract}${custom}struct ${name}${inherit} {
+${members}};
+"
+      explicit_switch_type ""
+      
+      classrelation 128770 // <generalisation>
+	relation 128642 ---|>
+	  a public
+	    idl "${type}"
+	    classrelation_ref 128770 // <generalisation>
+	  b parent class_ref 128002 // Alarma
+      end
+
+      classrelation 128898 // control (<directional aggregation>)
+	relation 128770 o-->
+	  a role_name "control" multiplicity "1" private
+	    idl "  ${comment}${visibility}${type} ${name};
+"
+	    classrelation_ref 128898 // control (<directional aggregation>)
+	  b multiplicity "1" parent class_ref 128898 // Control
+      end
+
+      classrelation 140930 // <directional aggregation>
+	relation 140290 o-->
+	  a role_name "" multiplicity "1" private
+	    idl "  ${comment}${visibility}${type} ${name};
+"
+	    classrelation_ref 140930 // <directional aggregation>
+	  b multiplicity "1" parent class_ref 128898 // Control
+      end
+
+      classrelation 155650 // <dependency>
+	relation 155010 -_->
+	  a default
+	    cpp default "#include in source"
+	    classrelation_ref 155650 // <dependency>
+	  b parent class_ref 140802 // AlarmaCntrConf
+      end
+    end
+
+    class 128898 "Control"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl "${comment}${custom}struct ${name}{
+${inherit}
+${members}};
+"
+      explicit_switch_type ""
+      
+      classrelation 131714 // <aggregation>
+	relation_ref 131202 // <aggregation>
+      end
+    end
+
+    class 129410 "ValorControl"
+      abstract visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl "${comment}${abstract}${custom}struct ${name}{
+${inherit}
+${members}};
+"
+      explicit_switch_type ""
+      
+      classrelation 133634 // <directional aggregation>
+	relation 132994 o-->
+	  a role_name "" private
+	    idl "  ${comment}${visibility}${type} ${name};
+"
+	    classrelation_ref 133634 // <directional aggregation>
+	  b parent class_ref 128386 // Sensor
+      end
+
+      classrelation 134530 // <directional aggregation>
+	relation 133890 o-->
+	  a role_name "" private
+	    idl "  ${comment}${visibility}${type} ${name};
+"
+	    classrelation_ref 134530 // <directional aggregation>
+	  b parent class_ref 132098 // ValorControlConf
+      end
+
+      operation 130562 "getValorControl"
+	public explicit_return_type "int"
+	nparams 0
+	
+	
+	
+	
+	idl_decl "  ${comment}${oneway}${type} ${name}${(}${)}${raisesnl}${raises};
+"
+      end
+    end
+
+    class 129538 "CntrProporcional"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl "${comment}${abstract}${custom}struct ${name}{
+${inherit}
+${members}};
+"
+      explicit_switch_type ""
+      
+      classrelation 130050 // <generalisation>
+	relation 129794 ---|>
+	  a public
+	    idl "${type}"
+	    classrelation_ref 130050 // <generalisation>
+	  b parent class_ref 129410 // ValorControl
+      end
+    end
+
+    class 129666 "CntrRelativo"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl "${comment}${abstract}${custom}struct ${name}{
+${inherit}
+${members}};
+"
+      explicit_switch_type ""
+      
+      classrelation 145154 // <generalisation>
+	relation 144514 ---|>
+	  a public
+	    idl "${type}"
+	    classrelation_ref 145154 // <generalisation>
+	  b parent class_ref 129410 // ValorControl
+      end
+
+      classrelation 145538 // valor2 (<directional aggregation>)
+	relation 144898 o-->
+	  a role_name "valor2" multiplicity "1" private
+	    idl "  ${comment}${type} ${name};
+"
+	    classrelation_ref 145538 // valor2 (<directional aggregation>)
+	  b multiplicity "1" parent class_ref 136450 // Getter
+      end
+    end
+
+    class 129794 "Refrigeracion"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl "${comment}${abstract}${custom}struct ${name}{
+${inherit}
+${members}};
+"
+      explicit_switch_type ""
+      
+      classrelation 131202 // <directional aggregation>
+	relation 130946 o-->
+	  a role_name "" private
+	    idl "  ${comment}${visibility}${type} ${name};
+"
+	    classrelation_ref 131202 // <directional aggregation>
+	  b parent class_ref 128898 // Control
+      end
+
+      classrelation 131586 // <aggregation>
+	relation 131202 o---
+	  a role_name "" private
+	    idl "  ${comment}${visibility}${type} ${name};
+"
+	    classrelation_ref 131586 // <aggregation>
+	  b role_name "" private
+	    idl "  ${comment}${visibility}${type} ${name};
+"
+	    classrelation_ref 131714 // <aggregation>
+      end
+
+      classrelation 131970 // control (<directional aggregation>)
+	relation 131458 o-->
+	  a role_name "control" multiplicity "1" private
+	    idl "  ${comment}${visibility}${type} ${name};
+"
+	    classrelation_ref 131970 // control (<directional aggregation>)
+	  b multiplicity "1" parent class_ref 128898 // Control
+      end
+
+      classrelation 142338 // <generalisation>
+	relation 141698 ---|>
+	  a public
+	    idl "${type}"
+	    classrelation_ref 142338 // <generalisation>
+	  b parent class_ref 132610 // Lazo
+      end
+    end
+
+    class 129922 "CntrBanda"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl "${comment}${abstract}${custom}valuetype ${name}${inherit} {
+${members}};
+"
+      explicit_switch_type ""
+      
+      classrelation 145282 // <generalisation>
+	relation 144642 ---|>
+	  a public
+	    idl "${type}"
+	    classrelation_ref 145282 // <generalisation>
+	  b parent class_ref 129410 // ValorControl
+      end
+
+      classrelation 145410 // valor2 (<directional aggregation>)
+	relation 144770 o-->
+	  a role_name "valor2" multiplicity "1" private
+	    idl "  ${comment}${type} ${name};
+"
+	    classrelation_ref 145410 // valor2 (<directional aggregation>)
+	  b multiplicity "1" parent class_ref 136450 // Getter
+      end
+    end
+
+    class 130050 "AdaptacionSalida"
+      abstract visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl "${comment}${custom}struct ${name}{
+${inherit}
+${members}};
+"
+      explicit_switch_type ""
+      
+      comment "Transforma de un valor de control a un valor para la salida
+"
+      operation 130690 "calcularPotencia"
+	protected explicit_return_type "int"
+	nparams 1
+	  param in name "valorControl" explicit_type "int"
+	
+	
+	
+	
+	idl_decl "  ${comment}${oneway}${type} ${name}${(}${)}${raisesnl}${raises};
+"
+      end
+
+      classrelation 135170 // <directional aggregation>
+	relation 134530 o-->
+	  a role_name "" multiplicity "1" private
+	    idl "  ${comment}${visibility}${type} ${name};
+"
+	    classrelation_ref 135170 // <directional aggregation>
+	  b multiplicity "1" parent class_ref 131842 // AdaptSalidaConf
+      end
+
+      classrelation 143874 // salida (<directional aggregation>)
+	relation 143234 o-->
+	  a role_name "salida" multiplicity "1" private
+	    idl "  ${comment}${type} ${name};
+"
+	    classrelation_ref 143874 // salida (<directional aggregation>)
+	  b multiplicity "1" parent class_ref 128514 // Salida
+      end
+
+      operation 135426 "setPotenciaSalida"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "valorDeControl" explicit_type "int"
+	
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+	comment "no virtual"
+      end
+
+      operation 136578 "getHisteresis"
+	public explicit_return_type "int"
+	nparams 0
+	
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 136706 "setHisteresis"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "histeresis" explicit_type "int"
+	
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      attribute 132866 "manejadorMemoria"
+	private type class_ref 136706 // ManejadorMemoria
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl "  ${comment}${type} ${name};
+"
+      end
+    end
+
+    class 130178 "SalidaBanda"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl "${comment}${custom}struct ${name}{
+${inherit}
+${members}};
+"
+      explicit_switch_type ""
+      
+      comment "Usada para accion por exceso y defecto"
+      classrelation 130690 // <generalisation>
+	relation 130434 ---|>
+	  a public
+	    idl "${type}"
+	    classrelation_ref 130690 // <generalisation>
+	  b parent class_ref 130050 // AdaptacionSalida
+      end
+    end
+
+    class 130306 "AlDefecto"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl "${comment}${custom}struct ${name}{
+${inherit}
+${members}};
+"
+      explicit_switch_type ""
+      
+      classrelation 130818 // <generalisation>
+	relation 130562 ---|>
+	  a public
+	    idl "${type}"
+	    classrelation_ref 130818 // <generalisation>
+	  b parent class_ref 130178 // SalidaBanda
+      end
+    end
+
+    class 130434 "SalidaRetenida"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl "${comment}${custom}struct ${name}{
+${inherit}
+${members}};
+"
+      explicit_switch_type ""
+      
+      comment "usada"
+      operation 129282 "liberar"
+	public explicit_return_type "bool"
+	nparams 0
+	
+	
+	
+	
+	idl_decl "  ${comment}${oneway}${type} ${name}${(}${)}${raisesnl}${raises};
+"
+      end
+
+      classrelation 156802 // <generalisation>
+	relation 156162 ---|>
+	  a public
+	    cpp default "${type}"
+	    idl "${type}"
+	    classrelation_ref 156802 // <generalisation>
+	  b parent class_ref 130050 // AdaptacionSalida
+      end
+    end
+
+    class 130562 "AlDefectoRetenida"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl "${comment}${custom}struct ${name}{
+${inherit}
+${members}};
+"
+      explicit_switch_type ""
+      
+      classrelation 131074 // <generalisation>
+	relation 130818 ---|>
+	  a public
+	    idl "${type}"
+	    classrelation_ref 131074 // <generalisation>
+	  b parent class_ref 130306 // AlDefecto
+      end
+
+      operation 130434 "onTeclaPresionada"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "tecla" explicit_type "uchar"
+	
+	
+	
+	
+	idl_decl "  ${comment}${oneway}${type} ${name}${(}${)}${raisesnl}${raises};
+"
+      end
+
+      classrelation 135042 // <dependency>
+	relation 134402 -_->
+	  a default
+	    classrelation_ref 135042 // <dependency>
+	  b parent class_ref 132226 // ControladorHMI
+      end
+    end
+
+    class 130690 "LazoControl"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl "${comment}${custom}struct ${name}{
+${inherit}
+${members}};
+"
+      explicit_switch_type ""
+      
+      classrelation 132098 // <directional aggregation>
+	relation 131586 o-->
+	  a role_name "" private
+	    idl "  ${comment}${visibility}${type} ${name};
+"
+	    classrelation_ref 132098 // <directional aggregation>
+	  b parent class_ref 130050 // AdaptacionSalida
+      end
+
+      classrelation 132226 // <directional aggregation>
+	relation 131714 o-->
+	  a role_name "" private
+	    idl "  ${comment}${visibility}${type} ${name};
+"
+	    classrelation_ref 132226 // <directional aggregation>
+	  b parent class_ref 129410 // ValorControl
+      end
+
+      classrelation 136962 // <generalisation>
+	relation 136322 ---|>
+	  a public
+	    idl "${type}"
+	    classrelation_ref 136962 // <generalisation>
+	  b parent class_ref 132610 // Lazo
+      end
+    end
+
+    class 131842 "AdaptSalidaConf"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl "${comment}${custom}struct ${name}{
+${inherit}
+${members}};
+"
+      explicit_switch_type ""
+      
+      attribute 130178 "histeresis"
+	package explicit_type "int"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl "  ${comment}${visibility}${type} ${name};
+"
+      end
+
+      attribute 137730 "tipoSalida"
+	package type class_ref 128258 // fbyte
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl "  ${comment}${type} ${name};
+"
+      end
+    end
+
+    class 132098 "ValorControlConf"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl "${comment}${custom}struct ${name}{
+${inherit}
+${members}};
+"
+      explicit_switch_type ""
+      
+      attribute 130306 "valor"
+	public explicit_type "int"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl "  ${comment}${visibility}${type} ${name};
+"
+      end
+    end
+
+    class 132226 "ControladorHMI"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl "${comment}${custom}struct ${name}{
+${inherit}
+${members}};
+"
+      explicit_switch_type ""
+      
+      operation 130946 "addTeclaListener"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "metodo" type class_ref 132354 // Method
+	
+	
+	
+	
+	idl_decl "  ${comment}${oneway}${type} ${name}${(}${)}${raisesnl}${raises};
+"
+      end
+
+      classrelation 134914 // <dependency>
+	relation 134274 -_->
+	  a default
+	    classrelation_ref 134914 // <dependency>
+	  b parent class_ref 132354 // Method
+      end
+    end
+
+    class 132354 "Method"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl "${comment}${abstract}${custom}valuetype ${name}${inherit} {
+${members}};
+"
+      explicit_switch_type ""
+      
+    end
+
+    class 132610 "Lazo"
+      abstract visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl "${comment}${custom}struct ${name}{
+${inherit}
+${members}};
+"
+      explicit_switch_type ""
+      
+      operation 132098 "onNuevaMedicion"
+	abstract cpp_virtual protected explicit_return_type "void"
+	nparams 0
+	
+	
+	
+	
+	idl_decl "  ${comment}${oneway}${type} ${name}${(}${)}${raisesnl}${raises};
+"
+      end
+
+      classrelation 147458 // <dependency>
+	relation 146818 -_->
+	  a default
+	    classrelation_ref 147458 // <dependency>
+	  b parent class_ref 128386 // Sensor
+      end
+
+      operation 137858 "getSensor"
+	abstract cpp_virtual public return_type class_ref 128386 // Sensor
+	nparams 0
+	
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 137986 "getSalida"
+	abstract cpp_virtual public return_type class_ref 128514 // Salida
+	nparams 0
+	
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      attribute 134018 "nuevaMedicion"
+	private type class_ref 132354 // Method
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl "  ${comment}${type} ${name};
+"
+      end
+    end
+
+    class 133890 "AlarmaSensor"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl "${comment}${custom}struct ${name}{
+${inherit}
+${members}};
+"
+      explicit_switch_type ""
+      
+      classrelation 138498 // <generalisation>
+	relation 137858 ---|>
+	  a public
+	    idl "${type}"
+	    classrelation_ref 138498 // <generalisation>
+	  b parent class_ref 128002 // Alarma
+      end
+
+      classrelation 150274 // <directional composition>
+	relation 149634 *-->
+	  a role_name "" private
+	    idl "  ${comment}${type} ${name};
+"
+	    classrelation_ref 150274 // <directional composition>
+	  b parent class_ref 137858 // LazoControlAlSen
+      end
+
+      classrelation 150786 // <directional composition>
+	relation 150146 *-->
+	  a role_name "" private
+	    idl "  ${comment}${type} ${name};
+"
+	    classrelation_ref 150786 // <directional composition>
+	  b parent class_ref 129026 // Retransmision
+      end
+
+      classrelation 155010 // <dependency>
+	relation 154370 -_->
+	  a default
+	    cpp default "#include in source"
+	    classrelation_ref 155010 // <dependency>
+	  b parent class_ref 140674 // AlarmaSenConf
+      end
+
+      classrelation 156674 // <directional composition>
+	relation 156034 *-->
+	  a role_name "" private
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	    idl "  ${comment}${type} ${name};
+"
+	    classrelation_ref 156674 // <directional composition>
+	  b parent class_ref 141058 // LazoAlarmaControl
+      end
+    end
+
+    class 134018 "ListaFactoryCntrlAl"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl "${comment}${custom}struct ${name}{
+${inherit}
+${members}};
+"
+      explicit_switch_type ""
+      
+    end
+
+    class 136450 "Getter"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl "${comment}${custom}struct ${name}{
+${inherit}
+${members}};
+"
+      explicit_switch_type ""
+      
+    end
+
+    class 136578 "CntrProporcionalInv"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl "${comment}${custom}struct ${name}{
+${inherit}
+${members}};
+"
+      explicit_switch_type ""
+      
+      classrelation 145794 // <generalisation>
+	relation 145154 ---|>
+	  a public
+	    idl "${type}"
+	    classrelation_ref 145794 // <generalisation>
+	  b parent class_ref 129410 // ValorControl
+      end
+    end
+
+    class 136706 "ManejadorMemoria"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl "${comment}${custom}struct ${name}{
+${inherit}
+${members}};
+"
+      explicit_switch_type ""
+      
+    end
+
+    class 137858 "LazoControlAlSen"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl "${comment}${custom}struct ${name}{
+${inherit}
+${members}};
+"
+      explicit_switch_type ""
+      
+      classrelation 150146 // <generalisation>
+	relation 149506 ---|>
+	  a public
+	    idl "${type}"
+	    classrelation_ref 150146 // <generalisation>
+	  b parent class_ref 130690 // LazoControl
+      end
+
+      classrelation 150402 // <directional composition>
+	relation 149762 *-->
+	  a role_name "" private
+	    idl "  ${comment}${type} ${name};
+"
+	    classrelation_ref 150402 // <directional composition>
+	  b parent class_ref 136578 // CntrProporcionalInv
+      end
+
+      classrelation 150530 // <directional composition>
+	relation 149890 *-->
+	  a role_name "" private
+	    idl "  ${comment}${type} ${name};
+"
+	    classrelation_ref 150530 // <directional composition>
+	  b parent class_ref 130434 // SalidaRetenida
+      end
+
+      classrelation 150658 // <directional composition>
+	relation 150018 *-->
+	  a role_name "" private
+	    idl "  ${comment}${type} ${name};
+"
+	    classrelation_ref 150658 // <directional composition>
+	  b parent class_ref 130178 // SalidaBanda
+      end
+
+      classrelation 151298 // configuracion (<directional aggregation>)
+	relation 150658 o-->
+	  a role_name "configuracion" multiplicity "1" private
+	    idl "  ${comment}${type} ${name};
+"
+	    classrelation_ref 151298 // configuracion (<directional aggregation>)
+	  b multiplicity "1" parent class_ref 137986 // ConfLazoCntrlAlSen
+      end
+    end
+
+    class 137986 "ConfLazoCntrlAlSen"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl "${comment}${custom}struct ${name}{
+${inherit}
+${members}};
+"
+      explicit_switch_type ""
+      
+      attribute 135298 "adaptadorSalida"
+	private type class_ref 128258 // fbyte
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl "  ${comment}${type} ${name};
+"
+      end
+
+      classrelation 151042 // <directional composition>
+	relation 150402 *-->
+	  a role_name "" multiplicity "1" private
+	    idl "  ${comment}${type} ${name};
+"
+	    classrelation_ref 151042 // <directional composition>
+	  b multiplicity "1" parent class_ref 131842 // AdaptSalidaConf
+      end
+
+      classrelation 151170 // <directional composition>
+	relation 150530 *-->
+	  a role_name "" multiplicity "1" private
+	    idl "  ${comment}${type} ${name};
+"
+	    classrelation_ref 151170 // <directional composition>
+	  b multiplicity "1" parent class_ref 132098 // ValorControlConf
+      end
+    end
+
+    class 140674 "AlarmaSenConf"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl "${comment}${custom}struct ${name}{
+${inherit}
+${members}};
+"
+      explicit_switch_type ""
+      
+      classrelation 154754 // lazoCntrAlConf (<directional composition>)
+	relation 154114 *-->
+	  a role_name "lazoCntrAlConf" multiplicity "1" private
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	    idl "  ${comment}${type} ${name};
+"
+	    classrelation_ref 154754 // lazoCntrAlConf (<directional composition>)
+	  b multiplicity "1" parent class_ref 137986 // ConfLazoCntrlAlSen
+      end
+
+      classrelation 155138 // <generalisation>
+	relation 154498 ---|>
+	  a public
+	    cpp default "${type}"
+	    idl "${type}"
+	    classrelation_ref 155138 // <generalisation>
+	  b parent class_ref 128130 // AlarmaConf
+      end
+    end
+
+    class 140802 "AlarmaCntrConf"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl "${comment}${custom}struct ${name}{
+${inherit}
+${members}};
+"
+      explicit_switch_type ""
+      
+      classrelation 155266 // <generalisation>
+	relation 154626 ---|>
+	  a public
+	    cpp default "${type}"
+	    idl "${type}"
+	    classrelation_ref 155266 // <generalisation>
+	  b parent class_ref 128130 // AlarmaConf
+      end
+
+      classrelation 155522 // lazoCntrAlConf (<directional composition>)
+	relation 154882 *-->
+	  a role_name "lazoCntrAlConf" multiplicity "1" private
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	    idl "  ${comment}${type} ${name};
+"
+	    classrelation_ref 155522 // lazoCntrAlConf (<directional composition>)
+	  b multiplicity "1" parent class_ref 140930 // ConfLazoCntrAlCntr
+      end
+    end
+
+    class 140930 "ConfLazoCntrAlCntr"
+      visibility package stereotype "struct"
+      cpp_decl "${comment}${template}struct ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl "${comment}struct ${name} {
+${members}
+};
+
+"
+      explicit_switch_type ""
+      
+      classrelation 155394 // <generalisation>
+	relation 154754 ---|>
+	  a public
+	    cpp default "${type}"
+	    idl "${type}"
+	    classrelation_ref 155394 // <generalisation>
+	  b parent class_ref 137986 // ConfLazoCntrlAlSen
+      end
+
+      attribute 137602 "control"
+	private explicit_type "int"
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl "  ${comment}${readonly}${attribute}${type} ${name};
+"
+      end
+    end
+
+    class 141058 "LazoAlarmaControl"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl "${comment}${custom}struct ${name}{
+${inherit}
+${members}};
+"
+      explicit_switch_type ""
+      
+      classrelation 155778 // <generalisation>
+	relation 155138 ---|>
+	  a public
+	    cpp default "${type}"
+	    idl "${type}"
+	    classrelation_ref 155778 // <generalisation>
+	  b parent class_ref 130690 // LazoControl
+      end
+
+      classrelation 155906 // <directional composition>
+	relation 155266 *-->
+	  a role_name "" private
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	    idl "  ${comment}${type} ${name};
+"
+	    classrelation_ref 155906 // <directional composition>
+	  b parent class_ref 136578 // CntrProporcionalInv
+      end
+
+      classrelation 156034 // <directional composition>
+	relation 155394 *-->
+	  a role_name "" private
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	    idl "  ${comment}${type} ${name};
+"
+	    classrelation_ref 156034 // <directional composition>
+	  b parent class_ref 130434 // SalidaRetenida
+      end
+
+      classrelation 156162 // <directional composition>
+	relation 155522 *-->
+	  a role_name "" private
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	    idl "  ${comment}${type} ${name};
+"
+	    classrelation_ref 156162 // <directional composition>
+	  b parent class_ref 130178 // SalidaBanda
+      end
+
+      classrelation 156290 // <directional composition>
+	relation 155650 *-->
+	  a role_name "" private
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	    idl "  ${comment}${type} ${name};
+"
+	    classrelation_ref 156290 // <directional composition>
+	  b parent class_ref 129666 // CntrRelativo
+      end
+
+      classrelation 156418 // <directional composition>
+	relation 155778 *-->
+	  a role_name "" private
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	    idl "  ${comment}${type} ${name};
+"
+	    classrelation_ref 156418 // <directional composition>
+	  b parent class_ref 129922 // CntrBanda
+      end
+
+      classrelation 156546 // configuracion (<directional aggregation>)
+	relation 155906 o-->
+	  a role_name "configuracion" multiplicity "1" private
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    idl "  ${comment}${type} ${name};
+"
+	    classrelation_ref 156546 // configuracion (<directional aggregation>)
+	  b multiplicity "1" parent class_ref 140930 // ConfLazoCntrAlCntr
+      end
+    end
+
+    class 141186 "SalidaBloqueda"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl "${comment}${custom}struct ${name}{
+${inherit}
+${members}};
+"
+      explicit_switch_type ""
+      
+      classrelation 156930 // <generalisation>
+	relation 156290 ---|>
+	  a public
+	    cpp default "${type}"
+	    idl "${type}"
+	    classrelation_ref 156930 // <generalisation>
+	  b parent class_ref 130050 // AdaptacionSalida
+      end
+
+      operation 140674 "bloquear"
+	public explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+    end
+
+    class 144002 "Object"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl "${comment}${custom}struct ${name}{
+${inherit}
+${members}};
+"
+      explicit_switch_type ""
+      
+    end
+
+  end
+
+  classview 129154 "Salida"
+    //class diagram settings
+    draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
+    //collaboration diagram settings
+    show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default draw_all_relations default shadow default show_stereotype_properties default
+    //object diagram settings
+     write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default show_stereotype_properties default
+    //sequence diagram settings
+    show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default
+    //state diagram settings
+    package_name_in_tab default show_context default auto_label_position default write_trans_label_horizontally default show_trans_definition default draw_all_relations default shadow default
+    show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+    //class settings
+    //activity diagram settings
+    package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
+    show_infonote default drawing_language default show_stereotype_properties default
+    associated_deployment_view deploymentview_ref 130434 // Salida
+    class 129282 "PWM"
+      abstract visibility package stereotype "implementationClass"
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl "${comment}${custom}struct ${name}{
+${inherit}
+${members}};
+"
+      explicit_switch_type ""
+      
+      classrelation 151554 // <generalisation>
+	relation 150914 ---|>
+	  a public
+	    idl "${type}"
+	    classrelation_ref 151554 // <generalisation>
+	  b parent class_ref 128514 // Salida
+      end
+
+      classrelation 158082 // <generalisation>
+	relation 157442 ---|>
+	  a public
+	    cpp default "${type}"
+	    idl "${type}"
+	    classrelation_ref 158082 // <generalisation>
+	  b parent class_ref 142338 // IPWM
+      end
+
+      operation 129027 "PWM_setPeriodo"
+	public explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      classrelation 128131 // conf (<directional aggregation>)
+	relation 128131 o-->
+	  a role_name "conf" multiplicity "1" private
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    idl "  ${comment}${type} ${name};
+"
+	    classrelation_ref 128131 // conf (<directional aggregation>)
+	  b multiplicity "1" parent class_ref 128131 // TConfPWM
+      end
+    end
+
+    class 128514 "Salida"
+      abstract visibility protected stereotype "implementationClass"
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl "${comment}${custom}struct ${name}{
+${inherit}
+${members}};
+"
+      explicit_switch_type ""
+      
+      classrelation 153090 // <generalisation>
+	relation 152450 ---|>
+	  a public
+	    cpp default "${type}"
+	    idl "${type}"
+	    classrelation_ref 153090 // <generalisation>
+	  b parent class_ref 139522 // ISalida
+      end
+
+      attribute 128003 "duty"
+	private explicit_type ""
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl "  ${comment}${type} ${name};
+"
+      end
+
+      attribute 128131 "conectado"
+	private explicit_type ""
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl "  ${comment}${type} ${name};
+"
+      end
+
+      operation 128771 "Salida_setPotencia"
+	public explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 128899 "Salida_setConectada"
+	public explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+    end
+
+    classdiagram 130818 "Salidas"
+      draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
+      size A4
+    end
+
+    class 138114 "DecoradorSalida"
+      visibility public stereotype "implementationClass"
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl "${comment}${final}${visibility}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      python_2_2 python_decl "class ${name}${inherit}:
+${docstring}${members}
+"
+      idl_decl "${comment}${custom}struct ${name}{
+${inherit}
+${members}};
+"
+      explicit_switch_type ""
+      
+      operation 139394 "getDecorado"
+	public return_type class_ref 128514 // Salida
+	nparams 0
+	
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      classrelation 153218 // <generalisation>
+	relation 152578 ---|>
+	  a public
+	    cpp default "${type}"
+	    idl "${type}"
+	    classrelation_ref 153218 // <generalisation>
+	  b parent class_ref 139522 // ISalida
+      end
+
+      classrelation 153346 // decorado (<directional aggregation>)
+	relation 152706 o-->
+	  a role_name "decorado" multiplicity "1" private
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    idl "  ${comment}${type} ${name};
+"
+	    classrelation_ref 153346 // decorado (<directional aggregation>)
+	  b multiplicity "1" parent class_ref 139522 // ISalida
+      end
+    end
+
+    class 129026 "Retransmision"
+      visibility public stereotype "implementationClass"
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl "${comment}${abstract}${custom}struct ${name}{
+${inherit}
+${members}};
+"
+      explicit_switch_type ""
+      
+      classrelation 129154 // configuracion (<aggregation>)
+	relation 129026 o---
+	  a role_name "configuracion" multiplicity "1" private
+	    idl "  ${comment}${visibility}${type} ${name};
+"
+	    classrelation_ref 129154 // configuracion (<aggregation>)
+	  b role_name "" multiplicity "1" private
+	    idl "  ${comment}${visibility}${type} ${name};
+"
+	    classrelation_ref 129282 // <aggregation>
+      end
+
+      classrelation 147074 // <generalisation>
+	relation 146434 ---|>
+	  a public
+	    idl "${type}"
+	    classrelation_ref 147074 // <generalisation>
+	  b parent class_ref 132610 // Lazo
+      end
+
+      classrelation 147202 // salida (<directional aggregation>)
+	relation 146562 o-->
+	  a role_name "salida" multiplicity "1" private
+	    idl "  ${comment}${type} ${name};
+"
+	    classrelation_ref 147202 // salida (<directional aggregation>)
+	  b multiplicity "1" parent class_ref 128514 // Salida
+      end
+
+      classrelation 147330 // sensor (<directional aggregation>)
+	relation 146690 o-->
+	  a role_name "sensor" multiplicity "1" private
+	    idl "  ${comment}${type} ${name};
+"
+	    classrelation_ref 147330 // sensor (<directional aggregation>)
+	  b multiplicity "1" parent class_ref 128386 // Sensor
+      end
+    end
+
+    class 129154 "RetransmisionConf"
+      visibility package stereotype "struct"
+      cpp_decl "${comment}${template}struct ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl "${comment}struct ${name} {
+${members}
+};
+
+"
+      explicit_switch_type ""
+      
+      attribute 128898 "retLow"
+	public explicit_type "int"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl "  ${comment}${visibility}${type} ${name};
+"
+      end
+
+      attribute 129026 "retHi"
+	public explicit_type "int"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl "  ${comment}${visibility}${type} ${name};
+"
+      end
+
+      classrelation 129282 // <aggregation>
+	relation_ref 129026 // <aggregation>
+      end
+    end
+
+    class 138242 "SalidaConPolaridad"
+      visibility package stereotype "implementationClass"
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl "${comment}${custom}struct ${name}{
+${inherit}
+${members}};
+"
+      explicit_switch_type ""
+      
+      classrelation 151938 // <generalisation>
+	relation 151298 ---|>
+	  a public
+	    idl "${type}"
+	    classrelation_ref 151938 // <generalisation>
+	  b parent class_ref 138114 // DecoradorSalida
+      end
+
+      attribute 136450 "polaridad"
+	private type class_ref 139394 // TPolaridad
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl "  ${comment}${type} ${name};
+"
+      end
+    end
+
+    class 139394 "TPolaridad"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+    end
+
+    class 139522 "ISalida"
+      visibility package stereotype "interface"
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl "${comment}${@}${visibility}interface ${name}${extends} {
+${members}}
+"
+      php_decl "${comment}${visibility}interface ${name} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl "${comment}${local}struct ${name}{
+${inherit}
+};
+${members}
+"
+      explicit_switch_type ""
+      
+      operation 128003 "getPotencia"
+	public explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 128131 "setPotencia"
+	protected explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 128259 "getTipoSalida"
+	public explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 128387 "setTipoSalida"
+	public explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 128515 "getConectada"
+	public explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 128643 "setConectada"
+	public explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+    end
+
+    class 142338 "IPWM"
+      visibility package stereotype "interface"
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl "${comment}${@}${visibility}interface ${name}${extends} {
+${members}}
+"
+      php_decl "${comment}${visibility}interface ${name} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl "${comment}${local}struct ${name}{
+${inherit}
+};
+${members}
+"
+      explicit_switch_type ""
+      
+      operation 141826 "setPeriodo"
+	public explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 141954 "getPeriodo"
+	public explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      classrelation 158210 // <generalisation>
+	relation 157570 ---|>
+	  a public
+	    cpp default "${type}"
+	    idl "${type}"
+	    classrelation_ref 158210 // <generalisation>
+	  b parent class_ref 139522 // ISalida
+      end
+    end
+
+    class 142466 "DecoradorPWM"
+      visibility package stereotype "implementationClass"
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl "${comment}${custom}struct ${name}{
+${inherit}
+${members}};
+"
+      explicit_switch_type ""
+      
+      classrelation 158338 // <generalisation>
+	relation 157698 ---|>
+	  a public
+	    cpp default "${type}"
+	    idl "${type}"
+	    classrelation_ref 158338 // <generalisation>
+	  b parent class_ref 138114 // DecoradorSalida
+      end
+
+      classrelation 158466 // <generalisation>
+	relation 157826 ---|>
+	  a public
+	    cpp default "${type}"
+	    idl "${type}"
+	    classrelation_ref 158466 // <generalisation>
+	  b parent class_ref 142338 // IPWM
+      end
+    end
+
+    class 142594 "PWMPeriodoEvent"
+      visibility package stereotype "implementationClass"
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl "${comment}${custom}struct ${name}{
+${inherit}
+${members}};
+"
+      explicit_switch_type ""
+      
+      comment "PWM con evento al cambiar el periodo."
+      classrelation 158594 // <generalisation>
+	relation 157954 ---|>
+	  a public
+	    cpp default "${type}"
+	    idl "${type}"
+	    classrelation_ref 158594 // <generalisation>
+	  b parent class_ref 142466 // DecoradorPWM
+      end
+
+      operation 142082 "addPeriodoListener"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "metodo" type class_ref 132354 // Method
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 142210 "deletePeriodoListener"
+	public explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      attribute 138882 "listeners"
+	private type class_ref 142722 // MethodContainer
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl "  ${comment}${type} ${name};
+"
+      end
+    end
+
+    classdiagram 128131 "salida_hc08ac"
+      draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
+      size A4
+    end
+
+    class 128003 "PWMTpm1"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl "${comment}${custom}struct ${name}{
+${inherit}
+${members}};
+"
+      explicit_switch_type ""
+      
+      classrelation 128003 // <generalisation>
+	relation 128003 ---|>
+	  a public
+	    cpp default "${type}"
+	    idl "${type}"
+	    classrelation_ref 128003 // <generalisation>
+	  b parent class_ref 129282 // PWM
+      end
+    end
+
+    class 128131 "TConfPWM"
+      visibility package stereotype "struct"
+      cpp_decl "${comment}${template}struct ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl "${comment}struct ${name} {
+${members}
+};
+
+"
+      explicit_switch_type ""
+      
+    end
+  end
+
+  deploymentview 130434 "Salida"
+    //deployment diagram settings
+    package_name_in_tab default show_context default write_horizontally default auto_label_position default draw_all_relations default shadow default
+    draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
+    artifact 144386 "PWM"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      idl_src "#ifndef ${MODULE}_${NAME}_H
+#define ${MODULE}_${NAME}_H
+
+${comment}
+${includes}
+${module_start}
+${definition}
+${module_end}
+#endif
+"
+      associated_classes
+	class_ref 129282 // PWM
+      end
+    end
+
+    artifact 144514 "Salida"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      idl_src "#ifndef ${MODULE}_${NAME}_H
+#define ${MODULE}_${NAME}_H
+
+${comment}
+${includes}
+${module_start}
+${definition}
+${module_end}
+#endif
+"
+      associated_classes
+	class_ref 128514 // Salida
+      end
+    end
+
+    artifact 144642 "DecoradorSalida"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      idl_src "#ifndef ${MODULE}_${NAME}_H
+#define ${MODULE}_${NAME}_H
+
+${comment}
+${includes}
+${module_start}
+${definition}
+${module_end}
+#endif
+"
+      associated_classes
+	class_ref 138114 // DecoradorSalida
+      end
+    end
+
+    artifact 144770 "SalidaConPolaridad"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      idl_src "#ifndef ${MODULE}_${NAME}_H
+#define ${MODULE}_${NAME}_H
+
+${comment}
+${includes}
+${module_start}
+${definition}
+${module_end}
+#endif
+"
+      associated_classes
+	class_ref 138242 // SalidaConPolaridad
+      end
+    end
+
+    artifact 144898 "TPolaridad"
+      stereotype "source"
+      associated_classes
+	class_ref 139394 // TPolaridad
+      end
+    end
+
+    artifact 145026 "ISalida"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      php_src "<?php
+${comment}
+${definition}
+?>
+"
+      idl_src "#ifndef ${MODULE}_${NAME}_H
+#define ${MODULE}_${NAME}_H
+
+${comment}
+${includes}
+${module_start}
+${definition}
+${module_end}
+#endif
+"
+      associated_classes
+	class_ref 139522 // ISalida
+      end
+    end
+
+    artifact 149122 "Retransmision"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      idl_src "#ifndef ${MODULE}_${NAME}_H
+#define ${MODULE}_${NAME}_H
+
+${comment}
+${includes}
+${module_start}
+${definition}
+${module_end}
+#endif
+"
+      associated_classes
+	class_ref 129026 // Retransmision
+      end
+    end
+
+    artifact 149250 "RetransmisionConf"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      idl_src "#ifndef ${MODULE}_${NAME}_H
+#define ${MODULE}_${NAME}_H
+
+${comment}
+${includes}
+${module_start}
+${definition}
+${module_end}
+#endif
+"
+      associated_classes
+	class_ref 129154 // RetransmisionConf
+      end
+    end
+
+    artifact 156418 "IPWM"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      php_src "<?php
+${comment}
+${definition}
+?>
+"
+      idl_src "#ifndef ${MODULE}_${NAME}_H
+#define ${MODULE}_${NAME}_H
+
+${comment}
+${includes}
+${module_start}
+${definition}
+${module_end}
+#endif
+"
+      associated_classes
+	class_ref 142338 // IPWM
+      end
+    end
+
+    artifact 156546 "DecoradorPWM"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      idl_src "#ifndef ${MODULE}_${NAME}_H
+#define ${MODULE}_${NAME}_H
+
+${comment}
+${includes}
+${module_start}
+${definition}
+${module_end}
+#endif
+"
+      associated_classes
+	class_ref 142466 // DecoradorPWM
+      end
+    end
+
+    artifact 156674 "PWMPeriodoEvent"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      idl_src "#ifndef ${MODULE}_${NAME}_H
+#define ${MODULE}_${NAME}_H
+
+${comment}
+${includes}
+${module_start}
+${definition}
+${module_end}
+#endif
+"
+      associated_classes
+	class_ref 142594 // PWMPeriodoEvent
+      end
+    end
+  end
+
+  deploymentview 131714 "Alarmas"
+    //deployment diagram settings
+    package_name_in_tab default show_context default write_horizontally default auto_label_position default draw_all_relations default shadow default
+    draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
+    artifact 150914 "Sensor"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      php_src "<?php
+${comment}
+${definition}
+?>
+"
+      python_src "${comment}
+${import}
+${definition}"
+      idl_src "#ifndef ${MODULE}_${NAME}_H
+#define ${MODULE}_${NAME}_H
+
+${comment}
+${includes}
+${module_start}
+${definition}
+${module_end}
+#endif
+"
+      associated_classes
+	class_ref 128386 // Sensor
+      end
+    end
+
+    artifact 151042 "Alarma"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      idl_src "#ifndef ${MODULE}_${NAME}_H
+#define ${MODULE}_${NAME}_H
+
+${comment}
+${includes}
+${module_start}
+${definition}
+${module_end}
+#endif
+"
+      associated_classes
+	class_ref 128002 // Alarma
+      end
+    end
+
+    artifact 151170 "AlarmaConf"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      php_src "<?php
+${comment}
+${definition}
+?>
+"
+      python_src "${comment}
+${import}
+${definition}"
+      idl_src "#ifndef ${MODULE}_${NAME}_H
+#define ${MODULE}_${NAME}_H
+
+${comment}
+${includes}
+${module_start}
+${definition}
+${module_end}
+#endif
+"
+      associated_classes
+	class_ref 128130 // AlarmaConf
+      end
+    end
+
+    artifact 151298 "fbyte"
+      stereotype "source"
+      idl_src "#ifndef ${MODULE}_${NAME}_H
+#define ${MODULE}_${NAME}_H
+
+${comment}
+${includes}
+${module_start}
+${definition}
+${module_end}
+#endif
+"
+      associated_classes
+	class_ref 128258 // fbyte
+      end
+    end
+
+    artifact 151554 "Control"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      idl_src "#ifndef ${MODULE}_${NAME}_H
+#define ${MODULE}_${NAME}_H
+
+${comment}
+${includes}
+${module_start}
+${definition}
+${module_end}
+#endif
+"
+      associated_classes
+	class_ref 128898 // Control
+      end
+    end
+
+    artifact 151682 "ValorControl"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      idl_src "#ifndef ${MODULE}_${NAME}_H
+#define ${MODULE}_${NAME}_H
+
+${comment}
+${includes}
+${module_start}
+${definition}
+${module_end}
+#endif
+"
+      associated_classes
+	class_ref 129410 // ValorControl
+      end
+    end
+
+    artifact 151810 "CntrProporcional"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      idl_src "#ifndef ${MODULE}_${NAME}_H
+#define ${MODULE}_${NAME}_H
+
+${comment}
+${includes}
+${module_start}
+${definition}
+${module_end}
+#endif
+"
+      associated_classes
+	class_ref 129538 // CntrProporcional
+      end
+    end
+
+    artifact 151938 "CntrRelativo"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      idl_src "#ifndef ${MODULE}_${NAME}_H
+#define ${MODULE}_${NAME}_H
+
+${comment}
+${includes}
+${module_start}
+${definition}
+${module_end}
+#endif
+"
+      associated_classes
+	class_ref 129666 // CntrRelativo
+      end
+    end
+
+    artifact 152066 "Refrigeracion"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      idl_src "#ifndef ${MODULE}_${NAME}_H
+#define ${MODULE}_${NAME}_H
+
+${comment}
+${includes}
+${module_start}
+${definition}
+${module_end}
+#endif
+"
+      associated_classes
+	class_ref 129794 // Refrigeracion
+      end
+    end
+
+    artifact 152194 "CntrBanda"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      idl_src "#ifndef ${MODULE}_${NAME}_H
+#define ${MODULE}_${NAME}_H
+
+${comment}
+${includes}
+${module_start}
+${definition}
+${module_end}
+#endif
+"
+      associated_classes
+	class_ref 129922 // CntrBanda
+      end
+    end
+
+    artifact 152322 "AdaptacionSalida"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      idl_src "#ifndef ${MODULE}_${NAME}_H
+#define ${MODULE}_${NAME}_H
+
+${comment}
+${includes}
+${module_start}
+${definition}
+${module_end}
+#endif
+"
+      associated_classes
+	class_ref 130050 // AdaptacionSalida
+      end
+    end
+
+    artifact 152450 "SalidaBanda"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      idl_src "#ifndef ${MODULE}_${NAME}_H
+#define ${MODULE}_${NAME}_H
+
+${comment}
+${includes}
+${module_start}
+${definition}
+${module_end}
+#endif
+"
+      associated_classes
+	class_ref 130178 // SalidaBanda
+      end
+    end
+
+    artifact 152578 "AlDefecto"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      idl_src "#ifndef ${MODULE}_${NAME}_H
+#define ${MODULE}_${NAME}_H
+
+${comment}
+${includes}
+${module_start}
+${definition}
+${module_end}
+#endif
+"
+      associated_classes
+	class_ref 130306 // AlDefecto
+      end
+    end
+
+    artifact 152706 "SalidaRetenida"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      idl_src "#ifndef ${MODULE}_${NAME}_H
+#define ${MODULE}_${NAME}_H
+
+${comment}
+${includes}
+${module_start}
+${definition}
+${module_end}
+#endif
+"
+      associated_classes
+	class_ref 130434 // SalidaRetenida
+      end
+    end
+
+    artifact 152834 "AlDefectoRetenida"
+      stereotype "source"
+      idl_src "#ifndef ${MODULE}_${NAME}_H
+#define ${MODULE}_${NAME}_H
+
+${comment}
+${includes}
+${module_start}
+${definition}
+${module_end}
+#endif
+"
+      associated_classes
+	class_ref 130562 // AlDefectoRetenida
+      end
+    end
+
+    artifact 152962 "LazoControl"
+      stereotype "source"
+      idl_src "#ifndef ${MODULE}_${NAME}_H
+#define ${MODULE}_${NAME}_H
+
+${comment}
+${includes}
+${module_start}
+${definition}
+${module_end}
+#endif
+"
+      associated_classes
+	class_ref 130690 // LazoControl
+      end
+    end
+
+    artifact 153090 "AdaptSalidaConf"
+      stereotype "source"
+      idl_src "#ifndef ${MODULE}_${NAME}_H
+#define ${MODULE}_${NAME}_H
+
+${comment}
+${includes}
+${module_start}
+${definition}
+${module_end}
+#endif
+"
+      associated_classes
+	class_ref 131842 // AdaptSalidaConf
+      end
+    end
+
+    artifact 153218 "ValorControlConf"
+      stereotype "source"
+      idl_src "#ifndef ${MODULE}_${NAME}_H
+#define ${MODULE}_${NAME}_H
+
+${comment}
+${includes}
+${module_start}
+${definition}
+${module_end}
+#endif
+"
+      associated_classes
+	class_ref 132098 // ValorControlConf
+      end
+    end
+
+    artifact 153346 "ControladorHMI"
+      stereotype "source"
+      idl_src "#ifndef ${MODULE}_${NAME}_H
+#define ${MODULE}_${NAME}_H
+
+${comment}
+${includes}
+${module_start}
+${definition}
+${module_end}
+#endif
+"
+      associated_classes
+	class_ref 132226 // ControladorHMI
+      end
+    end
+
+    artifact 153474 "Method"
+      stereotype "source"
+      idl_src "#ifndef ${MODULE}_${NAME}_H
+#define ${MODULE}_${NAME}_H
+
+${comment}
+${includes}
+${module_start}
+${definition}
+${module_end}
+#endif
+"
+      associated_classes
+	class_ref 132354 // Method
+      end
+    end
+
+    artifact 153602 "Lazo"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      idl_src "#ifndef ${MODULE}_${NAME}_H
+#define ${MODULE}_${NAME}_H
+
+${comment}
+${includes}
+${module_start}
+${definition}
+${module_end}
+#endif
+"
+      associated_classes
+	class_ref 132610 // Lazo
+      end
+    end
+
+    artifact 153730 "AlarmaSensor"
+      stereotype "source"
+      idl_src "#ifndef ${MODULE}_${NAME}_H
+#define ${MODULE}_${NAME}_H
+
+${comment}
+${includes}
+${module_start}
+${definition}
+${module_end}
+#endif
+"
+      associated_classes
+	class_ref 133890 // AlarmaSensor
+      end
+    end
+
+    artifact 153858 "ListaFactoryCntrlAl"
+      stereotype "source"
+      idl_src "#ifndef ${MODULE}_${NAME}_H
+#define ${MODULE}_${NAME}_H
+
+${comment}
+${includes}
+${module_start}
+${definition}
+${module_end}
+#endif
+"
+      associated_classes
+	class_ref 134018 // ListaFactoryCntrlAl
+      end
+    end
+
+    artifact 153986 "Getter"
+      stereotype "source"
+      idl_src "#ifndef ${MODULE}_${NAME}_H
+#define ${MODULE}_${NAME}_H
+
+${comment}
+${includes}
+${module_start}
+${definition}
+${module_end}
+#endif
+"
+      associated_classes
+	class_ref 136450 // Getter
+      end
+    end
+
+    artifact 154114 "CntrProporcionalInv"
+      stereotype "source"
+      idl_src "#ifndef ${MODULE}_${NAME}_H
+#define ${MODULE}_${NAME}_H
+
+${comment}
+${includes}
+${module_start}
+${definition}
+${module_end}
+#endif
+"
+      associated_classes
+	class_ref 136578 // CntrProporcionalInv
+      end
+    end
+
+    artifact 154242 "ManejadorMemoria"
+      stereotype "source"
+      idl_src "#ifndef ${MODULE}_${NAME}_H
+#define ${MODULE}_${NAME}_H
+
+${comment}
+${includes}
+${module_start}
+${definition}
+${module_end}
+#endif
+"
+      associated_classes
+	class_ref 136706 // ManejadorMemoria
+      end
+    end
+
+    artifact 154370 "LazoControlAlSen"
+      stereotype "source"
+      idl_src "#ifndef ${MODULE}_${NAME}_H
+#define ${MODULE}_${NAME}_H
+
+${comment}
+${includes}
+${module_start}
+${definition}
+${module_end}
+#endif
+"
+      associated_classes
+	class_ref 137858 // LazoControlAlSen
+      end
+    end
+
+    artifact 154498 "ConfLazoCntrlAlSen"
+      stereotype "source"
+      idl_src "#ifndef ${MODULE}_${NAME}_H
+#define ${MODULE}_${NAME}_H
+
+${comment}
+${includes}
+${module_start}
+${definition}
+${module_end}
+#endif
+"
+      associated_classes
+	class_ref 137986 // ConfLazoCntrlAlSen
+      end
+    end
+
+    artifact 154626 "AlarmaSenConf"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      idl_src "#ifndef ${MODULE}_${NAME}_H
+#define ${MODULE}_${NAME}_H
+
+${comment}
+${includes}
+${module_start}
+${definition}
+${module_end}
+#endif
+"
+      associated_classes
+	class_ref 140674 // AlarmaSenConf
+      end
+    end
+
+    artifact 154754 "AlarmaCntrConf"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      idl_src "#ifndef ${MODULE}_${NAME}_H
+#define ${MODULE}_${NAME}_H
+
+${comment}
+${includes}
+${module_start}
+${definition}
+${module_end}
+#endif
+"
+      associated_classes
+	class_ref 140802 // AlarmaCntrConf
+      end
+    end
+
+    artifact 154882 "ConfLazoCntrAlCntr"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      idl_src "#ifndef ${MODULE}_${NAME}_H
+#define ${MODULE}_${NAME}_H
+
+${comment}
+${includes}
+${module_start}
+${definition}
+${module_end}
+#endif
+"
+      associated_classes
+	class_ref 140930 // ConfLazoCntrAlCntr
+      end
+    end
+
+    artifact 155010 "LazoAlarmaControl"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      idl_src "#ifndef ${MODULE}_${NAME}_H
+#define ${MODULE}_${NAME}_H
+
+${comment}
+${includes}
+${module_start}
+${definition}
+${module_end}
+#endif
+"
+      associated_classes
+	class_ref 141058 // LazoAlarmaControl
+      end
+    end
+
+    artifact 155138 "AlarmaControl"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      idl_src "#ifndef ${MODULE}_${NAME}_H
+#define ${MODULE}_${NAME}_H
+
+${comment}
+${includes}
+${module_start}
+${definition}
+${module_end}
+#endif
+"
+      associated_classes
+	class_ref 128770 // AlarmaControl
+      end
+    end
+
+    artifact 155266 "SalidaBloqueda"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      idl_src "#ifndef ${MODULE}_${NAME}_H
+#define ${MODULE}_${NAME}_H
+
+${comment}
+${includes}
+${module_start}
+${definition}
+${module_end}
+#endif
+"
+      associated_classes
+	class_ref 141186 // SalidaBloqueda
+      end
+    end
+  end
+
+  classview 130306 "System"
+    //class diagram settings
+    draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
+    //collaboration diagram settings
+    show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default draw_all_relations default shadow default show_stereotype_properties default
+    //object diagram settings
+     write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default show_stereotype_properties default
+    //sequence diagram settings
+    show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default
+    //state diagram settings
+    package_name_in_tab default show_context default auto_label_position default write_trans_label_horizontally default show_trans_definition default draw_all_relations default shadow default
+    show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+    //class settings
+    //activity diagram settings
+    package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
+    show_infonote default drawing_language default show_stereotype_properties default
+    class 142722 "MethodContainer"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl "${comment}${custom}struct ${name}{
+${inherit}
+${members}};
+"
+      explicit_switch_type ""
+      
+    end
+  end
+
+  classview 131458 "Comunicacion"
+    //class diagram settings
+    draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
+    //collaboration diagram settings
+    show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default draw_all_relations default shadow default show_stereotype_properties default
+    //object diagram settings
+     write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default show_stereotype_properties default
+    //sequence diagram settings
+    show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default
+    //state diagram settings
+    package_name_in_tab default show_context default auto_label_position default write_trans_label_horizontally default show_trans_definition default draw_all_relations default shadow default
+    show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+    //class settings
+    //activity diagram settings
+    package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
+    show_infonote default drawing_language default show_stereotype_properties default
+    associated_deployment_view deploymentview_ref 132866 // Comunicacion
+    classdiagram 133122 "Com"
+      draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
+      size A4
+    end
+
+    class 143874 "NodoICModBus"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl "${comment}${custom}struct ${name}{
+${inherit}
+${members}};
+"
+      explicit_switch_type ""
+      
+      attribute 140034 "dirIni"
+	private explicit_type "int"
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl "  ${comment}${type} ${name};
+"
+	get_oper operation_ref 143618 // get_dirIni
+      end
+
+      attribute 140162 "dirFin"
+	private explicit_type "int"
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl "  ${comment}${type} ${name};
+"
+	get_oper operation_ref 143362 // get_dirFin
+      end
+
+      operation 143362 "get_dirFin"
+	force_body_gen const cpp_inline public explicit_return_type "int"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}const ${type} ${name}${(}${)}${const}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}const ${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  return dirFin;
+}
+"
+	cpp_name_spec "get_${name}"
+	final 
+	java_name_spec "get${Name}"
+	php_final 
+	php_name_spec "get${Name}"
+	
+	python_name_spec "get${Name}"
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+	idl_name_spec "get_${name}"
+	get_of_attribute attribute_ref 140162 // dirFin
+      end
+
+      operation 143618 "get_dirIni"
+	force_body_gen const cpp_inline public explicit_return_type "int"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}const ${type} ${name}${(}${)}${const}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}const ${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  return dirIni;
+}
+"
+	cpp_name_spec "get_${name}"
+	final 
+	java_name_spec "get${Name}"
+	php_final 
+	php_name_spec "get${Name}"
+	
+	python_name_spec "get${Name}"
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+	idl_name_spec "get_${name}"
+	get_of_attribute attribute_ref 140034 // dirIni
+      end
+
+      attribute 140290 "getter"
+	private type class_ref 136450 // Getter
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl "  ${comment}${type} ${name};
+"
+	get_oper operation_ref 143874 // get_getter
+      end
+
+      operation 143874 "get_getter"
+	force_body_gen const cpp_inline public return_type class_ref 136450 // Getter
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}const ${type} ${name}${(}${)}${const}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}const ${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  return getter;
+}
+"
+	cpp_name_spec "get_${name}"
+	final 
+	java_name_spec "get${Name}"
+	php_final 
+	php_name_spec "get${Name}"
+	
+	python_name_spec "get${Name}"
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+	idl_name_spec "get_${name}"
+	get_of_attribute attribute_ref 140290 // getter
+      end
+
+      attribute 140418 "obj"
+	private type class_ref 144002 // Object
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl "  ${comment}${type} ${name};
+"
+	get_oper operation_ref 144002 // get_obj
+      end
+
+      operation 144002 "get_obj"
+	force_body_gen const cpp_inline public return_type class_ref 144002 // Object
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}const ${type} ${name}${(}${)}${const}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}const ${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  return obj;
+}
+"
+	cpp_name_spec "get_${name}"
+	final 
+	java_name_spec "get${Name}"
+	php_final 
+	php_name_spec "get${Name}"
+	
+	python_name_spec "get${Name}"
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+	idl_name_spec "get_${name}"
+	get_of_attribute attribute_ref 140418 // obj
+      end
+
+      operation 144130 "getDato"
+	public explicit_return_type "int"
+	nparams 2
+	  param in name "self" explicit_type "void *"
+	  param in name "direccion" explicit_type "void *"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 144258 "contieneDireccion"
+	public explicit_return_type "bool"
+	nparams 1
+	  param in name "self" explicit_type "void *"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 144386 "setDato"
+	public explicit_return_type "bool"
+	nparams 3
+	  param in name "_self" explicit_type "void *"
+	  param in name "addr" explicit_type "void *"
+	  param in name "dato" explicit_type "uint"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      classrelation 159746 // interfaces (<directional composition>)
+	relation 159106 *-->
+	  a role_name "interfaces" multiplicity "1" private
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	    idl "  ${comment}${type} ${name};
+"
+	    classrelation_ref 159746 // interfaces (<directional composition>)
+	  b multiplicity "*" parent class_ref 144130 // ListaICModBus
+      end
+    end
+
+    class 144130 "ListaICModBus"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl "${comment}${custom}struct ${name}{
+${inherit}
+${members}};
+"
+      explicit_switch_type ""
+      
+    end
+  end
+
+  deploymentview 132866 "Comunicacion"
+    //deployment diagram settings
+    package_name_in_tab default show_context default write_horizontally default auto_label_position default draw_all_relations default shadow default
+    draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
+    artifact 157826 "NodoICModBus"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      idl_src "#ifndef ${MODULE}_${NAME}_H
+#define ${MODULE}_${NAME}_H
+
+${comment}
+${includes}
+${module_start}
+${definition}
+${module_end}
+#endif
+"
+      associated_classes
+	class_ref 143874 // NodoICModBus
+      end
+    end
+
+    artifact 157954 "ListaICModBus"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      idl_src "#ifndef ${MODULE}_${NAME}_H
+#define ${MODULE}_${NAME}_H
+
+${comment}
+${includes}
+${module_start}
+${definition}
+${module_end}
+#endif
+"
+      associated_classes
+	class_ref 144130 // ListaICModBus
+      end
+    end
+  end
+add_operation_profile
+
+end

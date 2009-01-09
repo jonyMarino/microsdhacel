@@ -1,0 +1,12 @@
+window_sizes 1024 708 300 718 512 82
+diagrams
+  active  classdiagram_ref 128002 // Alarmas
+    718 552 100 4 83 0
+end
+show_stereotypes
+selected classdiagram_ref 128002 // Alarmas
+open
+  classview_ref 128002 // Alarmas
+end
+end
+verbose

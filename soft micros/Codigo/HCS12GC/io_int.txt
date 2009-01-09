@@ -1,0 +1,7 @@
+def a = TargetObject.#210.B; 
+ 
+PERIODICAL 200000, 10: 
+  100000 RAISE 15, 3, "TI7_interrupt"; 
+END 
+ 
+10000000 RAISE 15, 3, "TI7_interrupt";

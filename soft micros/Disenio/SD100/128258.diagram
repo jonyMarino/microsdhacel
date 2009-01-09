@@ -1,0 +1,25 @@
+format 59
+
+classcanvas 128002 class_ref 129794 // Refrigeracion
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
+  xyz 169 190 2000
+end
+classcanvas 128258 class_ref 128898 // Control
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
+  xyz 340 185 2000
+end
+classcanvas 129154 class_ref 132610 // Lazo
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
+  xyz 159 50 2000
+end
+relationcanvas 129026 relation_ref 131458 // <directional aggregation>
+  from ref 128002 z 1999 to ref 128258
+  role_a_pos 296 186 3000 no_role_b
+  multiplicity_a_pos 323 211 3000 multiplicity_b_pos 265 213 3000
+end
+relationcanvas 129282 relation_ref 141698 // <generalisation>
+  from ref 128002 z 1999 to ref 129154
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+end

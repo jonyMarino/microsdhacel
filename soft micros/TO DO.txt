@@ -1,0 +1,49 @@
+
+**** APARATOS Y PROGRAMAS *************
+* pasar a OutputStream el manejo del display
+* luego hacer un display especial para el adquisidor (que pueda solo mostrar la linea superior)
+* Impresor: Mostrar fecha sola al imprimirse separada arriba y abajo por una linea y al no haber ingresado la fecha, no mostrarla.
+* Agergar funciones virtuales a collections
+* Timer comienza desconectado
+* probar timer integer
+* Valores por defecto
+* Mensajes de Error en Aparatos
+* Num Serie en DhacelTec
+* Aparato Calibrador y Programa Calibrador
+* SelfTune para control
+* Contador con nueva programacion
+* Seleccionador de variable en el Adquisidor
+* Valvula Proporcional
+* Programador
+* Colada Caliente 
+* Copiado de programa
+* Pantalla LCD (TFT)
+* Sincronizador de hora entre la computadora y el adquisidor
+* Pregunta en el soft de adq si parar de adquirir para borrar todo
+* Soft al parar la adquisicion pierde el tiempo
+* Visualizacion de valores adquiridos por el adquisidor
+* EPM203 error al poner pausa
+
+****** DISEÑO *************
+* Decorador para Boxes ( y otros patrones de diseño)
+* UML
+* UML y creacion de codigo automatizado
+
+******* IMPLEMENTACION*****
+* Precompilador
+	* M4
+	* AWk
+* Documentacion con DoxyGen
+* TDD
+* SVN
+
+*** CONVENCIONES************
+De Codigo
+De metodologias
+
+***TESTING y PERFILADOR*****
+Valgrind
+Medicion de tiempos de interrupciones
+
+***PROBADOR AUTOMATICO*****
+MEDIDOR DE LA BASE DE TIEMPO
