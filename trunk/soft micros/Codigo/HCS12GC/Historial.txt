@@ -1,0 +1,68 @@
+************************
+******27/12/2007********
+
+_ Se trabajo con la compensación de junta fría
+
+************************
+******25/02/2008********
+
+_ Se agrego funcion de reconocimiento en la comunicacion
+
+
+************************
+******13/03/2008********
+
+_ Se separo la variable medida de la mostrada para el loop de control y el de alarma
+_ Cuestiones de prolijidad
+
+************************
+******19/03/2008********
+
+_Modifico el adquisidor para que entren mas datos por página.
+
+************************
+******09/04/2008********
+
+_Cambio la frecuencia del bus interno de 25 a 16 MHz para mayor estabilidad.
+
+************************
+******16/04/2008********
+El Rpm llega hasta 60 kHz
+Se pueden insertar boxes en posiciones relativas ( Ej : res -> Per -> H)
+
+***************************************
+******6/08/2008 (v 6.0.18.2.8)*********
+- Versión 0.1 de Adquisidor terminado
+- Los textos del adquisidor se muestran seguidos
+- Mejora interrupciones.
+- Uso del modulo PWM del hard 
+
+***************************************
+******14/08/2008 (v 6.0.18.2.9)*********
+- Boxes en Flash
+- Agregado de filtro en el RPM al leer 0 en la entrada
+- Arreglo bug en integral
+
+***************************************
+******20/08/2008 (v 6.0.18.3.0)********
+- Uso de librerias (.lib en vez .c)
+- + orientacion a objetos en guardar info para comunicacion en com_events.c (ComProps cambio)
+
+********************************
+******29/08/2008 (v 7.1)********
+- Cambio a nombre de version
+- Primer SD100 terminado
+
+********************************
+******16/09/2008 (v 7.2)********
+- Manejo de composicion exclusiva con uniones.
+
+***********************************
+******29/09/2008 (v 7.2 a2)********
+- Separacion de los decimales mostrados a la parte de vista para el control y la alarma
+(correccion en la alarma)
+
+*************************************************************************************
+******29/09/2008 (v 7.2 a6) Adquisidor bajo consumo con wake up para adquirir********
+- Segundo contenedor de Timers para bajo consumo.
+- Timer.c pasa a usar una lista doble

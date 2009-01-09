@@ -1,0 +1,25 @@
+format 59
+
+classcanvas 128131 class_ref 129282 // PWM
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
+  xyz 158 138 2000
+end
+classcanvas 128259 class_ref 128003 // PWMTpm1
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
+  xyz 188 271 2000
+end
+classcanvas 128515 class_ref 128131 // TConfPWM
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
+  xyz 387 143 2000
+end
+relationcanvas 128387 relation_ref 128003 // <generalisation>
+  from ref 128259 z 1999 to ref 128131
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 128643 relation_ref 128131 // <directional aggregation>
+  from ref 128131 z 1999 to ref 128515
+  role_a_pos 354 153 3000 no_role_b
+  multiplicity_a_pos 370 178 3000 multiplicity_b_pos 300 178 3000
+end
+end
