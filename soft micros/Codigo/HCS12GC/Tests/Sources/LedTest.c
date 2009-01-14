@@ -1,7 +1,7 @@
 /* MODULE LedTest*/
 
-#include "bits2ULN.h"
-#include "bits5ULN.h"
+#include "Bits2ULN.h"
+#include "Bits5ULN.h"
 #include "Display1.h"
 #include "LedTest.h"
 
@@ -12,18 +12,18 @@ byte leds=0;
 
 void set_Led(byte num){
   Display1_PutVal(0);	 //PTA
-  bits2ULN_PutVal(SELECT_LEDS);		// PTJ
+  Bits2ULN_PutVal(SELECT_LEDS);		// PTJ
   
   leds|=(1<<num);
 
-	bits5ULN_PutVal(leds); 	 //PTM
+	Bits5ULN_PutVal(leds); 	 //PTM
 }
 
 void Clr_Led(byte num){
 
   leds&=~(1<<num);
   
-  bits5ULN_PutVal(leds); 	 //PTM
+  Bits5ULN_PutVal(leds); 	 //PTM
 }
 
 byte get_Led(byte num){
