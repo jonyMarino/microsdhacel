@@ -66,10 +66,10 @@ void onSalirBajoConsumo(void * n);
 
 INITIALIZATION_PROM_BKP(&flashBkpEnFlashTable),              							\
     (const void*)0x4400,														\
-    0,0,0,0,0,0,0,0,  							                \
-    0,0,0,0,0,0,0,0,  						                	\
-    0,0,0,0,0,0,0,0,  							                \
-    0,0,0,0,0,0,0,0,  						                	\
+    0,//0,0,0,0,0,0,0,  							                \
+    0,//0,0,0,0,0,0,0,  						                	\
+    0,//0,0,0,0,0,0,0,  							                \
+    0,//0,0,0,0,0,0,0,  						                	\
     TRUE,																						\
     NULL
 };
