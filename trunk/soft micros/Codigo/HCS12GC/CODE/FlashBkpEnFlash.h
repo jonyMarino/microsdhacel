@@ -1,33 +1,31 @@
 #ifndef _FLASH_BKP_EN_FLASH_H
 #define _FLASH_BKP_EN_FLASH_H
 
-#include "PromBkp.h"
+#include "FlashBkp.h"
 #include "IFshMem.h"
 #include "FshTypeSizes.h"
 
+#define INDICE_SIZE (PAGE_SIZE/ ( sizeof(word)*8 ) )
+
 struct FlashBkpEnFlash{
-  struct PromBkp super;
-  const void * direccionBkp;
-  word indiceFlash[PAGE_SIZE/32];
-  bool escrituraHabilitada;
-  void * paginaAGrabar;		//actual pagina a grabar
+  struct FlashBkp super;
+  word indiceFlash[INDICE_SIZE];
 };
 
-extern const void * const FlashBkpEnFlash;
-//usado internamente, no referenciar!!!
-extern const struct TPromBkp flashBkpEnFlashTable; 
+extern const struct FlashBkpClass FlashBkpEnFlash; 
 ///////////////////////////////////////
 
 #define INITIALIZATION_FLASH_BKP_EN_FLASH(class,bkpAddr)       \
-    INITIALIZATION_PROM_BKP(class),              							\
-    (const void*)bkpAddr,														\
+    INITIALIZATION_FLASH_BKP(class),              							\
     0,0,0,0,0,0,0,0,  							                \
     0,0,0,0,0,0,0,0,  						                	\
-    TRUE,																						\
-    NULL
+    0,0,0,0,0,0,0,0,  							                \
+    0,0,0,0,0,0,0,0,  						                	
 
 #define NEW_FLASH_BKP_EN_FLASH(name,bkpAddr) \
   struct FlashBkpEnFlash name={																				\
-    INITIALIZATION_FLASH_BKP_EN_FLASH(&flashBkpEnFlashTable,bkpAddr)  \
+    INITIALIZATION_FLASH_BKP_EN_FLASH(&FlashBkpEnFlash,bkpAddr)  \
   }
+  
+  
 #endif
