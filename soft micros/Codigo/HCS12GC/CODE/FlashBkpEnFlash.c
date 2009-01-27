@@ -9,8 +9,12 @@ word FlashBkpEnFlash_getWord(void*,word*);
 //dword FlashBkpEnFlash_getDWord(void*,dword*);
 void *FlashBkpEnFlash_grabarProm(void*);  
 byte FlashBkpEnFlash_borrarProm(void*self,void*direccion);
+
+bool FlashBkpEnFlash_getIndexArray(void * _self,word);
+void FlashBkpEnFlash_setIndexArray(void * _self,word);
+void FlashBkpEnFlash_clearIndexArray(void * _self);  
   
-const struct PromBkpClass flashBkpEnFlashTable={
+const struct FlashBkpClass FlashBkpEnFlash={
   &Class,
   "",
   &Object,
@@ -19,148 +23,56 @@ const struct PromBkpClass flashBkpEnFlashTable={
   NULL,
   NULL, // differ
   NULL, // puto
-  FlashBkpEnFlash_getWord,
-  FlashBkpEnFlash_setWord,
-  FlashBkpEnFlash_getWord,
-  FlashBkpEnFlash_setWord,
+  FlashBkp_getWord,
+  FlashBkp_setWord,
+  FlashBkp_getWord,
+  FlashBkp_setWord,
   NULL,
   NULL,
-  FlashBkpEnFlash_borrarProm,
-  FlashBkpEnFlash_grabarProm 
+  FlashBkp_borrarProm,
+  FlashBkp_grabarProm,
+  FlashBkpEnFlash_getIndexArray,
+  FlashBkpEnFlash_setIndexArray,
+  FlashBkpEnFlash_clearIndexArray 
+};
+
+const word mask[]={
+  1<<0,
+  1<<1,
+  1<<2,
+  1<<3,
+  1<<4,
+  1<<5,
+  1<<6,
+  1<<7,
+  1<<8,
+  1<<9,
+  1<<10,
+  1<<11,
+  1<<12,
+  1<<13,
+  1<<14,
+  1<<15,  
 };
 
 
-const void * const FlashBkpEnFlash=&flashBkpEnFlashTable;
-
-/*
-** ===================================================================
-**    Function    :  FlashBkpEnFlash_setWord 
-**    Description : 
-** ===================================================================
-*/
-bool PromBkp_isEnIndex(void * self,void * direccion){
-  struct FlashBkpEnFlash * _f=self;
-  word dir = (word)direccion;
-  word mask= 1<<(((dir&(PAGE_SIZE-1))/2)%16);
-  word index=(dir&(PAGE_SIZE-1))/32;
-  return (_f->indiceFlash[index]&mask)?TRUE:FALSE ;    
+bool FlashBkpEnFlash_getIndexArray(void * _self,word index){
+  struct FlashBkpEnFlash * self = _self; 
+  byte shift=(index/2)% ( sizeof(word)*8 );
+  return self->indiceFlash[index/INDICE_SIZE]&= mask[shift];
 }
-/*
-** ===================================================================
-**    Function    :  FlashBkpEnFlash_setWord 
-**    Description : 
-** ===================================================================
-*/
-byte FlashBkpEnFlash_setWord(void* self,word*Address,word valor){
-  struct FlashBkpEnFlash * _f=self;
-  
-  word Addr = (word)Address;
-  
-  if (Addr & 1 || IFsh10_isInPage(Address,_f->direccionBkp)){
-    /* Aligned address ? */
-    return ERR_NOTAVAIL;
-  }
- 
 
-  if(*(word *)Addr!=valor){
-    byte shift;
-    
-    
-    if(!_f->escrituraHabilitada)		//no esta libre para escribir?
-      return ERR_NOTAVAIL;
-    
-    if((word)_f->paginaAGrabar==0) 
-      _f->paginaAGrabar=(void*)(Addr&65024);
-    else if (_f->paginaAGrabar!=(void*)(Addr&65024))
-      return ERR_BUSY;      /* Todavia no se grabo la página en cola*/  
-  
-    WriteWord(&((word*)_f->direccionBkp)[(Addr&(PAGE_SIZE-1))/2], valor);
-    shift=((Addr&(PAGE_SIZE-1))/2)%16;
-    _f->indiceFlash[(Addr&(PAGE_SIZE-1))/32]|= 1<<shift;	 //MSB
-    PromBkp_setAGrabar(self,TRUE);
-  }
-  return ERR_OK;
-}
-/*
-** ===================================================================
-**    Function    :  FlashBkpEnFlash_getWord 
-**    Description : 
-** ===================================================================
-*/
-word FlashBkpEnFlash_getWord(void*self,word*direccion){
-  struct FlashBkpEnFlash * _f=self;
-  word dir = (word)direccion;
-  
-  if(!PromBkp_getAGrabar(self) || !IFsh10_isInPage(direccion,_f->paginaAGrabar) ||   !PromBkp_isEnIndex(self,direccion) ) // con que el primero este para grabar alcanza
-    return *direccion;
-  else
-    return *(word *)&((word*)_f->direccionBkp)[(dir&(PAGE_SIZE-1))/2];
+void FlashBkpEnFlash_setIndexArray(void * _self,word index){
+  struct FlashBkpEnFlash * self = _self; 
+  byte shift=(index/2)% ( sizeof(word)*8 );
+  self->indiceFlash[index/INDICE_SIZE]|= mask[shift];	
 
 }
 
-/*
-** ===================================================================
-**    Function    :  FlashBkpEnFlash_grabarProm 
-**    Description : 
-** ===================================================================
-*/
-void FlashBkpEnFlash_backupSector(void * self){
-  struct FlashBkpEnFlash * _f=self;
-  word a;
-  byte i;  
-  
-  for (a=0;a<(PAGE_SIZE/32);a++){
-    for (i=0;i<16;i++){
-      if (!(_f->indiceFlash[a]&1)){
-        word * addr = &(((word*)_f->direccionBkp)[a*16+i]);
-        word value = *(((word*)_f->paginaAGrabar)+a*16+i);
-        WriteWord(addr,value);
-      }
-    _f->indiceFlash[a]>>=1;
-    }
+void FlashBkpEnFlash_clearIndexArray(void * _self){
+  struct FlashBkpEnFlash * self = _self; 
+  int i;
+  for(i=0; i < INDICE_SIZE ; i++){
+    self->indiceFlash[i]=0;
   }
 }
-/*
-** ===================================================================
-**    Function    :  FlashBkpEnFlash_grabarProm 
-**    Description : 
-** ===================================================================
-*/
-void *FlashBkpEnFlash_grabarProm(void*self){
-  struct FlashBkpEnFlash * _f=self;
-  byte err;
-  void * paginaTmp = _f->paginaAGrabar;
-
-	 if(_f->escrituraHabilitada){ 
-  	 _f->escrituraHabilitada=FALSE;
-  	 FlashBkpEnFlash_backupSector(self);                      /* Backup sector */
-     return _f->direccionBkp;
-	 }
-   //PromBkp_callPreEraseListeners(self,paginaTmp);
-   err=IFsh10_GrabarFlash(paginaTmp,_f->direccionBkp);
-    if(err)
-      return NULL;                     /* Return error code if previous operation finished not correctly */
- 	 _f->paginaAGrabar=0;  	 
- 	 PromBkp_borrarPagina(self,_f->direccionBkp);
- 	 return paginaTmp;  
-}
-/*
-** ===================================================================
-**    Function    :  FlashBkpEnFlash_borrarProm 
-**    Description : 
-** ===================================================================
-*/
-byte FlashBkpEnFlash_borrarProm(void*self,void*direccion){
-  struct FlashBkpEnFlash * _f=self;
-  
-  byte err=EraseSectorInternal(direccion);
-  if(err)
-    return err;
-  if(IFsh10_getPage(direccion)==IFsh10_getPage(_f->direccionBkp)){
-    PromBkp_setAGrabar(self,FALSE);
-    _f->escrituraHabilitada=TRUE;
-  }
-  
-  return ERR_OK;    
-}
-

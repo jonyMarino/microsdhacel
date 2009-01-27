@@ -46,6 +46,7 @@
 #include "O2.h"
 #include "AS1.h"
 #include "TI1.h"
+#include "FlashBkp256.h"
 
 #ifdef DEBUG
   #include "BTBajoConsumoSafe.h"
@@ -59,8 +60,7 @@ byte powdown;
 byte simPowDown=0;
 #endif
 
-
-NEW_FLASH_BKP_EN_FLASH(flash,0x4200);
+NEW_FLASH_BKP_256(flash,0x4200);
 const struct ManejadorMemoria * pFlash = &flash;
 
 struct AdquisidorSimple adquisidorSimple;
