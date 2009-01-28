@@ -41,8 +41,17 @@
   };
 
   /*Erase Page*/
-  const struct PropiedadGenerica ParBorrarPage= {
-    &PropiedadGenerica,Adq_getPaginaActual,Adq_ErasePages,NULL,NULL  
+  int get_1(void * self){
+    return 1;
+  }
+  
+  char * AdquisidorHmi_getBorrarStr(int str){
+    if(str)
+      return "no";
+    return "Si";      
+  }
+  const struct ConstPropTxt ParBorrarPage= {
+    &PropiedadGenerica,Adq_getPaginaActual,Adq_ErasePages,get_0,get_1,&PropTxt,"borrAr dAtoS",  
   };
   
   /* Pagina Start*/
@@ -60,7 +69,7 @@
     &ParInterval,
     &ParState,
     &ParStrategy,
-    &ParBorrarPage,
+    &GetterState,
     &GetterState,
     &GetterPagStart,
     &GetterPagEnd    
@@ -109,6 +118,7 @@ const struct ConstructorPropWInc*const Props_Adq[]=	{
   			  &ParInterval,
   			  &ParStrategy,
   			  &ParState,
+  			  &ParBorrarPage,
   			  NULL
 };
 
