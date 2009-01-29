@@ -124,7 +124,7 @@
 		#endif
 	#else
 	  #ifdef _ADQUISIDOR
-	  #define FLASH_ADQUISIDOR_START  FLASH_COM_END + 1
+	  #define FLASH_ADQUISIDOR_START  FLASH_COM_END + 512 + 1
     #define FLASH_ADQUISIDOR_END 0x58FF
     #endif
   #endif

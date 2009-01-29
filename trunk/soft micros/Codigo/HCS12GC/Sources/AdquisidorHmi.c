@@ -55,6 +55,11 @@
   };
   
   /* Pagina Start*/
+  const struct GetterGenerico GetterPagActual={
+    &GetterGenerico,Adq_getPaginaActual  
+  };
+  
+  /* Pagina Start*/
   const struct GetterGenerico GetterPagStart={
     &GetterGenerico,Adq_getPaginasStart  
   };
@@ -69,7 +74,7 @@
     &ParInterval,
     &ParState,
     &ParStrategy,
-    &GetterState,
+    &GetterPagActual,
     &GetterState,
     &GetterPagStart,
     &GetterPagEnd    

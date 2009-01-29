@@ -91,7 +91,7 @@ void FlashBkp_backupSector(void * self){
   struct FlashBkp * _f=self;
   word a;  
   
-  for (a=0;a<PAGE_SIZE;a++){
+  for (a=0;a<PAGE_SIZE/2;a++){
       if (getIndexArray(self,a)){
         word * addr = &(((word*)_f->direccionBkp)[a]);
         word value = *(((word*)_f->paginaAGrabar)+a);
