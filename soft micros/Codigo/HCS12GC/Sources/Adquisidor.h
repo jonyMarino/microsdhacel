@@ -33,7 +33,7 @@ struct AdqConf{
   FALSE,													 \
   5,															 \
   ADQ_STOPADQ,										 \
-  (word *)(0x4A00),								 \
+  (word *)(0x4400),								 \
   (word *)(FLASH_ADQUISIDOR_END) 
 
 typedef enum{
