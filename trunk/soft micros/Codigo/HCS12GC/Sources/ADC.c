@@ -452,6 +452,7 @@ byte ADC_Disable(void)
     return ERR_OK;                     /* If yes then OK */
   }
   EnUser = FALSE;                      /* If yes then set the flag "device disabled" */
+ // ModeFlg = STOP; 
   HWEnDi();                            /* Enable the device */
   return ERR_OK;                       /* OK */
 }
