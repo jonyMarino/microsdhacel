@@ -108,7 +108,8 @@ byte TI1_Enable(void)
 
 void TI1_Disable(void)
 {
-  TIE_C0I = 0;                         /* Enable interrupt */ 
+  TFLG1 = 1;                           /* Reset interrupt request flag */
+  TIE_C0I = 0;                        
 }
 
 /*
