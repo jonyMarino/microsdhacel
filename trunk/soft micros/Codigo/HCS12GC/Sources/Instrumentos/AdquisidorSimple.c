@@ -1,6 +1,7 @@
 #include "AdquisidorSimple.h"
 #include "System.h"
 #include "MessagesOut.h"
+#include "Adquisidor.h"
 
 void AdquisidorSimple_defCtor(void * self);
 
@@ -34,12 +35,20 @@ void  AdquisidorSimple_actualizarTextos(void * _self){
   
   if(Adq_getActualState(&self->adquisidor)==TRUE){
     self->mensaje[7]='S';
-    self->mensaje[8]='i'; 
-  }else{
+    self->mensaje[8]='i';
+    self->mensaje[9]=' '; 
+  }if(Adq_getActualState(&self->adquisidor)== 0){     //ESTADO ADQ_NO
     self->mensaje[7]='n';
-    self->mensaje[8]='o';  
+    self->mensaje[8]='o';
+    self->mensaje[9]=' ';  
+  }if(Adq_getActualState(&self->adquisidor)==3){      //ESTADO ADQ_FULL
+    self->mensaje[7]='F';
+    self->mensaje[8]='U';
+    self->mensaje[9]='L';
+    self->mensaje[10]=' ';
+    
+     
   }
-  
   
   if(Adq_isTimeSet(&self->adquisidor)){
     DATEREC date;
