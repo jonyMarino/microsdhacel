@@ -1,6 +1,15 @@
 #ifndef OBJECT_R
 #define OBJECT_R
 
+/*C++ 
+class Object:public Object
+{
+ public:
+  virtual int differ (const void * b);
+  virtual int puto (OutputStream * os);
+
+}
+*/
 struct Object {
 	const struct Class * class;	/* object's description */
 };

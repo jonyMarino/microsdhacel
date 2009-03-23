@@ -4,6 +4,23 @@
 #include "Object.h"
 #include "Iterator.h"
 
+/*C++ 
+class Collection:public Object
+{
+ public:
+  virtual bool add(Object * obj);
+  virtual void clear(void);
+  virtual bool contains(Object * obj);   
+  virtual bool isEmpty(void);
+  virtual Iterator * iterator(void );
+  virtual bool moveOut(Object * obj); 
+  virtual uint size(void); 
+}
+*/
+struct Collection{
+  struct Object super;
+};
+
 struct CollectionClass{
   struct Class super;
   bool (*add)(void * _self,void * obj);

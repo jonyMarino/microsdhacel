@@ -3,6 +3,19 @@
 
 #include "Collection.h"
 
+
+/*C++ 
+class List:public Collection
+{
+ public:
+ 
+  virtual Object * get(uint index)=0;
+}
+*/
+struct List{
+  struct Collection super;
+};
+
 struct ListClass{
   struct CollectionClass super;
   struct Object * (*get)(void *_self,uint index);          
