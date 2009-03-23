@@ -6,7 +6,6 @@
 #include <stdtypes.h>
 #include <stdio.h>
 #include "Object.r"
-#include "Object.h"
 
 
 //extern const void * Object;		/* new(&Object); */

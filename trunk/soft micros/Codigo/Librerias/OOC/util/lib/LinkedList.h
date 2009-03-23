@@ -11,7 +11,7 @@
 
 
 /*C++ 
-class LinkedList:public Object
+class LinkedList:public List
 {
  public:
   void addFirst(void * _self,void * obj);
@@ -27,7 +27,7 @@ class LinkedList:public Object
 }
 */
 struct LinkedList{
-  struct Object super;
+  struct List super;
   struct Nodo * nodo;
 };
 
