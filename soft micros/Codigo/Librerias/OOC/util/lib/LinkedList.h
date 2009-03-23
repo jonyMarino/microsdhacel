@@ -9,6 +9,23 @@
 #pragma CODE_SEG  LinkedList_CODE
 #pragma DATA_SEG  LinkedList_DATA
 
+
+/*C++ 
+class LinkedList:public Object
+{
+ public:
+  void addFirst(void * _self,void * obj);
+  void addLast(void * _self,void * obj);
+  Object * getFirst(void);
+  Object * getLast(void);
+  Object * removeFirst(void);
+  Object * removeLast(void);
+ 
+ private:
+    Nodo * nodo;
+ 
+}
+*/
 struct LinkedList{
   struct Object super;
   struct Nodo * nodo;
