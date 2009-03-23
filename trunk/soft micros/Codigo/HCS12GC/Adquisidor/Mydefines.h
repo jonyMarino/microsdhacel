@@ -116,16 +116,21 @@
 #define FLASH_COM_START 0x4000 /* ep */
 #define FLASH_COM_END 0x41FF 
   #ifdef _PROGRAMADOR
-  #define FLASH_PROGRAMADOR_START   FLASH_COM_END + 1  /* flash donde estan las adquisiciones */  
+  #define FLASH_PROGRAMADOR_START   FLASH_COM_END + 1  /* flash donde estan las adquisiciones(1) */  
   #define FLASH_PROGRAMADOR_END   FLASH_PROGRAMADOR_START + 2560 
     #ifdef  _ADQUISIDOR
-    #define FLASH_ADQUISIDOR_START FLASH_PROGRAMADOR_END+1
+    #define FLASH_ADQUISIDOR_START FLASH_PROGRAMADOR_END + 1
     #define FLASH_ADQUISIDOR_END 0x58FF
 		#endif
 	#else
 	  #ifdef _ADQUISIDOR
+	 // #define FLASH_ADQUISIDOR_START  FLASH_COM_END + 1
 	  #define FLASH_ADQUISIDOR_START  FLASH_COM_END + 512 + 1
-    #define FLASH_ADQUISIDOR_END 0x58FF
+//    #define FLASH_ADQUISIDOR_END 0x5DFF
+    //#define FLASH_ADQUISIDOR_END 0x58FF
+    #define FLASH_ADQUISIDOR_END 0x4EFF
+    
+        
     #endif
   #endif
   
@@ -142,7 +147,7 @@
 
 ////////////////////VISUALIZACION//////////////////////////////////
 #define DIGITOS 4
-#define MAX_DIGITOS 40 /* Tamaño del texto más largo*/
+#define MAX_DIGITOS 45 /* Tamaño del texto más largo*/
 #define TIME_SCROLL 200 /* multiplicador de tiempo de scroling*/
 #define TIME_BETWEEN_PARS TIME_SCROLL * MAX_DIGITOS
 #define MAIN_TEXT_PERIOD 4000 /* periodo del cambio de mensaje en el display inferior para la pantalla Main*/
