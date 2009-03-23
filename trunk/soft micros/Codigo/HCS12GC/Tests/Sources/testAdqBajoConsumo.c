@@ -61,6 +61,10 @@ byte simPowDown=0;
 #endif
 
 NEW_FLASH_BKP_256(flash,0x4200);
+extern void * nico;
+extern bool estado;
+bool BajoConsumo = FALSE;
+
 const struct ManejadorMemoria * pFlash = &flash;
 
 struct AdquisidorSimple adquisidorSimple;
@@ -170,11 +174,20 @@ static const NEW_ARRAY_LIST(AccessList,AccessArray);
   
 
 void entrarBajoConsumo(void * n){
-  TI1_Disable(); //deshabilito los timers  
-  ADC_Disable(); 
+ 
+  TI1_Disable(); //deshabilito los timers
+  ADC_Disable();
+ 
+  BajoConsumo = TRUE;
+  Adq_Stop(nico); // agrego nico
+ 
 }
 
 void onBajoConsumo(void * n){
+      
+      BajoConsumo = TRUE;
+      Adq_Stop(nico); // agrego nico
+     
       clrReg8Bits(COPCTL, 71); // kill the dog!
       TI1_Disable(); //deshabilito los timers
       ADC_Disable();      
@@ -200,6 +213,9 @@ void onBajoConsumo(void * n){
 }
 
 void onSalirBajoConsumo(void * n){
+  
+      
+  
       clrSetReg8Bits(COPCTL, 128, 71);  // revive the dog!
       //conecto la alimentacion del resto del equipo
       setReg8Bits(DDRP, 170); 
@@ -227,7 +243,16 @@ void onSalirBajoConsumo(void * n){
       TI1_Enable(); //habilito los timers
       ADC_Enable();
       ADC_Start();
+     
+     if((nico != NULL)&&(estado == TRUE)){
+      
+      Adq_Start(nico); // agrego nico
+     // estado = FALSE;
+     }
+     
+     BajoConsumo = FALSE;
 }
+
 
 
 void main (void){
@@ -243,7 +268,7 @@ void main (void){
   
   DN_staticInit(&OpList,&AccessList);												 
   
-
+  
   /* Bajo Consumo */
   
   esperaPowUp = RTIEsperaPowUp_getInstance();
