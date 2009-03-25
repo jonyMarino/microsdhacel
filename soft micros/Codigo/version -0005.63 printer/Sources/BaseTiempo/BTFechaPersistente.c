@@ -7,6 +7,7 @@ void BTFechaPersistente_incUnSegundo(void * _self);
 
 byte BTFechaPersistente_setDate(void * _self,word anio,byte mes,byte dia);
 
+
 const struct BaseTiempoClass BTFechaPersistente = {
     BASE_TIEMPO_CLASS_INITIALIZATION(BaseTiempoClass,
                              BTFechaPersistente,  
@@ -24,6 +25,8 @@ const struct BaseTiempoClass BTFechaPersistente = {
 
 
 
+ #pragma CODE_SEG DEFAULT
+// #pragma CODE_SEG VIRTUAL_TABLES
 /*
 ** ===================================================================
 **     Method      :  BTFechaPersistente_constructor 

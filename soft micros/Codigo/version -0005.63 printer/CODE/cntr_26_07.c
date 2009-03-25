@@ -256,7 +256,6 @@ bool Mostrar_Proc;
 /////////////////FUNCION PRINCIPAL//////////////////
 ////////////////////////////////////////////////////
 ////////////////////////////////////////////////////				
-
  
 #define valnorm(i) ((Vx[i]+PRom[R_ACT+i])*(1000+PRom[R_AGT+i])/1000)  
 
@@ -272,9 +271,16 @@ void BorrarPagApagado(void){
 }
 #endif
 
+
+//C++ :   ManejadorImpresionPersistente mi(&os,&confMI);
 struct ManejadorImpresionPersistente mi;
+
+//C++ :   EPM203Manejador os(&epm203Conf);
 struct EPM203Manejador os;
+
+//C++ :   SensorAdaptador sensorAdaptado(0,"Sen1");
 struct SensorAdaptador sensorAdaptado;
+
 
 void main(void)
 { 
@@ -291,9 +297,13 @@ void main(void)
   #ifdef _PRINTER
   TERMIO_Init();
   System_init();
-  newAlloced(&sensorAdaptado,&SensorAdaptador,0);
+  /* creo una instancia de SensorAdaptador en el espacio de memoria &sensorAdaptado*/
+  newAlloced(&sensorAdaptado,&SensorAdaptador,0,"Sen1");
+  /* creo una instancia de EPM203Manejador en el espacio de memoria &os*/
   newAlloced(&os,&EPM203Manejador,&epm203Conf);
+  /* creo una instancia de ManejadorImpresionPersistente en el espacio de memoria &mi*/
   newAlloced(&mi,&ManejadorImpresionPersistente,&os,&confMI);
+  // C++ : mi.add(&sensorAdaptado);
   LinkedList_add(&mi,&sensorAdaptado);
   #else
   AS1_Init();
@@ -472,11 +482,15 @@ ResetScroll();
   KeyEdge=0;
   #endif
   (*PtrTmp)();                          // Funcion para el box correspondiente; llama a Num Handler, TextHandler, etc.	
+
   
   #ifdef _PRINTER
-  RlxMTimer_Handler();
-  #endif
+
+  //Ejecuta las funciones de los timers cuando llegan a la cuenta 
+ RlxMTimer_Handler();
   
+  #endif
+
   WDog1_Clear();					              // resetear Watch dog
    
   #ifdef jony_25_06

@@ -163,7 +163,7 @@ Module "In1"       (bean InputPin)
 Module "In2"       (bean InputPin)
    - In2_GetVal -Return the value of the Input bean.
 
-Module "Cpu"       (bean MC9S12GC32_80)
+Module "Cpu"       (bean MC9S12GC64_80)
    - Cpu_EnableInt -Enable maskable interrupts
    - Cpu_DisableInt -Disable maskable interrupts
 

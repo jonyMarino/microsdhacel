@@ -3,6 +3,15 @@
 
 #include "Object.h"
 
+/*C++ 
+class Getter:public Object
+{
+ public:
+   Getter();
+   virtual _GetterPrint(_getter,num_disp);
+   virtual _Getter_getVal(_getter);
+}
+*/
 struct Getter{
   struct  Object super;
 };

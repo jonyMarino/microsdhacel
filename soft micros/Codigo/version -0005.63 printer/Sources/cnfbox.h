@@ -19,7 +19,7 @@ typedef const struct{
 /* definicion de boxes con variables de texto no en Rom*/
 /*******************************************************/
 typedef struct{
-		void(*DirProc)(void);		/* funcion que procesa al box*/
+	  void(*DirProc)(void);		/* funcion que procesa al box*/
 		TDato * sDato;             /* direccion en la E2Prom - el EEProm Start, if FALSE no guarda valor*/
 		char * TxtDpy;				  /* texto del titulo */
     const char  **TxtDpy0;

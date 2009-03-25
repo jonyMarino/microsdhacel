@@ -6,7 +6,17 @@
 #include "MIPConf.h"
 #include "MethodTimer.h"
 
-
+/*C++ 
+class ManejadorImpresionPersistente:public ManejadorImpresion
+{
+ public:
+  ManejadorImpresionPersistente(OutputStream * os);
+ private:
+   ManejadorImpresionPersistente(){cerr<<"Constructor por defecto no definido"}
+   MIPConf * conf;
+   MethodTimer mt;
+}
+*/
 struct ManejadorImpresionPersistente {
     struct ManejadorImpresion super;
     struct MIPConf * conf;

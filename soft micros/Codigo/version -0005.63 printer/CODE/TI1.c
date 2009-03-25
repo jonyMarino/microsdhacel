@@ -134,6 +134,7 @@ void TI1_Init(void)
 {
   CmpVal = TICKS_1ms;                       /* Store given value to the variable CmpVal */
   TC0 = TICKS_1ms;                          /* Store value to the compare register */
+  TSCR1 = 0xE0;
 }
 
 /*
@@ -149,7 +150,7 @@ void TI1_Init(void)
 ISR(TI1_Interrupt)
 {
   TC0 += CmpVal;                            /* Add value corresponding with periode */
-  TFLG1 = 1;                                /* Reset interrupt request flag */
+  TFLG1_C0F = 1;                                /* Reset interrupt request flag */
   Cpu_EnableInt();
   if (CmpVal==TICKS_1ms)							      /* Interrupcion de 1ms */
     TI1ms_OnInterrupt();                    /* Invoke user event de interrupcion 1ms*/

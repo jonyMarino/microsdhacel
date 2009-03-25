@@ -72,7 +72,8 @@
 #include "Object.h"
 #include "PE_Types.h"
 
-#pragma CODE_SEG TmDt1_CODE                     
+#pragma CODE_SEG TmDt1_CODE 
+//#pragma CODE_SEG VIRTUAL_TABLES                    
 
 typedef struct { /* It contains actual number of hours, minutes, seconds and hundreths of seconds. */
   byte Hour; /* hours (0 - 23) */
@@ -103,6 +104,32 @@ struct TmDt1Class{
   getDate,  \
   setDate
   
+/*C++ 
+class TmDt1:public Object
+{
+ public:
+    TmDt1(va_list * args);
+    void getTime(TIMEREC *time);
+    byte setTime(byte hour,byte min,byte secs);
+    byte super_setTime(const TmDt1Class*class,void ,byte hour,byte min,byte secs);
+    void getDate(DATEREC *date);
+    byte setDate(word year,byte month,byte day);
+    byte super_setDate(const TmDt1Class*class,void,word year,byte month,byte day);
+    virtual byte TmDt1_SetTime(byte Hour,byte Min,byte secs);
+    virtual void TmDt1_GetTime(TIMEREC *Time);
+    virtual byte TmDt1_SetDate(word Year,byte Month,byte Day);
+    virtual byte  TmDt1_GetMaxday(word Year,byte Month);
+    virtual void TmDt1_GetDate(DATEREC *Date);
+    virtual void TmDt1_Inc(dword);                     
+
+  private:
+    byte CntDay;                    
+    byte CntMonth;                 
+    word CntYear;                   
+    dword TotalHthL; 
+}
+*/
+
 struct TmDt1{  
   struct Object super;
   byte CntDay;                    /* Day counter */
