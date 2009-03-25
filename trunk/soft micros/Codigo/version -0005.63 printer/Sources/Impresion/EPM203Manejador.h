@@ -5,7 +5,25 @@
 #include "EPM203Conf.h"
 #include "Timer.h"
 
+/*C++ 
+class EPM203Manejador:public OutputStream
+{
+ public:
+   EPM203Manejador(EPM203Conf * conf);
+  //Fuente
+   byte EPM203Manejador_getFuente(void);
+   byte EPM203Manejador_setFuenteAndConfig(byte val);
 
+  //direccion
+   byte EPM203Manejador_getDireccion(void);
+   byte EPM203Manejador_setDireccionAndConfig(byte val);
+
+
+  private:
+    EPM203Conf * conf; 
+    Timer timer; 
+}
+*/
 struct EPM203Manejador{
   struct OutputStream super;
   struct EPM203Conf * conf; 
@@ -14,6 +32,9 @@ struct EPM203Manejador{
 
 
 extern const struct OutputStreamClass EPM203Manejador;
+
+
+//new(&EPM203Manejador, struct EPM203Conf * conf);
 
 //Fuente
 byte EPM203Manejador_getFuente(void * _self);

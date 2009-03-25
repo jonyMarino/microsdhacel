@@ -7,6 +7,9 @@
 /*el setpoint es el interno mas la entrada del segundo canal
 usar con cantidad de canales 2*/
 //////////////////// MODELOS /////////////////////////////
+
+
+//#define _PRINTER
 #define SERIE101
 #ifdef SERIE101
 #define outc1 0
@@ -180,7 +183,7 @@ usar con cantidad de canales 2*/
 #define PARAMETROS 255 /* Cantidad de PARAMETROS que utilizan memoria Flash */
 #define COM_OFFSET 4   /* Offset a partir del cual empiezan las direcciones(de la com. serie) donde estan los parámetros extendidos */
 
-#define MEM_PAGINA 512
+//#define MEM_PAGINA 512
 
 #define FLASH_PARAMETROS_START 0x4000 /* ep */
 #define FLASH_PARAMETROS_END 0x41FF 
@@ -199,8 +202,10 @@ usar con cantidad de canales 2*/
   #endif
   
 ////BLOQUES A GRABAR POR APAGADO DEL APARATO/////
+#ifndef _PRINTER
 #define FLASH_APAGADO_START 0x5F00
 #define FLASH_APAGADO_END   0x5FFF
+#endif
 /////////////////////////////////////////////////
 
 #define RAM_COMUNICACION_END	 0x1200 /* donde termina la ram a la que se tiene acceso remoto (empieza en 0x1000) */ 

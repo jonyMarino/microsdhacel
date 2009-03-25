@@ -8,6 +8,17 @@
 typedef void(*pfunction)(void);
 /*  Definicion del Timer*/
 
+/*C++ 
+class FTimer:public Timer
+{
+ public:
+   FTimer( FTimer ,ulong tiempo, pfunction pf);
+   void FTimer_ChangeFunction(struct FTimer * self,pfunction pf);
+   _FTimer_getFunction(timer);
+ private:  
+   pfunction pf;
+}
+*/
 struct FTimer{
   struct Timer _base;
 //Protected:
@@ -23,7 +34,6 @@ extern const struct TimerClass FTimer;
 ** ===================================================================
 */
 void FTimer_ChangeFunction(struct FTimer * self,pfunction pf);
-
 /*
 ** ===================================================================
 **     Method      :  FTimer_DefConstruct 

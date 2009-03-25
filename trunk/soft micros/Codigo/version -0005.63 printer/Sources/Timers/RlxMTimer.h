@@ -7,6 +7,17 @@
 #pragma CODE_SEG RlxMTimer_CODE 
 #pragma CONST_SEG DEFAULT
 
+/*C++ 
+class RlxMTimer:public MethodTimer
+{
+ public:
+   RlxMTimer(ulong tiempo, void (*pf)(void*),void * Obj );
+   void RlxMTimer_Handler(void);
+ private:  
+   uchar execute;
+}
+*/
+
 struct RlxMTimer{
   struct MethodTimer _base;
   uchar execute;

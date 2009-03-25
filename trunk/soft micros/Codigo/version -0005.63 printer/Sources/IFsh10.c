@@ -155,7 +155,7 @@ byte EraseSectorInternal(word Addr)
     ExitCritical();                    /* Exit critical section */
     return ERR_BUSY;                   /* If yes then error */
   }
-  *(volatile word *) (Addr & 65024) = IFsh10_DummyData; /* Write eny word to FLASH buffer */
+  *(volatile word *) (Addr & (65535 ^ (MEM_PAGINA-1))) = IFsh10_DummyData; /* Write eny word to FLASH buffer */
   FCMD = 64;                           /* Initiate Sector Erase commamd */
   FSTAT = 128;                         /* Clear flag command buffer empty */
   asm {                                /* Jump to Wait in RAM code */
@@ -184,7 +184,7 @@ byte i,a;
 
 Cpu_DisableInt();
 #ifdef jony_22_08
-  for (a=0;a<(512/16);a++){
+  for (a=0;a<(MEM_PAGINA/16);a++){
     for (i=0;i<16;i++){
       if (!(IndiceFlash[a]&1))
         BackupArray[a*16+i]=*(volatile byte*)(PageAddr+a*16+i);
@@ -236,7 +236,7 @@ byte IFsh10_GrabarFlash(void)
    err=EraseSectorInternal(PageAddr);     /* Erase sector */
     if(err)
       return(err);                     /* Return error code if previous operation finished not correctly */
-   err = WriteArray(PageAddr,0,512,(word*)BackupArray); /* Restore sector */
+   err = WriteArray(PageAddr,0,MEM_PAGINA,(word*)BackupArray); /* Restore sector */
    PageAddr=0;                        /* Se puede volver a mandar a grabar*/ 
     if (err)
       return err;                      /* Previous operation was error ? */
@@ -276,14 +276,14 @@ byte EscribirWord(word Addr,int valor){
     byte shift;
     
     if(PageAddr==0) 
-      PageAddr=Addr&65024;
-    else if (PageAddr!=(Addr&65024))
+      PageAddr=Addr&(65535 ^ (MEM_PAGINA-1));
+    else if (PageAddr!=(Addr&(65535 ^ (MEM_PAGINA-1))))
       return ERR_BUSY;      /* Todavia no se grabó la página en cola*/  
   
-    *(word *)&BackupArray[(Addr&511)]= valor;
-    shift=(Addr&511)%16;
-    IndiceFlash[(Addr&511)/16]|= 1<<shift;	 //MSB
-    IndiceFlash[(Addr&511)/16]|= 1<<(shift+1);	 //LSB
+    *(word *)&BackupArray[(Addr&(MEM_PAGINA-1))]= valor;
+    shift=(Addr&(MEM_PAGINA-1))%16;
+    IndiceFlash[(Addr&(MEM_PAGINA-1))/16]|= 1<<shift;	 //MSB
+    IndiceFlash[(Addr&(MEM_PAGINA-1))/16]|= 1<<(shift+1);	 //LSB
     save_parametros=TRUE;
   }
   #endif
@@ -297,16 +297,16 @@ byte EscribirByte(word Addr,byte valor){
   #ifdef jony_22_08
   if(*(byte *)Addr!=valor){
     if(PageAddr==0) 
-      PageAddr=Addr&65024;
-    else if (PageAddr!=(Addr&65024))
+      PageAddr=Addr&(65535 ^ (MEM_PAGINA-1));
+    else if (PageAddr!=(Addr&(65535 ^ (MEM_PAGINA-1))))
       return ERR_BUSY;      /* Todavia no se grabó la página en cola*/  
   
   
   //  if (Addr & 1)
-      BackupArray[(Addr&511)]= valor;
+      BackupArray[(Addr&(MEM_PAGINA-1))]= valor;
   //  else
   //    *(byte *)&BackupArray[(Addr&511)/2]= valor;  
-    IndiceFlash[(Addr&511)/16]|= 1<<((Addr&511)%16);
+    IndiceFlash[(Addr&(MEM_PAGINA-1))/16]|= 1<<((Addr&(MEM_PAGINA-1))%16);
     save_parametros=TRUE;
   }
   #endif

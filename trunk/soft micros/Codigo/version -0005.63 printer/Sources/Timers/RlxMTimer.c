@@ -10,13 +10,19 @@
 #include "LinkedList.h"
 #include "RlxMTimer.h"
 
+#include "ManejadorImpresion_protected.h"
+#include "TmDt1.h"
+
 #pragma DATA_SEG RlxMTimer_DATA                                            
 #pragma CODE_SEG RlxMTimer_CODE 
 #pragma CONST_SEG DEFAULT
+//#pragma CODE_SEG VIRTUAL_TABLES
 
 void RlxMTimer_DefConstruct(void * _self,va_list * args); 
 void RlxMTimer_OnTime(struct RlxMTimer * self);
 void *RlxMTimer_Destruct(void * _self);
+
+//void (*__near pf1)(void*);
 
 const struct TimerClass RlxMTimer={
    TIMER_CLASS_INITIALIZATION(TimerClass,RlxMTimer,MethodTimer,RlxMTimer_DefConstruct,RlxMTimer_Destruct,NULL,NULL,RlxMTimer_OnTime)
@@ -24,8 +30,8 @@ const struct TimerClass RlxMTimer={
 
 static struct LinkedList list;
 static struct LinkedList * _RlxMTCont=NULL;
-
-
+int intervalo;
+extern char imprimir_estado;
 /*
 ** ===================================================================
 **     Method     : RlxMTimer_Construct
@@ -90,6 +96,9 @@ void RlxMTimer_OnTime(struct RlxMTimer * self){
 ** ===================================================================
 */
 void RlxMTimer_Handler(void){
+  struct TmDt1 * p;
+  dword cont;   
+  
   if(_RlxMTCont){     
     uint i;
     struct LinkedListIterator it;
@@ -99,7 +108,17 @@ void RlxMTimer_Handler(void){
       struct RlxMTimer * _rmt= LinkedListIterator_next(&it); 
       if(_rmt && _rmt->execute){
         _rmt->execute=FALSE;
-        (*(_rmt->_base.pf))(_rmt->_base.Obj);  
+        (* (_rmt->_base.pf) )(_rmt->_base.Obj); 
+          
+       /*  intervalo=ManejadorImpresion_getIntervalo(_rmt->_base.Obj);
+         p=_rmt->_base.Obj; 
+         cont=p->TotalHthL; 
+         if(cont!=intervalo && imprimir_estado)
+           BTFechaPersistente_incUnSegundo(_rmt->_base.Obj);
+         else
+           ManejadorImpresionPersistente_imprimir(_rmt->_base.Obj);
+      
+         */
       }
        
     }

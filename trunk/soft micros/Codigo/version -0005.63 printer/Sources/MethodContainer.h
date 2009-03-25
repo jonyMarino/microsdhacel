@@ -6,13 +6,31 @@
 #include "LinkedList.h"
 #include "Method.h"
 
+/*C++ 
+class MethodContainer:
+{
+ public:
+   MethodContainer(void);
+   void MethodContainer_add( Method *method);
+   void MethodContainer_execute(void);
+   void MethodContainer_iterator(void * it);
+   uchar MethodContainer_isEmpty(void);
+   uint MethodContainer_getSize(void);
+   const Method* MethodContainer_getMethod(uint i);
+   void MethodContainer_delete( Method *method);
+
+ private:
+   void * classOf;
+   LinkedList list;  
+}
+*/
 struct MethodContainer{
   void * classOf;
   struct LinkedList list;   
 };
 
 extern const struct Class MethodContainer;
-//
+
 #define MethodContainerIterator	 LinkedListIterator
 #define MethodContainerIterator_hasNext	 LinkedListIterator_hasNext
 #define MethodContainerIterator_next  LinkedListIterator_next

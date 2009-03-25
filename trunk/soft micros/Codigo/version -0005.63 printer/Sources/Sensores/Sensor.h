@@ -7,6 +7,19 @@
 #include "MethodContainer.h"
 
 
+/* coment_C++ 
+  class Sensor: public Object{
+    public:
+      void Sensor_addNuevaMedicionListener(struct Method * metodo);
+      void Sensor_deleteNuevaMedicionListener(struct Method * metodo);
+
+    protected:
+      void Sensor_constructor(void);
+      void Sensor_notificarListeners(void);
+
+  };
+*/
+
 struct SensorClass{
   struct GetterWNameClass super;
 //  uchar (*_AddOnnewVal)(void *,struct Method *);  // marca si hay algun valor nuevo
@@ -31,6 +44,12 @@ void Sensor_deleteNuevaMedicionListener(void * _self, struct Method * metodo);
 void Sensor_constructor(void * _self);
 void Sensor_notificarListeners(void * _self);
 
+/* C++: 
+  class SensorWState: public Sensor{
+   public:
+      virtual TSensorState _getState(void)=0; 
+  };
+*/
 
 typedef enum {
   SENSOR_OK,  //OK
@@ -51,6 +70,15 @@ struct SensorWState{
           ((*(struct SensorWStateClass **)sensor)->_get_State(sensor))
 
 
+/* C++: 
+  class SensorDec: public SensorWState{
+   public:
+      uchar _getDec(void ); // Obtiene los decimales con que se muestra el sensor
+      int _getDifDecView(void);  //Adapta el valor que viene con los mismos decimales con el que se muestra el sensor y lo devuelve con los decimales que se obtienen al hacer un getVal del sensor 
+    
+  };
+*/
+
 struct SensorDecClass{
   struct SensorWStateClass super;
   uchar (*_get_Dec)(void *); // Obtiene los decimales con que se muestra el sensor
@@ -67,6 +95,14 @@ struct SensorDec{
 #define _getDifDecView(sensor) \
           ((*(struct SensorDecClass **)sensor)->getDifDecView(sensor))
 
+/* C++: 
+  class SensorVisual: public SensorDec{
+   public:
+    int _Sensor_getLimSup(void); 
+    int _Sensor_getLimInf(void);
+    uint _Sensor_getMeasurePeriod(void);    
+  };
+*/ 
 
 struct SensorDecLimClass{					//Decimales y limites
   struct SensorDecClass super;
@@ -76,6 +112,7 @@ struct SensorDecLimClass{					//Decimales y limites
 };
 
 extern const struct Class SensorDecLimClass; 
+
 
 struct SensorDecLim{
   struct SensorDec super;
@@ -88,7 +125,12 @@ struct SensorDecLim{
 #define _Sensor_getMeasurePeriod(sensor) \
           ((*(struct SensorDecLimClass **)sensor)->getMeasurePeriod(sensor))
 
+/* C++: class SensorVisual: public SensorDecLim{
+  private:
+    char * description;
+  };
 
+*/
 struct SensorVisual{
   struct SensorDecLim super;
   char * description;

@@ -55,7 +55,7 @@ void ManejadorImpresion_print(void * _self){
   TIMEREC time;
   int pos = 0;
   char str[13];
-  void * obj = LinkedList_get(_self,0);
+  void * obj = get(_self,0);
   
   if( self->cuentaParcial++ ==0){
 //Fecha

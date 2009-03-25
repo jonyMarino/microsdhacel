@@ -198,8 +198,10 @@ usar con cantidad de canales 2*/
   #endif
   
 ////BLOQUES A GRABAR POR APAGADO DEL APARATO/////
+#ifndef _PRINTER
 #define FLASH_APAGADO_START 0x5F00
 #define FLASH_APAGADO_END   0x5FFF
+#endif
 /////////////////////////////////////////////////
 
 #define RAM_COMUNICACION_END	 0x1200 /* donde termina la ram a la que se tiene acceso remoto (empieza en 0x1000) */ 

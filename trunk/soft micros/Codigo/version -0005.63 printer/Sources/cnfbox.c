@@ -34,6 +34,8 @@ extern const Numerico Tmpm;
 
 extern Titulo Colcal;
 
+char imprimir_estado=0;  //si =1 no=0
+
 /* Definicion de las estructuras de los boxes de navegacion */
 /************************************************************/
 /*		void(*DirTask)(void);		funcion que ejecuta tareas especiales de c/box*/
@@ -93,6 +95,7 @@ const int Lim_2099 = 2099;
 const int Lim_31 = 31;
 const int Lim_2359 = 2359;
 #endif
+
 
 
 /************************************/
@@ -191,6 +194,8 @@ byte setHoraDT(int valor,byte chan){
 
 
 byte  setHabilitadoMIVista(int valor,byte chan){
+  
+  imprimir_estado = valor;
   return setHabilitadoMI(&mi,valor);
 }	
 

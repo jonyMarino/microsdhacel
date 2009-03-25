@@ -7,6 +7,8 @@
 usar con cantidad de canales 2*/
 //////////////////// MODELOS /////////////////////////////
 //#define SERIE101
+
+
 #ifdef SERIE101
 #define outc1 0
 #define outc2

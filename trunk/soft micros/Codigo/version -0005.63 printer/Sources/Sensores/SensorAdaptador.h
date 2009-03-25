@@ -10,6 +10,51 @@
 #pragma CONST_SEG DEFAULT
 
 extern const struct SensorDecLimClass SensorAdaptador;
+/* C++: 
+class SensorAdaptador: public SensorVisual{
+  public:
+    SensorAdaptador(SensorAdaptador,byte numSensor,const char * desc);
+    TSensorState SensorAdaptador_getState(const SensorAdaptador);
+    int SensorAdaptador_getValue( SensorAdaptador);
+    char *  SensorAdaptador_getDesc(void);
+    void SensorAdaptador_Handler( SensorAdaptador );
+    int get_LimInf_Sensor( SensorAdaptador );
+    int get_LimSup_Sensor( SensorAdaptador );
+    int get_Sensor(const SensorAdaptador );
+    uchar set_Sensor( SensorAdaptador,int sensor);
+    int get_LimInf_Sensores(void);
+    int get_LimSup_Sensores(void);
+    uchar Sensor_ChangeTipo( SensorAdaptador,int val);
+    byte SensorAdaptador_setDecimales( SensorAdaptador, int val);
+    int SensorAdaptador_getDecimalesMostrados(const SensorAdaptador );
+    int get_LimInf_Decimales(void);
+    int get_LimSup_Decimales(const SensorAdaptador);
+    int get_filtro(const SensorAdaptador);
+    byte set_filtro( SensorAdaptador ,int val);
+    int get_LimInf_filtro(void);
+    int get_LimSup_filtro(void);
+    int get_offset(const SensorAdaptador );
+    byte set_offset( SensorAdaptador ,int val);
+    int get_ganancia(const SensorAdaptador );
+    byte set_ganancia( SensorAdaptador,int val);
+    int get_CeroTermopar(const SensorAdaptador);
+    byte set_CeroTermopar( SensorAdaptador,int val);
+    int get_GananciaTermopar(const SensorAdaptador);
+    byte set_GananciaTermopar( SensorAdaptador,int val);
+    int get_CeroPT100(const SensorAdaptador);
+    byte set_CeroPT100 (SensorAdaptador,int val);
+    int get_GananciaPT100(const SensorAdaptador );
+    byte set_GananciaPT100( SensorAdaptador ,int val);
+    int get_AjTempAmb(void);
+    byte set_AjTempAmb(void,int val);
+    void SensorAdaptador_Print( SensorAdaptador ,uchar num_display);
+    void SensorAdaptador_printVal( SensorAdaptador , OutputStream* os);
+
+
+  private:
+    byte numSensor;
+  };
+*/  
 
 struct SensorAdaptador{
   const struct SensorVisual sensor;			// vtable

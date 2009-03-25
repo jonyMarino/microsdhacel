@@ -32,6 +32,8 @@ const struct TmDt1Class TmDt1={
 /*
 
 */
+//#pragma CODE_SEG VIRTUAL_TABLES
+
 void getTime(void * self,TIMEREC *time){
   struct TmDt1Class * class = classOf(self);
   class->getTime(self,time);
@@ -49,7 +51,9 @@ byte super_setTime(const struct TmDt1Class*class,void * self,byte hour,byte min,
 
 void getDate(void * self,DATEREC *date){
   struct TmDt1Class * class = classOf(self);
-  class->getDate(self,date);
+  //class->getDate(self,date);
+    TmDt1_GetDate(self,date);
+  
 }
 
 byte setDate(void * self,word year,byte month,byte day){

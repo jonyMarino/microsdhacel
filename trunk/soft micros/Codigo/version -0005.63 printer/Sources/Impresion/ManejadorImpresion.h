@@ -23,6 +23,26 @@ struct ManejadorImpresionClass {
   getHabilitado,\
   setHabilitado 
 
+
+/*C++ 
+class ManejadorImpresion:public LinkedList
+{
+ public:
+  ManejadorImpresion(OutputStream * os);
+  virtual int getIntervaloMI(void);
+  virtual void setIntervaloMI(int intervalo);
+  virtual bool getHabilitadoMI(void);
+  virtual void setHabilitadoMI (bool habilitar);
+  OutputStream * ManejadorImpresion_getOS(void);
+ 
+ private:
+    ManejadorImpresion(){cerr<<"Constructor por defecto no definido"}
+    OutputStream * os;
+    RlxMTimer timer;
+    byte cuentaParcial;
+ 
+}
+*/
 struct ManejadorImpresion {
     struct LinkedList super;
     struct OutputStream * os;

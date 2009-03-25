@@ -8,11 +8,26 @@
 #pragma DATA_SEG MethodTimer_DATA                                            
 #pragma CODE_SEG MethodTimer_CODE 
 #pragma CONST_SEG DEFAULT
+//#pragma CODE_SEG VIRTUAL_TABLES
 /*  Definicion del Timer*/
 
+
+/*C++ 
+class MethodTimer:public Timer
+{
+ public:
+   MethodTimer(ulong tiempo,void (*pf)(void*),void * Obj);
+   BaseTiempo(word Year,byte Month,byte Day,byte Hour,byte Min,byte secs,bool start);
+   _MethodTimer_getFunction(_timer);
+   _MethodTimer_getObj(_timer); 
+  private:
+    void (*__near pf)(void*);
+    void * Obj;
+}
+*/
 struct MethodTimer{
   struct Timer _base;
-  void (*pf)(void*);
+  void (*__near pf)(void*);
   void * Obj;
 };
 

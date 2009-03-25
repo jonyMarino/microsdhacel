@@ -6,11 +6,19 @@
 
 #pragma CONST_SEG DEFAULT
 
+
+
+/*C++ 
+class GetterWName:public Object
+{
+ public:
+   GetterWName();
+   virtual  _GetterWN_get_Name(_getter); 
+}
+*/
 struct GetterWName{
   struct Object super;
 };
-
-
 
 struct GetterWNameClass{ 
   struct GetterClass super;

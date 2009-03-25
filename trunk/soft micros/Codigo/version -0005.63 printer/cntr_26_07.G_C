@@ -2,7 +2,7 @@
 ;The file contains internal information about the Processor Expert project generation
 [Options]
 ProjectName=cntr_26_07
-ProjectDirectory=D:\Jony\HCS12\version -0005.63\
+ProjectDirectory=D:\microsdhacel2\soft micros\Codigo\version -0005.63 printer\
 DestEventsDirectory=CODE\
 DestDriversSubDirectory=
 DestDocumentationDirectory=DOC\
@@ -17,24 +17,29 @@ Line=PE_Types
 Line=PE_Error
 Line=PE_Const
 Line=IO_Map
-ShrdHeaderAge0=959926416
+ShrdHeaderAge0=979651396
 ShrdCodeAge0=-1
 ShrdAsemblAge0=-1
-ShrdHeaderAge1=959926416
+ShrdHeaderAge1=979651396
 ShrdCodeAge1=-1
 ShrdAsemblAge1=-1
-ShrdHeaderAge2=959926416
+ShrdHeaderAge2=979651396
 ShrdCodeAge2=-1
 ShrdAsemblAge2=-1
-ShrdHeaderAge3=959926416
-ShrdCodeAge3=959926416
+ShrdHeaderAge3=979655884
+ShrdCodeAge3=979651396
 ShrdAsemblAge3=-1
 GenExtraFiles=1
 Line=CODE\Vectors.c
-XtraAge0=959926417
+XtraAge0=979651396
 GenExtraFileType0=4
 GenEventModules=1
 Line=Events
+GenMethodsInEvents=4
+Line=PWM_OnRising
+Line=TI1_OnInterrupt
+Line=AS1_OnRxChar
+Line=AS1_OnTxComplete
 GenAllModules=28
 Line=ADC1
 Line=AS1
@@ -101,73 +106,31 @@ Line=In1
 Line=In2
 SignalListFile=DOC\cntr_26_07_SIGNALS.txt
 DestinationCompiler=MetrowerksHC12CC
-ProjectModificationStamp=341
+ProjectModificationStamp=356
 
 [930]
-Generated=Yes
+Generated=No
 GenCompName=Cpu
 GenEventModule=Events
-HeaderAge=959926417
-CodeAge=959926417
+HeaderAge=979720961
+CodeAge=980179184
 AsemblAge=-1
-GenNumMethods=14
+GenNumMethods=11
 GetResetSource=No
 GetPllLockStatusFlag=No
-GetLowVoltageFlag=No
 Delay100US=No
 SetStopMode=No
 SetWaitMode=No
 DisableInt=Yes
 EnableInt=Yes
-GetIntVect=No
-SetIntVect=No
 GetSpeedMode=No
 SetSlowSpeed=No
 SetLowSpeed=No
 SetHighSpeed=No
-GenNumEvents=7
+GenNumEvents=1
 OnReset_Selected=1
 OnReset_Name=Cpu_OnReset
 OnReset_Priority=interrupts disabled
-OnClockMonitorFail_Selected=0
-OnClockMonitorFail_Name=Cpu_OnClockMonitorFail
-OnClockMonitorFail_Priority=interrupts disabled
-OnIllegalOpcode_Selected=1
-OnIllegalOpcode_Name=Cpu_OnIllegalOpcode
-OnIllegalOpcode_Priority=interrupts disabled
-OnSwINT_Selected=1
-OnSwINT_Name=Cpu_OnSwINT
-OnSwINT_Priority=interrupts disabled
-OnLvdStatusChanged_Selected=1
-OnLvdStatusChanged_Name=Cpu_OnLvdStatusChanged
-OnLvdStatusChanged_Priority=interrupts disabled
-OnPllLockStatusChanged_Selected=1
-OnPllLockStatusChanged_Name=Cpu_OnPllLockStatusChanged
-OnPllLockStatusChanged_Priority=interrupts disabled
-OnSCMChanged_Selected=1
-OnSCMChanged_Name=Cpu_OnSCMChanged
-OnSCMChanged_Priority=interrupts disabled
-ISR_ISRnameReset=_Startup
-ISR_DevInit_ClockMonitorReset_ISRname=_Startup
-ISR_ISRnameIllegalOpcode=
-ISR_ISRnameMPUAccessError=
-ISR_ISRnameMMCRamAccViol=
-ISR_ISRnameSWI=
-ISR_DevInit_IntLVD_ISRname=
-ISR_DevInit_IntPLL_ISRname=
-ISR_DevInit_IntSCM_ISRname=
-ISR_DevInit_IntSpurious_ISRname=
-ISR_DevInit_IntHTI_ISRname=
-ISR_ISRDefaultName=isr_default
-ISR_DevInit_IntSYS_ISRname=
-ISR_DevInit_IntXSEI_ISRname=
-ISR_IntFLEX_TBIE_ISRname=
-ISR_IntFLEX_RBIE_ISRname=
-ISR_IntFLEX_FNEAIE_ISRname=
-ISR_IntFLEX_FNEBIE_ISRname=
-ISR_IntFLEX_WUPIE_ISRname=
-ISR_IntFLEX_CHIE_ISRname=
-ISR_IntFLEX_PRIE_ISRname=
 GenSmartUserChangesDetected_Header=No
 GenSmartUserChangesDetected_Code=No
 GenSmartUserChangesDetected_Asembl=No
@@ -249,6 +212,75 @@ GenNumEvents=1
 OnReset_Selected=1
 OnReset_Name=Cpu_OnReset
 OnReset_Priority=interrupts disabled
+GenSmartUserChangesDetected_Header=No
+GenSmartUserChangesDetected_Code=No
+GenSmartUserChangesDetected_Asembl=No
+
+[3399]
+Generated=Yes
+GenCompName=Cpu
+GenEventModule=Events
+HeaderAge=979720961
+CodeAge=980179184
+AsemblAge=-1
+GenNumMethods=14
+GetResetSource=No
+GetPllLockStatusFlag=No
+GetLowVoltageFlag=No
+Delay100US=No
+SetStopMode=No
+SetWaitMode=No
+DisableInt=Yes
+EnableInt=Yes
+GetIntVect=No
+SetIntVect=No
+GetSpeedMode=No
+SetSlowSpeed=No
+SetLowSpeed=No
+SetHighSpeed=No
+GenNumEvents=7
+OnReset_Selected=1
+OnReset_Name=Cpu_OnReset
+OnReset_Priority=interrupts disabled
+OnClockMonitorFail_Selected=0
+OnClockMonitorFail_Name=Cpu_OnClockMonitorFail
+OnClockMonitorFail_Priority=interrupts disabled
+OnIllegalOpcode_Selected=1
+OnIllegalOpcode_Name=Cpu_OnIllegalOpcode
+OnIllegalOpcode_Priority=interrupts disabled
+OnSwINT_Selected=1
+OnSwINT_Name=Cpu_OnSwINT
+OnSwINT_Priority=interrupts disabled
+OnLvdStatusChanged_Selected=1
+OnLvdStatusChanged_Name=Cpu_OnLvdStatusChanged
+OnLvdStatusChanged_Priority=interrupts disabled
+OnPllLockStatusChanged_Selected=1
+OnPllLockStatusChanged_Name=Cpu_OnPllLockStatusChanged
+OnPllLockStatusChanged_Priority=interrupts disabled
+OnSCMChanged_Selected=1
+OnSCMChanged_Name=Cpu_OnSCMChanged
+OnSCMChanged_Priority=interrupts disabled
+ISR_ISRnameReset=_Startup
+ISR_DevInit_ClockMonitorReset_ISRname=_Startup
+ISR_ISRnameIllegalOpcode=
+ISR_ISRnameMPUAccessError=
+ISR_ISRnameMMCRamAccViol=
+ISR_ISRnameSWI=
+ISR_DevInit_IntLVD_ISRname=
+ISR_DevInit_IntPLL_ISRname=
+ISR_DevInit_IntSCM_ISRname=
+ISR_DevInit_IntSpurious_ISRname=
+ISR_DevInit_IntHTI_ISRname=
+ISR_ISRDefaultName=isr_default
+ISR_DevInit_IntSYS_ISRname=
+ISR_DevInit_IntXSEI_ISRname=
+ISR_IntFLEX_TBIE_ISRname=
+ISR_IntFLEX_RBIE_ISRname=
+ISR_IntFLEX_FNEAIE_ISRname=
+ISR_IntFLEX_FNEBIE_ISRname=
+ISR_IntFLEX_WUPIE_ISRname=
+ISR_IntFLEX_CHIE_ISRname=
+ISR_IntFLEX_PRIE_ISRname=
 GenSmartUserChangesDetected_Header=No
 GenSmartUserChangesDetected_Code=No
 GenSmartUserChangesDetected_Asembl=No
@@ -513,8 +545,8 @@ LineEnd=66
 Generated=Yes
 GenCompName=WDog1
 GenEventModule=Events
-HeaderAge=959926415
-CodeAge=959926415
+HeaderAge=979657896
+CodeAge=979657896
 AsemblAge=-1
 GenNumMethods=1
 Clear=Yes
@@ -732,8 +764,8 @@ LineEnd=80
 Generated=Yes
 GenCompName=TI1
 GenEventModule=Events
-HeaderAge=888700256
-CodeAge=954555974
+HeaderAge=980044293
+CodeAge=980045443
 AsemblAge=-1
 GenNumMethods=14
 SetFreqMHz=No
@@ -1462,7 +1494,6 @@ SrcFile=Drivers\Common\PE_TypesSettings.Inc=852916052
 SrcFile=Drivers\Common\PE_TypesAbstract.Inc=852916052
 SrcFile=Drivers\HCS12\PE_Types.drv=928405163
 SrcFile=Drivers\Common\OneBitIOPutVal.Inc=853307804
-SrcFile=Drivers\Common\SetRegBits8.prg=923360454
 SrcFile=Drivers\Common\GeneralInternalGlobal.Inc=853046339
 SrcFile=Drivers\Common\TimerOutOnRising.Inc=918899532
 SrcFile=Drivers\Common\TimerOutInterrupt.Inc=857372270
@@ -1503,7 +1534,6 @@ SrcFile=Drivers\Common\Init_ADC_HCS12Abstract.Inc=886273512
 SrcFile=Drivers\HCS12\Init_ADC_HCS12.drv=927753362
 SrcFile=Drivers\Init_ADC_HCS12.src=824658796
 SrcFile=Drivers\Common\GenReg8InitInfo.prg=877615181
-SrcFile=Drivers\Common\GenReg8BitsInitInfo.prg=877616960
 SrcFile=Drivers\Common\setReg8.prg=923360454
 SrcFile=Drivers\Common\SetReg8_Rst.prg=877622791
 SrcFile=Drivers\Common\DefineISR.prg=921394013
@@ -1524,6 +1554,8 @@ SrcFile=Drivers\Common\AsynchroSerialAbstract.Inc=855330161
 SrcFile=Drivers\HCS12\Common_HCS12x\CommonSubroutines.prg=886786509
 SrcFile=Drivers\HCS12\AsynchroSerial.drv=927759008
 SrcFile=Drivers\AsynchroSerial.src=928613330
+SrcFile=Drivers\Common\GenReg8BitsInitInfo.prg=877616960
+SrcFile=Drivers\Common\SetRegBits8.prg=923360454
 SrcFile=Drivers\Common\WatchDogClear.Inc=819824251
 SrcFile=Drivers\Common\WatchDogSettings.Inc=916014260
 SrcFile=Drivers\Common\WatchDogAbstract.Inc=916014140

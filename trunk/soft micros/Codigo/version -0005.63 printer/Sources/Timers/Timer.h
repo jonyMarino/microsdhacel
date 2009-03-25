@@ -9,6 +9,28 @@
 #pragma CONST_SEG DEFAULT
 /*  Definicion del Timer*/
 
+/*C++ 
+class Timer:public Object
+{
+ public:
+   Timer(Timer,ulong tiempo);
+   void * Timer_Destruct( Timer );
+   void TimerInc( Timer,Byte inc);
+   void IncTimers(int inc);
+   uchar Timer_isfinish( Timer );
+   ulong Timer_getCuenta( Timer);
+   void Timer_Restart( Timer );
+   void Timer_setTime( Timer ,ulong tiempo);
+   ulong Timer_Sys_getTime( Timer );
+   void Timer_Stop( Timer );
+
+ private:  
+   ulong tiempo;
+   uchar of;
+   Timer ** container;
+}
+*/
+
 
 struct TimerClass{
   struct Class super;
