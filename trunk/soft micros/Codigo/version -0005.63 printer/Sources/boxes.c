@@ -237,7 +237,7 @@ void TxtHandler(void){
 		PasarASCII(PtrBox.Txt->TxtDpy,1);             //Mostrar DisplayInf
 		PasarASCII(PtrBox.Txt->TxtDpy0[Valor_Tmp],0);  //Mostrar DisplaySup		 
 
-  };
+	};
 
 
 // KeyEdgeS UP Y DOWN
