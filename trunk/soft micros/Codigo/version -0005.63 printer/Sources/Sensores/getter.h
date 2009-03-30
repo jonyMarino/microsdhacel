@@ -8,8 +8,8 @@ class Getter:public Object
 {
  public:
    Getter();
-   virtual _GetterPrint(_getter,num_disp);
-   virtual _Getter_getVal(_getter);
+   virtual void _GetterPrint(num_disp);
+   virtual void _Getter_getVal();
 }
 */
 struct Getter{

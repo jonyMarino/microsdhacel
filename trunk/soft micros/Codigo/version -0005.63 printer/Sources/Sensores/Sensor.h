@@ -10,8 +10,8 @@
 /* coment_C++ 
   class Sensor: public Object{
     public:
-      void Sensor_addNuevaMedicionListener(struct Method * metodo);
-      void Sensor_deleteNuevaMedicionListener(struct Method * metodo);
+      void Sensor_addNuevaMedicionListener(Method * metodo);
+      void Sensor_deleteNuevaMedicionListener(Method * metodo);
 
     protected:
       void Sensor_constructor(void);
