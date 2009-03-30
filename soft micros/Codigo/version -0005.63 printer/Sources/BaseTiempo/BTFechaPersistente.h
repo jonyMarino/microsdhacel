@@ -5,7 +5,15 @@
 #include "BaseTiempo.h"
 #include "BTFPConf.h"
 
-
+/*C++ 
+class BTFechaPersistente:public BaseTiempo
+{
+ public:
+    BTFechaPersistente(BTFPConf* conf);
+  private:
+    BTFPConf * conf;
+}
+*/
 struct BTFechaPersistente {
   struct BaseTiempo super;
   struct BTFPConf * conf;
