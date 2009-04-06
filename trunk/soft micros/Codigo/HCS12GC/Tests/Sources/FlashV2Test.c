@@ -23,6 +23,8 @@ Hay dos formas de hacer el test:
 #include "PromBkpProtected.h"
 #include "LinkedList.h"
 #include "IFsh10.h"
+#include "TI1.h"
+#include "timer_interrupt.h"
 
 
 
@@ -41,6 +43,22 @@ struct FlashBkpEnFlash bkp={
 NEW_FLASH_BKP_256(flash,0x4200);
 
 //fin prueba macros
+void Test_on1ms(void * t){
+
+
+    if(PromBkp_listoParaGrabarOBorrar(&flash))
+      TI1_SetPeriodMode(TI1_Pm_40ms);
+    
+    DpyAndSwitch();
+}
+
+void Test_on40ms(void * t){
+
+    (void)TI1_SetPeriodMode(TI1_Pm_1ms); //Next interrupt is 1ms length
+
+    PromBkp_grabarOBorrar(&flash);
+
+}
 
 void main (void){
   int teclas=0;
@@ -54,6 +72,9 @@ void main (void){
   Teclas_Init();
   Display_Init(); // Inicializacion del display
   
+  add1msListener(Test_on1ms,NULL);  //agregar a la interrupcion del timer cuando dura 1ms
+  add40msListener(Test_on40ms,NULL);//agregar a la interrupcion del timer cuando dura 40ms
+
   WriteWord((word*)0x4002,1);
   PromBkp_deshabilitar(&flash);
   _MANEJADOR_MEMORIA_SET_WORD(&flash,(word*)0x4000,65);

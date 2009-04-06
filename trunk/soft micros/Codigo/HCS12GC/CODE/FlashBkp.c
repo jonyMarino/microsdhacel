@@ -5,6 +5,30 @@
 #include "IFsh10.h"
 
 
+const struct Class FlashBkpClass;
+const struct FlashBkpClass FlashBkp={
+  &PromBkpClass,
+  "",
+  &PromBkp,
+  sizeof(struct FlashBkp),
+  NULL,
+  NULL,
+  NULL, // differ
+  NULL, // puto
+  FlashBkp_getWord,
+  FlashBkp_setWord,
+  FlashBkp_getWord,
+  FlashBkp_setWord,
+  NULL,
+  NULL,
+  FlashBkp_borrarProm,
+  FlashBkp_grabarProm,
+  NULL,
+  NULL,
+  NULL 
+};
+
+
 
 bool getIndexArray(void * _self,word address){
   struct FlashBkpClass * class = classOf(_self);
@@ -54,8 +78,8 @@ byte FlashBkp_setWord(void* self,word*Address,word valor){
       return ERR_NOTAVAIL;
     
     if((word)_f->paginaAGrabar==0) 
-      _f->paginaAGrabar=(void*)(Addr&65024);
-    else if (_f->paginaAGrabar!=(void*)(Addr&65024))
+      _f->paginaAGrabar=(void*)(Addr & (65535 ^ (PAGE_SIZE-1)));
+    else if (_f->paginaAGrabar!=(void*)(Addr & (65535 ^ (PAGE_SIZE-1))))
       return ERR_BUSY;      /* Todavia no se grabo la página en cola*/  
   
     WriteWord(&((word*)_f->direccionBkp)[(Addr&(PAGE_SIZE-1))/2], valor);
@@ -63,6 +87,11 @@ byte FlashBkp_setWord(void* self,word*Address,word valor){
     PromBkp_setAGrabar(self,TRUE);
   }
   return ERR_OK;
+}
+
+bool PromBkp_aGrabar(void *self,word direccion){
+  
+  return getIndexArray(self,direccion&(PAGE_SIZE-1));
 }
 /*
 ** ===================================================================
@@ -74,7 +103,7 @@ word FlashBkp_getWord(void*self,word*direccion){
   struct FlashBkp * _f=self;
   word dir = (word)direccion;
   
-  if(!PromBkp_getAGrabar(self) || !IFsh10_isInPage(direccion,_f->paginaAGrabar) ||   !getIndexArray(self,dir)/*PromBkp_isEnIndex(self,direccion) */) // con que el primero este para grabar alcanza
+  if(!PromBkp_getAGrabar(self) || !IFsh10_isInPage(direccion,_f->paginaAGrabar) ||   !PromBkp_aGrabar(self,dir)) // con que el primero este para grabar alcanza
     return *direccion;
   else
     return *(word *)&((word*)_f->direccionBkp)[(dir&(PAGE_SIZE-1))/2];
@@ -91,10 +120,10 @@ void FlashBkp_backupSector(void * self){
   struct FlashBkp * _f=self;
   word a;  
   
-  for (a=0;a<PAGE_SIZE/2;a++){
-      if (getIndexArray(self,a)){
-        word * addr = &(((word*)_f->direccionBkp)[a]);
-        word value = *(((word*)_f->paginaAGrabar)+a);
+  for (a=0;a<PAGE_SIZE/2;a+=2){
+      if (!getIndexArray(self,a)){
+        word * addr = &(((word*)_f->direccionBkp)[a/2]);
+        word value = *(((word*)_f->paginaAGrabar)+a/2);
         WriteWord(addr,value);
     
     }

@@ -18,7 +18,7 @@ struct ManejadorMemoriaClass{
 };
 
 struct ManejadorMemoria{
-  const void * Class; 
+  struct Object super;
 };
 
 /*
@@ -45,6 +45,12 @@ dword ManejadorMemoria_getDWord(void * self,word address);
 
 #define _MANEJADOR_MEMORIA_SET_DWORD(self,dir,data) _MANEJADOR_MEMORIA_SET(self,setDWord,dir,data)  
 #define _MANEJADOR_MEMORIA_GET_DWORD(self,dir) _MANEJADOR_MEMORIA_GET(self,getDWord,dir)
+
+
+word super_getWord(void * _class,void*_self,word*);
+
+byte super_setWord(void * _class,void*_self,word*,word); 
+
 
 #define INITIALIZATION_MANEJADOR_MEMORIA(class) \
     class		

@@ -61,9 +61,7 @@ byte simPowDown=0;
 #endif
 
 NEW_FLASH_BKP_256(flash,0x4200);
-extern void * nico;
-extern bool estado;
-bool BajoConsumo = FALSE;
+bool adquiriendo = FALSE;
 
 const struct ManejadorMemoria * pFlash = &flash;
 
@@ -178,15 +176,17 @@ void entrarBajoConsumo(void * n){
   TI1_Disable(); //deshabilito los timers
   ADC_Disable();
  
-  BajoConsumo = TRUE;
-  Adq_Stop(nico); // agrego nico
- 
+  if(Adq_getActualState(&adquisidorSimple.adquisidor)==ADQ_YES){
+    adquiriendo = TRUE;
+    Adq_Stop(&adquisidorSimple.adquisidor); // agrego nico
+  }
+    
 }
 
 void onBajoConsumo(void * n){
       
-      BajoConsumo = TRUE;
-      Adq_Stop(nico); // agrego nico
+     // BajoConsumo = TRUE;// agrego nico
+     // Adq_Stop(nico); // agrego nico
      
       clrReg8Bits(COPCTL, 71); // kill the dog!
       TI1_Disable(); //deshabilito los timers
@@ -244,13 +244,11 @@ void onSalirBajoConsumo(void * n){
       ADC_Enable();
       ADC_Start();
      
-     if((nico != NULL)&&(estado == TRUE)){
+     if(adquiriendo){  // agrego nico
       
-      Adq_Start(nico); // agrego nico
-     // estado = FALSE;
+       Adq_Start(&adquisidorSimple.adquisidor); // agrego nico
+       adquiriendo = FALSE;
      }
-     
-     BajoConsumo = FALSE;
 }
 
 

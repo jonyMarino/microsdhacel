@@ -5,8 +5,8 @@ END
 SECTIONS
       /* List of all sections specified on the "Build options" tab */
       RAM_1000  =  READ_WRITE           0x00001000 TO 0x000017FF;
-      ROM_4000  =  READ_ONLY            0x00004004 TO 0x000041FF;
-      ROM_6000  =  READ_ONLY 						0x00005900 TO 0x00007FFF;
+      ROM_4000  =  READ_ONLY            0x00004000 TO 0x000041FF;
+      ROM_6000  =  READ_ONLY 						0x00005500 TO 0x00007FFF;
       ROM_C000  =  READ_ONLY            0x0000C000 TO 0x0000FEFF;
       ROM_FF10  =  READ_ONLY            0x0000FF10 TO 0x0000FF7F;
     //  RAM_1000  =  READ_WRITE           0x00001000 TO 0x000010FF;

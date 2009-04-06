@@ -5,6 +5,10 @@
 #include "IFshMem.h"
 #include "FshTypeSizes.h"
 
+
+extern const struct Class FlashBkpClass;
+extern const struct FlashBkpClass FlashBkp;
+
 struct FlashBkp{
   struct PromBkp super;
   const void * direccionBkp;

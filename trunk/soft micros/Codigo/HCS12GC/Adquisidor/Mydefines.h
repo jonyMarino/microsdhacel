@@ -1,4 +1,4 @@
-
+#include "IFshMem.h"
 //////////////////// ASIGNACION DE SALIDAS/ENTRADAS /////////////////////////////
 #define CANTIDAD_CANALES 1 /*Cantidad de canales */
 
@@ -124,19 +124,14 @@
 		#endif
 	#else
 	  #ifdef _ADQUISIDOR
-	 // #define FLASH_ADQUISIDOR_START  FLASH_COM_END + 1
-	  #define FLASH_ADQUISIDOR_START  FLASH_COM_END + 512 + 1
-//    #define FLASH_ADQUISIDOR_END 0x5DFF
-    //#define FLASH_ADQUISIDOR_END 0x58FF
-    #define FLASH_ADQUISIDOR_END 0x4EFF
-    
-        
+	  #define FLASH_ADQUISIDOR_START  FLASH_COM_END + PAGE_SIZE + 1
+    #define FLASH_ADQUISIDOR_END 0x54FF - PAGE_SIZE
     #endif
   #endif
   
 ////BLOQUES A GRABAR POR APAGADO DEL APARATO/////
-#define FLASH_APAGADO_START 0x5F00
-#define FLASH_APAGADO_END   0x5FFF
+#define FLASH_APAGADO_START FLASH_ADQUISIDOR_END+1
+#define FLASH_APAGADO_END   FLASH_APAGADO_START + PAGE_SIZE
 /////////////////////////////////////////////////
 
 #define RAM_COMUNICACION_END	 0x1200 /* donde termina la ram a la que se tiene acceso remoto (empieza en 0x1000) */ 
@@ -147,7 +142,7 @@
 
 ////////////////////VISUALIZACION//////////////////////////////////
 #define DIGITOS 4
-#define MAX_DIGITOS 45 /* Tamaño del texto más largo*/
+#define MAX_DIGITOS 40 /* Tamaño del texto más largo*/
 #define TIME_SCROLL 200 /* multiplicador de tiempo de scroling*/
 #define TIME_BETWEEN_PARS TIME_SCROLL * MAX_DIGITOS
 #define MAIN_TEXT_PERIOD 4000 /* periodo del cambio de mensaje en el display inferior para la pantalla Main*/

@@ -90,7 +90,7 @@ void AdquisidorSimple_constructor(void * _self,void * conf,struct ManejadorDePRO
  newAlloced(&self->adquisidor,&Adquisidor,&adquisidor_config,(self->termometro).sensor);	
 
  newAlloced(&self->mensajes,MessageOut);
-   															 //012345678901234567890123456789012345678
+   								    //012345678901234567890123456789012345678
  strcpy(&self->mensaje,"EStAdo no. FEchA no ing.  horA no ing. ");
  self->textosMensajes= MessageOut_AddMessage(&self->mensajes,self->mensaje);
  AdquisidorSimple_actualizarTextos(self);
