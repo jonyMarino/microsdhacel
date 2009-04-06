@@ -195,7 +195,7 @@ byte EraseSectorInternal(void * Address)
     ExitCritical();                    /* Exit critical section */
     return ERR_BUSY;                   /* If yes then error */
   }
-  *(volatile word *) (Addr & (65535 ^ (PAGE_SIZE-1)) = IFsh10_DummyData; /* Write eny word to FLASH buffer */
+  *(volatile word *) (Addr & (65535 ^ (PAGE_SIZE-1))) = IFsh10_DummyData; /* Write eny word to FLASH buffer */
   FCMD = 64;                           /* Initiate Sector Erase commamd */
   FSTAT = 128;                         /* Clear flag command buffer empty */
   asm {                                /* Jump to Wait in RAM code */
@@ -220,7 +220,7 @@ byte EraseSectorInternal(void * Address)
 */
 void * IFsh10_getPage(void * address){
   word addr = (word) address; 
-  return (void *)(Addr & (65535 ^ (PAGE_SIZE-1)));
+  return (void *)(addr & (65535 ^ (PAGE_SIZE-1)));
 }
 
 /*

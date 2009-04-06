@@ -29,9 +29,6 @@
 #define _MEM_FULL                6
 #define _PREV_VAL_m1             7  //indica que el valor anterior fue un -1 para distingirlo de flash no grabada
 
-void * nico = NULL;
-extern bool BajoConsumo;
-bool estado = FALSE;
 
 void Adq_DefConstructor(void * self,va_list * args);
 void Adq_Handler(void * self);
@@ -167,11 +164,9 @@ bool Adq_isTimeSet(void *_self){
 */
 void Adq_Start(void *_self){
    struct Adquisidor * _ad = _self;
-   estado = TRUE;
-   nico =_ad; 
   
   if(_ad->Estado_Adquisicion==ADQ_FULL){
-    //#warning cambiar por: y llamar a un envento al termino del boorado
+    #warning cambiar por: y llamar a un envento al termino del boorado
     //PromBkp_borrarPagina(pFlash,_ad->ActualAddr);
     EraseSectorInternal(_ad->ActualAddr);    
     
@@ -196,16 +191,16 @@ void Adq_Start(void *_self){
 void Adq_Stop(void *_self){
   struct Adquisidor * _ad = _self;
   
-  if((BajoConsumo == TRUE)&&(estado == TRUE))    //BajoConsumo: true (esta en bajo consumo(BC))
-    estado = TRUE;                               //             false (no esta en bajo consumo)
-  else                                           // estado: true (estaba adquiriendo, antes de entrar en BC)
-    estado = FALSE;                              //         false (no estaba adquiriendo, antes de entrar en BC)
+ // if((BajoConsumo == TRUE)&&(estado == TRUE))    //BajoConsumo: true (esta en bajo consumo(BC))
+ //   estado = TRUE;                               //             false (no esta en bajo consumo)
+ // else                                           // estado: true (estaba adquiriendo, antes de entrar en BC)
+ //   estado = FALSE;                              //         false (no estaba adquiriendo, antes de entrar en BC)
   
   if(_ad->Estado_Adquisicion==ADQ_YES){
     _ad->Estado_Adquisicion=ADQ_NO;
     _MANEJADOR_MEMORIA_SET_BYTE(pFlash,&_ad->_conf->Adquirir,0);
    
-     Adq_Handler(_self);         //nico  
+    // Adq_Handler(_self);         //nico  
     Adq_Escribir_Stop(_self); 
    
   }
@@ -371,7 +366,7 @@ void Adq_Escribir_Header(void * _self){
 **                    en la direccion actual
 ** ===================================================================
 */
-void Adq_Grabar_Parametros(void* _self) {        //ver!!!!
+void Adq_Grabar_Parametros(void* _self) {
   struct Adquisidor * _ad = _self;
 
 

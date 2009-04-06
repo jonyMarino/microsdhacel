@@ -47,11 +47,11 @@
   
   char * AdquisidorHmi_getBorrarStr(int str){
     if(str)
-      return "no";
-    return "Si";      
+      return "Si";
+    return "no";      
   }
   const struct ConstPropTxt ParBorrarPage= {
-    &PropiedadGenerica,Adq_getPaginaActual,Adq_ErasePages,get_0,get_1,&PropTxt,"borrAr dAtoS",  
+    &PropiedadGenerica,get_0,Adq_ErasePages,get_0,get_1,&PropTxt,"borrAr dAtoS",AdquisidorHmi_getBorrarStr  
   };
   
   /* Pagina Start*/

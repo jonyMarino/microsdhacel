@@ -1,3 +1,5 @@
+#include <assert.h>
+
 #include "FlashBkp256.h"
 #include "PromBkpProtected.h"
 #include "stddef.h"
@@ -11,18 +13,18 @@ void FlashBkp256_setIndexArray(void * _self,word);
 void FlashBkp256_clearIndexArray(void * _self);  
   
 const struct FlashBkpClass FlashBkp256={
-  &Class,
+  &FlashBkpClass,
   "",
-  &Object,
+  &FlashBkp,
   sizeof(struct FlashBkp256),
   NULL,
   NULL,
   NULL, // differ
   NULL, // puto
-  FlashBkp_getWord,
-  FlashBkp_setWord,
-  FlashBkp_getWord,
-  FlashBkp_setWord,
+  FlashBkp256_getWord,
+  FlashBkp256_setWord,
+  FlashBkp256_getWord,
+  FlashBkp256_setWord,
   NULL,
   NULL,
   FlashBkp_borrarProm,
@@ -32,13 +34,13 @@ const struct FlashBkpClass FlashBkp256={
   FlashBkp256_clearIndexArray 
 };
 
-#define indiceFlash  ((word*)((byte*)FlashBkp_getDireccionBkp(self)+PAGE_SIZE/2))
+#define indiceFlash  ((byte*)((byte*)FlashBkp_getDireccionBkp(self)+PAGE_SIZE/2))
 
 
 bool FlashBkp256_getIndexArray(void * _self,word index){
   struct FlashBkp256 * self = _self; 
   
-  return (indiceFlash[index])?1:0;
+  return !indiceFlash[index];
 }
 
 void FlashBkp256_setIndexArray(void * _self,word index){
@@ -50,22 +52,20 @@ void FlashBkp256_clearIndexArray(void * _self){
   struct FlashBkp256 * self = _self; 
 }
 
-#warning agregar:
-/*
-void FlashBkp256_setWord(void * _self,word address){
+
+byte FlashBkp256_setWord(void * _self,word * address,word data){
   struct FlashBkp256 * self = _self; 
-  assert(address<PAGE_SIZE/2);
-  if(address>PAGE_SIZE/2)
-    return; //cambiear : error	
-  return super_setWord(_self,address);
+  assert( ((word)address &PAGE_SIZE) <=PAGE_SIZE/2);
+  if(((word)address &PAGE_SIZE)>PAGE_SIZE/2)
+    return; //cambiar : error	
+  return super_setWord(&FlashBkp256,_self,address,data);
 }
 
 word FlashBkp256_getWord(void * _self,word * address){
   struct FlashBkp256 * self = _self; 
-  assert(address<PAGE_SIZE/2);
-  if(address>PAGE_SIZE/2)
-    return; //cambiear : error	
-  return super_getWord(_self,address);
+  assert(((word)address &PAGE_SIZE)<=PAGE_SIZE/2);
+  if(((word)address &PAGE_SIZE)>PAGE_SIZE/2)
+    return; //cambiar : error	
+  return super_getWord(&FlashBkp256,_self,address);
 
-}
-*/
+}               
