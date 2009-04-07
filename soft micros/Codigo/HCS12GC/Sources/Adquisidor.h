@@ -104,6 +104,14 @@ void Adq_Start(void *_self);
 void Adq_Stop(void *_self);
 /*
 ** ===================================================================
+**     Method      :  Adq_Escribir_Stop 
+**    Description  :  Escribe en la direccion actual, que se detuvo
+**                   la adquisicion por orden del usuario
+** ===================================================================
+*/
+void Adq_Escribir_Stop(void* _self);
+/*
+** ===================================================================
 **     Method      :  Adq_SizeOfHeader 
 **    Type         :  Private
 **    Description  :  Devuelve el tamanio del encabezado

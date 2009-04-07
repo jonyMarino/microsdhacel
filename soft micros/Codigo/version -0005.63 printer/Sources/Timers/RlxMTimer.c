@@ -22,7 +22,7 @@ void RlxMTimer_DefConstruct(void * _self,va_list * args);
 void RlxMTimer_OnTime(struct RlxMTimer * self);
 void *RlxMTimer_Destruct(void * _self);
 
-//void (*__near pf1)(void*);
+typedef void (* t_pf)(void*);
 
 const struct TimerClass RlxMTimer={
    TIMER_CLASS_INITIALIZATION(TimerClass,RlxMTimer,MethodTimer,RlxMTimer_DefConstruct,RlxMTimer_Destruct,NULL,NULL,RlxMTimer_OnTime)
@@ -30,8 +30,7 @@ const struct TimerClass RlxMTimer={
 
 static struct LinkedList list;
 static struct LinkedList * _RlxMTCont=NULL;
-int intervalo;
-extern char imprimir_estado;
+
 /*
 ** ===================================================================
 **     Method     : RlxMTimer_Construct
@@ -60,7 +59,7 @@ struct RlxMTimer * _mt=_self;
 ** ===================================================================
 */
 void RlxMTimer_DefConstruct(void * _self,va_list * args){
-  RlxMTimer_Construct(_self,va_arg(*args,ulong),va_arg(*args,void*),va_arg(*args,void*));
+  RlxMTimer_Construct(_self,va_arg(*args,ulong),va_arg(*args,t_pf),va_arg(*args,void*));
 }
 
 /*
@@ -108,17 +107,19 @@ void RlxMTimer_Handler(void){
       struct RlxMTimer * _rmt= LinkedListIterator_next(&it); 
       if(_rmt && _rmt->execute){
         _rmt->execute=FALSE;
-        (* (_rmt->_base.pf) )(_rmt->_base.Obj); 
+        (* (_rmt->_base.pf) )(_rmt->_base.Obj);
+        
+     /*   asm{
           
-       /*  intervalo=ManejadorImpresion_getIntervalo(_rmt->_base.Obj);
-         p=_rmt->_base.Obj; 
-         cont=p->TotalHthL; 
-         if(cont!=intervalo && imprimir_estado)
-           BTFechaPersistente_incUnSegundo(_rmt->_base.Obj);
-         else
-           ManejadorImpresionPersistente_imprimir(_rmt->_base.Obj);
-      
-         */
+          LDD   16,X
+          TFR   X,Y
+          CALL  [13,X]
+          TFR   SP,D
+          CALL  LinkedListIterator_hasNext
+          TBNE  B,*-35 ;abs = 0014
+  
+        }
+          */ 
       }
        
     }

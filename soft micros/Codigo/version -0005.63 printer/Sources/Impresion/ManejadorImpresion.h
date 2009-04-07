@@ -7,7 +7,7 @@
 #include "RlxMTimer.h"
 
 struct ManejadorImpresionClass {
-  struct Class super;
+  struct LinkedListClass super;
   void (*imprimir)(void * _self);
   int (*getIntervalo)(void * _self);
   void (*setIntervalo)(void * _self,int intervalo);
@@ -15,14 +15,14 @@ struct ManejadorImpresionClass {
   void (*setHabilitado)(void * _self, bool habilitar);
 };
 
-#define MANEJADOR_IMPRESION_CLASS_INITIALIZATION(description,name,super,contructor,destructor,differ,puto,imprimir,getIntervalo,setIntervalo,getHabilitado,setHabilitado)\
+/*#define MANEJADOR_IMPRESION_CLASS_INITIALIZATION(description,name,super,contructor,destructor,differ,puto,imprimir,getIntervalo,setIntervalo,getHabilitado,setHabilitado)\
   CLASS_INITIALIZATION(description,name,super,contructor,destructor,differ,puto),\
   imprimir, \
   getIntervalo, \
   setIntervalo, \
   getHabilitado,\
   setHabilitado 
-
+ */
 
 /*C++ 
 class ManejadorImpresion:public LinkedList

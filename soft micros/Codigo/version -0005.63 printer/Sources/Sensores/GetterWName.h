@@ -13,7 +13,7 @@ class GetterWName:public Object
 {
  public:
    GetterWName();
-   virtual  _GetterWN_get_Name(_getter); 
+   virtual void _GetterWN_get_Name(_getter); 
 }
 */
 struct GetterWName{

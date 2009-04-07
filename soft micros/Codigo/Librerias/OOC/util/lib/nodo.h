@@ -3,6 +3,10 @@
 
 #include "Object.h"
 
+#pragma CODE_SEG  NODO_CODE
+#pragma DATA_SEG  NODO_DATA
+#pragma CONST_SEG DEFAULT
+
 struct Nodo {
 	struct Object super;
 	void * dato;
@@ -59,5 +63,8 @@ void Nodo_setNext(void*_self,struct Nodo * nodo);
 */
 Byte Nodo_differ(void*_self,struct Nodo* node);
 
+#pragma CODE_SEG  DEFAULT
+#pragma DATA_SEG  DEFAULT
+#pragma CONST_SEG DEFAULT
 
 #endif

@@ -65,7 +65,7 @@ PLACEMENT /* here all predefined and user segments are placed into the SEGMENTS 
                        
        MYDATA					 INTO  RAM_1000;                
        PARAMETERS_PAGE INTO  ROM_4000;
-       //VIRTUAL_TABLES  INTO  PAGE_3D;             
+       VIRTUAL_TABLES  INTO  PAGE_3D;             
                        
 END
 

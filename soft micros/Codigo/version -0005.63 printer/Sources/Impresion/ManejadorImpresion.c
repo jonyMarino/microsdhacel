@@ -14,18 +14,32 @@ void * ManejadorImpresion_defCtor(void * _self,va_list * args);
 const struct Class ManejadorImpresionClass;
 
 struct ManejadorImpresionClass ManejadorImpresion={
-  MANEJADOR_IMPRESION_CLASS_INITIALIZATION(ManejadorImpresionClass,
+  CLASS_INITIALIZATION(ManejadorImpresionClass,
                        ManejadorImpresion,
                        Object,
                        ManejadorImpresion_defCtor,
                        Object_dtor,
                        Object_differ,
-                       Object_puto,
+                       Object_puto),
+                       LinkedList_add,
+                       LinkedList_Vaciar,
+                       LinkedList_contains,   
+                       LinkedList_Vacia,
+                       LinkedList_iterator,
+                       LinkedList_deleteReference, 
+                       LinkedList_Cantidad,
+                       LinkedList_get,
+                        LinkedList_addFirst,
+                        LinkedList_addLast,
+                        LinkedList_getFirst,
+                        LinkedList_getLast,
+                        LinkedList_Eliminar_Primero,
+                        LinkedList_removeLast, 
                        ManejadorImpresion_print,
                        ManejadorImpresion_getIntervalo,
                        ManejadorImpresion_setIntervalo,
                        ManejadorImpresion_getHabilitado,
-                       ManejadorImpresion_setHabilitado)  
+                       ManejadorImpresion_setHabilitado  
 };
 
 

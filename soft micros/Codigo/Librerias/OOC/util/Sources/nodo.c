@@ -15,6 +15,10 @@
 #include "nodo.h"
 #include "nodo_protected.h"
 
+#pragma CODE_SEG  NODO_CODE
+#pragma DATA_SEG  NODO_DATA
+#pragma CONST_SEG DEFAULT
+
 void Nodo_DefConstructor(void * _self,va_list *args);
 Byte Nodo_differ(void*_self,struct Nodo* node);
 
