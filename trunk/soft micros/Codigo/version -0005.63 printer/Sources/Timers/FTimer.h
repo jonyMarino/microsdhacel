@@ -12,9 +12,9 @@ typedef void(*pfunction)(void);
 class FTimer:public Timer
 {
  public:
-   FTimer( FTimer ,ulong tiempo, pfunction pf);
-   void FTimer_ChangeFunction(struct FTimer * self,pfunction pf);
-   _FTimer_getFunction(timer);
+
+   void FTimer_ChangeFunction(pfunction pf);
+   _FTimer_getFunction();
  private:  
    pfunction pf;
 }

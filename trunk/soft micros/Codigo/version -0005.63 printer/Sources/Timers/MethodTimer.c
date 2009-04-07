@@ -21,6 +21,8 @@
 void MTimer_OnTime(void * self);
 void MTimer_DefConstruct(void * self,va_list *);
 
+typedef void (*t_pf)(void*);
+
 const struct TimerClass MethodTimer={
   TIMER_CLASS_INITIALIZATION(TimerClass,MethodTimer,Timer,MTimer_DefConstruct,Timer_Destruct,NULL,NULL,MTimer_OnTime)
 };
@@ -49,7 +51,7 @@ void MTimer_Construct(void * self,ulong tiempo,void (*pf)(void*),void * Obj){
 ** ===================================================================
 */
 void MTimer_DefConstruct(void * self,va_list *args){
-  MTimer_Construct(self,va_arg(*args,ulong),va_arg(*args,void*),va_arg(*args,void*));
+  MTimer_Construct(self,va_arg(*args,ulong),va_arg(*args,t_pf),va_arg(*args,void*));
 }
 
 /*

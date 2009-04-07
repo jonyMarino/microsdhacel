@@ -61,7 +61,10 @@ byte simPowDown=0;
 #endif
 
 NEW_FLASH_BKP_256(flash,0x4200);
-bool adquiriendo = FALSE;
+
+#pragma CONST_SEG PARAMETERS_PAGE 
+  volatile const fbyte adquiriendo = 0xFFFF;
+#pragma CONST_SEG DEFAULT 
 
 const struct ManejadorMemoria * pFlash = &flash;
 
@@ -177,8 +180,9 @@ void entrarBajoConsumo(void * n){
   ADC_Disable();
  
   if(Adq_getActualState(&adquisidorSimple.adquisidor)==ADQ_YES){
-    adquiriendo = TRUE;
-    Adq_Stop(&adquisidorSimple.adquisidor); // agrego nico
+    WriteWord(&adquiriendo, 0);
+    //Adq_Stop(&adquisidorSimple.adquisidor); // agrego nico
+    Adq_Escribir_Stop(&adquisidorSimple.adquisidor); 
   }
     
 }
@@ -244,10 +248,10 @@ void onSalirBajoConsumo(void * n){
       ADC_Enable();
       ADC_Start();
      
-     if(adquiriendo){  // agrego nico
+     if(adquiriendo==0){  // agrego nico
       
        Adq_Start(&adquisidorSimple.adquisidor); // agrego nico
-       adquiriendo = FALSE;
+       _MANEJADOR_MEMORIA_SET_BYTE(&flash,&adquiriendo,0xffff);
      }
 }
 
@@ -280,6 +284,11 @@ void main (void){
   newAlloced(&bajoConsumoMetodo,&Method,onBajoConsumo,NULL); 
   RTIEsperaPowUp_addOnBajoConsumoListener(esperaPowUp,&bajoConsumoMetodo);
   
+  
+  if(adquiriendo==0){  // agrego nico     
+       Adq_Start(&adquisidorSimple.adquisidor); // agrego nico
+       _MANEJADOR_MEMORIA_SET_BYTE(&flash,&adquiriendo,0xffff);
+  }
   /*FIN Bajo Consumo*/
   
   for(;;){		

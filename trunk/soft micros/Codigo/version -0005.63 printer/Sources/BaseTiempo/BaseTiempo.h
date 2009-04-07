@@ -17,10 +17,13 @@ class BaseTiempo:public TmDt1
    bool BaseTiempo_getConfigurado(void);
 
   private:
-    void (*inc1Segundo)(void);
     int segundosAcumulados;
     struct RlxMTimer timer;
     bool configurado; 
+  
+  protected:
+    void (*inc1Segundo)(void);
+
 }
 */
 struct BaseTiempoClass{

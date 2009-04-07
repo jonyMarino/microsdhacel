@@ -21,13 +21,13 @@ class MethodTimer:public Timer
    _MethodTimer_getFunction(_timer);
    _MethodTimer_getObj(_timer); 
   private:
-    void (*__near pf)(void*);
+    void (* pf)(void*);
     void * Obj;
 }
 */
 struct MethodTimer{
   struct Timer _base;
-  void (*__near pf)(void*);
+  void (*pf)(void*);
   void * Obj;
 };
 

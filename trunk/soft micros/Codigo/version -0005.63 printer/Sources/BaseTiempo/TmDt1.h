@@ -110,18 +110,20 @@ class TmDt1:public Object
  public:
     TmDt1(va_list * args);
     void getTime(TIMEREC *time);
-    byte setTime(byte hour,byte min,byte secs);
-    byte super_setTime(const TmDt1Class*class,void ,byte hour,byte min,byte secs);
-    void getDate(DATEREC *date);
-    byte setDate(word year,byte month,byte day);
-    byte super_setDate(const TmDt1Class*class,void,word year,byte month,byte day);
-    virtual byte TmDt1_SetTime(byte Hour,byte Min,byte secs);
-    virtual void TmDt1_GetTime(TIMEREC *Time);
-    virtual byte TmDt1_SetDate(word Year,byte Month,byte Day);
-    virtual byte  TmDt1_GetMaxday(word Year,byte Month);
-    virtual void TmDt1_GetDate(DATEREC *Date);
-    virtual void TmDt1_Inc(dword);                     
+    virtual byte setTime(byte hour,byte min,byte secs);
+    virtual void getDate(DATEREC *date);
+    virtual byte setDate(word year,byte month,byte day);
 
+    byte TmDt1_SetTime(byte Hour,byte Min,byte secs);
+    void TmDt1_GetTime(TIMEREC *Time);
+    byte TmDt1_SetDate(word Year,byte Month,byte Day);
+    byte TmDt1_GetMaxday(word Year,byte Month);
+    void TmDt1_GetDate(DATEREC *Date);
+    void TmDt1_Inc(dword);                     
+  protected:
+    byte super_setTime(const TmDt1Class*class,void ,byte hour,byte min,byte secs);
+    byte super_setDate(const TmDt1Class*class,void,word year,byte month,byte day);
+  
   private:
     byte CntDay;                    
     byte CntMonth;                 
@@ -168,68 +170,7 @@ byte super_setDate(const struct TmDt1Class*class,void * self,word year,byte mont
 */  
   
 
-byte TmDt1_SetTime(void * self,byte Hour,byte Min,byte secs);
-/*
-** ===================================================================
-**     Method      :  TmDt1_SetTime (bean TimeDate)
-**
-**     Description :
-**         Sets a new actual time.
-**     Parameters  :
-**         NAME            - DESCRIPTION
-**         Hour            - Hours (0 - 23)
-**         Min             - Minutes (0 - 59)
-**         Sec             - Seconds (0 - 59)
-**         Sec100          - Hundredths of seconds (0 - 99)
-**     Returns     :
-**         ---             - Error code, possible codes:
-**                           ERR_OK - OK
-**                           ERR_SPEED - This device does not work in
-**                           the active speed mode
-**                           ERR_RANGE - Parameter out of range
-** ===================================================================
-*/
 
-void TmDt1_GetTime(void * self,TIMEREC *Time);
-/*
-** ===================================================================
-**     Method      :  TmDt1_GetTime (bean TimeDate)
-**
-**     Description :
-**         Return current time.
-**     Parameters  :
-**         NAME            - DESCRIPTION
-**       * Time            - Pointer to the structure TIMEREC. It
-**                           contains actual number of hours, minutes,
-**                           seconds and hundreths of seconds.
-**     Returns     :
-**         ---             - Error code, possible codes:
-**                           ERR_OK - OK
-**                           ERR_SPEED - This device does not work in
-**                           the active speed mode
-** ===================================================================
-*/
-
-byte TmDt1_SetDate(void * self,word Year,byte Month,byte Day);
-/*
-** ===================================================================
-**     Method      :  TmDt1_SetDate (bean TimeDate)
-**
-**     Description :
-**         Set a new actual date.
-**     Parameters  :
-**         NAME            - DESCRIPTION
-**         Year            - Years (16-bit unsigned integer)
-**         Month           - Months (8-bit unsigned integer)
-**         Day             - Days (8-bit unsigned integer)
-**     Returns     :
-**         ---             - Error code, possible codes:
-**                           ERR_OK - OK
-**                           ERR_SPEED - This device does not work in
-**                           the active speed mode
-**                           ERR_RANGE - Parameter out of range
-** ===================================================================
-*/
 
 byte  TmDt1_GetMaxday(word Year,byte Month);
 /*
@@ -247,25 +188,7 @@ byte  TmDt1_GetMaxday(word Year,byte Month);
 ** ===================================================================
 */
 
-void TmDt1_GetDate(void * self,DATEREC *Date);
 
-/*
-** ===================================================================
-**     Method      :  TmDt1_GetDay (bean TimeDate)
-**
-**     Description :
-**         Return current day of the week.
-**     Parameters  :
-**         NAME            - DESCRIPTION
-**       * Day             - Pointer to returned day - 8-bit
-**                           unsigned number
-**     Returns     :
-**         ---             - Error code, possible codes:
-**                           ERR_OK - OK
-**                           ERR_SPEED - This device does not work in
-**                           the active speed mode
-** ===================================================================
-*/
     
 void TmDt1_Inc(void * self,dword);                     
 /*

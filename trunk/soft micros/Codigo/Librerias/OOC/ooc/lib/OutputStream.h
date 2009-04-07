@@ -14,6 +14,22 @@ struct OutputStreamClass{
 
 extern const struct Class OutputStreamClass;
 
+
+/*C++ 
+class OutputStream:public Object
+{
+ public:
+  OutputStream();
+  void OutputStream_close(void);
+  void OutputStream_flush(void);
+  void OutputStream_write(uchar * b);
+  void OutputStream_writeByte(uchar b);
+  void close(void);
+  void flush(void);
+  void write(uchar * b);
+
+}
+*/
 struct OutputStream{
   struct Object super;
 };

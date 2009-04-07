@@ -219,8 +219,8 @@ byte EraseSectorInternal(void * Address)
 ** ===================================================================
 */
 void * IFsh10_getPage(void * address){
-  word addr = (word) address; 
-  return (void *)(addr & (65535 ^ (PAGE_SIZE-1)));
+  word Addr = (word) address; 
+  return (void *)(Addr & (65535 ^ (PAGE_SIZE-1)));
 }
 
 /*

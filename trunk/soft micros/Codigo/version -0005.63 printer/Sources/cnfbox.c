@@ -34,7 +34,7 @@ extern const Numerico Tmpm;
 
 extern Titulo Colcal;
 
-char imprimir_estado=0;  //si =1 no=0
+
 
 /* Definicion de las estructuras de los boxes de navegacion */
 /************************************************************/
@@ -195,7 +195,6 @@ byte setHoraDT(int valor,byte chan){
 
 byte  setHabilitadoMIVista(int valor,byte chan){
   
-  imprimir_estado = valor;
   return setHabilitadoMI(&mi,valor);
 }	
 

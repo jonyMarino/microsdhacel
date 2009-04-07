@@ -13,7 +13,6 @@ extern const struct SensorDecLimClass SensorAdaptador;
 /* C++: 
 class SensorAdaptador: public SensorVisual{
   public:
-    SensorAdaptador(SensorAdaptador,byte numSensor,const char * desc);
     TSensorState SensorAdaptador_getState(const SensorAdaptador);
     int SensorAdaptador_getValue( SensorAdaptador);
     char *  SensorAdaptador_getDesc(void);

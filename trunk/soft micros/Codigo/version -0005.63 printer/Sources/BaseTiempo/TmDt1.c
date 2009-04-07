@@ -3,6 +3,7 @@
 
 #include "PE_Error.h"
 #include "TmDt1.h"
+#include "TmDt1_protected.h"
 #include "stddef.h"
 
 #pragma CODE_SEG TmDt1_CODE                     
@@ -51,9 +52,7 @@ byte super_setTime(const struct TmDt1Class*class,void * self,byte hour,byte min,
 
 void getDate(void * self,DATEREC *date){
   struct TmDt1Class * class = classOf(self);
-  //class->getDate(self,date);
-    TmDt1_GetDate(self,date);
-  
+  class->getDate(self,date); 
 }
 
 byte setDate(void * self,word year,byte month,byte day){

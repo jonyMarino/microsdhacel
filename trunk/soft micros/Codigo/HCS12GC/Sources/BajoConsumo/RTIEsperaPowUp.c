@@ -140,10 +140,9 @@ static void RTIEsperaPowUp_checkDesconeccion(void * _self){
       
       while(!RTIEsperaPowUp_getConectado(_self)){
           if(!self->despierto)
-            Cpu_SetStopMode();
-            
+            Cpu_SetStopMode();  
       }      
-      //sali de desconectado 
+      //sali de desconectado
       PLL_Init();
 
       MethodContainer_execute(&self->listenersSalirBajoConsumo);
