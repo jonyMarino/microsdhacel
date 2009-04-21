@@ -2,6 +2,24 @@
 #include "Salida.h"
 #include "Salida_protected.h"
 
+
+const struct ISalidaClass Salida;/*={
+    ISALIDA_CLASS_INITIALIZATION(ISalidaClass,
+                            ValvulaProporcional,
+                            Salida,
+                            ValvulaProporcional_defConstruct,
+                            Object_dtor,
+                            Object_differ,
+                            Object_puto,
+                            ValvulaProporcional_getPotencia,
+                            ValvulaProporcional_setPotencia,
+                            ValvulaProporcional_getTipoSalida,
+                            ValvulaProporcional_setTipoSalida,
+                            Salida_getConectada,
+                            Salida_setConectada
+                            )
+}        */
+
 void Salida_constructor(void * self){
   struct Salida * salida=self;
   
@@ -62,9 +80,18 @@ void setPotencia(void* self,uint duty){
   struct ISalidaClass ** vTable=self;
   struct ISalida * salida=self;
   
-  (*((*vTable)->setPotencia))(self,duty);    
+  (*((*vTable)->setPotencia))(self,duty);  
+    
 }
 
+
+void super_setPotencia(void * _class,void* self,uint duty){
+  struct ISalidaClass ** vTable=super(_class);
+  struct ISalida * salida=self;
+  
+  (*((*vTable)->setPotencia))(self,duty);  
+    
+}
 
 uint getPotencia(void* self){
   struct ISalidaClass ** vTable=self;

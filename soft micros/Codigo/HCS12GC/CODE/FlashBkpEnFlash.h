@@ -16,7 +16,7 @@ extern const struct FlashBkpClass FlashBkpEnFlash;
 ///////////////////////////////////////
 
 #define INITIALIZATION_FLASH_BKP_EN_FLASH(class,bkpAddr)       \
-    INITIALIZATION_FLASH_BKP(class),              							\
+    INITIALIZATION_FLASH_BKP(class,bkpAddr),              		\
     0,0,0,0,0,0,0,0,  							                \
     0,0,0,0,0,0,0,0,  						                	\
     0,0,0,0,0,0,0,0,  							                \

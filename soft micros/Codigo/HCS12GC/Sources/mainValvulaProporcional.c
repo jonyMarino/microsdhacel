@@ -44,6 +44,7 @@
 #include "AlarmaControlVista.h"
 #include "PWMPeriodoEvent.h"
 #include "PWMSoft.h"
+#include "ValvulaProporcional.h"
 /* Definiciones */
 
 /*  Tiempo inicial en el que el control permanece desconectado  */
@@ -85,6 +86,8 @@ struct PWMPeriodoEvent pwmConEventoPeriodo[CANTIDAD_SAL_CONTROL];
 struct TAdc  AD1[CANTIDAD_CANALES];
 struct AlarmaControl alarma[CANTIDAD_SAL_ALARMA];
 struct ControlPID control[CANTIDAD_SAL_CONTROL]; 
+
+struct valvulaProporcional valvulaProporcional;
 
 struct PWMTimer pwmsTimer[7];
 struct PWMSoft pwmSoft;
@@ -423,19 +426,21 @@ void main(void){
   newAlloced(&pwmsTimer[5],&PWMTimer,&pwm_config[5],5);
   pwm[5]=&pwmsTimer[5]; 
   /*PWM6*/
-  newAlloced(&pwmsTimer[6],&PWMTimer,&pwm_config[6],6);
-  pwm[6]=&pwmsTimer[6];
+ // newAlloced(&pwmsTimer[6],&PWMTimer,&pwm_config[6],6);
+ // pwm[6]=&pwmsTimer[6];
   /*PWM7*/
-  newAlloced(&pwmSoft,&PWMSoft,&pwm_config[7],&PTT,7); 
-  pwm[7]=&pwmSoft;
+ // newAlloced(&pwmSoft,&PWMSoft,&pwm_config[7],&PTT,7); 
+ // pwm[7]=&pwmSoft;
 
+  newAlloced(&valvulaProporcional,&ValvulaProporcional,&confValvulaProporcional,&PTT,7,&PTT,6);
   
-  for(i=0;i<CANTIDAD_SAL_CONTROL;i++)
+  for(i=0;i<CANTIDAD_SAL_CONTROL-1;i++)
     newAlloced(&control[i],ControlPID,&control_conf[i],&termometro.sensor[i],pwm[i]);
 
+  newAlloced(&control[3],ControlPID,&control_conf[3],&termometro.sensor[3],&valvulaProporcional);
   
-  for(i=0;i<CANTIDAD_SAL_ALARMA;i++)
-    newAlloced(&alarma[i],&AlarmaControlClass,&alar_conf[i],&control[i],pwm[i+CANTIDAD_SAL_CONTROL]);
+  for(i=0;i<CANTIDAD_SAL_ALARMA-1;i++)
+    newAlloced(&alarma[i],&AlarmaControlClass,&alar_conf[i],&control[i],pwm[i+CANTIDAD_SAL_CONTROL-1]);
 
 /* 
   for(i=0;i<CANTIDAD_SAL_CONTROL;i++){   
