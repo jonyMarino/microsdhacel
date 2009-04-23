@@ -906,7 +906,7 @@
 
                 <!-- Settings for "Panel for Compiler for HC12" panel -->
                 <SETTING><NAME>Panel for Compiler for HC12</NAME>
-                    <SETTING><NAME>Options</NAME><VALUE>-Cc -DBAJOCONSUMO -DNDEBUG -D_TI2ms -D_RTI -D_COM -D_ADC -D_FLASH -D_TECLAS -D_TI -D_DPY -D_HCS12 -D__NO_FLOAT__ -Ec -Ms -Os -Ous -Of -OnB -OnCstVar -OnP=bdefghijkmnpqrsux -OnPMNC -TE1 -WmsgSd1420 -WmsgSd4401 -WmsgSd5702 -WmsgSd12056 -WmsgSe1801</VALUE></SETTING>
+                    <SETTING><NAME>Options</NAME><VALUE>-Cc -DBAJOCONSUMO -D_TI2ms -D_RTI -D_COM -D_ADC -D_FLASH -D_TECLAS -D_TI -D_DPY -D_HCS12 -D__NO_FLOAT__ -Ec -Ms -Os -Ous -Of -OnB -OnCstVar -OnP=bdefghijkmnpqrsux -OnPMNC -TE1 -WmsgSd1420 -WmsgSd4401 -WmsgSd5702 -WmsgSd12056 -WmsgSe1801</VALUE></SETTING>
                     <SETTING><NAME>UseDecoder</NAME><VALUE>0</VALUE></SETTING>
                     <SETTING><NAME>EchoCommandLine</NAME><VALUE>0</VALUE></SETTING>
                 </SETTING>
@@ -945,7 +945,7 @@
                     <SETTING><NAME>EchoCommandLine</NAME><VALUE>0</VALUE></SETTING>
                     <SETTING><NAME>OutputFilename</NAME><VALUE>P&amp;E_ICD.abs</VALUE></SETTING>
                     <SETTING><NAME>UseTemplate</NAME><VALUE>2</VALUE></SETTING>
-                    <SETTING><NAME>PrmTemplateName</NAME><VALUE>MC9S12GC32.PRM</VALUE></SETTING>
+                    <SETTING><NAME>PrmTemplateName</NAME><VALUE>mc9s12gc32.prm</VALUE></SETTING>
                     <SETTING><NAME>RunPreprocessor</NAME><VALUE>0</VALUE></SETTING>
                 </SETTING>
 
@@ -1573,13 +1573,6 @@
                 </FILE>
                 <FILE>
                     <PATHTYPE>Name</PATHTYPE>
-                    <PATH>FlashBkpEnFlash.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                    <FILEKIND>Text</FILEKIND>
-                    <FILEFLAGS>Debug</FILEFLAGS>
-                </FILE>
-                <FILE>
-                    <PATHTYPE>Name</PATHTYPE>
                     <PATH>display_teclas.c</PATH>
                     <PATHFORMAT>Windows</PATHFORMAT>
                     <FILEKIND>Text</FILEKIND>
@@ -1647,13 +1640,6 @@
                     <PATHFORMAT>Windows</PATHFORMAT>
                     <FILEKIND>Text</FILEKIND>
                     <FILEFLAGS>Debug</FILEFLAGS>
-                </FILE>
-                <FILE>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>ManejadorMemoria.h</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                    <FILEKIND>Text</FILEKIND>
-                    <FILEFLAGS></FILEFLAGS>
                 </FILE>
                 <FILE>
                     <PATHTYPE>Name</PATHTYPE>
@@ -1846,14 +1832,42 @@
                 </FILE>
                 <FILE>
                     <PATHTYPE>Name</PATHTYPE>
-                    <PATH>utilsi.lib</PATH>
+                    <PATH>reflect_si.lib</PATH>
                     <PATHFORMAT>Windows</PATHFORMAT>
                     <FILEKIND>Unknown</FILEKIND>
                     <FILEFLAGS>Debug</FILEFLAGS>
                 </FILE>
                 <FILE>
                     <PATHTYPE>Name</PATHTYPE>
-                    <PATH>reflect_si.lib</PATH>
+                    <PATH>FlashBkp.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS>Debug</FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>FlashBkp256.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS>Debug</FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>ManejadorMemoria.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS>Debug</FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>ThreadAdjuntable.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS>Debug</FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>utilsi.lib</PATH>
                     <PATHFORMAT>Windows</PATHFORMAT>
                     <FILEKIND>Unknown</FILEKIND>
                     <FILEFLAGS>Debug</FILEFLAGS>
@@ -2282,11 +2296,6 @@
                 </FILEREF>
                 <FILEREF>
                     <PATHTYPE>Name</PATHTYPE>
-                    <PATH>FlashBkpEnFlash.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <PATHTYPE>Name</PATHTYPE>
                     <PATH>display_teclas.c</PATH>
                     <PATHFORMAT>Windows</PATHFORMAT>
                 </FILEREF>
@@ -2333,11 +2342,6 @@
                 <FILEREF>
                     <PATHTYPE>Name</PATHTYPE>
                     <PATH>BoxList.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>ManejadorMemoria.h</PATH>
                     <PATHFORMAT>Windows</PATHFORMAT>
                 </FILEREF>
                 <FILEREF>
@@ -2477,12 +2481,32 @@
                 </FILEREF>
                 <FILEREF>
                     <PATHTYPE>Name</PATHTYPE>
-                    <PATH>utilsi.lib</PATH>
+                    <PATH>reflect_si.lib</PATH>
                     <PATHFORMAT>Windows</PATHFORMAT>
                 </FILEREF>
                 <FILEREF>
                     <PATHTYPE>Name</PATHTYPE>
-                    <PATH>reflect_si.lib</PATH>
+                    <PATH>FlashBkp.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>FlashBkp256.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>ManejadorMemoria.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>ThreadAdjuntable.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>utilsi.lib</PATH>
                     <PATHFORMAT>Windows</PATHFORMAT>
                 </FILEREF>
             </LINKORDER>
@@ -3967,13 +3991,6 @@
                 </FILE>
                 <FILE>
                     <PATHTYPE>Name</PATHTYPE>
-                    <PATH>FlashBkpEnFlash.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                    <FILEKIND>Text</FILEKIND>
-                    <FILEFLAGS>Debug</FILEFLAGS>
-                </FILE>
-                <FILE>
-                    <PATHTYPE>Name</PATHTYPE>
                     <PATH>display_teclas.c</PATH>
                     <PATHFORMAT>Windows</PATHFORMAT>
                     <FILEKIND>Text</FILEKIND>
@@ -4041,13 +4058,6 @@
                     <PATHFORMAT>Windows</PATHFORMAT>
                     <FILEKIND>Text</FILEKIND>
                     <FILEFLAGS>Debug</FILEFLAGS>
-                </FILE>
-                <FILE>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>ManejadorMemoria.h</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                    <FILEKIND>Text</FILEKIND>
-                    <FILEFLAGS></FILEFLAGS>
                 </FILE>
                 <FILE>
                     <PATHTYPE>Name</PATHTYPE>
@@ -4240,14 +4250,42 @@
                 </FILE>
                 <FILE>
                     <PATHTYPE>Name</PATHTYPE>
-                    <PATH>utilsi.lib</PATH>
+                    <PATH>reflect_si.lib</PATH>
                     <PATHFORMAT>Windows</PATHFORMAT>
                     <FILEKIND>Unknown</FILEKIND>
                     <FILEFLAGS>Debug</FILEFLAGS>
                 </FILE>
                 <FILE>
                     <PATHTYPE>Name</PATHTYPE>
-                    <PATH>reflect_si.lib</PATH>
+                    <PATH>FlashBkp.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS>Debug</FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>FlashBkp256.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS>Debug</FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>ManejadorMemoria.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS>Debug</FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>ThreadAdjuntable.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS>Debug</FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>utilsi.lib</PATH>
                     <PATHFORMAT>Windows</PATHFORMAT>
                     <FILEKIND>Unknown</FILEKIND>
                     <FILEFLAGS>Debug</FILEFLAGS>
@@ -4646,11 +4684,6 @@
                 </FILEREF>
                 <FILEREF>
                     <PATHTYPE>Name</PATHTYPE>
-                    <PATH>FlashBkpEnFlash.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <PATHTYPE>Name</PATHTYPE>
                     <PATH>display_teclas.c</PATH>
                     <PATHFORMAT>Windows</PATHFORMAT>
                 </FILEREF>
@@ -4697,11 +4730,6 @@
                 <FILEREF>
                     <PATHTYPE>Name</PATHTYPE>
                     <PATH>BoxList.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>ManejadorMemoria.h</PATH>
                     <PATHFORMAT>Windows</PATHFORMAT>
                 </FILEREF>
                 <FILEREF>
@@ -4841,12 +4869,32 @@
                 </FILEREF>
                 <FILEREF>
                     <PATHTYPE>Name</PATHTYPE>
-                    <PATH>utilsi.lib</PATH>
+                    <PATH>reflect_si.lib</PATH>
                     <PATHFORMAT>Windows</PATHFORMAT>
                 </FILEREF>
                 <FILEREF>
                     <PATHTYPE>Name</PATHTYPE>
-                    <PATH>reflect_si.lib</PATH>
+                    <PATH>FlashBkp.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>FlashBkp256.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>ManejadorMemoria.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>ThreadAdjuntable.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>utilsi.lib</PATH>
                     <PATHFORMAT>Windows</PATHFORMAT>
                 </FILEREF>
             </LINKORDER>
@@ -5141,13 +5189,13 @@
             <FILEREF>
                 <TARGETNAME>P&amp;E ICD</TARGETNAME>
                 <PATHTYPE>Name</PATHTYPE>
-                <PATH>utilsi.lib</PATH>
+                <PATH>reflect_si.lib</PATH>
                 <PATHFORMAT>Windows</PATHFORMAT>
             </FILEREF>
             <FILEREF>
                 <TARGETNAME>P&amp;E ICD</TARGETNAME>
                 <PATHTYPE>Name</PATHTYPE>
-                <PATH>reflect_si.lib</PATH>
+                <PATH>utilsi.lib</PATH>
                 <PATHFORMAT>Windows</PATHFORMAT>
             </FILEREF>
         </GROUP>
@@ -5388,13 +5436,19 @@
                 <FILEREF>
                     <TARGETNAME>P&amp;E ICD</TARGETNAME>
                     <PATHTYPE>Name</PATHTYPE>
-                    <PATH>FlashBkpEnFlash.c</PATH>
+                    <PATH>FlashBkp.c</PATH>
                     <PATHFORMAT>Windows</PATHFORMAT>
                 </FILEREF>
                 <FILEREF>
                     <TARGETNAME>P&amp;E ICD</TARGETNAME>
                     <PATHTYPE>Name</PATHTYPE>
-                    <PATH>ManejadorMemoria.h</PATH>
+                    <PATH>FlashBkp256.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>ManejadorMemoria.c</PATH>
                     <PATHFORMAT>Windows</PATHFORMAT>
                 </FILEREF>
             </GROUP>
@@ -5615,13 +5669,13 @@
             <FILEREF>
                 <TARGETNAME>P&amp;E ICD</TARGETNAME>
                 <PATHTYPE>Name</PATHTYPE>
-                <PATH>Mydefines.h</PATH>
+                <PATH>ManejadorInterrupcion.c</PATH>
                 <PATHFORMAT>Windows</PATHFORMAT>
             </FILEREF>
             <FILEREF>
                 <TARGETNAME>P&amp;E ICD</TARGETNAME>
                 <PATHTYPE>Name</PATHTYPE>
-                <PATH>ManejadorInterrupcion.c</PATH>
+                <PATH>Mydefines.h</PATH>
                 <PATHFORMAT>Windows</PATHFORMAT>
             </FILEREF>
             <FILEREF>
@@ -5708,6 +5762,12 @@
                 <TARGETNAME>P&amp;E ICD</TARGETNAME>
                 <PATHTYPE>Name</PATHTYPE>
                 <PATH>MethodContainer.c</PATH>
+                <PATHFORMAT>Windows</PATHFORMAT>
+            </FILEREF>
+            <FILEREF>
+                <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                <PATHTYPE>Name</PATHTYPE>
+                <PATH>ThreadAdjuntable.c</PATH>
                 <PATHFORMAT>Windows</PATHFORMAT>
             </FILEREF>
         </GROUP>

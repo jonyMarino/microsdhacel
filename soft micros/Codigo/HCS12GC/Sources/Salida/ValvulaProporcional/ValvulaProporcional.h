@@ -2,6 +2,11 @@
 #define _VALVULAPROPORCIONAL_H
 #include "Salida.h"
 
+typedef struct{
+  int tiempoAbierto;
+  int bandaMuerta; 
+}ConfValvulaProporcional;
+
 struct ValvulaProporcional{
   struct Salida super;
   ConfValvulaProporcional * conf;
