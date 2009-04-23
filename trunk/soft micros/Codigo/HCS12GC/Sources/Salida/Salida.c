@@ -76,33 +76,31 @@ void Salida_setPotencia(void* _self,uint duty){
   }  
 }
 
-void setPotencia(void* self,uint duty){
-  struct ISalidaClass ** vTable=self;
+void setPotencia(void* _self,uint duty){
+  struct ISalidaClass ** _class=_self;
   struct ISalida * salida=self;
   
-  (*((*vTable)->setPotencia))(self,duty);  
+  (*((*_class)->setPotencia))(self,duty);  
     
 }
 
 
-void super_setPotencia(void * _class,void* self,uint duty){
-  struct ISalidaClass ** vTable=super(_class);
-  struct ISalida * salida=self;
+void super_setPotencia(void * _class,void* _self,uint duty){
+  struct ISalidaClass ** superclass=super(_class);
   
-  (*((*vTable)->setPotencia))(self,duty);  
+  (*((*superclass)->setPotencia))(_self,duty);  
     
 }
 
-uint getPotencia(void* self){
-  struct ISalidaClass ** vTable=self;
-  struct ISalida * salida=self;
+uint getPotencia(void* _self){
+  struct ISalidaClass ** class=self;
   
-  return (*((*vTable)->getPotencia))(self);    
+  return (*((*class)->getPotencia))(_self);    
 }
 
 TipoSalida getTipoSalida(void* _self){
-  struct ISalidaClass ** vTable=_self;
-  return (**vTable).getTipoSalida(_self);    
+  struct ISalidaClass ** class=_self;
+  return (**class).getTipoSalida(_self);    
 }
 
 
