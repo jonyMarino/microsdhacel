@@ -63,6 +63,8 @@ struct Termometro termometro;
 #pragma CONST_SEG PARAMETERS_PAGE
 volatile const TConfPWM pwm_config[CANTIDAD_SAL_ALARMA+CANTIDAD_SAL_CONTROL];
 
+volatile const ConfValvulaProporcional confValvulaProporcional;
+
 volatile const ControlConf control_conf[CANTIDAD_SAL_CONTROL]={
   ControlDefaultConf,
   #if CANTIDAD_SAL_CONTROL>1 
@@ -87,7 +89,7 @@ struct TAdc  AD1[CANTIDAD_CANALES];
 struct AlarmaControl alarma[CANTIDAD_SAL_ALARMA];
 struct ControlPID control[CANTIDAD_SAL_CONTROL]; 
 
-struct valvulaProporcional valvulaProporcional;
+struct ValvulaProporcional valvulaProporcional;
 
 struct PWMTimer pwmsTimer[7];
 struct PWMSoft pwmSoft;
@@ -432,7 +434,7 @@ void main(void){
  // newAlloced(&pwmSoft,&PWMSoft,&pwm_config[7],&PTT,7); 
  // pwm[7]=&pwmSoft;
 
-  newAlloced(&valvulaProporcional,&ValvulaProporcional,&confValvulaProporcional,&PTT,7,&PTT,6);
+  newAlloced(&valvulaProporcional,&valvulaProporcional,&confValvulaProporcional,&PTT,7,&PTT,6);
   
   for(i=0;i<CANTIDAD_SAL_CONTROL-1;i++)
     newAlloced(&control[i],ControlPID,&control_conf[i],&termometro.sensor[i],pwm[i]);
