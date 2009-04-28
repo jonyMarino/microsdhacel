@@ -59,7 +59,7 @@ TError setPeriodo(void* self,int periodo){
 ** ===================================================================
 */
 TError PWM_setPeriodo(struct PWM* self,int period){
-  return _MANEJADOR_MEMORIA_SET_BYTE(pFlash,&self->conf->period,(uchar)period);
+  return _MANEJADOR_MEMORIA_SET_BYTE(&flash,&self->conf->period,(uchar)period);
 }
 
 /*

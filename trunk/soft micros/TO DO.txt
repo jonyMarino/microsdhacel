@@ -1,5 +1,6 @@
 
 **** APARATOS Y PROGRAMAS *************
+*hacer mcp del adquisidor bajo consumo para GC64
 * pasar a OutputStream el manejo del display
 * luego hacer un display especial para el adquisidor (que pueda solo mostrar la linea superior)
 * Impresor: Mostrar fecha sola al imprimirse separada arriba y abajo por una linea y al no haber ingresado la fecha, no mostrarla.

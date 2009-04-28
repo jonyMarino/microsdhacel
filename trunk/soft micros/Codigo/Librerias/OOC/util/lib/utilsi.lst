@@ -1,14 +1,14 @@
 Units and locations in library 'D:\microsdhacel2\soft micros\Codigo\Librerias\OOC\util\lib\utilsi.lib'
 Unit name                                                                                                     size     from       to
-D:\microsdhacel2\soft micros\Codigo\Librerias\OOC\util\util_Data\C_Ms_no_float\ObjectCode\Array.c.o          11200    49147    60347
-D:\microsdhacel2\soft micros\Codigo\Librerias\OOC\util\util_Data\C_Ms_no_float\ObjectCode\ArrayList.c.o      20652      129    20781
-D:\microsdhacel2\soft micros\Codigo\Librerias\OOC\util\util_Data\C_Ms_no_float\ObjectCode\Collection.c.o      9997    65830    75827
-D:\microsdhacel2\soft micros\Codigo\Librerias\OOC\util\util_Data\C_Ms_no_float\ObjectCode\Comparator.c.o      5483    60347    65830
-D:\microsdhacel2\soft micros\Codigo\Librerias\OOC\util\util_Data\C_Ms_no_float\ObjectCode\DobleList.c.o      11295    20781    32076
-D:\microsdhacel2\soft micros\Codigo\Librerias\OOC\util\util_Data\C_Ms_no_float\ObjectCode\LinkedList.c.o     24648    82600   107248
-D:\microsdhacel2\soft micros\Codigo\Librerias\OOC\util\util_Data\C_Ms_no_float\ObjectCode\List.c.o            6773    75827    82600
-D:\microsdhacel2\soft micros\Codigo\Librerias\OOC\util\util_Data\C_Ms_no_float\ObjectCode\NodoDoble.c.o       8061    41086    49147
-D:\microsdhacel2\soft micros\Codigo\Librerias\OOC\util\util_Data\C_Ms_no_float\ObjectCode\nodo.c.o            9010    32076    41086
+D:\microsdhacel2\soft micros\Codigo\Librerias\OOC\util\util_Data\C_Ms_no_float\ObjectCode\Array.c.o          11200    49155    60355
+D:\microsdhacel2\soft micros\Codigo\Librerias\OOC\util\util_Data\C_Ms_no_float\ObjectCode\ArrayList.c.o      20660      129    20789
+D:\microsdhacel2\soft micros\Codigo\Librerias\OOC\util\util_Data\C_Ms_no_float\ObjectCode\Collection.c.o      9997    65838    75835
+D:\microsdhacel2\soft micros\Codigo\Librerias\OOC\util\util_Data\C_Ms_no_float\ObjectCode\Comparator.c.o      5483    60355    65838
+D:\microsdhacel2\soft micros\Codigo\Librerias\OOC\util\util_Data\C_Ms_no_float\ObjectCode\DobleList.c.o      11295    20789    32084
+D:\microsdhacel2\soft micros\Codigo\Librerias\OOC\util\util_Data\C_Ms_no_float\ObjectCode\LinkedList.c.o     24648    82608   107256
+D:\microsdhacel2\soft micros\Codigo\Librerias\OOC\util\util_Data\C_Ms_no_float\ObjectCode\List.c.o            6773    75835    82608
+D:\microsdhacel2\soft micros\Codigo\Librerias\OOC\util\util_Data\C_Ms_no_float\ObjectCode\NodoDoble.c.o       8061    41094    49155
+D:\microsdhacel2\soft micros\Codigo\Librerias\OOC\util\util_Data\C_Ms_no_float\ObjectCode\nodo.c.o            9010    32084    41094
 
 EXPORTED OBJECTS
 Array                                O   (D:\microsdhacel2\soft micros\Codigo\Librerias\OOC\util\util_Data\C_Ms_no_float\ObjectCode\Array.c.o)

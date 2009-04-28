@@ -1,25 +1,26 @@
-window_sizes 1024 712 274 744 512 82
+window_sizes 1024 712 395 623 512 82
 diagrams
   classdiagram_ref 128002 // Alarmas
-    618 444 100 4 0 0
-  classdiagram_ref 128130 // Retransmision
-    618 444 100 4 0 0
-  classdiagram_ref 128386 // De Valor
-    618 444 100 4 0 242
-  classdiagram_ref 130690 // Alarma de sensor
-    618 444 100 4 0 0
+    494 444 109 4 0 0
   classdiagram_ref 131970 // Alarma de control
-    618 444 100 4 0 226
+    494 444 100 4 0 237
+  classdiagram_ref 130690 // Alarma de sensor
+    494 444 100 4 19 241
   classdiagram_ref 130818 // Salidas
-    618 444 100 4 0 0
-  active  classdiagram_ref 128131 // salida_hc08ac
-    744 556 100 4 0 0
+    623 556 100 4 0 0
+  active  classdiagram_ref 129283 // Valvula proporcional
+    623 556 100 4 180 138
+  classdiagram_ref 128131 // salida_hc08ac
+    494 444 100 4 0 0
 end
 show_stereotypes
-selected classdiagram_ref 128131 // salida_hc08ac
+selected operation_ref 131715 // getTiempoAbierto
 open
-  classview_ref 128002 // Alarmas
-  class_ref 129282 // PWM
+  class_ref 137858 // LazoControlAlSen
   class_ref 128514 // Salida
+  class_ref 128131 // TConfPWM
+  class_ref 129283 // ValvulaProporcional
+  class_ref 130435 // ConfValvulaProporcional
+  deploymentview_ref 130434 // Salida
 end
 end

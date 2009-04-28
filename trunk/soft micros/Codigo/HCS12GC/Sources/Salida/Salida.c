@@ -78,9 +78,9 @@ void Salida_setPotencia(void* _self,uint duty){
 
 void setPotencia(void* _self,uint duty){
   struct ISalidaClass ** _class=_self;
-  struct ISalida * salida=self;
+  struct ISalida * salida=_self;
   
-  (*((*_class)->setPotencia))(self,duty);  
+  (*((*_class)->setPotencia))(_self,duty);  
     
 }
 
@@ -93,7 +93,7 @@ void super_setPotencia(void * _class,void* _self,uint duty){
 }
 
 uint getPotencia(void* _self){
-  struct ISalidaClass ** class=self;
+  struct ISalidaClass ** class=_self;
   
   return (*((*class)->getPotencia))(_self);    
 }
