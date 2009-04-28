@@ -229,6 +229,19 @@ static const struct FstBoxPointer *const CalArray[]={
 
 static const NEW_BOX_LIST(Cal,CalArray,"CAL");
 
+//VP
+static const NEW_FST_BOX_POINTER(VPFstBox,&CBox_PID_Lim,&valvulaProporcional,0);
+
+static const struct FstBoxPointer *const VPArray[]={
+  &VPFstBox,    
+};
+
+			
+static const NEW_BOX_LIST(VPBoxList,VPArray,"VP");  
+
+
+
+
 //TUN
 static const NEW_FST_BOX_POINTER(Cntrl1Tun1,&PID_HMI_FST_TUN_BOX,&control[0],1);
 static const NEW_FST_BOX_POINTER(Cntrl1Tun2,&PID_HMI_SCND_TUN_BOX,&control[0],1);
@@ -322,6 +335,7 @@ static const NEW_BOX_LIST(Lim,LimArray,"Lim");
 
 // Acceso comun
 static const struct BoxList *const BoxListArray[]={
+  &VPBoxList,
   &Tun,
   &Cal,
   &Set,
@@ -434,7 +448,7 @@ void main(void){
  // newAlloced(&pwmSoft,&PWMSoft,&pwm_config[7],&PTT,7); 
  // pwm[7]=&pwmSoft;
 
-  newAlloced(&valvulaProporcional,&valvulaProporcional,&confValvulaProporcional,&PTT,7,&PTT,6);
+  newAlloced(&valvulaProporcional,&ValvulaProporcional,&confValvulaProporcional,&PTT,7,&PTT,6);
   
   for(i=0;i<CANTIDAD_SAL_CONTROL-1;i++)
     newAlloced(&control[i],ControlPID,&control_conf[i],&termometro.sensor[i],pwm[i]);

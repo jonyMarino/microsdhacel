@@ -3,9 +3,11 @@
 #include "Salida.h"
 #include "Salida_protected.h"
 #include "stdarg.h"
+#define  MAX_TIEMPOABIERTO 65500
+#define  MAX_BANDAMUERTA   65500
 
 void * ValvulaProporcional_defConstruct (void * _self, va_list * args);
-int  ValvulaProporcional_getPotencia(void *_self);
+uint  ValvulaProporcional_getPotencia(void *_self);
 void ValvulaProporcional_setPotencia(void *_self,int potencia);
 TipoSalida ValvulaProporcional_getTipoSalida(void *_self);
 void ValvulaProporcional_setTipoSalida(void *_self,TipoSalida tipoSalida);
@@ -30,12 +32,13 @@ void set_bandaMuerta(int value);
 };
 
 
-void ValvulaProporcional_Construct(struct ValvulaProporcional* self,ConfValvulaProporcional * conf,byte * salida,int bit){
+void ValvulaProporcional_Construct(struct ValvulaProporcional* self,ConfValvulaProporcional * conf,byte * salida,int bit,byte * salida,int bit){
   Salida_constructor(self);
   self->conf=conf;
   //self->salida = salida;
   //self->mask=1<<bit;
-  //newAlloced(&self->timer,&MethodTimer,(ulong)periodos[PWM_getPeriodo(self)],PWMSoft_onCambio,self);
+// *
+  newAlloced(&self->timer,&MethodTimer,20,ValvulaProporcional_onCheckear,self);;
   //Timer_Stop(&self->timer);
     
 }
@@ -46,7 +49,16 @@ void * ValvulaProporcional_defConstruct (void * _self, va_list * args){
 
 }
 
-int  ValvulaProporcional_getPotencia(void *_self){
+void  ValvulaProporcional_onCheckear(void *_self){
+  
+//cada 20ms es llamado por esta creacion *
+
+}
+
+uint  ValvulaProporcional_getPotencia(void *_self){
+  
+  return getPotencia(_self);
+
 }
 
 
@@ -54,6 +66,8 @@ int  ValvulaProporcional_getPotencia(void *_self){
 void ValvulaProporcional_setPotencia(void *_self,int potencia){
 
   Salida_setPotencia(_self,potencia);
+
+
 }
 
 
@@ -65,15 +79,55 @@ TipoSalida ValvulaProporcional_getTipoSalida(void *_self){
 
 void ValvulaProporcional_setTipoSalida(void *_self,TipoSalida tipoSalida){
 
+/*  int pot = Salida_getPotencia(_self);
+    Timer_Stop(&self->timer);
+    if(pot!=0){
+      setReg8Bits(*self->salida, self->mask);  
+      Timer_setTime(&self->timer,periodos[PWM_getPeriodo(self)]* Salida_getPotencia(self)/1000);
+    }else{
+      clrReg8Bits(*self->salida, self->mask);  
+      Timer_setTime(&self->timer,periodos[PWM_getPeriodo(self)]);
   
+    }  
+*/
+}
+
+int get_tiempoAbierto(void *_self) {
+  struct ValvulaProporcional* self = _self;
+  
+  return _MANEJADOR_MEMORIA_GET_BYTE(&flash,&self->conf->tiempoAbierto);
+ 
+}
+     
+TError set_tiempoAbierto(void *_self,int value) {
+  
+  struct ValvulaProporcional* self = _self;
+  
+  return _MANEJADOR_MEMORIA_SET_BYTE(&flash,&self->conf->tiempoAbierto,(uchar)value);
+  
+}
+
+int get_LimSup_tiempoAbierto(void){
+  return MAX_TIEMPOABIERTO;
+}
+
+
+void set_bandaMuerta(void *_self,int value) {
+
+struct ValvulaProporcional* self = _self;
+  
+return _MANEJADOR_MEMORIA_SET_BYTE(&flash,&self->conf->bandaMuerta,(uchar)value); 
 
 }
 
-void set_tiempoAbierto(int value) {
- // tiempoAbierto = value;
+
+int get_bandaMuerta(void *_self) {
+  struct ValvulaProporcional* self = _self;
+  
+  return _MANEJADOR_MEMORIA_GET_BYTE(&flash,&self->conf->bandaMuerta);
+ 
 }
 
-void set_bandaMuerta(int value) {
- // bandaMuerta = value;
+int get_LimSup_bandaMuerta(void){
+  return MAX_BANDAMUERTA;
 }
-

@@ -1,6 +1,6 @@
-format 59
+format 66
 "SD100"
-  revision 19
+  revision 22
   modified_by 3 "Nicolas"
   cpp_root_dir "d:/Jony/HCS12/Codigo generado por uml/C++/"
   idl_root_dir "d:/Jony/HCS12/Codigo generado por uml/"
@@ -10,7 +10,7 @@ format 59
   // class settings
   default_attribute_visibility private default_relation_visibility private default_operation_visibility public
   //class diagram settings
-  draw_all_relations yes hide_attributes no hide_operations no show_members_full_definition no show_members_visibility no show_members_stereotype no show_members_multiplicity no show_members_initialization no member_max_width 127 show_parameter_dir yes show_parameter_name yes package_name_in_tab no class_drawing_mode natural drawing_language uml show_context_mode no auto_label_position yes show_infonote no shadow yes show_stereotype_properties no
+  draw_all_relations yes hide_attributes no hide_operations no show_members_full_definition no show_members_visibility no show_members_stereotype no show_members_multiplicity no show_members_initialization no show_attribute_modifiers no member_max_width 127 show_parameter_dir yes show_parameter_name yes package_name_in_tab no class_drawing_mode natural drawing_language uml show_context_mode no auto_label_position yes show_relation_modifiers no show_infonote no shadow yes show_stereotype_properties no
   //use case diagram settings
   package_name_in_tab no show_context no auto_label_position yes draw_all_relations yes class_drawing_mode actor shadow yes show_stereotype_properties no
   //sequence diagram settings
@@ -32,7 +32,7 @@ format 59
   package_name_in_tab no show_context no show_opaque_action_definition no auto_label_position yes write_flow_label_horizontally no draw_all_relations yes shadow yes
   show_infonote yes drawing_language uml show_stereotype_properties no
   
-  class_color yellow duration_color transparent continuation_color gray note_color blue fragment_color transparent subject_color transparent usecase_color yellow package_color transparent component_color green artifact_color green deploymentnode_color gray state_color yellow stateaction_color transparent activity_color transparent activityregion_color transparent activityaction_color transparent parameterpin_color white 
+  class_color yellow duration_color transparent continuation_color gray note_color blue fragment_color transparent subject_color transparent usecase_color yellow package_color transparent component_color green artifact_color green deploymentnode_color gray state_color yellow stateaction_color transparent activity_color transparent activityregion_color transparent activitypartition_color transparent activityaction_color transparent parameterpin_color white 
   font_size 8
   diagram_format A4
 
@@ -42,7 +42,7 @@ format 59
   key "check-in-cmd" value "specify the command containing %file and %dir or %dironly"
   classview 128002 "Alarmas"
     //class diagram settings
-    draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
+    draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
     //collaboration diagram settings
     show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default draw_all_relations default shadow default show_stereotype_properties default
     //object diagram settings
@@ -58,32 +58,32 @@ format 59
     show_infonote default drawing_language default show_stereotype_properties default
     associated_deployment_view deploymentview_ref 131714 // Alarmas
     classdiagram 128002 "Alarmas"
-      draw_all_relations no hide_attributes default hide_operations default show_members_full_definition default show_members_visibility yes show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
+      draw_all_relations no hide_attributes default hide_operations default show_members_full_definition default show_members_visibility yes show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
       size A4
     end
 
     classdiagram 128130 "Retransmision"
-      draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility yes show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
+      draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility yes show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
       size A4
     end
 
     classdiagram 128258 "Refrigeracion"
-      draw_all_relations no hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
+      draw_all_relations no hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
       size A4
     end
 
     classdiagram 128386 "De Valor"
-      draw_all_relations no hide_attributes default hide_operations default show_members_full_definition default show_members_visibility yes show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
+      draw_all_relations no hide_attributes default hide_operations default show_members_full_definition default show_members_visibility yes show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
       size A4
     end
 
     classdiagram 130690 "Alarma de sensor"
-      draw_all_relations no hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
+      draw_all_relations no hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
       size A4
     end
 
     classdiagram 131970 "Alarma de control"
-      draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
+      draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
       size A4
     end
 
@@ -167,7 +167,7 @@ ${members}};
       end
 
       operation 133890 "setAdaptadorSalida"
-	public explicit_return_type ""
+	public explicit_return_type "void"
 	nparams 1
 	  param in name "adaptador" explicit_type "int"
 	
@@ -300,15 +300,6 @@ ${members}};
 	    idl "  ${comment}${visibility}${type} ${name};
 "
 	    classrelation_ref 128898 // control (<directional aggregation>)
-	  b multiplicity "1" parent class_ref 128898 // Control
-      end
-
-      classrelation 140930 // <directional aggregation>
-	relation 140290 o-->
-	  a role_name "" multiplicity "1" private
-	    idl "  ${comment}${visibility}${type} ${name};
-"
-	    classrelation_ref 140930 // <directional aggregation>
 	  b multiplicity "1" parent class_ref 128898 // Control
       end
 
@@ -862,6 +853,9 @@ ${members}};
 	nparams 1
 	  param in name "metodo" type class_ref 132354 // Method
 	
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
 	
 	
 	
@@ -1431,12 +1425,11 @@ ${members}};
       explicit_switch_type ""
       
     end
-
   end
 
   classview 129154 "Salida"
     //class diagram settings
-    draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
+    draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
     //collaboration diagram settings
     show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default draw_all_relations default shadow default show_stereotype_properties default
     //object diagram settings
@@ -1588,7 +1581,7 @@ ${members}};
     end
 
     classdiagram 130818 "Salidas"
-      draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
+      draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
       size A4
     end
 
@@ -1660,16 +1653,13 @@ ${members}};
 "
       explicit_switch_type ""
       
-      classrelation 129154 // configuracion (<aggregation>)
-	relation 129026 o---
+      classrelation 129154 // configuracion (<directional aggregation>)
+	relation 129026 o-->
 	  a role_name "configuracion" multiplicity "1" private
-	    idl "  ${comment}${visibility}${type} ${name};
+	    idl "  ${comment}${type} ${name};
 "
-	    classrelation_ref 129154 // configuracion (<aggregation>)
-	  b role_name "" multiplicity "1" private
-	    idl "  ${comment}${visibility}${type} ${name};
-"
-	    classrelation_ref 129282 // <aggregation>
+	    classrelation_ref 129154 // configuracion (<directional aggregation>)
+	  b multiplicity "1" parent class_ref 129154 // RetransmisionConf
       end
 
       classrelation 147074 // <generalisation>
@@ -1733,10 +1723,6 @@ ${members}
 	python_decl ""
 	idl_decl "  ${comment}${visibility}${type} ${name};
 "
-      end
-
-      classrelation 129282 // <aggregation>
-	relation_ref 129026 // <aggregation>
       end
     end
 
@@ -1806,7 +1792,7 @@ ${members}
       explicit_switch_type ""
       
       operation 128003 "getPotencia"
-	public explicit_return_type ""
+	cpp_virtual public explicit_return_type "int"
 	nparams 0
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
@@ -1821,7 +1807,7 @@ ${members}
       end
 
       operation 128131 "setPotencia"
-	protected explicit_return_type ""
+	cpp_virtual protected explicit_return_type ""
 	nparams 0
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
@@ -1917,7 +1903,7 @@ ${members}
       explicit_switch_type ""
       
       operation 141826 "setPeriodo"
-	public explicit_return_type ""
+	cpp_virtual public explicit_return_type ""
 	nparams 0
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
@@ -1932,7 +1918,7 @@ ${members}
       end
 
       operation 141954 "getPeriodo"
-	public explicit_return_type ""
+	cpp_virtual public explicit_return_type ""
 	nparams 0
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
@@ -2059,7 +2045,7 @@ ${members}};
     end
 
     classdiagram 128131 "salida_hc08ac"
-      draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
+      draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
       size A4
     end
 
@@ -2104,6 +2090,110 @@ ${members}
 "
       explicit_switch_type ""
       
+      attribute 130563 "periodo"
+	private type class_ref 128258 // fbyte
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl "  ${comment}${readonly}${attribute}${type} ${name};
+"
+      end
+    end
+
+    classdiagram 129283 "Valvula proporcional"
+      draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
+      size A4
+    end
+
+    class 129283 "ValvulaProporcional"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl "${comment}${custom}struct ${name}{
+${inherit}
+${members}};
+"
+      explicit_switch_type ""
+      
+      classrelation 129283 // <generalisation>
+	relation 129283 ---|>
+	  a public
+	    cpp default "${type}"
+	    idl "${type}"
+	    classrelation_ref 129283 // <generalisation>
+	  b parent class_ref 128514 // Salida
+      end
+
+      classrelation 130435 // <directional aggregation>
+	relation 130435 o-->
+	  a role_name "" multiplicity "1" private
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    idl "  ${comment}${type} ${name};
+"
+	    classrelation_ref 130435 // <directional aggregation>
+	  b multiplicity "1" parent class_ref 130435 // ConfValvulaProporcional
+      end
+
+      operation 131715 "getTiempoAbierto"
+	public explicit_return_type "int"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+    end
+
+    class 130435 "ConfValvulaProporcional"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl "${comment}${custom}struct ${name}{
+${inherit}
+${members}};
+"
+      explicit_switch_type ""
+      
+      attribute 130691 "tiempoAbierto"
+	private explicit_type "int"
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl "  ${comment}${type} ${name};
+"
+      end
+
+      attribute 130819 "bandaMuerta"
+	private explicit_type "int"
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl "  ${comment}${type} ${name};
+"
+      end
     end
   end
 
@@ -2463,6 +2553,39 @@ ${module_end}
 "
       associated_classes
 	class_ref 142594 // PWMPeriodoEvent
+      end
+    end
+
+    artifact 129155 "ValvulaProporcional"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      idl_src "#ifndef ${MODULE}_${NAME}_H
+#define ${MODULE}_${NAME}_H
+
+${comment}
+${includes}
+${module_start}
+${definition}
+${module_end}
+#endif
+"
+      associated_classes
+	class_ref 129283 // ValvulaProporcional
       end
     end
   end
@@ -3396,7 +3519,7 @@ ${module_end}
 
   classview 130306 "System"
     //class diagram settings
-    draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
+    draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
     //collaboration diagram settings
     show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default draw_all_relations default shadow default show_stereotype_properties default
     //object diagram settings
@@ -3410,6 +3533,7 @@ ${module_end}
     //activity diagram settings
     package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
     show_infonote default drawing_language default show_stereotype_properties default
+    associated_deployment_view deploymentview_ref 128003 // System
     class 142722 "MethodContainer"
       visibility package 
       cpp_decl "${comment}${template}class ${name}${inherit} {
@@ -3430,7 +3554,7 @@ ${members}};
 
   classview 131458 "Comunicacion"
     //class diagram settings
-    draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
+    draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
     //collaboration diagram settings
     show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default draw_all_relations default shadow default show_stereotype_properties default
     //object diagram settings
@@ -3446,7 +3570,7 @@ ${members}};
     show_infonote default drawing_language default show_stereotype_properties default
     associated_deployment_view deploymentview_ref 132866 // Comunicacion
     classdiagram 133122 "Com"
-      draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
+      draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
       size A4
     end
 
@@ -3749,6 +3873,44 @@ ${module_end}
 "
       associated_classes
 	class_ref 144130 // ListaICModBus
+      end
+    end
+  end
+
+  deploymentview 128003 "System"
+    //deployment diagram settings
+    package_name_in_tab default show_context default write_horizontally default auto_label_position default draw_all_relations default shadow default
+    draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
+    artifact 128003 "MethodContainer"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      idl_src "#ifndef ${MODULE}_${NAME}_H
+#define ${MODULE}_${NAME}_H
+
+${comment}
+${includes}
+${module_start}
+${definition}
+${module_end}
+#endif
+"
+      associated_classes
+	class_ref 142722 // MethodContainer
       end
     end
   end

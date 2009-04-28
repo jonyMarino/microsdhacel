@@ -12,6 +12,7 @@
 extern const struct Class Object;
 
 void * new (const void * class, ...);
+/* crea una instancia de classOf en el espacio de memoria _self*/
 void * newAlloced (void * _self,const void * classOf, ...);
 void delete (void * self);
 void deleteAlloced (void * _self);
