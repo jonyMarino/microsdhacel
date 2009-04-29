@@ -2,12 +2,14 @@
 #define _VALVULAPROPORCIONAL_H
 #include "Salida.h"
 #include "MethodTimer.h"
+#include "FshTypeSizes.h"
 #define  MAX_TIEMPOABIERTO 65500
 #define  MAX_BANDAMUERTA   65500
 
 typedef struct{
   int tiempoAbierto;
-  int bandaMuerta; 
+  int bandaMuerta;
+  fbyte tipoSalida;
 }ConfValvulaProporcional;
 
 struct ValvulaProporcional{
