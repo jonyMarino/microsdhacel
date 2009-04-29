@@ -59,8 +59,9 @@ void  ValvulaProporcional_onCheckear(void *_self,int potencia,int bandaProporcio
 //cada 20ms es llamado 
   struct ValvulaProporcional* self = _self;
   char mascara;
-  int tiemAperTemp = _self->ConfValvulaProporcional->tiempoAbierto;
-  
+  dword tiemAperTemp_mseg;
+  //dword contTiempo;
+    
   if(medicion>(setpoint+(bandaProporcional/2))) {  //esta por encima de la banda proporcional ?
     mascara = (PTT & 0xBF) | 0x80;
     setReg8Bits(PTT, mascara); // pongo en 1 la salida 7 y en cero la salida 6 del puerto PTT (apertura)
@@ -68,9 +69,21 @@ void  ValvulaProporcional_onCheckear(void *_self,int potencia,int bandaProporcio
  else if(medicion<(setpoint-(bandaProporcional/2))) { //esta por debajo de la banda proporcional ?
     mascara = (PTT & 0x7F) | 0x40;  
     setReg8Bits(PTT, mascara); // pongo en 1 la salida 6 y en cero la salida 7 del puerto PTT (cierre)
- } else // esta en la banda proporcional
-    //me falta esta parte
+ } else{    // esta en la banda proporcional
+     
+     tiemAperTemp_mseg = (_self->ConfValvulaProporcional->tiempoAbierto)*potencia;
+    // contTiempo = tiemAperTemp_mseg/20;
+     if(tiemAperTemp_mseg != 0) {  //al bajar la potencia el Tiempo disminuye
+        mascara = (PTT & 0xBF) | 0x80;
+        setReg8Bits(PTT, mascara); // pongo en 1 la salida 7 y en cero la salida 6 del puerto PTT (apertura)  
+        //contTiempo--;
+     }else{
+        mascara = (PTT & 0x7F) | 0x40;  
+        setReg8Bits(PTT, mascara); // pongo en 1 la salida 6 y en cero la salida 7 del puerto PTT (cierre)
+     }
+ }
  
+
 }
 uint  ValvulaProporcional_getPotencia(void *_self){
   
@@ -95,18 +108,8 @@ TipoSalida ValvulaProporcional_getTipoSalida(void *_self){
 }
 
 void ValvulaProporcional_setTipoSalida(void *_self,TipoSalida tipoSalida){
-
-/*  int pot = Salida_getPotencia(_self);
-    Timer_Stop(&self->timer);
-    if(pot!=0){
-      setReg8Bits(*self->salida, self->mask);  
-      Timer_setTime(&self->timer,periodos[PWM_getPeriodo(self)]* Salida_getPotencia(self)/1000);
-    }else{
-      clrReg8Bits(*self->salida, self->mask);  
-      Timer_setTime(&self->timer,periodos[PWM_getPeriodo(self)]);
-  
-    }  
-*/
+   struct ValvulaProporcional* self = _self;
+   _self->ConfValvulaProporcional->tipoSalida = tipoSalida;
 }
 
 int get_tiempoAbierto(void *_self) {
