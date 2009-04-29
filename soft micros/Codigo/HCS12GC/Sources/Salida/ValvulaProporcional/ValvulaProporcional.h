@@ -1,6 +1,7 @@
 #ifndef _VALVULAPROPORCIONAL_H
 #define _VALVULAPROPORCIONAL_H
 #include "Salida.h"
+#include "MethodTimer.h"
 #define  MAX_TIEMPOABIERTO 65500
 #define  MAX_BANDAMUERTA   65500
 
@@ -32,5 +33,7 @@ struct ValvulaProporcional{
   int get_bandaMuerta(void *_self);
   
   int get_LimSup_bandaMuerta(void);
+  
+  void  ValvulaProporcional_onCheckear(void *_self,int potencia);
   
 #endif

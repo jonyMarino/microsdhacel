@@ -1,5 +1,7 @@
 #include "valvulaProporcionalHMI.h"
-#include "ValvulaProporcional.h" 
+#include "ValvulaProporcional.h"
+#include "PropWithInc.h"
+#include "ClassBoxLineal.h" 
  
  /* Propiedades*/
  
