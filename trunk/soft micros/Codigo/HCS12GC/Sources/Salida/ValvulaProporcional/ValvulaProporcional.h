@@ -3,6 +3,8 @@
 #include "Salida.h"
 #include "MethodTimer.h"
 #include "FshTypeSizes.h"
+#include "Errores.h"
+
 #define  MAX_TIEMPOABIERTO 65500
 #define  MAX_BANDAMUERTA   65500
 
@@ -22,11 +24,9 @@ struct ValvulaProporcional{
   
   int get_tiempoAbierto(void *_self);
 
-  void set_tiempoAbierto(void *_self, int value);
+  TError set_tiempoAbierto(void *_self, int value);
 
-  int get_bandaMuerta(void *_self);
-
-  void set_bandaMuerta(void *_self, int value);
+  TError set_bandaMuerta(void *_self,int value);
 
   int get_tiempoAbierto(void *_self);
   
@@ -37,5 +37,8 @@ struct ValvulaProporcional{
   int get_LimSup_bandaMuerta(void);
   
   void  ValvulaProporcional_onCheckear(void *_self,int potencia);
+  
+  void ValvulaProporcional_setTipoSalida(void *_self,TipoSalida tipoSalida);
+  
   
 #endif
