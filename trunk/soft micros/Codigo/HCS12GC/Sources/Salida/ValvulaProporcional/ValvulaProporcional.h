@@ -11,13 +11,16 @@
 typedef struct{
   int tiempoAbierto;
   int bandaMuerta;
-  fbyte tipoSalida;
 }ConfValvulaProporcional;
 
 struct ValvulaProporcional{
   struct Salida super;
   ConfValvulaProporcional * conf;
   struct MethodTimer timer;
+  byte * puertoApertura;
+  byte mascaraApertura;
+  byte * puertoCierre;
+  byte mascaraCierre;
 };
   
   extern const struct ISalidaClass ValvulaProporcional; 
