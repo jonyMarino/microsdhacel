@@ -14,15 +14,15 @@
   }; 
 
 //Boxes:
-  const struct ConstructorPropWInc*const Props_PID_Lim[]=	{
+  const struct ConstructorPropWInc*const Props_ValvulaProporcional_Lim[]=	{
   			  &PropTiempoApertura,											/* direccion en la E2Prom - el EEProm Start, if FALSE no guarda valor*/
   			  &PropBandaMuerta,
    			  NULL
 };
 
-const struct BlockCnstrBoxLin CBox_PID_Lim={
+const struct BlockCnstrBoxLin CBox_ValvulaProporcional_Lim={
       &BoxLineal,
-      Props_PID_Lim,
+      Props_ValvulaProporcional_Lim,
 			NULL
 			};
 			

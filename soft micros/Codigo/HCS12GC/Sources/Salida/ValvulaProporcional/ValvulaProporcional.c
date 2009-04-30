@@ -5,16 +5,24 @@
 #include "stdarg.h"
 #include "Timer.h"
 #include "PE_Types.h"
+#include "Errores.h"
+#include "PE_Error.h"
+#include "Mydefines.h"
+#include "IO_MAP.h"
+#include "ManejadorMemoria.h"
+
 #define  MAX_TIEMPOABIERTO 65500
 #define  MAX_BANDAMUERTA   65500
+
+extern struct FlashBkpEnFlash flash;
 
 void ValvulaProporcional_defConstruct (void * _self, va_list * args);
 uint ValvulaProporcional_getPotencia(void *_self);
 void ValvulaProporcional_setPotencia(void *_self,int potencia);
 TipoSalida ValvulaProporcional_getTipoSalida(void *_self);
 void ValvulaProporcional_setTipoSalida(void *_self,TipoSalida tipoSalida);
-TError set_tiempoAbierto(int value);
-TError set_bandaMuerta(int value);
+TError set_tiempoAbierto(void *_self,int value);
+TError set_bandaMuerta(void *_self,int value);
 void  ValvulaProporcional_onCheckear(void *_self,int potencia);
 int get_tiempoAbierto(void *_self);
 int get_LimSup_tiempoAbierto(void);
@@ -39,7 +47,8 @@ int get_LimSup_bandaMuerta(void);
 };
 
 
-void ValvulaProporcional_Construct(struct ValvulaProporcional* self,ConfValvulaProporcional * conf,byte * salida,int bit,byte * salida,int bit){
+/*void ValvulaProporcional_Construct(void * _self,ConfValvulaProporcional * conf,byte * salida,int bit,byte * salida,int bit){
+  struct ValvulaProporcional* self = _self;
   Salida_constructor(self);
   self->conf=conf;
   //self->salida = salida;
@@ -48,11 +57,14 @@ void ValvulaProporcional_Construct(struct ValvulaProporcional* self,ConfValvulaP
   //Timer_Stop(&self->timer);
     
 }
-
+*/
 void ValvulaProporcional_defConstruct (void * _self, va_list * args){
-  ValvulaProporcional_Construct(_self,va_arg(*args,void*),va_arg(*args,byte*),va_arg(*args,int));
-
-
+  //ValvulaProporcional_Construct(_self,va_arg(*args,ConfValvulaProporcional*),va_arg(*args,byte*),va_arg(*args,int),va_arg(*args,byte),va_arg(*args,int));
+  struct ValvulaProporcional* self = _self;  
+  ConfValvulaProporcional * conf=va_arg(*args,ConfValvulaProporcional*); 
+  Salida_constructor(self);
+  self->conf=conf;
+  newAlloced(&self->timer,&MethodTimer,20,ValvulaProporcional_onCheckear,self);
 }
 
 void  ValvulaProporcional_onCheckear(void *_self,int potencia,int bandaProporcional,word medicion,word setpoint){  
@@ -71,7 +83,7 @@ void  ValvulaProporcional_onCheckear(void *_self,int potencia,int bandaProporcio
     setReg8Bits(PTT, mascara); // pongo en 1 la salida 6 y en cero la salida 7 del puerto PTT (cierre)
  } else{    // esta en la banda proporcional
      
-     tiemAperTemp_mseg = (_self->ConfValvulaProporcional->tiempoAbierto)*potencia;
+     tiemAperTemp_mseg = (self->conf->tiempoAbierto)*potencia;
     // contTiempo = tiemAperTemp_mseg/20;
      if(tiemAperTemp_mseg != 0) {  //al bajar la potencia el Tiempo disminuye
         mascara = (PTT & 0xBF) | 0x80;
@@ -109,7 +121,7 @@ TipoSalida ValvulaProporcional_getTipoSalida(void *_self){
 
 void ValvulaProporcional_setTipoSalida(void *_self,TipoSalida tipoSalida){
    struct ValvulaProporcional* self = _self;
-   _self->ConfValvulaProporcional->tipoSalida = tipoSalida;
+   self->conf->tipoSalida = tipoSalida;
 }
 
 int get_tiempoAbierto(void *_self) {
