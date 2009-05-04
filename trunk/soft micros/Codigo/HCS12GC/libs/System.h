@@ -4,6 +4,9 @@
 #ifdef BAJOCONSUMO
 #include "BTBajoConsumo.h"
 extern struct BTBajoConsumo baseTiempo;
+#elif defined(DS1307)
+#include "BaseTiempoDS1307.h"
+extern struct BaseTiempoDS1307 baseTiempo;
 #else
 #include "BTFechaPersistente.h"
 extern struct BTFechaPersistente baseTiempo;

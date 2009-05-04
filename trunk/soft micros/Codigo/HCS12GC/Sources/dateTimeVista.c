@@ -22,8 +22,8 @@
 TError dateTimeVista_setYear(void * _self,int val){
   DATEREC date;
   
-  getDate(_self,&date); 
-  setDate(_self,val,date.Month,1);
+  getFecha(_self,&date); 
+  setFecha(_self,val,date.Month,1);
   
   return ERR_OK;
 }
@@ -37,7 +37,7 @@ TError dateTimeVista_setYear(void * _self,int val){
 int dateTimeVista_getYear(void * _self){
   DATEREC date;
   
-  getDate(_self,&date); 
+  getFecha(_self,&date); 
   return date.Year;  
 }
 
@@ -69,8 +69,8 @@ int dateTimeVista_LimSupYear(void * _self){
 TError dateTimeVista_setMonth(void * _self,int val){
   DATEREC date;
     
-  getDate(_self,&date); 
-  setDate(_self,date.Year,val,1);
+  getFecha(_self,&date); 
+  setFecha(_self,date.Year,val,1);
   
   return ERR_OK;
   
@@ -85,7 +85,7 @@ TError dateTimeVista_setMonth(void * _self,int val){
 int dateTimeVista_getMonth(void * _self){
   DATEREC date;
   
-  getDate(_self,&date); 
+  getFecha(_self,&date); 
   return date.Month;   
 }
 
@@ -118,8 +118,8 @@ int dateTimeVista_LimSupMonth(void * _self){
 TError dateTimeVista_setDay(void * _self,int val){
   DATEREC date;
   
-  getDate(_self,&date); 
-  setDate(_self,date.Year,date.Month,val);
+  getFecha(_self,&date); 
+  setFecha(_self,date.Year,date.Month,val);
   
   return ERR_OK;
   
@@ -134,7 +134,7 @@ TError dateTimeVista_setDay(void * _self,int val){
 int dateTimeVista_getDay(void * _self){
   DATEREC date;
   
-  getDate(_self,&date); 
+  getFecha(_self,&date); 
   
   return date.Day; 
 }
@@ -157,9 +157,9 @@ int dateTimeVista_LimInfDay(void * _self){
 int dateTimeVista_LimSupDay(void * _self){
   DATEREC date;
   
-  getDate(_self,&date); 
+  getFecha(_self,&date); 
   
-  return TmDt1_GetMaxday(date.Year,date.Month);
+  return FechaTiempo_getMaximoDiaDelMes(date.Year,date.Month);
 }
 
 /*
@@ -172,7 +172,7 @@ TError dateTimeVista_setTime(void * _self,int val){
   byte hour = val/100;
   byte min  = val%100;
   
-  setTime(_self,hour,min,0);
+  setTiempo(_self,hour,min,0);
   
   return ERR_OK;
  
@@ -187,7 +187,7 @@ TError dateTimeVista_setTime(void * _self,int val){
 int dateTimeVista_Sys_getTime(void * _self){
   TIMEREC _time;
   
-  getTime(_self,&_time);
+  getTiempo(_self,&_time);
   return (int)_time.Hour*100+_time.Min;
 }
 /*

@@ -15,7 +15,8 @@ const struct BaseTiempoClass BaseTiempo = {
                              TmDt1_GetTime,
                              BaseTiempo_setTime,
                              TmDt1_GetDate,
-                             TmDt1_SetDate,
+                             TmDt1_setFechaValidada,
+                             BaseTiempo_getConfigurado,
                              BaseTiempo_incUnSegundo)  
 };
 
@@ -61,7 +62,7 @@ void BaseTiempo_defConstructor(void * self,va_list * args){
 */
 byte BaseTiempo_setTime(void * _self,byte horas,byte min,byte segs){
   struct BaseTiempo * self = _self;
-  super_setTime(&BaseTiempo,_self,horas,min,segs);
+  super_setTiempoValidado(&BaseTiempo,_self,horas,min,segs);
   self->configurado = TRUE;
 }
 
