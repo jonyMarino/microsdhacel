@@ -152,7 +152,7 @@ void Adq_Handler(void * self){
 bool Adq_isTimeSet(void *_self){
   struct Adquisidor * _ad = _self;
   
-  return BaseTiempo_getConfigurado(&baseTiempo);   
+  return isConfigurado(&baseTiempo);   
 }
 
 /*

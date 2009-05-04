@@ -2,7 +2,7 @@
 /* MODULE TmDt1. */
 
 #include "PE_Error.h"
-#include "TmDt1.h"
+#include "TmDt1_protected.h"
 #include "stddef.h"
 
 #pragma CODE_SEG TmDt1_CODE                     
@@ -10,73 +10,21 @@
 
 void TmDt1_DefConstructor(void * self,va_list * args);
 
-const struct Class TmDt1Class;
 
-const struct TmDt1Class TmDt1={
-  TMDT1_CLASS_INITIALIZATION(TmDt1Class,
+const struct FechaTiempoClass TmDt1={
+  TMDT1_CLASS_INITIALIZATION(FechaTiempoClass,
                              TmDt1,
-                             Object,
+                             FechaTiempo,
                              TmDt1_DefConstructor,
                              Object_dtor,
                              Object_differ,
                              Object_puto,
                              TmDt1_GetTime,
-                             TmDt1_SetTime,
+                             TmDt1_setTiempoValidado,
                              TmDt1_GetDate,
-                             TmDt1_SetDate)
+                             TmDt1_setFechaValidada)
 };
 
-
-
-
-/*
-
-*/
-void super_getTime(const struct TmDt1Class*class,void * self,TIMEREC *time){
-  const struct TmDt1Class* super_class=super(class);
-  super_class->getTime(self,time);
-}
-
-void super_getDate(const struct TmDt1Class*class,void * self,DATEREC *date){
-  const struct TmDt1Class* super_class=super(class);
-  super_class->getDate(self,date);
-}
-
-void getTime(void * self,TIMEREC *time){
-  struct TmDt1Class * class = classOf(self);
-  class->getTime(self,time);
-}
-
-byte setTime(void * self,byte hour,byte min,byte secs){
-  struct TmDt1Class * class = classOf(self);
-  return class->setTime(self,hour,min,secs);
-}
-
-byte super_setTime(const struct TmDt1Class*class,void * self,byte hour,byte min,byte segs){
-  const struct TmDt1Class* super_class=super(class);
-  return super_class->setTime(self,hour,min,segs);
-}
-
-void getDate(void * self,DATEREC *date){
-  struct TmDt1Class * class = classOf(self);
-  class->getDate(self,date);
-}
-
-byte setDate(void * self,word year,byte month,byte day){
-  struct TmDt1Class * class = classOf(self);
-  class->setDate(self,year,month,day);
-}
-
-byte super_setDate(const struct TmDt1Class*class,void * self,word year,byte month,byte day){
-  const struct TmDt1Class* super_class=super(class);
-  return super_class->setDate(self,year,month,day);
-}
-
-
-
-/* Table of month length (in days) */
-static const byte ULY[12] = {31,28,31,30,31,30,31,31,30,31,30,31}; /* Un-leap-year */
-static const byte  LY[12] = {31,29,31,30,31,30,31,31,30,31,30,31}; /* Leap-year */
 
 /*
 ** ===================================================================
@@ -90,12 +38,12 @@ static const byte  LY[12] = {31,29,31,30,31,30,31,31,30,31,30,31}; /* Leap-year 
 void TmDt1_Constructor(void * self,word Year,byte Month,byte Day,byte Hour,byte Min,byte secs)
 {
   byte err;
-  err=TmDt1_SetDate(self,Year,Month,Day);  /* Initial date */
+  err=setFecha(self,Year,Month,Day);  /* Initial date */
   if(err)    //cambiar : error
-    (void)TmDt1_SetDate(self,2008,1,1);  /* Initial date */  
-  err=TmDt1_SetTime(self,Hour,Min,secs);        /* Initialize time */
+    (void)setFecha(self,2008,1,1);  /* Initial date */  
+  err=setTiempo(self,Hour,Min,secs);        /* Initialize time */
   if(err)    //cambiar : error
-    (void)TmDt1_SetTime(self,0,0,0);        /* Initialize time */  
+    (void)setTiempo(self,0,0,0);        /* Initialize time */  
 }
 /*
 ** ===================================================================
@@ -107,6 +55,7 @@ void TmDt1_Constructor(void * self,word Year,byte Month,byte Day,byte Hour,byte 
 ** ===================================================================
 */
 void TmDt1_DefConstructor(void * self,va_list * args){
+  super_ctor(&TmDt1,self,args);
   TmDt1_Constructor(self,va_arg(*args,word),va_arg(*args,int),va_arg(*args,int),va_arg(*args,int),va_arg(*args,int),va_arg(*args,int));  
 }
 /*
@@ -128,12 +77,11 @@ void TmDt1_DefConstructor(void * self,va_list * args){
 **                           ERR_RANGE - Parameter out of range
 ** ===================================================================
 */
-byte TmDt1_SetTime(void * self,byte Hour,byte Min,byte secs)
+byte TmDt1_setTiempoValidado(void * _self,byte Hour,byte Min,byte secs)
 {
-  struct TmDt1 * _t = self;
-  if ((Min > 59) || (Hour > 23)) /* Test correctnes of given time */
-    return ERR_RANGE;                  /* If not correct then error */
-  _t->TotalHthL = 3600 * (dword)Hour + 60 * (dword)Min + secs; /* Load given time re-calculated to 10ms ticks into software tick counter */
+  struct TmDt1 * self = _self;
+  
+  self->TotalHthL = 3600 * (dword)Hour + 60 * (dword)Min + secs; /* Load given time re-calculated to 10ms ticks into software tick counter */
 
   return ERR_OK;                       /* OK */
 
@@ -189,29 +137,14 @@ void TmDt1_GetTime(void * self,TIMEREC *Time)
 **                           ERR_RANGE - Parameter out of range
 ** ===================================================================
 */
-byte TmDt1_SetDate(void * self,word Year,byte Month,byte Day)
+byte TmDt1_setFechaValidada(void * self,word Year,byte Month,byte Day)
 {
   struct TmDt1 * _t = self;
-  word tY = 1998;                      /* Year counter, starting with 1998 */
-  byte tM = 1;                         /* Month counter, starting with January */
-  byte tD = 1;                         /* Day counter, starting with 1 */
-  byte tW = 4;                         /* Sun - Sat counter, starting with Thu */
-  const byte *ptr;                     /* Pointer to ULY/LY table */
 
-  if ((Year < 1998) || (Year > 2099) || (Month > 12) || (Month == 0) || (Day > 31) || (Day == 0)) /* Test correctness of given parameters */
-    return ERR_RANGE;                  /* If not correct then error */
-  if (tY & 3)                          /* Is given year un-leap-one? */
-    ptr = ULY;                         /* Set pointer to un-leap-year day table */
-  else                                 /* Is given year leap-one? */
-    ptr = LY;                          /* Set pointer to leap-year day table */
-  ptr--;                               /* Decrement pointer */
-  if (ptr[Month] < Day)                /* Does the obtained number of days exceed number of days in the appropriate month & year? */
-    return ERR_RANGE;                  /* If yes (incorrect date inserted) then error */
-  else
-    _t->CntDay = Day;                         /* Set day counter to the given value */
-    _t->CntMonth = Month;                       /* Set month counter to the given value */
-    _t->CntYear = Year;                        /* Set year counter to the given value */
-  return ERR_OK;                       /* OK */
+  _t->CntDay = Day;                     /* Set day counter to the given value */
+  _t->CntMonth = Month;                 /* Set month counter to the given value */
+  _t->CntYear = Year;                   /* Set year counter to the given value */
+  return ERR_OK;                        /* OK */
 }
 
 /*
@@ -241,32 +174,7 @@ void TmDt1_GetDate(void * self,DATEREC *Date)
   Date->Day = _t->CntDay;                  /* Day */                       /* OK */
 }
 
-/*
-** ===================================================================
-**     Function      :  TmDt1_GetMaxday 
-**
-**     Description :
-**         Retorna la maxima cantidad de dias para el mes de ese anio
-**     Parameters  :
-**         Year            - anio
-**         Month           - Mes
-**     Returns     :
-**         maxima cantidad de dias ara el mes de ese anio
-**         0							 - Error
-** ===================================================================
-*/
 
-byte  TmDt1_GetMaxday(word Year,byte Month){
-  const byte *ptr;                     /* Pointer to ULY/LY table */
-
-  if (Month>12 || Month<0)
-    return 0;
-  if (Year & 3)                          /* Is given year un-leap-one? */
-    ptr = ULY;                         /* Set pointer to un-leap-year day table */
-  else                                 /* Is given year leap-one? */
-    ptr = LY;                          /* Set pointer to leap-year day table */
- return ptr[Month-1];
-}
 /*
 ** ===================================================================
 **     Method      :  TmDt1_Interrupt (bean TimeDate)
@@ -292,12 +200,8 @@ void TmDt1_Inc(void * self,dword secs)
   while(TotalHthH){
     TotalHthH--;                       /* If yes then reset it by subtracting exactly 24 hours */
     _t->CntDay++;                          /* Increment day counter */
-    if (_t->CntYear & 3)                   /* Is this year un-leap-one? */
-      ptr = ULY;                       /* Set pointer to un-leap-year day table */
-    else                               /* Is this year leap-one? */
-      ptr = LY;                        /* Set pointer to leap-year day table */
-    ptr--;                             /* Decrement the pointer */
-    if (_t->CntDay > ptr[_t->CntMonth]) {      /* Day counter overflow? */
+
+    if (_t->CntDay > FechaTiempo_getMaximoDiaDelMes(_t->CntYear,_t->CntMonth)) {      /* Day counter overflow? */
       _t->CntDay = 1;                      /* Set day counter on 1 */
       _t->CntMonth++;                      /* Increment month counter */
       if (_t->CntMonth > 12) {             /* Month counter overflow? */

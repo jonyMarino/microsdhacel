@@ -19,7 +19,8 @@ const struct BTBajoConsumoClass BTBajoConsumoSafe = {
                              BTBajoConsumo_GetTime,
                              BaseTiempo_setTime,
                              BTBajoConsumo_GetDate,
-                             TmDt1_SetDate,
+                             TmDt1_setFechaValidada,
+                             BaseTiempo_getConfigurado,
                              BaseTiempo_incUnSegundo),
                              BTBajoConsumoSafe_onRTI  
 };
@@ -129,7 +130,7 @@ void BTBajoConsumoSafe_defConstructor(void * _self,va_list * args){
   
   ManejadorMemBTSafe_constructor(&manejadorMem);
   if(ManejadorMemBTSafe_getLastData(&manejadorMem,&data)){
-    TmDt1_SetDate(_self,2000+data.data[0],data.data[1],data.data[2]);
+    setFecha(_self,2000+data.data[0],data.data[1],data.data[2]);
     BaseTiempo_setTime(_self,data.data[3],data.data[4],data.data[5]);
   }
 }

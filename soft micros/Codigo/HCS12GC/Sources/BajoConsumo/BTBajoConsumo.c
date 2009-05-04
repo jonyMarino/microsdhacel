@@ -19,7 +19,8 @@ const struct BTBajoConsumoClass BTBajoConsumo = {
                              BTBajoConsumo_GetTime,
                              BaseTiempo_setTime,
                              BTBajoConsumo_GetDate,
-                             TmDt1_SetDate,
+                             TmDt1_setFechaValidada,
+                             BaseTiempo_getConfigurado,
                              BaseTiempo_incUnSegundo),
                              BTBajoConsumo_onRTI  
 };

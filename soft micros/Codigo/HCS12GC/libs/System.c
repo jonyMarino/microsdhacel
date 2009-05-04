@@ -9,9 +9,17 @@
 struct BTBajoConsumo baseTiempo;
 
 void System_init(void){
-  newAlloced(&baseTiempo,&BTBajoConsumoSafe,2008,1,1,0,0,0,TRUE);
+  newAlloced(&baseTiempo,&BTBajoConsumo,2008,1,1,0,0,0,TRUE);
 }
 
+#elif defined(DS1307)
+
+
+struct BaseTiempoDS1307 baseTiempo;
+
+void System_init(void){
+  newAlloced(&baseTiempo,&BaseTiempoDS1307);
+}
 
 #else
 #include "BTFechaPersistente.h"
@@ -32,9 +40,9 @@ void System_init(void){
 #endif
 
 void Sys_getDate(DATEREC * date){
-  getDate(&baseTiempo , date);
+  getFecha(&baseTiempo , date);
 }
 
 void Sys_getTime(TIMEREC * time){
-  getTime(&baseTiempo , time);
+  getTiempo(&baseTiempo , time);
 }

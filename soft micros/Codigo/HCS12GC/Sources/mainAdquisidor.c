@@ -22,34 +22,23 @@
 #include "termio.h"
 #include "hidef.h"
 #include "stdio.h"
-#include "FlashBkpEnFlash.h"
+#include "FlashBkp256.h"
 #include "Termometro.h"
 #include "timer_interrupt.h"
 #include "ModBusHmi.h"
 #include "BoxPriAdquisidor.h"
 #include "AdquisidorSimple.h"
+#include "System.h"
+#include "dateTimeVista.h"
+#include "ArrayList.h"
+#include "FstBoxPointer.h"
+#include "BoxList.h"
+#include "Access.h"
 
 #define CNTR_TIME_DISCONECT 2000
 
 
-#pragma CONST_SEG PARAMETERS_PAGE
-volatile const ConfiguracionAdquisidorSimple adquisidor_config={
-  STPT_DEF_CONF,
-  #if CANTIDAD_CANALES>1 
-    STPT_DEF_CONF,
-      #if CANTIDAD_CANALES>2
-        STPT_DEF_CONF,
-        #if CANTIDAD_CANALES>3
-          STPT_DEF_CONF,
-        #endif
-      #endif
-  #endif
-  ADQ_DEFAULT_CONF
-};
-#pragma CONST_SEG DEFAULT
-
-
-NEW_FLASH_BKP_EN_FLASH(flash,0x4200);
+NEW_FLASH_BKP_256(flash,0x4200);
 const struct ManejadorMemoria * pFlash = &flash;
 
 struct AdquisidorSimple adquisidorSimple;
@@ -61,83 +50,113 @@ const struct BlockConstBoxPri CBox_Pri={
       &adquisidorSimple.mensajes						
 };
 
-void AdquisidorSimple_on1ms(void * adquisidorSimple){
-  DpyAndSwitch();
-}
+/*  COMUNICACION  */
+  /*Adquisidor*/
+  static const NEW_NODO_IC_MODBUS(DateTime1Com,&DATE_TIME_GETTERS_ARRAY,1000,&baseTiempo);
+  static const NEW_NODO_IC_MODBUS(Adq1Com,&ADQ_GETTERS_ARRAY,1054,_getAdquisidor(&adquisidorSimple));  
+  /*Sensor*/
+  static const NEW_NODO_IC_MODBUS(Sen1Com,&SNS_GETTERS_ARRAY,1100,_getSensor(&adquisidorSimple,0));
+  /*Comunicacion*/
+  static const NEW_NODO_IC_MODBUS(ModBusCom,&MODBUS_GETTERS_ARRAY,1400,NULL);
+  /*Codigo*/
+  static const NEW_NODO_IC_MODBUS(CodCom,&COD_GETTERS_ARRAY,1500,NULL);
 
-void enter_2num(int num , char * str){
 
-  str[0]= num/10+'0';
-  str[1]= num%10+'0'; 
-}
+  static const struct NodoICModBus *const  nodosComunicacion[]={
+     //Base de tiempo
+     &DateTime1Com,
+     //Adquisidor
+     &Adq1Com,
+     //Sensor
+     &Sen1Com,    
+     //Comunicacion
+     &ModBusCom,    
+     //codigo
+     &CodCom
+  };
+  static const NEW_ARRAY_LIST(arrayNodosComunicacion,nodosComunicacion);
+/*  FIN COMUNICACION  */
 
-void  AdquisidorSimple_actualizarTextos(void * self){
-  struct AdquisidorSimple * _a=self;
+/*  Diagrama de navegacion  */
+//Operador
+  //Principal
+static const NEW_FST_BOX_POINTER(Principal,&CBox_Pri,NULL,0);
+
+static const struct FstBoxPointer *const OpArray[]={
+  &Principal
+};
+
+
+static const NEW_BOX_LIST(OpList,OpArray,"op");
+
+
+//ADQ
+static const NEW_FST_BOX_POINTER(DateList,&DATE_TIME_BOX,&baseTiempo,0);
+static const NEW_FST_BOX_POINTER(AdqList,&ADQ_FST_BOX,_getAdquisidor(&adquisidorSimple),0);
+
+static const struct FstBoxPointer *const AdqArray[]={
+  &DateList,
+  &AdqList   
+};
+
+static const NEW_BOX_LIST(Adq,AdqArray,"Adq");
+
+//CAL
+static const NEW_FST_BOX_POINTER(Sensor1List,&SNS_HMI_FST_BOX,_getSensor(&adquisidorSimple,0),0);
+
+static const struct FstBoxPointer *const CalArray[]={
+  &Sensor1List   
+};
+
+static const NEW_BOX_LIST(Cal,CalArray,"CAL");
+
+
+//SET
+  //Comunicacion
+static const NEW_FST_BOX_POINTER(ModBusSet,&MOD_BUS_HMI_FST_BOX_SET,0,0);
+  //SetC
+static const NEW_FST_BOX_POINTER(SetsSet,&SETS_FST_BOX_SET,0,0);
   
-  if(Adq_getActualState(&_a->adquisidor)==TRUE){
-    _a->mensaje[7]='S';
-    _a->mensaje[8]='i'; 
-  }else{
-    _a->mensaje[7]='n';
-    _a->mensaje[8]='o';  
-  }
-  
-  
-  if(Adq_isTimeSet(&_a->adquisidor)){
-    byte dia =Adq_getDay(&_a->adquisidor);
-    byte mes= Adq_getMonth(&_a->adquisidor);
-    int anio= Adq_getYear(&_a->adquisidor);
-    int tiempo = Adq_getTime(&_a->adquisidor);   
-    
-    
-    
-    enter_2num(dia,&_a->mensaje[17]);
-    _a->mensaje[19]= '-';
-    enter_2num(mes,&_a->mensaje[20]);
-    _a->mensaje[22]= '-';
-    enter_2num(anio%100,&_a->mensaje[23]); 
- 
-    enter_2num(tiempo/100,&_a->mensaje[31]);
-    _a->mensaje[33]='.';
-    enter_2num(tiempo%100,&_a->mensaje[34]);
-    _a->mensaje[36]=' ';  
-  }else{
-    memcpy(&_a->mensaje[17],"no ing.",7);    
-    memcpy(&_a->mensaje[31],"no ing.",7);
-  }
-}
+
+static const struct FstBoxPointer *const SetArray[]={
+  &ModBusSet,
+  &SetsSet  
+};
+
+static const NEW_BOX_LIST(Set,SetArray,"SEt");
+
+
+// Acceso comun
+static const struct BoxList *const BoxListArray[]={
+  &Adq,
+  &Cal,
+  &Set
+};
+
+static const NEW_ACCESS(accesoComun,BoxListArray,"Cod",CONTENEDOR_CODIGO);
+
+static const struct Access *const AccessArray[]={
+  &accesoComun
+};
+
+static const NEW_ARRAY_LIST(AccessList,AccessArray);
+
+
+
 
 void main (void){
 
-  char tecla; 
-
-  newAlloced(&adquisidorSimple,&AdquisidorSimple,&adquisidor_config,&flash);
-  newAlloced(&adquisidorSimple.mensajes,MessageOut);
+  char tecla;
+  
+  System_init();
+  newAlloced(&adquisidorSimple,&AdquisidorSimple,NULL,&flash);
    															 //012345678901234567890123456789012345678
-  strcpy(adquisidorSimple.mensaje,"EStAdo no. FEchA no ing.  horA no ing. ");
-  adquisidorSimple.textosMensajes= MessageOut_AddMessage(&adquisidorSimple.mensajes,adquisidorSimple.mensaje);
   
-  Teclas_Init();
-  Display_Init(); // Inicializacion del display
+ 
+  com_initialization(&arrayNodosComunicacion);
+      
   
-  add1msListener(AdquisidorSimple_on1ms,&adquisidorSimple);
-  
-//  BoxPri1c_ShowGetter(&GetterState,&(adquisidorSimple.adquisidor));
-  
-  AdquisidorSimple_actualizarTextos(&adquisidorSimple);
-  newAlloced(&(adquisidorSimple.timer),&RlxMTimer,(ulong)2000,AdquisidorSimple_actualizarTextos,&adquisidorSimple);
-
-  
-  
-  DN_Init(&CBox_Pri);
-  Sets_Init();
-  AdqHmi_AddBoxes(&adquisidorSimple.adquisidor,0);
-  SnsHmi_Add(adquisidorSimple.termometro.sensor,0);
-  Sets_AddBoxes();
-	ModBusHmi_AddBoxes();												 
-
-
-  AdqHmi_ComuAdd(&adquisidorSimple.adquisidor,1050);
+  DN_staticInit(&OpList,&AccessList);
   
   
   
@@ -148,7 +167,7 @@ void main (void){
     //Eventos
     DN_Proc(tecla);
     
-    AdquisidorSimple_mainLoop(&adquisidorSimple);
+    mainLoop(&adquisidorSimple);
     
   }
 }
