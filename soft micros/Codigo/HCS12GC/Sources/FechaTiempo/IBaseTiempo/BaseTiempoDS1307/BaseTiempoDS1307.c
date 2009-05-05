@@ -1,5 +1,5 @@
 #include "BaseTiempoDS1307.h"
-
+#include "EI2C1.h"
 
 
 
@@ -27,7 +27,36 @@ const struct IBaseTiempoClass BaseTiempoDS1307 = {
 };
 
 
+typedef union{
+  struct{
+    byte hourLow:4;
+    byte hourHigh:2;
+    bool amPm:1;
+  }bits;
+  byte _byte;
+}HoursRegister;
 
+typedef union{
+  struct{
+    byte minLow:4;
+    byte minHigh:3;
+  }bits;
+  byte _byte;
+}MinutesRegister;
+
+typedef union{
+  struct{
+    byte secLow:4;
+    byte secHigh:3;
+  }bits;
+  byte _byte;
+}SecondsRegister;
+
+typedef struct{
+  SecondsRegister seconds;
+  MinutesRegister minutes;
+  HoursRegister hours;  
+}TimeRegisters;
 /*
 ** ===================================================================
 **     Method      :  BaseTiempoDS1307_constructor (bean TimeDate)
@@ -38,14 +67,16 @@ const struct IBaseTiempoClass BaseTiempoDS1307 = {
 void BaseTiempoDS1307_constructor(void * _self)
 {
   struct BaseTiempoDS1307 * self = _self;
-  /*struct BaseTiempoDS1307Class * class = classOf(_self);
-  TmDt1_Constructor(_self,Year,Month,Day,Hour,Min,secs);
-  self->configurado = FALSE;
+  HoursRegister h;
   
-  newAlloced(&self->timer,&RlxMTimer,(ulong)1000,class->inc1Segundo,_self);
-  if(!start)
-    Timer_Stop(&self->timer);
-    */
+  EI2C1_SendChar(2);  // me posiciono en las horas
+  EI2C1_RecvChar(&h);
+  if(h.bits.amPm){    //Esta configurado como ampm?
+    h.bits.amPm = FALSE;
+    EI2C1_SendChar(h);
+  }
+  
+  EI2C1_SendStop();
 }
 /*
 ** ===================================================================
@@ -67,8 +98,22 @@ void BaseTiempoDS1307_defConstructor(void * self,va_list * args){
 */
 byte BaseTiempoDS1307_setTiempoValidado(void * _self,byte horas,byte min,byte segs){
   struct BaseTiempoDS1307 * self = _self;
-  //super_setTiempoValidado(&BaseTiempoDS1307,_self,horas,min,segs);
-  //self->configurado = TRUE;
+  TimeRegisters timeEnviar;
+  word enviados;
+  
+  timeEnviar.hours.bits.hourHigh = horas /10;
+  timeEnviar.hours.bits.hourLow  = horas %10;
+  
+  timeEnviar.minutes.bits.minHigh = min/10;
+  timeEnviar.minutes.bits.minLow = min%10;
+  
+  timeEnviar.seconds.bits.secHigh = segs / 10; 
+  timeEnviar.seconds.bits.secLow = segs % 10;
+  
+  EI2C1_SendChar(0);  // me posiciono en los segundos
+  EI2C1_RecvBlock(&timeEnviar,3,&enviados);
+  EI2C1_SendStop();
+  
 }
 
 /*
@@ -77,9 +122,15 @@ byte BaseTiempoDS1307_setTiempoValidado(void * _self,byte horas,byte min,byte se
 ** ===================================================================
 */
 void BaseTiempoDS1307_getTiempo(void * self,TIMEREC *time){
-  time->Hour= 19;
-  time->Min = 27;
-  time->Sec = 5;
+  TimeRegisters timeRecivido;
+  word recibidos;
+  
+  EI2C1_SendChar(0);  // me posiciono en los segundos
+  EI2C1_RecvBlock(&timeRecivido,3,&recibidos);
+  EI2C1_SendStop();
+  time->Hour= timeRecivido.hours.bits.hourHigh * 10 + timeRecivido.hours.bits.hourLow;
+  time->Min = timeRecivido.minutes.bits.minHigh * 10 + timeRecivido.minutes.bits.minLow;
+  time->Sec = timeRecivido.seconds.bits.secHigh * 10 + timeRecivido.seconds.bits.secLow;
 }
 
 /*
@@ -103,32 +154,30 @@ void BaseTiempoDS1307_getFecha(void * self,DATEREC *date){
 }
 /*
 ** ===================================================================
-**     Method      :  BaseTiempoDS1307_incUnSegundo
-**
-**     Description :
+**     Method      :  EI2C1_OnNACK
 ** ===================================================================
 */
-/*bool BaseTiempoDS1307_habilitada(void * _self){
-  struct BaseTiempoDS1307 * self = _self;
-  return Timer_isfinish(&self->timer)==FALSE;
-}  */
+void EI2C1_OnNACK(void){
+
+}
 
 /*
 ** ===================================================================
-**     Method      :  BaseTiempoDS1307_incUnSegundo
-**
-**     Description :
+**     Method      :  EI2C1_OnTxChar
 ** ===================================================================
 */
-/*void BaseTiempoDS1307_habilitar(void * _self,bool habilitar){
-  struct BaseTiempoDS1307 * self = _self;
-  if(habilitar){
-    if(Timer_isfinish(&self->timer))
-      Timer_Restart(&self->timer);
-  }else{
-    Timer_Stop(&self->timer);    
-  }
-}  */
+void EI2C1_OnTxChar(void){
+
+}
+
+/*
+** ===================================================================
+**     Method      :  EI2C1_OnRxChar
+** ===================================================================
+*/
+void EI2C1_OnRxChar(void){
+
+}
 
 /*
 ** ===================================================================

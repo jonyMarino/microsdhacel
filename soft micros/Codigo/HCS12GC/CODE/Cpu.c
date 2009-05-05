@@ -47,7 +47,6 @@
 #include "test.h"
 #include "In2.h"
 #include "In1.h"
-#include "Events.h"
 #include "Cpu.h"
 
 #define CGM_DELAY  2047UL
