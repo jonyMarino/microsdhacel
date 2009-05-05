@@ -68,7 +68,6 @@
 
 /* MODULE TI1. */
 
-#include "Events.h"
 #include "TI1.h"
 #include "timer_interrupt.h"
 
