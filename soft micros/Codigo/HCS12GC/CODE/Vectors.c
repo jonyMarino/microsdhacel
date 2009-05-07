@@ -46,6 +46,7 @@
 #include "In2.h"
 #include "In1.h"
 
+#define  _TI
 #define dummyInterrupt(n) \
 __interrupt void Cpu_Interrupt##n(void) \
 {                     \

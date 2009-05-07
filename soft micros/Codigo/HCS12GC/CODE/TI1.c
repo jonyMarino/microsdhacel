@@ -126,11 +126,11 @@ void TI1_Disable(void)
 **                           the active speed mode
 ** ===================================================================
 */
-/*
-byte TI1_Disable(void)
 
+//byte TI1_Disable(void)
 
-/*
+ /*
+
 ** ===================================================================
 **     Method      :  TI1_SetPeriodMode (bean TimerInt)
 **

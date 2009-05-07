@@ -1,7 +1,7 @@
 #ifndef _BASE_TIMEPO_PROTECTED_H
 #define _BASE_TIMEPO_PROTECTED_H
 
-#include "TmDt1_protected.h"
+//#include "TmDt1_protected.h"
 
 void BaseTiempo_defConstructor(void * self,va_list * args);
 void BaseTiempo_constructor(void * _self,word Year,byte Month,byte Day,byte Hour,byte Min,byte secs,bool start);
