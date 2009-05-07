@@ -276,8 +276,8 @@ void PE_low_level_init(void)
   clrReg8Bits(TCTL1, 63);               
   /* TCTL4: EDG2B=0,EDG2A=0 */
   //clrReg8Bits(TCTL4, 48);                       
-  /* TIOS:IOS7=1,IOS6=1,IOS5=1,IOS4=1,IOS2=1,IOS1=1,IOS0=1 */
-  setReg8Bits(TIOS, 255);         
+  /* TIOS:IOS7=0,IOS6=1,IOS5=1,IOS4=1,IOS2=1,IOS1=1,IOS0=1 */
+  setReg8Bits(TIOS, 0);         
   /* TTOV: TOV7=0,TOV6=0,TOV5=0,TOV4=0,TOV3=0,TOV2=0,TOV1=0,TOV0=0 */
   setReg8(TTOV, 0);               
   /* TSCR2: TCRE=0,PR2=1,PR1=0,PR0=1 */
