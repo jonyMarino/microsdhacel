@@ -48,6 +48,7 @@ typedef union{
   struct{
     byte secLow:4;
     byte secHigh:3;
+    bool CH:1;
   }bits;
   byte _byte;
 }SecondsRegister;
@@ -67,16 +68,34 @@ typedef struct{
 void BaseTiempoDS1307_constructor(void * _self)
 {
   struct BaseTiempoDS1307 * self = _self;
-  HoursRegister h;
+  TimeRegisters t;
   
-  EI2C1_SendChar(2);  // me posiciono en las horas
-  EI2C1_RecvChar(&h);
-  if(h.bits.amPm){    //Esta configurado como ampm?
-    h.bits.amPm = FALSE;
-    EI2C1_SendChar(h);
+  word w;
+  bool cambiado = FALSE;
+  
+  EI2C1_SendChar(0);  // me posiciono en las horas
+  EI2C1_SendStop();
+  EI2C1_RecvBlock(&t,sizeof(t),&w);
+  EI2C1_SendStop();
+  if(t.hours.bits.amPm){    //Esta configurado como ampm?
+    t.hours.bits.amPm = FALSE; 
+    cambiado = TRUE;
+  }
+  if(t.seconds.bits.CH){
+    t.seconds._byte=0;
+    t.minutes._byte=0;
+    t.hours._byte=0;
+    cambiado = TRUE;
   }
   
-  EI2C1_SendStop();
+  if(cambiado){
+    EI2C1_SendChar(0);  // me posiciono en las horas
+    EI2C1_SendStop();
+    EI2C1_SendBlock(&t,sizeof(t),&w);  
+    EI2C1_SendStop();
+  }
+  
+  
 }
 /*
 ** ===================================================================
@@ -98,20 +117,24 @@ void BaseTiempoDS1307_defConstructor(void * self,va_list * args){
 */
 byte BaseTiempoDS1307_setTiempoValidado(void * _self,byte horas,byte min,byte segs){
   struct BaseTiempoDS1307 * self = _self;
-  TimeRegisters timeEnviar;
+  struct{
+    byte address;
+    TimeRegisters time;
+  }timeEnviar;
   word enviados;
   
-  timeEnviar.hours.bits.hourHigh = horas /10;
-  timeEnviar.hours.bits.hourLow  = horas %10;
+  timeEnviar.time.hours.bits.hourHigh = horas /10;
+  timeEnviar.time.hours.bits.hourLow  = horas %10;
   
-  timeEnviar.minutes.bits.minHigh = min/10;
-  timeEnviar.minutes.bits.minLow = min%10;
+  timeEnviar.time.minutes.bits.minHigh = min/10;
+  timeEnviar.time.minutes.bits.minLow = min%10;
   
-  timeEnviar.seconds.bits.secHigh = segs / 10; 
-  timeEnviar.seconds.bits.secLow = segs % 10;
+  timeEnviar.time.seconds.bits.secHigh = segs / 10; 
+  timeEnviar.time.seconds.bits.secLow = segs % 10;
   
   EI2C1_SendChar(0);  // me posiciono en los segundos
-  EI2C1_RecvBlock(&timeEnviar,3,&enviados);
+  EI2C1_SendStop();
+  EI2C1_SendBlock(&timeEnviar,sizeof(timeEnviar),&enviados);
   EI2C1_SendStop();
   
 }
@@ -126,6 +149,7 @@ void BaseTiempoDS1307_getTiempo(void * self,TIMEREC *time){
   word recibidos;
   
   EI2C1_SendChar(0);  // me posiciono en los segundos
+  EI2C1_SendStop();
   EI2C1_RecvBlock(&timeRecivido,3,&recibidos);
   EI2C1_SendStop();
   time->Hour= timeRecivido.hours.bits.hourHigh * 10 + timeRecivido.hours.bits.hourLow;
