@@ -8,7 +8,7 @@
 #include "BaseTiempoDS1307.h"
 #include "BaseTiempoDS1307Test.h"
 #include "PE_Error.h"
-
+#include "MethodContainer.h"
 
 void BaseTiempoDS1307Test_defCtor(void * self,va_list * args);
 
@@ -33,10 +33,11 @@ const struct TestCaseClass BaseTiempoDS1307Test={
 /*
 */
 
-void * thread;
+void * methodContainer;
 
 void pthread_create(void ** _self,void * attr,void*(*pf)(void*),void* args){
-  thread = new(&Method,pf,args);
+  void * thread = new(&Method,pf,args);
+  MethodContainer_add(methodContainer,thread);
   *_self = thread;    
 }
 
@@ -53,7 +54,7 @@ bool BaseTiempoDS1307Test_test(void * _self){
   setFecha(baseTiempo,2009,3,2);
   
   while(!Timer_isfinish(timer))
-    Method_execute(thread);
+    MethodContainer_execute(methodContainer);
   
   getTiempo(baseTiempo,&time);
   if(time.Hour!=1)
@@ -80,7 +81,7 @@ bool BaseTiempoDS1307Test_test(void * _self){
 void BaseTiempoDS1307Test_constructor(void *self){
   struct BaseTiempoDS1307Test * _self = self;
   TestCase_constructor(self);
-                       
+  methodContainer = new(&MethodContainer);                     
   //tests 
   TESTCASE_ADD_TEST(self,BaseTiempoDS1307Test_test);	 
 }
