@@ -1,10 +1,10 @@
 
 **** APARATOS Y PROGRAMAS *************
-*hacer mcp del adquisidor bajo consumo para GC64
+* Checkear estado de la FLASH al inicio
+* hacer mcp del adquisidor bajo consumo para GC64
 * pasar a OutputStream el manejo del display
 * luego hacer un display especial para el adquisidor (que pueda solo mostrar la linea superior)
 * Impresor: Mostrar fecha sola al imprimirse separada arriba y abajo por una linea y al no haber ingresado la fecha, no mostrarla.
-* Agergar funciones virtuales a collections
 * Timer comienza desconectado
 * probar timer integer
 * Valores por defecto
@@ -22,7 +22,7 @@
 * Sincronizador de hora entre la computadora y el adquisidor
 * Pregunta en el soft de adq si parar de adquirir para borrar todo
 * Soft al parar la adquisicion pierde el tiempo
-* Visualizacion de valores adquiridos por el adquisidor
+* Visualizacion de valores adquiridos por el adquisidor 
 * EPM203 error al poner pausa
 
 ****** DISEÑO *************

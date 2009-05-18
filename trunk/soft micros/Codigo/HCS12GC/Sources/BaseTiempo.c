@@ -1,9 +1,11 @@
 #include "BaseTiempo.h"
 #include "BaseTiempo_protected.h"
+#include "TmDt1_protected.h"
 
 const struct Class BaseTiempoClass;
 
 void BaseTiempo_defConstructor(void * self,va_list * args);
+
 const struct BaseTiempoClass BaseTiempo = {
     BASE_TIEMPO_CLASS_INITIALIZATION(BaseTiempoClass,
                              BaseTiempo,  
