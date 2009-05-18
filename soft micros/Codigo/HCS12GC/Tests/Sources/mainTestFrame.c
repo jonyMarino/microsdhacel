@@ -3,15 +3,13 @@
 #include "TestCase.h"
 #include "PE_Types.h"
 #include "RamSimulaFlash.h"
+#include "mainTestFrame.h"
 
-
-extern TEST_OBJECT;
 
 void * test;
 
 NEW_RAM_SIMULA_FLASH(flash);  
 struct ManejadorMemoria * pFlash = &flash; 
-
 
 
 void main (void){
