@@ -3,6 +3,8 @@
 #include "BaseTiempoTest.h"
 #include "Timer.h"
 #include "BaseTiempo.h"
+#include "Thread.h"
+#include "timer_interrupt.h"
 
 void BaseTiempoTest_defCtor(void * self,va_list * args);
 
@@ -25,32 +27,40 @@ const struct TestCaseClass BaseTiempoTest={
 
 /*
 */
+
+void * thread;
+
+void pthread_create(void ** _self,void * attr,void*(*pf)(void*),void* args){
+  thread = new(&Method,pf,args);
+  *_self = thread;    
+}
+
+
 bool BaseTiempoTest_test(void * _self){
   struct BaseTiempoTest * self = _self;
   TIMEREC time;
   DATEREC date;
   
+  void * timer = new(&Timer,(ulong)60*1000);
   void * baseTiempo = new(&BaseTiempo,2009,1,1,0,0,0);
   
-  long i;
-  int j;
-  for(i=0;i<86400;i++){   //1 dia en segundos
-    for(j=0;j<1000;j++)   //1 segundo en milisegundos
-      IncTimers(1);
-    RlxMTimer_Handler();
+  
+  while(!Timer_isfinish(timer)) {
+    TI1ms_OnInterrupt();
+    Method_execute(thread);
   }
   
-  TmDt1_GetTime(baseTiempo,&time);
+  getTiempo(baseTiempo,&time);
   if(time.Hour!=0)
     return EXIT_FAILURE;
-  if(time.Min)
+  if(time.Min!=1)
     return EXIT_FAILURE;
   if(time.Sec)
     return EXIT_FAILURE;
   
-  TmDt1_GetDate(baseTiempo,&date);
+  getFecha(baseTiempo,&date);
   
-  if(date.Day!=2)
+  if(date.Day!=1)
     return EXIT_FAILURE;
   if(date.Month!=1)
     return EXIT_FAILURE;
