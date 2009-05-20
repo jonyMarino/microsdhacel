@@ -145,7 +145,8 @@ ulong Timer_getCuenta(struct Timer * self){
 **    Description : Indica si ya termino la cuenta
 ** ===================================================================
 */
-uchar Timer_isfinish(struct TimerAllocable * self){
+//uchar Timer_isfinish(struct TimerAllocable * self){
+uchar Timer_isfinish(struct Timer * self){
   if(self->baseTimer)
     return !contains(self->baseTimer,self);
   return TRUE;

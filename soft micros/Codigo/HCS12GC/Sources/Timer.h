@@ -16,7 +16,7 @@ struct TimerClass{
   struct Class super;
   void (*onTime)(void*); 
 };
-
+ 
 
 struct Timer{
   struct Object super;
