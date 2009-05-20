@@ -3,6 +3,6 @@
  
 extern const struct ConstructorPropWInc PropTiempoApertura;
 extern const struct ConstructorPropWInc PropBandaMuerta;
-
+extern const struct BlockCnstrBoxLin CBox_ValvulaProporcional;
 
 #endif

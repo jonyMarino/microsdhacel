@@ -1,7 +1,11 @@
 
 //////////////////// ASIGNACION DE SALIDAS/ENTRADAS /////////////////////////////
+#define CANTIDAD_CANALES 1 /*Cantidad de canales */
 
-#define CANTIDAD_CANALES 1
+#define CANTIDAD_SAL_CONTROL   1 /*Cantidad de salidas control*/
+
+//#define CANTIDAD_SAL_ALARMA  1 /*Cantidad de salidas alarma */
+
 #define _STR_VERSION "007.2"
 ///Entradas (Canal de entrada al que están asociadas)////////
 //// Salidas//////

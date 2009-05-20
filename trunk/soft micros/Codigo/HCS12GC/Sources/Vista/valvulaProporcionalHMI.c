@@ -6,23 +6,23 @@
  /* Propiedades*/
  
   const struct ConstructorPropWInc PropTiempoApertura={
-    &PropiedadGenerica,get_tiempoAbierto,set_tiempoAbierto,get_0,get_LimSup_tiempoAbierto,&PropWInc,"TA "
+    &PropiedadGenerica,get_tiempoAbierto,set_tiempoAbierto,get_0,NULL,&PropWInc,"tA "
   };
   
   const struct ConstructorPropWInc PropBandaMuerta={
-    &PropiedadGenerica,get_bandaMuerta,set_bandaMuerta,get_0,get_LimSup_bandaMuerta,&PropWInc,"BM "
+    &PropiedadGenerica,get_bandaMuerta,set_bandaMuerta,get_0,NULL,&PropWInc,"bM "
   }; 
 
 //Boxes:
-  const struct ConstructorPropWInc*const Props_ValvulaProporcional_Lim[]=	{
+  const struct ConstructorPropWInc*const Props_ValvulaProporcional[]=	{
   			  &PropTiempoApertura,											/* direccion en la E2Prom - el EEProm Start, if FALSE no guarda valor*/
   			  &PropBandaMuerta,
    			  NULL
 };
 
-const struct BlockCnstrBoxLin CBox_ValvulaProporcional_Lim={
+const struct BlockCnstrBoxLin CBox_ValvulaProporcional={
       &BoxLineal,
-      Props_ValvulaProporcional_Lim,
+      Props_ValvulaProporcional,
 			NULL
 			};
 			
