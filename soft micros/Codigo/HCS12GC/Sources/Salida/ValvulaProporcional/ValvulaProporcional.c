@@ -13,6 +13,7 @@
 
 #define  MAX_TIEMPOABIERTO 65500
 #define  MAX_BANDAMUERTA   65500
+#define  FACTOR_SEGURIDAD  5
 
 extern struct FlashBkpEnFlash flash;
 
@@ -49,14 +50,16 @@ int get_LimSup_bandaMuerta(void);
 
 void ValvulaProporcional_constructor(void * _self,ConfValvulaProporcional * conf,byte * puertoApertura,int bitApertura,byte * puertoCierre,int bitCierre){
   struct ValvulaProporcional* self = _self;
+  int tiempo;
   Salida_constructor(self);
+  tiempo=get_tiempoAbierto(self);
   self->conf=conf;
   self->puertoApertura =  puertoApertura;
   self->puertoCierre =  puertoCierre ;
   self->mascaraApertura = 1<<bitApertura;
   self->mascaraCierre = 1<<bitCierre;
+  self->timeCloseInit = (tiempo + FACTOR_SEGURIDAD)*1000/20;   //calculo el tiempo de cierre inicial(en milisegundos),divido por 20 por que cada 20ms actualizo
   newAlloced(&self->timer,&MethodTimer,20,ValvulaProporcional_onCheckear,self);
-
     
 }
 
@@ -66,26 +69,50 @@ void ValvulaProporcional_defConstruct(void * _self, va_list * args){
 }
 
 static void cerrar(void * _self){
-  //TO_DO
+  struct ValvulaProporcional* self = _self;
+  clrReg8Bits(*(self->puertoApertura),(self->mascaraApertura));                           
+  setReg8Bits(*(self->puertoCierre), (self->mascaraCierre));
 }
 
 static void abrir(void * _self){
-  //TO_DO
+  struct ValvulaProporcional* self = _self;
+  clrReg8Bits(*(self->puertoCierre),(self->mascaraCierre));                           
+  setReg8Bits(*(self->puertoApertura),(self->mascaraApertura));
 }
 
 static void detener(void * _self){
-  //TO_DO
+  struct ValvulaProporcional* self = _self;
+  clrReg8Bits(*(self->puertoCierre), (self->mascaraCierre));                           
+  clrReg8Bits(*(self->puertoApertura),(self->mascaraApertura));
 }
 
 void  ValvulaProporcional_onCheckear(void *_self){  
-//cada 20ms es llamado 
+//cada 20ms es llamada 
   struct ValvulaProporcional* self = _self;
+  word timesOpen,timesClose,timesMuerto;
   int potencia = Salida_getPotencia(_self);
-
+  if((--(self->timeCloseInit))>0){
+    cerrar(self);  // inicio cerrando durante el tiempo "timeCloseInit"
+    return;
+  } else if(potencia == 1000)
+            abrir(self);
+         else if(potencia == 0)
+            detener(self);
+               else{
+                 timesOpen=potencia*(self->conf->tiempoAbierto);  //tiempo en milisegundos
+                 timesClose=(self->conf->tiempoAbierto)*1000 - timesOpen;   //tiempo en milisegundos
+                 timesMuerto=(self->conf->bandaMuerta)*1000;
+                 if((timesOpen>(timesClose+timesMuerto))) //&& (timesOpen-timesClose>timesMuerto))
+                   abrir(self);
+                 else if((timesOpen<(timesClose-timesMuerto))) //&& (timesClose-timesOpen<timesMuerto))
+                   cerrar(self);
+                      else
+                       detener(self); 
+               }
 }
 uint  ValvulaProporcional_getPotencia(void *_self){
   
-  return getPotencia(_self);
+  return 120;
 
 }
 

@@ -21,6 +21,7 @@ struct ValvulaProporcional{
   byte mascaraApertura;
   byte * puertoCierre;
   byte mascaraCierre;
+  long timeCloseInit;
 };
   
   extern const struct ISalidaClass ValvulaProporcional; 

@@ -7,7 +7,7 @@
 #include "stdtypes.h"
 #include "ClassSensor.h"
 #include "GettersVisual.h"
-//#include "TmDt1.h"
+#include "TmDt1.h"
 #include "Errores.h"
 #include "RlxMTimer.h"
 #include "FshTypeSizes.h"

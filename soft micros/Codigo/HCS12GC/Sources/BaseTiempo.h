@@ -18,7 +18,7 @@ struct BaseTiempo {
   struct RlxMTimer timer;
   bool configurado;
 };
-  
+
 #define BASE_TIEMPO_CLASS_INITIALIZATION(description,name,super,contructor,destructor,differ,puto,getTiempo,setTiempo,getFecha,setFecha,isConfigurado,inc1Segundo)\
   I_BASE_TIEMPO_CLASS_INITIALIZATION(description,name,super,contructor,destructor,differ,puto,getTiempo,setTiempo,getFecha,setFecha,isConfigurado),\
   inc1Segundo

@@ -77,9 +77,9 @@
 #pragma CONST_SEG DEFAULT
 
 #define TIECOUNTER TC##7
-#define TIEFLAG TFLG1_C##7##F      
+#define TIEFLAG TFLG1_C##7##F
 
-#define  TICKS_1ms  500          
+#define  TICKS_1ms  500
 #define  TICKS_40ms 20000
 static const word HighComp[2] = {TICKS_1ms,TICKS_40ms};
 
