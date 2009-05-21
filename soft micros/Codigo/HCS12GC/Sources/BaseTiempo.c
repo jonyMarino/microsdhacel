@@ -120,3 +120,5 @@ bool BaseTiempo_getConfigurado(void * _self){
   return self->configurado;
 }
 
+
+

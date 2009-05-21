@@ -26,7 +26,7 @@ const struct IBaseTiempoClass BaseTiempoDS1307 = {
                              )  
 };
 
-
+/*Registros de tiempo*/
 typedef union{
   struct{
     byte hourLow:4;
@@ -58,6 +58,39 @@ typedef struct{
   MinutesRegister minutes;
   HoursRegister hours;  
 }TimeRegisters;
+
+/*Registros de Fecha*/
+typedef union{
+  struct{
+    byte dayLow:4;
+    byte dayHigh:2;
+  }bits;
+  byte _byte;
+}DaysRegister;
+
+typedef union{
+  struct{
+    byte monthLow:4;
+    byte monthHigh:1;
+  }bits;
+  byte _byte;
+}MonthsRegister;
+
+typedef union{
+  struct{
+    byte yearLow:4;
+    byte yearHigh:4;
+  }bits;
+  byte _byte;
+}YearRegister;
+
+typedef union{
+  DaysRegister days;
+  MonthsRegister months;
+  YearRegister years;
+}DateRegister;
+
+
 /*
 ** ===================================================================
 **     Method      :  BaseTiempoDS1307_constructor (bean TimeDate)
@@ -68,40 +101,31 @@ typedef struct{
 void BaseTiempoDS1307_constructor(void * _self)
 {
   struct BaseTiempoDS1307 * self = _self;
-  TimeRegisters t;
-  typedef struct  {
+  struct  {
     byte address;
     TimeRegisters time;
-  }tiempo;
-  tiempo timer;
+  }tiempoEnviar;
   
   word w;
   bool cambiado = FALSE;
-  timer.address=0;
+  
   
   EI2C1_SendChar(0);  // me posiciono en las horas
   EI2C1_SendStop();
-  EI2C1_RecvBlock(&t,sizeof(t),&w);
+  EI2C1_RecvBlock(&tiempoEnviar.time,sizeof(tiempoEnviar.time),&w);
   EI2C1_SendStop();
-  if(t.hours.bits.amPm){    //Esta configurado como ampm?
-    //t.hours.bits.amPm = FALSE;
-    timer.time.hours.bits.amPm = FALSE; 
+  if(tiempoEnviar.time.hours.bits.amPm){    //Esta configurado como ampm?
+    tiempoEnviar.time.hours.bits.amPm = FALSE; 
     cambiado = TRUE;
   }
-  if(t.seconds.bits.CH){
-   // t.seconds._byte=0;
-   // t.minutes._byte=0;
-    //t.hours._byte=0;
-    timer.time.seconds._byte=0;
-    timer.time.minutes._byte=0;
-    timer.time.hours._byte=0;
+  if(tiempoEnviar.time.seconds.bits.CH){
+    tiempoEnviar.time.seconds.bits.CH = FALSE;
     cambiado = TRUE;
   }
   
   if(cambiado){
-  //  EI2C1_SendChar(0);  // me posiciono en las horas
-    //EI2C1_SendStop();
-    EI2C1_SendBlock(&timer,sizeof(timer),&w);  
+    tiempoEnviar.address=0;
+    EI2C1_SendBlock(&tiempoEnviar,sizeof(tiempoEnviar),&w);  
     EI2C1_SendStop();
   }
   
@@ -127,11 +151,11 @@ void BaseTiempoDS1307_defConstructor(void * self,va_list * args){
 */
 byte BaseTiempoDS1307_setTiempoValidado(void * _self,byte horas,byte min,byte segs){
   struct BaseTiempoDS1307 * self = _self;
-  typedef struct  {
+  struct  {
     byte address;
     TimeRegisters time;
-  }tiempo;
-  tiempo timeEnviar;
+  }timeEnviar;
+
   word enviados;
   
   typedef struct  {
@@ -187,8 +211,33 @@ void BaseTiempoDS1307_getTiempo(void * self,TIMEREC *time){
 **     Method      :  BaseTiempoDS1307_setFechaValidada
 ** ===================================================================
 */
-byte BaseTiempoDS1307_setFechaValidada(void * self,word year,byte month,byte day){
+byte BaseTiempoDS1307_setFechaValidada(void * _self,word year,byte month,byte day){
+  struct BaseTiempoDS1307 * self = _self;
   
+  struct  {
+    byte address;
+    DateRegister date;
+  }fechaEnviar;
+ 
+  word enviados;
+  byte err;
+   
+  fechaEnviar.address=4;
+  
+  year -= 2000; 
+  fechaEnviar.date.years.bits.yearHigh = year /10;
+  fechaEnviar.date.years.bits.yearLow  = year %10;
+  
+  fechaEnviar.date.months.bits.monthHigh = month/10;
+  fechaEnviar.date.months.bits.monthLow = month%10;
+  
+  fechaEnviar.date.days.bits.dayHigh = day / 10; 
+  fechaEnviar.date.days.bits.dayLow = day % 10;  
+
+  err=EI2C1_SendBlock(&fechaEnviar,sizeof(fechaEnviar),&enviados);
+  EI2C1_SendStop();  
+  
+  return err;
 }
 
 /*
@@ -197,9 +246,18 @@ byte BaseTiempoDS1307_setFechaValidada(void * self,word year,byte month,byte day
 ** ===================================================================
 */
 void BaseTiempoDS1307_getFecha(void * self,DATEREC *date){
-  date->Day=3;
-  date->Month=5;
-  date->Year=2009;  
+  DateRegister fechaRecivida;
+
+  word recibidos;
+  
+  EI2C1_SendChar(4);  // me posiciono en los dias
+  EI2C1_SendStop();
+  EI2C1_RecvBlock(&fechaRecivida,sizeof(fechaRecivida),&recibidos);
+  EI2C1_SendStop();
+  date->Year= fechaRecivida.years.bits.yearHigh * 10 + fechaRecivida.years.bits.yearLow;
+  date->Month = fechaRecivida.months.bits.monthHigh * 10 + fechaRecivida.months.bits.monthLow;
+  date->Day = fechaRecivida.days.bits.dayHigh * 10 + fechaRecivida.days.bits.dayLow;
+  
 }
 /*
 ** ===================================================================
@@ -230,7 +288,7 @@ void EI2C1_OnRxChar(void){
 
 /*
 ** ===================================================================
-**     Method      :  BTFechaPersistente_incUnSegundo
+**     Method      :  BaseTiempoDS1307_getConfigurado
 **
 **     Description :
 ** ===================================================================
