@@ -69,29 +69,39 @@ void BaseTiempoDS1307_constructor(void * _self)
 {
   struct BaseTiempoDS1307 * self = _self;
   TimeRegisters t;
+  typedef struct  {
+    byte address;
+    TimeRegisters time;
+  }tiempo;
+  tiempo timer;
   
   word w;
   bool cambiado = FALSE;
+  timer.address=0;
   
-  EI2C1_SendChar(2);  // me posiciono en las horas
+  EI2C1_SendChar(0);  // me posiciono en las horas
   EI2C1_SendStop();
   EI2C1_RecvBlock(&t,sizeof(t),&w);
   EI2C1_SendStop();
   if(t.hours.bits.amPm){    //Esta configurado como ampm?
-    t.hours.bits.amPm = FALSE; 
+    //t.hours.bits.amPm = FALSE;
+    timer.time.hours.bits.amPm = FALSE; 
     cambiado = TRUE;
   }
   if(t.seconds.bits.CH){
-    t.seconds._byte=0;
-    t.minutes._byte=0;
-    t.hours._byte=0;
+   // t.seconds._byte=0;
+   // t.minutes._byte=0;
+    //t.hours._byte=0;
+    timer.time.seconds._byte=0;
+    timer.time.minutes._byte=0;
+    timer.time.hours._byte=0;
     cambiado = TRUE;
   }
   
   if(cambiado){
-    EI2C1_SendChar(2);  // me posiciono en las horas
-    EI2C1_SendStop();
-    EI2C1_SendBlock(&t,sizeof(t),&w);  
+  //  EI2C1_SendChar(0);  // me posiciono en las horas
+    //EI2C1_SendStop();
+    EI2C1_SendBlock(&timer,sizeof(timer),&w);  
     EI2C1_SendStop();
   }
   
@@ -169,7 +179,7 @@ void BaseTiempoDS1307_getTiempo(void * self,TIMEREC *time){
  // time->Hour= timeRecivido.hours.bits.hourHigh * 10 + timeRecivido.hours.bits.hourLow;
   //time->Min = timeRecivido.minutes.bits.minHigh * 10 + timeRecivido.minutes.bits.minLow;
   //time->Sec = timeRecivido.seconds.bits.secHigh * 10 + timeRecivido.seconds.bits.secLow;
-    time->Sec = seg.bits.secHigh * 10 + seg.bits.secLow;
+  time->Sec = seg.bits.secHigh * 10 + seg.bits.secLow;
 }
 
 /*
