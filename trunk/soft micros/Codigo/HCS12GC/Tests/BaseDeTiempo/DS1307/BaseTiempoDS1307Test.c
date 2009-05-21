@@ -9,6 +9,7 @@
 #include "BaseTiempoDS1307Test.h"
 #include "PE_Error.h"
 #include "MethodContainer.h"
+#include "RelojInternoPersistenciaDS1307.h"
 
 void BaseTiempoDS1307Test_defCtor(void * self,va_list * args);
 
@@ -76,6 +77,41 @@ bool BaseTiempoDS1307Test_test(void * _self){
   return ERR_OK;
 }
 
+
+
+bool RelojInternoPersistenciaDS1307_test(void * _self){
+  struct BaseTiempoDS1307Test * self = _self;
+  TIMEREC time;
+  DATEREC date;
+  
+  void * timer = new(&Timer,(ulong)60*1000);
+  void * baseTiempo = new(&RelojInternoPersistenciaDS1307,2009,1,1,0,0,0,TRUE);
+  
+  setTiempo(baseTiempo,1,0,10);
+  setFecha(baseTiempo,2009,3,2);
+  
+  while(!Timer_isfinish(timer))
+    MethodContainer_execute(methodContainer);
+  
+  getTiempo(baseTiempo,&time);
+  if(time.Hour!=1)
+    return EXIT_FAILURE;
+  if(time.Min!=1)
+    return EXIT_FAILURE;
+  if(time.Sec!=10)
+    return EXIT_FAILURE;
+  
+  getFecha(baseTiempo,&date);
+  
+  if(date.Day!=2)
+    return EXIT_FAILURE;
+  if(date.Month!=3)
+    return EXIT_FAILURE;
+  if(date.Year!=2009)
+    return EXIT_FAILURE;
+  
+  return ERR_OK;
+}
 /*
 */
 void BaseTiempoDS1307Test_constructor(void *self){
@@ -83,6 +119,7 @@ void BaseTiempoDS1307Test_constructor(void *self){
   TestCase_constructor(self);
   methodContainer = new(&MethodContainer);                     
   //tests 
+  TESTCASE_ADD_TEST(self,RelojInternoPersistenciaDS1307_test);
   TESTCASE_ADD_TEST(self,BaseTiempoDS1307Test_test);	 
 }
 /**/
