@@ -84,7 +84,7 @@ typedef union{
   byte _byte;
 }YearRegister;
 
-typedef union{
+typedef struct{
   DaysRegister days;
   MonthsRegister months;
   YearRegister years;
@@ -158,14 +158,7 @@ byte BaseTiempoDS1307_setTiempoValidado(void * _self,byte horas,byte min,byte se
 
   word enviados;
   
-  typedef struct  {
-    byte address;
-    SecondsRegister sec;
-  }seg;
-  
-  seg segundos;
-  segundos.address=0;
-  segundos.sec.bits.CH=0;
+  timeEnviar.address=0;
   
   timeEnviar.time.hours.bits.hourHigh = horas /10;
   timeEnviar.time.hours.bits.hourLow  = horas %10;
@@ -176,12 +169,8 @@ byte BaseTiempoDS1307_setTiempoValidado(void * _self,byte horas,byte min,byte se
   timeEnviar.time.seconds.bits.secHigh = segs / 10; 
   timeEnviar.time.seconds.bits.secLow = segs % 10;
   
-   segundos.sec.bits.secHigh = segs / 10;
-   segundos.sec.bits.secLow = segs % 10;
   
-  //EI2C1_SendChar(0);  // me posiciono en los segundos
-  //EI2C1_SendStop();
-  EI2C1_SendBlock(&segundos,sizeof(segundos),&enviados);
+  EI2C1_SendBlock(&timeEnviar,sizeof(timeEnviar),&enviados);
   EI2C1_SendStop();
   
 }
@@ -193,17 +182,15 @@ byte BaseTiempoDS1307_setTiempoValidado(void * _self,byte horas,byte min,byte se
 */
 void BaseTiempoDS1307_getTiempo(void * self,TIMEREC *time){
   TimeRegisters timeRecivido;
-  SecondsRegister seg;
   word recibidos;
   
   EI2C1_SendChar(0);  // me posiciono en los segundos
   EI2C1_SendStop();
-  EI2C1_RecvBlock(&seg,sizeof(seg),&recibidos);
+  EI2C1_RecvBlock(&timeRecivido,sizeof(timeRecivido),&recibidos);
   EI2C1_SendStop();
- // time->Hour= timeRecivido.hours.bits.hourHigh * 10 + timeRecivido.hours.bits.hourLow;
-  //time->Min = timeRecivido.minutes.bits.minHigh * 10 + timeRecivido.minutes.bits.minLow;
-  //time->Sec = timeRecivido.seconds.bits.secHigh * 10 + timeRecivido.seconds.bits.secLow;
-  time->Sec = seg.bits.secHigh * 10 + seg.bits.secLow;
+  time->Hour= timeRecivido.hours.bits.hourHigh * 10 + timeRecivido.hours.bits.hourLow;
+  time->Min = timeRecivido.minutes.bits.minHigh * 10 + timeRecivido.minutes.bits.minLow;
+  time->Sec = timeRecivido.seconds.bits.secHigh * 10 + timeRecivido.seconds.bits.secLow;
 }
 
 /*
@@ -254,7 +241,7 @@ void BaseTiempoDS1307_getFecha(void * self,DATEREC *date){
   EI2C1_SendStop();
   EI2C1_RecvBlock(&fechaRecivida,sizeof(fechaRecivida),&recibidos);
   EI2C1_SendStop();
-  date->Year= fechaRecivida.years.bits.yearHigh * 10 + fechaRecivida.years.bits.yearLow;
+  date->Year= 2000+fechaRecivida.years.bits.yearHigh * 10 + fechaRecivida.years.bits.yearLow;
   date->Month = fechaRecivida.months.bits.monthHigh * 10 + fechaRecivida.months.bits.monthLow;
   date->Day = fechaRecivida.days.bits.dayHigh * 10 + fechaRecivida.days.bits.dayLow;
   

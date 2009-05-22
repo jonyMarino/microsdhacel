@@ -48,6 +48,7 @@
 #include "In2.h"
 #include "In1.h"
 #include "Cpu.h"
+#include "EI2C1.h"
 
 #define CGM_DELAY  2047UL
 
@@ -223,7 +224,7 @@ void PE_low_level_init(void)
 {
   /* Common initialization of the CPU registers */
   /* PORTA: BIT7=0,BIT6=0,BIT5=0,BIT4=0,BIT3=0,BIT2=0,BIT1=0,BIT0=0 */
-  setReg8(PORTA, 0);                    
+  setReg8(PORTA, 0);                   
   /* PUCR: PUPEE=0,PUPAE=0 */
   clrReg8Bits(PUCR, 1);                
   /* DDRA: BIT7=1,BIT6=1,BIT5=1,BIT4=1,BIT3=1,BIT2=1,BIT1=1,BIT0=1 */
@@ -254,7 +255,8 @@ void PE_low_level_init(void)
   setReg8Bits(DDRS, 4);                 
   /*Agregado*/      
   /* PTT: PTT6=0,PTT5=0,PTT4=0,PTT3=0,PTT2=0,PTT1=0 */
-  clrReg8Bits(PTT, 126);                
+  clrReg8Bits(PTT, 126);
+                   
   /* PERT: PERT3=0,PERT2=0 */
   clrReg8Bits(PERT, 12);                
   /* DDRT: DDRT6=1,DDRT5=1,DDRT4=1,DDRT3=1,DDRT2=1,DDRT1=1 */
@@ -285,9 +287,9 @@ void PE_low_level_init(void)
   /* TFLG1: C7F=1,C6F=1,C5F=1,C4F=1,C3F=1,C2F=1,C1F=1,C0F=1 */
   setReg8(TFLG1, 255);                  
   /* PTT: PTT6=0,PTT5=0,PTT4=0,PTT1=0 */
-  //clrReg8Bits(PTT, 114);                
+  clrReg8Bits(PTT, 114);                
   /* DDRT: DDRT6=1,DDRT5=1,DDRT4=1,DDRT1=1 */
-  //setReg8Bits(DDRT, 114);               
+  setReg8Bits(DDRT, 114);               
   /* PIEP: PIEP7=0,PIEP5=0,PIEP3=0,PIEP1=0 */
   clrReg8Bits(PIEP, 170);               
   /* PTP: PTP7=0,PTP5=0,PTP3=0,PTP1=0 */
@@ -305,9 +307,11 @@ void PE_low_level_init(void)
   /* DDRAD: DDRAD1=1,DDRAD0=1 */
   setReg8Bits(DDRAD, 3);                                
   /* PWMCTL: PSWAI=0,PFRZ=0 */
-  clrReg8Bits(PWMCTL, 12);              
+ // clrReg8Bits(PWMCTL, 12);              
   /* PWMSDN: PWMIF=0,PWMIE=0,PWMRSTRT=0,PWMLVL=0,??=0,PWM5IN=0,PWM5INL=0,PWM5ENA=0 */
-  setReg8(PWMSDN, 0);                   
+ // setReg8(PWMSDN, 0);
+  
+                     
   /* ### MC9S12GC16_80 "Cpu" init code ... */
   /* ### ByteIO "Display1" init code ... */
   /* ### BitsIO "bits5ULN" init code ... */
@@ -326,14 +330,20 @@ void PE_low_level_init(void)
   /* ### Init_FLASH "FLASH1" init code ... */
   FLASH1_Init();
   /* ### TimerInt "TI1" init code ... */
+  #if defined(_TI) || defined(_TI3) || defined(_TI7)
   TI1_Init();
   /* TSCR1: TEN=1 TSWAI= 1*/
-  setReg8Bits(TSCR1, 192);              
+  setReg8Bits(TSCR1, 192); 
+  #endif
+   
+  EI2C1_Init();
+  
+             
   INTCR_IRQEN = 0;                     /* Disable the IRQ interrupt. IRQ interrupt is enabled after CPU reset by default. */
   __EI();                              /* Enable interrupts */
 }
 
-/* END Cpu. */
+/* END Cpu. */  
 
 /*
 ** ###################################################################

@@ -47,22 +47,23 @@ bool BaseTiempoDS1307Test_test(void * _self){
   struct BaseTiempoDS1307Test * self = _self;
   TIMEREC time;
   DATEREC date;
-  
-  void * timer = new(&Timer,(ulong)60*1000);
+  word i;
+  void * timer = new(&Timer,(ulong)4000);
   void * baseTiempo = new(&BaseTiempoDS1307);
   
   setTiempo(baseTiempo,1,0,10);
   setFecha(baseTiempo,2009,3,2);
   
+
   while(!Timer_isfinish(timer))
     MethodContainer_execute(methodContainer);
   
   getTiempo(baseTiempo,&time);
   if(time.Hour!=1)
     return EXIT_FAILURE;
-  if(time.Min!=1)
+  if(time.Min!=0)
     return EXIT_FAILURE;
-  if(time.Sec!=10)
+  if(time.Sec!=13)
     return EXIT_FAILURE;
   
   getFecha(baseTiempo,&date);
@@ -84,7 +85,7 @@ bool RelojInternoPersistenciaDS1307_test(void * _self){
   TIMEREC time;
   DATEREC date;
   
-  void * timer = new(&Timer,(ulong)60*1000);
+  void * timer = new(&Timer,(ulong)3000);
   void * baseTiempo = new(&RelojInternoPersistenciaDS1307,2009,1,1,0,0,0,TRUE);
   
   setTiempo(baseTiempo,1,0,10);
@@ -96,9 +97,9 @@ bool RelojInternoPersistenciaDS1307_test(void * _self){
   getTiempo(baseTiempo,&time);
   if(time.Hour!=1)
     return EXIT_FAILURE;
-  if(time.Min!=1)
+  if(time.Min!=0)
     return EXIT_FAILURE;
-  if(time.Sec!=10)
+  if(time.Sec!=12)
     return EXIT_FAILURE;
   
   getFecha(baseTiempo,&date);

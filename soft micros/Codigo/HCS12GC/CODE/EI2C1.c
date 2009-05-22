@@ -132,6 +132,16 @@ static void Delay(void)
 */
 void EI2C1_Init(void)
 {
+  clrReg8Bits(PIEP, 34);                
+  /* PTP: PTP5=1,PTP1=1 */
+  setReg8Bits(PTP, 34);                 
+  /* PPSP: PPSP5=0,PPSP1=0 */
+  clrReg8Bits(PPSP, 34);                
+  /* PERP: PERP5=1,PERP1=1 */
+  setReg8Bits(PERP, 34);                
+  /* DDRP: DDRP5=0,DDRP1=0 */
+  clrReg8Bits(DDRP, 34);     
+
   SlaveAddr = 208;
 }
 

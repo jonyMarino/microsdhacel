@@ -8,10 +8,10 @@ byte RelojInternoPersistenciaDS1307_setTiempoValidado(void * _self,byte horas,by
 byte RelojInternoPersistenciaDS1307_setFechaValidada(void * self,word Year,byte Month,byte Day);
 bool RelojInternoPersistenciaDS1307_getConfigurado(void * _self);
 
-const struct RelojInternoPersistenciaDS1307Class RelojInternoPersistenciaDS1307 = {
-    BASE_TIEMPO_CLASS_INITIALIZATION(RelojInternoPersistenciaDS1307Class,
+const struct BaseTiempoClass RelojInternoPersistenciaDS1307 = {
+    BASE_TIEMPO_CLASS_INITIALIZATION(BaseTiempoClass,
                              RelojInternoPersistenciaDS1307,  
-                             RelojInternoPersistenciaDS1307,
+                             BaseTiempo,
                              RelojInternoPersistenciaDS1307_defConstructor,
                              Object_dtor,
                              Object_differ,
@@ -35,9 +35,7 @@ const struct RelojInternoPersistenciaDS1307Class RelojInternoPersistenciaDS1307 
 void RelojInternoPersistenciaDS1307_constructor(void * _self)
 {
   struct RelojInternoPersistenciaDS1307 * self = _self;
-  
-  newAlloced(&self->ds1307,&BaseTiempoDS1307);
-  
+    
   RelojInternoPersistenciaDS1307_sincronizar(_self);
   
 }
@@ -50,7 +48,9 @@ void RelojInternoPersistenciaDS1307_constructor(void * _self)
 **         only.
 ** ===================================================================
 */
-void RelojInternoPersistenciaDS1307_defConstructor(void * self,va_list * args){
+void RelojInternoPersistenciaDS1307_defConstructor(void * _self,va_list * args){
+  struct RelojInternoPersistenciaDS1307 * self = _self;
+  newAlloced(&self->ds1307,&BaseTiempoDS1307);
   super_ctor(&RelojInternoPersistenciaDS1307,self,args);
   RelojInternoPersistenciaDS1307_constructor(self);  
 }

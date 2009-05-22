@@ -44,6 +44,8 @@ extern const struct FechaTiempoClass FechaTiempo;
   getFecha,  \
   setFechaValidada
   
+bool isTiempoValido(byte hora,byte min,byte segs);
+bool isFechaValida(word anio,byte mes,byte dia);
   
 void getTiempo(void * self,TIMEREC *time);
 byte setTiempo(void * self,byte hour,byte min,byte secs);
