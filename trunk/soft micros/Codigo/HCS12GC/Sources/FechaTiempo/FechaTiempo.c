@@ -79,6 +79,14 @@ static const byte ULY[12] = {31,28,31,30,31,30,31,31,30,31,30,31}; /* Un-leap-ye
 static const byte  LY[12] = {31,29,31,30,31,30,31,31,30,31,30,31}; /* Leap-year */
 
 
+
+bool isTiempoValido(byte hora,byte min,byte segs){
+
+  if ((min > 59) || (hora > 23) || (segs>59) ) /* Test correctnes of given time */
+    return FALSE;                  /* If not correct then error */
+  return TRUE;
+}
+
 /*
 ** ===================================================================
 **     Method      :  setTime (bean TimeDate)
@@ -101,10 +109,8 @@ static const byte  LY[12] = {31,29,31,30,31,30,31,31,30,31,30,31}; /* Leap-year 
 byte setTiempo(void * self,byte Hour,byte Min,byte secs)
 {
 
-  if ((Min > 59) || (Hour > 23)) /* Test correctnes of given time */
-    return ERR_RANGE;                  /* If not correct then error */
-  
-  setTiempoValidado(self,Hour,Min,secs);
+  if( isTiempoValido( Hour, Min, secs))
+    setTiempoValidado(self,Hour,Min,secs);
   
   return ERR_OK;                       /* OK */
 
@@ -112,6 +118,25 @@ byte setTiempo(void * self,byte Hour,byte Min,byte secs)
 
 
 
+bool isFechaValida(word anio,byte mes,byte dia){
+  word tY = 1998;                      /* anio counter, starting with 1998 */
+  byte tM = 1;                         /* mes counter, starting with January */
+  byte tD = 1;                         /* dia counter, starting with 1 */
+  byte tW = 4;                         /* Sun - Sat counter, starting with Thu */
+  const byte *ptr;                     /* Pointer to ULY/LY table */
+
+  if ((anio < 1998) || (anio > 2099) || (mes > 12) || (mes == 0) || (dia > 31) || (dia == 0)) /* Test correctness of given parameters */
+    return FALSE;                  /* If not correct then error */
+  if (tY & 3)                          /* Is given anio un-leap-one? */
+    ptr = ULY;                         /* Set pointer to un-leap-anio dia table */
+  else                                 /* Is given anio leap-one? */
+    ptr = LY;                          /* Set pointer to leap-anio dia table */
+  ptr--;                               /* Decrement pointer */
+  if (ptr[mes] < dia)                /* Does the obtained number of days exceed number of days in the appropriate mes & anio? */
+    return FALSE;                  /* If yes (incorrect date inserted) then error */
+
+  return TRUE;
+}
 /*
 ** ===================================================================
 **     Method      :  setDate
@@ -131,28 +156,12 @@ byte setTiempo(void * self,byte Hour,byte Min,byte secs)
 **                           ERR_RANGE - Parameter out of range
 ** ===================================================================
 */
-
-
 byte setFecha(void * self,word Year,byte Month,byte Day)
 {
-
-  word tY = 1998;                      /* Year counter, starting with 1998 */
-  byte tM = 1;                         /* Month counter, starting with January */
-  byte tD = 1;                         /* Day counter, starting with 1 */
-  byte tW = 4;                         /* Sun - Sat counter, starting with Thu */
-  const byte *ptr;                     /* Pointer to ULY/LY table */
-
-  if ((Year < 1998) || (Year > 2099) || (Month > 12) || (Month == 0) || (Day > 31) || (Day == 0)) /* Test correctness of given parameters */
-    return ERR_RANGE;                  /* If not correct then error */
-  if (tY & 3)                          /* Is given year un-leap-one? */
-    ptr = ULY;                         /* Set pointer to un-leap-year day table */
-  else                                 /* Is given year leap-one? */
-    ptr = LY;                          /* Set pointer to leap-year day table */
-  ptr--;                               /* Decrement pointer */
-  if (ptr[Month] < Day)                /* Does the obtained number of days exceed number of days in the appropriate month & year? */
-    return ERR_RANGE;                  /* If yes (incorrect date inserted) then error */
-
-  return setFechaValidada(self,Year,Month,Day);
+  byte err = isFechaValida( Year, Month, Day);
+  if(!err)
+    return setFechaValidada(self,Year,Month,Day);
+  return err;
 }
 
 
