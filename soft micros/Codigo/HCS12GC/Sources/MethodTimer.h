@@ -34,6 +34,16 @@ void MTimer_Construct(void * self,ulong tiempo,void (*pf)(void*),void * Obj);
 */
 void MTimer_DefConstruct(void * self,va_list *args);
 
+/*
+** ===================================================================
+**     Method      :  MethodTimer_setMetodo 
+**     Description : 
+** ===================================================================
+*/
+void MethodTimer_setMetodo(void * self,void (*pf)(void*),void * Obj);
+
+
+
 #define _MethodTimer_getFunction(_timer) ((struct MethodTimer*)_timer)->pf
 
 #define _MethodTimer_getObj(_timer) ((struct MethodTimer*)_timer)->Obj

@@ -37,8 +37,7 @@ void MTimer_Construct(void * self,ulong tiempo,void (*pf)(void*),void * Obj){
   struct MethodTimer * _timer=self;
   
   Timer_Construct((struct Timer *) self,tiempo);
-  _timer->pf=pf;
-  _timer->Obj=Obj;    
+  MethodTimer_setMetodo(self,pf,Obj);    
 }
 
 /*
@@ -59,7 +58,7 @@ void MTimer_DefConstruct(void * self,va_list *args){
 **                  valores de configuración del Timer
 ** ===================================================================
 */
-void MTimer_setMetodo(void * _self,void (*pf)(void*),void * Obj){
+void MethodTimer_setMetodo(void * _self,void (*pf)(void*),void * Obj){
   struct MethodTimer * _timer=_self;
   _timer->pf=pf;
   _timer->Obj=Obj;  

@@ -158,10 +158,9 @@ bool isFechaValida(word anio,byte mes,byte dia){
 */
 byte setFecha(void * self,word Year,byte Month,byte Day)
 {
-  byte err = isFechaValida( Year, Month, Day);
-  if(!err)
+  if(isFechaValida( Year, Month, Day))
     return setFechaValidada(self,Year,Month,Day);
-  return err;
+  return ERR_VALUE;
 }
 
 

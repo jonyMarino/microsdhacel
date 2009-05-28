@@ -34,7 +34,7 @@
 #include "PE_Const.h"
 #include "IO_Map.h"
 
-extern word contador;
+ extern word contador;
 
 typedef union{
   struct{

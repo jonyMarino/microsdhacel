@@ -5,8 +5,8 @@
 #include "FshTypeSizes.h"
 #include "Errores.h"
 
-#define  MAX_TIEMPOABIERTO 65500
-#define  MAX_BANDAMUERTA   65500
+#define  MAX_TIEMPOABIERTO 10000
+#define  MAX_BANDAMUERTA   10000
 
 typedef struct{
   int tiempoAbierto;
@@ -22,6 +22,7 @@ struct ValvulaProporcional{
   byte * puertoCierre;
   byte mascaraCierre;
   long timeCloseInit;
+  word timeActual;
 };
   
   extern const struct ISalidaClass ValvulaProporcional; 

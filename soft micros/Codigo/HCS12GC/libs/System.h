@@ -6,7 +6,9 @@
 extern struct BTBajoConsumo baseTiempo;
 #elif defined(DS1307)
 #include "BaseTiempoDS1307.h"
-extern struct BaseTiempoDS1307 baseTiempo;
+#include "RelojInternoPersistenciaDS1307.h"
+//extern struct BaseTiempoDS1307 baseTiempo;
+extern struct RelojInternoPersistenciaDS1307 baseTiempo;
 #else
 #include "BTFechaPersistente.h"
 extern struct BTFechaPersistente baseTiempo;

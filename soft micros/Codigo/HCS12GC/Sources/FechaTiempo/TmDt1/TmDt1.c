@@ -37,14 +37,20 @@ const struct FechaTiempoClass TmDt1={
 */
 void TmDt1_Constructor(void * self,word Year,byte Month,byte Day,byte Hour,byte Min,byte secs)
 {
-  byte err;
-  err=setFecha(self,Year,Month,Day);  /* Initial date */
-  if(err)    //cambiar : error
-    (void)setFecha(self,2008,1,1);  /* Initial date */  
-  err=setTiempo(self,Hour,Min,secs);        /* Initialize time */
-  if(err)    //cambiar : error
-    (void)setTiempo(self,0,0,0);        /* Initialize time */  
-}
+  //byte err;
+  //err=setFecha(self,Year,Month,Day);  /* Initial date */
+  if(isTiempoValido(Hour,Min,secs))    //cambiar : error
+    (void)TmDt1_setTiempoValidado(self,0,0,0);  /* Initial date */ 
+   else 
+     (void)TmDt1_setTiempoValidado(self,0,0,0);  /* Initial date */    
+  if(isFechaValida(Year,Month,Day))    //cambiar : error
+    (void)TmDt1_setFechaValidada(self,1,1,1);        /* Initialize time */
+       
+    else  
+      (void)TmDt1_setFechaValidada(self,2009,5,27);  
+        
+}    
+
 /*
 ** ===================================================================
 **     Method      :  TmDt1_DefConstructor (bean TimeDate)

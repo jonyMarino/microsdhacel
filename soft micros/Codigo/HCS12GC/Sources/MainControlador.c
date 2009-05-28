@@ -1,3 +1,4 @@
+
 /* TestControl.c*/
 #include <stddef.h>
 
@@ -5,10 +6,10 @@
 #include "display.h"
 #include "WDog1.h"
 #include "teclas.h"
-#include "Class.h"
+#include "Object.h"
 #include "ClassADC.h"
 #include "Grabacion.h"
-#include "PWM_Class.h"
+#include "PWM.h"
 #include "DiagramaNavegacion.h"
 #include "PWM_Hmi.h"
 #include "SnsHmi.h"
@@ -20,152 +21,398 @@
 #include "PidHmi.h"
 #include "PropNumPV.h"
 #include "MessagesOut.h"
-#include "Alarmas.h"
-#include "AlarmasHmi.h"
 #include "ModBusHmi.h"
 #include "com_events.h"
 #include "Pid2SPHmi.h"
 #include "ControlPID2SP.h"
 #include "InpSP2.h"
+#include "BoxPrincipalNC.h"
+#include "FlashBkp256.h"
+#include "Termometro.h"
+#include "timer_interrupt.h"
+#include "PWMTimer.h"
+#include "PWMHard01.h"
+#include "PWMHard23.h"
+#include "FstBoxPointer.h"
+#include "BoxList.h"
+#include "Access.h"
+#include "AlarmaControl.h"
+#include "RlxMTimer.h"
+#include "LedsSalida.h"
+#include "ThreadAdjuntable.h"
+#include "Thread.h"
+#include "AlarmaControlVista.h"
+#include "PWMPeriodoEvent.h"
+#include "PWMSoft.h"
 
 
 
-#ifdef DOBLE_SET_POINT
-  #define DECLARACION_CONF_CONTROL volatile const Control2SPConf pid_config=Control2SPDefaultConf 
-	#define TIPO_CONTROL_1 struct ControlPID2SP
-  #define CREAR_CONTROL_1() newAllocObj(&pid,ControlPID2SP,&pid_config,&sensor,&pwm[0],CNTR_TIME_DISCONECT,chk2SPPin)
-  #define ADD_BOX_CONT1(numcontrol)   Pid2SPHmi_AddBoxes(&pid,numcontrol);
-#else
-  #define DECLARACION_CONF_CONTROL volatile const ControlConf pid_config=ControlDefaultConf 
-	#define TIPO_CONTROL_1 struct ControlPID
-  #define CREAR_CONTROL_1()   newAllocObj(&pid,ControlPID,&pid_config,&sensor,&pwm[0],CNTR_TIME_DISCONECT)
-  #define ADD_BOX_CONT1(numcontrol)   PidHmi_AddBoxes(&pid,numcontrol);
-#endif
+
+/* Definiciones */
 
 /*  Tiempo inicial en el que el control permanece desconectado  */
 #ifdef _COLADA_CALIENTE  
-  #define CNTR_TIME_DISCONECT 20000 
+  #define SALIDA_TIEMPO_DESCONECTADA 20000 
 #else
-  #define CNTR_TIME_DISCONECT 3000   //tiene que alcanzar para hacer 2 mediciones
+  #define SALIDA_TIEMPO_DESCONECTADA 3000   //tiene que alcanzar para hacer 2 mediciones
 #endif
 
-#define AL_TIME_DISCONECT 2000 
+/* Prototipos */
+void SD100_conectarSalidas(void * self);
 
-volatile const long SerialNum@0x4000;
+/* Variables */
+struct Termometro termometro;
 
 #pragma CONST_SEG PARAMETERS_PAGE
-volatile const TConfPWM pwm_config[NUM_SALIDAS];
-volatile const SensorConf sensor_config=STPT_DEF_CONF;
-DECLARACION_CONF_CONTROL;
-volatile const TAlarmaConf alar_conf=ALARMA_DEFAULT_CONF; 
-#pragma CONST_SEG DEFAULT
+volatile const TConfPWM pwm_config[CANTIDAD_SAL_ALARMA+1];
 
-struct TSensor_TermoPT sensor;
-struct PWM  pwm[NUM_SALIDAS];
-TIPO_CONTROL_1 pid; 
-struct MessageOut msj1;
-struct TAdc  AD1;
-struct AlarmaMult alarma;
-
-    
-const struct BlockConstBoxPri1c CBox_Pri={
-      BoxPri1c,							/* funcion que procesa al box*/
-      &sensor,
-      &msj1						
+volatile const ControlConf control_conf[1]={
+  ControlDefaultConf,
+  #if 1>1 
+    ControlDefaultConf,
+      #if 1>2
+        ControlDefaultConf,
+        #if 1>3
+          ControlDefaultConf
+        #endif
+      #endif
+  #endif
 };
 
-void OnTSalChange(void * self,int val){
-  extern const struct ConstrGetterNum GetterPIDPot;
-  extern const struct ConstPropNumPV ParSPOP;
-  static Message msj_on_sal_change=NULL;
+volatile const struct AlarmaCntrConf alar_conf[CANTIDAD_SAL_ALARMA];
+
+#pragma CONST_SEG DEFAULT
+
+
+struct PWM * pwm[CANTIDAD_SAL_ALARMA+1];
+struct PWMPeriodoEvent pwmConEventoPeriodo[1];
+struct AlarmaControl alarma[CANTIDAD_SAL_ALARMA];
+struct ControlPID control[1]; 
+
+struct PWMTimer pwmsTimer[7];
+struct PWMSoft pwmSoft;
+    
+					
+
+
+static struct MessageOut msj;
+
+const struct BlockConstBoxPri1c CBox_Pri={
+      &BoxPri1c,							/* funcion que procesa al box*/
+      &termometro.sensor[0],      
+      &msj						
+};
+
+/*  COMUNICACION  */
+  /*PWM*/
+  static const NEW_NODO_IC_MODBUS(PWM1Com,&PWM_GETTERS_ARRAY,1000,&pwmConEventoPeriodo[0]);
+  static const NEW_NODO_IC_MODBUS(PWM2Com,&PWM_GETTERS_ARRAY,1010,&pwmConEventoPeriodo[1]);
+  static const NEW_NODO_IC_MODBUS(PWM3Com,&PWM_GETTERS_ARRAY,1020,&pwmConEventoPeriodo[2]);
+  static const NEW_NODO_IC_MODBUS(PWM4Com,&PWM_GETTERS_ARRAY,1030,&pwmConEventoPeriodo[3]);
+  static const NEW_NODO_IC_MODBUS(PWM5Com,&PWM_GETTER_POT_ARRAY,1041,&pwmsTimer[4]);
+  static const NEW_NODO_IC_MODBUS(PWM6Com,&PWM_GETTER_POT_ARRAY,1051,&pwmsTimer[5]);
+  static const NEW_NODO_IC_MODBUS(PWM7Com,&PWM_GETTER_POT_ARRAY,1061,&pwmsTimer[6]);
+  static const NEW_NODO_IC_MODBUS(PWM8Com,&PWM_GETTER_POT_ARRAY,1071,&pwmSoft);
+  /*Sensor*/
+  static const NEW_NODO_IC_MODBUS(Sen1Com,&SNS_GETTERS_ARRAY,1100,&termometro.sensor[0]);
+
+  /*Alarma*/
+  static const NEW_NODO_IC_MODBUS(Al1Com,&AL_GETTERS_ARRAY,1200,&alarma[0]);
+  static const NEW_NODO_IC_MODBUS(Al2Com,&AL_GETTERS_ARRAY,1220,&alarma[1]);
+  static const NEW_NODO_IC_MODBUS(Al3Com,&AL_GETTERS_ARRAY,1240,&alarma[2]);
+  static const NEW_NODO_IC_MODBUS(Al4Com,&AL_GETTERS_ARRAY,1260,&alarma[3]);
+  /*PID*/
+  static const NEW_NODO_IC_MODBUS(Pid1Com,&PID_GETTERS_ARRAY,1300,&control);
+  /*Comunicacion*/
+  static const NEW_NODO_IC_MODBUS(ModBusCom,&MODBUS_GETTERS_ARRAY,1400,NULL);
+  /*Codigo*/
+  static const NEW_NODO_IC_MODBUS(CodCom,&COD_GETTERS_ARRAY,1500,NULL);
+
+
+  static const struct NodoICModBus *const  nodosComunicacion[]={
+     //Pwm
+     &PWM1Com,
+     &PWM2Com,
+     &PWM3Com,
+     &PWM4Com,
+     &PWM5Com,
+     &PWM6Com,
+     &PWM7Com,
+     &PWM8Com,
+     //Sensor
+     &Sen1Com,
+     //Alarma
+     &Al1Com,
+     &Al2Com,
+     &Al3Com,
+     &Al4Com,     
+     //Pid
+     &Pid1Com,
+     //Comunicacion
+     &ModBusCom,    
+     //codigo
+     &CodCom
+  };
+  static const NEW_ARRAY_LIST(arrayNodosComunicacion,nodosComunicacion);
+/*  FIN COMUNICACION  */
+
+/*  Diagrama de navegacion  */
+//Operador
+  //Principal
+static const NEW_FST_BOX_POINTER(Principal,&CBox_Pri,NULL,0);
+  //Control
+static const NEW_FST_BOX_POINTER(Cntrl1OP1,&PID_HMI_FST_OP_BOX,&control,0);
+static const NEW_FST_BOX_POINTER(Cntrl1OP2,&PID_HMI_SCND_OP_BOX,&control,0);
+  //Alarma
+static const NEW_FST_BOX_POINTER(AL1OP,&ALARMA_DE_SENSOR_HMI_FST_OP,&alarma[0],1);
+static const NEW_FST_BOX_POINTER(AL2OP,&ALARMA_DE_SENSOR_HMI_FST_OP,&alarma[1],2);
+static const NEW_FST_BOX_POINTER(AL3OP,&ALARMA_DE_SENSOR_HMI_FST_OP,&alarma[2],3);
+static const NEW_FST_BOX_POINTER(AL4OP,&ALARMA_DE_SENSOR_HMI_FST_OP,&alarma[3],4);
   
-  if(val==_MAN){
-    BoxPri1c_ShowGetter(&GetterPIDPot,&pid);			 // no muestro 
+
+static const struct FstBoxPointer *const OpArray[]={
+  &Principal,
+  &Cntrl1OP1,
+  &Cntrl1OP2,    
+  &AL1OP,  
+  &AL2OP, 
+  &AL3OP,
+  &AL4OP,  
+};
+
+
+static const NEW_BOX_LIST(OpList,OpArray,"op");
+
+//CAL
+static const NEW_FST_BOX_POINTER(Sensor1List,&SNS_HMI_FST_BOX,&termometro.sensor[0],1);
+
+static const struct FstBoxPointer *const CalArray[]={
+  &Sensor1List, 
+};
+
+static const NEW_BOX_LIST(Cal,CalArray,"CAL");
+
+//TUN
+static const NEW_FST_BOX_POINTER(Cntrl1Tun1,&PID_HMI_FST_TUN_BOX,&control,0);
+static const NEW_FST_BOX_POINTER(Cntrl1Tun2,&PID_HMI_SCND_TUN_BOX,&control,0);
+static const NEW_FST_BOX_POINTER(PWM1Tun,&PWM_VISTA_FST_TUN_BOX,&pwmConEventoPeriodo[0],1);
+
+  //Alarma
+static const NEW_FST_BOX_POINTER(AL1TUN,&ALARMA_DE_SENSOR_HMI_FST_TUN,&alarma[0],1);
+static const NEW_FST_BOX_POINTER(AL2TUN,&ALARMA_DE_SENSOR_HMI_FST_TUN,&alarma[1],2);
+static const NEW_FST_BOX_POINTER(AL3TUN,&ALARMA_DE_SENSOR_HMI_FST_TUN,&alarma[2],3);
+static const NEW_FST_BOX_POINTER(AL4TUN,&ALARMA_DE_SENSOR_HMI_FST_TUN,&alarma[3],4);
+  
+static const struct FstBoxPointer *const TunArray[]={
+  &Cntrl1Tun1, 
+  &PWM1Tun,
+  &Cntrl1Tun2, 
+  &AL1TUN,
+  &AL2TUN,
+  &AL3TUN,
+  &AL4TUN    
+};
+
+static const NEW_BOX_LIST(Tun,TunArray,"tun");
+
+//SET
+  //Control
+static const NEW_FST_BOX_POINTER(Cntrl1Set,&PID_HMI_FST_SET_BOX,&control,0);
+
+  //Alarma
+static const NEW_FST_BOX_POINTER(AL1SET,&ALARMA_DE_SENSOR_HMI_FST_SET,&alarma[0],1);
+static const NEW_FST_BOX_POINTER(AL2SET,&ALARMA_DE_SENSOR_HMI_FST_SET,&alarma[1],2);
+static const NEW_FST_BOX_POINTER(AL3SET,&ALARMA_DE_SENSOR_HMI_FST_SET,&alarma[2],3);
+static const NEW_FST_BOX_POINTER(AL4SET,&ALARMA_DE_SENSOR_HMI_FST_SET,&alarma[3],4);
+
+  //Comunicacion
+static const NEW_FST_BOX_POINTER(ModBusSet,&MOD_BUS_HMI_FST_BOX_SET,0,0);
+  //SetC
+static const NEW_FST_BOX_POINTER(SetsSet,&SETS_FST_BOX_SET,0,0);
+  
+
+static const struct FstBoxPointer *const SetArray[]={
+  &Cntrl1Set, 
+
+  &AL1SET,
+  &AL2SET,
+  &AL3SET,
+  &AL4SET,
+  &ModBusSet,
+  &SetsSet  
+};
+
+static const NEW_BOX_LIST(Set,SetArray,"SEt");
+
+//LIM
+static const NEW_FST_BOX_POINTER(Cntrl1Lim,&PID_HMI_FST_LIM_BOX,&control,0);
+
+static const struct FstBoxPointer *const LimArray[]={
+  &Cntrl1Lim, 
+};
+
+static const NEW_BOX_LIST(Lim,LimArray,"Lim");
+
+// Acceso comun
+static const struct BoxList *const BoxListArray[]={
+  &Tun,
+  &Cal,
+  &Set,
+  &Lim
+};
+
+static const NEW_ACCESS(accesoComun,BoxListArray,"Cod",CONTENEDOR_CODIGO);
+
+static const struct Access *const AccessArray[]={
+  &accesoComun
+};
+
+static const NEW_ARRAY_LIST(AccessList,AccessArray);
+
+
+/****************/
+
+
+NEW_FLASH_BKP_256(flash,0x4400);
+struct ManejadorMemoria *const pFlash= &flash;
+
+void OnTSalChange(void * self, void * controlSender){
+  extern const struct ConstrGetterNum GetterPIDPot;
+  static Message msj_on_sal_change;
+  
+  
+  if(PID_getModSal(controlSender)==_MAN){
     if(!msj_on_sal_change)
-      msj_on_sal_change=MessageOut_AddMessage(&msj1,"MAn ");    
+      msj_on_sal_change=MessageOut_AddMessage(&msj,"MAn ");    
   }else{
-    BoxPri1c_ShowProp(&ParSPOP,&pid);
     if(msj_on_sal_change){
-      MessageOut_DeleteMessage(&msj1,msj_on_sal_change);
+      MessageOut_DeleteMessage(&msj,msj_on_sal_change);
       msj_on_sal_change=NULL;
     }
+  } 
+}
+
+struct RlxMTimer timerConexionSalidas;
+
+
+const LedConfig configuracionLedsSalida[]= {
+  &PTT+1,1,0,
+  &PTT+1,1<<1,1, 
+  &PTT+1,1<<2,2,
+  &PTT+1,1<<3,3
+};
+
+
+NEW_LEDS_SALIDA(ledsSalida,configuracionLedsSalida);
+
+void ControlSD100_procesar(uchar tecla){
+  int i;
+  if(tecla == 'k'){
+      for(i=0;i<CANTIDAD_SAL_ALARMA;i++) {
+        
+        struct Lazo * lazo=_AlarmaControl_getLazo(&alarma[i]);
+        if(instanceOf(lazo,&LazoAlarmaControl)){
+          struct AdaptacionSalida * adaptador = _LazoControl_getAdaptadorSaldia(lazo);
+          if(instanceOf(adaptador,&SalidaRetenida))
+            SalidaRetenida_liberar((struct SalidaRetenida *)adaptador);   
+        }
+      }
   }
+  
+  DN_Proc(tecla);
 }
 
-bool chk2SPPin(void){
-  return (InpSP2_GetVal());
-}
 
-
-void main (void){
-
+void main(void){
+  
+  extern const struct ConstPropNumPV ParSP;
   char tecla; 
   bool prevVal;
+  byte i;
+   
+
+  newAlloced(&termometro,&Termometro,&flash);
+  com_initialization(&arrayNodosComunicacion);
+
+  /*PWM0*/
+  newAlloced(&pwmsTimer[0],&PWMTimer,&pwm_config[0],0);
+  newAlloced(&pwmConEventoPeriodo[0],&PWMPeriodoEvent,&pwmsTimer[0]);
+  pwm[0]= &pwmConEventoPeriodo[0];
+  /*PWM1*/
+  newAlloced(&pwmsTimer[1],&PWMTimer,&pwm_config[1],1);
+  newAlloced(&pwmConEventoPeriodo[1],&PWMPeriodoEvent,&pwmsTimer[1]);
+  pwm[1]=&pwmConEventoPeriodo[1]; 
+  /*PWM2*/
+  newAlloced(&pwmsTimer[2],&PWMTimer,&pwm_config[2],2);
+  newAlloced(&pwmConEventoPeriodo[2],&PWMPeriodoEvent,&pwmsTimer[2]);
+  pwm[2]= &pwmConEventoPeriodo[2];  
+  /*PWM3*/
+  newAlloced(&pwmsTimer[3],&PWMTimer,&pwm_config[3],3);
+  newAlloced(&pwmConEventoPeriodo[3],&PWMPeriodoEvent,&pwmsTimer[3]);
+  pwm[3]=&pwmConEventoPeriodo[3];
+  /*PWM4*/
+  newAlloced(&pwmsTimer[4],&PWMTimer,&pwm_config[4],4);
+  pwm[4]= &pwmsTimer[4];
+  /*PWM5*/
+  newAlloced(&pwmsTimer[5],&PWMTimer,&pwm_config[5],5);
+  pwm[5]=&pwmsTimer[5]; 
+  /*PWM6*/
+  newAlloced(&pwmsTimer[6],&PWMTimer,&pwm_config[6],6);
+  pwm[6]=&pwmsTimer[6];
+  /*PWM7*/
+  newAlloced(&pwmSoft,&PWMSoft,&pwm_config[7],&PTT,7); 
+  pwm[7]=&pwmSoft;
 
   
- /*** Processor Expert internal initialization. DON'T REMOVE THIS CODE!!! ***/
-  PE_low_level_init();
- /*** End of Processor Expert internal initialization.                    ***/
- 
-  Teclas_Init();
-  Display_Init(); // Inicializacion del display
-  com_Init();
 
-#ifdef DOBLE_SET_POINT
-  InpSP2_Init();
-  prevVal =InpSP2_GetVal();  
+  newAlloced(&control,ControlPID,&control_conf,&termometro.sensor[0],pwm[0]);
 
-#endif  
+  
+  for(i=0;i<CANTIDAD_SAL_ALARMA;i++)
+    newAlloced(&alarma[i],&AlarmaControlClass,&alar_conf[i],&control,pwm[i+1]);
 
-  newAllocObj(&AD1,TAdc,0);
-  newAllocObj(&sensor,TSensor_TermoPT,&AD1,&sensor_config,"Sen1");
-  newAllocObj(&pwm[0],PWM,&pwm_config[0],OUT_CNTR_1);
-  newAllocObj(&pwm[1],PWM,&pwm_config[1],OUT_AL_1);
-  CREAR_CONTROL_1();
-  newAllocObj(&alarma,AlarmaMult,&alar_conf,&pid,&pwm[1],AL_TIME_DISCONECT);
-  newAllocObj(&msj1,MessageOut); 
-  
-  
-  PID_AddOnTSalChange(&pid,OnTSalChange,NULL);
-  
-  DN_InitSized(&CBox_Pri,5);
-  Sets_Init2(4);
-  DN_addBoxList(0,"tun ",7);
-  DN_addBoxList(0,"CAL ",6);
-  DN_addBoxList(0,"Set ",5); 
-  DN_addBoxList(0,"Lim ",4);
-  SnsHmi_Add(&sensor,0);
-  ADD_BOX_CONT1(0);
-  AlarmasHmi_AddBoxes(&alarma,0);
-  PWMHmi_addIndexedPeriodo(&pwm[0],0,"tun ",0,1);  
-  Sets_AddBoxes();
-  ModBusHmi_AddBoxes();
-  
-  PwmHmi_ComuAdd(&pwm[0],1000);
- 	PwmHmi_ComuAdd(&pwm[1],1020);
- 	SnsHmi_ComuAdd(&sensor,1040);
- 	PidHmi_ComuAdd(&pid,1060);
- 	AlarmasHmi_ComuAdd(&alarma,1080);
- 	ModBusHmi_ComuAdd(1100);
- 														 
+/* 
+  for(i=0;i<1;i++){   
+    newAlloced(&msj[i],MessageOut);
+    PID_AddOnTSalChange(&control[i],OnTSalChange,NULL); 
+  }
+*/
+   
+   
+   //Conectar salidas dentro de SALIDA_TIEMPO_DESCONECTADA ms
+   newAlloced(&timerConexionSalidas,&RlxMTimer,(ulong)SALIDA_TIEMPO_DESCONECTADA,SD100_conectarSalidas,NULL);
+   
+   //Diagrama de navegacion
+   BoxPri1c_ShowProp( &ParSP,&control);
+   DN_staticInit(&OpList,&AccessList);
+
+
+														 
   for(;;){
-    WDog1_Clear();
     tecla=get_key();  
     //Eventos
-    SenTPT_Handler(&sensor);
+    
+    
+    ControlSD100_procesar(tecla);
 
-#ifdef DOBLE_SET_POINT
-    if(prevVal != InpSP2_GetVal()){
-      prevVal =InpSP2_GetVal();
-      DN_Refresh();
-    }
-#endif  
-
-
-
-    DN_Proc(tecla);
-    com_Handler();
-    AL_Handler(&alarma,tecla);
+    Termometro_mainLoop(&termometro);
+    
   }
 }
+
+
+void SD100_conectarSalidas(void * self){
+  byte i;
+  
+  Timer_Stop(&timerConexionSalidas);
+  
+  for(i=0;i<CANTIDAD_SAL_ALARMA+1;i++)
+    setConectada(pwm[i],TRUE);
+  
+   //configurar leds
+   LedsSalida_init(&ledsSalida);
+
+}
+
+
 
