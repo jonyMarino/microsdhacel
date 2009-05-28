@@ -27,7 +27,7 @@
 #include "ControlPID2SP.h"
 #include "InpSP2.h"
 #include "BoxPrincipalNC.h"
-#include "FlashBkpEnFlash.h"
+#include "FlashBkp256.h"
 #include "Termometro.h"
 #include "timer_interrupt.h"
 #include "PWMTimer.h"
@@ -45,6 +45,7 @@
 #include "PWMPeriodoEvent.h"
 #include "PWMSoft.h"
 #include "ValvulaProporcional.h"
+#include "valvulaProporcionalHMI.h"
 /* Definiciones */
 
 /*  Tiempo inicial en el que el control permanece desconectado  */
@@ -173,7 +174,7 @@ static const struct FstBoxPointer *const CalArray[]={
 static const NEW_BOX_LIST(Cal,CalArray,"CAL");
 
 //VP
-static const NEW_FST_BOX_POINTER(VPFstBox,&CBox_PID_Lim,&valvulaProporcional,0);
+static const NEW_FST_BOX_POINTER(VPFstBox,&CBox_ValvulaProporcional,&valvulaProporcional,0);
 
 static const struct FstBoxPointer *const VPArray[]={
   &VPFstBox,    
@@ -260,8 +261,8 @@ static const NEW_ARRAY_LIST(AccessList,AccessArray);
 /****************/
 
 
-NEW_FLASH_BKP_EN_FLASH(flash,0x4400);
-struct ManejadorDePROM *const pFlash= &flash;
+NEW_FLASH_BKP_256(flash,0x4400);
+struct ManejadorMemoria *const pFlash= &flash;
 
 void OnTSalChange(void * self, void * controlSender){
   extern const struct ConstrGetterNum GetterPIDPot;
@@ -312,6 +313,7 @@ void ControlSD100_procesar(uchar tecla){
 
 void main(void){
   
+  extern const struct ConstPropNumPV ParSP;
   char tecla; 
   bool prevVal;
   byte i;
@@ -342,6 +344,7 @@ void main(void){
    newAlloced(&timerConexionSalidas,&RlxMTimer,(ulong)SALIDA_TIEMPO_DESCONECTADA,SD100_conectarSalidas,NULL);
    
    //Diagrama de navegacion
+   BoxPri1c_ShowProp( &ParSP,&control);
    DN_staticInit(&OpList,&AccessList);
 
 

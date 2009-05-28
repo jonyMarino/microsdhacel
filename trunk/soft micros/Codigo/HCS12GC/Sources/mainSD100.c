@@ -336,7 +336,7 @@ static const NEW_ARRAY_LIST(AccessList,AccessArray);
 
 
 NEW_FLASH_BKP_EN_FLASH(flash,0x4400);
-struct ManejadorDePROM *const pFlash= &flash;
+struct ManejadorMemoria *const pFlash= &flash;
 
 void OnTSalChange(void * self, void * controlSender){
   extern const struct ConstrGetterNum GetterPIDPot;
