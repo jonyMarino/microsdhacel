@@ -335,8 +335,6 @@ void PE_low_level_init(void)
   /* TSCR1: TEN=1 TSWAI= 1*/
   setReg8Bits(TSCR1, 192); 
   #endif
-   
-  EI2C1_Init();
   
              
   INTCR_IRQEN = 0;                     /* Disable the IRQ interrupt. IRQ interrupt is enabled after CPU reset by default. */

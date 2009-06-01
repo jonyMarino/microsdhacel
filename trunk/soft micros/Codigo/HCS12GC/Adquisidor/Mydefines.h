@@ -125,7 +125,7 @@
 	#else
 	  #ifdef _ADQUISIDOR
 	  #define FLASH_ADQUISIDOR_START  FLASH_COM_END + PAGE_SIZE + 1
-    #define FLASH_ADQUISIDOR_END 0x54FF - PAGE_SIZE
+    #define FLASH_ADQUISIDOR_END 0x61FF - PAGE_SIZE
     #endif
   #endif
   

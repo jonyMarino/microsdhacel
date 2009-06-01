@@ -14,12 +14,12 @@ void System_init(void){
 
 #elif defined(DS1307)
 
-//struct BaseTiempoDS1307 baseTiempo;
-struct RelojInternoPersistenciaDS1307 baseTiempo;
+struct BaseTiempoDS1307 baseTiempo;
+//struct RelojInternoPersistenciaDS1307 baseTiempo;
 
 void System_init(void){
-  //newAlloced(&baseTiempo,&BaseTiempoDS1307);
- newAlloced(&baseTiempo,&RelojInternoPersistenciaDS1307,2008,1,1,0,0,0,TRUE);
+  newAlloced(&baseTiempo,&BaseTiempoDS1307);
+ //newAlloced(&baseTiempo,&RelojInternoPersistenciaDS1307,2008,1,1,0,0,0,TRUE);
 }
 
 #else

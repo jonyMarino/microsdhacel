@@ -153,6 +153,7 @@ byte ModBus_writeAddress(word address,int dato){
   for(i=0;i<count;i++){	
       void * nodo = ArrayList_get(comProps,i);																	
       if(NodoICModBus_contieneDireccion(nodo,address)){
+       // if(instanceOf(getter,&PropiedadGenerica))     cambiar: poner aqui
         if(pEscrituraDemorada)
           return 1; //cambiar : error no alcanzo el tiempo
         newAlloced(&escrituraDemorada,&EscrituraDemorada,nodo,address,dato);
