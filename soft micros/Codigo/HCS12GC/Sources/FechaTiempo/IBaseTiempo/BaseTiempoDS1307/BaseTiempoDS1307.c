@@ -109,6 +109,7 @@ void BaseTiempoDS1307_constructor(void * _self)
   word w;
   bool cambiado = FALSE;
   
+  EI2C1_Init();
   
   EI2C1_SendChar(0);  // me posiciono en las horas
   EI2C1_SendStop();
@@ -162,13 +163,14 @@ byte BaseTiempoDS1307_setTiempoValidado(void * _self,byte horas,byte min,byte se
   
   timeEnviar.time.hours.bits.hourHigh = horas /10;
   timeEnviar.time.hours.bits.hourLow  = horas %10;
+  timeEnviar.time.hours.bits.amPm=FALSE;
   
   timeEnviar.time.minutes.bits.minHigh = min/10;
   timeEnviar.time.minutes.bits.minLow = min%10;
   
   timeEnviar.time.seconds.bits.secHigh = segs / 10; 
   timeEnviar.time.seconds.bits.secLow = segs % 10;
-  
+  timeEnviar.time.seconds.bits.CH=FALSE;
   
   EI2C1_SendBlock(&timeEnviar,sizeof(timeEnviar),&enviados);
   EI2C1_SendStop();
@@ -180,9 +182,10 @@ byte BaseTiempoDS1307_setTiempoValidado(void * _self,byte horas,byte min,byte se
 **     Method      :  BaseTiempoDS1307_getTiempo
 ** ===================================================================
 */
-void BaseTiempoDS1307_getTiempo(void * self,TIMEREC *time){
   TimeRegisters timeRecivido;
   word recibidos;
+void BaseTiempoDS1307_getTiempo(void * self,TIMEREC *time){
+
   
   EI2C1_SendChar(0);  // me posiciono en los segundos
   EI2C1_SendStop();
