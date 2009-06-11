@@ -17,11 +17,19 @@
 #include "Adquisidor.h"
 
 #include "AdquisidorHmi.h"
+#include "AdquisidorSimple.h"
+
+
 
 /*****************************/
 /********PROPIEDADES**********/
 /*****************************/
 
+  const struct ConstrGetterTxt GetterFecha={
+    &GetterGenerico,NULL,&GetterTxt,"FEcHA",AdquisidorSimple_getText
+  };
+  
+  
   /*Actual State*/
   const struct ConstrGetterTxt GetterState={
     &GetterGenerico,Adq_getActualState,&GetterTxt,"StAt",Adq_getStateStr  
@@ -98,6 +106,8 @@ word AdqHmi_ComuAdd(const struct Adquisidor * adq,word dir_ini){
 
 const struct BlockConstrReadOnlyBox	 CBox_ActualState;
 const struct BlockCnstrBoxLin CBox_Adq1;
+
+const struct BlockConstrReadOnlyBox	 CBox_Fecha;
 /*
 ** ===================================================================
 **     Function    :  AdqHmi_AddBoxes 

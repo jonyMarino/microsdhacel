@@ -9,6 +9,7 @@ extern const struct BlockCnstrBoxLin CBox_Adq1;
 
 
 extern const struct Array arrayAdqGetters;
+extern const struct BlockConstrReadOnlyBox	 CBox_Fecha;
 #define ADQ_GETTERS_ARRAY arrayAdqGetters
 /*
 ** ===================================================================

@@ -220,7 +220,7 @@ switch (self->state){
       PasarASCII(" UF ",num_display);
   break;
 }
-
+  
 }
 
 /*

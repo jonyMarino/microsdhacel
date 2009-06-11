@@ -19,5 +19,7 @@ extern const struct PlataformaEmbeddedClass AdquisidorSimple;
 
 void AdquisidorSimple_mainLoop(void * self);
 
+char * AdquisidorSimple_getText(void * _self);
+
 #define _getAdquisidor(self) (&((struct AdquisidorSimple *)self)->adquisidor)
 #endif

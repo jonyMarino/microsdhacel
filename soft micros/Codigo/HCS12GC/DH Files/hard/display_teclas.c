@@ -18,12 +18,12 @@ byte Nletras[CANTIDAD_DISPLAYS];
 static byte corrimiento[CANTIDAD_DISPLAYS];
 
 #ifdef HD90
-struct Timer HD90_Timer;
+struct Timer HD90Timer;
 #endif
 
 void Display_Init(void){
   #ifdef HD90
-  newAlloced(&HD90_Timer,&Timer,(ulong)CHANGE_HD90_TEXT);
+  newAlloced(&HD90Timer,&Timer,(ulong)CHANGE_HD90_TEXT);
   #endif
   newAlloced(&ScrollTimer,&Timer,(ulong)TIME_SCROLL);
 }
@@ -55,15 +55,17 @@ static const byte  DigInfOn[DIGITOS]={0x10,0x20,0x40,0x80};		// señales de contr
 static const byte  DigSupOn[DIGITOS]={0x01,0x02,0x04,0x08};		// señales de control del display
 
 #pragma INLINE
+#ifdef HD90
 void DpyAndSwitch(void)
 {
   static byte digito=0;				// digito a visualizar (0-3)
   static byte display=_DPY_INF;		// display a refrescar (sup/inf) 	
   byte leds; //conjunto de leds a mostrar
   int i;
-  #ifdef HD90
-  bool HD90_flag=Timer_isfinish(&HD90_Timer);
-  #endif
+  //#ifdef HD90
+  bool HD90_flag=Timer_isfinish(&HD90Timer);
+  extern byte	KeyEdge;
+  //#endif
   bool Scroll=Timer_isfinish(&ScrollTimer);
   byte caracterAMostrar;
 /* cada digito lo refresco cada 1 msg */
@@ -91,6 +93,153 @@ void DpyAndSwitch(void)
     
 /* escaneo la ultima tecla */
   if (digito<DIGITOS){
+    #ifdef _TECLAS
+      if(digito==0)
+        Switches(DigInfOn[digito]);
+    #endif
+    
+
+    	if(!HD90_flag && (KeyEdge=='u' || KeyEdge=='d'))
+		  KeyEdge=0;
+    
+    if(!HD90_flag){     
+      Display1_PutVal(0);		//PTA
+  	  bits2ULN_PutVal(0);
+  	  bits5ULN_PutVal(DigSupOn[digito]);  //PTM
+
+
+        /*de acuerco al corriemiento seteo  el caracterAMostrar*/
+        caracterAMostrar=corrimiento[1]+digito;
+        //Par de arriba 
+        if (caracterAMostrar<Nletras[1])
+          Display1_PutVal(DigDpy[1][caracterAMostrar]);  //PTA
+        else
+          Display1_PutVal(0);			// caracter vacio para Scroll
+    }else{
+      Display1_PutVal(0);  
+    }
+  } else {										//Muestro los leds (los puertos que seleccionan el digito ya se encuentran en el DL2)
+    Display1_PutVal(0);	 //PTA
+    #if NUM_SALIDAS>0
+      if (led[0]==TRUE)
+        leds=1;
+      else
+        leds=0;
+      #if NUM_SALIDAS > 1
+  	  if (led[1]==TRUE)
+        leds|=2;
+  	  #if NUM_SALIDAS > 2
+  	  if (led[2]==TRUE)
+        leds|=4;
+  	  #if NUM_SALIDAS > 3
+  	  if (led[3]==TRUE)
+        leds|=8;
+  	  #endif
+  	  #endif
+  	  #endif
+  	  bits5ULN_PutVal(leds); 	 //PTM
+  	#endif  
+  }
+  
+  if(++digito==5)
+  {
+    digito=0;
+    display=_DPY_SUP;
+  }
+  }  
+  
+/* muestro display superior */
+
+  else
+  {
+  
+/* el escaneo del teclado se hace luego del envio de la señal de ON
+   del digito para que el pin PULL se encuentre estable */
+  #ifdef _TECLAS    
+  	if(digito>0)
+  	  Switches(DigSupOn[digito]);
+  #endif	
+ 
+		
+  #ifdef HD90
+  	if(!HD90_flag && (KeyEdge=='u' || KeyEdge=='d'))
+  	  KeyEdge=0;
+    if (KeyEdge=='r' || KeyEdge=='f'){
+      HD90_flag = 0;
+      Timer_setTime(&HD90Timer,CHANGE_HD90_TEXT);
+    }
+  #endif
+  
+  if(HD90_flag){
+  	Display1_PutVal(0);		 //PTA
+  	bits2ULN_PutVal(0);
+  	bits5ULN_PutVal(DigSupOn[digito]);  //PTM
+      /*de acuerco al corriemiento seteo  el caracterAMostrar*/
+      caracterAMostrar=corrimiento[0]+digito;
+      if (caracterAMostrar<Nletras[0])
+        Display1_PutVal(DigDpy[0][caracterAMostrar]);  //PTA
+      else
+        Display1_PutVal(0);			// caracter vacio para Scroll
+  }else{
+    Display1_PutVal(0);  
+  }
+  if(++digito==4)
+  {
+    digito=0;
+
+    display=_DPY_INF;
+
+
+  }
+  }  
+		  
+  
+
+}
+
+
+#else
+
+
+void DpyAndSwitch(void)
+{
+  static byte digito=0;				// digito a visualizar (0-3)
+  static byte display=_DPY_INF;		// display a refrescar (sup/inf) 	
+  byte leds; //conjunto de leds a mostrar
+  int i;
+  //#ifdef HD90
+  //bool HD90_flag=Timer_isfinish(&HD90Timer);
+  //extern byte	KeyEdge;
+  //#endif
+  bool Scroll=Timer_isfinish(&ScrollTimer);
+  byte caracterAMostrar;
+/* cada digito lo refresco cada 1 msg */
+/* muestro display inferior */
+
+  
+  /*Corrimiento por scrolling*/
+  if (Scroll){
+    bool scrolling=FALSE;
+    for(i=0;i<CANTIDAD_DISPLAYS;i++){
+      if (Nletras[i]>DIGITOS)
+      {
+    	    corrimiento[i]++;
+          if (corrimiento[i]==Nletras[i]+DIGITOS)
+            corrimiento[i]=0;
+          scrolling=TRUE;  		    
+      }
+      if(scrolling)
+        Timer_setTime(&ScrollTimer,TIME_SCROLL);  
+    }
+  }
+  
+  if(display==_DPY_INF)
+  {
+    
+/* escaneo la ultima tecla */
+  if (digito<DIGITOS){
+
+      
     #ifdef _TECLAS
       if(digito==0)
         Switches(DigInfOn[digito]);
@@ -195,6 +344,8 @@ void DpyAndSwitch(void)
   
 
 }
+
+#endif
 ///////////////////////////////////////////////////////////////////////
 // Rutina de decodificacion de caracteres ASCII a 7 segmentos
 //
