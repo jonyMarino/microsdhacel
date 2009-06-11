@@ -2,6 +2,7 @@
 #include "System.h"
 #include "MessagesOut.h"
 #include "Adquisidor.h"
+#include "str_lib.h"
 
 void AdquisidorSimple_defCtor(void * self);
 
@@ -29,6 +30,8 @@ void enter_2num(int num , char * str){
   str[0]= num/10+'0';
   str[1]= num%10+'0'; 
 }
+
+
 
 void  AdquisidorSimple_actualizarTextos(void * _self){
   struct AdquisidorSimple * self=_self;
@@ -80,6 +83,7 @@ void  AdquisidorSimple_actualizarTextos(void * _self){
     memcpy(&self->mensaje[17],"no ing.",7);    
     memcpy(&self->mensaje[31],"no ing.",7);
   }
+ 
 }
 
 
@@ -90,7 +94,7 @@ void AdquisidorSimple_constructor(void * _self,void * conf,struct ManejadorDePRO
  newAlloced(&self->adquisidor,&Adquisidor,&adquisidor_config,(self->termometro).sensor);	
 
  newAlloced(&self->mensajes,MessageOut);
-   								    //012345678901234567890123456789012345678
+   								    //012345678901234567890123456789012345678						    
  strcpy(&self->mensaje,"EStAdo no. FEchA no ing.  horA no ing. ");
  self->textosMensajes= MessageOut_AddMessage(&self->mensajes,self->mensaje);
  AdquisidorSimple_actualizarTextos(self);
@@ -104,4 +108,7 @@ void AdquisidorSimple_defCtor(void * self,va_list * args){
 }
 
 
-
+char * AdquisidorSimple_getText(void * _self){
+  struct AdquisidorSimple * self= _self;
+   return self->mensaje;
+}

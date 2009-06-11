@@ -34,6 +34,7 @@
 #include "FstBoxPointer.h"
 #include "BoxList.h"
 #include "Access.h"
+#include "AdquisidorHmi.h"
 
 #define CNTR_TIME_DISCONECT 2000
 
@@ -60,7 +61,8 @@ const struct BlockConstBoxPri CBox_Pri={
   static const NEW_NODO_IC_MODBUS(ModBusCom,&MODBUS_GETTERS_ARRAY,1400,NULL);
   /*Codigo*/
   static const NEW_NODO_IC_MODBUS(CodCom,&COD_GETTERS_ARRAY,1500,NULL);
-
+    
+    
 
   static const struct NodoICModBus *const  nodosComunicacion[]={
      //Base de tiempo
@@ -82,8 +84,12 @@ const struct BlockConstBoxPri CBox_Pri={
   //Principal
 static const NEW_FST_BOX_POINTER(Principal,&CBox_Pri,NULL,0);
 
+static const NEW_FST_BOX_POINTER(fecha,&CBox_Fecha,NULL,0); 
+
+
 static const struct FstBoxPointer *const OpArray[]={
-  &Principal
+  &Principal,
+  &fecha
 };
 
 
@@ -91,14 +97,12 @@ static const NEW_BOX_LIST(OpList,OpArray,"op");
 
 
 //ADQ
-static const NEW_FST_BOX_POINTER(DateList,&DATE_TIME_BOX,&baseTiempo,0);
+
 static const NEW_FST_BOX_POINTER(AdqList,&ADQ_FST_BOX,_getAdquisidor(&adquisidorSimple),0);
 
 static const struct FstBoxPointer *const AdqArray[]={
-  &DateList,
   &AdqList   
 };
-
 static const NEW_BOX_LIST(Adq,AdqArray,"Adq");
 
 //CAL
@@ -112,18 +116,23 @@ static const NEW_BOX_LIST(Cal,CalArray,"CAL");
 
 
 //SET
+static const NEW_FST_BOX_POINTER(DateList,&DATE_TIME_BOX,&baseTiempo,0);
+
   //Comunicacion
 static const NEW_FST_BOX_POINTER(ModBusSet,&MOD_BUS_HMI_FST_BOX_SET,0,0);
+  
   //SetC
 static const NEW_FST_BOX_POINTER(SetsSet,&SETS_FST_BOX_SET,0,0);
   
 
 static const struct FstBoxPointer *const SetArray[]={
+  &DateList,
   &ModBusSet,
   &SetsSet  
 };
 
 static const NEW_BOX_LIST(Set,SetArray,"SEt");
+
 
 
 // Acceso comun
