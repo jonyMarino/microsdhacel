@@ -84,12 +84,12 @@ const struct BlockConstBoxPri CBox_Pri={
   //Principal
 static const NEW_FST_BOX_POINTER(Principal,&CBox_Pri,NULL,0);
 
-static const NEW_FST_BOX_POINTER(fecha,&CBox_Fecha,NULL,0); 
+//static const NEW_FST_BOX_POINTER(fecha,&CBox_Fecha,NULL,0); 
 
 
 static const struct FstBoxPointer *const OpArray[]={
   &Principal,
-  &fecha
+  //&fecha
 };
 
 
