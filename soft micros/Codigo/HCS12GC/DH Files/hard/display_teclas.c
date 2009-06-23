@@ -166,8 +166,16 @@ void DpyAndSwitch(void)
   	  KeyEdge=0;
     if (KeyEdge=='r' || KeyEdge=='f'){
       HD90_flag = 0;
-      Timer_setTime(&HD90Timer,CHANGE_HD90_TEXT);
+      
+     
+      if(/*DN.AccessCount==0  &&*/ KeyEdge=='r')
+       Timer_setTime(&HD90Timer,CHANGE_HD90_TEXT_LARGO);
+      else
+       Timer_setTime(&HD90Timer,CHANGE_HD90_TEXT);
+     
     }
+   
+     
   #endif
   
   if(HD90_flag){

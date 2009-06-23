@@ -149,6 +149,7 @@
 #define REFESH_NUMBER 1000 /*periodo en el que se refrescan los valores de los boxes numericos de tiempo real*/
 #define MAX_BYTE  255
 #define CHANGE_HD90_TEXT 2000
+#define CHANGE_HD90_TEXT_LARGO 7000
 #define MIN_NUMBER_DISP -1999
 #define MAX_NUMBER_DISP 9999
 #define TRETURN 30000  //tiempo de retorno sin boton en ms
