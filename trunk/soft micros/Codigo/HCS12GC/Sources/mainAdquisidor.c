@@ -46,9 +46,9 @@ struct AdquisidorSimple adquisidorSimple;
 
 
 const struct BlockConstBoxPri CBox_Pri={
-      &BoxPriAdquisidor,							/* funcion que procesa al box*/
+      &BoxPri,							/* funcion que procesa al box*/
       adquisidorSimple.termometro.sensor,
-      &adquisidorSimple.mensajes						
+      NULL						
 };
 
 /*  COMUNICACION  */
@@ -84,12 +84,12 @@ const struct BlockConstBoxPri CBox_Pri={
   //Principal
 static const NEW_FST_BOX_POINTER(Principal,&CBox_Pri,NULL,0);
 
-//static const NEW_FST_BOX_POINTER(fecha,&CBox_Fecha,NULL,0); 
+static const NEW_FST_BOX_POINTER(fecha,&CBox_Fecha,NULL,0); 
 
 
 static const struct FstBoxPointer *const OpArray[]={
   &Principal,
-  //&fecha
+  &fecha
 };
 
 
@@ -151,7 +151,9 @@ static const struct Access *const AccessArray[]={
 static const NEW_ARRAY_LIST(AccessList,AccessArray);
 
 
-
+char * AdquisidorSimple_getText(byte a){
+   return adquisidorSimple.mensaje;
+}
 
 void main (void){
 
