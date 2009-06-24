@@ -75,17 +75,16 @@ void DpyAndSwitch(void)
   /*Corrimiento por scrolling*/
   if (Scroll){
     bool scrolling=FALSE;
-    for(i=0;i<CANTIDAD_DISPLAYS;i++){
-      if (Nletras[i]>DIGITOS)
-      {
-    	    corrimiento[i]++;
-          if (corrimiento[i]==Nletras[i]+DIGITOS)
-            corrimiento[i]=0;
-          scrolling=TRUE;  		    
-      }
-      if(scrolling)
-        Timer_setTime(&ScrollTimer,TIME_SCROLL);  
+    byte dispActual = (HD90_flag)? _DPY_SUP:_DPY_INF;
+    if (Nletras[dispActual]>DIGITOS)
+    {
+  	    corrimiento[dispActual]++;
+        if (corrimiento[dispActual]==Nletras[dispActual]+DIGITOS)
+          corrimiento[dispActual]=0;
+        scrolling=TRUE;  		    
     }
+    if(scrolling)
+      Timer_setTime(&ScrollTimer,TIME_SCROLL);  
   }
   
   if(display==_DPY_INF)
@@ -166,11 +165,7 @@ void DpyAndSwitch(void)
   	  KeyEdge=0;
     if (KeyEdge=='r' || KeyEdge=='f'){
       HD90_flag = 0;
-      
      
-      if(/*DN.AccessCount==0  &&*/ KeyEdge=='r')
-       Timer_setTime(&HD90Timer,CHANGE_HD90_TEXT_LARGO);
-      else
        Timer_setTime(&HD90Timer,CHANGE_HD90_TEXT);
      
     }

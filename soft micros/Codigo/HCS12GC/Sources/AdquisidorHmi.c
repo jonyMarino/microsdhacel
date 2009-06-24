@@ -25,9 +25,9 @@
 /********PROPIEDADES**********/
 /*****************************/
 
- // const struct ConstrGetterTxt GetterFecha={
-  //  &GetterGenerico,NULL,&GetterTxt,"FEcHA",AdquisidorSimple_getText
-  //};
+  const struct ConstrGetterTxt GetterFecha={
+    &GetterGenerico,get_0,&GetterTxt,"FEcHA",AdquisidorSimple_getText
+  };
   
   
   /*Actual State*/
@@ -107,7 +107,7 @@ word AdqHmi_ComuAdd(const struct Adquisidor * adq,word dir_ini){
 const struct BlockConstrReadOnlyBox	 CBox_ActualState;
 const struct BlockCnstrBoxLin CBox_Adq1;
 
-//const struct BlockConstrReadOnlyBox	 CBox_Fecha;
+const struct BlockConstrReadOnlyBox	 CBox_Fecha;
 /*
 ** ===================================================================
 **     Function    :  AdqHmi_AddBoxes 
@@ -120,6 +120,12 @@ void AdqHmi_AddBoxes(const struct Adquisidor * adq,uchar num_obj){
 }
 
 /*  Boxes */
+
+/*Fecha*/
+const struct BlockConstrReadOnlyBox	 CBox_Fecha={
+ &ReadOnlyBox,
+ &GetterFecha
+};
 
 /*State*/
 const struct BlockConstrReadOnlyBox	 CBox_ActualState={

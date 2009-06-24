@@ -108,7 +108,3 @@ void AdquisidorSimple_defCtor(void * self,va_list * args){
 }
 
 
-char * AdquisidorSimple_getText(void * _self){
-  struct AdquisidorSimple * self= _self;
-   return self->mensaje;
-}
