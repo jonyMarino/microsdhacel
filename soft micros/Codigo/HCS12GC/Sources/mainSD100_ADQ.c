@@ -1,5 +1,4 @@
-
-/* TestControl.c*/
+     /* TestControl.c*/
 #include <stddef.h>
 
 #include "Timer.h"
@@ -44,6 +43,11 @@
 #include "AlarmaControlVista.h"
 #include "PWMPeriodoEvent.h"
 #include "PWMSoft.h"
+#include "Adquisidor.h"
+#include "AdquisidorHmi.h"
+#include "AdquisidorSimple.h"
+#include "dateTimeVista.h"
+#include "System.h"
 /* Definiciones */
 
 /*  Tiempo inicial en el que el control permanece desconectado  */
@@ -58,6 +62,7 @@ void SD100_conectarSalidas(void * self);
 
 /* Variables */
 struct Termometro termometro;
+struct AdquisidorSimple adquisidorSimple;
 
 #pragma CONST_SEG PARAMETERS_PAGE
 volatile const TConfPWM pwm_config[CANTIDAD_SAL_ALARMA+CANTIDAD_SAL_CONTROL];
@@ -136,6 +141,9 @@ const struct BlockConstBoxPriNC CBox_Pri={
   /*Codigo*/
   static const NEW_NODO_IC_MODBUS(CodCom,&COD_GETTERS_ARRAY,1500,NULL);
 
+  /*Adquisidor*/
+  static const NEW_NODO_IC_MODBUS(DateTime1Com,&DATE_TIME_GETTERS_ARRAY,1000,&baseTiempo);
+  static const NEW_NODO_IC_MODBUS(Adq1Com,&ADQ_GETTERS_ARRAY,1054,_getAdquisidor(&adquisidorSimple));
 
   static const struct NodoICModBus *const  nodosComunicacion[]={
      //Pwm
@@ -163,11 +171,17 @@ const struct BlockConstBoxPriNC CBox_Pri={
      &Pid3Com,
      &Pid4Com,             
      //Comunicacion
-     &ModBusCom,    
+     &ModBusCom,
+     //Base de tiempo
+     &DateTime1Com,
+     //Adquisidor
+     &Adq1Com,    
      //codigo
      &CodCom
   };
   static const NEW_ARRAY_LIST(arrayNodosComunicacion,nodosComunicacion);
+  
+
 /*  FIN COMUNICACION  */
 
 /*  Diagrama de navegacion  */
@@ -208,6 +222,16 @@ static const struct FstBoxPointer *const OpArray[]={
 
 
 static const NEW_BOX_LIST(OpList,OpArray,"op");
+
+//ADQ
+
+static const NEW_FST_BOX_POINTER(AdqList,&ADQ_FST_BOX,_getAdquisidor(&adquisidorSimple),0);
+
+static const struct FstBoxPointer *const AdqArray[]={
+  &AdqList   
+};
+static const NEW_BOX_LIST(Adq,AdqArray,"Adq");
+
 
 //CAL
 static const NEW_FST_BOX_POINTER(Sensor1List,&SNS_HMI_FST_BOX,&termometro.sensor[0],1);
@@ -317,6 +341,7 @@ static const NEW_BOX_LIST(Lim,LimArray,"Lim");
 
 // Acceso comun
 static const struct BoxList *const BoxListArray[]={
+  &Adq,
   &Tun,
   &Cal,
   &Set,
@@ -396,6 +421,7 @@ void main(void){
   bool prevVal;
   byte i;
    
+  newAlloced(&adquisidorSimple,&AdquisidorSimple,NULL,&flash);
 
   newAlloced(&termometro,&Termometro,&flash);
   com_initialization(&arrayNodosComunicacion);
@@ -446,7 +472,7 @@ void main(void){
    
    
    //Conectar salidas dentro de SALIDA_TIEMPO_DESCONECTADA ms
-   newAlloced(&timerConexionSalidas,&RlxMTimer,(ulong)SALIDA_TIEMPO_DESCONECTADA,SD100_conectarSalidas,NULL);
+  // newAlloced(&timerConexionSalidas,&RlxMTimer,(ulong)SALIDA_TIEMPO_DESCONECTADA,SD100_conectarSalidas,NULL);
    
    //Diagrama de navegacion
    DN_staticInit(&OpList,&AccessList);
@@ -460,8 +486,8 @@ void main(void){
     
     ControlSD100_procesar(tecla);
 
-    Termometro_mainLoop(&termometro);
-    
+    //Termometro_mainLoop(&termometro);
+    mainLoop(&adquisidorSimple);
   }
 }
 
@@ -478,6 +504,3 @@ void SD100_conectarSalidas(void * self){
    LedsSalida_init(&ledsSalida);
 
 }
-
-
-
