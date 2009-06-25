@@ -46,9 +46,18 @@ struct AdquisidorSimple adquisidorSimple;
 
 
 const struct BlockConstBoxPri CBox_Pri={
+      #ifdef HD90
       &BoxPri,							/* funcion que procesa al box*/
+      #else
+      &BoxPriAdquisidor,
+      #endif
       adquisidorSimple.termometro.sensor,
-      NULL						
+      #ifdef HD90
+      NULL
+      #else
+      &adquisidorSimple.mensajes
+      #endif
+      						
 };
 
 /*  COMUNICACION  */
@@ -83,13 +92,15 @@ const struct BlockConstBoxPri CBox_Pri={
 //Operador
   //Principal
 static const NEW_FST_BOX_POINTER(Principal,&CBox_Pri,NULL,0);
-
+#ifdef HD90
 static const NEW_FST_BOX_POINTER(fecha,&CBox_Fecha,NULL,0); 
-
+ #endif
 
 static const struct FstBoxPointer *const OpArray[]={
   &Principal,
+  #ifdef HD90
   &fecha
+  #endif
 };
 
 
