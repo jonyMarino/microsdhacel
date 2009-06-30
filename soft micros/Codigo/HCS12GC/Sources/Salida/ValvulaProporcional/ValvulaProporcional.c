@@ -10,6 +10,7 @@
 #include "Mydefines.h"
 #include "IO_MAP.h"
 #include "ManejadorMemoria.h"
+#include "RlxMTimer.h"
 
 #define  MAX_TIEMPOABIERTO 10000
 #define  MAX_BANDAMUERTA   10000
@@ -59,7 +60,8 @@ void ValvulaProporcional_constructor(void * _self,ConfValvulaProporcional * conf
   self->mascaraCierre = 1<<bitCierre;
   self->timeCloseInit = (tiempo + FACTOR_SEGURIDAD)*1000/20;   //calculo el tiempo de cierre inicial(en milisegundos),divido por 20 por que cada 20ms actualizo
   self->timeActual = 0;
-  newAlloced(&self->timer,&MethodTimer,(ulong)20,ValvulaProporcional_onCheckear,self);
+  set_tiempoAbierto(self,10);
+  newAlloced(&self->timer,&RlxMTimer,(ulong)10,ValvulaProporcional_onCheckear,self);
     
 }
 
@@ -87,11 +89,12 @@ static void detener(void * _self){
 }
 
 void  ValvulaProporcional_onCheckear(void *_self){  
-//cada 20ms es llamada 
+//cada 10ms es llamada 
   struct ValvulaProporcional* self = _self;
   word timesOpenClose,timesMuerto;
-  word potencia_vp = 500;/* Salida_getPotencia(self);*/
-  if((--(self->timeCloseInit))>0){
+  word potencia_vp =43; // Salida_getPotencia(&self->super);
+  if((self->timeCloseInit)>0){
+    (self->timeCloseInit)--;
     cerrar(self);  // inicio cerrando durante el tiempo "timeCloseInit"
     return;
   } else if(potencia_vp == 1000)
@@ -101,18 +104,18 @@ void  ValvulaProporcional_onCheckear(void *_self){
                else{
                  timesOpenClose=potencia_vp*(self->conf->tiempoAbierto);  //tiempo en milisegundos
                  timesMuerto=(self->conf->bandaMuerta)*1000;
-                 if((timesOpenClose>(self->timeActual+timesMuerto))) {
+                 if((timesOpenClose>(self->timeActual))) {
                   abrir(self);
-                  self->timeActual = (self->timeActual + 20);
+                  self->timeActual = (self->timeActual + 10);
                  }
-                 else if((timesOpenClose<(self->timeActual-timesMuerto))) {
+                 else if((timesOpenClose<(self->timeActual))) {
                         cerrar(self);
-                        self->timeActual = (self->timeActual - 20);
+                        self->timeActual = (self->timeActual - 10);
                  }
                        else
                         detener(self); 
                }
-               if(timesOpenClose==self->timeActual)
+               if((timesOpenClose==self->timeActual)||(timesOpenClose<(self->timeActual+timesMuerto))||(timesOpenClose>(self->timeActual-timesMuerto)))
                  detener(self); 
                
 }

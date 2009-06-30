@@ -61,6 +61,7 @@ void Salida_setPotencia(void* self,uint duty);
 uint Salida_getPotencia(void* self);
 void setPotenciaSalida(void* self,int duty);
 uint getPotencia(void* self);
+void setPotencia(void* _self,uint duty);
 
 /*Tipo Salida*/
 TipoSalida getTipoSalida(void* _self);

@@ -4,6 +4,7 @@
 #include "MethodTimer.h"
 #include "FshTypeSizes.h"
 #include "Errores.h"
+#include "RlxMTimer.h"
 
 #define  MAX_TIEMPOABIERTO 10000
 #define  MAX_BANDAMUERTA   10000
@@ -16,7 +17,8 @@ typedef struct{
 struct ValvulaProporcional{
   struct Salida super;
   ConfValvulaProporcional * conf;
-  struct MethodTimer timer;
+  //struct MethodTimer timer;
+  struct RlxMTimer timer;
   byte * puertoApertura;
   byte mascaraApertura;
   byte * puertoCierre;
