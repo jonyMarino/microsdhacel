@@ -472,7 +472,7 @@ void main(void){
    
    
    //Conectar salidas dentro de SALIDA_TIEMPO_DESCONECTADA ms
-  // newAlloced(&timerConexionSalidas,&RlxMTimer,(ulong)SALIDA_TIEMPO_DESCONECTADA,SD100_conectarSalidas,NULL);
+   newAlloced(&timerConexionSalidas,&RlxMTimer,(ulong)SALIDA_TIEMPO_DESCONECTADA,SD100_conectarSalidas,NULL);
    
    //Diagrama de navegacion
    DN_staticInit(&OpList,&AccessList);
@@ -486,7 +486,7 @@ void main(void){
     
     ControlSD100_procesar(tecla);
 
-    //Termometro_mainLoop(&termometro);
+    Termometro_mainLoop(&termometro);
     mainLoop(&adquisidorSimple);
   }
 }

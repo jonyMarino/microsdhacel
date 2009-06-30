@@ -1,4 +1,4 @@
-/* TestControl.c*/
+       /* TestControl.c*/
 #include "stddef.h"
 #include "stdtypes.h"
 #include "Timer.h"
@@ -46,9 +46,14 @@ struct AdquisidorSimple adquisidorSimple;
 
 
 const struct BlockConstBoxPri CBox_Pri={
-      &BoxPriAdquisidor,							/* funcion que procesa al box*/
+      
+      &BoxPri,							/* funcion que procesa al box*/
+     
       adquisidorSimple.termometro.sensor,
-      &adquisidorSimple.mensajes						
+      
+      NULL
+      
+      						
 };
 
 /*  COMUNICACION  */
@@ -84,11 +89,14 @@ const struct BlockConstBoxPri CBox_Pri={
   //Principal
 static const NEW_FST_BOX_POINTER(Principal,&CBox_Pri,NULL,0);
 
-//static const NEW_FST_BOX_POINTER(fecha,&CBox_Fecha,NULL,0); 
-
+static const NEW_FST_BOX_POINTER(fecha,&CBox_Fecha,NULL,0); 
+ 
 
 static const struct FstBoxPointer *const OpArray[]={
-  &Principal
+  &Principal,
+  
+  &fecha
+ 
 };
 
 
