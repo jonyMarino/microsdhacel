@@ -30,30 +30,30 @@
 
   /*Histeresis*/
   const struct ConstPropNumPV ParHA={
-    AlarmaDeSensor_getHisteresis, AlarmaDeSensor_setHisteresis, NULL, NULL,PropNumPV,"HA ",AlarmaDeSensor_decimales
+    &PropiedadGenerica, AlarmaDeSensor_getHisteresis, AlarmaDeSensor_setHisteresis, NULL, NULL,&PropNumPV,"HA ",AlarmaDeSensor_decimales
   };
   /*Valor de alarma*/
   const struct ConstPropNumPV ParAl={
-    AlarmaDeSensor_getValor, AlarmaDeSensor_setValor, AlarmaDeSensor_limInf, AlarmaDeSensor_limSup,PropNumPV,"A  ",AlarmaDeSensor_decimales
+    &PropiedadGenerica,AlarmaDeSensor_getValor, AlarmaDeSensor_setValor, AlarmaDeSensor_limInf, AlarmaDeSensor_limSup,&PropNumPV,"A  ",AlarmaDeSensor_decimales
   };
 
   /*Tipo de Alarma1*/
     const struct ConstPropTxt ParTAlar1={
-    AlarmaDeSensor_getTipoAlarma, AlarmaDeSensor_setTipoAlarma, get_0, AlarmaDeSensor_tipoAlarmaLimSup,PropTxt,"AL ",AlarmaDeSensor_tipoAlarmaMsj
+    &PropiedadGenerica,AlarmaDeSensor_getTipoAlarma, AlarmaDeSensor_setTipoAlarma, get_0, AlarmaDeSensor_tipoAlarmaLimSup,&PropTxt,"AL ",AlarmaDeSensor_tipoAlarmaMsj
   };
     
   /*Retransmision Low*/
   const struct ConstPropNumPV ParRetLow={
-    AlarmaDeSensor_getRetLow, AlarmaDeSensor_setRetLow, NULL, AlarmaDeSensor_retLowLimSup,PropNumPV,"r.L ",AlarmaDeSensor_decimales
+    &PropiedadGenerica,AlarmaDeSensor_getRetLow, AlarmaDeSensor_setRetLow, NULL, AlarmaDeSensor_retLowLimSup,&PropNumPV,"r.L ",AlarmaDeSensor_decimales
   };
 
   /*Retransmision Hi*/
   const struct ConstPropNumPV ParRetHi={
-    AlarmaDeSensor_getRetHi, AlarmaDeSensor_setRetHi, AlarmaDeSensor_retHiLimInf, NULL,PropNumPV,"r.H ",AlarmaDeSensor_decimales
+    &PropiedadGenerica,AlarmaDeSensor_getRetHi, AlarmaDeSensor_setRetHi, AlarmaDeSensor_retHiLimInf, NULL,&PropNumPV,"r.H ",AlarmaDeSensor_decimales
   };
 
 
-  const struct ClassPropiedad *const AlProps[]={
+  const struct ClassPropiedad *const alGetters[]={
     &ParHA,
     &ParAl,
     &ParTAlar1,
@@ -61,6 +61,7 @@
     &ParRetHi,
   };
   
+  const NEW_ARRAY(arrayAlarmaGetters,alGetters);
 
 /*
 ** ===================================================================
@@ -70,15 +71,15 @@
 */
 
 word AlarmaDeSensorHmi_ComuAdd(const struct AlarmaMult * al,word dir_ini){
-  word cant = sizeof(AlProps)/sizeof(struct ClassPropiedad *)-1;
-  com_AddProps(AlProps,al,dir_ini,dir_ini+cant);
+  word cant = sizeof(alGetters)/sizeof(struct ClassPropiedad *)-1;
+  //com_AddProps(alGetters,al,dir_ini,dir_ini+cant);
   return cant;
 }
 
 
 const struct BlockConstBoxPropBase CBox_AlarmaDeSensorVal;
 const struct BlockConstBoxPropVarName CBox_H_AlarmaDeSensor;
-const struct BlockConstBoxCondl CBox_TAlarmaDeSensor1;
+const struct BlockConstBoxCondicional CBox_TAlarmaDeSensor1;
 
 const struct  BlockCnstrBoxLin CBox_RET;
 /*
@@ -101,7 +102,7 @@ void AlarmaDeSensorHmi_AddBoxes(const struct AlarmaMult * al,uchar num_obj){
 /*Operador*/	
 const struct BlockConstBoxPropBase CBox_AlarmaDeSensorVal=
       {
-      BoxPropBase,						                  /* funcion que procesa al box*/
+      &BoxPropBase,						                  /* funcion que procesa al box*/
 			&ParAl											/* direccion en la E2Prom - el EEProm Start, if FAlarmaDeSensorSE no guarda valor*/
 			};
 
@@ -114,7 +115,7 @@ char * AlarmasHmi_getHDesc(struct PropWInc * prop){
 
 const struct BlockConstBoxPropVarName CBox_H_AlarmaDeSensor=
       {
-      BoxPropVarName,						                  /* funcion que procesa al box*/
+      &BoxPropVarName,						                  /* funcion que procesa al box*/
 			&ParHA,											/* direccion en la E2Prom - el EEProm Start, if FAlarmaDeSensorSE no guarda valor*/
       NULL,
       AlarmasHmi_getHDesc  
@@ -130,7 +131,7 @@ void * Box_TAlarmaDeSensor1(void * prop,uchar tecla){
 }
 
 const struct BlockConstBoxCondl CBox_TAlarmaDeSensor1=	{
-  			  BoxCondl,
+  			  &BoxCondicional,
   			  &ParTAlar1,											/* direccion en la E2Prom - el EEProm Start, if FAlarmaDeSensorSE no guarda valor*/
           Box_TAlarmaDeSensor1
 };
@@ -142,7 +143,7 @@ const struct ConstructorPropWInc*const Props_RET[]=	{
 };
 
 const struct  BlockCnstrBoxLin CBox_RET={
-  				BoxLineal,
+  				&BoxLineal,
   			  &Props_RET,
   			  NULL
 };

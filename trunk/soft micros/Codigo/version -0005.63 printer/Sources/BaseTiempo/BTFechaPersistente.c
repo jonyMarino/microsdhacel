@@ -1,5 +1,7 @@
 #include "BTFechaPersistente.h"
 #include "BaseTiempo_protected.h"
+#include "TmDt1.h"
+#include "TmDt1_protected.h"
 
 void BTFechaPersistente_defConstructor(void * self,va_list * args);
 

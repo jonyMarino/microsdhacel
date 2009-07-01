@@ -50,7 +50,7 @@ PLACEMENT /* here all predefined and user segments are placed into the SEGMENTS 
       NON_BANKED,             /* runtime routines which must not be banked */
       DEFAULT_ROM,
         COPY,            
-                    INTO  /*ROM_C000,*/ROM_6000,PAGE_3C,PAGE_3D;
+                    INTO  ROM_C000,ROM_6000,PAGE_3C;
 
 
      // STRINGS,                /* string literals */

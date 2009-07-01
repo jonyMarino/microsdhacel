@@ -74,21 +74,7 @@ extern const void *const AlarmaDeSensor;
 **     Description :  Constructor de la alarma
 ** ===================================================================
 */
-void AlarmaDeSensor_constructor(void * self,void * _conf,void * pid,void * salida,int time_desc);
-/*
-** ===================================================================
-**     Method      :  AlarmaDeSensor_desconectar 
-**     Description :  Desconecta la salida de la alarma
-** ===================================================================
-*/
-void AlarmaDeSensor_desconectar(void * self);
-/*
-** ===================================================================
-**     Method      :  AlarmaDeSensor_conectar 
-**     Description :  Conecta la salida de la alarma
-** ===================================================================
-*/
-void AlarmaDeSensor_conectar(void * self);
+void AlarmaDeSensor_constructor(void * self,void * _conf,void * pid,void * salida);
 /*
 ** ===================================================================
 **     Method      :  AlarmaDeSensor_manejador 
