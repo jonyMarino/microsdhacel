@@ -7,6 +7,7 @@
 #include "SensorTPT_Class.h"
 #include "ManejadorMemoria.h"
 #include "PWM.h"
+#include "sensor_adapt_val.h"
 
 #pragma DATA_SEG AlarmaDeSensor_DATA                                            
 #pragma CODE_SEG AlarmaDeSensor_CODE 
@@ -28,10 +29,7 @@ void AlarmaDeSensor_DefConstructor(void * self,va_list * args);
 int AlarmaDeSensor_getOP_Al(struct AlarmaDeSensor * _al);
 
 const struct TControlClass AlarmaDeSensorTable={
-  sizeof(struct AlarmaDeSensor),
-  AlarmaDeSensor_DefConstructor,
-  NULL,
-  NULL,
+  CLASS_INITIALIZATION(TControlClass,AlarmaDeSensor,Object,AlarmaDeSensor_DefConstructor,Object_dtor,Object_differ,Object_puto),
   AlarmaDeSensor_setValor
 };
 
@@ -45,8 +43,9 @@ static struct ManejadorDePROM * const pFlash=&flash;
 **     Description :  Constructor de la alarma
 ** ===================================================================
 */
-void AlarmaDeSensor_constructor(void * self,void * _conf,void * sensor,void * salida,int time_desc){
+void AlarmaDeSensor_constructor(void * self,void * _conf,void * sensor,void * salida){
   struct AlarmaDeSensor * _al=self;
+  const NEW_METHOD( onSensor, AlarmaDeSensor_onConversion,self);
     
   _al->sensor=sensor;
   _al->salida=salida;
@@ -56,7 +55,7 @@ void AlarmaDeSensor_constructor(void * self,void * _conf,void * sensor,void * sa
 
   AlarmaDeSensor_setTipoAlarma(_al,AlarmaDeSensor_getTipoAlarma(_al));
   
-  _Sensor_AddOnNewVal(sensor,AlarmaDeSensor_onConversion,self);
+  Sensor_addNuevaMedicionListener(sensor,&onSensor);
 
 }
 
@@ -68,29 +67,9 @@ void AlarmaDeSensor_constructor(void * self,void * _conf,void * sensor,void * sa
 */
 void AlarmaDeSensor_DefConstructor(void * self,va_list * args){
   AlarmaDeSensor_constructor(self,va_arg(*args,void*),va_arg(*args,void*),
-                  va_arg(*args,void*),va_arg(*args,int));  
+                  va_arg(*args,void*));  
 }
 
-/*
-** ===================================================================
-**     Method      :  AlarmaDeSensor_desconectar 
-**     Description :  Desconecta la salida de la alarma
-** ===================================================================
-*/
-void AlarmaDeSensor_desconectar(void * self){
-  struct AlarmaDeSensor * _al=self; 
-  Salida_conectar(_al->salida,FALSE);
-}
-/*
-** ===================================================================
-**     Method      :  AlarmaDeSensor_conectar 
-**     Description :  Conecta la salida de la alarma
-** ===================================================================
-*/
-void AlarmaDeSensor_conectar(void * self){
-  struct AlarmaDeSensor * _al=self;
-  Salida_conectar(_al->salida,TRUE);
-}
 
 /*
 ** ===================================================================
@@ -134,7 +113,7 @@ void AlarmaDeSensor_onConversion(void * self){
  struct AlarmaDeSensor * _al=self;
  int vxalar;
  
- if(!Salida_conectada(_al->salida))
+ if(!getConectada(_al->salida))
     return;
  
  
@@ -156,7 +135,7 @@ void AlarmaDeSensor_onConversion(void * self){
 
 TipoSalida AlarmaDeSensor_tipoSalidaActual(void * self){
  struct AlarmaDeSensor * _al=self;
- return _Salida_tipoSalida(_al->salida);
+ return getTipoSalida(_al->salida);
 }
 
 
@@ -168,7 +147,7 @@ TipoSalida AlarmaDeSensor_tipoSalidaActual(void * self){
 ** ===================================================================
 */
 int AlarmaDeSensor_getOP_Al(struct AlarmaDeSensor * _al){
-  return _Sensor_AdaptVal( _al->sensor, _al->_conf->valor);
+  return adaptValOut( _al->sensor, _al->_conf->valor);
 }
 
 /*
@@ -179,7 +158,7 @@ int AlarmaDeSensor_getOP_Al(struct AlarmaDeSensor * _al){
 ** ===================================================================
 */
 int AlarmaDeSensor_getOP_HA(struct AlarmaDeSensor * _al){
-  return _Sensor_AdaptVal( _al->sensor, _al->_conf->histeresis);
+  return adaptValOut( _al->sensor, _al->_conf->histeresis);
 }
 
 /*
@@ -311,9 +290,9 @@ void AlarmaDeSensor_SetearOnOff(void * self,byte TipoControl){
   struct AlarmaDeSensor * _al=self;
   
   if(TipoControl==SALIDA_PROPORCIONAL) 
-      _Salida_OnOff(_al->salida,FALSE);
+      setTipoSalida(_al->salida,FALSE);
   else
-      _Salida_OnOff(_al->salida,TRUE);
+      setTipoSalida(_al->salida,TRUE);
 }
 
 /*

@@ -25,6 +25,9 @@
 /********PROPIEDADES**********/
 /*****************************/
 
+ 
+  
+  
   const struct ConstrGetterTxt GetterFecha={
     &GetterGenerico,get_0,&GetterTxt,"FEcHA",AdquisidorSimple_getText
   };

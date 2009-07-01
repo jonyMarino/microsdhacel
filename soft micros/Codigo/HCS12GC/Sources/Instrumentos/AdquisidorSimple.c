@@ -3,6 +3,7 @@
 #include "MessagesOut.h"
 #include "Adquisidor.h"
 #include "str_lib.h"
+#include "FlashBkp256.h"
 
 void AdquisidorSimple_defCtor(void * self);
 

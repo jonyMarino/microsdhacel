@@ -9,7 +9,9 @@ struct FlashBkp256{
   struct FlashBkp super;
 };
 
-extern const struct FlashBkpClass FlashBkp256; 
+extern const struct FlashBkpClass FlashBkp256;
+
+word FlashBkp256_getWord(void * _self,word * address); 
 ///////////////////////////////////////
 
 #define INITIALIZATION_FLASH_BKP_256(class,bkpAddr)      \

@@ -34,4 +34,8 @@ extern const struct BlockConstBoxPropBase CBox_Periodo;
 
 #define PWM_VISTA_FST_TUN_BOX  CBox_Periodo
 
+extern const struct BlockConstBoxPropBase CBox_PeriodoAL;
+
+#define PWM_AL_VISTA_FST_TUN_BOX  CBox_PeriodoAL
+
 #endif
