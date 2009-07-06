@@ -42,14 +42,16 @@ void Adq_Escribir_Powerdown(void* _self);
 void Adq_Grabar_Parametros(void* _self);
 void Adq_Escribir_Header(void * _self);
 
-const struct Class Adquisidor={
+const struct AdquisidorClass Adquisidor={
   &Class,
   "",
   &Object,
   sizeof(struct Adquisidor),
   Adq_DefConstructor,
   NULL,
-  NULL 
+  NULL,
+  Adq_Start,
+  Adq_Grabar_Parametros, 
 };
 
 
@@ -462,6 +464,58 @@ void Adq_Escribir_NextPage(void* _self,word addr){
 
 /*
 ** ===================================================================
+**     Method      :  Adq_SerchActualPage
+**    Description  :  Busca cual es la direccion para grabar actual 
+** ===================================================================
+*/
+byte Adq_SerchActualAddr(void * _self){
+  struct Adquisidor * _ad = _self;
+  const byte header_WordSize = (Adq_SizeOfHeader(_self)+sizeof(word)/2)/sizeof(word);
+  const byte Params_WordSize =(Adq_SizeOfWriteParams(_self)+sizeof(word)/2)/sizeof(word);
+  
+  _ad->ActualAddr= _ad->_conf->MemAddrStart;
+  
+  while(_ad->ActualAddr<_ad->_conf->MemAddrEnd){
+    
+    if(*_ad->ActualAddr==_START_BYTE)
+      onStartEncontrado();
+      _ad->ActualAddr+=header_WordSize;  
+    
+    if(*_ad->ActualAddr==SPECIAL_KEY){
+      _ad->ActualAddr++;
+      onEspecialEncontrado();
+      if(*_ad->ActualAddr==_MEM_FULL){
+        _ad->ActualAddr++; 
+        return _MEM_FULL;    //ver cambiar
+      }else if(*_ad->ActualAddr==_CONTINUE_NEXT_PAGE_BYTE){
+        word next;
+        _ad->ActualAddr++;
+        next = (*_ad->ActualAddr);//dir of next page 
+        if(*(word*)&_ad->ActualAddr>next)				//pegue la vuelta sin detenerme?
+          return _MEM_FULL;
+        //sino
+        *(word*)&_ad->ActualAddr=next;
+      }else
+        _ad->ActualAddr++; 
+    }
+    else if(*_ad->ActualAddr==-1){
+      
+      if( *(_ad->ActualAddr+1)!=_PREV_VAL_m1)  //FLASH no grabada??
+        return 0; 
+      else{
+        onDatoEncontrado();
+        _ad->ActualAddr+=2;
+      }
+    }else{
+      onDatoEncontrado();
+      _ad->ActualAddr++;  
+    }
+  }
+
+}
+
+/*
+** ===================================================================
 **     Method      :  Adq_getActualState
 **    Description  :  Obtiene el estado del adquisidor (      "no  ",									
 **			"Si  ",
@@ -718,47 +772,7 @@ int Adq_getPaginasEnd(void* _self){
 }
 
 
-/*
-** ===================================================================
-**     Method      :  Adq_SerchActualPage
-**    Description  :  Busca cual es la direccion para grabar actual 
-** ===================================================================
-*/
-byte Adq_SerchActualAddr(void * _self){
-  struct Adquisidor * _ad = _self;
-  const byte header_WordSize = (Adq_SizeOfHeader(_self)+sizeof(word)/2)/sizeof(word);
-  const byte Params_WordSize =(Adq_SizeOfWriteParams(_self)+sizeof(word)/2)/sizeof(word);
-  
-  _ad->ActualAddr= _ad->_conf->MemAddrStart;
-  
-  while(_ad->ActualAddr<_ad->_conf->MemAddrEnd){
-    
-    if(*_ad->ActualAddr==_START_BYTE)
-      _ad->ActualAddr+=header_WordSize;  
-    
-    if(*_ad->ActualAddr==SPECIAL_KEY){
-      _ad->ActualAddr++;
-      if(*_ad->ActualAddr==_MEM_FULL){
-        _ad->ActualAddr++; 
-        return _MEM_FULL;
-      }else if(*_ad->ActualAddr==_CONTINUE_NEXT_PAGE_BYTE){
-        word next;
-        _ad->ActualAddr++;
-        next = (*_ad->ActualAddr);//dir of next page 
-        if(*(word*)&_ad->ActualAddr>next)				//pegue la vuelta sin detenerme?
-          return _MEM_FULL;
-        //sino
-        *(word*)&_ad->ActualAddr=next;
-      }else
-        _ad->ActualAddr++; 
-    }
-    else if(*_ad->ActualAddr==-1 && *(_ad->ActualAddr+1)!=_PREV_VAL_m1)  //FLASH no grabada??
-      return 0; 
-    else
-      _ad->ActualAddr++;  
-  }
 
-}
 
 
 
