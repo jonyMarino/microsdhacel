@@ -42,16 +42,17 @@ void Adq_Escribir_Powerdown(void* _self);
 void Adq_Grabar_Parametros(void* _self);
 void Adq_Escribir_Header(void * _self);
 
-const struct AdquisidorClass Adquisidor={
+//const struct AdquisidorClass Adquisidor={
+const struct Class Adquisidor={
   &Class,
   "",
   &Object,
   sizeof(struct Adquisidor),
   Adq_DefConstructor,
   NULL,
-  NULL,
-  Adq_Start,
-  Adq_Grabar_Parametros, 
+  NULL//,
+ // Adq_Start,
+ // Adq_Grabar_Parametros, 
 };
 
 
@@ -289,7 +290,7 @@ void Adq_CheckPageMem(void * self, word max_next_size){
   
   if( PAGE_SIZE-((word)_ad->ActualAddr&(PAGE_SIZE-1)) < max_next_size+Escnextpage_size){		
                             // No hay suficiente memoria en la pagina?
-    word next_PageAddr = (((word)_ad->ActualAddr)&65024) + PAGE_SIZE;
+    word next_PageAddr = (((word)_ad->ActualAddr)&(65535 - (PAGE_SIZE - 1) )) + PAGE_SIZE;
     if(next_PageAddr >= (word)_ad->_conf->MemAddrEnd) // Memoria excedida
       next_PageAddr = (word)_ad->_conf->MemAddrStart;//vuelvo al inicio de la memoria
     if(*(word*)next_PageAddr!=0xFFFF)  // La siguiente pagina ya esta escrita
@@ -478,12 +479,12 @@ byte Adq_SerchActualAddr(void * _self){
   while(_ad->ActualAddr<_ad->_conf->MemAddrEnd){
     
     if(*_ad->ActualAddr==_START_BYTE)
-      onStartEncontrado();
+      //onStartEncontrado();
       _ad->ActualAddr+=header_WordSize;  
     
     if(*_ad->ActualAddr==SPECIAL_KEY){
       _ad->ActualAddr++;
-      onEspecialEncontrado();
+      //onEspecialEncontrado();
       if(*_ad->ActualAddr==_MEM_FULL){
         _ad->ActualAddr++; 
         return _MEM_FULL;    //ver cambiar
@@ -503,11 +504,11 @@ byte Adq_SerchActualAddr(void * _self){
       if( *(_ad->ActualAddr+1)!=_PREV_VAL_m1)  //FLASH no grabada??
         return 0; 
       else{
-        onDatoEncontrado();
+        //onDatoEncontrado();
         _ad->ActualAddr+=2;
       }
     }else{
-      onDatoEncontrado();
+      //onDatoEncontrado();
       _ad->ActualAddr++;  
     }
   }
@@ -703,17 +704,17 @@ TError Adq_ErasePage(void* _self, word * page){
   struct Adquisidor * _ad = _self;
   
   if(_ad->Estado_Adquisicion==ADQ_FULL){
-    if( ((word)page&65024) == ((word)_ad->ActualAddr&65024)){
-      _ad->ActualAddr=(word*)((word)page&65024);
+    if( ((word)page&(65535 - (PAGE_SIZE - 1) )) == ((word)_ad->ActualAddr&(65535 - (PAGE_SIZE - 1) ))){
+      _ad->ActualAddr=(word*)((word)page&(65535 - (PAGE_SIZE - 1) ));
       _ad->Estado_Adquisicion=ADQ_NO;  
     }
       PromBkp_borrarPagina(pFlash,(word)_ad->ActualAddr);
     return;
   }
-  if( _ad->Estado_Adquisicion==ADQ_YES && ((word)page&65024) == ((word)_ad->ActualAddr&65024) )
+  if( _ad->Estado_Adquisicion==ADQ_YES && ((word)page&(65535 - (PAGE_SIZE - 1) )) == ((word)_ad->ActualAddr&(65535 - (PAGE_SIZE - 1) )) )
     return ERR_VALUE;
-  if(((word)page&65024) == ((word)_ad->ActualAddr&65024))
-    *(word*)&_ad->ActualAddr = ((word)_ad->ActualAddr&65024);
+  if(((word)page&(65535 - (PAGE_SIZE - 1) )) == ((word)_ad->ActualAddr&(65535 - (PAGE_SIZE - 1) )))
+    *(word*)&_ad->ActualAddr = ((word)_ad->ActualAddr&(65535 - (PAGE_SIZE - 1) ));
   PromBkp_borrarPagina(pFlash,(word)page);  
   return ERR_OK;
   
