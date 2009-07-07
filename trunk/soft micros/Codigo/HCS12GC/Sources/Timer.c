@@ -107,7 +107,9 @@ void TimerComp(struct Timer * self){
     comp= cuentaTmp >= nextCuentaTmp;
   
   if (comp ){
-    nextCuentaTmp +=  /*(long)nextCuentaTmp - cuentaTmp +*/ tiempoTmp;
+    int error = cuentaTmp - nextCuentaTmp;
+    error = (error<0)?-error:error;
+    nextCuentaTmp +=   error + tiempoTmp;
     self->next_cuenta=nextCuentaTmp;    
     if(cuentaTmp >= nextCuentaTmp){
       self->of=TRUE;        
