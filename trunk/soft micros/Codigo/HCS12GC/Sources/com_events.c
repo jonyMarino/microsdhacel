@@ -9,6 +9,7 @@
 #include "ArrayList.h"
 #include "CompilationOptions.h"
 #include "PromBkp.h"
+#include "trx.h"
 
 #include "com_events.h"
 
@@ -16,7 +17,9 @@
 #pragma CODE_SEG COM_EVENTS_CODE 
 
 
-
+void sendRead(void);
+void sendNextRead(void);
+void sendCRC(void);
 
 /*EscrituraDemorada*/
 struct EscrituraDemorada{
@@ -55,7 +58,13 @@ const struct Class EscrituraDemorada={
 struct ArrayList/*<NodoICModBus>*/ *comProps;
 struct EscrituraDemorada escrituraDemorada;
 struct EscrituraDemorada * pEscrituraDemorada=NULL;
- 
+static word step=0;
+static word address;
+static word crc;
+
+extern bool AS1_Tx; 
+extern byte msj[16];
+extern const unsigned int crc_control[];
 /*
 ** ===================================================================
 **    Function    : com_Init 
@@ -133,6 +142,11 @@ void com_Handler(void){
 word ModBus_getAddressData(word address){
   byte i;  
   byte count = ArrayList_count(comProps);
+    
+    if(address&1)
+      return *(word*)address;
+    
+    
     for(i=0;i<count;i++){	
       void * nodo = ArrayList_get(comProps,i);															
       if(NodoICModBus_contieneDireccion(nodo,address))
@@ -174,19 +188,84 @@ byte ModBus_writeAddress(word address,int dato){
 }
 
 byte ModBusRead(byte * data){
-    word Address;
     
-    if (data[4]!=0 || data[5]!=1)
+    
+    if (data[4]!=0 || data[5]==0)
       return ERR_VALUE;
-    Address=*((word *)&data[2]);
+    address=*((word *)&data[2]);
     data[2]=data[5]*2;
-
-    *((word *)&data[3])=ModBus_getAddressData(Address); 
  
-    return ModBus_Send(data,5);
+    setOnSend(sendRead);
+    sendRead();
+    
+    return ERR_OK;
 }
 
+void sendRead(void){
+    byte byteOut = msj[step];
+    
+    if (step == 0){
+      crc = 0xffff;
+      trx_SetVal();
+    }
+    
+    if (AS1_SendChar(msj[step])==ERR_OK){
+        //actualizo el valor del crc a enviar
+        crc ^= byteOut;
+        crc = crc_control[crc%256]^(crc/256);
+        step++;
+        if(step>2){
+          step = 0;
+          setOnSend(sendNextRead);
+        }
+    }
+}
 
+void sendNextRead(void){
+  static word wordOut;
+  byte byteOut;
+  
+  if ((step&1) == 0){
+    wordOut = ModBus_getAddressData(address);
+    address+=2;
+    byteOut = *((byte *)&wordOut);
+  }else{
+    byteOut = *( ((byte *)&wordOut) +1  ); 
+  }
+    
+    
+  if (AS1_SendChar(byteOut)==ERR_OK){          
+      //actualizo el valor del crc a enviar
+      crc ^= byteOut;
+      crc = crc_control[crc%256]^(crc/256);
+      
+      step++;
+      if(step==msj[2]){
+          step = 0;
+          setOnSend(sendCRC);  
+      }
+  }
+}
+
+void sendCRC(void){
+  switch(step){
+    case 0:
+      if (AS1_SendChar(crc%256)==ERR_OK){     
+        step++; 
+      }
+      break;
+    case 1:
+      if (AS1_SendChar(crc/256)==ERR_OK){     
+        step++; 
+      }
+      break;
+    case 2:
+      AS1_Tx=FALSE;		//Termino el proceso de transmision
+      step=0;
+      trx_ClrVal();
+      break;      
+  }
+}
 
 byte ModBusWrite(byte * data){
 

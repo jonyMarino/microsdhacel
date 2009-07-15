@@ -20,6 +20,7 @@ void ModBus_Recive(AS1_TComData dat);
 
 void ModBus_OnSend(void);
 
+void setOnSend(void (*pf)(void));
 /*
 ** ===================================================================
 **     Method      :  ModBus_Send
