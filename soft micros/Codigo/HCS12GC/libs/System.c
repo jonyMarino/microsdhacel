@@ -23,20 +23,12 @@ void System_init(void){
 }
 
 #else
-#include "BTFechaPersistente.h"
+#include "BaseTiempo.h"
 
-#pragma CONST_SEG PARAMETERS_PAGE
-volatile const struct BTFPConf bTConf={
-  1,10,2008
-};
-
-#pragma CONST_SEG DEFAULT
-
-
-struct BTFechaPersistente baseTiempo;
+struct BaseTiempo baseTiempo;
 
 void System_init(void){
-  newAlloced(&baseTiempo,&BTFechaPersistente,&bTConf);
+  newAlloced(&baseTiempo,&BaseTiempo,2008,1,1,0,0,0,TRUE);
 }
 #endif
 

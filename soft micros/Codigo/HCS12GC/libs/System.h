@@ -10,8 +10,8 @@ extern struct BTBajoConsumo baseTiempo;
 extern struct BaseTiempoDS1307 baseTiempo;
 //extern struct RelojInternoPersistenciaDS1307 baseTiempo;
 #else
-#include "BTFechaPersistente.h"
-extern struct BTFechaPersistente baseTiempo;
+#include "BaseTiempo.h"
+extern struct BaseTiempo baseTiempo;
 #endif 
 
 #define Sys_getBaseTiempo() &baseTiempo

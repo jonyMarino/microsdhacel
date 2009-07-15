@@ -12,18 +12,18 @@ byte leds=0;
 
 void set_Led(byte num){
   Display1_PutVal(0);	 //PTA
-  Bits2ULN_PutVal(SELECT_LEDS);		// PTJ
+  bits2ULN_PutVal(SELECT_LEDS);		// PTJ
   
   leds|=(1<<num);
 
-	Bits5ULN_PutVal(leds); 	 //PTM
+	bits5ULN_PutVal(leds); 	 //PTM
 }
 
 void Clr_Led(byte num){
 
   leds&=~(1<<num);
   
-  Bits5ULN_PutVal(leds); 	 //PTM
+  bits5ULN_PutVal(leds); 	 //PTM
 }
 
 byte get_Led(byte num){

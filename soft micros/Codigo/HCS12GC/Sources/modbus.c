@@ -17,6 +17,7 @@
 #pragma CODE_SEG ModBus_CODE 
 #pragma CONST_SEG DEFAULT
 
+void (*onSend)(void);
 
 typedef struct {
   byte func_number; // numero en el byte 2 recibido
@@ -52,11 +53,11 @@ void OnTimePass(void);
 bool AS1_Tx;
 static byte cant_msjs_out;  // cantidad de mensajes a enviar sin el CRC
 byte Step=0;
-static byte msj[16];
+byte msj[16];
 byte msj_out[16];
 struct FTimer comu_timer;
 //////////////////////////////////
-
+int timer_test=0;
 /*										 
 ** ===================================================================
 **     Function    : Comu_Init 
@@ -129,7 +130,11 @@ void AS1_OnRxChar(void)
 void AS1_OnTxComplete(void)
 {
   /* Write your code here ... */
-  ModBus_OnSend();
+  (*onSend)();
+}
+
+void setOnSend(void (*pf)(void)){  
+  *onSend=pf;
 }
 /*										 
 ** ===================================================================
@@ -156,7 +161,9 @@ void ModBus_Recive(AS1_TComData dat)
   msj[Step]=dat;
   switch(Step){
     
-    case 0:if (msj[0]!= iId || !Timer_isfinish(&comu_timer)){
+    case 0:if (msj[0]!= iId || /*timer_test!=0){ */
+      !Timer_isfinish(&comu_timer)){
+      //timer_test=3;
       Timer_setTime(&comu_timer,3);
       break;         //Id 
     }
@@ -167,10 +174,12 @@ void ModBus_Recive(AS1_TComData dat)
     case 5:
     case 6:
       		 Step++;
+      		 //timer_test=3;
       		 Timer_setTime(&comu_timer,3);// ckeckeo que no pasen 3ms    		 
       		 break;
     case 7: 
     			Step++;
+          //timer_test=3;
           Timer_Restart(&comu_timer);// ckeckeo que no pasen 3ms    			
           crc = calculate_crc(msj,6);
           if ( (crc%256)!=msj[6] || (crc/256)!=msj[7] ){
@@ -201,6 +210,7 @@ void ModBus_Recive(AS1_TComData dat)
 **     Returns     : Nothing
 ** ===================================================================
 */
+
 void ModBus_OnSend(void)
 {
   static byte StepTx=0; //Pasos en la transmision
@@ -212,7 +222,7 @@ void ModBus_OnSend(void)
     
     if (AS1_SendChar(msj_out[StepTx])==ERR_OK) 
         StepTx++;
-  } else if(StepTx==cant_msjs_out) {
+  } else if(StepTx==cant_msjs_out) {  
     //  Timer_Restart(&comu_timer);// ckeckeo que no pasen 3ms
       AS1_Tx=FALSE;		//Termino el proceso de transmision
       StepTx=0;
@@ -246,10 +256,12 @@ byte ModBus_Send(byte * data,byte cant){
   cant_msjs_out=cant+2;
   AS1_Tx=TRUE;
   
+  onSend = ModBus_OnSend;
   ModBus_OnSend();//Puede ser demasiado rápido llamar a esta funcion aca, verificar
   
   return ERR_OK;
 }
+
 
 /////////////////////////////////////////////////////////////////////////// 
  // Control del CRC para realizar las xor 

@@ -22,9 +22,11 @@ NEW_METHOD_CONTAINER(listeners40ms);
 */
 void TI1ms_OnInterrupt(void)
 { 
-
+  extern int timer_test;
   /* Write your code here ... */ 
-  MethodContainer_execute(&listeners1ms);	
+  MethodContainer_execute(&listeners1ms);
+  if( timer_test )
+    timer_test--;	
 }
 
 /*

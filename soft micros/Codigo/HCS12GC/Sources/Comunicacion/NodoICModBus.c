@@ -32,7 +32,7 @@ int NodoICModBus_getDato(const void * _self,void * dir) {
   
   if(!NodoICModBus_contieneDireccion(self,dir))  
     return 0; //cambiar: error
-  getter= Array_get(self->getters, (size_t)dir - (size_t)self->dirIni);
+  getter= Array_get(self->getters, ((size_t)dir - (size_t)self->dirIni) /2);
   return ClassProp_getVal(getter,self->obj);    
 }
 
@@ -49,7 +49,7 @@ bool NodoICModBus_setDato(const void * _self,void * dir,int dato) {
   
   if(!NodoICModBus_contieneDireccion(self,dir))  
     return 1; //cambiar: error
-  getter= Array_get(self->getters, (size_t)dir - (size_t)self->dirIni);
+  getter= Array_get(self->getters, ((size_t)dir - (size_t)self->dirIni)/2);
   if(instanceOf(getter,&PropiedadGenerica))
     return ClassProp_setVal(getter,self->obj,dato); 
   return ERR_OK; 
@@ -57,7 +57,7 @@ bool NodoICModBus_setDato(const void * _self,void * dir,int dato) {
 
 const void * NodoICModBus_get_dirFin(const void * _self) {
   const struct NodoICModBus *self = _self; 
-  return (size_t)self->dirIni + (size_t) Array_count(self->getters);
+  return (size_t)self->dirIni + (size_t) Array_count(self->getters) * 2 ;
 }
 
 const void * NodoICModBus_get_dirIni(const void * _self) {
