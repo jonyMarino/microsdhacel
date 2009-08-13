@@ -16,7 +16,7 @@ extern const struct Class OutputStreamClass;
 
 
 /*C++ 
-class OutputStream:public Object
+_class OutputStream:public Object
 {
  public:
   OutputStream();
@@ -52,7 +52,7 @@ void flush(void * _self);
 //           throws IOException
 //
 //    Writes b.length bytes from the specified byte array to this output stream.
-void write(void * _self,uchar * b);
+void write(void * _self,char * b);
 
 //Writes the specified byte to this output stream. The general contract for write is that one byte is written to the output stream.
 void writeByte(void * _self,uchar b);
@@ -69,8 +69,8 @@ void OutputStream_write(void * _self,uchar * b);
 void OutputStream_writeByte(void * _self,uchar b);
 
 
-#define OUTPUT_STREAM_CLASS_INITIALIZATION(description,name,super,contructor,destructor,differ,puto,close,flush,write,writeByte)\
-  CLASS_INITIALIZATION(description,name,super,contructor,destructor,differ,puto),\
+#define OUTPUT_STREAM_CLASS_INITIALIZATION(description,name,superPointer,contructor,destructor,differ,puto,close,flush,write,writeByte)\
+  CLASS_INITIALIZATION(description,name,superPointer,contructor,destructor,differ,puto),\
   close,  \
   flush,  \
   write,  \

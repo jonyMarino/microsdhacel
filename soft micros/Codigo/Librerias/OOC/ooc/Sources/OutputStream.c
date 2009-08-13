@@ -1,7 +1,9 @@
 #include <assert.h>
 #include "OutputStream.h"
 
-const struct Class OutputStreamClass;
+const struct Class OutputStreamClass={
+  CLASS_INITIALIZATION(Class,OutputStreamClass,Class,Object_ctor,Object_dtor,Object_differ,Object_puto)  
+};
 
 const struct OutputStreamClass OutputStream={
   OUTPUT_STREAM_CLASS_INITIALIZATION(OutputStreamClass,
@@ -31,7 +33,7 @@ void OutputStream_flush(void * _self){
 }
 
 // OutputStream_write(void * _self,uchar * b);
-void OutputStream_write(void * _self,uchar * b) {
+void OutputStream_write(void * _self,const char * b) {
   printf(b);
 }
 
@@ -51,43 +53,43 @@ void OutputStream_writeByte(void * _self,uchar b) {
   @details close the stream
 */
 void close(void*_self){
-  struct OutputStreamClass * class =classOf(_self); 
+  struct OutputStreamClass * _class = (struct OutputStreamClass *)classOf(_self); 
   
-  assert(class -> close);
+  assert(_class -> close);
 	
-	class -> close(_self);
+	_class -> close(_self);
 }
 
 //Flushes this output stream and forces any buffered output bytes to be written out. The general contract of flush is that calling it is an indication that, if any bytes previously written have been buffered by the implementation of the output stream, such bytes should immediately be written to their intended destination.
 //
 //The flush method of OutputStream does nothing. 
 void flush(void * _self) {
-  struct OutputStreamClass * class =classOf(_self); 
+  struct OutputStreamClass * _class =(struct OutputStreamClass *)classOf(_self); 
   
-  assert(class -> flush);
+  assert(_class -> flush);
 	
-	class -> flush(_self);
+	_class -> flush(_self);
 }
 
 //public void write(byte[] b)
 //           throws IOException
 //
 //    Writes b.length bytes from the specified byte array to this output stream.
-void write(void * _self,uchar * b) {
-  struct OutputStreamClass * class =classOf(_self); 
+void write(void * _self,const char * b) {
+  struct OutputStreamClass * _class =(struct OutputStreamClass *)classOf(_self); 
   
-  assert(class -> write);
+  assert(_class -> write);
 	
-	class -> write(_self,b);
+	_class -> write(_self,b);
 }
 
 //Writes the specified byte to this output stream. The general contract for write is that one byte is written to the output stream.
 void writeByte(void * _self,uchar b) {
-  struct OutputStreamClass * class =classOf(_self); 
+  struct OutputStreamClass * _class =(struct OutputStreamClass *)classOf(_self); 
   
-  assert(class -> writeByte);
+  assert(_class -> writeByte);
 	
-	class -> writeByte(_self,b);
+	_class -> writeByte(_self,b);
 }
 
 

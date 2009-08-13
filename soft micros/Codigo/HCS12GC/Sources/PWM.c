@@ -15,9 +15,24 @@ void PWM_setTipoSalida(struct PWM* self,TipoSalida onoff);
 TipoSalida PWM_tipoSalida(struct PWM* self);
 
 
-const struct IPWMClass PWM;
+const struct IPWMClass PWM={
+    ISALIDA_CLASS_INITIALIZATION(ISalidaClass,
+                            Salida,
+                            ISalida,
+                            Object_ctor,
+                            Object_dtor,
+                            Object_differ,
+                            Object_puto,
+                            Salida_getPotencia,
+                            Salida_setPotencia,
+                            NULL,
+                            NULL,
+                            NULL,
+                            NULL
+                            )  
+};
 
-extern struct FlashBkpEnFlash flash;
+extern struct ManejadorMemoria flash;
 static struct ManejadorMemoria *const pFlash=&flash;
 
 /*
@@ -26,8 +41,9 @@ static struct ManejadorMemoria *const pFlash=&flash;
 **    Description : Metodo Construir el PWM
 ** ===================================================================
 */
-void PWM_Construct(struct PWM* self,TConfPWM * conf){
-  Salida_constructor(self);
+void PWM_Construct(void * _self,TConfPWM * conf){
+  struct PWM* self = (struct PWM*)_self;
+  Salida_constructor(_self);
   self->conf=conf;
 }
 /*
@@ -37,7 +53,7 @@ void PWM_Construct(struct PWM* self,TConfPWM * conf){
 ** ===================================================================
 */
 int getPeriodo(void* self){
-  struct IPWMClass ** classOf = self;
+  struct IPWMClass ** classOf = (struct IPWMClass **)self;
   return (*classOf)->getPeriodo(self);
 }
 
@@ -49,7 +65,7 @@ int getPeriodo(void* self){
 ** ===================================================================
 */
 TError setPeriodo(void* self,int periodo){
-  struct IPWMClass ** classOf = self;
+  struct IPWMClass ** classOf = (struct IPWMClass **)self;
   return (*classOf)->setPeriodo(self,periodo); 
 }
 /*
@@ -58,7 +74,8 @@ TError setPeriodo(void* self,int periodo){
 **    Description : Setear el periodo del PWM
 ** ===================================================================
 */
-TError PWM_setPeriodo(struct PWM* self,int period){
+TError PWM_setPeriodo(void* _self,int period){
+  struct PWM* self = (struct PWM*)_self;
   return _MANEJADOR_MEMORIA_SET_BYTE(&flash,&self->conf->period,(uchar)period);
 }
 
@@ -68,7 +85,8 @@ TError PWM_setPeriodo(struct PWM* self,int period){
 **    Description : Setear el periodo del PWM
 ** ===================================================================
 */
-int PWM_getPeriodo(struct PWM* self){
+int PWM_getPeriodo(void* _self){
+    struct PWM* self = (struct PWM*)_self;
   return _MANEJADOR_MEMORIA_GET_BYTE(pFlash,&self->conf->period);
 }
 
@@ -78,6 +96,7 @@ int PWM_getPeriodo(struct PWM* self){
 **    Description : Obtener el limite superior del periodo del PWM
 ** ===================================================================
 */
-int PWM_getLimSupPeriodo(struct PWM* self){
+int PWM_getLimSupPeriodo(void* _self){
+    struct PWM* self = (struct PWM*)_self;
   return PWM_MAX_VALUE_PERIODS;
 }

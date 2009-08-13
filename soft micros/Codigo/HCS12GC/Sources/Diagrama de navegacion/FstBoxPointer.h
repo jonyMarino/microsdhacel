@@ -3,6 +3,7 @@
 
 #include "stdtypes.h"
 #include "Object.h"
+#include "ClassBox.h"
 
 struct FstBoxPointer{		// sabe get_new_box
   void * Class;

@@ -2,7 +2,9 @@
  
 #include "GetterGenerico.h"
  
-const struct Class GetterGenericoClass;
+const struct Class GetterGenericoClass={
+  CLASS_INITIALIZATION(Class,GetterGenericoClass,Class,Object_ctor,Object_dtor,Object_differ,Object_puto)    
+};
 
 const struct GetterGenericoClass GetterGenerico={
   GETTER_GENERICO_CLASS_INITIALIZATION(GetterGenericoClass,
@@ -22,6 +24,6 @@ const struct GetterGenericoClass GetterGenerico={
 ** ===================================================================
 */
 int Getter_getVal(void * self,void * Obj){
-  const struct GetterGenerico * _g=self;
+  const struct GetterGenerico * _g= (const struct GetterGenerico *)self;
   return (*(_g->_get))(Obj);
 }

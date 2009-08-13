@@ -7,12 +7,15 @@
 #include "SensorTPT_Class.h"
 #include "ManejadorMemoria.h"
 #include "PlataformaEmbedded.h"
+#include "Method.h"
 
 struct Termometro{
   struct PlataformaEmbedded super;
   struct TSensor_TermoPT sensor[CANTIDAD_CANALES];
-  struct TAdc  AD1[CANTIDAD_CANALES];
-  struct ManejadorDePROM * flash;  
+  struct Adc  AD1[CANTIDAD_CANALES];
+  struct ManejadorMemoria * flash; 
+  struct Method on1ms;
+  struct Method on40ms;
 };
 
 extern const struct PlataformaEmbeddedClass Termometro;

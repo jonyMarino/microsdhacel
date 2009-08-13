@@ -5,7 +5,7 @@
 #include "PE_Types.h"
 
 struct Comparator{
-  void * class;  
+  void * _class;  
 };
 
 struct ComparatorClass{

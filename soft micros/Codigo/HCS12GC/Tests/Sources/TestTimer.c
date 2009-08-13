@@ -5,7 +5,7 @@
 #include "timer_interrupt.h"
 
 void main (void){
-  struct Timer *t1=new(&Timer,(ulong)1000); 
+  void *t1=_new(&Timer,(ulong)1000); 
   struct Timer t2;
   struct Timer t3;
   struct Timer t4;

@@ -7,13 +7,9 @@
 #include "ClassADC.h"
 #include "ClassSensor.h" // Para herencia de clase pura
 #include "sensores.h"
-#include "MethodContainer.h"
 #include "FshTypeSizes.h"
 
 #pragma CONST_SEG DEFAULT
-
-extern const void * const TSensor_TermoPT;
-
 
 /********Objeto*********************/
 typedef struct {
@@ -42,14 +38,17 @@ typedef struct {
 }
 
 struct TSensor_TermoPT{
-  const struct SensorVisual sensor;			// vtable
+  struct SensorVisual sensor;			// vtable
   volatile const SensorConf * conf;		// Variables de configuración en Rom
-  struct TAdc * Adc;  											  // Pin del ADC al que pertenece este sensor
+  struct Adc * Adc;  											  // Pin del ADC al que pertenece este sensor
   int ProcVal;  											// Valor Leido y procesado del sensor
   bool newVal;                        //indica si el valor es nuevo
   long buffer_fil;                     // Privado: acumulacion del filtro  
   TSensorState state;									// Estado del sensor
 };
+
+extern const struct SensorDecLimClass TSensor_TermoPT;
+
 /******************************************/
 
 
@@ -60,10 +59,7 @@ struct TSensor_TermoPT{
 ** ===================================================================
 */
 
-void  SenTPT_Construct(struct TSensor_TermoPT * self,
-                      struct TAdc* adc,
-                      const SensorConf * conf,
-                      const char *desc);
+void  SenTPT_Construct(struct TSensor_TermoPT * self,struct Adc* adc,const SensorConf * conf,const char * desc);
 
 /*
 ** ===================================================================
@@ -141,7 +137,7 @@ TError set_Sensor(struct TSensor_TermoPT * self,int sensor);
 **                    en el que se corresponde a un sensor. 
 ** ===================================================================
 */																				 
-int get_LimInf_Sensores(void);
+int get_LimInf_Sensores(void*);
 /*
 ** ===================================================================
 **     Function      :  get_LimInf_Sensores
@@ -150,7 +146,7 @@ int get_LimInf_Sensores(void);
 **                    en el que se corresponde a un sensor.
 ** ===================================================================
 */	
-int get_LimSup_Sensores(void);
+int get_LimSup_Sensores(void*);
 
 
 /*
@@ -174,7 +170,7 @@ byte SenTPT_setDecimales(struct TSensor_TermoPT * self, int val);
 **    Description :   Obtiene la cantidad de decimales
 ** ===================================================================
 */
-int SenTPT_getDecimalesMostrados(const struct TSensor_TermoPT * self);
+byte SenTPT_getDecimalesMostrados(void * _self);
 /*
 ** ==========================================================================
 **     Method      :  get_LimInf_Decimales 
@@ -182,7 +178,7 @@ int SenTPT_getDecimalesMostrados(const struct TSensor_TermoPT * self);
 **    Description :   Obtiene el minimo valor de decimales que puede setearse
 ** ==========================================================================
 */
-int get_LimInf_Decimales(void);
+int get_LimInf_Decimales(void*);
 /*
 ** ==========================================================================
 **     Method      :  get_LimSup_Decimales 
@@ -214,7 +210,7 @@ byte set_filtro(struct TSensor_TermoPT * self,int val);
 **    Description :   Lim inf del valor del filtro
 ** ===================================================================
 */
-int get_LimInf_filtro(void);
+int get_LimInf_filtro(void*);
 
 /*
 ** ===================================================================
@@ -223,7 +219,7 @@ int get_LimInf_filtro(void);
 **    Description :   Lim sup del valor del filtro
 ** ===================================================================
 */
-int get_LimSup_filtro(void);
+int get_LimSup_filtro(void*);
 
 /*  Offset  */
 /*
@@ -330,7 +326,7 @@ byte set_GananciaPT100(struct TSensor_TermoPT * self,int val);
 **                    la temperatura ambiente 
 ** =====================================================================
 */
-int get_AjTempAmb(void);
+int get_AjTempAmb(void*);
 
 /*
 ** =====================================================================

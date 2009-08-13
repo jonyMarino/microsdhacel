@@ -12,7 +12,6 @@
 #include "stdtypes.h"
 #include "Cpu.h"
 #include "Timer.h"
-#include "FTimer.h"
 
 #pragma DATA_SEG MethodTimer_DATA                                            
 #pragma CODE_SEG MethodTimer_CODE 
@@ -25,16 +24,15 @@ const struct TimerClass MethodTimer={
   TIMER_CLASS_INITIALIZATION(TimerClass,MethodTimer,Timer,MTimer_DefConstruct,Timer_Destruct,NULL,NULL,MTimer_OnTime)
 };
 
-
 /*
 ** ===================================================================
-**     Method      :  FTimer_Construct 
+**     Method      :  MTimer_Construct 
 **    Description : Metodo para setear los 
 **                  valores de configuración del Timer
 ** ===================================================================
 */
 void MTimer_Construct(void * self,ulong tiempo,void (*pf)(void*),void * Obj){
-  struct MethodTimer * _timer=self;
+  struct MethodTimer * _timer= (struct MethodTimer *)self;
   
   Timer_Construct((struct Timer *) self,tiempo);
   MethodTimer_setMetodo(self,pf,Obj);    
@@ -42,35 +40,35 @@ void MTimer_Construct(void * self,ulong tiempo,void (*pf)(void*),void * Obj){
 
 /*
 ** ===================================================================
-**     Method      :  FTimer_DefConstruct 
+**     Method      :  MTimer_DefConstruct 
 **    Description : Metodo por defecto para setear los 
 **                  valores de configuración del Timer
 ** ===================================================================
 */
 void MTimer_DefConstruct(void * self,va_list *args){
-  MTimer_Construct(self,va_arg(*args,ulong),va_arg(*args,void*),va_arg(*args,void*));
+  MTimer_Construct(self,va_arg(*args,ulong),va_arg(*args,pMethod),va_arg(*args,void*));
 }
 
 /*
 ** ===================================================================
-**     Method      :  FTimer_DefConstruct 
+**     Method      :  MethodTimer_setMetodo 
 **    Description : Metodo por defecto para setear los 
 **                  valores de configuración del Timer
 ** ===================================================================
 */
 void MethodTimer_setMetodo(void * _self,void (*pf)(void*),void * Obj){
-  struct MethodTimer * _timer=_self;
+  struct MethodTimer * _timer=(struct MethodTimer *)_self;
   _timer->pf=pf;
   _timer->Obj=Obj;  
 }
 /*
 ** ===================================================================
-**     Method      :  FTimer_OnTime 
+**     Method      :  MTimer_OnTime 
 **    Description : funcion a llamar cuando se llega al tiempo
 ** ===================================================================
 */
 void MTimer_OnTime(void * self){
-  struct MethodTimer * _timer=self;
+  struct MethodTimer * _timer=(struct MethodTimer *)self;
   (*(_timer->pf))(_timer->Obj);
 }
 

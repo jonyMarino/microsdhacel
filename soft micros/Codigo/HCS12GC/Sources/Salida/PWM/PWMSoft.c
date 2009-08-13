@@ -18,11 +18,11 @@
 #include "PWMSoft.h"
 #include "Salida_protected.h"
 
-void PWMSoft_DefConstruct(void* self,va_list *args );
-void PWMSoft_setDuty(struct PWMSoft* self,uint Val);
-void PWMSoft_setTipoSalida(struct PWMSoft* self,TipoSalida onoff);
-TipoSalida PWMSoft_tipoSalida(struct PWMSoft* self);
-TError PWMSoft_setPeriodo(struct PWMSoft* self,int periodo);
+void PWMSoft_DefConstruct(void * _self,va_list *args );
+void PWMSoft_setDuty(void * _self,uint Val);
+void PWMSoft_setTipoSalida(void * _self,TipoSalida onoff);
+TipoSalida PWMSoft_tipoSalida(void * _self);
+TError PWMSoft_setPeriodo(void * _self,int periodo);
 
 const struct IPWMClass PWMSoft={
   IPWM_CLASS_INITIALIZATION(IPWMClass,
@@ -62,8 +62,9 @@ static const ulong periodos[]={
 **    Description : Metodo Construir el PWMSoft
 ** ===================================================================
 */
-void PWMSoft_Construct(struct PWMSoft* self,TConfPWM * conf,byte * salida,int bit){
-  PWM_Construct(self,conf);
+void PWMSoft_Construct(void* _self,TConfPWM * conf,byte * salida,int bit){
+  struct PWMSoft* self = (struct PWMSoft*)_self;
+  PWM_Construct(_self,conf);
   self->salida = salida;
   self->mask=1<<bit;
   newAlloced(&self->timer,&MethodTimer,(ulong)periodos[PWM_getPeriodo(self)],PWMSoft_onCambio,self);
@@ -75,8 +76,8 @@ void PWMSoft_Construct(struct PWMSoft* self,TConfPWM * conf,byte * salida,int bi
 **    Description : Constructor por defecto del PWMSoft
 ** ===================================================================
 */
-void PWMSoft_DefConstruct(void* self,va_list *args ){
-  PWMSoft_Construct(self,va_arg(*args,void*),va_arg(*args,byte*),va_arg(*args,int));
+void PWMSoft_DefConstruct(void* _self,va_list *args ){
+  PWMSoft_Construct(_self,va_arg(*args,TConfPWM *),va_arg(*args,byte*),va_arg(*args,int));
 }
 
 /*
@@ -85,7 +86,8 @@ void PWMSoft_DefConstruct(void* self,va_list *args ){
 **    Description : Setear duty del PWMSoft
 ** ===================================================================
 */
-void PWMSoft_setDuty(struct PWMSoft* self,uint duty){
+void PWMSoft_setDuty(void * _self,uint duty){
+  struct PWMSoft* self = (struct PWMSoft*)_self;
   if(PWMSoft_tipoSalida(self)==SALIDA_ONOFF){		    
     if(duty==0)
       clrReg8Bits(*self->salida, self->mask);             
@@ -101,7 +103,8 @@ void PWMSoft_setDuty(struct PWMSoft* self,uint duty){
 **    Description : Setear duty del PWMSoft
 ** ===================================================================
 */
-void PWMSoft_setDutyProp(struct PWMSoft* self){
+void PWMSoft_setDutyProp(void * _self){
+  struct PWMSoft* self = (struct PWMSoft*)_self;
     int pot = Salida_getPotencia(self);
     Timer_Stop(&self->timer);
     if(pot!=0){
@@ -119,7 +122,8 @@ void PWMSoft_setDutyProp(struct PWMSoft* self){
 **    Description : Setear el PWMSoft en on-off o en PID
 ** ===================================================================
 */
-void PWMSoft_setTipoSalida(struct PWMSoft* self,TipoSalida onoff){
+void PWMSoft_setTipoSalida(void * _self,TipoSalida onoff){
+  struct PWMSoft* self = (struct PWMSoft*)_self;
    if(onoff==SALIDA_ONOFF){
     Timer_Stop(&self->timer);
    }else{
@@ -133,7 +137,8 @@ void PWMSoft_setTipoSalida(struct PWMSoft* self,TipoSalida onoff){
 **    Description : verifica si el PWMSoft esta en on-off o en proporcional
 ** ===================================================================
 */
-TipoSalida PWMSoft_tipoSalida(struct PWMSoft* self){
+TipoSalida PWMSoft_tipoSalida(void * _self){
+  struct PWMSoft* self = (struct PWMSoft*)_self;
   return (Timer_isfinish(&self->timer))?SALIDA_ONOFF:SALIDA_PROPORCIONAL;
 }
 
@@ -143,13 +148,14 @@ TipoSalida PWMSoft_tipoSalida(struct PWMSoft* self){
 **    Description : Setear el periodo del PWMSoft
 ** ===================================================================
 */
-TError PWMSoft_setPeriodo(struct PWMSoft* self,int periodo){
+TError PWMSoft_setPeriodo(void * _self,int periodo){
+  struct PWMSoft* self = (struct PWMSoft*)_self;
   TError err;
   if(periodo<0 || periodo>PWM_MAX_VALUE_PERIODS)
     return ERR_VALUE; //error
   err= PWM_setPeriodo(self,periodo);
   if(!err){
-    if(PWMSoft_tipoSalida(self)==SALIDA_PROPORCIONAL)
+    if(PWMSoft_tipoSalida(_self)==SALIDA_PROPORCIONAL)
       PWMSoft_setDutyProp(self);
   }
   return err;
@@ -161,7 +167,8 @@ TError PWMSoft_setPeriodo(struct PWMSoft* self,int periodo){
 **    Description : 
 ** ===================================================================
 */
-void PWMSoft_onCambio(struct PWMSoft* self){
+void PWMSoft_onCambio(void * _self){
+  struct PWMSoft* self = (struct PWMSoft*)_self;
   int pot = Salida_getPotencia(self);
   if(testReg8Bits(*self->salida, self->mask)){    
     if( pot == 1000 )

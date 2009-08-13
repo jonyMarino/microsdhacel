@@ -14,7 +14,7 @@ struct Lazo{
 //%#
 void Lazo_constructor(void * _self,struct Sensor * sensor);
 
-void * Lazo_destructor(void * _self);
+void Lazo_destructor(void * _self);
 
 //%+
 void onNuevaMedicion(void * _self);

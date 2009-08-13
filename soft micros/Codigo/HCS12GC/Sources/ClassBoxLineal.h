@@ -15,7 +15,7 @@ struct BoxLineal{
   struct BlockCnstrBoxLin * pBlockSelf;
   uchar NumProp;
 //Private:  
-  struct PropWInc * prop_actual;  // propiedad actual
+  /*struct PropWInc*/void * prop_actual;  // propiedad actual
   void * Obj;                     //Objeto al que pertenecen el conjunto de las propiedades
   uchar save;                     // si tiene algun valor que guardar  
 };

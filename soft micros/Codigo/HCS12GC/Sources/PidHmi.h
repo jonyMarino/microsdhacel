@@ -1,6 +1,7 @@
 #ifndef PID_HMI_H
 #define PID_HMI_H
 
+extern const struct ConstPropNumPV ParSP;
 
 extern const struct Array arrayPidGetters;
 #define PID_GETTERS_ARRAY arrayPidGetters

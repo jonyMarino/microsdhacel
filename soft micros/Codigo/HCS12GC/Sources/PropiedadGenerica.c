@@ -5,7 +5,10 @@
 #include "PropiedadGenerica.h"
 #include "display.h"
 
-const struct Class PropiedadGenericaClass;
+const struct Class PropiedadGenericaClass={
+  CLASS_INITIALIZATION(Class,PropiedadGenericaClass,Class,Object_ctor,Object_dtor,Object_differ,Object_puto)    
+};
+
 const struct PropiedadGenericaClass PropiedadGenerica={
   PROPIEDAD_GENERICA_CLASS_INITIALIZATION(PropiedadGenericaClass,
                                           PropiedadGenerica,
@@ -38,7 +41,7 @@ int ClassProp_getVal(void * self,void * Obj){
 ** ===================================================================
 */
 TError ClassProp_setVal(void * self,void * Obj,int Val){
-  struct PropiedadGenerica * _prop=self;
+  struct PropiedadGenerica * _prop= (struct PropiedadGenerica *)self;
   if(_prop->_set)
     return (*(_prop->_set))(Obj,Val);
   return ERR_OK;
@@ -52,7 +55,7 @@ TError ClassProp_setVal(void * self,void * Obj,int Val){
 ** ===================================================================
 */
 int ClassProp_getLimInf(void * self,void * Obj){
-  struct PropiedadGenerica * _prop=self;
+  struct PropiedadGenerica * _prop=(struct PropiedadGenerica *)self;
   if(_prop->_LimInf)
     return (*(_prop->_LimInf))(Obj);
   else
@@ -67,7 +70,7 @@ int ClassProp_getLimInf(void * self,void * Obj){
 ** ===================================================================
 */
 int ClassProp_getLimSup(void * self,void * Obj){
-  struct PropiedadGenerica * _prop=self;
+  struct PropiedadGenerica * _prop=(struct PropiedadGenerica *)self;
   if(_prop->_LimSup) 
     return (*(_prop->_LimSup))(Obj); 
   else

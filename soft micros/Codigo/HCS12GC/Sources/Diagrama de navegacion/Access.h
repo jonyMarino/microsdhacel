@@ -1,11 +1,11 @@
 #ifndef _ACCESS_H_
 #define _ACCESS_H_
 
-#include "ArrayList.h"
+#include "Array.h"
 #include "BoxList.h"
 
 struct Access{											 // sabe get_new_box
-  struct ArrayList/*<BoxList>*/ _base;				 
+  struct Array/*<BoxList>*/ _base;				 
   int * Codigo;
   const char * name;
 };
@@ -20,7 +20,7 @@ struct Box *Access_getNextBox(void*self,uchar list_count,uchar box_count);
 
 #define NEW_ACCESS(name,arrayBoxList,strName,pCodigo)  \
   struct Access name={                                  \
-    INITIALIZATION_ARRAY_LIST(Access,arrayBoxList),  \
+    INITIALIZATION_ARRAY(Access,arrayBoxList),  \
     pCodigo,																							\
     strName  																							\
 }

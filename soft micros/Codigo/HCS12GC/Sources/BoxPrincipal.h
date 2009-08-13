@@ -19,15 +19,15 @@
 
 struct BlockConstBoxPri{
   struct BlockBoxConstruct _base;
-  struct getter * snsr1; 
+  struct Getter * snsr1; 
   struct MessageOut * msjs; 
 };
 
 struct BoxPri{
   struct Box _box;
 //Protected:  
-  struct getter * snsr1;
-  struct MessageOut * msjs;		// manejador de mensajes
+  /*struct getter*/void * snsr1;
+  /*struct MessageOut*/void * msjs;		// manejador de mensajes
   uint msj_index;             // indice del msj a mostrar
   struct Timer timerPri;		// Timer de refresco
 };
@@ -75,7 +75,7 @@ void BoxPri1c_Constructor(void* _self,
 **     Description :  Muestra el getter al display inferior
 ** ===================================================================
 */
-void BoxPri1c_ShowGetter(const struct ConstrGetVisual * _getter,
+void BoxPri1c_ShowGetter(const void * _getter,
                          void * Obj);
 
 /*
@@ -85,7 +85,7 @@ void BoxPri1c_ShowGetter(const struct ConstrGetVisual * _getter,
 **     Description :  Muestr la propiedad al display inferior
 ** ===================================================================
 */
-void BoxPri1c_ShowProp( const struct ConstructorPropWInc * _prop,
+void BoxPri1c_ShowProp( const void * _prop,
                         void * Obj);
                         
 #pragma DATA_SEG DEFAULT                                            

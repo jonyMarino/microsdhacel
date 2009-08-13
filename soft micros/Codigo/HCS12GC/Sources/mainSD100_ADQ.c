@@ -319,7 +319,7 @@ void main(void){
   char tecla; 
   bool prevVal;
   byte i;
-   
+  System_init(); 
   newAlloced(&adquisidorSimple,&AdquisidorSimple,NULL,&flash);
 
   newAlloced(&termometro,&Termometro,&flash);
@@ -357,7 +357,8 @@ void main(void){
     tecla=get_key();  
     //Eventos    
     ControlSD100_procesar(tecla);
-    mainLoop(&adquisidorSimple);
+   // mainLoop(&adquisidorSimple);
+   Termometro_mainLoop(&termometro);
   }
 }
 

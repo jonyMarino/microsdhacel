@@ -83,7 +83,7 @@ const struct getter * gettersAMostrar[]={
   &sensor[3]
 };					
 const struct BlockConstBoxPriNC CBox_Pri={
-      BoxPriNC,							/* funcion que procesa al box*/
+      &BoxPriNC,							/* funcion que procesa al box*/
       gettersAMostrar,      
       NULL						
 };
@@ -92,7 +92,7 @@ NEW_FLASH_BKP_EN_FLASH(flash,0x4200);
 
 
 void SD_on1ms(void * sd){
-    IncTimers(1); //Contador Estandard
+    setBaseTimer(sd,1); //Contador Estandard
 
     if(PromBkp_listoParaGrabarOBorrar(&flash) && getState()==AD_WAITING)
       TI1_SetPeriodMode(TI1_Pm_40ms);
@@ -105,7 +105,7 @@ void SD_on40ms(void * sd){
 
     PromBkp_grabarOBorrar(&flash);
 
-    IncTimers(TIEMPO_GRABACION); //Contador Estandard
+    setBaseTimer(sd,TIEMPO_GRABACION); //Contador Estandard
 }
 
 
@@ -124,14 +124,14 @@ void main (void){
   add40msListener(SD_on40ms,NULL);//agregar a la interrupcion del timer cuando dura 40ms
   
   for(i=0;i<CANTIDAD_CANALES;i++){
-    newAllocObj(&AD1[i],TAdc,i);
-    newAllocObj(&sensor[i],TSensor_TermoPT,&AD1[i],&sensor_config[i],"Sen");
+    new(&AD1[i],TAdc,i);
+    new(&sensor[i],TSensor_TermoPT,&AD1[i],&sensor_config[i],"Sen");
   }
   for(i=0;i<CANTIDAD_SAL_ALARMA;i++)
-    newAllocObj(&pwm[i],PWM,&pwm_config[i],i);
+    new(&pwm[i],PWM,&pwm_config[i],i);
     
   for(i=0;i<CANTIDAD_SAL_ALARMA;i++)
-    newAllocObj(&alarma[i],AlarmaDeSensor,&alar_conf[i],&sensor[i],&pwm[i],AL_TIME_DISCONECT);
+    new(&alarma[i],AlarmaDeSensor,&alar_conf[i],&sensor[i],&pwm[i],AL_TIME_DISCONECT);
   
  // newAllocObj(&msj1,MessageOut); 
   
@@ -181,7 +181,7 @@ void main (void){
     com_Handler();
     
     for(i=0;i<CANTIDAD_SAL_ALARMA;i++)
-      AlarmaDeSensor_Handler(&alarma[i],tecla);
+      AlarmaDeSensor_manejador(&alarma[i],tecla);
   }
 }
 

@@ -38,7 +38,7 @@ void PlataformaEmbedded_mainLoop(void * _self){
 
 
 void mainLoop(void * _self){
-  struct PlataformaEmbeddedClass * class = classOf(_self);
+  struct PlataformaEmbeddedClass * class =classOf(_self);
   assert(class && class->mainLoop);
   class->mainLoop(_self);  
 }

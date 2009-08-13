@@ -10,7 +10,7 @@
 #include "BoxGetCond.h"
 
 void BoxGetCond_DefConstructor(void * _self, va_list*args);
-void * BoxGetCond_Destructor(void* _self);
+void BoxGetCond_Destructor(void* _self);
 void BoxGetCond_Refresh(void* _self);
 BOX_State BoxGetCond_ProcKey(void* _self,uchar tecla);
 
@@ -34,9 +34,9 @@ const struct BoxClass BoxGetCond={
 **     Description :  Constructor del Box
 ** ===================================================================
 */
-void BoxGetCond_Constructor(void * _self, void * BlockConst,void * Obj,uchar NumObj){
+void BoxGetCond_Constructor(void * _self, struct BlockConstrBoxGetCond * BlockConst,void * Obj,uchar NumObj){
 
-  struct BoxGetCond *_box=_self; 
+  struct BoxGetCond *_box= (struct BoxGetCond *)_self; 
   struct BlockConstrBoxGetCond * Block =  BlockConst;
   
   if( (*(Block->Appear))(Obj)  ){
@@ -54,7 +54,7 @@ void BoxGetCond_Constructor(void * _self, void * BlockConst,void * Obj,uchar Num
 ** ===================================================================
 */
 void BoxGetCond_DefConstructor(void * _self, va_list*args){
-  BoxGetCond_Constructor(_self,va_arg(*args,void *),va_arg(*args,void *),(uchar)va_arg(*args,int));  
+  BoxGetCond_Constructor(_self,va_arg(*args,struct BlockConstrBoxGetCond *),va_arg(*args,void *),(uchar)va_arg(*args,int));  
 }
 /*
 ** ===================================================================
@@ -62,11 +62,10 @@ void BoxGetCond_DefConstructor(void * _self, va_list*args){
 **     Description :  Destructor del Box
 ** ===================================================================
 */
-void * BoxGetCond_Destructor(void* _self){
-  struct BoxGetCond * _box = _self;
+void BoxGetCond_Destructor(void* _self){
+  struct BoxGetCond * _box = (struct BoxGetCond *)_self;
   if(_box->Appear)
     ReadOnlyBox_Destructor(_self);
-  return _self; 
 }
 
 /*
@@ -76,7 +75,7 @@ void * BoxGetCond_Destructor(void* _self){
 ** ===================================================================
 */
 void BoxGetCond_Refresh(void* _self){
-  struct BoxGetCond * _box = _self;
+  struct BoxGetCond * _box = (struct BoxGetCond *)_self;
   if(!_box->Appear)
     ReadOnlyBox_Refresh(_box);
 }
@@ -87,7 +86,7 @@ void BoxGetCond_Refresh(void* _self){
 ** ===================================================================
 */
 BOX_State BoxGetCond_ProcKey(void* _self,uchar tecla){
-  struct BoxGetCond * _box = _self;
+  struct BoxGetCond * _box = (struct BoxGetCond *)_self;
     
   if (!_box->Appear)
     return EXIT_BOX;  

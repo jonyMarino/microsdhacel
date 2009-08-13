@@ -9,15 +9,8 @@
 
 void RetransmisionPWM_defConstructor(void * _self,va_list * args);
 
-const struct LazoClass RetransmisionPWMClass={
-  &Class,
-  "",
-  &Object,
-  sizeof(struct Retransmision),
-  RetransmisionPWM_defConstructor,
-  Lazo_destructor,
-    NULL, // differ
-  NULL, // puto
+const struct LazoClass RetransmisionPWM={
+  CLASS_INITIALIZATION(LazoClass,RetransmisionPWM,Retransmision,RetransmisionPWM_defConstructor,Lazo_destructor,Object_differ,Object_puto),
   Retransmision_onNuevaMedicion,
   Retransmision_getSensor,
   Retransmision_getSalida
@@ -26,26 +19,17 @@ const struct LazoClass RetransmisionPWMClass={
 
 void RetransmisionPWM_constructor(void * _self,
                                   struct RetransmisionConf * configuracion,
-                                  //cambiar
-                                  #ifdef NDEBUG
-                                  struct PWM* salida,
-                                  #else
                                   struct ISalida* salida,
-                                  #endif
-                                  
                                   struct Sensor* sensor
 ){
-  Retransmision_constructor(_self,configuracion,salida,sensor); 
+  Retransmision_constructor(_self,configuracion,(struct ISalida*)salida,sensor); 
   
   //cambiar a lo que esta comentado:
-  //if( instanceOf(salida, PWM) )
-  //  setPeriodo( (struct PWM*)salida,PWM_Anl);     
-  #ifdef NDEBUG
-    setPeriodo( (struct PWM*)salida,PWM_Anl);
-  #endif  
+  if( instanceOf(salida, (const struct Class * const)&IPWM) )
+    setPeriodo( (struct PWM*)salida,PWM_Anl); 
 }
 
 
 void RetransmisionPWM_defConstructor(void * _self,va_list * args){
-  RetransmisionPWM_constructor(_self,va_arg(*args,void*),va_arg(*args,void*),va_arg(*args,void*));  
+  RetransmisionPWM_constructor(_self,va_arg(*args,struct RetransmisionConf *),va_arg(*args,struct ISalida*),va_arg(*args,struct Sensor*));  
 }

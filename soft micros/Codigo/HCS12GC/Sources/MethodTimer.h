@@ -4,6 +4,7 @@
 #include "stdtypes.h"
 #include "Timer.h"
 #include "Object.h"
+#include "Method.h"
 
 #pragma DATA_SEG MethodTimer_DATA                                            
 #pragma CODE_SEG MethodTimer_CODE 
@@ -19,7 +20,7 @@ struct MethodTimer{
 extern const struct TimerClass MethodTimer;
 /*
 ** ===================================================================
-**     Method      :  FTimer_Construct 
+**     Method      :  MTimer_Construct 
 **    Description : Metodo para setear los 
 **                  valores de configuración del Timer
 ** ===================================================================

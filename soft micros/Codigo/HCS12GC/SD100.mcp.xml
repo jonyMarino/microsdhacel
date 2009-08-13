@@ -464,56 +464,6 @@
                         <SETTING><NAME>FrameworkPath</NAME><VALUE>false</VALUE></SETTING>
                         <SETTING><NAME>HostFlags</NAME><VALUE>All</VALUE></SETTING>
                     </SETTING>
-                    <SETTING>
-                        <SETTING><NAME>SearchPath</NAME>
-                            <SETTING><NAME>Path</NAME><VALUE>Sources\Timer</VALUE></SETTING>
-                            <SETTING><NAME>PathFormat</NAME><VALUE>Windows</VALUE></SETTING>
-                            <SETTING><NAME>PathRoot</NAME><VALUE>Project</VALUE></SETTING>
-                        </SETTING>
-                        <SETTING><NAME>Recursive</NAME><VALUE>false</VALUE></SETTING>
-                        <SETTING><NAME>FrameworkPath</NAME><VALUE>false</VALUE></SETTING>
-                        <SETTING><NAME>HostFlags</NAME><VALUE>All</VALUE></SETTING>
-                    </SETTING>
-                    <SETTING>
-                        <SETTING><NAME>SearchPath</NAME>
-                            <SETTING><NAME>Path</NAME><VALUE>Sources\Timer\BaseTimersGral</VALUE></SETTING>
-                            <SETTING><NAME>PathFormat</NAME><VALUE>Windows</VALUE></SETTING>
-                            <SETTING><NAME>PathRoot</NAME><VALUE>Project</VALUE></SETTING>
-                        </SETTING>
-                        <SETTING><NAME>Recursive</NAME><VALUE>false</VALUE></SETTING>
-                        <SETTING><NAME>FrameworkPath</NAME><VALUE>false</VALUE></SETTING>
-                        <SETTING><NAME>HostFlags</NAME><VALUE>All</VALUE></SETTING>
-                    </SETTING>
-                    <SETTING>
-                        <SETTING><NAME>SearchPath</NAME>
-                            <SETTING><NAME>Path</NAME><VALUE>Sources\Timer\BaseTimersGral\para escritura flash</VALUE></SETTING>
-                            <SETTING><NAME>PathFormat</NAME><VALUE>Windows</VALUE></SETTING>
-                            <SETTING><NAME>PathRoot</NAME><VALUE>Project</VALUE></SETTING>
-                        </SETTING>
-                        <SETTING><NAME>Recursive</NAME><VALUE>false</VALUE></SETTING>
-                        <SETTING><NAME>FrameworkPath</NAME><VALUE>false</VALUE></SETTING>
-                        <SETTING><NAME>HostFlags</NAME><VALUE>All</VALUE></SETTING>
-                    </SETTING>
-                    <SETTING>
-                        <SETTING><NAME>SearchPath</NAME>
-                            <SETTING><NAME>Path</NAME><VALUE>CODE\Small</VALUE></SETTING>
-                            <SETTING><NAME>PathFormat</NAME><VALUE>Windows</VALUE></SETTING>
-                            <SETTING><NAME>PathRoot</NAME><VALUE>Project</VALUE></SETTING>
-                        </SETTING>
-                        <SETTING><NAME>Recursive</NAME><VALUE>false</VALUE></SETTING>
-                        <SETTING><NAME>FrameworkPath</NAME><VALUE>false</VALUE></SETTING>
-                        <SETTING><NAME>HostFlags</NAME><VALUE>All</VALUE></SETTING>
-                    </SETTING>
-                    <SETTING>
-                        <SETTING><NAME>SearchPath</NAME>
-                            <SETTING><NAME>Path</NAME><VALUE>Sources\Salida\ValvulaProporcional</VALUE></SETTING>
-                            <SETTING><NAME>PathFormat</NAME><VALUE>Windows</VALUE></SETTING>
-                            <SETTING><NAME>PathRoot</NAME><VALUE>Project</VALUE></SETTING>
-                        </SETTING>
-                        <SETTING><NAME>Recursive</NAME><VALUE>false</VALUE></SETTING>
-                        <SETTING><NAME>FrameworkPath</NAME><VALUE>false</VALUE></SETTING>
-                        <SETTING><NAME>HostFlags</NAME><VALUE>All</VALUE></SETTING>
-                    </SETTING>
                 </SETTING>
                 <SETTING><NAME>SystemSearchPaths</NAME>
                     <SETTING>
@@ -1843,9 +1793,23 @@
                 </FILE>
                 <FILE>
                     <PATHTYPE>Name</PATHTYPE>
+                    <PATH>util.lib</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Unknown</FILEKIND>
+                    <FILEFLAGS>Debug</FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
                     <PATH>Sensor.c</PATH>
                     <PATHFORMAT>Windows</PATHFORMAT>
                     <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS>Debug</FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>reflect.lib</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Unknown</FILEKIND>
                     <FILEFLAGS>Debug</FILEFLAGS>
                 </FILE>
                 <FILE>
@@ -2018,6 +1982,13 @@
                 </FILE>
                 <FILE>
                     <PATHTYPE>Name</PATHTYPE>
+                    <PATH>mainSD100.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS>Debug</FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
                     <PATH>PTSL_SD.c</PATH>
                     <PATHFORMAT>Windows</PATHFORMAT>
                     <FILEKIND>Text</FILEKIND>
@@ -2068,83 +2039,6 @@
                 <FILE>
                     <PATHTYPE>Name</PATHTYPE>
                     <PATH>sensor_adapt_val.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                    <FILEKIND>Text</FILEKIND>
-                    <FILEFLAGS>Debug</FILEFLAGS>
-                </FILE>
-                <FILE>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>SalidaRetenidaBajo.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                    <FILEKIND>Text</FILEKIND>
-                    <FILEFLAGS>Debug</FILEFLAGS>
-                </FILE>
-                <FILE>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>GetterWName.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                    <FILEKIND>Text</FILEKIND>
-                    <FILEFLAGS>Debug</FILEFLAGS>
-                </FILE>
-                <FILE>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>IPWM.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                    <FILEKIND>Text</FILEKIND>
-                    <FILEFLAGS>Debug</FILEFLAGS>
-                </FILE>
-                <FILE>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>ISalida.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                    <FILEKIND>Text</FILEKIND>
-                    <FILEFLAGS>Debug</FILEFLAGS>
-                </FILE>
-                <FILE>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>BaseTimers.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                    <FILEKIND>Text</FILEKIND>
-                    <FILEFLAGS>Debug</FILEFLAGS>
-                </FILE>
-                <FILE>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>BaseTimersGral.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                    <FILEKIND>Text</FILEKIND>
-                    <FILEFLAGS>Debug</FILEFLAGS>
-                </FILE>
-                <FILE>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>reflect_si.lib</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                    <FILEKIND>Unknown</FILEKIND>
-                    <FILEFLAGS>Debug</FILEFLAGS>
-                </FILE>
-                <FILE>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>utilsi.lib</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                    <FILEKIND>Unknown</FILEKIND>
-                    <FILEFLAGS>Debug</FILEFLAGS>
-                </FILE>
-                <FILE>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>PlataformaEmbedded.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                    <FILEKIND>Text</FILEKIND>
-                    <FILEFLAGS>Debug</FILEFLAGS>
-                </FILE>
-                <FILE>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>FlashBkp.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                    <FILEKIND>Text</FILEKIND>
-                    <FILEFLAGS>Debug</FILEFLAGS>
-                </FILE>
-                <FILE>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>mainSD100.c</PATH>
                     <PATHFORMAT>Windows</PATHFORMAT>
                     <FILEKIND>Text</FILEKIND>
                     <FILEFLAGS>Debug</FILEFLAGS>
@@ -2673,7 +2567,17 @@
                 </FILEREF>
                 <FILEREF>
                     <PATHTYPE>Name</PATHTYPE>
+                    <PATH>util.lib</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
                     <PATH>Sensor.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>reflect.lib</PATH>
                     <PATHFORMAT>Windows</PATHFORMAT>
                 </FILEREF>
                 <FILEREF>
@@ -2798,6 +2702,11 @@
                 </FILEREF>
                 <FILEREF>
                     <PATHTYPE>Name</PATHTYPE>
+                    <PATH>mainSD100.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
                     <PATH>PTSL_SD.c</PATH>
                     <PATHFORMAT>Windows</PATHFORMAT>
                 </FILEREF>
@@ -2834,61 +2743,6 @@
                 <FILEREF>
                     <PATHTYPE>Name</PATHTYPE>
                     <PATH>sensor_adapt_val.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>SalidaRetenidaBajo.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>GetterWName.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>IPWM.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>ISalida.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>BaseTimers.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>BaseTimersGral.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>reflect_si.lib</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>utilsi.lib</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>PlataformaEmbedded.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>FlashBkp.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>mainSD100.c</PATH>
                     <PATHFORMAT>Windows</PATHFORMAT>
                 </FILEREF>
             </LINKORDER>
@@ -3269,56 +3123,6 @@
                     <SETTING>
                         <SETTING><NAME>SearchPath</NAME>
                             <SETTING><NAME>Path</NAME><VALUE>Sources\Comunicacion</VALUE></SETTING>
-                            <SETTING><NAME>PathFormat</NAME><VALUE>Windows</VALUE></SETTING>
-                            <SETTING><NAME>PathRoot</NAME><VALUE>Project</VALUE></SETTING>
-                        </SETTING>
-                        <SETTING><NAME>Recursive</NAME><VALUE>false</VALUE></SETTING>
-                        <SETTING><NAME>FrameworkPath</NAME><VALUE>false</VALUE></SETTING>
-                        <SETTING><NAME>HostFlags</NAME><VALUE>All</VALUE></SETTING>
-                    </SETTING>
-                    <SETTING>
-                        <SETTING><NAME>SearchPath</NAME>
-                            <SETTING><NAME>Path</NAME><VALUE>Sources\Timer</VALUE></SETTING>
-                            <SETTING><NAME>PathFormat</NAME><VALUE>Windows</VALUE></SETTING>
-                            <SETTING><NAME>PathRoot</NAME><VALUE>Project</VALUE></SETTING>
-                        </SETTING>
-                        <SETTING><NAME>Recursive</NAME><VALUE>false</VALUE></SETTING>
-                        <SETTING><NAME>FrameworkPath</NAME><VALUE>false</VALUE></SETTING>
-                        <SETTING><NAME>HostFlags</NAME><VALUE>All</VALUE></SETTING>
-                    </SETTING>
-                    <SETTING>
-                        <SETTING><NAME>SearchPath</NAME>
-                            <SETTING><NAME>Path</NAME><VALUE>Sources\Timer\BaseTimersGral</VALUE></SETTING>
-                            <SETTING><NAME>PathFormat</NAME><VALUE>Windows</VALUE></SETTING>
-                            <SETTING><NAME>PathRoot</NAME><VALUE>Project</VALUE></SETTING>
-                        </SETTING>
-                        <SETTING><NAME>Recursive</NAME><VALUE>false</VALUE></SETTING>
-                        <SETTING><NAME>FrameworkPath</NAME><VALUE>false</VALUE></SETTING>
-                        <SETTING><NAME>HostFlags</NAME><VALUE>All</VALUE></SETTING>
-                    </SETTING>
-                    <SETTING>
-                        <SETTING><NAME>SearchPath</NAME>
-                            <SETTING><NAME>Path</NAME><VALUE>Sources\Timer\BaseTimersGral\para escritura flash</VALUE></SETTING>
-                            <SETTING><NAME>PathFormat</NAME><VALUE>Windows</VALUE></SETTING>
-                            <SETTING><NAME>PathRoot</NAME><VALUE>Project</VALUE></SETTING>
-                        </SETTING>
-                        <SETTING><NAME>Recursive</NAME><VALUE>false</VALUE></SETTING>
-                        <SETTING><NAME>FrameworkPath</NAME><VALUE>false</VALUE></SETTING>
-                        <SETTING><NAME>HostFlags</NAME><VALUE>All</VALUE></SETTING>
-                    </SETTING>
-                    <SETTING>
-                        <SETTING><NAME>SearchPath</NAME>
-                            <SETTING><NAME>Path</NAME><VALUE>CODE\Small</VALUE></SETTING>
-                            <SETTING><NAME>PathFormat</NAME><VALUE>Windows</VALUE></SETTING>
-                            <SETTING><NAME>PathRoot</NAME><VALUE>Project</VALUE></SETTING>
-                        </SETTING>
-                        <SETTING><NAME>Recursive</NAME><VALUE>false</VALUE></SETTING>
-                        <SETTING><NAME>FrameworkPath</NAME><VALUE>false</VALUE></SETTING>
-                        <SETTING><NAME>HostFlags</NAME><VALUE>All</VALUE></SETTING>
-                    </SETTING>
-                    <SETTING>
-                        <SETTING><NAME>SearchPath</NAME>
-                            <SETTING><NAME>Path</NAME><VALUE>Sources\Salida\ValvulaProporcional</VALUE></SETTING>
                             <SETTING><NAME>PathFormat</NAME><VALUE>Windows</VALUE></SETTING>
                             <SETTING><NAME>PathRoot</NAME><VALUE>Project</VALUE></SETTING>
                         </SETTING>
@@ -4613,9 +4417,23 @@
                 </FILE>
                 <FILE>
                     <PATHTYPE>Name</PATHTYPE>
+                    <PATH>util.lib</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Unknown</FILEKIND>
+                    <FILEFLAGS>Debug</FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
                     <PATH>Sensor.c</PATH>
                     <PATHFORMAT>Windows</PATHFORMAT>
                     <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS>Debug</FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>reflect.lib</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Unknown</FILEKIND>
                     <FILEFLAGS>Debug</FILEFLAGS>
                 </FILE>
                 <FILE>
@@ -4788,6 +4606,13 @@
                 </FILE>
                 <FILE>
                     <PATHTYPE>Name</PATHTYPE>
+                    <PATH>mainSD100.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS>Debug</FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
                     <PATH>PTSL_SD.c</PATH>
                     <PATHFORMAT>Windows</PATHFORMAT>
                     <FILEKIND>Text</FILEKIND>
@@ -4838,83 +4663,6 @@
                 <FILE>
                     <PATHTYPE>Name</PATHTYPE>
                     <PATH>sensor_adapt_val.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                    <FILEKIND>Text</FILEKIND>
-                    <FILEFLAGS>Debug</FILEFLAGS>
-                </FILE>
-                <FILE>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>SalidaRetenidaBajo.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                    <FILEKIND>Text</FILEKIND>
-                    <FILEFLAGS>Debug</FILEFLAGS>
-                </FILE>
-                <FILE>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>GetterWName.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                    <FILEKIND>Text</FILEKIND>
-                    <FILEFLAGS>Debug</FILEFLAGS>
-                </FILE>
-                <FILE>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>IPWM.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                    <FILEKIND>Text</FILEKIND>
-                    <FILEFLAGS>Debug</FILEFLAGS>
-                </FILE>
-                <FILE>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>ISalida.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                    <FILEKIND>Text</FILEKIND>
-                    <FILEFLAGS>Debug</FILEFLAGS>
-                </FILE>
-                <FILE>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>BaseTimers.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                    <FILEKIND>Text</FILEKIND>
-                    <FILEFLAGS>Debug</FILEFLAGS>
-                </FILE>
-                <FILE>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>BaseTimersGral.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                    <FILEKIND>Text</FILEKIND>
-                    <FILEFLAGS>Debug</FILEFLAGS>
-                </FILE>
-                <FILE>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>reflect_si.lib</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                    <FILEKIND>Unknown</FILEKIND>
-                    <FILEFLAGS>Debug</FILEFLAGS>
-                </FILE>
-                <FILE>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>utilsi.lib</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                    <FILEKIND>Unknown</FILEKIND>
-                    <FILEFLAGS>Debug</FILEFLAGS>
-                </FILE>
-                <FILE>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>PlataformaEmbedded.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                    <FILEKIND>Text</FILEKIND>
-                    <FILEFLAGS>Debug</FILEFLAGS>
-                </FILE>
-                <FILE>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>FlashBkp.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                    <FILEKIND>Text</FILEKIND>
-                    <FILEFLAGS>Debug</FILEFLAGS>
-                </FILE>
-                <FILE>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>mainSD100.c</PATH>
                     <PATHFORMAT>Windows</PATHFORMAT>
                     <FILEKIND>Text</FILEKIND>
                     <FILEFLAGS>Debug</FILEFLAGS>
@@ -5413,7 +5161,17 @@
                 </FILEREF>
                 <FILEREF>
                     <PATHTYPE>Name</PATHTYPE>
+                    <PATH>util.lib</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
                     <PATH>Sensor.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>reflect.lib</PATH>
                     <PATHFORMAT>Windows</PATHFORMAT>
                 </FILEREF>
                 <FILEREF>
@@ -5538,6 +5296,11 @@
                 </FILEREF>
                 <FILEREF>
                     <PATHTYPE>Name</PATHTYPE>
+                    <PATH>mainSD100.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
                     <PATH>PTSL_SD.c</PATH>
                     <PATHFORMAT>Windows</PATHFORMAT>
                 </FILEREF>
@@ -5576,61 +5339,6 @@
                     <PATH>sensor_adapt_val.c</PATH>
                     <PATHFORMAT>Windows</PATHFORMAT>
                 </FILEREF>
-                <FILEREF>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>SalidaRetenidaBajo.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>GetterWName.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>IPWM.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>ISalida.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>BaseTimers.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>BaseTimersGral.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>reflect_si.lib</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>utilsi.lib</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>PlataformaEmbedded.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>FlashBkp.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>mainSD100.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
             </LINKORDER>
         </TARGET>
     </TARGETLIST>
@@ -5641,888 +5349,8 @@
     </TARGETORDER>
 
     <GROUPLIST>
-        <GROUP><NAME>Debugger Project File</NAME>
-            <FILEREF>
-                <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                <PATHTYPE>Name</PATHTYPE>
-                <PATH>P&amp;E_ICD.ini</PATH>
-                <PATHFORMAT>Windows</PATHFORMAT>
-            </FILEREF>
-            <FILEREF>
-                <TARGETNAME>Simulator</TARGETNAME>
-                <PATHTYPE>Name</PATHTYPE>
-                <PATH>Simulator.ini</PATH>
-                <PATHFORMAT>Windows</PATHFORMAT>
-            </FILEREF>
-        </GROUP>
-        <GROUP><NAME>Generated Code</NAME>
-            <FILEREF>
-                <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                <PATHTYPE>Name</PATHTYPE>
-                <PATH>ADC1.c</PATH>
-                <PATHFORMAT>Windows</PATHFORMAT>
-            </FILEREF>
-            <FILEREF>
-                <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                <PATHTYPE>Name</PATHTYPE>
-                <PATH>AS1.c</PATH>
-                <PATHFORMAT>Windows</PATHFORMAT>
-            </FILEREF>
-            <FILEREF>
-                <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                <PATHTYPE>Name</PATHTYPE>
-                <PATH>bits2ULN.c</PATH>
-                <PATHFORMAT>Windows</PATHFORMAT>
-            </FILEREF>
-            <FILEREF>
-                <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                <PATHTYPE>Name</PATHTYPE>
-                <PATH>bits5ULN.c</PATH>
-                <PATHFORMAT>Windows</PATHFORMAT>
-            </FILEREF>
-            <FILEREF>
-                <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                <PATHTYPE>Name</PATHTYPE>
-                <PATH>CpuSD.c</PATH>
-                <PATHFORMAT>Windows</PATHFORMAT>
-            </FILEREF>
-            <FILEREF>
-                <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                <PATHTYPE>Name</PATHTYPE>
-                <PATH>Display1.c</PATH>
-                <PATHFORMAT>Windows</PATHFORMAT>
-            </FILEREF>
-            <FILEREF>
-                <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                <PATHTYPE>Name</PATHTYPE>
-                <PATH>Display2.c</PATH>
-                <PATHFORMAT>Windows</PATHFORMAT>
-            </FILEREF>
-            <FILEREF>
-                <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                <PATHTYPE>Name</PATHTYPE>
-                <PATH>FLASH1.c</PATH>
-                <PATHFORMAT>Windows</PATHFORMAT>
-            </FILEREF>
-            <FILEREF>
-                <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                <PATHTYPE>Name</PATHTYPE>
-                <PATH>In1.c</PATH>
-                <PATHFORMAT>Windows</PATHFORMAT>
-            </FILEREF>
-            <FILEREF>
-                <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                <PATHTYPE>Name</PATHTYPE>
-                <PATH>In2.c</PATH>
-                <PATHFORMAT>Windows</PATHFORMAT>
-            </FILEREF>
-            <FILEREF>
-                <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                <PATHTYPE>Name</PATHTYPE>
-                <PATH>InpSP2.c</PATH>
-                <PATHFORMAT>Windows</PATHFORMAT>
-            </FILEREF>
-            <FILEREF>
-                <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                <PATHTYPE>Name</PATHTYPE>
-                <PATH>IO_Map.c</PATH>
-                <PATHFORMAT>Windows</PATHFORMAT>
-            </FILEREF>
-            <FILEREF>
-                <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                <PATHTYPE>Name</PATHTYPE>
-                <PATH>PTSL_SD.c</PATH>
-                <PATHFORMAT>Windows</PATHFORMAT>
-            </FILEREF>
-            <FILEREF>
-                <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                <PATHTYPE>Name</PATHTYPE>
-                <PATH>PUL.c</PATH>
-                <PATHFORMAT>Windows</PATHFORMAT>
-            </FILEREF>
-            <FILEREF>
-                <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                <PATHTYPE>Name</PATHTYPE>
-                <PATH>PWSN.c</PATH>
-                <PATHFORMAT>Windows</PATHFORMAT>
-            </FILEREF>
-            <FILEREF>
-                <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                <PATHTYPE>Name</PATHTYPE>
-                <PATH>test.c</PATH>
-                <PATHFORMAT>Windows</PATHFORMAT>
-            </FILEREF>
-            <FILEREF>
-                <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                <PATHTYPE>Name</PATHTYPE>
-                <PATH>TI7.c</PATH>
-                <PATHFORMAT>Windows</PATHFORMAT>
-            </FILEREF>
-            <FILEREF>
-                <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                <PATHTYPE>Name</PATHTYPE>
-                <PATH>trx.c</PATH>
-                <PATHFORMAT>Windows</PATHFORMAT>
-            </FILEREF>
-            <FILEREF>
-                <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                <PATHTYPE>Name</PATHTYPE>
-                <PATH>Vectors.c</PATH>
-                <PATHFORMAT>Windows</PATHFORMAT>
-            </FILEREF>
-            <FILEREF>
-                <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                <PATHTYPE>Name</PATHTYPE>
-                <PATH>WDog1.c</PATH>
-                <PATHFORMAT>Windows</PATHFORMAT>
-            </FILEREF>
-        </GROUP>
-        <GROUP><NAME>libs</NAME>
-            <FILEREF>
-                <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                <PATHTYPE>Name</PATHTYPE>
-                <PATH>adjuntador_a_hilo.c</PATH>
-                <PATHFORMAT>Windows</PATHFORMAT>
-            </FILEREF>
-            <FILEREF>
-                <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                <PATHTYPE>Name</PATHTYPE>
-                <PATH>funciones.c</PATH>
-                <PATHFORMAT>Windows</PATHFORMAT>
-            </FILEREF>
-            <FILEREF>
-                <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                <PATHTYPE>Name</PATHTYPE>
-                <PATH>FunctionContainer.c</PATH>
-                <PATHFORMAT>Windows</PATHFORMAT>
-            </FILEREF>
-            <FILEREF>
-                <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                <PATHTYPE>Name</PATHTYPE>
-                <PATH>Math.c</PATH>
-                <PATHFORMAT>Windows</PATHFORMAT>
-            </FILEREF>
-            <FILEREF>
-                <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                <PATHTYPE>Name</PATHTYPE>
-                <PATH>MethodContainer.c</PATH>
-                <PATHFORMAT>Windows</PATHFORMAT>
-            </FILEREF>
-            <FILEREF>
-                <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                <PATHTYPE>Name</PATHTYPE>
-                <PATH>SearchLib.c</PATH>
-                <PATHFORMAT>Windows</PATHFORMAT>
-            </FILEREF>
-            <FILEREF>
-                <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                <PATHTYPE>Name</PATHTYPE>
-                <PATH>str_lib.c</PATH>
-                <PATHFORMAT>Windows</PATHFORMAT>
-            </FILEREF>
-            <FILEREF>
-                <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                <PATHTYPE>Name</PATHTYPE>
-                <PATH>termio12.c</PATH>
-                <PATHFORMAT>Windows</PATHFORMAT>
-            </FILEREF>
-            <FILEREF>
-                <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                <PATHTYPE>Name</PATHTYPE>
-                <PATH>ThreadAdjuntable.c</PATH>
-                <PATHFORMAT>Windows</PATHFORMAT>
-            </FILEREF>
-        </GROUP>
-        <GROUP><NAME>Prm</NAME>
-            <FILEREF>
-                <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                <PATHTYPE>Name</PATHTYPE>
-                <PATH>burner.bbl</PATH>
-                <PATHFORMAT>Windows</PATHFORMAT>
-            </FILEREF>
-            <FILEREF>
-                <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                <PATHTYPE>Name</PATHTYPE>
-                <PATH>SD100.prm</PATH>
-                <PATHFORMAT>Windows</PATHFORMAT>
-            </FILEREF>
-        </GROUP>
-        <GROUP><NAME>Sources</NAME>
-            <FILEREF>
-                <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                <PATHTYPE>Name</PATHTYPE>
-                <PATH>datapage.c</PATH>
-                <PATHFORMAT>Windows</PATHFORMAT>
-            </FILEREF>
-        </GROUP>
-        <GROUP><NAME>User Modules</NAME>
-            <GROUP><NAME>Comunicacion</NAME>
-                <FILEREF>
-                    <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>com_events.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>modbus.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>ModBusHmi.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>NodoICModBus.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-            </GROUP>
-            <GROUP><NAME>modelo</NAME>
-                <GROUP><NAME>Alarma</NAME>
-                    <FILEREF>
-                        <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                        <PATHTYPE>Name</PATHTYPE>
-                        <PATH>Alarma.c</PATH>
-                        <PATHFORMAT>Windows</PATHFORMAT>
-                    </FILEREF>
-                    <FILEREF>
-                        <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                        <PATHTYPE>Name</PATHTYPE>
-                        <PATH>AlarmaControl.c</PATH>
-                        <PATHFORMAT>Windows</PATHFORMAT>
-                    </FILEREF>
-                    <FILEREF>
-                        <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                        <PATHTYPE>Name</PATHTYPE>
-                        <PATH>LazoAlarmaControl.c</PATH>
-                        <PATHFORMAT>Windows</PATHFORMAT>
-                    </FILEREF>
-                </GROUP>
-                <GROUP><NAME>Control</NAME>
-                    <GROUP><NAME>AdaptacionSalida</NAME>
-                        <FILEREF>
-                            <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                            <PATHTYPE>Name</PATHTYPE>
-                            <PATH>AdaptacionSalida.c</PATH>
-                            <PATHFORMAT>Windows</PATHFORMAT>
-                        </FILEREF>
-                        <GROUP><NAME>subclases</NAME>
-                            <FILEREF>
-                                <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                                <PATHTYPE>Name</PATHTYPE>
-                                <PATH>SalidaBanda.c</PATH>
-                                <PATHFORMAT>Windows</PATHFORMAT>
-                            </FILEREF>
-                            <FILEREF>
-                                <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                                <PATHTYPE>Name</PATHTYPE>
-                                <PATH>SalidaBloqueada.c</PATH>
-                                <PATHFORMAT>Windows</PATHFORMAT>
-                            </FILEREF>
-                            <FILEREF>
-                                <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                                <PATHTYPE>Name</PATHTYPE>
-                                <PATH>SalidaRetenida.c</PATH>
-                                <PATHFORMAT>Windows</PATHFORMAT>
-                            </FILEREF>
-                            <FILEREF>
-                                <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                                <PATHTYPE>Name</PATHTYPE>
-                                <PATH>SalidaRetenidaBajo.c</PATH>
-                                <PATHFORMAT>Windows</PATHFORMAT>
-                            </FILEREF>
-                        </GROUP>
-                    </GROUP>
-                    <GROUP><NAME>Control</NAME>
-                        <FILEREF>
-                            <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                            <PATHTYPE>Name</PATHTYPE>
-                            <PATH>Control.c</PATH>
-                            <PATHFORMAT>Windows</PATHFORMAT>
-                        </FILEREF>
-                        <FILEREF>
-                            <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                            <PATHTYPE>Name</PATHTYPE>
-                            <PATH>ControlPID.c</PATH>
-                            <PATHFORMAT>Windows</PATHFORMAT>
-                        </FILEREF>
-                    </GROUP>
-                    <FILEREF>
-                        <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                        <PATHTYPE>Name</PATHTYPE>
-                        <PATH>Lazo.c</PATH>
-                        <PATHFORMAT>Windows</PATHFORMAT>
-                    </FILEREF>
-                    <FILEREF>
-                        <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                        <PATHTYPE>Name</PATHTYPE>
-                        <PATH>LazoControl.c</PATH>
-                        <PATHFORMAT>Windows</PATHFORMAT>
-                    </FILEREF>
-                    <GROUP><NAME>ValorControl</NAME>
-                        <GROUP><NAME>subclases</NAME>
-                            <FILEREF>
-                                <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                                <PATHTYPE>Name</PATHTYPE>
-                                <PATH>CntrBanda.c</PATH>
-                                <PATHFORMAT>Windows</PATHFORMAT>
-                            </FILEREF>
-                            <FILEREF>
-                                <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                                <PATHTYPE>Name</PATHTYPE>
-                                <PATH>CntrProporcional.c</PATH>
-                                <PATHFORMAT>Windows</PATHFORMAT>
-                            </FILEREF>
-                            <FILEREF>
-                                <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                                <PATHTYPE>Name</PATHTYPE>
-                                <PATH>CntrProporcionalInv.c</PATH>
-                                <PATHFORMAT>Windows</PATHFORMAT>
-                            </FILEREF>
-                            <FILEREF>
-                                <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                                <PATHTYPE>Name</PATHTYPE>
-                                <PATH>CntrRelativo.c</PATH>
-                                <PATHFORMAT>Windows</PATHFORMAT>
-                            </FILEREF>
-                        </GROUP>
-                        <FILEREF>
-                            <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                            <PATHTYPE>Name</PATHTYPE>
-                            <PATH>ValorControl.c</PATH>
-                            <PATHFORMAT>Windows</PATHFORMAT>
-                        </FILEREF>
-                    </GROUP>
-                </GROUP>
-                <GROUP><NAME>FLASH</NAME>
-                    <FILEREF>
-                        <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                        <PATHTYPE>Name</PATHTYPE>
-                        <PATH>FlashBkpEnFlash.c</PATH>
-                        <PATHFORMAT>Windows</PATHFORMAT>
-                    </FILEREF>
-                    <FILEREF>
-                        <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                        <PATHTYPE>Name</PATHTYPE>
-                        <PATH>IFsh10.c</PATH>
-                        <PATHFORMAT>Windows</PATHFORMAT>
-                    </FILEREF>
-                    <FILEREF>
-                        <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                        <PATHTYPE>Name</PATHTYPE>
-                        <PATH>ManejadorMemoria.h</PATH>
-                        <PATHFORMAT>Windows</PATHFORMAT>
-                    </FILEREF>
-                    <FILEREF>
-                        <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                        <PATHTYPE>Name</PATHTYPE>
-                        <PATH>PromBkp.c</PATH>
-                        <PATHFORMAT>Windows</PATHFORMAT>
-                    </FILEREF>
-                    <FILEREF>
-                        <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                        <PATHTYPE>Name</PATHTYPE>
-                        <PATH>FlashBkp.c</PATH>
-                        <PATHFORMAT>Windows</PATHFORMAT>
-                    </FILEREF>
-                </GROUP>
-                <FILEREF>
-                    <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>PlataformaEmbedded.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <GROUP><NAME>Retransmision</NAME>
-                    <FILEREF>
-                        <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                        <PATHTYPE>Name</PATHTYPE>
-                        <PATH>Retransmision.c</PATH>
-                        <PATHFORMAT>Windows</PATHFORMAT>
-                    </FILEREF>
-                    <FILEREF>
-                        <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                        <PATHTYPE>Name</PATHTYPE>
-                        <PATH>RetransmisionPWM.c</PATH>
-                        <PATHFORMAT>Windows</PATHFORMAT>
-                    </FILEREF>
-                </GROUP>
-                <GROUP><NAME>Salida</NAME>
-                    <FILEREF>
-                        <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                        <PATHTYPE>Name</PATHTYPE>
-                        <PATH>DecoradorSalida.c</PATH>
-                        <PATHFORMAT>Windows</PATHFORMAT>
-                    </FILEREF>
-                    <FILEREF>
-                        <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                        <PATHTYPE>Name</PATHTYPE>
-                        <PATH>ISalida.c</PATH>
-                        <PATHFORMAT>Windows</PATHFORMAT>
-                    </FILEREF>
-                    <GROUP><NAME>PWM</NAME>
-                        <GROUP><NAME>Decorador</NAME>
-                            <FILEREF>
-                                <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                                <PATHTYPE>Name</PATHTYPE>
-                                <PATH>DecoradorPWM.c</PATH>
-                                <PATHFORMAT>Windows</PATHFORMAT>
-                            </FILEREF>
-                            <FILEREF>
-                                <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                                <PATHTYPE>Name</PATHTYPE>
-                                <PATH>PWMPeriodoEvent.c</PATH>
-                                <PATHFORMAT>Windows</PATHFORMAT>
-                            </FILEREF>
-                        </GROUP>
-                        <FILEREF>
-                            <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                            <PATHTYPE>Name</PATHTYPE>
-                            <PATH>IPWM.c</PATH>
-                            <PATHFORMAT>Windows</PATHFORMAT>
-                        </FILEREF>
-                        <FILEREF>
-                            <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                            <PATHTYPE>Name</PATHTYPE>
-                            <PATH>PWM.c</PATH>
-                            <PATHFORMAT>Windows</PATHFORMAT>
-                        </FILEREF>
-                        <FILEREF>
-                            <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                            <PATHTYPE>Name</PATHTYPE>
-                            <PATH>PWMSoft.c</PATH>
-                            <PATHFORMAT>Windows</PATHFORMAT>
-                        </FILEREF>
-                        <FILEREF>
-                            <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                            <PATHTYPE>Name</PATHTYPE>
-                            <PATH>PWMTimer.c</PATH>
-                            <PATHFORMAT>Windows</PATHFORMAT>
-                        </FILEREF>
-                        <FILEREF>
-                            <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                            <PATHTYPE>Name</PATHTYPE>
-                            <PATH>utils_pwm_timer.c</PATH>
-                            <PATHFORMAT>Windows</PATHFORMAT>
-                        </FILEREF>
-                    </GROUP>
-                    <FILEREF>
-                        <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                        <PATHTYPE>Name</PATHTYPE>
-                        <PATH>Salida.c</PATH>
-                        <PATHFORMAT>Windows</PATHFORMAT>
-                    </FILEREF>
-                    <FILEREF>
-                        <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                        <PATHTYPE>Name</PATHTYPE>
-                        <PATH>SalidaInvertida.c</PATH>
-                        <PATHFORMAT>Windows</PATHFORMAT>
-                    </FILEREF>
-                </GROUP>
-                <GROUP><NAME>Sensor</NAME>
-                    <GROUP><NAME>ADC</NAME>
-                        <FILEREF>
-                            <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                            <PATHTYPE>Name</PATHTYPE>
-                            <PATH>ADC.c</PATH>
-                            <PATHFORMAT>Windows</PATHFORMAT>
-                        </FILEREF>
-                        <FILEREF>
-                            <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                            <PATHTYPE>Name</PATHTYPE>
-                            <PATH>ClassADC.c</PATH>
-                            <PATHFORMAT>Windows</PATHFORMAT>
-                        </FILEREF>
-                    </GROUP>
-                    <FILEREF>
-                        <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                        <PATHTYPE>Name</PATHTYPE>
-                        <PATH>Sensor.c</PATH>
-                        <PATHFORMAT>Windows</PATHFORMAT>
-                    </FILEREF>
-                    <FILEREF>
-                        <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                        <PATHTYPE>Name</PATHTYPE>
-                        <PATH>Sensores.c</PATH>
-                        <PATHFORMAT>Windows</PATHFORMAT>
-                    </FILEREF>
-                    <FILEREF>
-                        <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                        <PATHTYPE>Name</PATHTYPE>
-                        <PATH>SensorTPT_Class.c</PATH>
-                        <PATHFORMAT>Windows</PATHFORMAT>
-                    </FILEREF>
-                </GROUP>
-                <FILEREF>
-                    <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>Termometro.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <GROUP><NAME>Timers</NAME>
-                    <FILEREF>
-                        <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                        <PATHTYPE>Name</PATHTYPE>
-                        <PATH>BaseTimers.c</PATH>
-                        <PATHFORMAT>Windows</PATHFORMAT>
-                    </FILEREF>
-                    <FILEREF>
-                        <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                        <PATHTYPE>Name</PATHTYPE>
-                        <PATH>BaseTimersGral.c</PATH>
-                        <PATHFORMAT>Windows</PATHFORMAT>
-                    </FILEREF>
-                    <FILEREF>
-                        <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                        <PATHTYPE>Name</PATHTYPE>
-                        <PATH>FTimer.c</PATH>
-                        <PATHFORMAT>Windows</PATHFORMAT>
-                    </FILEREF>
-                    <FILEREF>
-                        <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                        <PATHTYPE>Name</PATHTYPE>
-                        <PATH>MethodTimer.c</PATH>
-                        <PATHFORMAT>Windows</PATHFORMAT>
-                    </FILEREF>
-                    <FILEREF>
-                        <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                        <PATHTYPE>Name</PATHTYPE>
-                        <PATH>RlxMTimer.c</PATH>
-                        <PATHFORMAT>Windows</PATHFORMAT>
-                    </FILEREF>
-                    <FILEREF>
-                        <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                        <PATHTYPE>Name</PATHTYPE>
-                        <PATH>Timer.c</PATH>
-                        <PATHFORMAT>Windows</PATHFORMAT>
-                    </FILEREF>
-                    <FILEREF>
-                        <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                        <PATHTYPE>Name</PATHTYPE>
-                        <PATH>timer_interrupt.c</PATH>
-                        <PATHFORMAT>Windows</PATHFORMAT>
-                    </FILEREF>
-                </GROUP>
-            </GROUP>
-            <GROUP><NAME>Propiedades&amp;Getters</NAME>
-                <FILEREF>
-                    <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>GetterGenerico.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>GettersVisual.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>GetterWName.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>Propiedad.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>PropiedadGenerica.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>PropNumerica.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>PropNumPV.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>PropTextual.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>PropVisual.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>PropWithInc.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-            </GROUP>
-            <FILEREF>
-                <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                <PATHTYPE>Name</PATHTYPE>
-                <PATH>teclas.c</PATH>
-                <PATHFORMAT>Windows</PATHFORMAT>
-            </FILEREF>
-            <GROUP><NAME>Vista</NAME>
-                <FILEREF>
-                    <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>AlarmaControlVista.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <GROUP><NAME>DiagramaNavegacion</NAME>
-                    <FILEREF>
-                        <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                        <PATHTYPE>Name</PATHTYPE>
-                        <PATH>Access.c</PATH>
-                        <PATHFORMAT>Windows</PATHFORMAT>
-                    </FILEREF>
-                    <GROUP><NAME>Boxes</NAME>
-                        <FILEREF>
-                            <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                            <PATHTYPE>Name</PATHTYPE>
-                            <PATH>BoxAccess.c</PATH>
-                            <PATHFORMAT>Windows</PATHFORMAT>
-                        </FILEREF>
-                        <FILEREF>
-                            <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                            <PATHTYPE>Name</PATHTYPE>
-                            <PATH>BoxCondicional.c</PATH>
-                            <PATHFORMAT>Windows</PATHFORMAT>
-                        </FILEREF>
-                        <FILEREF>
-                            <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                            <PATHTYPE>Name</PATHTYPE>
-                            <PATH>BoxGetCond.c</PATH>
-                            <PATHFORMAT>Windows</PATHFORMAT>
-                        </FILEREF>
-                        <FILEREF>
-                            <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                            <PATHTYPE>Name</PATHTYPE>
-                            <PATH>BoxPrincipalNC.c</PATH>
-                            <PATHFORMAT>Windows</PATHFORMAT>
-                        </FILEREF>
-                        <FILEREF>
-                            <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                            <PATHTYPE>Name</PATHTYPE>
-                            <PATH>BoxProp.c</PATH>
-                            <PATHFORMAT>Windows</PATHFORMAT>
-                        </FILEREF>
-                        <FILEREF>
-                            <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                            <PATHTYPE>Name</PATHTYPE>
-                            <PATH>BoxPropBase.c</PATH>
-                            <PATHFORMAT>Windows</PATHFORMAT>
-                        </FILEREF>
-                        <FILEREF>
-                            <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                            <PATHTYPE>Name</PATHTYPE>
-                            <PATH>BoxPropCond.c</PATH>
-                            <PATHFORMAT>Windows</PATHFORMAT>
-                        </FILEREF>
-                        <FILEREF>
-                            <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                            <PATHTYPE>Name</PATHTYPE>
-                            <PATH>BoxPropVarName.c</PATH>
-                            <PATHFORMAT>Windows</PATHFORMAT>
-                        </FILEREF>
-                        <FILEREF>
-                            <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                            <PATHTYPE>Name</PATHTYPE>
-                            <PATH>ClassBox.c</PATH>
-                            <PATHFORMAT>Windows</PATHFORMAT>
-                        </FILEREF>
-                        <FILEREF>
-                            <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                            <PATHTYPE>Name</PATHTYPE>
-                            <PATH>ClassBoxLineal.c</PATH>
-                            <PATHFORMAT>Windows</PATHFORMAT>
-                        </FILEREF>
-                        <FILEREF>
-                            <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                            <PATHTYPE>Name</PATHTYPE>
-                            <PATH>ClassObjBox.c</PATH>
-                            <PATHFORMAT>Windows</PATHFORMAT>
-                        </FILEREF>
-                        <FILEREF>
-                            <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                            <PATHTYPE>Name</PATHTYPE>
-                            <PATH>DataBox.c</PATH>
-                            <PATHFORMAT>Windows</PATHFORMAT>
-                        </FILEREF>
-                        <FILEREF>
-                            <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                            <PATHTYPE>Name</PATHTYPE>
-                            <PATH>ReadOnlyBox.c</PATH>
-                            <PATHFORMAT>Windows</PATHFORMAT>
-                        </FILEREF>
-                        <FILEREF>
-                            <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                            <PATHTYPE>Name</PATHTYPE>
-                            <PATH>TitleBox.c</PATH>
-                            <PATHFORMAT>Windows</PATHFORMAT>
-                        </FILEREF>
-                        <FILEREF>
-                            <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                            <PATHTYPE>Name</PATHTYPE>
-                            <PATH>UpdatedBox.c</PATH>
-                            <PATHFORMAT>Windows</PATHFORMAT>
-                        </FILEREF>
-                    </GROUP>
-                    <FILEREF>
-                        <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                        <PATHTYPE>Name</PATHTYPE>
-                        <PATH>BoxList.c</PATH>
-                        <PATHFORMAT>Windows</PATHFORMAT>
-                    </FILEREF>
-                    <FILEREF>
-                        <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                        <PATHTYPE>Name</PATHTYPE>
-                        <PATH>DiagramaNavegacion.c</PATH>
-                        <PATHFORMAT>Windows</PATHFORMAT>
-                    </FILEREF>
-                    <FILEREF>
-                        <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                        <PATHTYPE>Name</PATHTYPE>
-                        <PATH>FstBoxPointer.c</PATH>
-                        <PATHFORMAT>Windows</PATHFORMAT>
-                    </FILEREF>
-                </GROUP>
-                <GROUP><NAME>display</NAME>
-                    <FILEREF>
-                        <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                        <PATHTYPE>Name</PATHTYPE>
-                        <PATH>display.c</PATH>
-                        <PATHFORMAT>Windows</PATHFORMAT>
-                    </FILEREF>
-                    <FILEREF>
-                        <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                        <PATHTYPE>Name</PATHTYPE>
-                        <PATH>display_teclasSD.c</PATH>
-                        <PATHFORMAT>Windows</PATHFORMAT>
-                    </FILEREF>
-                    <FILEREF>
-                        <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                        <PATHTYPE>Name</PATHTYPE>
-                        <PATH>leds_controlador.c</PATH>
-                        <PATHFORMAT>Windows</PATHFORMAT>
-                    </FILEREF>
-                    <FILEREF>
-                        <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                        <PATHTYPE>Name</PATHTYPE>
-                        <PATH>matriz.c</PATH>
-                        <PATHFORMAT>Windows</PATHFORMAT>
-                    </FILEREF>
-                </GROUP>
-                <FILEREF>
-                    <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>LedsSalida.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>MessagesOut.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>Pid2SPHmi.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>PidHmi.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>PWM_Hmi.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>sensor_adapt_val.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>Sets.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>SnsHmi.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-            </GROUP>
-            <FILEREF>
-                <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                <PATHTYPE>Name</PATHTYPE>
-                <PATH>mainSD100.c</PATH>
-                <PATHFORMAT>Windows</PATHFORMAT>
-            </FILEREF>
-        </GROUP>
         <GROUP><NAME>Debugger Cmd Files</NAME>
-            <GROUP><NAME>Simulator</NAME>
-                <FILEREF>
-                    <TARGETNAME>Simulator</TARGETNAME>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>Simulator_Postload.cmd</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <TARGETNAME>Simulator</TARGETNAME>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>Simulator_Preload.cmd</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <TARGETNAME>Simulator</TARGETNAME>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>Simulator_Reset.cmd</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <TARGETNAME>Simulator</TARGETNAME>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>Simulator_SetCPU.cmd</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <TARGETNAME>Simulator</TARGETNAME>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>Simulator_Startup.cmd</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-            </GROUP>
             <GROUP><NAME>P&amp;E_ICD</NAME>
-                <FILEREF>
-                    <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>Test.cmd</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
                 <FILEREF>
                     <TARGETNAME>P&amp;E ICD</TARGETNAME>
                     <PATHTYPE>Name</PATHTYPE>
@@ -6565,45 +5393,57 @@
                     <PATH>P&amp;E_ICD_Vppon.cmd</PATH>
                     <PATHFORMAT>Windows</PATHFORMAT>
                 </FILEREF>
+                <FILEREF>
+                    <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>Test.cmd</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+            </GROUP>
+            <GROUP><NAME>Simulator</NAME>
+                <FILEREF>
+                    <TARGETNAME>Simulator</TARGETNAME>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>Simulator_Postload.cmd</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <TARGETNAME>Simulator</TARGETNAME>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>Simulator_Preload.cmd</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <TARGETNAME>Simulator</TARGETNAME>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>Simulator_Reset.cmd</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <TARGETNAME>Simulator</TARGETNAME>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>Simulator_SetCPU.cmd</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <TARGETNAME>Simulator</TARGETNAME>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>Simulator_Startup.cmd</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
             </GROUP>
         </GROUP>
-        <GROUP><NAME>Libraries</NAME>
+        <GROUP><NAME>Debugger Project File</NAME>
             <FILEREF>
                 <TARGETNAME>P&amp;E ICD</TARGETNAME>
                 <PATHTYPE>Name</PATHTYPE>
-                <PATH>ooc.lib</PATH>
+                <PATH>P&amp;E_ICD.ini</PATH>
                 <PATHFORMAT>Windows</PATHFORMAT>
             </FILEREF>
-            <FILEREF>
-                <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                <PATHTYPE>Name</PATHTYPE>
-                <PATH>utilsi.lib</PATH>
-                <PATHFORMAT>Windows</PATHFORMAT>
-            </FILEREF>
-            <FILEREF>
-                <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                <PATHTYPE>Name</PATHTYPE>
-                <PATH>ansisi.lib</PATH>
-                <PATHFORMAT>Windows</PATHFORMAT>
-            </FILEREF>
-            <FILEREF>
-                <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                <PATHTYPE>Name</PATHTYPE>
-                <PATH>reflect_si.lib</PATH>
-                <PATHFORMAT>Windows</PATHFORMAT>
-            </FILEREF>
-        </GROUP>
-        <GROUP><NAME>Linker Map</NAME>
             <FILEREF>
                 <TARGETNAME>Simulator</TARGETNAME>
                 <PATHTYPE>Name</PATHTYPE>
-                <PATH>Simulator.map</PATH>
-                <PATHFORMAT>Windows</PATHFORMAT>
-            </FILEREF>
-            <FILEREF>
-                <TARGETNAME>P&amp;E ICD</TARGETNAME>
-                <PATHTYPE>Name</PATHTYPE>
-                <PATH>P&amp;E_ICD.map</PATH>
+                <PATH>Simulator.ini</PATH>
                 <PATHFORMAT>Windows</PATHFORMAT>
             </FILEREF>
         </GROUP>
@@ -6627,17 +5467,837 @@
                 <PATHFORMAT>Windows</PATHFORMAT>
             </FILEREF>
         </GROUP>
+        <GROUP><NAME>Generated Code</NAME>
+            <FILEREF>
+                <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                <PATHTYPE>Name</PATHTYPE>
+                <PATH>ADC1.c</PATH>
+                <PATHFORMAT>Windows</PATHFORMAT>
+            </FILEREF>
+            <FILEREF>
+                <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                <PATHTYPE>Name</PATHTYPE>
+                <PATH>AS1.c</PATH>
+                <PATHFORMAT>Windows</PATHFORMAT>
+            </FILEREF>
+            <FILEREF>
+                <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                <PATHTYPE>Name</PATHTYPE>
+                <PATH>bits2ULN.c</PATH>
+                <PATHFORMAT>Windows</PATHFORMAT>
+            </FILEREF>
+            <FILEREF>
+                <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                <PATHTYPE>Name</PATHTYPE>
+                <PATH>bits5ULN.c</PATH>
+                <PATHFORMAT>Windows</PATHFORMAT>
+            </FILEREF>
+            <FILEREF>
+                <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                <PATHTYPE>Name</PATHTYPE>
+                <PATH>Display1.c</PATH>
+                <PATHFORMAT>Windows</PATHFORMAT>
+            </FILEREF>
+            <FILEREF>
+                <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                <PATHTYPE>Name</PATHTYPE>
+                <PATH>FLASH1.c</PATH>
+                <PATHFORMAT>Windows</PATHFORMAT>
+            </FILEREF>
+            <FILEREF>
+                <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                <PATHTYPE>Name</PATHTYPE>
+                <PATH>IO_Map.c</PATH>
+                <PATHFORMAT>Windows</PATHFORMAT>
+            </FILEREF>
+            <FILEREF>
+                <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                <PATHTYPE>Name</PATHTYPE>
+                <PATH>PUL.c</PATH>
+                <PATHFORMAT>Windows</PATHFORMAT>
+            </FILEREF>
+            <FILEREF>
+                <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                <PATHTYPE>Name</PATHTYPE>
+                <PATH>PWSN.c</PATH>
+                <PATHFORMAT>Windows</PATHFORMAT>
+            </FILEREF>
+            <FILEREF>
+                <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                <PATHTYPE>Name</PATHTYPE>
+                <PATH>test.c</PATH>
+                <PATHFORMAT>Windows</PATHFORMAT>
+            </FILEREF>
+            <FILEREF>
+                <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                <PATHTYPE>Name</PATHTYPE>
+                <PATH>trx.c</PATH>
+                <PATHFORMAT>Windows</PATHFORMAT>
+            </FILEREF>
+            <FILEREF>
+                <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                <PATHTYPE>Name</PATHTYPE>
+                <PATH>Vectors.c</PATH>
+                <PATHFORMAT>Windows</PATHFORMAT>
+            </FILEREF>
+            <FILEREF>
+                <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                <PATHTYPE>Name</PATHTYPE>
+                <PATH>WDog1.c</PATH>
+                <PATHFORMAT>Windows</PATHFORMAT>
+            </FILEREF>
+            <FILEREF>
+                <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                <PATHTYPE>Name</PATHTYPE>
+                <PATH>In2.c</PATH>
+                <PATHFORMAT>Windows</PATHFORMAT>
+            </FILEREF>
+            <FILEREF>
+                <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                <PATHTYPE>Name</PATHTYPE>
+                <PATH>In1.c</PATH>
+                <PATHFORMAT>Windows</PATHFORMAT>
+            </FILEREF>
+            <FILEREF>
+                <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                <PATHTYPE>Name</PATHTYPE>
+                <PATH>InpSP2.c</PATH>
+                <PATHFORMAT>Windows</PATHFORMAT>
+            </FILEREF>
+            <FILEREF>
+                <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                <PATHTYPE>Name</PATHTYPE>
+                <PATH>Display2.c</PATH>
+                <PATHFORMAT>Windows</PATHFORMAT>
+            </FILEREF>
+            <FILEREF>
+                <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                <PATHTYPE>Name</PATHTYPE>
+                <PATH>CpuSD.c</PATH>
+                <PATHFORMAT>Windows</PATHFORMAT>
+            </FILEREF>
+            <FILEREF>
+                <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                <PATHTYPE>Name</PATHTYPE>
+                <PATH>PTSL_SD.c</PATH>
+                <PATHFORMAT>Windows</PATHFORMAT>
+            </FILEREF>
+            <FILEREF>
+                <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                <PATHTYPE>Name</PATHTYPE>
+                <PATH>TI7.c</PATH>
+                <PATHFORMAT>Windows</PATHFORMAT>
+            </FILEREF>
+        </GROUP>
+        <GROUP><NAME>Libraries</NAME>
+            <FILEREF>
+                <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                <PATHTYPE>Name</PATHTYPE>
+                <PATH>ansisi.lib</PATH>
+                <PATHFORMAT>Windows</PATHFORMAT>
+            </FILEREF>
+            <FILEREF>
+                <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                <PATHTYPE>Name</PATHTYPE>
+                <PATH>ooc.lib</PATH>
+                <PATHFORMAT>Windows</PATHFORMAT>
+            </FILEREF>
+            <FILEREF>
+                <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                <PATHTYPE>Name</PATHTYPE>
+                <PATH>util.lib</PATH>
+                <PATHFORMAT>Windows</PATHFORMAT>
+            </FILEREF>
+            <FILEREF>
+                <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                <PATHTYPE>Name</PATHTYPE>
+                <PATH>reflect.lib</PATH>
+                <PATHFORMAT>Windows</PATHFORMAT>
+            </FILEREF>
+        </GROUP>
+        <GROUP><NAME>Linker Map</NAME>
+            <FILEREF>
+                <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                <PATHTYPE>Name</PATHTYPE>
+                <PATH>P&amp;E_ICD.map</PATH>
+                <PATHFORMAT>Windows</PATHFORMAT>
+            </FILEREF>
+            <FILEREF>
+                <TARGETNAME>Simulator</TARGETNAME>
+                <PATHTYPE>Name</PATHTYPE>
+                <PATH>Simulator.map</PATH>
+                <PATHFORMAT>Windows</PATHFORMAT>
+            </FILEREF>
+        </GROUP>
+        <GROUP><NAME>Prm</NAME>
+            <FILEREF>
+                <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                <PATHTYPE>Name</PATHTYPE>
+                <PATH>burner.bbl</PATH>
+                <PATHFORMAT>Windows</PATHFORMAT>
+            </FILEREF>
+            <FILEREF>
+                <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                <PATHTYPE>Name</PATHTYPE>
+                <PATH>SD100.prm</PATH>
+                <PATHFORMAT>Windows</PATHFORMAT>
+            </FILEREF>
+        </GROUP>
         <FILEREF>
             <TARGETNAME>P&amp;E ICD</TARGETNAME>
             <PATHTYPE>Name</PATHTYPE>
             <PATH>readme.txt</PATH>
             <PATHFORMAT>Windows</PATHFORMAT>
         </FILEREF>
+        <GROUP><NAME>Sources</NAME>
+            <FILEREF>
+                <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                <PATHTYPE>Name</PATHTYPE>
+                <PATH>datapage.c</PATH>
+                <PATHFORMAT>Windows</PATHFORMAT>
+            </FILEREF>
+        </GROUP>
         <GROUP><NAME>Startup Code</NAME>
             <FILEREF>
                 <TARGETNAME>P&amp;E ICD</TARGETNAME>
                 <PATHTYPE>Name</PATHTYPE>
                 <PATH>Start12.c</PATH>
+                <PATHFORMAT>Windows</PATHFORMAT>
+            </FILEREF>
+        </GROUP>
+        <GROUP><NAME>User Modules</NAME>
+            <GROUP><NAME>Vista</NAME>
+                <GROUP><NAME>display</NAME>
+                    <FILEREF>
+                        <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>display.c</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                    <FILEREF>
+                        <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>matriz.c</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                    <FILEREF>
+                        <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>display_teclasSD.c</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                    <FILEREF>
+                        <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>leds_controlador.c</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                </GROUP>
+                <GROUP><NAME>DiagramaNavegacion</NAME>
+                    <FILEREF>
+                        <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>DiagramaNavegacion.c</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                    <GROUP><NAME>Boxes</NAME>
+                        <FILEREF>
+                            <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                            <PATHTYPE>Name</PATHTYPE>
+                            <PATH>ClassBox.c</PATH>
+                            <PATHFORMAT>Windows</PATHFORMAT>
+                        </FILEREF>
+                        <FILEREF>
+                            <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                            <PATHTYPE>Name</PATHTYPE>
+                            <PATH>ClassObjBox.c</PATH>
+                            <PATHFORMAT>Windows</PATHFORMAT>
+                        </FILEREF>
+                        <FILEREF>
+                            <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                            <PATHTYPE>Name</PATHTYPE>
+                            <PATH>DataBox.c</PATH>
+                            <PATHFORMAT>Windows</PATHFORMAT>
+                        </FILEREF>
+                        <FILEREF>
+                            <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                            <PATHTYPE>Name</PATHTYPE>
+                            <PATH>ReadOnlyBox.c</PATH>
+                            <PATHFORMAT>Windows</PATHFORMAT>
+                        </FILEREF>
+                        <FILEREF>
+                            <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                            <PATHTYPE>Name</PATHTYPE>
+                            <PATH>UpdatedBox.c</PATH>
+                            <PATHFORMAT>Windows</PATHFORMAT>
+                        </FILEREF>
+                        <FILEREF>
+                            <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                            <PATHTYPE>Name</PATHTYPE>
+                            <PATH>BoxGetCond.c</PATH>
+                            <PATHFORMAT>Windows</PATHFORMAT>
+                        </FILEREF>
+                        <FILEREF>
+                            <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                            <PATHTYPE>Name</PATHTYPE>
+                            <PATH>BoxAccess.c</PATH>
+                            <PATHFORMAT>Windows</PATHFORMAT>
+                        </FILEREF>
+                        <FILEREF>
+                            <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                            <PATHTYPE>Name</PATHTYPE>
+                            <PATH>BoxPropBase.c</PATH>
+                            <PATHFORMAT>Windows</PATHFORMAT>
+                        </FILEREF>
+                        <FILEREF>
+                            <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                            <PATHTYPE>Name</PATHTYPE>
+                            <PATH>BoxProp.c</PATH>
+                            <PATHFORMAT>Windows</PATHFORMAT>
+                        </FILEREF>
+                        <FILEREF>
+                            <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                            <PATHTYPE>Name</PATHTYPE>
+                            <PATH>BoxCondicional.c</PATH>
+                            <PATHFORMAT>Windows</PATHFORMAT>
+                        </FILEREF>
+                        <FILEREF>
+                            <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                            <PATHTYPE>Name</PATHTYPE>
+                            <PATH>BoxPropCond.c</PATH>
+                            <PATHFORMAT>Windows</PATHFORMAT>
+                        </FILEREF>
+                        <FILEREF>
+                            <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                            <PATHTYPE>Name</PATHTYPE>
+                            <PATH>BoxPropVarName.c</PATH>
+                            <PATHFORMAT>Windows</PATHFORMAT>
+                        </FILEREF>
+                        <FILEREF>
+                            <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                            <PATHTYPE>Name</PATHTYPE>
+                            <PATH>ClassBoxLineal.c</PATH>
+                            <PATHFORMAT>Windows</PATHFORMAT>
+                        </FILEREF>
+                        <FILEREF>
+                            <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                            <PATHTYPE>Name</PATHTYPE>
+                            <PATH>TitleBox.c</PATH>
+                            <PATHFORMAT>Windows</PATHFORMAT>
+                        </FILEREF>
+                        <FILEREF>
+                            <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                            <PATHTYPE>Name</PATHTYPE>
+                            <PATH>BoxPrincipalNC.c</PATH>
+                            <PATHFORMAT>Windows</PATHFORMAT>
+                        </FILEREF>
+                    </GROUP>
+                    <FILEREF>
+                        <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>FstBoxPointer.c</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                    <FILEREF>
+                        <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>Access.c</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                    <FILEREF>
+                        <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>BoxList.c</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                </GROUP>
+                <FILEREF>
+                    <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>PidHmi.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>PWM_Hmi.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>Pid2SPHmi.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>SnsHmi.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>Sets.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>LedsSalida.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>AlarmaControlVista.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>sensor_adapt_val.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>MessagesOut.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+            </GROUP>
+            <GROUP><NAME>modelo</NAME>
+                <GROUP><NAME>Timers</NAME>
+                    <FILEREF>
+                        <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>Timer.c</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                    <FILEREF>
+                        <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>FTimer.c</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                    <FILEREF>
+                        <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>MethodTimer.c</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                    <FILEREF>
+                        <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>RlxMTimer.c</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                    <FILEREF>
+                        <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>timer_interrupt.c</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                </GROUP>
+                <GROUP><NAME>Alarma</NAME>
+                    <FILEREF>
+                        <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>Alarma.c</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                    <FILEREF>
+                        <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>LazoAlarmaControl.c</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                    <FILEREF>
+                        <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>AlarmaControl.c</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                </GROUP>
+                <GROUP><NAME>FLASH</NAME>
+                    <FILEREF>
+                        <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>IFsh10.c</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                    <FILEREF>
+                        <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>PromBkp.c</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                    <FILEREF>
+                        <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>FlashBkpEnFlash.c</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                    <FILEREF>
+                        <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>ManejadorMemoria.h</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                </GROUP>
+                <GROUP><NAME>Retransmision</NAME>
+                    <FILEREF>
+                        <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>Retransmision.c</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                    <FILEREF>
+                        <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>RetransmisionPWM.c</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                </GROUP>
+                <GROUP><NAME>Control</NAME>
+                    <GROUP><NAME>ValorControl</NAME>
+                        <GROUP><NAME>subclases</NAME>
+                            <FILEREF>
+                                <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                                <PATHTYPE>Name</PATHTYPE>
+                                <PATH>CntrProporcional.c</PATH>
+                                <PATHFORMAT>Windows</PATHFORMAT>
+                            </FILEREF>
+                            <FILEREF>
+                                <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                                <PATHTYPE>Name</PATHTYPE>
+                                <PATH>CntrRelativo.c</PATH>
+                                <PATHFORMAT>Windows</PATHFORMAT>
+                            </FILEREF>
+                            <FILEREF>
+                                <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                                <PATHTYPE>Name</PATHTYPE>
+                                <PATH>CntrProporcionalInv.c</PATH>
+                                <PATHFORMAT>Windows</PATHFORMAT>
+                            </FILEREF>
+                            <FILEREF>
+                                <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                                <PATHTYPE>Name</PATHTYPE>
+                                <PATH>CntrBanda.c</PATH>
+                                <PATHFORMAT>Windows</PATHFORMAT>
+                            </FILEREF>
+                        </GROUP>
+                        <FILEREF>
+                            <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                            <PATHTYPE>Name</PATHTYPE>
+                            <PATH>ValorControl.c</PATH>
+                            <PATHFORMAT>Windows</PATHFORMAT>
+                        </FILEREF>
+                    </GROUP>
+                    <GROUP><NAME>AdaptacionSalida</NAME>
+                        <FILEREF>
+                            <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                            <PATHTYPE>Name</PATHTYPE>
+                            <PATH>AdaptacionSalida.c</PATH>
+                            <PATHFORMAT>Windows</PATHFORMAT>
+                        </FILEREF>
+                        <GROUP><NAME>subclases</NAME>
+                            <FILEREF>
+                                <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                                <PATHTYPE>Name</PATHTYPE>
+                                <PATH>SalidaBanda.c</PATH>
+                                <PATHFORMAT>Windows</PATHFORMAT>
+                            </FILEREF>
+                            <FILEREF>
+                                <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                                <PATHTYPE>Name</PATHTYPE>
+                                <PATH>SalidaBloqueada.c</PATH>
+                                <PATHFORMAT>Windows</PATHFORMAT>
+                            </FILEREF>
+                            <FILEREF>
+                                <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                                <PATHTYPE>Name</PATHTYPE>
+                                <PATH>SalidaRetenida.c</PATH>
+                                <PATHFORMAT>Windows</PATHFORMAT>
+                            </FILEREF>
+                        </GROUP>
+                    </GROUP>
+                    <FILEREF>
+                        <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>Lazo.c</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                    <FILEREF>
+                        <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>LazoControl.c</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                    <GROUP><NAME>Control</NAME>
+                        <FILEREF>
+                            <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                            <PATHTYPE>Name</PATHTYPE>
+                            <PATH>Control.c</PATH>
+                            <PATHFORMAT>Windows</PATHFORMAT>
+                        </FILEREF>
+                        <FILEREF>
+                            <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                            <PATHTYPE>Name</PATHTYPE>
+                            <PATH>ControlPID.c</PATH>
+                            <PATHFORMAT>Windows</PATHFORMAT>
+                        </FILEREF>
+                    </GROUP>
+                </GROUP>
+                <GROUP><NAME>Sensor</NAME>
+                    <FILEREF>
+                        <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>Sensores.c</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                    <FILEREF>
+                        <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>Sensor.c</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                    <FILEREF>
+                        <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>SensorTPT_Class.c</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                    <GROUP><NAME>ADC</NAME>
+                        <FILEREF>
+                            <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                            <PATHTYPE>Name</PATHTYPE>
+                            <PATH>ClassADC.c</PATH>
+                            <PATHFORMAT>Windows</PATHFORMAT>
+                        </FILEREF>
+                        <FILEREF>
+                            <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                            <PATHTYPE>Name</PATHTYPE>
+                            <PATH>ADC.c</PATH>
+                            <PATHFORMAT>Windows</PATHFORMAT>
+                        </FILEREF>
+                    </GROUP>
+                </GROUP>
+                <GROUP><NAME>Salida</NAME>
+                    <FILEREF>
+                        <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>SalidaInvertida.c</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                    <FILEREF>
+                        <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>DecoradorSalida.c</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                    <FILEREF>
+                        <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>Salida.c</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                    <GROUP><NAME>PWM</NAME>
+                        <FILEREF>
+                            <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                            <PATHTYPE>Name</PATHTYPE>
+                            <PATH>PWM.c</PATH>
+                            <PATHFORMAT>Windows</PATHFORMAT>
+                        </FILEREF>
+                        <FILEREF>
+                            <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                            <PATHTYPE>Name</PATHTYPE>
+                            <PATH>utils_pwm_timer.c</PATH>
+                            <PATHFORMAT>Windows</PATHFORMAT>
+                        </FILEREF>
+                        <FILEREF>
+                            <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                            <PATHTYPE>Name</PATHTYPE>
+                            <PATH>PWMSoft.c</PATH>
+                            <PATHFORMAT>Windows</PATHFORMAT>
+                        </FILEREF>
+                        <FILEREF>
+                            <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                            <PATHTYPE>Name</PATHTYPE>
+                            <PATH>PWMTimer.c</PATH>
+                            <PATHFORMAT>Windows</PATHFORMAT>
+                        </FILEREF>
+                        <GROUP><NAME>Decorador</NAME>
+                            <FILEREF>
+                                <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                                <PATHTYPE>Name</PATHTYPE>
+                                <PATH>PWMPeriodoEvent.c</PATH>
+                                <PATHFORMAT>Windows</PATHFORMAT>
+                            </FILEREF>
+                            <FILEREF>
+                                <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                                <PATHTYPE>Name</PATHTYPE>
+                                <PATH>DecoradorPWM.c</PATH>
+                                <PATHFORMAT>Windows</PATHFORMAT>
+                            </FILEREF>
+                        </GROUP>
+                    </GROUP>
+                </GROUP>
+                <FILEREF>
+                    <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>Termometro.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+            </GROUP>
+            <GROUP><NAME>Propiedades&amp;Getters</NAME>
+                <FILEREF>
+                    <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>GetterGenerico.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>PropiedadGenerica.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>GettersVisual.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>Propiedad.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>PropVisual.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>PropWithInc.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>PropNumerica.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>PropNumPV.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>PropTextual.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+            </GROUP>
+            <FILEREF>
+                <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                <PATHTYPE>Name</PATHTYPE>
+                <PATH>teclas.c</PATH>
+                <PATHFORMAT>Windows</PATHFORMAT>
+            </FILEREF>
+            <GROUP><NAME>Comunicacion</NAME>
+                <FILEREF>
+                    <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>modbus.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>com_events.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>ModBusHmi.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>NodoICModBus.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+            </GROUP>
+            <FILEREF>
+                <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                <PATHTYPE>Name</PATHTYPE>
+                <PATH>mainSD100.c</PATH>
+                <PATHFORMAT>Windows</PATHFORMAT>
+            </FILEREF>
+        </GROUP>
+        <GROUP><NAME>libs</NAME>
+            <FILEREF>
+                <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                <PATHTYPE>Name</PATHTYPE>
+                <PATH>funciones.c</PATH>
+                <PATHFORMAT>Windows</PATHFORMAT>
+            </FILEREF>
+            <FILEREF>
+                <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                <PATHTYPE>Name</PATHTYPE>
+                <PATH>Math.c</PATH>
+                <PATHFORMAT>Windows</PATHFORMAT>
+            </FILEREF>
+            <FILEREF>
+                <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                <PATHTYPE>Name</PATHTYPE>
+                <PATH>str_lib.c</PATH>
+                <PATHFORMAT>Windows</PATHFORMAT>
+            </FILEREF>
+            <FILEREF>
+                <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                <PATHTYPE>Name</PATHTYPE>
+                <PATH>SearchLib.c</PATH>
+                <PATHFORMAT>Windows</PATHFORMAT>
+            </FILEREF>
+            <FILEREF>
+                <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                <PATHTYPE>Name</PATHTYPE>
+                <PATH>MethodContainer.c</PATH>
+                <PATHFORMAT>Windows</PATHFORMAT>
+            </FILEREF>
+            <FILEREF>
+                <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                <PATHTYPE>Name</PATHTYPE>
+                <PATH>adjuntador_a_hilo.c</PATH>
+                <PATHFORMAT>Windows</PATHFORMAT>
+            </FILEREF>
+            <FILEREF>
+                <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                <PATHTYPE>Name</PATHTYPE>
+                <PATH>FunctionContainer.c</PATH>
+                <PATHFORMAT>Windows</PATHFORMAT>
+            </FILEREF>
+            <FILEREF>
+                <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                <PATHTYPE>Name</PATHTYPE>
+                <PATH>ThreadAdjuntable.c</PATH>
+                <PATHFORMAT>Windows</PATHFORMAT>
+            </FILEREF>
+            <FILEREF>
+                <TARGETNAME>P&amp;E ICD</TARGETNAME>
+                <PATHTYPE>Name</PATHTYPE>
+                <PATH>termio12.c</PATH>
                 <PATHFORMAT>Windows</PATHFORMAT>
             </FILEREF>
         </GROUP>

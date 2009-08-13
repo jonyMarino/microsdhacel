@@ -36,9 +36,9 @@ const struct BoxClass DataBox={
 ** ===================================================================
 */
 void DataBox_Constructor(void * _self, void * BlockConst){
-  struct DataBox * _box = _self;
-  struct BlockConstDataBox * Block =  BlockConst;
-  struct PropWInc * prop =pProp_Constructor(Block->_c_prop,NULL); 
+  struct DataBox * _box = (struct DataBox *)_self;
+  struct BlockConstDataBox * Block = (struct BlockConstDataBox *) BlockConst;
+  void * prop =pProp_Constructor(Block->_c_prop,NULL); 
   char * desc;
   
   _box->prop=prop;
@@ -67,10 +67,9 @@ void DataBox_DefConstructor(void * _self, va_list*args){
 **     Description :  Destructor del Box
 ** ===================================================================
 */
-void * DataBox_Destructor(void* _self){
-  struct DataBox * _box = _self;
-  delete(_box->prop);
-  return _self; 
+void DataBox_Destructor(void* _self){
+  struct DataBox * _box = (struct DataBox *)_self;
+  _delete(_box->prop);
 }
 
 /*
@@ -80,7 +79,7 @@ void * DataBox_Destructor(void* _self){
 ** ===================================================================
 */
 void DataBox_Refresh(void* _self){
-  struct DataBox * _box=_self;
+  struct DataBox * _box=(struct DataBox *)_self;
    
   PropWInc_Refresh(_box->prop);
   
@@ -94,7 +93,7 @@ void DataBox_Refresh(void* _self){
 ** ===================================================================
 */
 BOX_State DataBox_ProcKey(void* _self,uchar tecla){
-  struct DataBox * _box=_self;
+  struct DataBox * _box=(struct DataBox *)_self;
   
   if ((tecla=='u') || (tecla=='d')){ // Fue presionada una Tecla UP o Down???
 			  if(tecla=='u')
@@ -122,7 +121,7 @@ BOX_State DataBox_ProcKey(void* _self,uchar tecla){
 ** ===================================================================
 */
 struct BlockBoxConstruct * DataBox_getNext(void * _self,uchar tecla){
-  struct DataBox* _box=_self;
+  struct DataBox* _box=(struct DataBox *)_self;
   if(tecla=='r')
     return ((struct BlockConstDataBox*)_box->pBlockSelf)->pNextBlckConst;
   else

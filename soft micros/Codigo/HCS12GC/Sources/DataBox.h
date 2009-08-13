@@ -20,7 +20,7 @@ struct DataBox{
   struct Box _box;
 //Protected:  
   struct BlockConstDataBox *pBlockSelf;
-  struct PropWInc * prop;
+  /*struct PropWInc*/void * prop;
   uchar save;
 };
 
@@ -46,7 +46,7 @@ void DataBox_DefConstructor(void * _self, va_list*args);
 **     Description :  Destructor del Box
 ** ===================================================================
 */
-void * DataBox_Destructor(void* _self);
+void DataBox_Destructor(void* _self);
 /*
 ** ===================================================================
 **     Method      :  DataBox_Refresh 

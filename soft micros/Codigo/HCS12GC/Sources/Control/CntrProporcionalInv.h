@@ -7,6 +7,6 @@ struct CntrProporcionalInv{
  struct ValorControl super;
 };
 
-extern const struct TValorControlClass CntrProporcionalInvClass;
+extern const struct ValorControlClass CntrProporcionalInv;
 
 #endif

@@ -7,7 +7,7 @@ struct CntrProporcional{
  struct ValorControl super;
 };
 
-extern const struct TValorControlClass CntrProporcionalClass;
+extern const struct ValorControlClass CntrProporcional;
 
 
 #endif

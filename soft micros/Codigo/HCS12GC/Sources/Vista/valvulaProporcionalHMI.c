@@ -6,11 +6,11 @@
  /* Propiedades*/
  
   const struct ConstructorPropWInc PropTiempoApertura={
-    &PropiedadGenerica,get_tiempoAbierto,set_tiempoAbierto,get_0,NULL,&PropWInc,"tA "
+    (const struct Class * const)&PropiedadGenerica,get_tiempoAbierto,set_tiempoAbierto,get_0,NULL,&PropWInc,"tA "
   };
   
   const struct ConstructorPropWInc PropBandaMuerta={
-    &PropiedadGenerica,get_bandaMuerta,set_bandaMuerta,get_0,NULL,&PropWInc,"bM "
+    (const struct Class * const)&PropiedadGenerica,get_bandaMuerta,set_bandaMuerta,get_0,NULL,&PropWInc,"bM "
   }; 
 
 //Boxes:

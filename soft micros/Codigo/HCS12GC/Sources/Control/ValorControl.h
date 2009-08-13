@@ -5,7 +5,7 @@
 #include "ValorControlConf.h"
 
 struct ValorControl{
-  void * vTable;
+  struct Object super;
 //%-
   struct ValorControlConf * configuracion;
   struct Sensor * sensor;

@@ -16,16 +16,16 @@
 #define  MAX_BANDAMUERTA   10000
 #define  FACTOR_SEGURIDAD  1
 
-extern struct FlashBkpEnFlash flash;
+extern struct ManejadorMemoria *const pFlash;
 
 void ValvulaProporcional_defConstruct (void * _self, va_list * args);
 uint ValvulaProporcional_getPotencia(void *_self);
-void ValvulaProporcional_setPotencia(void *_self,int potencia);
+void ValvulaProporcional_setPotencia(void *_self,uint potencia);
 TipoSalida ValvulaProporcional_getTipoSalida(void *_self);
 void ValvulaProporcional_setTipoSalida(void *_self,TipoSalida tipoSalida);
 TError set_tiempoAbierto(void *_self,int value);
 TError set_bandaMuerta(void *_self,int value);
-void  ValvulaProporcional_onCheckear(void *_self,int potencia);
+void  ValvulaProporcional_onCheckear(void *_self);
 int get_tiempoAbierto(void *_self);
 int get_LimSup_tiempoAbierto(void);
 int get_bandaMuerta(void *_self);
@@ -50,7 +50,7 @@ int get_LimSup_bandaMuerta(void);
 
 
 void ValvulaProporcional_constructor(void * _self,ConfValvulaProporcional * conf,byte * puertoApertura,int bitApertura,byte * puertoCierre,int bitCierre){
-  struct ValvulaProporcional* self = _self;
+  struct ValvulaProporcional* self = (struct ValvulaProporcional*)_self;
   word tiempo=get_tiempoAbierto(self);
   Salida_constructor(self);
   self->conf=conf;
@@ -71,26 +71,26 @@ void ValvulaProporcional_defConstruct(void * _self, va_list * args){
 }
 
 static void cerrar(void * _self){
-  struct ValvulaProporcional* self = _self;
+  struct ValvulaProporcional* self = (struct ValvulaProporcional*)_self;
   clrReg8Bits(*(self->puertoApertura),(self->mascaraApertura));                           
   setReg8Bits(*(self->puertoCierre), (self->mascaraCierre));
 }
 
 static void abrir(void * _self){
-  struct ValvulaProporcional* self = _self;
+  struct ValvulaProporcional* self = (struct ValvulaProporcional*)_self;
   clrReg8Bits(*(self->puertoCierre),(self->mascaraCierre));                           
   setReg8Bits(*(self->puertoApertura),(self->mascaraApertura));
 }
 
 static void detener(void * _self){
-  struct ValvulaProporcional* self = _self;
+  struct ValvulaProporcional* self = (struct ValvulaProporcional*)_self;
   clrReg8Bits(*(self->puertoCierre), (self->mascaraCierre));                           
   clrReg8Bits(*(self->puertoApertura),(self->mascaraApertura));
 }
 
 void  ValvulaProporcional_onCheckear(void *_self){  
 //cada 10ms es llamada 
-  struct ValvulaProporcional* self = _self;
+  struct ValvulaProporcional* self = (struct ValvulaProporcional*)_self;
   word timesOpenClose,timesMuerto;
   word potencia_vp =43; // Salida_getPotencia(&self->super);
   if((self->timeCloseInit)>0){
@@ -121,7 +121,7 @@ void  ValvulaProporcional_onCheckear(void *_self){
 }
 
 uint  ValvulaProporcional_getPotencia(void *_self){
-  struct ValvulaProporcional* self = _self;
+  struct ValvulaProporcional* self = (struct ValvulaProporcional*)_self;
   word potenciaActual;
   potenciaActual = (self->timeActual)/(self->conf->tiempoAbierto); // ya que timeActual esta en miliseg y tiempoAbierto en seg, no multiplico por 1000
   
@@ -131,7 +131,7 @@ uint  ValvulaProporcional_getPotencia(void *_self){
 
 
 
-void ValvulaProporcional_setPotencia(void *_self,int potencia){
+void ValvulaProporcional_setPotencia(void *_self,word potencia){
 
   Salida_setPotencia(_self,potencia);
 
@@ -150,17 +150,17 @@ void ValvulaProporcional_setTipoSalida(void *_self,TipoSalida tipoSalida){
 }
 
 int get_tiempoAbierto(void *_self) {
-  struct ValvulaProporcional* self = _self;
+  struct ValvulaProporcional* self = (struct ValvulaProporcional*)_self;
   
-  return _MANEJADOR_MEMORIA_GET_BYTE(&flash,&self->conf->tiempoAbierto);
+  return _MANEJADOR_MEMORIA_GET_WORD(pFlash,(word*)&self->conf->tiempoAbierto);
  
 }
      
 TError set_tiempoAbierto(void *_self,int value) {
   
-  struct ValvulaProporcional* self = _self;
+  struct ValvulaProporcional* self = (struct ValvulaProporcional*)_self;
   
-  return _MANEJADOR_MEMORIA_SET_BYTE(&flash,&self->conf->tiempoAbierto,(uchar)value);
+  return _MANEJADOR_MEMORIA_SET_WORD(pFlash,(word*)&self->conf->tiempoAbierto,(uchar)value);
   
 }
 
@@ -171,17 +171,17 @@ int get_LimSup_tiempoAbierto(void){
 
 TError set_bandaMuerta(void *_self,int value) {
 
-struct ValvulaProporcional* self = _self;
+struct ValvulaProporcional* self = (struct ValvulaProporcional*)_self;
   
-return _MANEJADOR_MEMORIA_SET_BYTE(&flash,&self->conf->bandaMuerta,(uchar)value); 
+return _MANEJADOR_MEMORIA_SET_WORD(pFlash,(word*)&self->conf->bandaMuerta,(uchar)value); 
 
 }
 
 
 int get_bandaMuerta(void *_self) {
-  struct ValvulaProporcional* self = _self;
+  struct ValvulaProporcional* self = (struct ValvulaProporcional*)_self;
   
-  return _MANEJADOR_MEMORIA_GET_BYTE(&flash,&self->conf->bandaMuerta);
+  return _MANEJADOR_MEMORIA_GET_WORD(pFlash,(word*)&self->conf->bandaMuerta);
  
 }
 

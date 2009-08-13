@@ -64,7 +64,7 @@ char *AlarmaControlVista_tipoAlarmaMsj(byte msj){
 
 
 byte  AlarmaControlVista_decimales(void * _alarmaControl){
-  struct AlarmaControl *alarmaControl = _alarmaControl;
+  struct AlarmaControl *alarmaControl = (struct AlarmaControl *)_alarmaControl;
   
   struct Sensor * sensor = AlarmaControl_getSensor(_alarmaControl); 
   return _getDec(sensor);
@@ -160,35 +160,35 @@ int AlarmaControlVista_getLimInfAlarma(void * _alarmaControl){
 
   /*Histeresis*/
   const struct ConstPropNumPV ParHA={
-    &PropiedadGenerica,AlarmaControlVista_getHisteresis, AlarmaControlVista_setHisteresis, NULL, NULL,&PropNumPV,"HA ",AlarmaControlVista_decimales
+    (const struct Class * const)(const struct Class * const)&PropiedadGenerica,AlarmaControlVista_getHisteresis, AlarmaControlVista_setHisteresis, NULL, NULL,&PropNumPV,"HA ",AlarmaControlVista_decimales
   };
   /*Valor de alarma*/
   const struct ConstPropNumPV ParAl={
-    &PropiedadGenerica,AlarmaControlVista_getValor, AlarmaControlVista_setValor, NULL, NULL,&PropNumPV,"A  ",AlarmaControlVista_decimales
+    (const struct Class * const)&PropiedadGenerica,AlarmaControlVista_getValor, AlarmaControlVista_setValor, NULL, NULL,&PropNumPV,"A  ",AlarmaControlVista_decimales
   };
   
   /*Tipo de Alarma o valor de control*/
     const struct ConstPropTxt ParTAlar={
-    &PropiedadGenerica,AlarmaControlVista_getTipoAlarma, AlarmaControlVista_setTipoAlarma, get_0, AlarmaControlVista_tipoAlarmaLimSup,&PropTxt,"AL ",AlarmaControlVista_tipoAlarmaMsj
+    (const struct Class * const)&PropiedadGenerica,AlarmaControlVista_getTipoAlarma, AlarmaControlVista_setTipoAlarma, get_0, AlarmaControlVista_tipoAlarmaLimSup,&PropTxt,"AL ",AlarmaControlVista_tipoAlarmaMsj
   };  
   
   /*Tipo de adaptadorSalida*/
     const struct ConstPropTxt ParAdaptSalida={
-    &PropiedadGenerica,AlarmaControlVista_getAdaptadorSalida, AlarmaControlVista_setAdaptadorSalida, get_0, AlarmaControl_adaptSalidaLimSup,&PropTxt,"S.AL",AlarmaControlVista_adaptSalidaMsj
+    (const struct Class * const)&PropiedadGenerica,AlarmaControlVista_getAdaptadorSalida, AlarmaControlVista_setAdaptadorSalida, get_0, AlarmaControl_adaptSalidaLimSup,&PropTxt,"S.AL",AlarmaControlVista_adaptSalidaMsj
   };
     
   /*Retransmision Low*/
   const struct ConstPropNumPV ParRetLow={
-    &PropiedadGenerica,Alarma_getRetLow, Alarma_setRetLow, NULL, Alarma_getRetHi,&PropNumPV,"r.L ",AlarmaControlVista_decimales
+    (const struct Class * const)&PropiedadGenerica,Alarma_getRetLow, Alarma_setRetLow, NULL, Alarma_getRetHi,&PropNumPV,"r.L ",AlarmaControlVista_decimales
   };
 
   /*Retransmision Hi*/
   const struct ConstPropNumPV ParRetHi={
-    &PropiedadGenerica,Alarma_getRetHi, Alarma_setRetHi, Alarma_getRetLow, NULL,&PropNumPV,"r.H ",AlarmaControlVista_decimales
+    (const struct Class * const)&PropiedadGenerica,Alarma_getRetHi, Alarma_setRetHi, Alarma_getRetLow, NULL,&PropNumPV,"r.H ",AlarmaControlVista_decimales
   };
 
 
-  const struct GetterGenerico *const alGetters[]={
+  const void *const alGetters[]={
     &ParHA,
     &ParAl,
     &ParAdaptSalida,
@@ -214,12 +214,66 @@ word AlarmaControlVista_ComuAdd(const struct AlarmaControl * al,word dir_ini){
 }
 
 
-const struct BlockConstBoxPropBase CBox_AlarmaDeSensorVal;
-const struct BlockConstBoxPropVarName CBox_H_AlarmaDeSensor;
-const struct BlockConstBoxCondicional CBox_TAlarmaDeSensor1;
 
-const struct BlockConstBoxPropBase CBox_AdaptSalida;
-const struct  BlockCnstrBoxLin CBox_RET;
+
+/*Operador*/	
+const struct BlockConstBoxPropBase CBox_AlarmaDeSensorVal=
+      {
+      &BoxPropBase,						                  /* funcion que procesa al box*/
+			(struct ConstructorPropWInc*)&ParAl											/* direccion en la E2Prom - el EEProm Start, if FAlarmaDeSensorSE no guarda valor*/
+			};
+
+/*  tun */
+char * AlarmasHmi_getHDesc(struct PropWInc * prop){
+  if(PropWInc_getValorTmp(prop)>0)
+    return "AbA";
+  return "HA";
+}
+
+const struct BlockConstBoxPropVarName CBox_H_AlarmaDeSensor=
+      {
+      &BoxPropVarName,						  /* funcion que procesa al box*/
+			(ConstructorPropWInc*)&ParHA,											/* direccion en la E2Prom - el EEProm Start, if FAlarmaDeSensorSE no guarda valor*/
+      NULL,
+      AlarmasHmi_getHDesc  
+			};
+			
+/*Set*/
+extern const struct  BlockCnstrBoxLin CBox_RET;
+extern const struct BlockConstBoxPropBase CBox_AdaptSalida;
+void * Box_TAlarmaDeSensor1(void * prop,uchar tecla){
+  if(tecla=='r'){
+    if(_Getter_getVal(prop)==RET)
+      return &CBox_RET;
+    else
+      return &CBox_AdaptSalida;  
+  }
+  return NULL;
+}
+
+const struct BlockConstBoxCondicional CBox_TAlarmaDeSensor1=	{
+  			  &BoxCondicional,
+  			  (ConstructorPropWInc*)&ParTAlar,										
+          Box_TAlarmaDeSensor1
+};
+
+const struct BlockConstBoxPropBase CBox_AdaptSalida=	{
+  			  &BoxPropBase,
+  			  (ConstructorPropWInc*)&ParAdaptSalida										
+};
+
+const struct ConstructorPropWInc*const Props_RET[]=	{
+  			  (ConstructorPropWInc*)&ParRetLow,										
+  			  (ConstructorPropWInc*)&ParRetHi,
+  			  NULL
+};
+
+const struct  BlockCnstrBoxLin CBox_RET={
+  				&BoxLineal,
+  			  &Props_RET,
+  			  NULL
+};
+
 /*
 ** ===================================================================
 **     Function    :  AlarmasHmi_AddBoxes 
@@ -235,61 +289,4 @@ void AlarmaDeSensorHmi_AddBoxes(const struct AlarmaMult * al,uchar num_obj){
   DN_AddBox(0,"tun ",&CBox_H_AlarmaDeSensor,al,num_obj); 
   DN_AddBox(0,"Set ",&CBox_TAlarmaDeSensor1,al,num_obj);
 }
-
-
-/*Operador*/	
-const struct BlockConstBoxPropBase CBox_AlarmaDeSensorVal=
-      {
-      &BoxPropBase,						                  /* funcion que procesa al box*/
-			&ParAl											/* direccion en la E2Prom - el EEProm Start, if FAlarmaDeSensorSE no guarda valor*/
-			};
-
-/*  tun */
-char * AlarmasHmi_getHDesc(struct PropWInc * prop){
-  if(PropWInc_getValorTmp(prop)>0)
-    return "AbA";
-  return "HA";
-}
-
-const struct BlockConstBoxPropVarName CBox_H_AlarmaDeSensor=
-      {
-      &BoxPropVarName,						  /* funcion que procesa al box*/
-			&ParHA,											/* direccion en la E2Prom - el EEProm Start, if FAlarmaDeSensorSE no guarda valor*/
-      NULL,
-      AlarmasHmi_getHDesc  
-			};
-			
-/*Set*/
-void * Box_TAlarmaDeSensor1(void * prop,uchar tecla){
-  if(tecla=='r'){
-    if(_Getter_getVal(prop)==RET)
-      return &CBox_RET;
-    else
-      return &CBox_AdaptSalida;  
-  }
-  return NULL;
-}
-
-const struct BlockConstBoxCondicional CBox_TAlarmaDeSensor1=	{
-  			  &BoxCondicional,
-  			  &ParTAlar,										
-          Box_TAlarmaDeSensor1
-};
-
-const struct BlockConstBoxPropBase CBox_AdaptSalida=	{
-  			  &BoxPropBase,
-  			  &ParAdaptSalida										
-};
-
-const struct ConstructorPropWInc*const Props_RET[]=	{
-  			  &ParRetLow,										
-  			  &ParRetHi,
-  			  NULL
-};
-
-const struct  BlockCnstrBoxLin CBox_RET={
-  				&BoxLineal,
-  			  &Props_RET,
-  			  NULL
-};
 

@@ -3,6 +3,7 @@
 
 
 #include "LazoControlAlarma.h"
+#include "ConfLazoCntrAlCntr.h"
 #include "CntrProporcionalInv.h"
 #include "SalidaRetenida.h"
 #include "SalidaRetenidaBajo.h"
@@ -11,6 +12,7 @@
 #include "CntrBanda.h"
 #include "SalidaInvertida.h"
 #include "SalidaBloqueada.h"
+#include "Control.h"
 
 struct LazoAlarmaControl {
   struct LazoControl super;
@@ -18,6 +20,7 @@ struct LazoAlarmaControl {
   struct ConfLazoCntrAlCntr * configuracion;
   struct Control * lazoControl;
   
+ // struct Adaptacion
   union{
     struct ValorControl valorControl;    
     struct CntrRelativo cntrRelativo;  

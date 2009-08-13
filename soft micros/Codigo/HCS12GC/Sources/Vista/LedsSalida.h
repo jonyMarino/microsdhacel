@@ -10,13 +10,13 @@ typedef struct{
 }LedConfig;
 
 struct LedsSalida{
-  LedConfig * ledsConfig;
+  const LedConfig * ledsConfig;
   int count; 
   void * thread; 
 };
 
 
-void LedsSalida_init(struct LedsSalida * self);
+void LedsSalida_init(const struct LedsSalida * self);
 
 #define NEW_LEDS_SALIDA(nombre,ledsConfig)  \
   void * nombre##_thread;                   \

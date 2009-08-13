@@ -26,10 +26,10 @@ const struct GetterClass Propiedad={
 **     Description :  Constructor de la Propiedad
 ** ===================================================================
 */
-void Prop_Constructor(void * self,struct ClassPropiedad * ClassProp,void * Obj){
-  struct GetterVisual * _prop=self;
+void Prop_Constructor(void * self,void * ClassProp,void * Obj){
+  struct GetterVisual * _prop= (struct GetterVisual *)self;
   
-  _prop->_CGetter=ClassProp;
+  _prop->_CGetter=(ConstrGetVisual const *)ClassProp;
   _prop->Obj=Obj;
    
 }
@@ -41,7 +41,7 @@ void Prop_Constructor(void * self,struct ClassPropiedad * ClassProp,void * Obj){
 ** ===================================================================
 */
 void Prop_DefConstructor(void * self,va_list*args){
-  Prop_Constructor(self,va_arg(*args,void*),va_arg(*args,void*));  
+  Prop_Constructor(self,va_arg(*args,struct ClassPropiedad *),va_arg(*args,void*));  
 }
 /*
 ** ===================================================================
@@ -72,7 +72,7 @@ void Prop_Print(void * self,uchar num_disp){
 ** ===================================================================
 */
 TError Prop_setVal(void * self,int Val){
-  struct GetterVisual * _prop=self;
+  struct GetterVisual * _prop=(struct GetterVisual *)self;
 
   
   return ClassProp_setVal(_prop->_CGetter,_prop->Obj,Val);        
@@ -86,7 +86,7 @@ TError Prop_setVal(void * self,int Val){
 ** ===================================================================
 */
 int Prop_getLimInf(void * self){
-  struct GetterVisual * _prop=self;
+  struct GetterVisual * _prop=(struct GetterVisual *)self;
 
   
   return ClassProp_getLimInf(_prop->_CGetter,_prop->Obj);        
@@ -100,7 +100,7 @@ int Prop_getLimInf(void * self){
 ** ===================================================================
 */
 int Prop_getLimSup(void * self){
-  struct GetterVisual * _prop=self;
+  struct GetterVisual * _prop=(struct GetterVisual *)self;
 
   return ClassProp_getLimSup(_prop->_CGetter,_prop->Obj);      
 }
@@ -112,7 +112,7 @@ int Prop_getLimSup(void * self){
 ** ===================================================================
 */
 void* Prop_getObj(void * self){
-    struct GetterVisual * _prop=self;
+    struct GetterVisual * _prop=(struct GetterVisual *)self;
 
     return _prop->Obj;  
 }

@@ -38,7 +38,7 @@ const struct BoxClass BoxAccess={
 ** ===================================================================
 */
 void BoxAccess_Constructor(void * _self, char*str1,int Code){
-  struct BoxAccess * _box = _self;
+  struct BoxAccess * _box = (struct BoxAccess *)_self;
   _box->ValorTmp=0;
   _box->Code=Code;
   PasarASCII(str1,_DPY_INF); 
@@ -62,7 +62,7 @@ void BoxAccess_DefConstructor(void * _self,va_list*args){
 ** ===================================================================
 */
 BOX_State BoxAccess_ProcKey(void* _self,uchar tecla){
-  struct BoxAccess * _box=_self;
+  struct BoxAccess * _box=(struct BoxAccess *)_self;
   
   if(tecla=='u' || tecla=='d'){
     if(tecla=='d')

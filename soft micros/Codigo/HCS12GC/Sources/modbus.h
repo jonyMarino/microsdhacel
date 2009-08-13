@@ -72,8 +72,8 @@ void AS1_OnTxComplete(void);
 
 //  FUNCIONES SET GET
 /*  Id  */
-int get_Id(void);
-byte set_Id(int val, byte a);
+int get_Id(void*);
+byte set_Id(void*, int);
 int get_LimSup_Id(void*a);
 
 

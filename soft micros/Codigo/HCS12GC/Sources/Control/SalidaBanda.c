@@ -5,14 +5,7 @@
 #include "funciones.h"
 
 const struct AdaptacionSalidaClass SalidaBanda={
-  &Class,
-  "",
-  &Object,
-  sizeof(struct SalidaBanda),
-  AdaptacionSalida_defConstructor,
-  NULL,
-    NULL, // differ
-  NULL, // puto
+   CLASS_INITIALIZATION(Class,SalidaBanda,Object,AdaptacionSalida_defConstructor,Object_dtor,Object_differ,Object_puto),
   SalidaBanda_calcularDuty,
   AdaptacionSalida_getTipoSalidaAdaptador,
   AdaptacionSalida_setTipoSalidaAdaptador
@@ -22,7 +15,8 @@ const struct AdaptacionSalidaClass SalidaBanda={
 
 
 
-int SalidaBanda_calcularDuty(struct SalidaBanda * self,int valorDeControl){
+int SalidaBanda_calcularDuty(void * _self,int valorDeControl){
+      struct SalidaBanda * self =(struct SalidaBanda *)_self;
       struct ISalida * salida = AdaptacionSalida_getSalida(self);
       int ha = AdaptacionSalida_getHisteresis(self);
       int duty;

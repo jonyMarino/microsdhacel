@@ -29,6 +29,13 @@
 #ifndef __Cpu
 #define __Cpu
 
+#ifdef __cplusplus
+#define __EXTERN_C  extern "C"
+#else
+#define __EXTERN_C
+#endif
+
+
 /* Active configuration define symbol */
 #define PEcfg_GC32_80pin 1
 
@@ -149,7 +156,7 @@ __interrupt void Cpu_Interrupt(void);
 **         only.
 ** ===================================================================
 */
-void _EntryPoint(void);
+__EXTERN_C void _EntryPoint(void);
 /*
 ** ===================================================================
 **     Method      :  _EntryPoint (bean MC9S12GC16_80)

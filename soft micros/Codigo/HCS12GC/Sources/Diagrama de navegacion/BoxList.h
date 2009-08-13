@@ -1,10 +1,10 @@
 #ifndef _BOX_LIST_H_
 #define _BOX_LIST_H_ 
 
-#include "ArrayList.h"
+#include "Array.h"
 
 struct BoxList{										 // sabe get_new_box
-  struct ArrayList/*<FstBoxPointer>*/ _base; //Array Para abajo
+  struct Array/*<FstBoxPointer>*/ _base; //Array Para abajo
   const char * name; 
 };
 
@@ -20,7 +20,7 @@ void BoxList_addIndexedBox(void*self,void *Cbox,void *Obj,uchar num_obj,int inde
 
 #define NEW_BOX_LIST(NAME,arrayFstBoxes,STR_NAME)  \
   struct BoxList NAME ={									\
-    INITIALIZATION_ARRAY_LIST(BoxList,arrayFstBoxes),  \
+    INITIALIZATION_ARRAY(BoxList,arrayFstBoxes),  \
     STR_NAME																								\
   }
 #endif

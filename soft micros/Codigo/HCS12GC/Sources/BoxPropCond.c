@@ -41,16 +41,16 @@
 ** ===================================================================
 */
 void BoxPropCond_Constructor(void * _self, void * BlockConst,void * Obj,uchar NumObj){
-  struct  BoxPropCond *_box=_self;
-  struct  BoxPropBase *_box_base=_self;  
-  struct BlockConstBoxPropCond * Block =  BlockConst;
+  struct  BoxPropCond *_box= (struct  BoxPropCond *)_self;
+  struct  BoxPropBase *_box_base=(struct  BoxPropBase *)_self;  
+  struct BlockConstBoxPropCond* Block =  (struct BlockConstBoxPropCond *)BlockConst;
   
   if( (*(Block->Appear))(Obj)  ){
     BoxPropBase_Constructor(_self,BlockConst,Obj,NumObj);  
     _box->Appear=TRUE;
   }else{
       _box->Appear=FALSE;
-      _box_base->pBlockSelf=Block;
+      _box_base->pBlockSelf=(struct BlockConstBoxPropBase*)Block;
       _box_base->prop=NULL;
   }
     
@@ -70,12 +70,11 @@ void BoxPropCond_DefConstructor(void * _self, va_list*args){
 **     Description :  Destructor del Box
 ** ===================================================================
 */
-void * BoxPropCond_Destructor(void* _self){
-  struct  BoxPropCond *_box=_self;
+void BoxPropCond_Destructor(void* _self){
+  struct  BoxPropCond *_box=(struct  BoxPropCond *)_self;
 
   if(_box->Appear)
-    return BoxPropBase_Destructor(_self);
-  return _self; 
+    BoxPropBase_Destructor(_self);
 }
 
 /*
@@ -85,7 +84,7 @@ void * BoxPropCond_Destructor(void* _self){
 ** ===================================================================
 */
 void BoxPropCond_Refresh(void* _self){
-  struct  BoxPropCond *_box=_self;   
+  struct  BoxPropCond *_box=(struct  BoxPropCond *)_self;   
   if(_box->Appear)
     BoxPropBase_Refresh(_self);
 
@@ -97,7 +96,7 @@ void BoxPropCond_Refresh(void* _self){
 ** ===================================================================
 */
 BOX_State BoxPropCond_ProcKey(void* _self,uchar tecla){
-  struct  BoxPropCond *_box=_self;
+  struct  BoxPropCond *_box=(struct  BoxPropCond *)_self;
   
   if(!_box->Appear)
     return EXIT_BOX;
@@ -112,7 +111,7 @@ BOX_State BoxPropCond_ProcKey(void* _self,uchar tecla){
 ** ===================================================================
 */
 struct BlockBoxConstruct * BoxPropCond_getNext(void * _self,uchar tecla){
-  struct BoxPropBase* _box=_self;
+  struct BoxPropBase* _box=(struct  BoxPropBase *)_self;
   
   if(tecla==0)
     return ((struct BlockConstBoxProp*)_box->pBlockSelf)->pNextBlckConst;

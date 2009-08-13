@@ -24,7 +24,7 @@ extern const struct GetterWNameClass PropVisual;
 **                    una propiedad de clase
 ** ===================================================================
 */
-void * pProp_Constructor(struct ClassPropVisual * ClassProp,void * Obj);
+void * pProp_Constructor(void * ClassProp,void * Obj);
 /*
 ** ===================================================================
 **     Method      :  PropVisual_getDescripcion 

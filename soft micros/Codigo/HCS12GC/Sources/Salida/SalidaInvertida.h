@@ -11,9 +11,9 @@ struct SalidaInvertida {
 
 extern const struct ISalidaClass SalidaInvertida;
 
-bool SalidaInvertida_getInvertida(struct SalidaConPolaridad * _self);
+bool SalidaInvertida_getInvertida(void * _self);
 
-void SalidaInvertida_setInvertida(struct SalidaConPolaridad * _self,bool polaridad);
+void SalidaInvertida_setInvertida(void * _self,bool polaridad);
 
 
 #endif

@@ -3,8 +3,12 @@
 #include "stddef.h"
 #include "ClassBox.h"
 
-const struct Class BoxClass;
-const struct BoxClass Box;   
+const struct Class BoxClass={
+  CLASS_INITIALIZATION(Class,BoxClass,Class,Object_ctor,Object_dtor,Object_differ,Object_puto)  
+};
+const struct BoxClass Box={
+  CLASS_INITIALIZATION(BoxClass,Box,Object,Object_ctor,Object_dtor,Object_differ,Object_puto)  
+};  
 
 /*
 ** ========================================================================
@@ -18,8 +22,8 @@ const struct BoxClass Box;
 ** ========================================================================
 */
 void * vBoxes_Construct(void * pBlockConst,void * Obj,uchar numObj){
-  struct BlockBoxConstruct * p=pBlockConst;
-  return new( (struct Tclass *)(p->_box) ,pBlockConst,Obj,numObj);
+  struct BlockBoxConstruct * p=(struct BlockBoxConstruct *)pBlockConst;
+  return _new( (struct Class *)(p->_box) ,pBlockConst,Obj,numObj);
 }
 /*
 ** ===================================================================
@@ -29,7 +33,7 @@ void * vBoxes_Construct(void * pBlockConst,void * Obj,uchar numObj){
 ** ===================================================================
 */
 void vBox_Refresh(void * _self){
-  struct BoxClass **p=_self;
+  struct BoxClass **p=(struct BoxClass **)_self;
   if((*p)->Refresh)
     (*((*p)->Refresh))(_self);
 }
@@ -46,7 +50,7 @@ void vBox_Refresh(void * _self){
 ** ===================================================================
 */
 BOX_State vBox_ProcKey(void * _self,uchar tecla){
-  struct BoxClass **p=_self;
+  struct BoxClass **p=(struct BoxClass **)_self;
   if((*p)->ProcKey)
     return (*((*p)->ProcKey))(_self,tecla);
   return STAY_BOX;
@@ -66,7 +70,7 @@ BOX_State vBox_ProcKey(void * _self,uchar tecla){
 ** ===================================================================
 */
 struct BlockBoxConstruct * vBox_getNextBlockConstr(void * _self,uchar tecla){
-  struct BoxClass **p=_self;
+  struct BoxClass **p=(struct BoxClass **)_self;
   if((*p)->get_NextBlockConstr)
     return (*((*p)->get_NextBlockConstr))(_self,tecla);
   return NULL;

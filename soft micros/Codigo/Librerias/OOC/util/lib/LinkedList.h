@@ -11,7 +11,7 @@
 
 
 /*C++ 
-class LinkedList:public List
+_class LinkedList:public List
 {
  public:
   void addFirst(void * _self,void * obj);
@@ -93,8 +93,8 @@ extern const struct IteratorClass LinkedListIterator;
 bool LinkedListIterator_hasNext(void * _self);
 void *LinkedListIterator_next(void * _self);
 
-#define HENCE_INITIALIZATION_LINKED_LIST(class)  \
-    class,								      \
+#define HENCE_INITIALIZATION_LINKED_LIST(_class)  \
+    _class,								      \
     NULL
 
 #define INICIALITATION_LINKED_LIST() HENCE_INITIALIZATION_LINKED_LIST(&LinkedList)

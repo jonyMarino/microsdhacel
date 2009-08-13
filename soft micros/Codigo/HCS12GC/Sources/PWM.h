@@ -22,21 +22,21 @@ struct PWM{
 extern const struct IPWMClass PWM;
 
 
-void PWM_Construct(struct PWM* self,TConfPWM * conf);
+void PWM_Construct(void* _self,TConfPWM * conf);
 /*
 ** ===================================================================
 **     Method      :  PWM_setPeriodo 
 **    Description : Setear el periodo del PWM
 ** ===================================================================
 */
-TError PWM_setPeriodo(struct PWM* self,int period);
+TError PWM_setPeriodo(void* _self,int period);
 /*
 ** ===================================================================
 **     Method      :  PWM_getPeriodo 
 **    Description : Obtener el periodo del PWM
 ** ===================================================================
 */
-int PWM_getPeriodo(struct PWM* self);
+int PWM_getPeriodo(void* _self);
 
 /*
 ** ===================================================================
@@ -44,6 +44,6 @@ int PWM_getPeriodo(struct PWM* self);
 **    Description : Obtener el limite superior del periodo del PWM
 ** ===================================================================
 */
-int PWM_getLimSupPeriodo(struct PWM* self);
+int PWM_getLimSupPeriodo(void* _self);
 
 #endif

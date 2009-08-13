@@ -8,29 +8,34 @@
 #pragma DATA_SEG CLASS_ADC_DATA                                            
 #pragma CODE_SEG CLASS_ADC_CODE 
 
-#ifndef CANTIDAD_CANALES
-  #define CANTIDAD_CANALES 1
-#endif 
 
 extern const int ADTIME;
 
-extern const void *const TAdc;	 //clase TAdc
+struct AdcClass{
+  struct GetterClass super;
+  bool (*isnew)(void*);
+};
 
-struct TAdc{
-  const struct T_Adc * ad;
+
+	 
+
+struct Adc{
+  const struct Object * super;
   byte pin;
 };
+
+extern const struct AdcClass Adc;
 
 typedef enum{
   AD_CONVERTING,
   AD_WAITING
 }AD_State;
 
-void AD_Constructor(struct TAdc *,byte pin);
+void AD_Constructor(struct Adc *,byte pin);
 
-int AD_getValue(struct TAdc *);
+int AD_getValue(struct Adc *);
 
-bool AD_isnew(struct TAdc *);
+bool AD_isnew(struct Adc *);
 
 /*
 ** ===================================================================
@@ -46,15 +51,12 @@ AD_State getState(void);
 **    Description :   Imprime el valor del AD
 ** ===================================================================
 */
-void AD_Print(struct TAdc * self,uchar num_disp);
+void AD_Print(struct Adc * self,uchar num_disp);
 
-struct T_Adc{
-  const struct GetterClass super;
-  bool (*isnew)(void*);
-};
 
 #define _AD_isnew(ad) \
-          (*(*(struct T_Adc**)ad)->isnew)(ad)
+          (*(*(struct AdcClass**)ad)->isnew)(ad)
+
           
 #pragma DATA_SEG DEFAULT                                            
 #pragma CODE_SEG DEFAULT 

@@ -9,7 +9,6 @@
 #include "display.h"
 #include "ReadOnlyBox.h"
 
-void * ReadOnlyBox_Destructor(void* _self);
 void ReadOnlyBox_Refresh(void* _self);
 BOX_State ReadOnlyBox_ProcKey(void* _self,uchar tecla);
 
@@ -34,9 +33,9 @@ BOX_State ReadOnlyBox_ProcKey(void* _self,uchar tecla);
 ** ===================================================================
 */
 void ReadOnlyBox_Constructor(void * _self, void * BlockConst,void * Obj,uchar NumObj){
-  struct ReadOnlyBox * _box = _self;
-  struct BlockConstrReadOnlyBox * Block =  BlockConst;
-  struct GetterVisual * _g =pGetter_Constructor(Block->_c_g,Obj); 
+  struct ReadOnlyBox * _box = (struct ReadOnlyBox *)_self;
+  struct BlockConstrReadOnlyBox * Block = (struct BlockConstrReadOnlyBox *) BlockConst;
+  /*struct GetterVisual*/void * _g =pGetter_Constructor(Block->_c_g,Obj); 
   char * desc;
   
   ObjBox_Constructor(_self,NumObj);
@@ -63,10 +62,9 @@ void ReadOnlyBox_DefConstructor(void * _self, va_list*args){
 **     Description :  Destructor del Box
 ** ===================================================================
 */
-void * ReadOnlyBox_Destructor(void* _self){
-  struct ReadOnlyBox * _box = _self;
-  delete(_box->_getter);
-  return _self; 
+void ReadOnlyBox_Destructor(void* _self){
+  struct ReadOnlyBox * _box = (struct ReadOnlyBox *)_self;
+  _delete(_box->_getter); 
 }
 
 /*
@@ -76,7 +74,7 @@ void * ReadOnlyBox_Destructor(void* _self){
 ** ===================================================================
 */
 void ReadOnlyBox_Refresh(void* _self){
-  struct ReadOnlyBox * _box=_self;
+  struct ReadOnlyBox * _box=(struct ReadOnlyBox *)_self;
   
   _GetterPrint(_box->_getter,_DPY_SUP);
 

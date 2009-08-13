@@ -38,14 +38,14 @@
   
   /*Histeresis*/
   const struct ConstPropNumPV ParH={
-    &PropiedadGenerica,ControlVista_getHisteresis,ControlVista_setHisteresis , getLimInfSensorControl, getLimSupSensorControl,&PropNumPV,"H  ",PID_getDec
+    (const struct Class * const)&PropiedadGenerica,ControlVista_getHisteresis,ControlVista_setHisteresis , getLimInfSensorControl, getLimSupSensorControl,&PropNumPV,"H  ",PID_getDec
   };
   
   
 
   /* Potencia Actual */
   const struct ConstrGetterNum GetterPIDPot={
-    &GetterGenerico,PID_getDuty,&GetterNum,"Pot",1
+    (const struct Class * const)(const struct Class * const)&GetterGenerico,PID_getDuty,&GetterNum,"Pot",1
   };
   
   /*SP*/
@@ -61,18 +61,18 @@
 
   
   const struct ConstPropNumPV ParSP={
-    &PropiedadGenerica,ControlVista_getSP,ControlVista_setSP, PID_getLimInfSP, PID_getLimSupSP,&PropNumPV,"SP ",PID_getDec
+    (const struct Class * const)&PropiedadGenerica,ControlVista_getSP,ControlVista_setSP, PID_getLimInfSP, PID_getLimSupSP,&PropNumPV,"SP ",PID_getDec
   };
   
   
   /*Limite Inferior del SetPoint*/
   const struct ConstPropNumPV ParLimInfSP={
-    &PropiedadGenerica,PID_getLimInfSP,set_LimInf_SP,getLimInfSensorControl, getLimSupSensorControl,&PropNumPV,"Li ",PID_getDec
+    (const struct Class * const)&PropiedadGenerica,PID_getLimInfSP,set_LimInf_SP,getLimInfSensorControl, getLimSupSensorControl,&PropNumPV,"Li ",PID_getDec
   }; 
 
   /*Limite Superior del SetPoint*/
   const struct ConstPropNumPV ParLimSupSP={
-    &PropiedadGenerica,PID_getLimSupSP,set_LimSup_SP,get_LimInf_LimSupSP,get_LimSup_LimSupSP,&PropNumPV,"LS ",PID_getDec
+    (const struct Class * const)&PropiedadGenerica,PID_getLimSupSP,set_LimSup_SP,get_LimInf_LimSupSP,get_LimSup_LimSupSP,&PropNumPV,"LS ",PID_getDec
   }; 
 
   /*Reset*/
@@ -86,27 +86,27 @@
   } 
   
   const struct ConstPropNumPV ParReset={
-    &PropiedadGenerica,ControlVista_getReset,ControlVista_setReset,NULL,NULL,&PropNumPV,"rES",PID_getDec
+    (const struct Class * const)&PropiedadGenerica,ControlVista_getReset,ControlVista_setReset,NULL,NULL,&PropNumPV,"rES",PID_getDec
   };
   
   /*Integral*/
   const struct ConstructorPropWInc ParIntegral={
-    &PropiedadGenerica,get_integral,set_integral,get_0,get_LimSup_integral,&PropWInc,"in "
+    (const struct Class * const)&PropiedadGenerica,get_integral,set_integral,get_0,get_LimSup_integral,&PropWInc,"in "
   };
 
   /*Derivada*/
   const struct ConstructorPropWInc ParDerivada={
-    &PropiedadGenerica,get_derivada,set_derivada,get_0,get_LimSup_derivada,&PropWInc,"dr "
+    (const struct Class * const)&PropiedadGenerica,get_derivada,set_derivada,get_0,get_LimSup_derivada,&PropWInc,"dr "
   };
   
   /*LimPotInf1*/
   const struct ConstPropNum ParLimPotInf={
-    &PropiedadGenerica,get_PotenciaInf,set_PotenciaInf,get_LimInf_PotenciaInf,get_LimSup_PotenciaInf,&PropNum,"Pi ",1
+    (const struct Class * const)&PropiedadGenerica,get_PotenciaInf,set_PotenciaInf,get_LimInf_PotenciaInf,get_LimSup_PotenciaInf,&PropNum,"Pi ",1
   };
 
   /*LimPotSup*/
   const struct ConstPropNum ParLimPotSup={
-    &PropiedadGenerica,get_PotenciaSup,set_PotenciaSup,get_LimInf_PotenciaSup,get_LimSup_PotenciaSup,&PropNum,"PS ",1
+    (const struct Class * const)&PropiedadGenerica,get_PotenciaSup,set_PotenciaSup,get_LimInf_PotenciaSup,get_LimSup_PotenciaSup,&PropNum,"PS ",1
   };
 
   
@@ -126,15 +126,15 @@
     return strsSalcont[num_txt];
   }
   const struct ConstPropTxt ParTipoSalControl={
-    &PropiedadGenerica,get_SalControl,set_SalControl,get_0,get_LimSup_SalControl,&PropTxt,"C  ",PID_getSalContTxt
+    (const struct Class * const)&PropiedadGenerica,get_SalControl,set_SalControl,get_0,get_LimSup_SalControl,&PropTxt,"C  ",PID_getSalContTxt
   };
 
   /*Potencia*/
   const struct ConstPropNum ParPotencia={
-    &PropiedadGenerica,get_PotenciaManual,set_PotenciaManual,get_LimInf_PotenciaManual,get_LimSup_PotenciaManual,&PropNum,"Pot",1
+    (const struct Class * const)&PropiedadGenerica,get_PotenciaManual,set_PotenciaManual,get_LimInf_PotenciaManual,get_LimSup_PotenciaManual,&PropNum,"Pot",1
   };
 
-  const struct GetterGenerico *const PidProps[]={
+  const void *const PidProps[]={
     &ParH,
     &ParSP,
     &ParLimInfSP,
@@ -169,15 +169,15 @@ word PidHmi_ComuAdd(const struct ControlPID * pid,word dir_ini){
  /***********************/
  /****** BOXES  *********/
  /***********************/
- const struct BlockConstrUpdatedBox	 CBox_PIDPotencia;
- const struct BlockConstBoxPropCond CBox_PID_SP;
- const struct BlockCnstrBoxLin CBox_PID_Lim; 
- const struct BlockConstBoxPropVarName CBox_PID_Histeresis;
- const struct BlockConstBoxPropBase CBox_PID_TSalCont;
- const struct BlockConstBoxPropBase CBox_Reset;
+extern const struct BlockConstrUpdatedBox	 CBox_PIDPotencia;
+extern const struct BlockConstBoxPropCond CBox_PID_SP;
+extern const struct BlockCnstrBoxLin CBox_PID_Lim; 
+extern const struct BlockConstBoxPropVarName CBox_PID_Histeresis;
+extern const struct BlockConstBoxPropBase CBox_PID_TSalCont;
+extern const struct BlockConstBoxPropBase CBox_Reset;
  
- const struct BlockConstBoxPropCond CBox_PID_Pot;
- const struct BlockCnstrBoxLin CBox_PID_Tun; 
+extern const struct BlockConstBoxPropCond CBox_PID_Pot;
+extern const struct BlockCnstrBoxLin CBox_PID_Tun; 
 /*
 ** ===================================================================
 **     Function    :  PidHmi_AddBoxes 
@@ -197,7 +197,7 @@ word PidHmi_ComuAdd(const struct ControlPID * pid,word dir_ini){
  /*******************OPERADOR********************************/
 
 uchar Pid_SPAppear(void * pid){
-  const struct ControlPID * _pid = pid;
+  const struct ControlPID * _pid = (const struct ControlPID *)pid;
   if(_pid->_conf->eSalidaControl==_MAN)
     return FALSE;
   return TRUE;
@@ -216,7 +216,7 @@ const struct BlockConstrUpBox	 CBox_PIDPotencia={
 
 const struct BlockConstBoxPropCond CBox_PID_SP={
   &BoxPropCond,
-  &ParSP,
+  (struct ConstructorPropWInc*)&ParSP,
   &CBox_PID_Pot,
   Pid_SPAppear  
 };
@@ -227,7 +227,7 @@ uchar Pid_PotAppear(void * pid){
 
 const struct BlockConstBoxPropCond CBox_PID_Pot={
       &BoxPropCond,
-      &ParPotencia,
+      (struct ConstructorPropWInc*)&ParPotencia,
       NULL,
 			Pid_PotAppear
 };
@@ -235,10 +235,10 @@ const struct BlockConstBoxPropCond CBox_PID_Pot={
 /*********************LIM************************************/
   
 const struct ConstructorPropWInc*const Props_PID_Lim[]=	{
-  			  &ParLimInfSP,											/* direccion en la E2Prom - el EEProm Start, if FALSE no guarda valor*/
-  			  &ParLimSupSP,
-  			  &ParLimPotInf,
-  			  &ParLimPotSup,
+  			  (struct ConstructorPropWInc*)&ParLimInfSP,											/* direccion en la E2Prom - el EEProm Start, if FALSE no guarda valor*/
+  			  (struct ConstructorPropWInc*)&ParLimSupSP,
+  			  (struct ConstructorPropWInc*)&ParLimPotInf,
+  			  (struct ConstructorPropWInc*)&ParLimPotSup,
   			  NULL
 };
 
@@ -254,7 +254,7 @@ const struct BlockCnstrBoxLin CBox_PID_Lim={
 /* Periodo */
 const struct BlockConstBoxPropBase CBox_Reset={
       &BoxPropBase,									/* funcion que procesa al box*/
-      &ParReset												
+      (struct ConstructorPropWInc*)&ParReset												
 };
 
 char * PID_getHDesc(struct PropWInc * prop){
@@ -265,7 +265,7 @@ char * PID_getHDesc(struct PropWInc * prop){
 
 const struct BlockConstBoxPropVarName CBox_PID_Histeresis={
   &BoxPropVarName,
-  &ParH,
+  (struct ConstructorPropWInc*)&ParH,
   &CBox_PID_Tun,
   PID_getHDesc  
 };
@@ -273,8 +273,8 @@ const struct BlockConstBoxPropVarName CBox_PID_Histeresis={
 /* limite inferior del set-point de control principal*/ 
 
 const struct ConstructorPropWInc*const Props_PID_Tun[]=	{										
-  			  &ParIntegral,
-  			  &ParDerivada,
+  			  (struct ConstructorPropWInc*)&ParIntegral,
+  			  (struct ConstructorPropWInc*)&ParDerivada,
   			  NULL
 };
 
@@ -291,7 +291,7 @@ const struct BlockCnstrBoxLin CBox_PID_Tun={
 const struct BlockConstBoxPropBase CBox_PID_TSalCont=
       {
       &BoxPropBase,						                  /* funcion que procesa al box*/
-			&ParTipoSalControl											/* direccion en la E2Prom - el EEProm Start, if FALSE no guarda valor*/
+			(struct ConstructorPropWInc*)&ParTipoSalControl											/* direccion en la E2Prom - el EEProm Start, if FALSE no guarda valor*/
 			};
 
 
