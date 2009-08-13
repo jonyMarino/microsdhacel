@@ -90,33 +90,37 @@ void onDateTimeChange(void * _self){
 ** ===================================================================
 */
 void Adq_Constructor(void * _self,struct AdqConf * conf,struct Sensor * sensor){
-  struct Adquisidor * _ad = _self;
+  struct Adquisidor * self = _self;
   
-  //PromBkp_addPostBorrarListener(pFlash,Adq_OnErase,self);  
-  _ad->_conf=conf;
-  _ad->sensor = sensor;
-  
+  //PromBkpselfdPostBorrarListener(pFlash,Adq_OnErase,self);  
+  self->_conf=conf;
+  self->sensor = sensor;
+  self->grabando = FALSE;
   //addOnDateChageListener(&baseTiempo,onDateChange,self);
 
   if(conf->Estrategia==ADQ_ERASEMEM)
-    _ad->pfMemFullStrategy=Adq_EraseOnMemFull ; 
+    self->pfMemFullStrategy=Adq_EraseOnMemFull ; 
   else
-    _ad->pfMemFullStrategy=Adq_StopOnMemFull ; 
+    self->pfMemFullStrategy=Adq_StopOnMemFull ; 
   
-  _ad->Adq_Timer=new(&RlxMTimer,(ulong)Adq_getIntervalo(_self)*1000,Adq_Handler,_self);
-  Timer_Stop(_ad->Adq_Timer);
+  self->Adq_Timer=new(&RlxMTimer,(ulong)Adq_getIntervalo(_self)*1000,Adq_Handler,_self);
+  Timer_Stop(self->Adq_Timer);
 	
 	if(Adq_SerchActualAddr(_self)==_MEM_FULL)	 // Busca el indice para grabar parametros adquiridos
 	{
-	  _ad->Estado_Adquisicion = ADQ_FULL;  
-	  _MANEJADOR_MEMORIA_SET_BYTE(pFlash,&_ad->_conf->Adquirir,0);		 // Poner la adquisición en no
+	  self->Estado_Adquisicion = ADQ_FULL;  
+	  _MANEJADOR_MEMORIA_SET_BYTE(pFlash,&self->_conf->Adquirir,0);		 // Poner la adquisición en no
 	} 
-	else if (_ad->_conf->Adquirir==TRUE) {		 // la adquisición quedo en si al apagarse el equipo?								  
+	else if (self->_conf->Adquirir==TRUE) {		 // la adquisición quedo en si al apagarse el equipo?								  
 	  Adq_Escribir_Powerdown(_self);  // Header que indica que hubo un corte de Energia durante la adquisición
-	  _ad->Estado_Adquisicion = ADQ_HULT;// Cartel en HLT (hult) por corte de energia
-	  _MANEJADOR_MEMORIA_SET_BYTE(pFlash,&_ad->_conf->Adquirir,0);		 // Poner la adquisición en no
+	  #ifdef DS1307
+	  Adq_Start(_self);
+	  #else
+	  self->Estado_Adquisicion = ADQ_HULT;// Cartel en HLT (hult) por corte de energia
+	  _MANEJADOR_MEMORIA_SET_BYTE(pFlash,&self->_conf->Adquirir,0);		 // Poner la adquisición en no
+    #endif
   }else
-    _ad->Estado_Adquisicion = ADQ_NO;  //no
+    self->Estado_Adquisicion = ADQ_NO;  //no
 
 }
 
@@ -137,11 +141,13 @@ void Adq_DefConstructor(void * self,va_list * args){
 **    Description  :  Manejador del Adquisidor
 ** ===================================================================
 */
-void Adq_Handler(void * self){
-  struct Adquisidor * _ad = self;
+void Adq_Handler(void * _self){
+  struct Adquisidor * self = _self;
   
-  if (_ad->Estado_Adquisicion==ADQ_YES){
+  if (self->Estado_Adquisicion==ADQ_YES){
+    self->grabando = TRUE;
     Adq_Grabar_Parametros(self);
+    self->grabando = FALSE;
   }
 
 }
@@ -153,7 +159,7 @@ void Adq_Handler(void * self){
 ** ===================================================================
 */
 bool Adq_isTimeSet(void *_self){
-  struct Adquisidor * _ad = _self;
+  struct Adquisidor * self = _self;
   
   return isConfigurado(&baseTiempo);   
 }
@@ -166,25 +172,28 @@ bool Adq_isTimeSet(void *_self){
 ** ===================================================================
 */
 void Adq_Start(void *_self){
-   struct Adquisidor * _ad = _self;
+   struct Adquisidor * self = _self;
   
-  if(_ad->Estado_Adquisicion==ADQ_FULL){
+  if(self->Estado_Adquisicion==ADQ_FULL){
     #warning cambiar por: y llamar a un envento al termino del boorado
-    //PromBkp_borrarPagina(pFlash,_ad->ActualAddr);
-    EraseSectorInternal(_ad->ActualAddr);    
+    //PromBkp_borrarPagina(pFlash,self->ActualAddr);
+    EraseSectorInternal(self->ActualAddr);    
     
   }
-  if(_ad->Estado_Adquisicion!=ADQ_YES){    
-    Timer_setTime(_ad->Adq_Timer,((ulong)Adq_getIntervalo(_self))*1000);
-    _ad->Estado_Adquisicion=ADQ_YES;
-    _MANEJADOR_MEMORIA_SET_BYTE(pFlash,&_ad->_conf->Adquirir,1);
+  if(self->Estado_Adquisicion!=ADQ_YES){    
+    Timer_setTime(self->Adq_Timer,((ulong)Adq_getIntervalo(_self))*1000);
+    self->Estado_Adquisicion=ADQ_YES;
+    _MANEJADOR_MEMORIA_SET_BYTE(pFlash,&self->_conf->Adquirir,1);
     Adq_Escribir_Header(_self);
   }
 }
 
+void Adq_internalStop(void *_self){
+  struct Adquisidor * self = _self;
+  self->Estado_Adquisicion=ADQ_NO;
+  _MANEJADOR_MEMORIA_SET_BYTE(pFlash,&self->_conf->Adquirir,0);
 
-
-
+}
 /*
 ** ===================================================================
 **     Method      :  Adq_Stop 
@@ -192,20 +201,17 @@ void Adq_Start(void *_self){
 ** ===================================================================
 */
 void Adq_Stop(void *_self){
-  struct Adquisidor * _ad = _self;
+  struct Adquisidor * self = _self;
   
  // if((BajoConsumo == TRUE)&&(estado == TRUE))    //BajoConsumo: true (esta en bajo consumo(BC))
  //   estado = TRUE;                               //             false (no esta en bajo consumo)
  // else                                           // estado: true (estaba adquiriendo, antes de entrar en BC)
  //   estado = FALSE;                              //         false (no estaba adquiriendo, antes de entrar en BC)
   
-  if(_ad->Estado_Adquisicion==ADQ_YES){
-    _ad->Estado_Adquisicion=ADQ_NO;
-    _MANEJADOR_MEMORIA_SET_BYTE(pFlash,&_ad->_conf->Adquirir,0);
-   
+  if(self->Estado_Adquisicion==ADQ_YES){
+    Adq_internalStop(_self);   
     // Adq_Handler(_self);         //nico  
-    Adq_Escribir_Stop(_self); 
-   
+    Adq_Escribir_Stop(_self);    
   }
 }
 
@@ -216,16 +222,16 @@ void Adq_Stop(void *_self){
 ** ===================================================================
 */
 void Adq_StopOnMemFull(void * _self,word* nextPage){
-  struct Adquisidor * _ad = _self;
+  struct Adquisidor * self = _self;
   
-  WriteWord( _ad->ActualAddr  , SPECIAL_KEY);
-  _ad->ActualAddr++;
-  WriteWord( _ad->ActualAddr  , _MEM_FULL); 
+  WriteWord( self->ActualAddr  , SPECIAL_KEY);
+  self->ActualAddr++;
+  WriteWord( self->ActualAddr  , _MEM_FULL); 
   
-  _ad->Estado_Adquisicion= ADQ_FULL;
-  _MANEJADOR_MEMORIA_SET_BYTE(pFlash,&_ad->_conf->Adquirir,0);		 // Poner la adquisición en no
+  self->Estado_Adquisicion= ADQ_FULL;
+  _MANEJADOR_MEMORIA_SET_BYTE(pFlash,&self->_conf->Adquirir,0);		 // Poner la adquisición en no
  
-  _ad->ActualAddr=nextPage;
+  self->ActualAddr=nextPage;
      
 }
 
@@ -236,10 +242,10 @@ void Adq_StopOnMemFull(void * _self,word* nextPage){
 ** ===================================================================
 */
 void Adq_EraseOnMemFull(void * _self,word* nextPage){
-  struct Adquisidor * _ad = _self;
+  struct Adquisidor * self = _self;
   PromBkp_borrarPagina(pFlash,nextPage);  
   Adq_Escribir_NextPage(_self,(word)nextPage);
-  _ad->ActualAddr= nextPage;
+  self->ActualAddr= nextPage;
 }
 
 
@@ -250,9 +256,9 @@ void Adq_EraseOnMemFull(void * _self,word* nextPage){
 ** ===================================================================
 */
 void Adq_OnErase(void * _self,word * Page){
-  struct Adquisidor * _ad = _self;
-  if(_ad->pfMemFullStrategy==Adq_EraseOnMemFull)
-    if(_ad->ActualAddr == Page)
+  struct Adquisidor * self = _self;
+  if(self->pfMemFullStrategy==Adq_EraseOnMemFull)
+    if(self->ActualAddr == Page)
       Adq_Escribir_Header(_self);  
 }
 
@@ -284,20 +290,20 @@ word Adq_SizeOfWriteParams(void * _self){
 **      esta escrita utiliza la estrategia elegida. 
 ** ===================================================================
 */
-void Adq_CheckPageMem(void * self, word max_next_size){
-  struct Adquisidor * _ad = self;
+void Adq_CheckPageMem(void * _self, word max_next_size){
+  struct Adquisidor * self = _self;
   byte Escnextpage_size= sizeof(word)*2;
   
-  if( PAGE_SIZE-((word)_ad->ActualAddr&(PAGE_SIZE-1)) < max_next_size+Escnextpage_size){		
+  if( PAGE_SIZE-((word)self->ActualAddr&(PAGE_SIZE-1)) < max_next_size+Escnextpage_size){		
                             // No hay suficiente memoria en la pagina?
-    word next_PageAddr = (((word)_ad->ActualAddr)&(65535 - (PAGE_SIZE - 1) )) + PAGE_SIZE;
-    if(next_PageAddr >= (word)_ad->_conf->MemAddrEnd) // Memoria excedida
-      next_PageAddr = (word)_ad->_conf->MemAddrStart;//vuelvo al inicio de la memoria
+    word next_PageAddr = (((word)self->ActualAddr)&(65535 - (PAGE_SIZE - 1) )) + PAGE_SIZE;
+    if(next_PageAddr >= (word)self->_conf->MemAddrEnd) // Memoria excedida
+      next_PageAddr = (word)self->_conf->MemAddrStart;//vuelvo al inicio de la memoria
     if(*(word*)next_PageAddr!=0xFFFF)  // La siguiente pagina ya esta escrita
-      (*(_ad->pfMemFullStrategy))(self,(word*)next_PageAddr);                  
+      (*(self->pfMemFullStrategy))(self,(word*)next_PageAddr);                  
     else{
       Adq_Escribir_NextPage(self,next_PageAddr);
-      _ad->ActualAddr= (word*)next_PageAddr;
+      self->ActualAddr= (word*)next_PageAddr;
       Adq_Escribir_Header(self);
     }
   }
@@ -312,7 +318,7 @@ void Adq_CheckPageMem(void * self, word max_next_size){
 ** ===================================================================
 */
 void Adq_OnWriteErr(void * _self,uchar err){
-  struct Adquisidor * _ad = _self;
+  struct Adquisidor * self = _self;
 }
 
 
@@ -323,7 +329,7 @@ void Adq_OnWriteErr(void * _self,uchar err){
 ** ===================================================================
 */
 void Adq_Escribir_Header(void * _self){
-  struct Adquisidor * _ad = _self;
+  struct Adquisidor * self = _self;
   byte i;
   DATEREC Fecha;
   TIMEREC Tiempo;
@@ -347,10 +353,10 @@ void Adq_Escribir_Header(void * _self){
   
   for(i=0;i<header_WordSize;i++){
     byte err;
-    err=WriteWord(_ad->ActualAddr  , *((word*)&header+i)); 
-    _ad->ActualAddr++;
+    err=WriteWord(self->ActualAddr  , *((word*)&header+i)); 
+    self->ActualAddr++;
     if(err)
-      Adq_OnWriteErr(_ad,err); 
+      Adq_OnWriteErr(self,err); 
   }
   
   Adq_Grabar_Parametros(_self); //Escribir el primer valor
@@ -370,23 +376,23 @@ void Adq_Escribir_Header(void * _self){
 ** ===================================================================
 */
 void Adq_Grabar_Parametros(void* _self) {
-  struct Adquisidor * _ad = _self;
+  struct Adquisidor * self = _self;
 
 
-  int val= _Getter_getVal(_ad->sensor);
+  int val= _Getter_getVal(self->sensor);
   byte i;
   
-  WriteWord(_ad->ActualAddr,val); 
-  _ad->ActualAddr++;
+  WriteWord(self->ActualAddr,val); 
+  self->ActualAddr++;
   
   if(val==SPECIAL_KEY){
-        WriteWord(_ad->ActualAddr,val);  //si el valor es el de un key lo repite
-        _ad->ActualAddr++;
+        WriteWord(self->ActualAddr,val);  //si el valor es el de un key lo repite
+        self->ActualAddr++;
   }
 
   if(val==-1){							//si el valor fue menos 1, lo indico
-    WriteWord(_ad->ActualAddr,_PREV_VAL_m1); 
-    _ad->ActualAddr++;   
+    WriteWord(self->ActualAddr,_PREV_VAL_m1); 
+    self->ActualAddr++;   
   }
   
   Adq_CheckPageMem(_self,Adq_SizeOfWriteParams(_self));/*checkeo si 
@@ -405,16 +411,16 @@ void Adq_Grabar_Parametros(void* _self) {
 ** ===================================================================
 */
 void Adq_Escribir_Powerdown(void* _self){
-  struct Adquisidor * _ad = _self;
+  struct Adquisidor * self = _self;
   
-  if(*(int*)(_ad->ActualAddr-1)==_POWER_DOWN_BYTE)  //powerdown ya esta escrito??
+  if(*(int*)(self->ActualAddr-1)==_POWER_DOWN_BYTE)  //powerdown ya esta escrito??
     return; 
   
  
-  WriteWord(_ad->ActualAddr,SPECIAL_KEY);  //Power down word
-  _ad->ActualAddr++;
-  WriteWord(_ad->ActualAddr,_POWER_DOWN_BYTE);  //Power down word
-  _ad->ActualAddr++;
+  WriteWord(self->ActualAddr,SPECIAL_KEY);  //Power down word
+  self->ActualAddr++;
+  WriteWord(self->ActualAddr,_POWER_DOWN_BYTE);  //Power down word
+  self->ActualAddr++;
   Adq_CheckPageMem(_self,
     Adq_SizeOfHeader(_self) + Adq_SizeOfWriteParams(_self));/*checkeo si 
                                                     queda memoria en
@@ -432,12 +438,12 @@ void Adq_Escribir_Powerdown(void* _self){
 ** ===================================================================
 */
 void Adq_Escribir_Stop(void* _self){
-  struct Adquisidor * _ad = _self;
+  struct Adquisidor * self = _self;
   
-    WriteWord(_ad->ActualAddr,SPECIAL_KEY);  //Power down word
-  _ad->ActualAddr++;
-  WriteWord(_ad->ActualAddr,_STOPPED_BYTE);  //Stop word
-  _ad->ActualAddr++;
+    WriteWord(self->ActualAddr,SPECIAL_KEY);  //Power down word
+  self->ActualAddr++;
+  WriteWord(self->ActualAddr,_STOPPED_BYTE);  //Stop word
+  self->ActualAddr++;
   Adq_CheckPageMem(_self,
     Adq_SizeOfHeader(_self) + Adq_SizeOfWriteParams(_self));/*checkeo si 
                                                     queda memoria en
@@ -454,13 +460,13 @@ void Adq_Escribir_Stop(void* _self){
 ** ===================================================================
 */
 void Adq_Escribir_NextPage(void* _self,word addr){
-  struct Adquisidor * _ad = _self;
+  struct Adquisidor * self = _self;
   
-    WriteWord(_ad->ActualAddr,SPECIAL_KEY);  //Power down word
-  _ad->ActualAddr++;
-  WriteWord(_ad->ActualAddr,_CONTINUE_NEXT_PAGE_BYTE);  //Power down word
-  _ad->ActualAddr++;
-  WriteWord(_ad->ActualAddr,addr);  //Power down word
+    WriteWord(self->ActualAddr,SPECIAL_KEY);  //Power down word
+  self->ActualAddr++;
+  WriteWord(self->ActualAddr,_CONTINUE_NEXT_PAGE_BYTE);  //Power down word
+  self->ActualAddr++;
+  WriteWord(self->ActualAddr,addr);  //Power down word
 }
 
 /*
@@ -470,46 +476,46 @@ void Adq_Escribir_NextPage(void* _self,word addr){
 ** ===================================================================
 */
 byte Adq_SerchActualAddr(void * _self){
-  struct Adquisidor * _ad = _self;
+  struct Adquisidor * self = _self;
   const byte header_WordSize = (Adq_SizeOfHeader(_self)+sizeof(word)/2)/sizeof(word);
   const byte Params_WordSize =(Adq_SizeOfWriteParams(_self)+sizeof(word)/2)/sizeof(word);
   
-  _ad->ActualAddr= _ad->_conf->MemAddrStart;
+  self->ActualAddr= self->_conf->MemAddrStart;
   
-  while(_ad->ActualAddr<_ad->_conf->MemAddrEnd){
+  while(self->ActualAddr<self->_conf->MemAddrEnd){
     
-    if(*_ad->ActualAddr==_START_BYTE)
+    if(*self->ActualAddr==_START_BYTE)
       //onStartEncontrado();
-      _ad->ActualAddr+=header_WordSize;  
+      self->ActualAddr+=header_WordSize;  
     
-    if(*_ad->ActualAddr==SPECIAL_KEY){
-      _ad->ActualAddr++;
+    if(*self->ActualAddr==SPECIAL_KEY){
+      self->ActualAddr++;
       //onEspecialEncontrado();
-      if(*_ad->ActualAddr==_MEM_FULL){
-        _ad->ActualAddr++; 
+      if(*self->ActualAddr==_MEM_FULL){
+        self->ActualAddr++; 
         return _MEM_FULL;    //ver cambiar
-      }else if(*_ad->ActualAddr==_CONTINUE_NEXT_PAGE_BYTE){
+      }else if(*self->ActualAddr==_CONTINUE_NEXT_PAGE_BYTE){
         word next;
-        _ad->ActualAddr++;
-        next = (*_ad->ActualAddr);//dir of next page 
-        if(*(word*)&_ad->ActualAddr>next)				//pegue la vuelta sin detenerme?
+        self->ActualAddr++;
+        next = (*self->ActualAddr);//dir of next page 
+        if(*(word*)&self->ActualAddr>next)				//pegue la vuelta sin detenerme?
           return _MEM_FULL;
         //sino
-        *(word*)&_ad->ActualAddr=next;
+        *(word*)&self->ActualAddr=next;
       }else
-        _ad->ActualAddr++; 
+        self->ActualAddr++; 
     }
-    else if(*_ad->ActualAddr==-1){
+    else if(*self->ActualAddr==-1){
       
-      if( *(_ad->ActualAddr+1)!=_PREV_VAL_m1)  //FLASH no grabada??
+      if( *(self->ActualAddr+1)!=_PREV_VAL_m1)  //FLASH no grabada??
         return 0; 
       else{
         //onDatoEncontrado();
-        _ad->ActualAddr+=2;
+        self->ActualAddr+=2;
       }
     }else{
       //onDatoEncontrado();
-      _ad->ActualAddr++;  
+      self->ActualAddr++;  
     }
   }
 
@@ -525,8 +531,8 @@ byte Adq_SerchActualAddr(void * _self){
 ** ===================================================================
 */
 int  Adq_getActualState(void * _self){
-  struct Adquisidor * _ad = _self;
-  return _ad->Estado_Adquisicion;
+  struct Adquisidor * self = _self;
+  return self->Estado_Adquisicion;
 }
 
 /*
@@ -536,11 +542,11 @@ int  Adq_getActualState(void * _self){
 ** ===================================================================
 */
 TError  Adq_SetState(void * _self, int val){
-  struct Adquisidor * _ad = _self;
+  struct Adquisidor * self = _self;
   byte err;
   
 
-  err=_MANEJADOR_MEMORIA_SET_BYTE(pFlash,&_ad->_conf->Adquirir,val);
+  err=_MANEJADOR_MEMORIA_SET_BYTE(pFlash,&self->_conf->Adquirir,val);
   if(!err){
     if(val==FALSE){
       Adq_Stop(_self);
@@ -558,8 +564,8 @@ TError  Adq_SetState(void * _self, int val){
 ** ===================================================================
 */
 int  Adq_getState(void * _self){
-  struct Adquisidor * _ad = _self;
-  return _MANEJADOR_MEMORIA_GET_BYTE(pFlash,&_ad->_conf->Adquirir);
+  struct Adquisidor * self = _self;
+  return _MANEJADOR_MEMORIA_GET_BYTE(pFlash,&self->_conf->Adquirir);
 }
 
 /*
@@ -600,16 +606,16 @@ char * Adq_getStateStr(byte num){
 ** ===================================================================
 */
 TError  Adq_setStrategy(void * _self, int val){
-  struct Adquisidor * _ad = _self;
+  struct Adquisidor * self = _self;
   byte err;
   
 
-  err=_MANEJADOR_MEMORIA_SET_BYTE(pFlash,&_ad->_conf->Estrategia,val);
+  err=_MANEJADOR_MEMORIA_SET_BYTE(pFlash,&self->_conf->Estrategia,val);
   if(!err){
     if(val==ADQ_ERASEMEM)
-      _ad->pfMemFullStrategy=Adq_EraseOnMemFull ; 
+      self->pfMemFullStrategy=Adq_EraseOnMemFull ; 
     else
-      _ad->pfMemFullStrategy=Adq_StopOnMemFull ;          //ver
+      self->pfMemFullStrategy=Adq_StopOnMemFull ;          //ver
   }
   return err;
 }
@@ -621,8 +627,8 @@ TError  Adq_setStrategy(void * _self, int val){
 ** ===================================================================
 */
 int  Adq_getStrategy(void * _self){
-  struct Adquisidor * _ad = _self;
-  return _ad->_conf->Estrategia; 
+  struct Adquisidor * self = _self;
+  return self->_conf->Estrategia; 
 }
 
 /*
@@ -653,17 +659,17 @@ char * Adq_getStrStrategy(uchar num){
 ** ===================================================================
 */
 TError Adq_setIntervalo(void * _self,int val){
-  struct Adquisidor * _ad = _self;  
-  byte err= _MANEJADOR_MEMORIA_SET_WORD(pFlash,&_ad->_conf->intervalo,val);
+  struct Adquisidor * self = _self;  
+  byte err= _MANEJADOR_MEMORIA_SET_WORD(pFlash,&self->_conf->intervalo,val);
   if(!err){
     Adq_Stop(_self);
     
-    if(!_ad->Adq_Timer){      
-      _ad->Adq_Timer=new(&RlxMTimer,((ulong)val)*1000,Adq_Handler,_self);
-      if(!_ad->Adq_Timer)
+    if(!self->Adq_Timer){      
+      self->Adq_Timer=new(&RlxMTimer,((ulong)val)*1000,Adq_Handler,_self);
+      if(!self->Adq_Timer)
         return; //error
     }else
-      Timer_setTime(_ad->Adq_Timer,((ulong)val)*1000);
+      Timer_setTime(self->Adq_Timer,((ulong)val)*1000);
   }
   return err;
 }
@@ -676,9 +682,9 @@ TError Adq_setIntervalo(void * _self,int val){
 ** ===================================================================
 */
 int Adq_getIntervalo(void * _self){
-  struct Adquisidor * _ad = _self;  
+  struct Adquisidor * self = _self;  
   
-  return _MANEJADOR_MEMORIA_GET_WORD(pFlash,&(_ad->_conf->intervalo));
+  return _MANEJADOR_MEMORIA_GET_WORD(pFlash,&(self->_conf->intervalo));
 }
 /*
 ** ===================================================================
@@ -701,20 +707,20 @@ int Adq_LimInfIntervalo(void * _self){
 ** ===================================================================
 */
 TError Adq_ErasePage(void* _self, word * page){
-  struct Adquisidor * _ad = _self;
+  struct Adquisidor * self = _self;
   
-  if(_ad->Estado_Adquisicion==ADQ_FULL){
-    if( ((word)page&(65535 - (PAGE_SIZE - 1) )) == ((word)_ad->ActualAddr&(65535 - (PAGE_SIZE - 1) ))){
-      _ad->ActualAddr=(word*)((word)page&(65535 - (PAGE_SIZE - 1) ));
-      _ad->Estado_Adquisicion=ADQ_NO;  
+  if(self->Estado_Adquisicion==ADQ_FULL){
+    if( ((word)page&(65535 - (PAGE_SIZE - 1) )) == ((word)self->ActualAddr&(65535 - (PAGE_SIZE - 1) ))){
+      self->ActualAddr=(word*)((word)page&(65535 - (PAGE_SIZE - 1) ));
+      self->Estado_Adquisicion=ADQ_NO;  
     }
-      PromBkp_borrarPagina(pFlash,(word)_ad->ActualAddr);
+      PromBkp_borrarPagina(pFlash,(word)self->ActualAddr);
     return;
   }
-  if( _ad->Estado_Adquisicion==ADQ_YES && ((word)page&(65535 - (PAGE_SIZE - 1) )) == ((word)_ad->ActualAddr&(65535 - (PAGE_SIZE - 1) )) )
+  if( self->Estado_Adquisicion==ADQ_YES && ((word)page&(65535 - (PAGE_SIZE - 1) )) == ((word)self->ActualAddr&(65535 - (PAGE_SIZE - 1) )) )
     return ERR_VALUE;
-  if(((word)page&(65535 - (PAGE_SIZE - 1) )) == ((word)_ad->ActualAddr&(65535 - (PAGE_SIZE - 1) )))
-    *(word*)&_ad->ActualAddr = ((word)_ad->ActualAddr&(65535 - (PAGE_SIZE - 1) ));
+  if(((word)page&(65535 - (PAGE_SIZE - 1) )) == ((word)self->ActualAddr&(65535 - (PAGE_SIZE - 1) )))
+    self->ActualAddr = (word*)((word)page&(65535 - (PAGE_SIZE - 1) ));
   PromBkp_borrarPagina(pFlash,(word)page);  
   return ERR_OK;
   
@@ -727,13 +733,21 @@ TError Adq_ErasePage(void* _self, word * page){
 ** ===================================================================
 */
 TError Adq_ErasePages(void* _self, word ok){
-  struct Adquisidor * _ad = _self;
+  struct Adquisidor * self = _self;
   
   if(ok){										
     word addr;
-    for(addr=(word)_ad->_conf->MemAddrStart;addr<(word)_ad->_conf->MemAddrEnd;addr+=PAGE_SIZE){
-      Adq_ErasePage(_ad,(word*)addr);  
-    } 						 
+    if( self->Estado_Adquisicion==ADQ_YES){
+      while(self->grabando);
+      Adq_internalStop(_self);
+    }
+    for(addr=(word)self->_conf->MemAddrStart;addr<(word)self->_conf->MemAddrEnd;addr+=PAGE_SIZE){
+
+        
+     // Adq_ErasePage(self,(word*)addr);
+      PromBkp_borrarPagina(pFlash,addr);  
+    }
+    self->ActualAddr = self->_conf->MemAddrStart; 						 
   }
   return ERR_OK; 
 }
@@ -746,8 +760,8 @@ TError Adq_ErasePages(void* _self, word ok){
 ** ===================================================================
 */
 int Adq_getPaginaActual(void* _self){
-  struct Adquisidor * _ad = _self;
-  return (int)_ad->ActualAddr;  
+  struct Adquisidor * self = _self;
+  return (int)self->ActualAddr;  
 }
 
 /*
@@ -757,8 +771,8 @@ int Adq_getPaginaActual(void* _self){
 ** ===================================================================
 */
 int Adq_getPaginasStart(void* _self){
-  struct Adquisidor * _ad = _self;
-  return (word)_ad->_conf->MemAddrStart;
+  struct Adquisidor * self = _self;
+  return (word)self->_conf->MemAddrStart;
 }
 
 /*
@@ -768,8 +782,8 @@ int Adq_getPaginasStart(void* _self){
 ** ===================================================================
 */
 int Adq_getPaginasEnd(void* _self){
-  struct Adquisidor * _ad = _self;
-  return (word)_ad->_conf->MemAddrEnd;
+  struct Adquisidor * self = _self;
+  return (word)self->_conf->MemAddrEnd;
 }
 
 

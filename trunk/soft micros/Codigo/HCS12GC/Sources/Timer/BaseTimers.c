@@ -51,9 +51,9 @@ void BaseTimers_actualizarTimers(void *_self){
 ulong BaseTimers_getCuenta(void *_self){
   struct BaseTimers *self = _self;
   ulong cuentatmp;
-  lockInc(_self);
+ // lockInc(_self);      //EN ASSEMBLER SE HACE UN SOLO READ, y self->cuenta+=ms nunca tiene un valor invalido POR ESO NO HACE FALTA
   cuentatmp = self->cuenta;
-  unlockInc(_self);   
+//  unlockInc(_self);   
   return cuentatmp;
 }
 
