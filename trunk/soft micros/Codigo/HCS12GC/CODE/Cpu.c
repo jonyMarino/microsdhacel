@@ -181,7 +181,7 @@ void PLL_Init(void){
 **         only.
 ** ===================================================================
 */
-extern void _Startup(void);            /* Forward declaration of external startup function declared in file Start12.c */
+__EXTERN_C void _Startup(void);            /* Forward declaration of external startup function declared in file Start12.c */
 #pragma CODE_SEG __NEAR_SEG NON_BANKED     
 
 #define INITRG_ADR  0x0011             /* Register map position register */

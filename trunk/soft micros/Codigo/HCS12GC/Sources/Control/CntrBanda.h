@@ -3,17 +3,19 @@
 
 #include "ValorControl.h"
 
-
-struct CntrBanda {
-  struct ValorControl super;
-  struct getter * valControl2;
-};
-
 #pragma DATA_SEG CNTR_BANDA_DATA                                            
 #pragma CODE_SEG CNTR_BANDA_CODE 
 #pragma CONST_SEG DEFAULT
 
-extern const struct TValorControlClass CntrBandaClass;
+
+struct CntrBanda {
+  struct ValorControl super;
+  struct Getter * valControl2;
+};
+
+
+
+extern const struct ValorControlClass CntrBanda;
 
 #pragma DATA_SEG DEFAULT                                            
 #pragma CODE_SEG DEFAULT 

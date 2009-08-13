@@ -43,7 +43,7 @@ struct ValvulaProporcional{
   
   int get_LimSup_bandaMuerta(void);
   
-  void  ValvulaProporcional_onCheckear(void *_self,int potencia);
+  void  ValvulaProporcional_onCheckear(void *_self);
   
   void ValvulaProporcional_setTipoSalida(void *_self,TipoSalida tipoSalida);
   

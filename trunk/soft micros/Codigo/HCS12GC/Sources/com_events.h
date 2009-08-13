@@ -13,7 +13,7 @@
 ** ===================================================================
 */
 void com_Init(void);
-void com_initialization(struct ArrayList * arrayGetters);
+void com_initialization(struct Array * arrayGetters);
 
 /*
 ** ===================================================================
@@ -54,7 +54,7 @@ byte ModBusWrite(byte * data);
 **    Description : Devuelve las opciones de compilacion
 ** ===================================================================
 */
-void com_Recognize(byte * data);
+byte com_Recognize(byte * data);
 
 #pragma CODE_SEG DEFAULT
 

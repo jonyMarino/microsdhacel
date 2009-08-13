@@ -4,7 +4,6 @@
 #include <limits.h>
 
 #include "Object.h"
-#include "Object.r"
 #include "PE_Types.h"
 #include "Comparator.h"
 

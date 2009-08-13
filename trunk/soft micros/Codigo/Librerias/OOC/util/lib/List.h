@@ -5,7 +5,7 @@
 
 
 /*C++ 
-class List:public Collection
+_class List:public Collection
 {
  public:
  

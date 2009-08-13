@@ -6,7 +6,7 @@
 const struct Class BoxList={
       CLASS_INITIALIZATION(Class,
                        BoxList,
-                       Object,
+                       Array,
                        BoxList_DefConstructor,
                        NULL,
                        NULL,
@@ -21,9 +21,7 @@ const struct Class BoxList={
 ** =====================================================================
 */
 void BoxList_Constructor(void * self,const char *str){
-  struct BoxList * _list = self;
-  
-  ArrayList_Constructor(self);
+  struct BoxList * _list = (struct BoxList *)self;
   _list->name=str;
 }
 /*
@@ -33,6 +31,7 @@ void BoxList_Constructor(void * self,const char *str){
 ** =====================================================================
 */
 void BoxList_DefConstructor(void*self,va_list * args){
+  super_ctor(&BoxList,self,args);
   BoxList_Constructor(self,va_arg(*args,const char *)); 
 }
 /*
@@ -42,14 +41,14 @@ void BoxList_DefConstructor(void*self,va_list * args){
 ** =====================================================================
 */
 struct Box *List_getNextBox(void*self,uchar box_count){
-  struct BoxList * _list = self;
-  struct FstBoxPointer * fb;
+  struct BoxList * _list = (struct BoxList *)self;
+  /*struct FstBoxPointer */ void * fb;
   if(box_count==0)  //estoy en la lista 
-    return new(&TitleBox,_list->name," -- "); 
-  if(box_count>ArrayList_count(_list))
+    return (struct Box *)_new(&TitleBox,_list->name," -- "); 
+  if(box_count>Array_count(_list))
     return NULL;
   
-  fb=ArrayList_get(_list,box_count-1);
+  fb=Array_get(_list,box_count-1);
   
   return FBP_getNextBox(fb);
 }
@@ -60,13 +59,13 @@ struct Box *List_getNextBox(void*self,uchar box_count){
 ** =====================================================================
 */
 void BoxList_AddBox(void*self,void *Cbox,void *Obj,uchar num_obj){
-  struct BoxList * _list = self;
+  /*struct BoxList * _list = (struct BoxList *)self;
   struct FstBoxPointer * fb;
   
-      fb= new(&FstBoxPointer,Cbox,Obj,num_obj);
+      fb= _new(&FstBoxPointer,Cbox,Obj,num_obj);
       if(!fb)
         return; //error
-      ArrayList_Add(_list,fb);
+      Array_Add(_list,fb);  */
 }
 /*
 ** =====================================================================
@@ -75,16 +74,16 @@ void BoxList_AddBox(void*self,void *Cbox,void *Obj,uchar num_obj){
 ** =====================================================================
 */
 void BoxList_addIndexedBox(void*self,void *Cbox,void *Obj,uchar num_obj,int index){
-  struct BoxList * _list = self;
+/*  struct BoxList * _list = (struct BoxList *)self;
   struct FstBoxPointer * fb;
   
       fb= new(&FstBoxPointer,Cbox,Obj,num_obj);
       if(!fb)
         return; //error
 
-      if(ArrayList_count(_list)<index)				//indice fuera de rango?
-        ArrayList_Add(_list,fb);
+      if(Array_count(_list)<index)				//indice fuera de rango?
+        Array_Add(_list,fb);
       else
-        ArrayList_Put(_list,fb,index);
+        Array_Put(_list,fb,index);   */
 }
 

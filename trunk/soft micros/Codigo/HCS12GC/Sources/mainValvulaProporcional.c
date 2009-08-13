@@ -27,8 +27,7 @@
 #include "ControlPID2SP.h"
 #include "InpSP2.h"
 #include "BoxPrincipalNC.h"
-#include "FlashBkp256.h"
-#include "Termometro.h"
+#include "Termometro.hpp"
 #include "timer_interrupt.h"
 #include "PWMTimer.h"
 #include "PWMHard01.h"
@@ -39,13 +38,16 @@
 #include "AlarmaControl.h"
 #include "RlxMTimer.h"
 #include "LedsSalida.h"
-#include "ThreadAdjuntable.h"
+#include "ThreadAttachable.hpp"
 #include "Thread.h"
 #include "AlarmaControlVista.h"
 #include "PWMPeriodoEvent.h"
 #include "PWMSoft.h"
 #include "ValvulaProporcional.h"
 #include "valvulaProporcionalHMI.h"
+
+#include "FlashBkpMitad.h"
+//#include "FlashBkp256.h"
 /* Definiciones */
 
 /*  Tiempo inicial en el que el control permanece desconectado  */
@@ -59,12 +61,87 @@
 void SD100_conectarSalidas(void * self);
 
 /* Variables */
-struct Termometro termometro;
+static struct MessageOut msj;
+struct AlarmaControl alarma[CANTIDAD_SAL_ALARMA];
+
+const LedConfig configuracionLedsSalida[]= {
+  &PTT+1,1,0,
+  &PTT+1,1<<1,1, 
+  &PTT+1,1<<2,2,
+  &PTT+1,1<<3,3
+};
+
+void OnTSalChange(void * self, void * controlSender){
+  extern const struct ConstrGetterNum GetterPIDPot;
+  static Message msj_on_sal_change;
+  
+  
+  if(PID_getModSal(controlSender)==_MAN){
+    if(!msj_on_sal_change)
+      msj_on_sal_change=MessageOut_AddMessage(&msj,"MAn ");    
+  }else{
+    if(msj_on_sal_change){
+      MessageOut_DeleteMessage(&msj,msj_on_sal_change);
+      msj_on_sal_change=NULL;
+    }
+  } 
+}
+
+struct RlxMTimer timerConexionSalidas;
+
+NEW_LEDS_SALIDA(ledsSalida,configuracionLedsSalida);
+
+void ControlSD100_procesar(uchar tecla){
+  int i;
+  if(tecla == 'k'){
+      for(i=0;i<CANTIDAD_SAL_ALARMA;i++) {
+        
+        struct Lazo * lazo=_AlarmaControl_getLazo(&alarma[i]);
+        if(instanceOf(lazo,(const struct Class * const)&LazoAlarmaControl)){
+          struct AdaptacionSalida * adaptador = _LazoControl_getAdaptadorSaldia(lazo);
+          if(instanceOf(adaptador,(const struct Class * const)&SalidaRetenida))
+            SalidaRetenida_liberar((struct SalidaRetenida *)adaptador);   
+        }
+      }
+  }
+  
+  DN_Proc(tecla);
+}
+
+
+/********* Main*/
+class insInit{
+  public:
+    insInit(){
+      timerInterrupt_init();
+      newAlloced(&flash,&FlashBkpMitad,0x4200);    
+    }
+    struct FlashBkpMitad flash;
+    //struct ControlPID controlPID;
+}insInit;
+
+
+struct ManejadorMemoria *const pFlash= (struct ManejadorMemoria *const)&insInit.flash;
+
+Termometro termometro(pFlash);
 
 #pragma CONST_SEG PARAMETERS_PAGE
-volatile const TConfPWM pwm_config[CANTIDAD_SAL_ALARMA];
+volatile const TConfPWM pwm_config[CANTIDAD_SAL_ALARMA]={
+  0,
+  #if CANTIDAD_SAL_ALARMA>1 
+    0,
+      #if CANTIDAD_SAL_ALARMA>2
+        0,
+        #if CANTIDAD_SAL_ALARMA>3
+          0
+        #endif
+      #endif
+  #endif
+};
 
-volatile const ConfValvulaProporcional confValvulaProporcional;
+volatile const ConfValvulaProporcional confValvulaProporcional={
+  10,0
+};
 
 volatile const ControlConf control_conf[CANTIDAD_SAL_CONTROL]={
   ControlDefaultConf,
@@ -79,27 +156,30 @@ volatile const ControlConf control_conf[CANTIDAD_SAL_CONTROL]={
   #endif
 };
 
-volatile const struct AlarmaCntrConf alar_conf[CANTIDAD_SAL_ALARMA];
+volatile const struct AlarmaCntrConf alar_conf[CANTIDAD_SAL_ALARMA]={
+  0,0,0,0,0,0,0,0,
+  #if CANTIDAD_SAL_ALARMA>1 
+    0,0,0,0,0,0,0,0,
+      #if CANTIDAD_SAL_ALARMA>2
+        0,0,0,0,0,0,0,0,
+        #if CANTIDAD_SAL_ALARMA>3
+          0,0,0,0,0,0,0,0
+        #endif
+      #endif
+  #endif
+};
 
 #pragma CONST_SEG DEFAULT
 
 
 struct PWM * pwm[CANTIDAD_SAL_ALARMA];
-struct AlarmaControl alarma[CANTIDAD_SAL_ALARMA];
-struct ControlPID control; 
-
+struct ControlPID control; //= insInit.controlPID; 
 struct ValvulaProporcional valvulaProporcional;
-
 struct PWMTimer pwmsTimer[CANTIDAD_SAL_ALARMA];
-    
-					
-
-
-static struct MessageOut msj;
 
 const struct BlockConstBoxPri1c CBox_Pri={
       &BoxPri1c,							/* funcion que procesa al box*/
-      &termometro.sensor[0],      
+      (struct Getter*)&termometro.sensor,      
       &msj						
 };
 
@@ -109,7 +189,7 @@ const struct BlockConstBoxPri1c CBox_Pri={
   static const NEW_NODO_IC_MODBUS(PWM2Com,&PWM_GETTER_POT_ARRAY,1051,&pwmsTimer[1]);
 
   /*Sensor*/
-  static const NEW_NODO_IC_MODBUS(Sen1Com,&SNS_GETTERS_ARRAY,1100,&termometro.sensor[0]);
+  static const NEW_NODO_IC_MODBUS(Sen1Com,&SNS_GETTERS_ARRAY,1100,&termometro.sensor);
 
   /*Alarma*/
   static const NEW_NODO_IC_MODBUS(Al1Com,&AL_GETTERS_ARRAY,1200,&alarma[0]);
@@ -138,7 +218,7 @@ const struct BlockConstBoxPri1c CBox_Pri={
      //codigo
      &CodCom
   };
-  static const NEW_ARRAY_LIST(arrayNodosComunicacion,nodosComunicacion);
+  static const NEW_ARRAY(arrayNodosComunicacion,nodosComunicacion);
 /*  FIN COMUNICACION  */
 
 /*  Diagrama de navegacion  */
@@ -165,7 +245,7 @@ static const struct FstBoxPointer *const OpArray[]={
 static const NEW_BOX_LIST(OpList,OpArray,"op");
 
 //CAL
-static const NEW_FST_BOX_POINTER(Sensor1List,&SNS_HMI_FST_BOX,&termometro.sensor[0],1);
+static const NEW_FST_BOX_POINTER(Sensor1List,&SNS_HMI_FST_BOX,&termometro.sensor,1);
 
 static const struct FstBoxPointer *const CalArray[]={
   &Sensor1List, 
@@ -255,61 +335,10 @@ static const struct Access *const AccessArray[]={
   &accesoComun
 };
 
-static const NEW_ARRAY_LIST(AccessList,AccessArray);
+static const NEW_ARRAY(AccessList,AccessArray);
 
 
 /****************/
-
-
-NEW_FLASH_BKP_256(flash,0x4400);
-struct ManejadorMemoria *const pFlash= &flash;
-
-void OnTSalChange(void * self, void * controlSender){
-  extern const struct ConstrGetterNum GetterPIDPot;
-  static Message msj_on_sal_change;
-  
-  
-  if(PID_getModSal(controlSender)==_MAN){
-    if(!msj_on_sal_change)
-      msj_on_sal_change=MessageOut_AddMessage(&msj,"MAn ");    
-  }else{
-    if(msj_on_sal_change){
-      MessageOut_DeleteMessage(&msj,msj_on_sal_change);
-      msj_on_sal_change=NULL;
-    }
-  } 
-}
-
-struct RlxMTimer timerConexionSalidas;
-
-
-const LedConfig configuracionLedsSalida[]= {
-  &PTT+1,1,0,
-  &PTT+1,1<<1,1, 
-  &PTT+1,1<<2,2,
-  &PTT+1,1<<3,3
-};
-
-
-NEW_LEDS_SALIDA(ledsSalida,configuracionLedsSalida);
-
-void ControlSD100_procesar(uchar tecla){
-  int i;
-  if(tecla == 'k'){
-      for(i=0;i<CANTIDAD_SAL_ALARMA;i++) {
-        
-        struct Lazo * lazo=_AlarmaControl_getLazo(&alarma[i]);
-        if(instanceOf(lazo,&LazoAlarmaControl)){
-          struct AdaptacionSalida * adaptador = _LazoControl_getAdaptadorSaldia(lazo);
-          if(instanceOf(adaptador,&SalidaRetenida))
-            SalidaRetenida_liberar((struct SalidaRetenida *)adaptador);   
-        }
-      }
-  }
-  
-  DN_Proc(tecla);
-}
-
 
 void main(void){
   
@@ -317,26 +346,31 @@ void main(void){
   char tecla; 
   bool prevVal;
   byte i;
-   
+  
+ // NEW_METHOD(me,SD100_conectarSalidas,NULL);
+  
+  //s.nuevaMedicionListeners.add(&me);
+  
+  
+  com_initialization((struct Array *)&arrayNodosComunicacion);
 
-  newAlloced(&termometro,&Termometro,&flash);
-  com_initialization(&arrayNodosComunicacion);
+
 
   /*PWM0*/
   newAlloced(&pwmsTimer[0],&PWMTimer,&pwm_config[0],2);
-  pwm[0]= &pwmsTimer[0];    
+  pwm[0]= (struct PWM*)&pwmsTimer[0];    
   /*PWM1*/
   newAlloced(&pwmsTimer[1],&PWMTimer,&pwm_config[1],3);
-  pwm[1]=&pwmsTimer[1]; 
+  pwm[1]=(struct PWM*)&pwmsTimer[1]; 
 
   newAlloced(&valvulaProporcional,&ValvulaProporcional,&confValvulaProporcional,&PTT,0,&PTT,1);
   
   newAlloced(&msj,MessageOut);
-  newAlloced(&control,ControlPID,&control_conf,&termometro.sensor[0],&valvulaProporcional);
+  newAlloced(&control,&ControlPID,&control_conf,&termometro.sensor,&valvulaProporcional);
   PID_AddOnTSalChange(&control,OnTSalChange,NULL);
   
   for(i=0;i<2;i++)
-    newAlloced(&alarma[i],&AlarmaControlClass,&alar_conf[i],&control,pwm[i]);
+    newAlloced(&alarma[i],&AlarmaControl,&alar_conf[i],&control,pwm[i]);
  
    
    
@@ -345,10 +379,8 @@ void main(void){
    
    //Diagrama de navegacion
    BoxPri1c_ShowProp( &ParSP,&control);
-   DN_staticInit(&OpList,&AccessList);
-
-
-														 
+   DN_staticInit((struct BoxList*)&OpList,(struct Array *)&AccessList);
+													 
   for(;;){
     tecla=get_key();  
     //Eventos
@@ -356,7 +388,7 @@ void main(void){
     
     ControlSD100_procesar(tecla);
 
-    Termometro_mainLoop(&termometro);
+    termometro.mainLoop();
     
     
   }

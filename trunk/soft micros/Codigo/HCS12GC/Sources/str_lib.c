@@ -33,7 +33,7 @@ char * IntToStr(int integer, char * str, int max_size){
    return ret;
 }
 
-char * FloatToStr(int integer, char * str, int max_size,int decimales){
+void FloatToStr(int integer, char * str, int max_size,int decimales){
    int i;
    int tmp_integer=integer;
    char * ret=str;

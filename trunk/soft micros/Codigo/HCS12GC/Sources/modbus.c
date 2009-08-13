@@ -5,7 +5,7 @@
 #include "stddef.h"
 #include "AS1.h"
 #include "trx.h"
-#include "FTimer.h"
+#include "MethodTimer.h"
 #include "IFsh10.h"
 #include "com_events.h"
 #include "ManejadorMemoria.h"
@@ -47,7 +47,7 @@ volatile const fbyte iId=1;
 #pragma CONST_SEG DEFAULT
 
 unsigned short int calculate_crc(unsigned char *z_p,unsigned char z_message_length);
-void OnTimePass(void);
+void OnTimePass(void*);
 
 //////////////Comunicacion//////////
 bool AS1_Tx;
@@ -55,7 +55,7 @@ static byte cant_msjs_out;  // cantidad de mensajes a enviar sin el CRC
 byte Step=0;
 byte msj[16];
 byte msj_out[16];
-struct FTimer comu_timer;
+struct MethodTimer comu_timer;
 //////////////////////////////////
 int timer_test=0;
 /*										 
@@ -67,7 +67,7 @@ int timer_test=0;
 */
 void Comu_Init(void){
   AS1_Init();
-  newAlloced(&comu_timer,&FTimer,(ulong)3,OnTimePass);
+  newAlloced(&comu_timer,&MethodTimer,(ulong)3,OnTimePass,NULL);
   Timer_Stop(&comu_timer);
 }
 
@@ -81,7 +81,7 @@ void Comu_Init(void){
 ** ===================================================================
 */
 
-void OnTimePass(void){
+void OnTimePass(void*a){
   Step=0;
   Timer_Stop(&comu_timer);
 }
@@ -158,12 +158,12 @@ void ModBus_Recive(AS1_TComData dat)
 {
   byte i;
   word crc;
+  
+  
   msj[Step]=dat;
   switch(Step){
     
-    case 0:if (msj[0]!= iId || /*timer_test!=0){ */
-      !Timer_isfinish(&comu_timer)){
-      //timer_test=3;
+    case 0:if (msj[0]!= iId || !Timer_isfinish(&comu_timer)){
       Timer_setTime(&comu_timer,3);
       break;         //Id 
     }
@@ -174,19 +174,17 @@ void ModBus_Recive(AS1_TComData dat)
     case 5:
     case 6:
       		 Step++;
-      		 //timer_test=3;
       		 Timer_setTime(&comu_timer,3);// ckeckeo que no pasen 3ms    		 
       		 break;
     case 7: 
     			Step++;
-          //timer_test=3;
           Timer_Restart(&comu_timer);// ckeckeo que no pasen 3ms    			
           crc = calculate_crc(msj,6);
           if ( (crc%256)!=msj[6] || (crc/256)!=msj[7] ){
               Step=0;
               break; 
           }
-
+        
 					
 					for(i=0;ModbusOnRecive[i].OnFunction!=NULL;i++){
 					  if(ModbusOnRecive[i].func_number==msj[1]){

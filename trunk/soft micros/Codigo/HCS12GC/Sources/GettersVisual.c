@@ -13,9 +13,13 @@ void GetterVisual_DefConstructor(void* _self,va_list* args);
 void GetterVisual_Print(void* self,uchar num_display);
 
 
-const struct Class GetterClass;
-const struct GetterClass Getter;
-const struct Class GetterClass; 
+const struct Class GetterClass={
+  CLASS_INITIALIZATION(Class,GetterClass,Class,Object_ctor,Object_dtor,Object_differ,Object_puto)    
+};
+const struct GetterClass Getter={
+  CLASS_INITIALIZATION(GetterClass,GetterGenericoClass,Getter,Object_ctor,Object_dtor,Object_differ,Object_puto)    
+};
+
 
 const struct GetterWNameClass GetterVisual={
   GETTER_W_NAME_CLASS_INITIALIZATION(GetterWNameClass,
@@ -39,9 +43,9 @@ const struct GetterWNameClass GetterVisual={
 **                    una propiedad de clase
 ** ===================================================================
 */
-void * pGetter_Constructor(struct ConstrGetVisual * ClassGet,void * Obj){
-  struct ConstrGetVisual * p=ClassGet;
-  return new(&*((struct Tclass**)p->classOf),ClassGet,Obj);
+void * pGetter_Constructor(void * ClassGet,void * Obj){
+  struct ConstrGetVisual * p=(struct ConstrGetVisual *)ClassGet;
+  return _new(&*( (struct Class**)(p->classOf) ),ClassGet,Obj);
   
 }
 /*
@@ -51,9 +55,9 @@ void * pGetter_Constructor(struct ConstrGetVisual * ClassGet,void * Obj){
 ** ===================================================================
 */
 void  GetterVisual_Constructor(void * _self,void* C_Getter,void* Obj){
-  struct GetterVisual * _g=_self; 
+  struct GetterVisual * _g= (struct GetterVisual *)_self; 
   
-  _g->_CGetter=C_Getter;
+  _g->_CGetter=(ConstrGetVisual const *)C_Getter;
   _g->Obj=Obj; 
 }
 
@@ -74,7 +78,7 @@ void GetterVisual_DefConstructor(void* _self,va_list* args){
 ** ===================================================================
 */
 void *GetterVisual_getObj(void* _self){
-   struct GetterVisual * _g=_self;  
+   struct GetterVisual * _g=(struct GetterVisual *)_self;  
    return _g->Obj;
 }
 
@@ -85,7 +89,7 @@ void *GetterVisual_getObj(void* _self){
 ** ===================================================================
 */
 int GetterVisual_getVal(void* _self){
-   struct GetterVisual * _g=_self;  
+   struct GetterVisual * _g=(struct GetterVisual *)_self;  
    return Getter_getVal(_g->_CGetter,_g->Obj);
 }
 /*
@@ -97,7 +101,7 @@ int GetterVisual_getVal(void* _self){
 */
 
 char * GetterVisual_getDescripcion(void * self){
-  struct GetterVisual * _g=self;
+  struct GetterVisual * _g=(struct GetterVisual *)self;
   return ((struct ConstrGetVisual*)(_g->_CGetter))->descripcion;  
 }
 
@@ -108,7 +112,7 @@ char * GetterVisual_getDescripcion(void * self){
 ** ===================================================================
 */
 void GetterVisual_Print(void* self,uchar num_display){
-  struct GetterVisual * _g=self;
+  struct GetterVisual * _g=(struct GetterVisual *)self;
   int val;
   
   val=GetterVisual_getVal(_g); 
@@ -144,7 +148,7 @@ const struct GetterWNameClass GetterNum={
 ** ===================================================================
 */
 void GetterNum_Print(void*self,uchar num_display){
-  struct GetterVisual* _g=self;
+  struct GetterVisual* _g=(struct GetterVisual *)self;
   struct ConstrGetterNum* Block= (struct ConstrGetterNum*) _g->_CGetter; 
   int _val= GetterVisual_getVal(self);
   uchar _dot= Block->dot;
@@ -183,8 +187,8 @@ const struct GetterWNameClass GetterTxt={
 ** ===================================================================
 */
 void GetterTxt_Print(void*self,uchar num_display){
-  struct GetterVisual* _g=self;
-  struct ConstrGetterTxt* Block= (struct ConstrGetterNum*) _g->_CGetter; 
+  struct GetterVisual* _g=(struct GetterVisual *)self;
+  struct ConstrGetterTxt* Block= (struct ConstrGetterTxt*) _g->_CGetter; 
   int _val= GetterVisual_getVal(self);
   char * str= (*(Block->getTxt))((uchar)_val);
   

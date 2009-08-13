@@ -29,9 +29,9 @@ const struct GetterWNameClass PropVisual={
 **                    una propiedad de clase
 ** ===================================================================
 */
-void * pProp_Constructor(struct ClassPropVisual * ClassProp,void * Obj){
-  struct ClassPropVisual * p=ClassProp;
-  return new((struct Tclass*)(p->classOf),ClassProp,Obj);
+void * pProp_Constructor(void * ClassProp,void * Obj){
+  struct ClassPropVisual * p=(struct ClassPropVisual *)ClassProp;
+  return _new((struct Class*)(p->classOf),ClassProp,Obj);
   
 }
 /*
@@ -53,7 +53,7 @@ void PropVisual_DefConstructor(void* _self,va_list* args){
 */
 
 char * PropVisual_getDescripcion(void * self){
-  struct GetterVisual * prop=self;
+  struct GetterVisual * prop=(struct GetterVisual *)self;
   return ((struct ClassPropVisual*)(prop->_CGetter))->descripcion;  
 }
 /*
@@ -63,7 +63,7 @@ char * PropVisual_getDescripcion(void * self){
 ** ===================================================================
 */
 void PropVisual_Print(void* self,uchar num_display){
-  struct Propiedad * prop=self;
+  struct Propiedad * prop=(struct Propiedad *)self;
   int val;
   
   val= Prop_getVal(prop);

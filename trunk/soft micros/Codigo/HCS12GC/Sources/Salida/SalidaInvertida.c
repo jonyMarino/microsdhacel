@@ -25,13 +25,14 @@ bool SalidaInvertida_getInvertida(struct SalidaInvertida * self){
   return self->invertida;   
 }
 
-void SalidaInvertida_setInvertida(struct SalidaInvertida * self,bool invertida){
+void SalidaInvertida_setInvertida(void * _self,bool invertida){
+  struct SalidaInvertida * self = (struct SalidaInvertida *)_self;
   self->invertida = invertida; 
 }
 
 
 void SalidaInvertida_setPotencia(void * _self,uint potencia){
-  struct SalidaInvertida * self = _self;
+  struct SalidaInvertida * self = (struct SalidaInvertida *)_self;
   if(self->invertida)
     potencia = 1000 - potencia;
   DecoradorSalida_setPotencia(_self,potencia);

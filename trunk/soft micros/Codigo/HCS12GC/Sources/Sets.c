@@ -12,7 +12,7 @@
 
 
 #pragma CONST_SEG PARAMETERS_PAGE
-volatile const int SetC;
+volatile const int SetC=0;
 #pragma CONST_SEG DEFAULT
 
 /*Codigo*/
@@ -21,10 +21,10 @@ TError Sets_setCodigo(void * self, int Val);
 
 
 const struct ConstructorPropWInc ParSetC= {
-  &PropiedadGenerica,Sets_getCodigo,Sets_setCodigo,get_0,NULL,&PropWInc,"SetC"
+  (const struct Class * const)&PropiedadGenerica,Sets_getCodigo,Sets_setCodigo,get_0,NULL,&PropWInc,"SetC"
 };
 
-const struct GetterGenerico * codGetters[]={
+const void * codGetters[]={
   &ParSetC
 };
 
@@ -32,7 +32,7 @@ const NEW_ARRAY(arrayCodGetters,codGetters);
 
 const struct BlockConstBoxPropBase CBoxSetC={
       &BoxPropBase,									/* funcion que procesa al box*/
-      &ParSetC												
+      (struct ConstructorPropWInc*)&ParSetC												
 }; 
 
 

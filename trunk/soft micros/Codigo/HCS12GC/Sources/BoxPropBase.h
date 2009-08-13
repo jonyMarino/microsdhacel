@@ -12,14 +12,14 @@
 
 struct BlockConstBoxPropBase{
   struct BlockBoxConstruct _base;
-  struct ConstructorPropWInc * _c_prop;    
+  const struct ConstructorPropWInc * _c_prop;    
 };
 
 struct BoxPropBase{
   struct ObjBox _base;
 //Protected:  
   struct BlockConstBoxPropBase *pBlockSelf;
-  struct PropWInc * prop;
+  /*struct PropWInc*/void * prop;
   uchar save; 
 };
 
@@ -45,7 +45,7 @@ void BoxPropBase_DefConstructor(void * _self, va_list*args);
 **     Description :  Destructor del Box
 ** ===================================================================
 */
-void * BoxPropBase_Destructor(void* _self);
+void BoxPropBase_Destructor(void* _self);
 /*
 ** ===================================================================
 **     Method      :  BoxPropBase_Refresh 

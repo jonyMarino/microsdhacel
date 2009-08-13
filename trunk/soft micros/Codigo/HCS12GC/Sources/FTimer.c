@@ -59,7 +59,8 @@ void FTimer_OnTime(struct FTimer * self){
 **    Description : Cambia la funcion a llamar cuando se llega al tiempo
 ** ===================================================================
 */
-void FTimer_ChangeFunction(struct FTimer * self,pfunction pf){
+void FTimer_ChangeFunction(void * _self,pfunction pf){
+  struct FTimer * self = (struct FTimer *)_self;
   self->pf=pf;  
 }
 

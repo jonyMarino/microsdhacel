@@ -43,19 +43,11 @@ int SenTPT_getDifDecView(struct TSensor_TermoPT * self);
 uint SenTPT_getTiempoMuestreo(struct TSensor_TermoPT * self);
 /************************/
 
-const struct SensorDecLimClass TableSenTPT={ 
-  &SensorDecLimClass,
-  "SenTPT",
-  &Sensor,
-  sizeof(struct TSensor_TermoPT),		 //size
-  SenTPT_DefConstruct, // constructor
-  NULL,                // destructor
-  NULL, // differ
-  NULL, // puto
+const struct SensorDecLimClass TSensor_TermoPT={ 
+  CLASS_INITIALIZATION(SensorDecLimClass,TSensor_TermoPT,Sensor,SenTPT_DefConstruct,Object_dtor,Object_differ,Object_puto),
   SenTPT_getValue,     // get_Val
   SenTPT_Print,
   SenTPT_getDesc,
-//  SenTPT_AddOnNew,        // is_new? 
   SenTPT_getState,     // Estado
   SenTPT_getDecimalesMostrados,	 // Decimales
   SenTPT_getDifDecView,       //Adapta un valor cualquiera
@@ -64,10 +56,9 @@ const struct SensorDecLimClass TableSenTPT={
   SenTPT_getTiempoMuestreo
 };
 
-const void * const TSensor_TermoPT = &TableSenTPT;
 
 #pragma CONST_SEG PARAMETERS_PAGE
-volatile const int iCompensacionTempAmb; 
+volatile const int iCompensacionTempAmb=0; 
 #pragma CONST_SEG DEFAULT
             
 /*
@@ -77,8 +68,7 @@ volatile const int iCompensacionTempAmb;
 ** ===================================================================
 */
 
-void  SenTPT_Construct(struct TSensor_TermoPT * self,struct TAdc* adc,const SensorConf * conf,const char * desc){
-  Sensor_constructor(self);
+void  SenTPT_Construct(struct TSensor_TermoPT * self,struct Adc* adc,const SensorConf * conf,const char * desc){
   while(!_AD_isnew(adc)) //Espera a q haya una conversión
     WDog1_Clear();
   _SensorVisual_setDescription(self,desc);
@@ -96,7 +86,7 @@ void  SenTPT_Construct(struct TSensor_TermoPT * self,struct TAdc* adc,const Sens
 */
 
 void  SenTPT_DefConstruct(struct TSensor_TermoPT * self,va_list * args){
-  SenTPT_Construct(self,va_arg(*args,void*),va_arg(*args,void*),va_arg(*args,char*));  
+  SenTPT_Construct(self,va_arg(*args,struct Adc*),va_arg(*args,const SensorConf *),va_arg(*args,const char *));  
 }
 
 /*
@@ -351,7 +341,7 @@ TError err;
 **                    en el que se corresponde a un sensor. 
 ** ===================================================================
 */																				 
-int get_LimInf_Sensores(void){
+int get_LimInf_Sensores(void *a){
   return 0;
 }
 
@@ -363,7 +353,7 @@ int get_LimInf_Sensores(void){
 **                    en el que se corresponde a un sensor.
 ** ===================================================================
 */	
-int get_LimSup_Sensores(void){
+int get_LimSup_Sensores(void*a){
   return NUM_SENSORES-1;  
 }
 
@@ -418,7 +408,8 @@ byte SenTPT_setDecimales(struct TSensor_TermoPT * self, int val){
 **    Description :   Obtiene la cantidad de decimales
 ** ===================================================================
 */
-int SenTPT_getDecimalesMostrados(const struct TSensor_TermoPT * self){
+byte SenTPT_getDecimalesMostrados(void * _self){
+  const struct TSensor_TermoPT * self = (const struct TSensor_TermoPT *)_self;
   return _MANEJADOR_MEMORIA_GET_BYTE(pFlash,&self->conf->iDecimales);
 }
 
@@ -483,7 +474,7 @@ byte set_filtro(struct TSensor_TermoPT * self,int val){
 **    Description :   Lim inf del valor del filtro
 ** ===================================================================
 */
-int get_LimInf_filtro(void){
+int get_LimInf_filtro(void*a){
   return 0;
 }
 
@@ -494,7 +485,7 @@ int get_LimInf_filtro(void){
 **    Description :   Lim sup del valor del filtro
 ** ===================================================================
 */
-int get_LimSup_filtro(void){
+int get_LimSup_filtro(void*a){
   return MAX_BYTE;
 }
 
@@ -516,7 +507,7 @@ int get_offset(const struct TSensor_TermoPT * self){
 ** ===================================================================
 */
 byte set_offset(struct TSensor_TermoPT * self,int val){
-  return _MANEJADOR_MEMORIA_SET_WORD(pFlash,&(self->conf->iOffset),val);
+  return _MANEJADOR_MEMORIA_SET_WORD(pFlash,(unsigned int * const)&(self->conf->iOffset),val);
 }
 
 /*  Ganancia  */
@@ -537,7 +528,7 @@ int get_ganancia(const struct TSensor_TermoPT * self){
 ** ===================================================================
 */
 byte set_ganancia(struct TSensor_TermoPT * self,int val){
-  return _MANEJADOR_MEMORIA_SET_WORD(pFlash,&(self->conf->iGanancia),val);
+  return _MANEJADOR_MEMORIA_SET_WORD(pFlash,(unsigned int * const)&(self->conf->iGanancia),val);
 }
 
 /*  Cero  Termopar  */
@@ -558,7 +549,7 @@ int get_CeroTermopar(const struct TSensor_TermoPT * self){
 ** ===================================================================
 */
 byte set_CeroTermopar(struct TSensor_TermoPT * self,int val){
-  return _MANEJADOR_MEMORIA_SET_WORD(pFlash,&(self->conf->iCeroTermopar),val);
+  return _MANEJADOR_MEMORIA_SET_WORD(pFlash,(unsigned int * const)&(self->conf->iCeroTermopar),val);
 }
 
 /*  Ganancia  Termopar  */
@@ -579,7 +570,7 @@ int get_GananciaTermopar(const struct TSensor_TermoPT * self){
 ** ======================================================================
 */
 byte set_GananciaTermopar(struct TSensor_TermoPT * self,int val){
-  return _MANEJADOR_MEMORIA_SET_WORD(pFlash,&(self->conf->iGananciaTermopar),val);
+  return _MANEJADOR_MEMORIA_SET_WORD(pFlash,(unsigned int * const)&(self->conf->iGananciaTermopar),val);
 }
 
 /*  Cero  PT100  */
@@ -600,7 +591,7 @@ int get_CeroPT100(const struct TSensor_TermoPT * self){
 ** ===================================================================
 */
 byte set_CeroPT100(struct TSensor_TermoPT * self,int val){
-  return _MANEJADOR_MEMORIA_SET_WORD(pFlash,&(self->conf->iCeroPT100),val);
+  return _MANEJADOR_MEMORIA_SET_WORD(pFlash,(unsigned int * const)&(self->conf->iCeroPT100),val);
 }
 
 /*  Ganancia  PT100  */
@@ -621,7 +612,7 @@ int get_GananciaPT100(const struct TSensor_TermoPT * self){
 ** =====================================================================
 */
 byte set_GananciaPT100(struct TSensor_TermoPT * self,int val){
-  return _MANEJADOR_MEMORIA_SET_WORD(pFlash,&(self->conf->iGananciaPT100),val);
+  return _MANEJADOR_MEMORIA_SET_WORD(pFlash,(unsigned int * const)&(self->conf->iGananciaPT100),val);
 }
 
 /*  */
@@ -632,7 +623,7 @@ byte set_GananciaPT100(struct TSensor_TermoPT * self,int val){
 **                    la temperatura ambiente 
 ** =====================================================================
 */
-int get_AjTempAmb(void){
+int get_AjTempAmb(void*a){
   return  iCompensacionTempAmb;
 }
 
@@ -644,7 +635,7 @@ int get_AjTempAmb(void){
 ** =====================================================================
 */
 byte set_AjTempAmb(void*a,int val){
-  return _MANEJADOR_MEMORIA_SET_WORD(pFlash,&iCompensacionTempAmb,val);
+  return _MANEJADOR_MEMORIA_SET_WORD(pFlash,(unsigned int * const)&iCompensacionTempAmb,val);
 }
 
 /*

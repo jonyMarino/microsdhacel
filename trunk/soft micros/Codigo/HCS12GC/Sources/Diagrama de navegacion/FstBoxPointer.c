@@ -21,8 +21,8 @@ const struct Class FstBoxPointer={
 **    Description :  Constructor del fst box pointer
 ** =====================================================================
 */
-void FBP_Constructor(void * self,void * CBox,void * Obj,uint num_obj){
-  struct FstBoxPointer * _fbp = self;  
+void FBP_Constructor(void * self,struct BlockBoxConstruct * CBox,void * Obj,uint num_obj){
+  struct FstBoxPointer * _fbp = (struct FstBoxPointer *)self;  
   
   _fbp->Cbox=CBox;
   _fbp->Obj=Obj;
@@ -35,7 +35,7 @@ void FBP_Constructor(void * self,void * CBox,void * Obj,uint num_obj){
 ** =====================================================================
 */
 void FstBoxPointer_DefConstructor(void*self,va_list * args){
-  FBP_Constructor(self,va_arg(*args,void*),va_arg(*args,void*),va_arg(*args,uint));  
+  FBP_Constructor(self,va_arg(*args,struct BlockBoxConstruct *),va_arg(*args,void*),va_arg(*args,uint));  
 }
 /*
 ** =====================================================================
@@ -44,7 +44,7 @@ void FstBoxPointer_DefConstructor(void*self,va_list * args){
 ** =====================================================================
 */
 struct Box *FBP_getNextBox(void * self){
-  struct FstBoxPointer * _fbp = self;
+  struct FstBoxPointer * _fbp = (struct FstBoxPointer *)self;
   
-  return vBoxes_Construct(_fbp->Cbox,_fbp->Obj,_fbp->num_obj);  
+  return (struct Box *)vBoxes_Construct(_fbp->Cbox,_fbp->Obj,_fbp->num_obj);  
 }

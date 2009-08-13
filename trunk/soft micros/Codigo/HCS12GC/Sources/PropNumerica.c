@@ -30,7 +30,7 @@ const struct PropWIncClass PropNum={
 
 
 void PropNum_Print(void*self,uchar num_display){
-  struct GetterVisual* _prop=self;
+  struct GetterVisual* _prop=(struct GetterVisual*)self;
 
   struct ConstPropNum* Block= (struct ConstPropNum*) _prop->_CGetter; 
   int _val= PropWInc_getValorTmp(self);

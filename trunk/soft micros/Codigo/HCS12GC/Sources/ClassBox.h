@@ -64,7 +64,7 @@ BOX_State vBox_ProcKey(void * _self,uchar tecla);
 **                  
 ** ===================================================================
 */
-struct BlockConstruct * vBox_getNextBlockConstr(void * _self,uchar tecla);
+struct BlockBoxConstruct * vBox_getNextBlockConstr(void * _self,uchar tecla);
 
 
 //Definicion de la vTable

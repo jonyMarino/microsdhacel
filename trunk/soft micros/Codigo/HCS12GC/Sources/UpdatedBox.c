@@ -1,7 +1,13 @@
 
 
 /*MODULE: UpdatedBox.c*/
+#include "ReadOnlyBox.h"
+#include "Timer.h"
 
+struct UpdatedBox {
+    struct ReadOnlyBox _base;
+    struct Timer timer;
+};
 
 #include "UpdatedBox.h"
 
@@ -21,10 +27,10 @@
 
 void UpdatedBox_DefConstructor(void * _self, va_list*args);
 
-void * UpdatedBox_Destructor(void* _self);
+void UpdatedBox_Destructor(void* _self);
 void ReadOnlyBox_Refresh(void* _self);
 BOX_State ReadOnlyBox_ProcKey(void* _self,uchar tecla);
-void * ReadOnlyBox_Destructor(void* _self);
+
 
 BOX_State UpdatedBox_ProcKey(void* _self,uchar tecla);
 
@@ -48,8 +54,8 @@ BOX_State UpdatedBox_ProcKey(void* _self,uchar tecla);
 ** ===================================================================
 */
 void UpdatedBox_Constructor(void * _self, void * BlockConst,void * Obj,uchar NumObj){
-  struct UpdatedBox * _box = _self;
-  struct BlockConstrUpdatedBox * Block =  BlockConst;
+  struct UpdatedBox * _box = (struct UpdatedBox *)_self;
+  struct BlockConstrUpdatedBox * Block = (struct BlockConstrUpdatedBox *) BlockConst;
   
   ReadOnlyBox_Constructor ( _self, BlockConst, Obj, NumObj);
   newAlloced(&_box->timer,&Timer, (ulong) Block->time);
@@ -69,11 +75,10 @@ void UpdatedBox_DefConstructor(void * _self, va_list*args){
 **     Description :  Destructor del Box
 ** ===================================================================
 */
-void * UpdatedBox_Destructor(void* _self){
-  struct UpdatedBox * _box = _self;
+void UpdatedBox_Destructor(void* _self){
+  struct UpdatedBox * _box = (struct UpdatedBox *)_self;
   deleteAlloced(&_box->timer);
   ReadOnlyBox_Destructor (_self);
-  return _self; 
 }
 
 
@@ -85,7 +90,7 @@ void * UpdatedBox_Destructor(void* _self){
 */
 BOX_State UpdatedBox_ProcKey(void* _self,uchar tecla){
   
-  struct UpdatedBox * _box = _self;
+  struct UpdatedBox * _box = (struct UpdatedBox *)_self;
   if(Timer_isfinish(&_box->timer)){
          ReadOnlyBox_Refresh(_self);
 				 Timer_Restart(&_box->timer);

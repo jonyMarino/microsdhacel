@@ -38,7 +38,6 @@ const struct BoxClass TitleBox={
 ** ===================================================================
 */
 void TitleBox_Constructor(void * _self, char*str1,char*str2){
-  struct DataBox * _box = _self;
 
   PasarASCII(str1,_DPY_INF); 
   PasarASCII(str2,_DPY_SUP);
@@ -62,7 +61,7 @@ void TitleBox_DefConstructor(void * _self,va_list*args){
 ** ===================================================================
 */
 BOX_State TitleBox_ProcKey(void* _self,uchar tecla){
-  struct DataBox * _box=_self;
+
   
   if (tecla=='r' || tecla=='f')
 	  return EXIT_BOX;

@@ -14,8 +14,7 @@
 }  */
 
 uchar Cntrl_setSP(void * self,int val){
-  struct Control * _cont = self;
-  struct TControlClass ** Vtable = self;
-  return (** Vtable).set_SetPoint(_cont, val);
+  struct TControlClass ** Vtable = (struct TControlClass **)self;
+  return (** Vtable).set_SetPoint(self, val);
   
 }

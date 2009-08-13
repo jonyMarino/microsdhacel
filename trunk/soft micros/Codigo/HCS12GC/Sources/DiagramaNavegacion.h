@@ -19,7 +19,7 @@
 **                    y accesos  ya inicializados y constanter
 ** =====================================================================
 */
-void DN_staticInit(struct BoxList *BoxesOp,struct ArrayList *accesos);
+void DN_staticInit(struct BoxList *BoxesOp,struct Array *accesos);
 /*
 ** =====================================================================
 **    Function      :  DN_Init 

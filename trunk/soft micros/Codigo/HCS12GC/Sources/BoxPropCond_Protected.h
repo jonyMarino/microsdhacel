@@ -22,7 +22,7 @@ void BoxPropCond_DefConstructor(void * _self, va_list*args);
 **     Description :  Destructor del Box
 ** ===================================================================
 */
-void * BoxPropCond_Destructor(void* _self);
+void BoxPropCond_Destructor(void* _self);
 /*
 ** ===================================================================
 **     Method      :  BoxPropCond_Refresh 

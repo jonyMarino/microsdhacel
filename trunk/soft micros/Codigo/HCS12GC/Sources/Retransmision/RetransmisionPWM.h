@@ -10,7 +10,7 @@ struct RetransmisionPWM{
   struct Retransmision super;
 };
 
-extern const struct TLazoClass RetransmisionPWMClass;
+extern const struct LazoClass RetransmisionPWM;
 
 #pragma DATA_SEG DEFAULT                                            
 #pragma CODE_SEG DEFAULT 

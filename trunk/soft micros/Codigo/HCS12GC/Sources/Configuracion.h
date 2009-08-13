@@ -14,7 +14,7 @@ extern struct ManejadorMemoria * const pFlash;
 
 #define CONFIGURACION_SET_WORD(self,atributo,subclass,valor)\
   _MANEJADOR_MEMORIA_SET_WORD( pManejadorDeMemoria,  \
-                               &( (struct subclass*)self)->atributo,      \
+                               ((word*)&( (struct subclass*)self)->atributo),      \
                                valor                                               \
                               )
 

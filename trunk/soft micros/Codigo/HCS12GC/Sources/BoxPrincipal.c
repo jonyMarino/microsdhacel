@@ -22,7 +22,7 @@
 
 void BoxPri_DefConstructor(void * self, va_list * args);
 BOX_State BoxPri_ProcKey(void*,uchar);
-void * BoxPri_Destructor(void* self);
+void BoxPri_Destructor(void* self);
 
 const struct BoxClass BoxPri={
   BOXCLASS_INITIALIZATION(BoxClass,
@@ -46,10 +46,10 @@ void BoxPri_ActDpySup(struct BoxPri * self);
 ** ===================================================================
 */
 void BoxPri_Constructor(void* self,
-                        struct SensorVisual * sensor,
-                        struct MessageOut *_msj)
+                        void * sensor,
+                        void *_msj)
 {
-  struct BoxPri * _box= self;
+  struct BoxPri * _box= (struct BoxPri *)self;
   
   _box->snsr1= sensor;
   _box->msjs=_msj;
@@ -72,7 +72,7 @@ void BoxPri_Constructor(void* self,
 ** ===================================================================
 */
 void BoxPri_DefConstructor(void * self, va_list * args){
-  struct BlockConstBoxPri * block= va_arg(*args,void *); 
+  struct BlockConstBoxPri * block= va_arg(*args,struct BlockConstBoxPri *); 
   BoxPri_Constructor(self,block->snsr1,block->msjs);    
 }
 			 
@@ -83,8 +83,8 @@ void BoxPri_DefConstructor(void * self, va_list * args){
 ** ===================================================================
 */
 BOX_State BoxPri_ProcKey(void*self ,uchar tecla){
-  struct BoxPri * _box= self;
-  struct TSensorDec * sensor= _box->snsr1;
+  struct BoxPri * _box= (struct BoxPri *)self;
+  void * sensor= _box->snsr1;
   
   if(Timer_isfinish(&_box->timerPri)){
       if(_box->msjs){     
@@ -114,12 +114,11 @@ BOX_State BoxPri_ProcKey(void*self ,uchar tecla){
 **     Description :  Destructor del Box
 ** ===================================================================
 */
-void * BoxPri_Destructor(void* self){
-  struct BoxPri * _box= self;
+void BoxPri_Destructor(void* self){
+  struct BoxPri * _box= (struct BoxPri *)self;
   
     PromBkp_deshabilitar(pFlash);
-  deleteAlloced(&_box->timerPri);
-  return self;  
+  deleteAlloced(&_box->timerPri); 
 }
  
 /*
@@ -130,7 +129,7 @@ void * BoxPri_Destructor(void* self){
 void BoxPri1c_DefConstructor(void * _self, va_list * args);
 BOX_State BoxPri1c_ProcKey(void*self ,uchar tecla);
 void BoxPri1c_Refresh(void* _self);
-void * BoxPri1c_Destructor(void* self);
+void BoxPri1c_Destructor(void* self);
 
 const struct BoxClass BoxPri1c={
     BOXCLASS_INITIALIZATION(BoxClass,
@@ -145,7 +144,7 @@ const struct BoxClass BoxPri1c={
                           NULL)
 };
 
-struct GetterVisual * Pri_getter=NULL;
+/*struct GetterVisual*/void * Pri_getter=NULL;
 bool Pri_is_prop;
 
 /*
@@ -155,10 +154,10 @@ bool Pri_is_prop;
 ** ===================================================================
 */
 void BoxPri1c_Constructor(void* _self,
-                        struct SensorVisual * sensor,
-                        struct MessageOut *_msj)
+                        void * sensor,
+                        void *_msj)
 {
-  struct BoxPri1c * _box=_self;
+  struct BoxPri1c * _box=(struct BoxPri1c *)_self;
   
   BoxPri_Constructor(_self,sensor,_msj);
   
@@ -180,7 +179,7 @@ void BoxPri1c_Constructor(void* _self,
 ** ===================================================================
 */
 void BoxPri1c_DefConstructor(void * _self, va_list * args){
-  struct BlockConstBoxPri * block= va_arg(*args,void *);
+  struct BlockConstBoxPri * block= va_arg(*args,struct BlockConstBoxPri *);
   BoxPri1c_Constructor(_self,block->snsr1,block->msjs);    
 }
 
@@ -190,11 +189,10 @@ void BoxPri1c_DefConstructor(void * _self, va_list * args){
 **     Description :  Destructor del Box
 ** ===================================================================
 */
-void * BoxPri1c_Destructor(void* self){
-  struct BoxPri1c * _box= self;
+void  BoxPri1c_Destructor(void* self){
+  struct BoxPri1c * _box= (struct BoxPri1c *)self;
   BoxPri_Destructor(self);
-  deleteAlloced(&_box->timerProp);
-  return self;  
+  deleteAlloced(&_box->timerProp);  
 }
 
 
@@ -205,10 +203,10 @@ void * BoxPri1c_Destructor(void* self){
 ** ===================================================================
 */
 BOX_State BoxPri1c_ProcKey(void*self ,uchar tecla){
-  struct BoxPri1c * _box= self;
-  struct BoxPri* _box_b=  self;
-  struct getter * sensor= ((struct BoxPri*)_box)->snsr1;
-  struct MessageOut * msjs = ((struct BoxPri*)_box)->msjs;
+  struct BoxPri1c * _box= (struct BoxPri1c *)self;
+  struct BoxPri* _box_b=  (struct BoxPri*)self;
+  void * sensor= ((struct BoxPri*)_box)->snsr1;
+  void * msjs = ((struct BoxPri*)_box)->msjs;
   uint msj_index = ((struct BoxPri*)_box)->msj_index; 
   
   if( Timer_isfinish( &_box_b->timerPri ) ){
@@ -277,7 +275,7 @@ BOX_State BoxPri1c_ProcKey(void*self ,uchar tecla){
 ** ===================================================================
 */
 void BoxPri1c_Refresh(void* _self){
-  struct BoxPri1c * _box=_self;
+  struct BoxPri1c * _box=(struct BoxPri1c *)_self;
   
   if(Pri_getter){
     if(Pri_is_prop)
@@ -293,11 +291,11 @@ void BoxPri1c_Refresh(void* _self){
 **     Description :  Muestra el getter al display inferior
 ** ===================================================================
 */
-void BoxPri1c_ShowGetter(const struct ConstrGetVisual * _getter,
+void BoxPri1c_ShowGetter(void * _getter,
                          void * Obj){
                          
   if(Pri_getter){
-    delete(Pri_getter);
+    _delete(Pri_getter);
   }
   
   Pri_getter= pGetter_Constructor(_getter,Obj);
@@ -312,11 +310,11 @@ void BoxPri1c_ShowGetter(const struct ConstrGetVisual * _getter,
 **     Description :  Muestr la propiedad al display inferior
 ** ===================================================================
 */
-void BoxPri1c_ShowProp( const struct ConstructorPropWInc * _prop,
+void BoxPri1c_ShowProp( const void * _prop,
                         void * Obj){
                          
   if(Pri_getter){
-    delete(Pri_getter);
+    _delete(Pri_getter);
   }
   
   Pri_getter= pProp_Constructor(_prop,Obj);

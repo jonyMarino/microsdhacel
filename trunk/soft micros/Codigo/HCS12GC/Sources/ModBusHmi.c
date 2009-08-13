@@ -22,10 +22,10 @@
 
 /*Id*/
 const struct ConstructorPropWInc ParId={
-    &PropiedadGenerica,get_Id,set_Id,get_0,get_LimSup_Id,&PropWInc,"id"
+    (const struct Class * const)(const struct Class * const)&PropiedadGenerica,get_Id,set_Id,get_0,get_LimSup_Id,&PropWInc,"id"
 };
 
-  const struct GetterGenerico *const modBusGetters[]={
+  const void *const modBusGetters[]={
     &ParId,
   };
  
@@ -46,17 +46,7 @@ word ModBusHmi_ComuAdd(word dir_ini){
 }
 
 
-/*
-** ===================================================================
-**     Function    :  ModBusHmi_AddBoxes 
-**     Description :  Agrega a los boxes la comunicacion
-** ===================================================================
-*/
-const struct BlockConstBoxPropBase CBox_ModBusId;
 
- void ModBusHmi_AddBoxes(void){
-  DN_AddBox(0,"Set ",&CBox_ModBusId,NULL,0);
- }
 
 /**************************SET************************************************************************/
 
@@ -66,3 +56,14 @@ const struct BlockConstBoxPropBase CBox_ModBusId=
       &BoxPropBase,						                  /* funcion que procesa al box*/
 			&ParId											/* direccion en la E2Prom - el EEProm Start, if FALSE no guarda valor*/
 			};
+
+
+/*
+** ===================================================================
+**     Function    :  ModBusHmi_AddBoxes 
+**     Description :  Agrega a los boxes la comunicacion
+** ===================================================================
+*/
+ void ModBusHmi_AddBoxes(void){
+  DN_AddBox(0,"Set ",&CBox_ModBusId,NULL,0);
+ }

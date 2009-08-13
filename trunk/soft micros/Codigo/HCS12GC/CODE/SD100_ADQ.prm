@@ -31,7 +31,7 @@ END
 SEGMENTS  /* Here all RAM/ROM areas of the device are listed. Used in PLACEMENT below. */
       RAM           = READ_WRITE    0x1100 TO   0x1FFF;
       ROM_4000      = READ_ONLY     0x4000 TO   0x41FF;
-      ROM_6000      = READ_ONLY     0x4c00 TO   0x7FFF;
+      ROM_6000      = READ_ONLY     0x4300 TO   0x7FFF;
       ROM_C000      = READ_ONLY     0xC000 TO   0xFEFF;
       PAGE_3C       = READ_ONLY   0x3C8000 TO 0x3CBFFF;
       PAGE_3D       = READ_ONLY   0x3D8000 TO 0x3DBFFF;
@@ -50,7 +50,7 @@ PLACEMENT /* here all predefined and user segments are placed into the SEGMENTS 
       NON_BANKED,             /* runtime routines which must not be banked */
       DEFAULT_ROM,
         COPY,            
-                    INTO  ROM_C000,ROM_6000,PAGE_3C;
+                    INTO  ROM_C000,ROM_6000;
 
 
      // STRINGS,                /* string literals */
@@ -71,4 +71,4 @@ END
 
 INIT _EntryPoint                       /* The entry point of the application. This function is generated into the CPU module. */
 
-STACKSIZE 0x150                       /* Size of the system stack. Value can be changed on the "Build options" tab */
+STACKSIZE 0x250                       /* Size of the system stack. Value can be changed on the "Build options" tab */

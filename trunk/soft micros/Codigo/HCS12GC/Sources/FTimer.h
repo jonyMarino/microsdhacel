@@ -22,7 +22,7 @@ extern const struct TimerClass FTimer;
 **    Description : Cambia la funcion a llamar cuando se llega al tiempo
 ** ===================================================================
 */
-void FTimer_ChangeFunction(struct FTimer * self,pfunction pf);
+void FTimer_ChangeFunction(void * _self,pfunction pf);
 
 /*
 ** ===================================================================
@@ -31,7 +31,7 @@ void FTimer_ChangeFunction(struct FTimer * self,pfunction pf);
 **                  valores de configuración del Timer
 ** ===================================================================
 */
-void FTimer_DefConstruct(struct FTimer * self,va_list *args);
+void FTimer_DefConstruct(void * _self,va_list *args);
 
 
 /*
@@ -41,4 +41,5 @@ void FTimer_DefConstruct(struct FTimer * self,va_list *args);
 ** ===================================================================
 */
 #define _FTimer_getFunction(timer) ((struct FTimer*)timer)->pf
+
 #endif 

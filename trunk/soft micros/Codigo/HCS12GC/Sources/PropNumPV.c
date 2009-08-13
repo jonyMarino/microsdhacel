@@ -24,7 +24,7 @@ const struct PropWIncClass PropNumPV={
 };
 
 void PropNumPV_Print(void* self,uchar num_display){
-  struct GetterVisual* _prop=self;
+  struct GetterVisual* _prop=(struct GetterVisual*)self;
 
   struct ConstPropNumPV* Block= (struct ConstPropNumPV*) _prop->_CGetter; 
   int _val= PropWInc_getValorTmp(self);

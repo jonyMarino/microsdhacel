@@ -33,9 +33,9 @@
 ** ===================================================================
 */
 void BoxPropBase_Constructor(void * _self, void * BlockConst,void * Obj,uchar NumObj){
-  struct BoxPropBase * _box = _self;
-  struct BlockConstBoxPropBase * Block =  BlockConst;
-  struct PropWInc * prop =pProp_Constructor(Block->_c_prop,Obj); 
+  struct BoxPropBase * _box = (struct BoxPropBase *)_self;
+  struct BlockConstBoxPropBase * Block =  (struct BlockConstBoxPropBase *)BlockConst;
+  /*struct PropWInc*/void * prop =pProp_Constructor(Block->_c_prop,Obj); 
   char * desc;
   
   ObjBox_Constructor(_self,NumObj);
@@ -56,7 +56,7 @@ void BoxPropBase_Constructor(void * _self, void * BlockConst,void * Obj,uchar Nu
 ** ===================================================================
 */
 void BoxPropBase_DefConstructor(void * _self, va_list*args){
-  BoxPropBase_Constructor(_self,va_arg(*args,void *),va_arg(*args,void *),(uchar)va_arg(*args,int));  
+  BoxPropBase_Constructor(_self,va_arg(*args,void*),va_arg(*args,void *),(uchar)va_arg(*args,int));  
 }
 /*
 ** ===================================================================
@@ -64,10 +64,9 @@ void BoxPropBase_DefConstructor(void * _self, va_list*args){
 **     Description :  Destructor del Box
 ** ===================================================================
 */
-void * BoxPropBase_Destructor(void* _self){
-  struct BoxPropBase * _box = _self;
-  deleteAndNil(&((struct Tclass **)_box->prop));
-  return _self; 
+void BoxPropBase_Destructor(void* _self){
+  struct BoxPropBase * _box = (struct BoxPropBase *)_self;
+  deleteAndNil(&((struct Class **)_box->prop)); 
 }
 
 /*
@@ -77,7 +76,7 @@ void * BoxPropBase_Destructor(void* _self){
 ** ===================================================================
 */
 void BoxPropBase_Refresh(void* _self){
-  struct BoxPropBase * _box=_self;
+  struct BoxPropBase * _box=(struct BoxPropBase *)_self;
   struct ObjBox * _Objbox=(struct ObjBox *)_self;
    
   PropWInc_Refresh(_box->prop);
@@ -92,7 +91,7 @@ void BoxPropBase_Refresh(void* _self){
 ** ===================================================================
 */
 BOX_State BoxPropBase_ProcKey(void* _self,uchar tecla){
-  struct BoxPropBase * _box=_self;
+  struct BoxPropBase * _box=(struct BoxPropBase *)_self;
   
   if ((tecla=='u') || (tecla=='d')){ // Fue presionada una Tecla UP o Down???
 			  if(tecla=='u')

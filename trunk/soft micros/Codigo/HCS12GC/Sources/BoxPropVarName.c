@@ -40,7 +40,7 @@ const struct BoxClass BoxPropVarName={
 ** ===================================================================
 */
 void BoxPropVarName_Constructor(void * _self, void * BlockConst,void * Obj,uchar NumObj){
-  struct BoxPropBase * _box = _self;
+  struct BoxPropBase * _box = (struct BoxPropBase *)_self;
   char * desc;
   
   BoxPropBase_Constructor(_self,BlockConst,Obj,NumObj); 
@@ -82,7 +82,7 @@ BOX_State BoxPropVarName_ProcKey(void* _self,uchar tecla){
 ** ===================================================================
 */
 char * BoxPropVarName_getDescription(void * _self){
-  struct BoxPropBase * _box = _self;
+  struct BoxPropBase * _box = (struct BoxPropBase *)_self;
   
   return (*((struct BlockConstBoxPropVarName *)_box->pBlockSelf)->getName)(_box->prop);
 }

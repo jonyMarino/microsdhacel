@@ -13,7 +13,7 @@ struct BlockConstrReadOnlyBox{
 
 struct ReadOnlyBox{
   struct ObjBox _box;
-  struct GetterVisual * _getter;
+  /*struct GetterVisual*/void * _getter;
 };
 
 extern const struct BoxClass ReadOnlyBox;
@@ -38,7 +38,7 @@ void ReadOnlyBox_DefConstructor(void * _self, va_list*args);
 **     Description :  Destructor del Box
 ** ===================================================================
 */
-void * ReadOnlyBox_Destructor(void* _self);
+void ReadOnlyBox_Destructor(void* _self);
 /*
 ** ===================================================================
 **     Method      :  ReadOnlyBox_Refresh 

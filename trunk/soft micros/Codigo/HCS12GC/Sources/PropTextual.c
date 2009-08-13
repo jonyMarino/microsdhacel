@@ -29,7 +29,7 @@ const struct PropWIncClass PropTxt={
 
 
 void PropTxt_Print(void*self,uchar num_display){
-  struct GetterVisual* _prop=self;
+  struct GetterVisual* _prop=(struct GetterVisual*)self;
 
   struct ConstPropTxt * Block=(struct ConstPropTxt *) _prop->_CGetter;
   char * _str=  (*(Block->_getTxt))((uchar)PropWInc_getValorTmp(self));

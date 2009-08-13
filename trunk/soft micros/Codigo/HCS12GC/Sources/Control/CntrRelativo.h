@@ -5,10 +5,10 @@
 
 struct CntrRelativo{
   struct  ValorControl super;
-  struct getter * valControl2;
+  struct Getter * valControl2;
 };
 
-extern const struct TValorControlClass CntrRelativoClass;
+extern const struct ValorControlClass CntrRelativo;
 
 
 #endif

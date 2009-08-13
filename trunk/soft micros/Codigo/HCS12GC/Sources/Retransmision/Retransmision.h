@@ -12,11 +12,19 @@ struct Retransmision{
   struct Sensor* sensor;
 };
 
+#pragma DATA_SEG Retransmision_DATA                                            
+#pragma CODE_SEG Retransmision_CODE 
+#pragma CONST_SEG DEFAULT
 
-extern const struct TLazoClass RetransmisionClass;
+extern const struct LazoClass Retransmision;
 
 void Retransmision_constructor(void * _self,struct RetransmisionConf * configuracion,struct ISalida* salida,struct Sensor* sensor);
 struct ISalida* Retransmision_getSalida(void * _self);
 struct Sensor* Retransmision_getSensor(void * _self);
+
+
+#pragma DATA_SEG DEFAULT                                            
+#pragma CODE_SEG DEFAULT 
+#pragma CONST_SEG DEFAULT
 
 #endif

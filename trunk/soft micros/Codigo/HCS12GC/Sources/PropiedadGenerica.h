@@ -17,9 +17,9 @@ struct PropiedadGenerica{
 
 struct PropiedadGenericaClass{
   struct GetterGenericoClass super;
-  TError (*_set)(void*,int);
-  int (*_LimInf)(void*);
-  int (*_LimSup)(void*);
+  TError (*_set)(void*,void*,int);
+  int (*_LimInf)(void*,void*);
+  int (*_LimSup)(void*,void*);
 };
 
 extern const struct Class PropiedadGenericaClass;

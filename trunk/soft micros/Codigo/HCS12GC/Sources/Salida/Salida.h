@@ -11,7 +11,7 @@ typedef enum{
 }TipoSalida;
 
 struct ISalidaClass{
-  const struct Class super;
+  struct Class super;
   uint(*getPotencia)(void*);
   void(*setPotencia)(void*,uint);
   TipoSalida(*getTipoSalida)(void*);				//OnOff TRUE/FALSE
@@ -42,6 +42,9 @@ struct Salida{
   bool conectado;
 };
 
+
+extern const struct Class ISalidaClass;
+extern const struct ISalidaClass ISalida; 
 extern const struct ISalidaClass Salida; 
 
 #define _getPotencia(salida) \

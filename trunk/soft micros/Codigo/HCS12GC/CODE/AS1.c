@@ -345,16 +345,31 @@ ISR(AS1_Interrupt)
 {
   byte StatReg = getReg(SCISR1);
 
+
+
   if (StatReg & ((SCISR1_OR_MASK)|(SCISR1_FE_MASK)|(SCISR1_NF_MASK))) { /* Is any error flag set? */
     AS1_InterruptError();              /* If yes, then invoke the internal service routine. This routine is inlined. */
+    #ifdef DEBUG
+    //O6_PutVal(0);
+    #endif
     return;
   }
   if (StatReg & SCISR1_RDRF_MASK) {    /* Is the receiver interrupt flag set? */
+       #ifdef DEBUG
+  O6_PutVal(1);
+  #endif
     AS1_InterruptRx();                 /* If yes, then invoke the internal service routine. This routine is inlined. */
+      #ifdef DEBUG
+      O6_PutVal(0);
+      #endif
     return;
   }
   if (StatReg & SCISR1_TDRE_MASK) {    /* Is the transmitter interrupt flag set? */
+
     AS1_InterruptTx();                 /* If yes, then invoke the internal service routine. This routine is inlined. */
+      #ifdef DEBUG
+      //O6_PutVal(0);
+      #endif
     return;
   }
 }

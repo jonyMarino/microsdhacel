@@ -32,7 +32,7 @@ const struct BoxClass BoxProp={
 ** ===================================================================
 */
 struct BlockBoxConstruct * BoxProp_getNext(void * _self,uchar tecla){
-  struct BoxPropBase* _box=_self;
+  struct BoxPropBase* _box= ( struct BoxPropBase*)_self;
   if(tecla=='r')
     return ((struct BlockConstBoxProp*)_box->pBlockSelf)->pNextBlckConst;
   else

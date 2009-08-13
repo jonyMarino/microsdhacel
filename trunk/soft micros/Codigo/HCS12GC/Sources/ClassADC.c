@@ -3,7 +3,7 @@
 
 #include "stddef.h"
 #include "ADC.h"
-#include "FTimer.h"
+#include "MethodTimer.h"
 #include "Object.h"
 #include "ClassADC.h"
 #include "display.h"
@@ -13,43 +13,38 @@
 #pragma CODE_SEG CLASS_ADC_CODE 
 #pragma CONST_SEG DEFAULT
 
-void AD_DefConstructor(struct TAdc * self,va_list * args);
-int AD_DefgetValue(struct TAdc * self);
-bool AD_Defisnew(struct TAdc * self);
+void AD_DefConstructor(struct Adc * self,va_list * args);
+int AD_DefgetValue(struct Adc * self);
+bool AD_Defisnew(struct Adc * self);
 
-const struct T_Adc TableAdc={ 
-  &Class,
-  "",
-  &Object,
-  sizeof(struct TAdc),		 //size
-  AD_DefConstructor, // constructor
-  NULL, // destructor
-  NULL, // differ
-  NULL, // puto
+const struct AdcClass Adc={ 
+  CLASS_INITIALIZATION(AdcClass,Adc,Object,AD_DefConstructor,Object_dtor,Object_differ,Object_puto),
   AD_DefgetValue,  // get_Val
   AD_Print,
   AD_Defisnew     // is_new? 
 };
 
-const void *const TAdc=&TableAdc; 
 
-struct FTimer ADtimer;
+
+struct MethodTimer ADtimer;
 bool fst_time=TRUE;
 const int AD_CONVERTING_TIME =_TIEMPO_AD_EN_MILISEGUNDOS-TIEMPO_GRABACION; 
 const int ADTIME = _TIEMPO_AD_EN_MILISEGUNDOS;
 
-
+static void AD_Start(void*_self){
+  ADC_Start();  
+}
 /*
 ** ===================================================================
 **     Method      :  AD_Constructor 
 **    Description : Constructor del AD
 ** ===================================================================
 */
-void AD_Constructor(struct TAdc * self,byte pin){
+void AD_Constructor(struct Adc * self,byte pin){
   if(fst_time){ //si es que ya no esta iniciado
     fst_time=FALSE;
     ADC_Start();  //Inicia el ADC 
-    newAlloced(&ADtimer,&FTimer,(ulong)ADTIME,ADC_Start); //cada  ADTIME se va a ejecutar una nueva medición
+    newAlloced(&ADtimer,&MethodTimer,(ulong)ADTIME,AD_Start,&Adc); //cada  ADTIME se va a ejecutar una nueva medición
   }
   self->pin=pin;  
 }
@@ -60,7 +55,7 @@ void AD_Constructor(struct TAdc * self,byte pin){
 **    Description : Constructor por defecto del AD
 ** ===================================================================
 */
-void AD_DefConstructor(struct TAdc * self,va_list * args){
+void AD_DefConstructor(struct Adc * self,va_list * args){
   AD_Constructor(self,(uchar)va_arg(*args,int));
 }
 
@@ -70,7 +65,7 @@ void AD_DefConstructor(struct TAdc * self,va_list * args){
 **    Description : Obtiene valor del AD basico
 ** ===================================================================
 */
-int AD_DefgetValue(struct TAdc * self){
+int AD_DefgetValue(struct Adc * self){
   return ADC_getVal(self->pin);
 }
 
@@ -80,7 +75,7 @@ int AD_DefgetValue(struct TAdc * self){
 **    Description :   Imprime el valor del AD
 ** ===================================================================
 */
-void AD_Print(struct TAdc * self,uchar num_disp){
+void AD_Print(struct Adc * self,uchar num_disp){
   Pasar_Numero(ADC_getVal(self->pin),num_disp,0);
 }
 
@@ -91,7 +86,7 @@ void AD_Print(struct TAdc * self,uchar num_disp){
 **    Description : (Por Defecto)se fija si el valor del AD es nuevo
 ** ===================================================================
 */
-bool AD_Defisnew(struct TAdc * self){
+bool AD_Defisnew(struct Adc * self){
   return ADC_isread(self->pin);
 }
 

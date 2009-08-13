@@ -20,7 +20,7 @@ extern const struct GetterClass Propiedad;
 **     Description :  Constructor de la Propiedad
 ** ===================================================================
 */
-void Prop_Constructor(void * self,struct ClassPropiedad * ClassProp,void * Obj);
+void Prop_Constructor(void * self,void * ClassProp,void * Obj);
 /*
 ** ===================================================================
 **     Method      :  Prop_getVal 

@@ -9,7 +9,9 @@ void PropWInc_Print(void* self,uchar num_display);
 void PropWInc_Inc(void *_self);
 void PropWInc_Dec(void *_self);
 
-const struct Class PropWIncClass;
+const struct Class PropWIncClass={
+  CLASS_INITIALIZATION(Class,PropWIncClass,Class,Object_ctor,Object_dtor,Object_differ,Object_puto)    
+};
 
 const struct PropWIncClass PropWInc={
   PROP_W_INC_CLASS_INITIALIZATION(PropWIncClass,
@@ -34,7 +36,7 @@ const struct PropWIncClass PropWInc={
 ** ===================================================================
 */
 void PropWInc_Constructor(void* _self,void * Block,void*Obj){
-   struct PropWInc * p=_self;
+   struct PropWInc * p= (struct PropWInc *)_self;
    
    Prop_Constructor(_self,Block,Obj);
    
@@ -65,7 +67,7 @@ void PropWInc_DefConstructor(void* _self,va_list * args){
 */
 
 void PropWInc_Print(void* self,uchar num_display){
-  struct PropWInc * p=self;
+  struct PropWInc * p=(struct PropWInc *)self;
   int val;
   
   val= p->ValorTmp;
@@ -80,7 +82,7 @@ void PropWInc_Print(void* self,uchar num_display){
 ** ===================================================================
 */
 TError PropWInc_Save(void *_self){
-	 struct PropWInc * p=_self; 
+	 struct PropWInc * p=(struct PropWInc *)_self; 
 	 
 	 return Prop_setVal(_self,p->ValorTmp);
 	 
@@ -94,7 +96,7 @@ TError PropWInc_Save(void *_self){
 ** ===================================================================
 */
 void PropWInc_Refresh(void *_self){
-	 struct PropWInc * p=_self; 
+	 struct PropWInc * p=(struct PropWInc *)_self; 
 	 
    p->ValorTmp= Prop_getVal(_self);
    p->LimInf=		Prop_getLimInf(_self);
@@ -108,7 +110,7 @@ void PropWInc_Refresh(void *_self){
 ** ===================================================================
 */
 void PropWInc_Inc(void *_self){
-	 struct PropWInc * p=_self; 
+	 struct PropWInc * p=(struct PropWInc *)_self; 
 	 if(p->ValorTmp<p->LimSup)
 	  p->ValorTmp++;   
 }
@@ -120,7 +122,7 @@ void PropWInc_Inc(void *_self){
 ** ===================================================================
 */
 int PropWInc_getValorTmp(void *_self){
-	 struct PropWInc * p=_self; 
+	 struct PropWInc * p=(struct PropWInc *)_self; 
 	 return p->ValorTmp;  
 }
 
@@ -131,7 +133,7 @@ int PropWInc_getValorTmp(void *_self){
 ** ===================================================================
 */
 int PropWInc_getLimInf(void *_self){
-	 struct PropWInc * p=_self; 
+	 struct PropWInc * p=(struct PropWInc *)_self; 
 	 return p->LimInf;  
 }
 
@@ -142,7 +144,7 @@ int PropWInc_getLimInf(void *_self){
 ** ===================================================================
 */
 int PropWInc_getLimSup(void *_self){
-	 struct PropWInc * p=_self; 
+	 struct PropWInc * p=(struct PropWInc *)_self; 
 	 return p->LimSup;  
 }
 
@@ -153,7 +155,7 @@ int PropWInc_getLimSup(void *_self){
 ** ===================================================================
 */
 byte PropWInc_setValorTmp(void *_self,int val){
-	 struct PropWInc * p=_self; 
+	 struct PropWInc * p=(struct PropWInc *)_self; 
 	 p->ValorTmp=val; 
 	 return ERR_OK; 
 }
@@ -166,7 +168,7 @@ byte PropWInc_setValorTmp(void *_self,int val){
 ** ===================================================================
 */
 void vPropWInc_Inc(void *_self){
-	 struct PropWIncClass ** p=_self; 
+	 struct PropWIncClass ** p=(struct PropWIncClass **)_self; 
 	 
 	 (*p)->inc(_self);  
 }
@@ -178,7 +180,7 @@ void vPropWInc_Inc(void *_self){
 ** ===================================================================
 */
 void PropWInc_Dec(void *_self){
-	 struct PropWInc * p=_self; 
+	 struct PropWInc * p=(struct PropWInc *)_self; 
 	 if(p->ValorTmp>p->LimInf)
 	  p->ValorTmp--;      
 }
@@ -190,7 +192,7 @@ void PropWInc_Dec(void *_self){
 ** ===================================================================
 */
 void vPropWInc_Dec(void *_self){
-	 struct PropWIncClass ** p=_self; 
+	 struct PropWIncClass ** p=(struct PropWIncClass **)_self; 
 	 
 	 (*p)->dec(_self);  
 }

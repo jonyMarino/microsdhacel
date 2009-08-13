@@ -9,10 +9,10 @@
 #include "utils_pwm_timer.h"
 
 void PWMTimer_DefConstruct(void* self,va_list *args );
-void PWMTimer_setDuty(struct PWMTimer* self,uint Val);
-void PWMTimer_setTipoSalida(struct PWMTimer* self,TipoSalida onoff);
-TipoSalida PWMTimer_tipoSalida(struct PWMTimer* self);
-TError PWMTimer_setPeriodo(struct PWMTimer* self,int periodo);
+void PWMTimer_setDuty(void* self,uint Val);
+void PWMTimer_setTipoSalida(void* self,TipoSalida onoff);
+TipoSalida PWMTimer_tipoSalida(void* self);
+TError PWMTimer_setPeriodo(void* self,int periodo);
 
 const struct IPWMClass PWMTimer={
   IPWM_CLASS_INITIALIZATION(IPWMClass,
@@ -32,8 +32,8 @@ const struct IPWMClass PWMTimer={
                             PWMTimer_setPeriodo)
 };
 
-extern struct FlashBkpEnFlash flash;
-static struct ManejadorMemoria *const pFlash=&flash;
+
+extern struct ManejadorMemoria *const pFlash;
 
 
 /*
@@ -42,7 +42,8 @@ static struct ManejadorMemoria *const pFlash=&flash;
 **    Description : Metodo Construir el PWMTimer
 ** ===================================================================
 */
-void PWMTimer_Construct(struct PWMTimer* self,TConfPWM * conf, uchar pin_out){
+void PWMTimer_Construct(void * _self,TConfPWM * conf, uchar pin_out){
+  struct PWMTimer* self = (struct PWMTimer*)_self;
   PWM_Construct(self,conf);
   
   self->PinNum=pin_out;
@@ -55,8 +56,9 @@ void PWMTimer_Construct(struct PWMTimer* self,TConfPWM * conf, uchar pin_out){
 **    Description : Constructor por defecto del PWMTimer
 ** ===================================================================
 */
-void PWMTimer_DefConstruct(void* self,va_list *args ){
-  PWMTimer_Construct(self,va_arg(*args,void*),(uchar)va_arg(*args,int));
+void PWMTimer_DefConstruct(void * _self,va_list *args ){
+  struct PWMTimer* self = (struct PWMTimer*)_self;
+  PWMTimer_Construct(self,va_arg(*args,TConfPWM *),(uchar)va_arg(*args,int));
 }
 
 /*
@@ -65,7 +67,8 @@ void PWMTimer_DefConstruct(void* self,va_list *args ){
 **    Description : Setear duty del PWMTimer
 ** ===================================================================
 */
-void PWMTimer_setDuty(struct PWMTimer* self,uint duty){
+void PWMTimer_setDuty(void * _self,uint duty){
+  struct PWMTimer* self = (struct PWMTimer*)_self;
   if(pwm_timer_isEnable(self->PinNum))			/* PID?*/
     PWM_SetRatio16(self,duty);
   else{
@@ -83,7 +86,8 @@ void PWMTimer_setDuty(struct PWMTimer* self,uint duty){
 **    Description : Setear el PWMTimer en on-off o en PID
 ** ===================================================================
 */
-void PWMTimer_setTipoSalida(struct PWMTimer* self,TipoSalida tipoSalida){
+void PWMTimer_setTipoSalida(void * _self,TipoSalida tipoSalida){
+  struct PWMTimer* self = (struct PWMTimer*)_self;
   if(tipoSalida==SALIDA_ONOFF)
     PWM_Disable(self->PinNum); 
   else
@@ -96,7 +100,8 @@ void PWMTimer_setTipoSalida(struct PWMTimer* self,TipoSalida tipoSalida){
 **    Description : verifica si el PWMTimer esta en on-off o en proporcional
 ** ===================================================================
 */
-TipoSalida PWMTimer_tipoSalida(struct PWMTimer* self){
+TipoSalida PWMTimer_tipoSalida(void * _self){
+  struct PWMTimer* self = (struct PWMTimer*)_self;
   return (pwm_timer_isEnable(self->PinNum))?SALIDA_PROPORCIONAL:SALIDA_ONOFF;
 }
 
@@ -106,7 +111,8 @@ TipoSalida PWMTimer_tipoSalida(struct PWMTimer* self){
 **    Description : Setear el periodo del PWMTimer
 ** ===================================================================
 */
-TError PWMTimer_setPeriodo(struct PWMTimer* self,int periodo){
+TError PWMTimer_setPeriodo(void * _self,int periodo){
+  struct PWMTimer* self = (struct PWMTimer*)_self;
   TError err;
   if(periodo<0 || periodo>PWM_MAX_VALUE_PERIODS)
     return ERR_VALUE; //error

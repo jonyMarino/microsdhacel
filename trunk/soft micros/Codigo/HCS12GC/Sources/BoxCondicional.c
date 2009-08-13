@@ -40,7 +40,7 @@ const struct BoxClass BoxCondicional={
 ** ===================================================================
 */
 void BoxCondicional_DefConstructor(void * _self, va_list*args){
-  struct BoxCondicional * _box= _self;
+  struct BoxCondicional * _box= (struct BoxCondicional *)_self;
   void * block=va_arg(*args,void *);
   void * Obj =va_arg(*args,void *); 
   uchar NumObj= (uchar)va_arg(*args,int);
@@ -55,8 +55,8 @@ void BoxCondicional_DefConstructor(void * _self, va_list*args){
 ** ===================================================================
 */
 struct BlockBoxConstruct * BoxCondicional_getNext(void * _self,uchar tecla){
-  struct BoxCondicional* _box=_self;
-  struct BoxPropBase * _box_base = _self;
+  struct BoxCondicional* _box=(struct BoxCondicional *)_self;
+  struct BoxPropBase * _box_base = (struct BoxPropBase *)_self;
   struct BlockConstBoxCondicional* block= (struct BlockConstBoxCondicional*)_box_base->pBlockSelf;
 
   if(block->getNextBlckConst)
@@ -72,7 +72,7 @@ struct BlockBoxConstruct * BoxCondicional_getNext(void * _self,uchar tecla){
 ** ===================================================================
 */
 BOX_State BoxCondicional_ProcKey(void* _self,uchar tecla){
-  struct BoxPropBase * _box=_self;
+  struct BoxPropBase * _box=(struct BoxPropBase *)_self;
   BOX_State state;
   struct BlockConstBoxCondicional* block= (struct BlockConstBoxCondicional*)_box->pBlockSelf;
   

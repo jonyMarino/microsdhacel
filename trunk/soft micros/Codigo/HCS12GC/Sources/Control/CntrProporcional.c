@@ -3,15 +3,8 @@
 
 int CntrProporcional_getValorControl(void * _self);
 
-const struct ValorControlClass CntrProporcionalClass={
-    &Class,
-  "",
-  &Object,
-  sizeof(struct CntrProporcional),
-  ValorControl_defConstructor,
-  NULL,
-    NULL, // differ
-  NULL, // puto
+const struct ValorControlClass CntrProporcional={
+  CLASS_INITIALIZATION(Class,CntrProporcional,Object,ValorControl_defConstructor,Object_dtor,Object_differ,Object_puto),
   CntrProporcional_getValorControl
 };
 

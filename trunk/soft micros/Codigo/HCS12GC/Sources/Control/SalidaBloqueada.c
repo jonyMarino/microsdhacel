@@ -4,18 +4,11 @@
 
 void SalidaBloqueada_defConstructor(void * _self,va_list * args);
 TipoSalida SalidaBloqueada_getTipoSalidaAdaptador(void * _self);
-int SalidaBloqueada_calcularDuty(struct SalidaBanda * self,int valorDeControl);
+int SalidaBloqueada_calcularDuty(void * _self,int valorDeControl);
 byte SalidaBloqueada_setTipoSalidaAdaptador(void * _self, TipoSalida tipoSalida);
 
-const struct TAdaptacionSalidaClass SalidaBloqueadaClass={
-    &Class,
-  "",
-  &Object,
-  sizeof(struct SalidaBloqueada),
-  SalidaBloqueada_defConstructor,
-  NULL,
-    NULL, // differ
-  NULL, // puto
+const struct AdaptacionSalidaClass SalidaBloqueada={
+   CLASS_INITIALIZATION(Class,SalidaBloqueada,Object,SalidaBloqueada_defConstructor,Object_dtor,Object_differ,Object_puto),
   SalidaBloqueada_calcularDuty,
   SalidaBloqueada_getTipoSalidaAdaptador,
   SalidaBloqueada_setTipoSalidaAdaptador
@@ -23,7 +16,7 @@ const struct TAdaptacionSalidaClass SalidaBloqueadaClass={
 
 
 void SalidaBloqueada_constructor(void * _self,struct AdaptSalidaConf *configuracion,struct ISalida * salida){
-  struct SalidaBloqueada * self = _self;
+  struct SalidaBloqueada * self = (struct SalidaBloqueada *)_self;
   self->bloqueada = TRUE;
   AdaptacionSalida_constructor(_self,configuracion,salida);
   AdaptacionSalida_setTipoSalidaAdaptador(_self,SALIDA_ONOFF);
@@ -31,11 +24,11 @@ void SalidaBloqueada_constructor(void * _self,struct AdaptSalidaConf *configurac
 }
 
 void SalidaBloqueada_defConstructor(void * _self,va_list * args){
-  SalidaBloqueada_constructor(_self,va_arg(*args,void*),va_arg(*args,void*));  
+  SalidaBloqueada_constructor(_self,va_arg(*args,struct AdaptSalidaConf *),va_arg(*args,struct ISalida *));  
 }
 
-int SalidaBloqueada_calcularDuty(struct SalidaBloqueada * self,int valorDeControl){
-      
+int SalidaBloqueada_calcularDuty(void * _self,int valorDeControl){
+      struct SalidaBloqueada * self = (struct SalidaBloqueada *)_self;
       if( !getConectada( AdaptacionSalida_getSalida(self) ) )
         return 0;
       else{      
@@ -71,5 +64,6 @@ TipoSalida SalidaBloqueada_getTipoSalidaAdaptador(void * _self){
 
 /**/
 byte SalidaBloqueada_setTipoSalidaAdaptador(void * _self, TipoSalida tipoSalida){
+  return 0;
 }
 

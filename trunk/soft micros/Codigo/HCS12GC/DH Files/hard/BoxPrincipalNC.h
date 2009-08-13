@@ -10,7 +10,7 @@
 #include "MessagesOut.h"
 #include "Timer.h"
 #include "Mydefines.h"
-#include "ArrayList.h"
+#include "Array.h"
 
 #pragma DATA_SEG BoxPrincipalNC_DATA                                            
 #pragma CODE_SEG BoxPrincipalNC_CODE                     
@@ -20,7 +20,7 @@
 
 struct BlockConstBoxPriNC{
   struct BlockBoxConstruct _base;
-  struct ArrayList * getters; 
+  struct Array * getters; 
   struct MessageOut * msjs; 
 };
 

@@ -4,7 +4,7 @@
 #include "Object.h"
 #include "GetterWName.h"
 #include "stdtypes.h"
-#include "MethodContainer.h"
+#include "MethodContainer.hpp"
 
 
 struct SensorClass{
@@ -14,7 +14,7 @@ struct SensorClass{
 
 struct Sensor{
   struct Object super;
-  struct MethodContainer nuevaMedicionListeners;
+  MethodContainer nuevaMedicionListeners;
 };
 
 extern const struct Class SensorClass;
@@ -53,7 +53,7 @@ struct SensorWState{
 
 struct SensorDecClass{
   struct SensorWStateClass super;
-  uchar (*_get_Dec)(void *); // Obtiene los decimales con que se muestra el sensor
+  byte (*_get_Dec)(void *); // Obtiene los decimales con que se muestra el sensor
   int (*getDifDecView)(void*);  //Adapta el valor que viene con los mismos decimales con el que se muestra el sensor y lo devuelve con los decimales que se obtienen al hacer un getVal del sensor 
 };
 

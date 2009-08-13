@@ -11,19 +11,22 @@ struct IPWMClass{
   byte (*setPeriodo)(void * self,int);
 };
 
-extern const struct Class IPWMClass;
 
-#define IPWM_CLASS_INITIALIZATION(description,name,super,contructor,destructor,differ,puto,getPotencia,setPotencia,getTipoSalida,setTipoSalida,getConectada,setConectada,getPeriodo,setPeriodo)\
-  ISALIDA_CLASS_INITIALIZATION(description,name,super,contructor,destructor,differ,puto,getPotencia,setPotencia,getTipoSalida,setTipoSalida,getConectada,setConectada),\
-  getPeriodo, \
-  setPeriodo
+
+
 
 
 struct IPWM{
   struct ISalida super;
 };
 
+extern const struct Class IPWMClass;
+extern const struct IPWMClass IPWM;
 
+#define IPWM_CLASS_INITIALIZATION(description,name,super,contructor,destructor,differ,puto,getPotencia,setPotencia,getTipoSalida,setTipoSalida,getConectada,setConectada,getPeriodo,setPeriodo)\
+  ISALIDA_CLASS_INITIALIZATION(description,name,super,contructor,destructor,differ,puto,getPotencia,setPotencia,getTipoSalida,setTipoSalida,getConectada,setConectada),\
+  getPeriodo, \
+  setPeriodo
 /*
 ** ===================================================================
 **     Method      :  getPeriodo 
