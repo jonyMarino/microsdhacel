@@ -50,6 +50,7 @@ struct Adquisidor{
   word * ActualAddr;					          //Direccion actual donde grabar los datos 
   word * OlderPageAddr;
 //Protected:
+  
   struct GetterVisual ** _getter;
   struct SensorVisual * sensor;
   TAdqState Estado_Adquisicion;
@@ -57,6 +58,8 @@ struct Adquisidor{
   void (*pfMemFullStrategy)(void*,word*);	/* puntero a funcion del metodo que 
                                           ejecuta la estrategia de memoria llena  
                                           */
+//Private:
+  bool grabando;
 };
 
 extern const struct Class Adquisidor;
