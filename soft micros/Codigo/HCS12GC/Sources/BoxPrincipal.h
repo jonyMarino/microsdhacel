@@ -8,7 +8,7 @@
 #include "Sensor.h"
 #include "PropWithInc.h"
 #include "MessagesOut.h"
-#include "Timer.h"
+#include "TimerFlag.h"
 #include "PE_Types.h"
 
 #pragma DATA_SEG BoxPrincipal_DATA                                            
@@ -29,7 +29,7 @@ struct BoxPri{
   /*struct getter*/void * snsr1;
   /*struct MessageOut*/void * msjs;		// manejador de mensajes
   uint msj_index;             // indice del msj a mostrar
-  struct Timer timerPri;		// Timer de refresco
+  struct TimerFlag timerPri;		// Timer de refresco
 };
 
 extern const struct BoxClass BoxPri;
@@ -53,7 +53,7 @@ struct BoxPri1c{
                                 // luego de presionar la tecla ascendente 
                                 // o descendente
   bool propCambio;  
-  struct Timer timerProp;		// Timer de refresco                            
+  struct TimerFlag timerProp;		// Timer de refresco                            
 };
 
 extern const struct BoxClass BoxPri1c;

@@ -140,7 +140,7 @@ const struct BlockConstrReadOnlyBox	 CBox_ActualState={
 
 const struct ConstructorPropWInc*const Props_Adq[]=	{
   			  &ParInterval,
-  			  &ParStrategy,
+  			//  &ParStrategy,
   			  &ParState,
   			  &ParBorrarPage,
   			  NULL
