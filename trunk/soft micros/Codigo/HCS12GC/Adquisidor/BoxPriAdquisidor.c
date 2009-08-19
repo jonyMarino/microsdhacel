@@ -6,6 +6,7 @@
 #include "BoxPrincipal_protected.h"
 #include "BoxPriAdquisidor.h"
 #include "display.h"
+#include "TimerFlag.h"
                         
 void BoxPriAdquisidor_DefConstructor(void * _self, va_list * args);
 BOX_State BoxPriAdquisidor_ProcKey(void*self ,uchar tecla); 
@@ -24,7 +25,7 @@ const struct BoxClass BoxPriAdquisidor={
                           NULL)
 };
 
-static struct Timer timerSensor;
+static struct TimerFlag timerSensor;
 /*
 ** ===================================================================
 **     Method      :  BoxPri1c_Constructor 
@@ -43,7 +44,7 @@ void BoxPriAdquisidor_Constructor(void* _self,
   msj=MessageOut_getMessage((_box->base).msjs,(_box->base).msj_index);
   PasarASCII(msj,_DPY_INF);
   
-  newAlloced(&timerSensor,&Timer,(ulong)1000);
+  newAlloced(&timerSensor,&TimerFlag,(ulong)1000);
       
 }
 /*
@@ -67,19 +68,19 @@ BOX_State BoxPriAdquisidor_ProcKey(void*self ,uchar tecla){
   struct BoxPriAdquisidor * _box= self;
   struct TSensorDec * sensor= (_box->base).snsr1;
   
-  if(Timer_isfinish(&(_box->base).timerPri)){
+  if(TimerFlag_getFlag(&(_box->base).timerPri)){
       if((_box->base).msjs){     
         char * msj=MessageOut_getMessage((_box->base).msjs,(_box->base).msj_index);
         if( msj ){
           PasarASCII(msj,_DPY_INF);
         }
       }
-      Timer_Restart(&(_box->base).timerPri);
+      TimerFlag_reset(&(_box->base).timerPri);
   }
   
-  if(Timer_isfinish(&timerSensor)){
+  if(TimerFlag_getFlag(&timerSensor)){
     _GetterPrint(sensor,_DPY_SUP);  
-    Timer_Restart(&timerSensor);
+    TimerFlag_reset(&timerSensor);
   }
   
   if(tecla=='r' || tecla=='f')

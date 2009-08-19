@@ -61,7 +61,7 @@ void BoxPri_Constructor(void* self,
   
   PasarASCII("tEMP",_DPY_INF);
   
-  newAlloced(&_box->timerPri,&Timer,(ulong)TIME_BETWEEN_PARS);
+  newAlloced(&_box->timerPri,&TimerFlag,(ulong)TIME_BETWEEN_PARS);
 
 }
 
@@ -86,7 +86,7 @@ BOX_State BoxPri_ProcKey(void*self ,uchar tecla){
   struct BoxPri * _box= (struct BoxPri *)self;
   void * sensor= _box->snsr1;
   
-  if(Timer_isfinish(&_box->timerPri)){
+  if(TimerFlag_getFlag(&_box->timerPri)){
       if(_box->msjs){     
         char * msj=MessageOut_getMessage(_box->msjs,_box->msj_index);
         if( msj ){
@@ -100,7 +100,7 @@ BOX_State BoxPri_ProcKey(void*self ,uchar tecla){
         }
       }
       _GetterPrint(sensor,_DPY_SUP);
-  		Timer_Restart(&_box->timerPri);
+  		TimerFlag_reset(&_box->timerPri);
   }
   if(tecla=='r' || tecla=='f')
     return EXIT_BOX;
@@ -167,7 +167,7 @@ void BoxPri1c_Constructor(void* _self,
   if(Pri_getter)
     _GetterPrint(Pri_getter,_DPY_INF);
  
-  newAlloced(&_box->timerProp,&Timer,(ulong)1000);
+  newAlloced(&_box->timerProp,&TimerFlag,(ulong)1000);
   
   _box->par_seconds=0;
       
@@ -209,7 +209,7 @@ BOX_State BoxPri1c_ProcKey(void*self ,uchar tecla){
   void * msjs = ((struct BoxPri*)_box)->msjs;
   uint msj_index = ((struct BoxPri*)_box)->msj_index; 
   
-  if( Timer_isfinish( &_box_b->timerPri ) ){
+  if( TimerFlag_getFlag( &_box_b->timerPri ) ){
       char * msj=NULL; 
 
       if( _box->par_seconds==0){        
@@ -226,10 +226,10 @@ BOX_State BoxPri1c_ProcKey(void*self ,uchar tecla){
           ((struct BoxPri*)_box)->msj_index=0;
       }
       _GetterPrint(sensor,_DPY_SUP);
-  		Timer_Restart( &_box_b->timerPri );
+  		TimerFlag_reset( &_box_b->timerPri );
   } 
   
-  if(_box->propCambio && Timer_isfinish(&_box->timerProp)){
+  if(_box->propCambio && TimerFlag_getFlag(&_box->timerProp)){
           _box->propCambio=FALSE;
           PropWInc_Save(Pri_getter);
   }
@@ -244,7 +244,7 @@ BOX_State BoxPri1c_ProcKey(void*self ,uchar tecla){
         else  
           vPropWInc_Inc(Pri_getter);
         _box->propCambio=TRUE;
-        Timer_Restart(&_box->timerProp);
+        TimerFlag_reset(&_box->timerProp);
         //PromBkp_demorarGrabado(pFlash,1000);
         _GetterPrint(Pri_getter,_DPY_INF);
         

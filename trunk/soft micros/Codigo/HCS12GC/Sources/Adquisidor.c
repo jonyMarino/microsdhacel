@@ -737,7 +737,7 @@ TError Adq_ErasePages(void* _self, word ok){
   
   if(ok){										
     word addr;
-    if( self->Estado_Adquisicion==ADQ_YES){
+    if( self->Estado_Adquisicion!=ADQ_NO){
       while(self->grabando);
       Adq_internalStop(_self);
     }

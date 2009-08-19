@@ -17,7 +17,7 @@
 /* archivos include */
 #include "IO_Map.h" 		
 #include "PUL.h"
-#include "Timer.h"
+#include "TimerFlag.h"
 #include "PE_Types.h"
 #include "teclas.h"
 #include "Mydefines.h"
@@ -55,7 +55,7 @@ const t_hold_key hold_keys[]={
 
 																
 /* variables usadas */
-struct Timer TeclaTimer;  //Timer de ultima tecla presionada
+struct TimerFlag TeclaTimer;  //Timer de ultima tecla presionada
 byte	ValidKey=0;					// tecla presionada. NULL: teclas liberadas
 byte	KeyAnt=0;					// estado anterior
 byte  KeepKeyAnt=0;
@@ -69,7 +69,7 @@ byte	CntInt=0;					// contador de interrupciones para procesar cada 4
 				
 
 void Teclas_Init(void){
-  newAlloced(&TeclaTimer,&Timer,(ulong)TRETURN);  
+  newAlloced(&TeclaTimer,&TimerFlag,(ulong)TRETURN);  
 }
 
 void Switches(byte Pulsador)
@@ -117,6 +117,7 @@ void Switches(byte Pulsador)
 	    }
 	    KeepKeyAnt=' ';
 	  }
+	  TimerFlag_reset(&TeclaTimer);
 	  Timer_Restart(&TeclaTimer);
 	  KeyAnt = ValidKey;
 	  KeyCnt=0;
@@ -141,6 +142,7 @@ void Switches(byte Pulsador)
   	     break;
   	    }
 		  }
+	  TimerFlag_reset(&TeclaTimer);
 	  Timer_Restart(&TeclaTimer);
   }
   //	SwAct=0;
@@ -159,6 +161,6 @@ char key;
 
 /*  Avisa si paso el tiempo de espera de tecla */
 bool Teclas_TimePass(void){
-  return Timer_isfinish(&TeclaTimer);
+  return TimerFlag_getFlag(&TeclaTimer);
 }
 

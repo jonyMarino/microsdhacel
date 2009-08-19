@@ -3,7 +3,7 @@
 #include "bits2ULN.h"
 #include "bits5ULN.h"
 #include "matriz.h"
-#include "Timer.h"
+#include "TimerFlag.h"
 #include "Teclas.h"
 #include "Object.h"
 #include "Mydefines.h"
@@ -12,7 +12,7 @@
 #pragma CONST_SEG DEFAULT
 
 bool led[4];
-struct Timer ScrollTimer;
+struct TimerFlag ScrollTimer;
 char  DigDpy[CANTIDAD_DISPLAYS][MAX_DIGITOS];		// caracteres decodificados del buffer ascii
 byte Nletras[CANTIDAD_DISPLAYS];
 static byte corrimiento[CANTIDAD_DISPLAYS];
@@ -25,7 +25,7 @@ void Display_Init(void){
   #ifdef HD90
   newAlloced(&HD90Timer,&Timer,(ulong)CHANGE_HD90_TEXT);
   #endif
-  newAlloced(&ScrollTimer,&Timer,(ulong)TIME_SCROLL);
+  newAlloced(&ScrollTimer,&TimerFlag,(ulong)TIME_SCROLL);
 }
 
 void ResetScroll(void){
@@ -33,6 +33,7 @@ void ResetScroll(void){
   for(i=0;i<CANTIDAD_DISPLAYS;i++)
     corrimiento[i]=0;								//resetear variables de SCROLL
 	Timer_setTime(&ScrollTimer,TIME_SCROLL*2);
+	TimerFlag_reset(&ScrollTimer);
 }
 
 void PutValLed(bool val,byte num){
@@ -66,14 +67,14 @@ void DpyAndSwitch(void)
   bool HD90_flag=Timer_isfinish(&HD90Timer);
   extern byte	KeyEdge;
   //#endif
-  bool Scroll=Timer_isfinish(&ScrollTimer);
+ // bool Scroll=Timer_isfinish(&ScrollTimer);
   byte caracterAMostrar;
 /* cada digito lo refresco cada 1 msg */
 /* muestro display inferior */
 
   
   /*Corrimiento por scrolling*/
-  if (Scroll){
+  if (TimerFlag_getFlag(&ScrollTimer)){
     bool scrolling=FALSE;
     byte dispActual = (HD90_flag)? _DPY_SUP:_DPY_INF;
     if (Nletras[dispActual]>DIGITOS)
@@ -83,8 +84,10 @@ void DpyAndSwitch(void)
           corrimiento[dispActual]=0;
         scrolling=TRUE;  		    
     }
-    if(scrolling)
+    if(scrolling){
+      TimerFlag_reset(&ScrollTimer);
       Timer_setTime(&ScrollTimer,TIME_SCROLL);  
+    }
   }
   
   if(display==_DPY_INF)
@@ -214,14 +217,14 @@ void DpyAndSwitch(void)
   //bool HD90_flag=Timer_isfinish(&HD90Timer);
   //extern byte	KeyEdge;
   //#endif
-  bool Scroll=Timer_isfinish(&ScrollTimer);
+ // bool Scroll=Timer_isfinish(&ScrollTimer);
   byte caracterAMostrar;
 /* cada digito lo refresco cada 1 msg */
 /* muestro display inferior */
 
   
   /*Corrimiento por scrolling*/
-  if (Scroll){
+  if (TimerFlag_getFlag(&ScrollTimer)){
     bool scrolling=FALSE;
     for(i=0;i<CANTIDAD_DISPLAYS;i++){
       if (Nletras[i]>DIGITOS)
@@ -231,8 +234,10 @@ void DpyAndSwitch(void)
             corrimiento[i]=0;
           scrolling=TRUE;  		    
       }
-      if(scrolling)
+      if(scrolling){
+        TimerFlag_reset(&ScrollTimer);
         Timer_setTime(&ScrollTimer,TIME_SCROLL);  
+      }
     }
   }
   
@@ -361,7 +366,7 @@ void AsciiTo7Seg(char* ptrs, byte Num_display,byte Dot)
   byte i, Temp8, DigTmp;
 	
 	if(Nletras[Num_display]>4)		 // En el anterior hubo scrolling?
-    ResetScroll();
+    ResetScroll();	
 	  
 
 	Nletras[Num_display]=0;
