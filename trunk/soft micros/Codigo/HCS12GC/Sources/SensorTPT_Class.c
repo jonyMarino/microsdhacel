@@ -56,9 +56,8 @@ const struct SensorDecLimClass TSensor_TermoPT={
   SenTPT_getTiempoMuestreo
 };
 
-
 #pragma CONST_SEG PARAMETERS_PAGE
-volatile const int iCompensacionTempAmb=0; 
+volatile const int iCompensacionTempAmb; 
 #pragma CONST_SEG DEFAULT
             
 /*
@@ -68,7 +67,7 @@ volatile const int iCompensacionTempAmb=0;
 ** ===================================================================
 */
 
-void  SenTPT_Construct(struct TSensor_TermoPT * self,struct Adc* adc,const SensorConf * conf,const char * desc){
+void  SenTPT_Construct(struct TSensor_TermoPT * self,struct TAdc* adc,const SensorConf * conf,const char * desc){
   while(!_AD_isnew(adc)) //Espera a q haya una conversión
     WDog1_Clear();
   _SensorVisual_setDescription(self,desc);
@@ -165,11 +164,10 @@ void Sensor_Procesar(struct TSensor_TermoPT * self){
   ValProv=ValLin;  
 	if(sensor==SENSOR_PT)
     ValProv = ((ValProv+ceroPT)*(1000+ganPT)/1000);  
-	
-//  if (!SENSOR_is_Lineal(sensor))
-//      ValProv/= pow10(SENSOR_Decimales(sensor)-decimales);  
+	 
 	ValProv=(ValProv+offset)*ganancia/1000;         //preciso para pasar a long
   ValProv= filtrar ((int)ValProv,filtro,10,200,& self->buffer_fil);
+  
   Cpu_DisableInt();
   self->ProcVal=ValProv;
   self->newVal=TRUE;
@@ -193,10 +191,9 @@ void SenTPT_Print(struct TSensor_TermoPT * self,uchar num_display){
 byte decimales=self->conf->iDecimales;
 int Val=self->ProcVal;  
 t_sensor sensor=self->conf->eSensor; 
-
-  if (!SENSOR_is_Lineal(sensor))												 
-      Val/= pow10(SENSOR_Decimales(sensor)-decimales);  			//Ajusto el valor a mostrar por la cantidad de decimales del sensor
-  
+											 
+Val/= pow10(SENSOR_Decimales(sensor)-decimales);  			//Ajusto el valor a mostrar por la cantidad de decimales del sensor
+ 
 switch (self->state){
   case SENSOR_OK:
       Pasar_Numero(Val,num_display,decimales);//(uchar)_getDec(self));
@@ -210,40 +207,7 @@ switch (self->state){
       PasarASCII(" UF ",num_display);
   break;
 }
-  
-}
 
-/*
-** ===================================================================
-**     Method      :  SensorSimulado_Print 
-**     Description :  Imprime el valor del sensor
-** ===================================================================
-*/
-void SenTPT_printVal(struct TSensor_TermoPT * self,struct OutputStream* os){
-int Val=self->ProcVal;  
-											 
-  
-    
-  switch (self->state){
-    case SENSOR_OK:
-        if(Val>MAX_NUM_DISPLAY)
-          write(os," OF ");
-        else{
-          char str[7];
-          FloatToStr(Val,str,6,self->conf->iDecimales);
-          write(os,str);
-        }
-    break;
-
-    case SENSOR_OF:
-        write(os," OF ");
-    break;
-
-    case SENSOR_UF:
-        write(os," UF ");
-    break;
-  }
-    
 }
 
 /*
@@ -258,6 +222,8 @@ t_sensor sensor=self->conf->eSensor;
 byte decimales=self->conf->iDecimales;
 
   return SENSOR_Decimales(sensor)-decimales; 
+
+
 }
 
 
@@ -279,10 +245,7 @@ int min_sens=SENSOR_Minimo(sensor);
 byte decimal_chan = SENSOR_Decimales(sensor);      
 byte decimales=self->conf->iDecimales;
 
-  if(SENSOR_is_Lineal(sensor))
-    return min_sens;
-  else
-    return min_sens/pow10(decimal_chan-decimales);
+  return min_sens/pow10(decimal_chan-decimales);
 }
 
 /*
