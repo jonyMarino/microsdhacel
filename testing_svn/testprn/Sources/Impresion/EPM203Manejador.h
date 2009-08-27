@@ -3,7 +3,7 @@
 
 #include "OutputStream.h"
 #include "EPM203Conf.h"
-#include "Timer.h"
+#include "TimerNew.h"
 
 
 struct EPM203Manejador{

@@ -2,7 +2,7 @@
 #define _METHOD_TIMER_H
 
 #include "stdtypes.h"
-#include "Timer.h"
+#include "TimerNew.h"
 #include "Object.h"
 
 #pragma DATA_SEG MethodTimer_DATA                                            

@@ -18,10 +18,10 @@
 #include "IO_Map.h" 		
 #include "PUL.h"
 #include "Timer.h"
+#include "TimerNew.h"
 #include "Mydefines.h"
 #include "PE_Types.h"
 #include "teclas.h"
-#include "TimerOld.h"
 
 #ifdef jony_25_06
 /* Posicion de cada tecla*/
@@ -43,6 +43,7 @@ const t_key keys[]={
   'c',KEY_UP | KEY_RESET,
   's',KEY_DOWN | KEY_RESET,
   'p',KEY_UP | KEY_DOWN | KEY_RESET,
+  't',KEY_UP | KEY_ENTER,
   0,0
 };
 #endif
@@ -53,7 +54,7 @@ const t_key keys[]={
                                 o asegurar que una tecla fue presionado(si es 0 no corrobora)*/
 /* definiciones del teclado */
 #define KEY_RAMPA_INI	80 /*A los cuantos ingresos(la primera vez) iguales se repite la salida para ese pulsador*/
-#define KEY_RAMPA_FIN	0  /*Maxima velociadad de ingresos iguales a los que se repite la salida para ese pulsador*/
+#define KEY_RAMPA_FIN	6  /*Maxima velociadad de ingresos iguales a los que se repite la salida para ese pulsador*/
 #define KEY_DELTA	1  /*Variacion de velociadad una vez realizada la salida*/
 																
 /* variables externas */

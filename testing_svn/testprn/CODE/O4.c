@@ -6,7 +6,7 @@
 **     Beantype  : BitIO
 **     Version   : Bean 02.068, Driver 03.09, CPU db: 2.87.392
 **     Compiler  : CodeWarrior HC12 C Compiler
-**     Date/Time : 20/08/2009, 10:06
+**     Date/Time : 23/09/2008, 10:04
 **     Abstract  :
 **         This bean "BitIO" implements an one-bit input/output.
 **         It uses one bit/pin of a port.

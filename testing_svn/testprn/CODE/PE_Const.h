@@ -6,7 +6,7 @@
 **     Beantype  : PE_Const
 **     Version   : Driver 01.00
 **     Compiler  : CodeWarrior HC12 C Compiler
-**     Date/Time : 20/08/2009, 10:06
+**     Date/Time : 23/09/2008, 10:04
 **     Abstract  :
 **         This bean "PE_Const" contains internal definitions
 **         of the constants.

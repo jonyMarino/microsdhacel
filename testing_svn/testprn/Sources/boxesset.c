@@ -6,7 +6,8 @@
 #include "PE_Types.h"
 #include "Sensores.h"
 #include "boxesset.h"
-
+#include "display.h"
+#include "In1.h"
 
 #pragma CONST_SEG DEFAULT 
 #pragma STRING_SEG DEFAULT
@@ -22,6 +23,8 @@ const Textual C1TAL3;
 const Numerico Decimales1;
 const Numerico Decimales2;
 
+extern const Numerico AL1;
+
 #if  CANTIDAD_CANALES>1
 const Textual C2CN;
 const Textual C2TSC;
@@ -36,9 +39,9 @@ const Numerico SetC;
 const Numerico Vrmp;
 const Numerico Tmpm;
 const Numerico Tiem;
-
-
-
+#ifndef programador
+ const Textual Estado;
+#endif
 const Numerico Topn;
 const Numerico Dbnd;
 
@@ -323,17 +326,37 @@ const Numerico Decimales2={
 			};
 /* version */
 /*Tipo Alarma 2*/		
+
+#ifndef programador
+ 
 static const char * const Bloqueos[6]={
 		  "bL1 ",								 
 			"bL2 ",
 			"bL3 ",
 			"bkr ",
 		  "bkr1",
-		  numver,
+		  "Pot ",
+		  //numver,
 };
+
+#define POT   5
+#define BKR_  4
+#define BKR_1 3
+#else
+static const char * const Bloqueos[4]={
+		  "bL1 ",								 
+			"bL2 ",
+			"bL3 ",
+		  "Pot ",
+		  //numver,
+};
+
+#define POT   3
+#endif
+
 const Textual Version1=
-      {TxtHandler,					              /* funcion que procesa al box*/
-			&Parametros[R_Ver],										    /* direccion en la E2Prom - el EEProm Start, if FALSE no guarda valor*/
+      {TxtHandler,					      /* funcion que procesa al box*/
+			&Parametros[R_Ver],									/* direccion en la E2Prom - el EEProm Start, if FALSE no guarda valor*/
 			"VEr1",								              //nombre display
 			Bloqueos,
 			NULL,						                    //parametro que modifica.
@@ -405,7 +428,7 @@ const Numerico Vrmp={
       NumHandler,
       &Parametros[R_Vrmp],
 			"<C / Min rAMPA   ",
-			0,
+			1,
 			NULL,
 			(PunteroF*)&Tmpm.DirProc,
 			};
@@ -430,19 +453,41 @@ const Numerico Tiem={
 			"tiEMPo MESEtA Min   ",
 			0,
 			NULL,
-			(PunteroF*)&Principal1.DirProc,
+		//	(PunteroF*)&Principal1.DirProc,
+		    (PunteroF*)&AL1.DirProc,
 			};
 
+#ifndef programador 
+ static const char * const Estados[3]={
+		  "run ",								 
+			"End ",
+			"rSt ",
+};			
+ 
+ const Textual Estado={
+      TxtHandler,					      /* funcion que procesa al box*/
+			&Parametros[R_EST],									/* direccion en la E2Prom - el EEProm Start, if FALSE no guarda valor*/
+			"EStAdoS  ",								              //nombre display
+			Estados,
+			NULL,						                    //parametro que modifica.
+			(PunteroF*)&Vrmp.DirProc,				//Proximos estados
+			};
+			
+#endif			
 
 
 /* Para Cambiar Var a mostrar en dpy inferior*/
 /*********************************************/
 #ifdef jony_28_06
-extern int SetPoint[],Dr; 
-#pragma CONST_SEG PARAMETERS_PAGE
+extern int SetPoint[];
+extern int dutytmp;
+ 
+//#pragma CONST_SEG PARAMETERS_PAGE
 volatile const int DirPar=(int)&SetPoint[0];
-#pragma CONST_SEG DEFAULT
-//const int DirPar=(int)&Dr;
+//#pragma CONST_SEG DEFAULT
+ 
+  
+
 const TDato Mod={
   &DirPar,
   NO_FUNCTION,

@@ -1,4 +1,5 @@
 /* archivos include */
+#include <string.h>
 #include "display.h"
 #include "PE_Error.h"
 #include "PWM.h"
@@ -7,7 +8,7 @@
 #include "IFsh10.h"
 #include "cnfbox.h"
 #include "Programador.h"
-#include "TimerOld.h"
+#include "Timer.h"
 #include "Sensores.h"
 #include "boxes.h"
 #include "boxesprog.h"
@@ -16,6 +17,11 @@
 #endif
 #include "PTSL.h"
 #include "paramdefines.h"
+#include "IFsh10.h"
+#include "cnfbox.h"
+#include "bkr.h"
+#include "FuncionVF.h"
+#include "vfboxes.h"
 #ifdef _PRINTER
   #include "MIPConf.h"
   #include "BTFPConf.h"
@@ -26,13 +32,14 @@
 /////////////LEDS//////////////////////
 extern bool Date_EnUser;
 ///////////////////////////////////
+
 #pragma CODE_SEG DEFAULT
 #ifdef pirani
 static const char UF[]="UF  ";
-static const char OF[]="OF  ";
+static const char OF[]="OPEn  ";
 #else
 static const char UF[]=" UF ";
-static const char OF[]=" OF ";
+static const char OF[]=" OPEn ";
 #endif
 #pragma DATA_SEG DEFAULT
 
@@ -40,23 +47,24 @@ static const char OF[]=" OF ";
 
 static char main_text[MAX_MAIN_TEXT]="St  ";
 
+bool flagpote=0;
+
 static bool show_main_text;	                                    // Se pone en uno al poner texto en maintext
 																																// hay que ponerlo en cero a mano
-
 static char prueba[20]="MEnSAJE PruEbA    ";
 
-extern volatile const struct BTFPConf bTConf;
-extern struct BTFechaPersistente baseTiempo;
-extern volatile const struct MIPConf confMI;
-extern struct ManejadorImpresionPersistente mi;
-
+char is_box_principal=0;
+bool presentar;
 
 #pragma CONST_SEG DEFAULT
 //extern const byte Pot_2[];
 extern const int div_dec[];
-
+extern int dutytmp;
 extern volatile const int PRom[PARAMETROS];
 extern PunteroF PtrTmp;
+            
+ //PunteroF PtrDsp=&DSP.DirProc;
+
 extern byte b,d;
 extern unsigned int cont;
 extern bool ADfinish;
@@ -64,19 +72,26 @@ byte Tecla;
 extern bool Flag1;
 extern dword St_Counter[CANTIDAD_SAL_CONTROL+CANTIDAD_SAL_ALARMA];
 extern byte St_Step[CANTIDAD_SAL_CONTROL+CANTIDAD_SAL_ALARMA];
-
-
-
 extern int duty_cont_ch[4];
 extern int duty_alar_ch[4];
-
 extern long suminteg[CANTIDAD_CANALES];
 extern long buffer_deriv[CANTIDAD_CANALES];
 long auvis1;
+
 extern int ValCont[CANTIDAD_CANALES];
 extern long vxalar;
 extern bool SaveNow;
 //extern byte flagalar[10];
+
+extern volatile const struct BTFPConf bTConf;
+extern struct BTFechaPersistente baseTiempo;
+extern volatile const struct MIPConf confMI;
+extern struct ManejadorImpresionPersistente mi;
+
+
+#ifndef programador
+extern long tempAct;
+#endif
 
 /* variables de uso temporal por los boxes cuando se activan */
 int Valor_Tmp;				// Buffer del parametro procesado
@@ -100,6 +115,11 @@ void Salir_num(void);	 // Salir por toque rapido o sostenido en pantalla numéric
 void A_Adquiriendo (void); // Accion al poner si o no en el adquisidor
 #endif
 
+/*void detectoVersionPote (void){
+  version = 1;        // bandera para detectar el paso por el box de version
+  void TxtHandler(void);
+}
+*/
 byte Escribir(TDato * sDato,int valor){
   byte err;
   
@@ -119,6 +139,26 @@ byte Escribir(TDato * sDato,int valor){
   return (*(sDato->OnWrite))(valor, sDato->chan);		/*Ejecuto Accion*/
 };
 
+/*escribe siempre*/
+  byte EscribirSiempre(TDato * sDato,int valor){
+  byte err;
+  
+  if(*(sDato->Inf)>valor || *(sDato->Sup)<valor) return ERR_VALUE;  /* Checkeo Rangos*/
+  if(sDato->Fdir!=NULL){																					  /*Escribo*/
+    if((word)sDato->Fdir<RAM_END && (word)sDato->Fdir>=RAM_START)//RAM
+      *(sDato->Fdir)=valor;
+    else if((word)sDato->Fdir>=FLASH_PARAMETROS_START){    //ROM
+      err=EscribirWordSiempre((word)sDato->Fdir,valor);
+      if(err)
+        return err; 
+    }
+    else return ERR_RANGE; 
+  }
+  if (sDato->OnWrite==NULL)
+    return ERR_OK;
+  return (*(sDato->OnWrite))(valor, sDato->chan);		/*Ejecuto Accion*/
+};
+
 /*************Inicializacion para empezar a usar los Boxes*********/ 
 void Boxes_Init(void){
   FstTime=TRUE;
@@ -127,13 +167,14 @@ void Boxes_Init(void){
 /* Procesadores de los boxes */
 /*****************************/
 
+ 
 /* maneja titulos: carga buffer de
    los display sup.e inf., con los
    textos de los boxes */
          
 void TitleHandler(void){
 		
-	
+	 is_box_principal=2;
 // Primer Ingreso
 	if (FstTime){					// es la primera vez que ingresa??
 		FstTime=FALSE;			// sacar primera vez
@@ -174,6 +215,147 @@ void TitleHandler(void){
 
 }
 
+/* Procesador del  ingreso de fechas    */
+/****************************************/
+
+#if defined( adquisidor)||defined(_PRINTER)
+
+
+void DiaHandler(void){
+static byte Max_day;
+
+
+if (Tecla=='u' || Tecla=='d'){
+	if (Tecla=='u'){
+  		if (Valor_Tmp < Max_day)
+		    Valor_Tmp++;
+ 	    else Valor_Tmp=Max_day; 
+	} else if (Tecla=='d'){
+	if (Valor_Tmp > 1)
+		Valor_Tmp--;
+	else Valor_Tmp=1;
+	
+	}
+	Pasar_Numero(Valor_Tmp,0,0);		           //DisplaySup
+  save=TRUE;
+}
+	
+	if (FstTime){
+	    extern int mesIngresado;
+	    extern int anioIngresado;
+	    int mes = (mesIngresado)?mesIngresado:bTConf.mes;
+      int anio = (anioIngresado)?anioIngresado:bTConf.anio; 
+          
+		  FstTime=FALSE;
+		  save=FALSE; /*Reseteo flag de mandar a grabar*/
+		  Max_day = TmDt1_GetMaxday(anio,mes);		
+			PtrBox.Num=(Numerico*)PtrTmp;
+			
+	    Valor_Tmp=*(PtrBox.Num->sDato->Fdir);
+
+			DotNum[0]=PtrBox.Num->Dot;		
+		  
+		  PasarASCII(PtrBox.Num->TxtDpy,1);     //DisplayInf
+			Pasar_Numero(Valor_Tmp,0,0);		           //DisplaySup
+					
+	}
+	
+/////////////////////// T0QUE RÁPIDO //////////////////////////
+
+	if (Tecla=='r'){
+	      if (save){ 
+	      Escribir(PtrBox.Num->sDato,Valor_Tmp);
+	      /* *(PtrBox.Num->Fdir)=Valor_Tmp;
+	        if (Estado_Adquisicion!=1)(void)TmDt1_SetDate(PRom[R_Ano],(byte) PRom[R_mes],(byte)Valor_Tmp);
+	       */
+	       }
+	        Salir_num();
+	      
+	}
+		
+/////////////////////// TOQUE MANTENIDO ////////////////////////
+
+if (Tecla=='f')	Salir_num();
+/////////////////////// EXIT //////////////////////////
+
+if (Tecla== 'k') Exit();
+
+
+
+}
+
+/*   Procesador del  ingreso de hora    */
+/****************************************/
+
+void HoraHandler (void) {
+  if (Tecla=='u' || Tecla=='d'){
+	if (Tecla=='u'){
+  		if (Valor_Tmp < 2359){
+  		   Valor_Tmp++;
+  			 if (((Valor_Tmp%100)%60)==0 && Valor_Tmp!=0) Valor_Tmp +=40;
+  		}
+ 	    else Valor_Tmp=0; 
+	} else if (Tecla=='d'){
+	if (Valor_Tmp > 0){
+	  
+		if (((Valor_Tmp%100)%60)==0) Valor_Tmp-=40;
+		Valor_Tmp--; 
+	}
+	else Valor_Tmp=2359;
+	
+	}
+	Pasar_Numero(Valor_Tmp,0,2);		           //DisplaySup
+  save=TRUE;
+ // Tecla=' ';
+}
+	
+	if (FstTime){
+	    TIMEREC time;
+	    
+		  FstTime=FALSE;	
+			
+			PtrBox.Num=(Numerico*)PtrTmp;
+			 
+			
+	    getTime(&baseTiempo,&time);
+			Valor_Tmp = time.Hour*100+time.Min;
+			DotNum[0]=PtrBox.Num->Dot;		
+		  
+		  PasarASCII(PtrBox.Num->TxtDpy,1);     //DisplayInf
+			Pasar_Numero(Valor_Tmp,0,2);		           //DisplaySup
+					
+	}
+	
+/////////////////////// T0QUE RÁPIDO //////////////////////////
+
+	if (Tecla=='r'){
+	if (save){ 
+	  setTime(&baseTiempo,Valor_Tmp/100,Valor_Tmp%100,0);
+	  /*
+	  *(PtrBox.Num->Fdir)=Valor_Tmp;
+	  if (Estado_Adquisicion!=1){
+	    (void)TmDt1_SetTime((byte)(Valor_Tmp/100),(byte)(Valor_Tmp%100));
+	    TmDt1_Enable(TRUE);
+	  }
+	  */
+	}
+	
+	Salir_num();
+	}
+		
+/////////////////////// TOQUE MANTENIDO ////////////////////////
+
+if (Tecla=='f')	Salir_num();
+/////////////////////// EXIT //////////////////////////
+
+if (Tecla== 'k') Exit();
+
+
+}
+
+#endif
+
+     
 
 
 /* Procesador de los boxes de Estado*/
@@ -181,7 +363,7 @@ void TitleHandler(void){
 
 void EstadoHandler (void)
 {
-
+   is_box_principal=2;
 // Primer Ingreso
 if (FstTime){													 // es la primera vez que ingresa?? 
 		FstTime=FALSE;										 // sacar primera vez
@@ -228,7 +410,8 @@ if (FstTime){													 // es la primera vez que ingresa??
    convierte el valor int a ascii, guardandolos en buffer DigitosSup */
 
 void TxtHandler(void){
-// PRIMER INGRESO 	
+// PRIMER INGRESO
+ 	 is_box_principal=2;
 	if (FstTime){					 // es la primera vez que ingresa??
 		FstTime=FALSE;			 // sacar primera vez
 		save=FALSE; /*Reseteo flag de mandar a grabar*/
@@ -301,7 +484,7 @@ if (Tecla=='r' || Tecla=='f')
 /********************************************************/
 #ifdef programador
 void CondEGralHandler(void){
-
+  is_box_principal=2;
   TxtHandler();
   if (Tecla=='r'){
   byte i;
@@ -345,15 +528,18 @@ void CondEGralHandler(void){
 /* Procesador de los boxes numéricos*/
 /************************************/
 void NumHandler(void){
-
+    is_box_principal=2;
 // Primer Ingreso	
 	if (FstTime){				// es la primera vez que ingresa??
-	
+	   
 		  FstTime=FALSE;  // sacar primera vez
 			save=FALSE; /*Reseteo flag de mandar a grabar*/
 			PtrBox.Num=(Numerico*)PtrTmp;	 // Poner el puntero PtrBox.Num con el valor del Box actual
-	    if(PtrBox.Num->sDato->Fdir != NULL)
+	    if(PtrBox.Num->sDato->Fdir != NULL){
+	      
 	      Valor_Tmp = *(PtrBox.Num->sDato->Fdir); // Cargar el valor de la variable correspondiente al Box en el buffer
+		     
+	    }
 		  else
 		    Valor_Tmp=0;			
 // analizo punto decimal
@@ -374,15 +560,19 @@ if ((Tecla=='u') || (Tecla=='d')){ // Fue presionada una Tecla UP o Down???
   
 	/* proceso Tecla UP */
 	if (Tecla=='u'){									 // Fue presionada una Tecla UP ???
+		    
 		    if (Valor_Tmp<(*PtrBox.Num->sDato->Sup)) Valor_Tmp++; // El Buffer es menor que el LimiteSup?? Si-> Incrementar Buffer
 				else Valor_Tmp=(*PtrBox.Num->sDato->Sup);						 // No-> Poner Buffer en maximo valor
-				
+			
+			//	Escribir(PtrBox.Num->sDato,Valor_Tmp);
 	};
 	
 	/* proceso Tecla down */
 	if (Tecla=='d'){		  					      // Fue presionada una Tecla Down???
+			  
 				if (Valor_Tmp>(*PtrBox.Num->sDato->Inf)) Valor_Tmp--;		// El Buffer es mayor que el LimiteInf?? Si-> Decrementar Buffer
 				else                    Valor_Tmp=(*PtrBox.Num->sDato->Inf);	// No-> Poner Buffer en el minimo valor			
+		//Escribir(PtrBox.Num->sDato,Valor_Tmp);	
 				
 		};
 	
@@ -395,7 +585,7 @@ if ((Tecla=='u') || (Tecla=='d')){ // Fue presionada una Tecla UP o Down???
 
 	if (Tecla=='r')	{
  		
-		
+		 
 		if (save)							
   //		{			    		  
   		  Escribir(PtrBox.Num->sDato,Valor_Tmp);
@@ -404,6 +594,7 @@ if ((Tecla=='u') || (Tecla=='d')){ // Fue presionada una Tecla UP o Down???
   		  if (PtrBox.Num==&intervalo)if (Estado_Adquisicion!=1)  (void)TmDt1_SetAlarm(Valor_Tmp);				 
   		  #endif		  		  																					 */
  // 		}
+        
   Salir_num();		// funcion de salida
 			
 	};
@@ -417,6 +608,94 @@ if (Tecla=='f')
 
 	if (Tecla== 'k') Exit();	 // Boton de Exit
 }
+
+/* Procesador de los boxes numéricos*/
+/************************************/
+/*Esta funcion realiza la misma tarea que "NumHandler" con la diferncia de que graba el valor aunque este 
+sea igual al que ya esta en flahs, esto lo ago por que uso una variable en ram para navegar en los boxes*/
+void NumHandlervf(void){
+    is_box_principal=2;
+// Primer Ingreso	
+	if (FstTime){				// es la primera vez que ingresa??
+	   
+		  FstTime=FALSE;  // sacar primera vez
+			save=FALSE; /*Reseteo flag de mandar a grabar*/
+			PtrBox.Num=(Numerico*)PtrTmp;	 // Poner el puntero PtrBox.Num con el valor del Box actual
+	    if(PtrBox.Num->sDato->Fdir != NULL){
+	      
+	      Valor_Tmp = *(PtrBox.Num->sDato->Fdir); // Cargar el valor de la variable correspondiente al Box en el buffer
+		     
+	    }
+		  else
+		    Valor_Tmp=0;			
+// analizo punto decimal
+				 
+	//	if ((PtrBox.Num->Dot)>=DECIMALES_CANAL1) // El punto decimal depende del Sensor??
+      DotNum[0]=(byte)(PtrBox.Num->Dot-DECIMALES_CANAL1);
+		//	else											 // sino
+		//	DotNum[0]=(byte)PtrBox.Num->Dot; // Cargar PD que indica el Box		
+// mando mensajes
+						
+		  PasarASCII(PtrBox.Num->TxtDpy,1);     //Mostrar DisplayInf
+			Pasar_Numero(Valor_Tmp,0,DotNum[0]);		          //Mostrar DisplaySup
+					
+	}
+	
+// KeyEdgeS UP O DOWN
+if ((Tecla=='u') || (Tecla=='d')){ // Fue presionada una Tecla UP o Down???
+  
+	/* proceso Tecla UP */
+	if (Tecla=='u'){									 // Fue presionada una Tecla UP ???
+		    if (Valor_Tmp<(*PtrBox.Num->sDato->Sup)) Valor_Tmp++; // El Buffer es menor que el LimiteSup?? Si-> Incrementar Buffer
+				else Valor_Tmp=(*PtrBox.Num->sDato->Sup);						 // No-> Poner Buffer en maximo valor
+			
+			//	Escribir(PtrBox.Num->sDato,Valor_Tmp);
+	};
+	
+	/* proceso Tecla down */
+	if (Tecla=='d'){		  					      // Fue presionada una Tecla Down???
+				if (Valor_Tmp>(*PtrBox.Num->sDato->Inf)) Valor_Tmp--;		// El Buffer es mayor que el LimiteInf?? Si-> Decrementar Buffer
+				else                    Valor_Tmp=(*PtrBox.Num->sDato->Inf);	// No-> Poner Buffer en el minimo valor			
+		//Escribir(PtrBox.Num->sDato,Valor_Tmp);	
+				
+		};
+	
+	 	Pasar_Numero(Valor_Tmp,0,DotNum[0]); // Mostrar DisplaySup
+		save=TRUE;							// Grabar parametros
+	//	Tecla=' ';							//Borrar Tecla presionada
+}
+
+/////////////////////// T0QUE RÁPIDO //////////////////////////
+
+	if (Tecla=='r')	{
+ 		
+		 
+	//	if (save)							
+  //		{			    		  
+  		  EscribirSiempre(PtrBox.Num->sDato,Valor_Tmp);
+  		  /*	funciones especiales de cada box 
+  		  #ifdef adquisidor
+  		  if (PtrBox.Num==&intervalo)if (Estado_Adquisicion!=1)  (void)TmDt1_SetAlarm(Valor_Tmp);				 
+  		  #endif		  		  																					 */
+ // 		}
+    //    BackupArray[R_ESP]=Valor_Tmp;
+          
+  Salir_num();		// funcion de salida
+			
+	};
+		
+/////////////////////// TOQUE MANTENIDO ////////////////////////
+
+if (Tecla=='f')
+  Salir_num();	 // funcion de salida
+
+/////////////////////// EXIT //////////////////////////
+
+	if (Tecla== 'k') Exit();	 // Boton de Exit
+}
+
+
+
 
 /* Procesador de los boxes con pantalla exponencial en pirani*/
 /*************************************************************/
@@ -718,7 +997,8 @@ void TipoSegHandler(void){
 /*************************************************************/ 
 void Num_realtime_Handler(void){
 static bool refresh;
-// Primer Ingreso	
+// Primer Ingreso
+	 is_box_principal=2;
 	if (FstTime){				// es la primera vez que ingresa??	
 		  FstTime=FALSE;  // sacar primera vez
 			PtrBox.NumRO=(NumericoRO*)PtrTmp;	 // Poner el puntero PtrBox.Num con el valor del Box actual
@@ -753,9 +1033,7 @@ if (Tecla=='f')	Salir_num();	 // funcion de salida
 /* Procesador del  ingreso de fechas    */
 /****************************************/
 
-#if defined( adquisidor)||defined(_PRINTER)
-
-
+#ifdef adquisidor
 
 void DiaHandler(void){
 static byte Max_day;
@@ -771,27 +1049,21 @@ if (Tecla=='u' || Tecla=='d'){
 	else Valor_Tmp=1;
 	
 	}
-	Pasar_Numero(Valor_Tmp,0,0);		           //DisplaySup
+	Pasar_Numero(Valor_Tmp,0);		           //DisplaySup
   save=TRUE;
 }
 	
 	if (FstTime){
-	    extern int mesIngresado;
-	    extern int anioIngresado;
-	    int mes = (mesIngresado)?mesIngresado:bTConf.mes;
-      int anio = (anioIngresado)?anioIngresado:bTConf.anio; 
-          
 		  FstTime=FALSE;
 		  save=FALSE; /*Reseteo flag de mandar a grabar*/
-		  Max_day = TmDt1_GetMaxday(anio,mes);		
+		  Max_day = TmDt1_GetMaxday(PRom[R_Ano],(byte)PRom[R_mes]);		
 			PtrBox.Num=(Numerico*)PtrTmp;
 			
-	    Valor_Tmp=*(PtrBox.Num->sDato->Fdir);
-
+	    Valor_Tmp=*(PtrBox.Num->Fdir);
 			DotNum[0]=PtrBox.Num->Dot;		
 		  
 		  PasarASCII(PtrBox.Num->TxtDpy,1);     //DisplayInf
-			Pasar_Numero(Valor_Tmp,0,0);		           //DisplaySup
+			Pasar_Numero(Valor_Tmp,0);		           //DisplaySup
 					
 	}
 	
@@ -804,13 +1076,13 @@ if (Tecla=='u' || Tecla=='d'){
 	        if (Estado_Adquisicion!=1)(void)TmDt1_SetDate(PRom[R_Ano],(byte) PRom[R_mes],(byte)Valor_Tmp);
 	       */
 	       }
-	        Salir_num();
+	        Salir_num('r');
 	      
 	}
 		
 /////////////////////// TOQUE MANTENIDO ////////////////////////
 
-if (Tecla=='f')	Salir_num();
+if (Tecla=='f')	Salir_num('f');
 /////////////////////// EXIT //////////////////////////
 
 if (Tecla== 'k') Exit();
@@ -837,25 +1109,21 @@ void HoraHandler (void) {
 	else Valor_Tmp=2359;
 	
 	}
-	Pasar_Numero(Valor_Tmp,0,2);		           //DisplaySup
+	Pasar_Numero(Valor_Tmp,0);		           //DisplaySup
   save=TRUE;
  // Tecla=' ';
 }
 	
 	if (FstTime){
-	    TIMEREC time;
-	    
 		  FstTime=FALSE;	
 			
 			PtrBox.Num=(Numerico*)PtrTmp;
-			 
 			
-	    getTime(&baseTiempo,&time);
-			Valor_Tmp = time.Hour*100+time.Min;
+	    Valor_Tmp=*(PtrBox.Num->Fdir);
 			DotNum[0]=PtrBox.Num->Dot;		
 		  
 		  PasarASCII(PtrBox.Num->TxtDpy,1);     //DisplayInf
-			Pasar_Numero(Valor_Tmp,0,2);		           //DisplaySup
+			Pasar_Numero(Valor_Tmp,0);		           //DisplaySup
 					
 	}
 	
@@ -863,7 +1131,7 @@ void HoraHandler (void) {
 
 	if (Tecla=='r'){
 	if (save){ 
-	  setTime(&baseTiempo,Valor_Tmp/100,Valor_Tmp%100,0);
+	  Escribir(PtrBox.Num->sDato,Valor_Tmp);
 	  /*
 	  *(PtrBox.Num->Fdir)=Valor_Tmp;
 	  if (Estado_Adquisicion!=1){
@@ -873,12 +1141,12 @@ void HoraHandler (void) {
 	  */
 	}
 	
-	Salir_num();
+	Salir_num('r');
 	}
 		
 /////////////////////// TOQUE MANTENIDO ////////////////////////
 
-if (Tecla=='f')	Salir_num();
+if (Tecla=='f')	Salir_num('f');
 /////////////////////// EXIT //////////////////////////
 
 if (Tecla== 'k') Exit();
@@ -1073,6 +1341,8 @@ TSegmentos * dir;
 }
 #endif
 
+
+
 /* Procesador de la pantalla principal */
 /***************************************/
 void MainHandler(void){
@@ -1083,8 +1353,11 @@ extern word Result[4];
 extern bool DSave;
 extern int SetPoint[4];
 extern bool Mostrar_Proc;
-extern int ValFinal[4];		
+extern int ValFinal[4];
+extern bool estado_dobleSp;
 
+is_box_principal=1;		
+ 
 #if  CANTIDAD_CANALES == 2
 byte i;
 #endif
@@ -1102,27 +1375,36 @@ byte i;
   #endif
 
 	PtrBox.Num=(Numerico*)PtrTmp;					 // Poner el puntero PtrBox.Num con el valor del Box actual
-
-  #if  CANTIDAD_CANALES == 1
-
-	  if((int *)DirPar == &SetPoint[0])
-	    Valor_Tmp = *(PtrBox.Num->sDato->Fdir);
-	  else
-	    Valor_Tmp = *(int *)DirPar;
+    
+    	
+  #if  CANTIDAD_CANALES == 1 
+   
 	  
+	  if((int *)DirPar == &SetPoint[0]){
+	    
+	    Valor_Tmp = *(PtrBox.Num->sDato->Fdir);
+	  }else{
+	    
+	    Valor_Tmp = *(int *)DirPar;
+	  }
+	   
+	    
   #endif
   
   Mostrar_Proc=TRUE;
 	};
 	
 
-#if  CANTIDAD_CANALES == 1 && !defined(HD90)
- 
-    if ((int *)DirPar == &SetPoint[0] &&((Tecla=='u' || Tecla=='d'))){ // Fue presionada una Tecla UP o Down???
+#if  CANTIDAD_CANALES == 1 && !defined(HD90)  && !defined(DOBLE_SP) && !defined(VF)
+#ifndef programador 
+   if(PRom[R_Ver]!=BKR_ && PRom[R_Ver]!=BKR_1){
+ #endif   
+    if ((int *)DirPar == &SetPoint[R_SetPoint+0] &&((Tecla=='u' || Tecla=='d'))){ // Fue presionada una Tecla UP o Down???
   
 	 #ifndef pirani
 	  /* proceso Tecla UP */
 	    if (Tecla=='u'){									 // Fue presionada una Tecla UP ???
+		      
 		      if (Valor_Tmp<(*PtrBox.Num->sDato->Sup)) Valor_Tmp++; // El Buffer es menor que el LimiteSup?? Si-> Incrementar Buffer
   				else Valor_Tmp=(*PtrBox.Num->sDato->Sup);						 // No-> Poner Buffer en maximo valor
   		};
@@ -1153,11 +1435,13 @@ byte i;
 
 	    /* proceso Tecla UP */
 	    if (Tecla=='u'){									 // Fue presionada una Tecla UP ???
+		    
 		    if (Valor_Tmp+sumador<(*PtrBox.Num->sDato->Sup)) Valor_Tmp+=sumador; // El Buffer es menor que el LimiteSup?? Si-> Incrementar Buffer
 				else Valor_Tmp=(*PtrBox.Num->sDato->Sup);						 // No-> Poner Buffer en maximo valor
 	    };
 	    /* proceso Tecla down */
 	    if (Tecla=='d'){		  					      // Fue presionada una Tecla Down???
+			
 				if (Valor_Tmp-sumador>(*PtrBox.Num->sDato->Inf)) Valor_Tmp-=sumador;		// El Buffer es mayor que el LimiteInf?? Si-> Decrementar Buffer
 				else  Valor_Tmp=(*PtrBox.Num->sDato->Inf);	// No-> Poner Buffer en el minimo valor			
 		  };
@@ -1165,6 +1449,8 @@ byte i;
         Pasar_Numero_Expo(Valor_Tmp,1,DotNum[0]);
       else
         Pasar_Numero(Valor_Tmp,1,DotNum[0]);						 //Mostrar Variable del Proceso
+   
+   
    #endif
 
 
@@ -1178,7 +1464,9 @@ byte i;
 
 
     }
-    
+  #ifndef programador  
+   }
+  #endif
  #ifdef CCAL
 
   	  if (Tecla=='k'){		  					      // Fue presionada una Tecla Down???
@@ -1191,7 +1479,10 @@ byte i;
   		};
 
 #endif
-   
+
+  
+
+  
 /*    
     
 HAY QUE PONERLO EN OTRA PARTE!!!!!!!!!!!!!!!!
@@ -1271,6 +1562,7 @@ HAY QUE PONERLO EN OTRA PARTE!!!!!!!!!!!!!!!!
 /*El display superior*/
 
 #elif CANTIDAD_CANALES == 1 
+  
   if (Result[0]==ERR_OK){  							                        // El REsultado de la linealización fue OK??
     DotNum[0]=(byte)PRom[R_Decimales];													// Pongo punto
       #ifdef pirani
@@ -1293,16 +1585,62 @@ HAY QUE PONERLO EN OTRA PARTE!!!!!!!!!!!!!!!!
     Pasar_Numero_Expo(Valor_Tmp,1,DotNum[1]);
   else
     Pasar_Numero(Valor_Tmp,1,DotNum[1]);                        // Mostrar DisplayInf
-#else																														// y nada mas
+#else
 
-  if (show_main_text==TRUE&&screen_cont<=MAIN_TEXT_TIME)        // Hay texto para mostrar?, es tiempo de mostrar?
+																												// y nada mas
+  if (show_main_text==TRUE&&screen_cont<=MAIN_TEXT_TIME ){  // Hay texto para mostrar?, es tiempo de mostrar?
         PasarASCII(main_text,1);                                // Lo muestro en DisplayInf y chau
-  else{
-      if((int *)DirPar!=&SetPoint[0] || PRom[R_Programa]!=NO_PROGRAMA)													  // El amod es distinto del SP?
-        Pasar_Numero(*(int *)DirPar,1,DotNum[1]);               // Lo muestro en DisplayInf y chau
-      else
-        Pasar_Numero(Valor_Tmp,1,DotNum[1]);                    // si nada de lo anterior,Mostrar Setpoint
+        
   }
+  else{
+      
+      if((int *)DirPar!=&SetPoint[R_SetPoint+0] || PRom[R_Programa]!=NO_PROGRAMA )													  // El amod es distinto del SP?
+        Pasar_Numero(*(int *)DirPar,1,DotNum[1]);               // Lo muestro en DisplayInf y chau
+      else if(PRom[R_Ver]==POT)        
+            Pasar_Numero(dutytmp,1,1);                  //presento el valor de la potencia 
+           else 
+              #ifdef DOBLE_SP
+                  Pasar_Numero(SetPoint[0],1,DotNum[1]);
+              #elif !defined (programador)
+                  if(PRom[R_Ver]==BKR_ || PRom[R_Ver]==BKR_1)
+                    Pasar_Numero(tempAct,1,DotNum[1]);
+                  else if(!F_VF)
+                   Pasar_Numero(Valor_Tmp,1,DotNum[1]);                 // si nada de lo anterior,Mostrar Setpoint
+              #else                 
+                   Pasar_Numero(Valor_Tmp,1,DotNum[1]);                 // si nada de lo anterior,Mostrar Setpoint
+              #endif
+ 
+ 
+  }
+   if(PRom[R_Stn]!=SINTONIA)                   
+        show_main_text=FALSE;
+  
+   if(PRom[R_Ver]==POT && PRom[R_Stn]!=SINTONIA){
+      
+      flagpote=1;
+      set_MainText("PotE");        //muestro "pote" en el dyp inferior
+      
+   } else if(flagpote==1){
+      flagpote=0;
+      set_MainText("");
+     }
+     
+ #ifdef VF
+   
+  flagCartel=cartelesHandler();
+  
+  if(flagCartel!=0){
+    
+   if(VFstatus == ENDVF){
+    set_MainText("Fin "); 
+    show_main_text=TRUE;
+   }else{
+    show_main_text=FALSE;
+    vitroFusionHandler();
+   }
+  }
+#endif		  
+          
 #endif
 
     Mostrar_Proc=FALSE;  								                        // Sacar el flag de mostrar	 variables
@@ -1312,9 +1650,24 @@ HAY QUE PONERLO EN OTRA PARTE!!!!!!!!!!!!!!!!
 
 /***********************************************************************************************************/
 
-
-
+#ifdef VF  
+ if(flagCartel!=0){
+  
 // T0QUE RÁPIDO
+  if (Tecla=='r'){
+    flagCartel=0;
+    if(!save_parametros){
+      Salir_num();
+      #ifdef programador
+      if(PtrTmp==&C1SP && PRom[R_Programa]!=NO_PROGRAMA)
+        PtrTmp=&Segmento1.DirProc; 
+      #endif
+    }else SaveNow=DSave=TRUE;				
+  }
+// T0QUE MANTENIDO
+  if (Tecla=='t')if(!save_parametros) Salir_num();else SaveNow=DSave=TRUE;				
+ }
+#else
   if (Tecla=='r')
     if(!save_parametros){
       Salir_num();
@@ -1325,29 +1678,28 @@ HAY QUE PONERLO EN OTRA PARTE!!!!!!!!!!!!!!!!
     }else SaveNow=DSave=TRUE;				
 
 // T0QUE MANTENIDO
-  if (Tecla=='f')if(!save_parametros) Salir_num();else SaveNow=DSave=TRUE;				
-
-
+  if (Tecla=='f')if(!save_parametros) Salir_num();else SaveNow=DSave=TRUE; 
+#endif
 }
 
 /////////////////// Funcion del Main (Otra razon para usar Clases)///////////
 
 #ifdef jony_28_06
-void set_MainText(const char * str){								            // Pongo un string en MainText
-byte i;																													// y levanto flag para avisar que hay texto
+void set_MainText(const char * str){								// Pongo un string en MainText
+byte i;																							// y levanto flag para avisar que hay texto
 
-  for(i=0;i<MAX_MAIN_TEXT;i++)														      // y apago poniendo un string vacio
+  for(i=0;i<MAX_MAIN_TEXT;i++)											// y apago poniendo un string vacio
 		main_text[i] = 0;
 
 
 
-  for(i=0;(str[i]!='\0')&&i<MAX_MAIN_TEXT;i++)														// y apago poniendo un string vacio
+  for(i=0;(str[i]!='\0')&&i<MAX_MAIN_TEXT;i++)			// y apago poniendo un string vacio
     main_text[i]=str[i];
   if(i==0)
-    show_main_text=FALSE;                                       // Si string vacio, apago flag
+    show_main_text=FALSE;                           // Si string vacio, apago flag
   else{
     show_main_text=TRUE;
-    main_text[i+1]='\0';                                        // Si string lleno, prendo flag
+    main_text[i+1]='\0';                            // Si string lleno, prendo flag
   }
 }
 

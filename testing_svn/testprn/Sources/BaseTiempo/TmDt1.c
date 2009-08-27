@@ -2,8 +2,9 @@
 /* MODULE TmDt1. */
 
 #include "PE_Error.h"
-#include "TmDt1.h"
 #include "stddef.h"
+#include "stdarg.h"
+#include "TmDt1.h"
 
 #pragma CODE_SEG TmDt1_CODE                     
 #pragma CONST_SEG DEFAULT

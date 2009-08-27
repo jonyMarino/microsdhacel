@@ -6,7 +6,7 @@
 struct BTFPConf{
   fbyte dia;
   fbyte mes;
-  word anio;  
+  word anio; 
 };
 
 // dia

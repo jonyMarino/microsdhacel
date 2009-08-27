@@ -141,7 +141,7 @@ byte PWM_SetRatio16(word Ratio,byte salida)		      /*Ratio es un valor de 0 a 10
   
   if (Ratio >1000 || salida>NUM_SALIDAS)            /* Is the given value out of range? */
     return ERR_RANGE;                               /* If yes then error */
-  
+    
   if (Ratio==1000)
     Duty[salida] = Period[salida];
   else if(Ratio==0)
@@ -279,11 +279,11 @@ ISR(PWM_Interrupt)
   
   if (Internal_Value!=Previous_Value){ /*¿Hubo un cambio de estado en esta interrupcion???*/
  		  Previous_Value=Internal_Value;
- 		  PWM_OnToggle(Internal_Value,0);   /* Is the pin output level high? */
+ 		  PWM_OnToggle(Internal_Value,outc1);   /* Is the pin output level high? */
   }
   
   if(Ciclo==0)
-    Ciclo=Conf_Toggle(&Internal_Value,0);  
+    Ciclo=Conf_Toggle(&Internal_Value,outc1);  
 }
 
 
@@ -306,11 +306,11 @@ ISR(PWM4_Interrupt)
   
   if (Internal_Value!=Previous_Value){  /* Hubo un cambio de estado en esta interrupcion???*/
  		  Previous_Value=Internal_Value;
- 		  PWM_OnToggle(Internal_Value,1); 
+ 		  PWM_OnToggle(Internal_Value,outa2); 
   }
   
   if(Ciclo==0)
-    Ciclo=Conf_Toggle(&Internal_Value,1);  
+    Ciclo=Conf_Toggle(&Internal_Value,outa2);  
 }
 
 ISR(PWM5_Interrupt)
@@ -332,11 +332,11 @@ ISR(PWM5_Interrupt)
   
   if (Internal_Value!=Previous_Value){  /* Hubo un cambio de estado en esta interrupcion???*/
  		  Previous_Value=Internal_Value;
- 		  PWM_OnToggle(Internal_Value,2); 
+ 		  PWM_OnToggle(Internal_Value,outa1); 
   }
   
   if(Ciclo==0)
-    Ciclo=Conf_Toggle(&Internal_Value,2);  
+    Ciclo=Conf_Toggle(&Internal_Value,outa1);  
 }
 
 ISR(PWM6_Interrupt)
@@ -358,11 +358,11 @@ ISR(PWM6_Interrupt)
   
   if (Internal_Value!=Previous_Value){  /* Hubo un cambio de estado en esta interrupcion???*/
  		  Previous_Value=Internal_Value;
- 		  PWM_OnToggle(Internal_Value,3); 
+ 		  PWM_OnToggle(Internal_Value,outa3); 
   }
   
   if(Ciclo==0)
-    Ciclo=Conf_Toggle(&Internal_Value,3);  
+    Ciclo=Conf_Toggle(&Internal_Value,outa3);  
 }
 #pragma CODE_SEG PWM_CODE                     
 

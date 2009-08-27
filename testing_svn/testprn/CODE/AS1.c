@@ -6,7 +6,7 @@
 **     Beantype  : AsynchroSerial
 **     Version   : Bean 02.433, Driver 01.17, CPU db: 2.87.392
 **     Compiler  : CodeWarrior HC12 C Compiler
-**     Date/Time : 20/08/2009, 10:06
+**     Date/Time : 23/09/2008, 10:04
 **     Abstract  :
 **         This bean "AsynchroSerial" implements an asynchronous serial
 **         communication. The bean supports different settings of

@@ -71,6 +71,7 @@
 #include "Events.h"
 #include "TI1.h"
 #include "Timer.h"
+#include "TimerNew.h"
 
 #pragma DATA_SEG TI1_DATA                                            
 #pragma CODE_SEG TI1_CODE                     

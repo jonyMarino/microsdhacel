@@ -11,7 +11,7 @@
 #include "stddef.h"
 #include "stdtypes.h"
 #include "Cpu.h"
-#include "Timer.h"
+#include "TimerNew.h"
 #include "FTimer.h"
 
 #pragma DATA_SEG MethodTimer_DATA                                            

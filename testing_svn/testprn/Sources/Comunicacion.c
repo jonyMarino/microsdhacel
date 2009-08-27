@@ -7,11 +7,11 @@
 #include "Adquisidor.h"
 #include "cnfbox.h"
 #include "boxes.h"
-#include "Timer.h"
+#include "TimerNew.h"
 #include "Programador.h"
 #include "IFsh10.h"
 #include "Comunicacion.h"
-#include "TimerOld.h"
+#include "Timer.h"
 
 #ifdef _NMODBUS
 

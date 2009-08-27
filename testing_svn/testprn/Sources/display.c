@@ -13,7 +13,7 @@
 #include "Mydefines.h"
 #include "matriz.h"
 #include "display.h"
-#include "TimerOld.h"
+#include "Timer.h"
 /* definiciones */
 
 //dan1
@@ -138,7 +138,7 @@ void DpyAndSwitch(void)
   if(++digito==5)
   {
     digito=0;
-
+   
 
 //dan
     display=_DPY_SUP;
@@ -148,6 +148,7 @@ void DpyAndSwitch(void)
 //dan  
 
   }
+  
   }  
   
 /* muestro display superior */
@@ -248,7 +249,7 @@ void AsciiTo7Seg(byte Num_display,byte Dot)
 // IN:  Texto.
 // OUT: Buffer conteniendo caracteres ASCII y Cantidad de letras
 ///////////////////////////////////////////////////////////////////////
-void PasarASCII(const char *PtrText,byte Num_display){
+void PasarASCII( char *PtrText,byte Num_display){
 for (Nletras[Num_display]=0;*PtrText!='\0'; Nletras[Num_display]++)
 		{
 		Digitos[Num_display][Nletras[Num_display]]=*PtrText;

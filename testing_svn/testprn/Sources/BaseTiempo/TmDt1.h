@@ -72,6 +72,7 @@
 #include "Object.h"
 #include "PE_Types.h"
 
+
 #pragma CODE_SEG TmDt1_CODE                     
 
 typedef struct { /* It contains actual number of hours, minutes, seconds and hundreths of seconds. */

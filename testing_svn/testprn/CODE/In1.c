@@ -6,7 +6,7 @@
 **     Beantype  : InputPin
 **     Version   : Bean 01.004, Driver 03.04, CPU db: 2.87.392
 **     Compiler  : CodeWarrior HC12 C Compiler
-**     Date/Time : 20/08/2009, 10:06
+**     Date/Time : 23/09/2008, 10:04
 **     Abstract  :
 **         This bean implements a one-bit input. Use of the bean 
 **         is convenient if selected pin is used by some on-chip 

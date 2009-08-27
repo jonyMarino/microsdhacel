@@ -242,7 +242,8 @@ const char * const Selftune[2]={
       "oFF ",									
 			"Ston",
 };
-//andy
+
+#define SINTONIA 1
 
 const Textual C1STN=
       {TxtHandler,						         /* funcion que procesa al box*/

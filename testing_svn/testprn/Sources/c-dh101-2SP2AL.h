@@ -103,6 +103,13 @@ usar con cantidad de canales 2*/
                     1_  Agregado de las direcciones de ajuste de sensor
                     */  
 //////////////////// Tipo de Aparato /////////////////////////////
+//#define VF   
+  #ifdef VF
+  #define F_VF 1
+  #else
+  #define F_VF 0
+  #endif
+
 //#define debug
 //#define _TEST1 // test del tiempo de conversion del aparato
 //#define HD90
@@ -235,7 +242,7 @@ usar con cantidad de canales 2*/
   #error todavia no implementado
  #endif
 
-
+ #define numver "5.62 dH101 2SP 2Al    "
 /////////////////////////////////////////////////////////////////////////////
 #define ERR_OF 1						 /*Error de la funcion de linealizacion*/
 #define ERR_UF 2						 /*Error de la funcion de linealizacion*/

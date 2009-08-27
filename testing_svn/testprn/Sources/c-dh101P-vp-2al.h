@@ -8,7 +8,7 @@ usar con cantidad de canales 2*/
 
 #define VPROP
 
-
+#define DOS_ALARMAS
 //////////////////// MODELOS /////////////////////////////
 #define SERIE101
 #ifdef SERIE101
@@ -20,9 +20,9 @@ usar con cantidad de canales 2*/
 
 #define outc1L 0
 #define outc2L
-#define outa1L 2
-#define outa2L 1
-#define outa3L 3
+#define outa1L 1
+#define outa2L 2//1
+#define outa3L 3//3
 #endif
 
 //#define SERIE100
@@ -106,6 +106,13 @@ usar con cantidad de canales 2*/
                     1_  Agregado de las direcciones de ajuste de sensor
                     */  
 //////////////////// Tipo de Aparato /////////////////////////////
+//#define VF   
+  #ifdef VF
+  #define F_VF 1
+  #else
+  #define F_VF 0
+  #endif
+
 //#define debug
 //#define _TEST1 // test del tiempo de conversion del aparato
 //#define HD90

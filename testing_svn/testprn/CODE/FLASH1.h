@@ -6,7 +6,7 @@
 **     Beantype  : Init_FLASH
 **     Version   : Bean 01.143, Driver 01.07, CPU db: 2.87.392
 **     Compiler  : CodeWarrior HC12 C Compiler
-**     Date/Time : 20/08/2009, 10:06
+**     Date/Time : 23/09/2008, 10:04
 **     Abstract  :
 **          This file implements the FLASH (IntFLASH) 
 **          module initialization according to the Peripheral Initialization 

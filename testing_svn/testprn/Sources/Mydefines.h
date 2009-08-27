@@ -6,7 +6,6 @@
 /* ************ DH 101 C PIR *************** */
 
 //#include "c-dh101-1al-PIR.h" /* Compilado */
-
 //#include "c-dh100-1al-PIR.h" /* Compilado */
 
 /* ************ DH 101 C *************** */
@@ -24,21 +23,38 @@
 /* ************ DH 101 B *************** */
 
 //#include "c-dh101-B.h" /* Compilado */
+
+/* ************ DH 100 B *************** */
+
 //#include "c-dh100-B.h" /* Compilado */
 
 /* ************ DH 101 CCAL *************** */
 
 //#include "c-dh101ccal-1al.h" /* Compilado */
+
+/* ************ DH 100 CCAL *************** */
+
 //#include "c-dh100ccal-1al.h" /* Compilado */
 
 /* ************ CD 101 CCAL *************** */
 
 //#include "c-cd101ccal-1al.h" /* Compilado */
 
+/* ************ CD 101P VP *************** */
+
+//#include "c-cd101-vp-1al.h" /* Compilado */
+
+/* ************ DH 101 VP *************** */
+
+//#include "c-dh101-vp-1al.h" /* Compilado */
+
 /* ************ DH 101P VP *************** */
 
 //#include "c-dh101P-vp-1al.h" /* Compilado */
 //#include "c-dh101P-vp-2al.h" /* Compilado */
+
+/* ************ DH 100 VP *************** */
+
 //#include "c-dh100-vp-2al.h" /* Compilado */
 
 
@@ -49,7 +65,7 @@
 
 /* ************ CD 101 P *************** */
 
-//#include "c-cd101P-1al.h" /* Compilado */
+////!!!!!#include "c-cd101P-1al.h" /* Compilado */
 //#include "c-cd101P-2al.h" /* Compilado */
 
 
@@ -78,23 +94,13 @@
 //#include "c-dh100P-3al.h" /* Compilado */
 												
 /* ************************************* */
+//#define numver "5.61"
 
+/************DH 101 VF********************/
 
-#define _PRINTER
-////BLOQUES A GRABAR POR APAGADO DEL APARATO/////
-#ifdef programador
-  #define FLASH_APAGADO_START (FLASH_PROGRAMADOR_END+1)
-  #define FLASH_APAGADO_END   (FLASH_APAGADO_START+511)
-#else
-  #define FLASH_APAGADO_START (FLASH_PARAMETROS_END+1)
-  #define FLASH_APAGADO_END   (FLASH_APAGADO_START+511)
-#endif
+//#include "c-dh102-vf.h"
 
-
-
-
-/////////////////////////////////////////////////
-
+ 
 //////////MODIFICACIONES//////////////////
 #define jony_25_06		/*  Teclas para el Programador*/
 #define jony_28_06		/*  1_En manual, que no se respete periodo on-off 
@@ -144,5 +150,12 @@
                     1_  Agregado de las direcciones de ajuste de sensor
                     */  
 #define jony_27_02_08	 /*
-											 1_ Se corrigio problema al reestablecer la energia para el Programador
-                        */
+								
+										 1_ Se corrigio problema al reestablecer la energia para el Programador  */
+										 
+//Agrego Nicolas										 
+
+//#define DOBLE_SP   /*sirve para agregar un segundo setpoint y con una llave se selecciona uno u otro */										 
+                   /* !solo se debe definir para aparatos que no! sean programador o de dos canales */ 
+                   
+ //#define _PRINTER                      

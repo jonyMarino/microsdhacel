@@ -57,7 +57,6 @@
 #include "IO_Map.h"
 
 #include "limits.h"
-#include "TimerOld.h"
 
 //////////////////mis includes//////////////////////////////
 #include "Mydefines.h"
@@ -74,18 +73,28 @@
 #include "cnfbox.h"
 #include "teclas.h"
 #include "boxescolcal.h"
+#include "boxesset.h"
+#include "Timer.h"
+#include "TimerNew.h"
+#ifndef programador
+#include "bkr.h"
+#include "FuncionVF.h" 
+#include "IFsh10.h"
+#include "cnfbox.h"
+#endif
 #include "RlxMTimer.h"
 #include "ManejadorImpresionPersistente.h"
 #include "System.h"
 #include "OutputStream.h"
 #include "SensorAdaptador.h"
-#include "EPM203Manejador.h"
+#include "EPM203Manejador.h" 
 ////////////////////////////////////////////////////////////////////////////
 // VARIABLES EN FLASH	 
 ////////////////////////////////////////////////////////////////////////////
 #pragma CONST_SEG PARAMETERS_PAGE
+
 volatile const int PRom[R_ATA+1]  ={
-0,          0,          0,        0,    // R_SetPoint 0
+0,           0,          0,        0,   // R_SetPoint 0
 10,         10,         10,       10,   // R_AL 4	 
 -1,         -1,         -1,       -1,   // R_ALb 8 
 -2,        -2,          0,        0,   // R_H1/R_AB1 12 
@@ -140,18 +149,18 @@ _rel,       _rel,       _rel,     _rel,    // R_T_AL 128
 0,        
 0,   
 0,          0,          0,        0,    // R_None 164
-0,          0,          0,        0,    // R_None 168
-0,          0,          0,        0,    // R_None 172
+0,          0,          0,        30,    // R_None 168
+30,          0,          0,        0,    // R_None 172
 0,          0,          0,        0,    // R_None 176
 0,          0,          0,        0,    // R_None 180
 0,          0,          0,        0,    // R_None 184
 0,          0,          0,        0,    // R_None 188
-0,          0,          0,        0,    // R_None 192
+10,        2008,        1,        1,    // R_None 192
 0,          0,          0,        0,    // R_None 196
 0,          0,          0,        0,    // R_None 200
 0,          0,          0,        0,    // R_None 204
 0,          0,          0,        0,    // R_None 208
-0,          0,          0,        0,    // R_None 212
+0,          1,          0,        0,    // R_None 212
 0,          0,                          // R_None 216
 
 60,                                     // R_Topn 218
@@ -168,20 +177,19 @@ _rel,       _rel,       _rel,     _rel,    // R_T_AL 128
 0,                                      // R_ATA  229
 
 };
-
+			
 #ifdef _PRINTER
-volatile const struct MIPConf confMI ={
+volatile const struct MIPConf confMI= {
   10,
   FALSE
 };
 
-volatile const struct EPM203Conf epm203Conf={
+volatile const struct EPM203Conf epm203Conf= {
   0,1
 };
 #endif
-			
-#pragma CONST_SEG DEFAULT
 
+#pragma CONST_SEG DEFAULT
 ////////////////////////////////////////////////////////////////////////////
 // VARIABLES GLOBALES
 ////////////////////////////////////////////////////////////////////////////
@@ -218,7 +226,12 @@ int dutytmp;
 byte flagalar[10];
 extern byte FlagCleaner;
 extern int flagsst;
-
+//extern byte BackupArray[MEM_PAGINA];
+#ifndef programador
+extern bool flag_1seg;
+//word  mesetaTimeSaved;
+extern char flagFinMeseta;
+#endif
 
 #ifdef VPROP
 int duty_vprop;
@@ -276,8 +289,10 @@ struct ManejadorImpresionPersistente mi;
 struct EPM203Manejador os;
 struct SensorAdaptador sensorAdaptado;
 
+
 void main(void)
 { 
+  	
   byte i;
   long ValProv,tmpint;
   int ValLin,ValRet;
@@ -286,7 +301,6 @@ void main(void)
   /*** Processor Expert internal initialization. DON'T REMOVE THIS CODE!!! ***/
   PE_low_level_init();
   /*** End of Processor Expert internal initialization.                    ***/
-
   /* ### Asynchro serial "AS1" init code ... */
   #ifdef _PRINTER
   TERMIO_Init();
@@ -298,13 +312,14 @@ void main(void)
   #else
   AS1_Init();
   #endif
-  
-//  setHabilitadoMI(&mi,TRUE);
+   
   /* Write your code here */   
   #ifdef adquisidor
   TmDt1_Init(); 	                                              // Inicializacion Fecha y Hora 
   #endif
-  Boxes_Init(); 
+  Boxes_Init();
+  
+  
 
 #ifdef SIMCIC
 auxiliar1 = *(word*)FLASH_APAGADO_START;
@@ -314,7 +329,10 @@ EscribirWord((word)&PRom[R_SetPoint],auxiliar1);
 if( PRom[R_Stn]!=St_OFF)
   EscribirWord((word)&PRom[R_Stn],St_OFF);			                // Siempre al empezar Stn en cero
 
-
+ #ifndef programador  
+   // mesetaTimeSaved = *(word*)ADR_MESETA_TIME;
+   flagFinMeseta = *(word*)ADR_CORTE_ENERGIA;
+  #endif
 
 
   #ifndef jony_05_07
@@ -340,17 +358,17 @@ PWM_SetRatio16(0,outa1);
 PWM_SetRatio16(0,outa2);
 PWM_SetRatio16(0,outa3);		 
 
-setPWM_period(PWM_Anl,0);	
-setPWM_period(PWM_Anl,1);	
-setPWM_period(PWM_Anl,2);	
-setPWM_period(PWM_Anl,3);	
+setPWM_period(PWM_Anl,outc1);	
+setPWM_period(PWM_Anl,outa2);	
+setPWM_period(PWM_Anl,outa1);	
+setPWM_period(PWM_Anl,outa3);	
 
 
 #else
-    setPWM_period(PRom[R_Per],0);		    // Setear Periodo Canal1
-    setPWM_period(PRom[R_Per+1],1);	    // Setear Periodo Canal1
-  	setPWM_period(PRom[R_Pra],2);       // Setear Periodo Alarma1
-  	setPWM_period(PRom[R_Pra+1],3);     // Setear Periodo Alarma1
+    setPWM_period(PRom[R_Per],outc1);		    // Setear Periodo Canal1
+    setPWM_period(PRom[R_Per+1],outa2);	    // Setear Periodo Canal1
+  	setPWM_period(PRom[R_Pra],outa1);       // Setear Periodo Alarma1
+  	setPWM_period(PRom[R_Pra+1],outa3);     // Setear Periodo Alarma1
 #endif
 
   	PtrTmp=&Principal1.DirProc;		      // Empezar en Principal
@@ -404,8 +422,6 @@ setPWM_period(PWM_Anl,3);
         ValProv=ValLin;  
         if(PRom[R_Sensor+i]==SENSOR_PT)
         
-        
-        
          ValProv = ((ValProv+PRom[R_ACP+i])*(1000+PRom[R_AGP+i])/1000);  
 				
 				
@@ -457,7 +473,7 @@ setPWM_period(PWM_Anl,3);
 
 ResetScroll(); 
 
-
+ 
 /////////////////// LOOP CONTINUO /////////////////////////
   for(;;)
   { 
@@ -476,7 +492,6 @@ ResetScroll();
   #ifdef _PRINTER
   RlxMTimer_Handler();
   #endif
-  
   WDog1_Clear();					              // resetear Watch dog
    
   #ifdef jony_25_06
@@ -512,6 +527,30 @@ ResetScroll();
 //normalizo para entrar en la tabla de linealizacion. Ajusta cero y offset del ad
 //el ajuste de cero es absoluto y el de ganancia porcentual
 
+  //Nicolas 
+/****************************************/
+
+#ifdef VF
+
+ProcesoTeclasVF();
+
+#endif
+ 
+
+#ifndef programador
+
+if((PRom[R_Ver]==BKR_ || PRom[R_Ver]==BKR_1 || F_VF))
+  if(flag_1seg == TRUE){
+   flag_1seg=FALSE;
+   #ifndef VF 
+   calculoTempInstYtiempoMeseta();
+   #else
+   calculoTempInstYtiempoMesetaVF();
+   #endif
+  }
+
+#endif
+/*****************************************/
      
   if (AD_proc)									        // esta el flag de procesar los resultados del AD??
   {
@@ -553,7 +592,25 @@ ResetScroll();
 				SetPoint[0] = PRom[R_SetPoint];
 
 		 #endif
-
+		 
+		 #ifndef programador
+		   if(PRom[R_Ver]==BKR_ || PRom[R_Ver]==BKR_1)
+		      SetPoint[0] = tempAct;
+		    else
+		      SetPoint[0] = PRom[R_SetPoint+0];
+		 #endif
+		 
+		 #ifdef VF
+		    SetPoint[0] = tempActVF;
+		 #endif
+		 
+		 #ifdef DOBLE_SP
+		  if(In1_GetVal()) 
+        SetPoint[0] = PRom[R_SetPoint+0];
+		  else
+		    SetPoint[0] = PRom[R_SetPoint+2];
+		 #endif
+		 
 
 //////////////////////////////////////////////////////////
         
@@ -658,7 +715,8 @@ if (!PRom[R_Stn+NCN]== Stc){                                            //primer
     valcont = -30000;
  else
     valcont = (int)auxiliar;
- 
+  
+   
 //Calculo del duty
 
  if (abl >0 )
@@ -813,6 +871,15 @@ switch (t_sp_alarma){
             vxalar =1000 - cprop(hisalar,spcont-spalar/2,0,vx,0,0,res);						//abajo idem pero polarid inv
     break;
 
+#ifdef VF    
+    case _eoc:
+        if(VFstatus == ENDVF)																								//fin de ciclo
+            vxalar = 30000;	 
+        else
+            vxalar = -30000;     
+     break;
+#endif     
+
 #ifdef programador
     case _seg:							                                                  //segmento							
         if(SegmentoActual[0+NCN]+OFFSET_SEG1==spalar && PRom[R_Programa]!=NO_PROGRAMA)
@@ -827,6 +894,7 @@ switch (t_sp_alarma){
         else
             vxalar = -30000; 
     break;
+
 #endif
 
     default:
@@ -983,7 +1051,7 @@ switch (t_sp_alarma){
     break;
     };
 
-
+  
 /*Este modulo limita los valores a int*/
 
 if (vxalar > 30000)
@@ -994,7 +1062,7 @@ if (vxalar < -30000)
 
 /*Este modulo calcula el valor del duty*/
 
- switch (t_sal_alarma){				
+ switch (t_sal_alarma){			
     case _e:														
         if (hisalar > 0)													                            //exceso, al reves que la señal de cal
             duty_alar_ch[NAL] = dtprop   (1000 - vxalar,0,1000);
@@ -1075,11 +1143,13 @@ if (vxalar < -30000)
 #undef NAL
 #undef NCN
 
-#if (CANTIDAD_CANALES == 1 && ALARMAS_CH1 == 3)
+#if ((CANTIDAD_CANALES == 1 && ALARMAS_CH1 == 3))
 #define NAL 2                                                                 //variables y parametros de canal1
 #define NCN 0
 
-
+#elif((defined VPROP && defined DOS_ALARMAS )) 
+#define NAL 1                                                                 //variables y parametros de canal1
+#define NCN 0
 
 //Este modulo calcula la señal de alarma
 

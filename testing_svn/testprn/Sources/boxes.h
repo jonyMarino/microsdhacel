@@ -8,11 +8,12 @@
 #include "TmDt1.h"
 #include "Adquisidor.h"
 #include "IFsh10.h"
-#include "Timer.h"
+#include "TimerNew.h"
 
 extern bool FstTime;
 extern bool save_parametros;
 extern byte Tecla;
+extern char is_box_principal;
 
 byte Escribir(TDato * sDato,int valor);
 
@@ -73,6 +74,12 @@ void TiempoHandler(void);
 void ToleranciaHandler(void);
 
 void MainHandler(void);
+
+void NumHandlervf(void);
+
+byte EscribirSiempre(TDato * sDato,int valor);
+
+//void detectoVersionPote (void);
 
 //funciones de accion para el ingreso en los boxes/////////
 

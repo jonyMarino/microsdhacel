@@ -45,6 +45,7 @@
 /* MODULE IFsh10. */
 
 #include "Cpu.h"
+#include "Mydefines.h"
 
 #pragma DATA_SEG IFsh10_DATA                                            
 #pragma CODE_SEG IFsh10_CODE                     
@@ -52,7 +53,7 @@
 
 #define IFsh10_DummyData   0x10        /* This number is used as data word for erase algorithm */
 
-
+extern byte BackupArray[MEM_PAGINA];
 void IFsh10_Init(void);
 byte WriteWord(word Addr,word Data16);
 byte WriteArray(word Addr,word From, word To, word* Array);
@@ -61,6 +62,8 @@ byte IFsh10_SetWordsArray2(word Addr,word * Data,byte Cantidad);
 byte EraseSectorInternal(word Addr);
 byte EscribirWord(word Addr,int valor);
 byte EscribirByte(word Addr,byte valor);
+ word IFsh10_getWord(word dir);
+ byte EscribirWordSiempre(word Addr,int valor);
 /*
 ** ===================================================================
 **     Method      :  IFsh10_SetWordFlash (bean IntFLASH)

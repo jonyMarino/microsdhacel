@@ -109,7 +109,7 @@ const Textual boxDireccion=
       {
       TxtHandler,						            /* funcion que procesa al box*/
 			&datoDireccion,					  /* direccion en la E2Prom - el EEProm Start, if FALSE no guarda valor*/
-			"DirEccion    ",									          //nombre display
+			"dirEccion    ",									          //nombre display
 			strDireccion,                       // Array donde estan los textos
 			NULL,						                  //parametro que modifica.
 			(PunteroF*)&Principal1.DirProc,NULL	//Proximos estados

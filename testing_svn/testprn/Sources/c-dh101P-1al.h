@@ -106,6 +106,13 @@ usar con cantidad de canales 2*/
                     1_  Agregado de las direcciones de ajuste de sensor
                     */  
 //////////////////// Tipo de Aparato /////////////////////////////
+// #define VF   
+  #ifdef VF
+  #define F_VF 1
+  #else
+  #define F_VF 0
+  #endif
+
 //#define debug
 //#define _TEST1 // test del tiempo de conversion del aparato
 //#define HD90
@@ -188,7 +195,7 @@ usar con cantidad de canales 2*/
 #define FLASH_PARAMETROS_END 0x41FF 
   #ifdef programador
   #define FLASH_PROGRAMADOR_START   FLASH_PARAMETROS_END + 1  /* flash donde estan las adquisiciones */  
-  #define FLASH_PROGRAMADOR_END   FLASH_PROGRAMADOR_START + 0x9ff 
+  #define FLASH_PROGRAMADOR_END   FLASH_PROGRAMADOR_START + 2560 
     #ifdef  adquisidor
     #define FLASH_ADQUISIDOR_START FLASH_PROGRAMADOR_END+1
     #define FLASH_ADQUISIDOR_END 0x5EFF
@@ -200,6 +207,10 @@ usar con cantidad de canales 2*/
     #endif
   #endif
   
+////BLOQUES A GRABAR POR APAGADO DEL APARATO/////
+#define FLASH_APAGADO_START 0x5F00
+#define FLASH_APAGADO_END   0x5FFF
+/////////////////////////////////////////////////
 
 #define RAM_COMUNICACION_END	 0x1200 /* donde termina la ram a la que se tiene acceso remoto (empieza en 0x1000) */ 
 #define RAM_START 0x1000
@@ -234,4 +245,4 @@ usar con cantidad de canales 2*/
 #define ERR_OF 1						 /*Error de la funcion de linealizacion*/
 #define ERR_UF 2						 /*Error de la funcion de linealizacion*/
 
-#define numver "5.63 101P 1Al   "
+#define numver "562 101P 1Al   "

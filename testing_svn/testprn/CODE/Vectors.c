@@ -5,7 +5,7 @@
 **     Processor : MC9S12GC32CFU16
 **     Version   : Bean 02.001, Driver 02.01, CPU db: 2.87.392
 **     Compiler  : CodeWarrior HC12 C Compiler
-**     Date/Time : 20/08/2009, 10:06
+**     Date/Time : 23/09/2008, 10:04
 **     Abstract  :
 **         This bean "MC9S12GC16_80" implements properties, methods,
 **         and events of the CPU.

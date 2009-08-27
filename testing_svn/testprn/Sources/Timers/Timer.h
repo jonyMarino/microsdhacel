@@ -1,90 +1,37 @@
 #ifndef _TIMER_H
 #define _TIMER_H
-
 #include "stdtypes.h"
 #include "Object.h"
 
-#pragma DATA_SEG Timer_DATA                                            
-#pragma CODE_SEG Timer_CODE 
-#pragma CONST_SEG DEFAULT
-/*  Definicion del Timer*/
+#define OPEN 1
+#define CLOSE 2
+#define REST 0
+
+#define CONT_INIT 0
+
+/*    ATENCION!!!!          */
+/*    ATENCION!!!!          */
+#ifdef jony_23_08
+#define CANTIDAD_CONTADORES 8 /*Aumentar en 1 cada vez que se quiere utilizar otro contador*/
+#else
+#define CANTIDAD_CONTADORES 6 /*Aumentar en 1 cada vez que se quiere utilizar otro contador*/
+#endif
+/*    ATENCION!!!!          */
+/*    ATENCION!!!!          */
+
+/* tipos de contadores*/
+#define CONTINUO_SET 0
+#define CONTINUO_TOG 1
+#define UNICO_SET 2
+#define FIN 3
+
+#ifndef programador
+//#define ADR_MESETA_TIME  0x7FF8
+#define ADR_CORTE_ENERGIA  0x7FF4
+#endif
 
 
-struct TimerClass{
-  struct Class super;
-  void (*onTime)(void*); 
-};
 
-struct Timer{
-  struct Object super;
-//Private:
-  ulong next_cuenta;
-  ulong tiempo;
-  uchar of;
-  struct Timer ** container;
-};
-
-extern const struct TimerClass TimerClass;
-extern const struct TimerClass Timer;
-
-void Timer_Construct(struct Timer * self,ulong tiempo);
-
-/*
-** ===================================================================
-**     Method      :  Timer_Destruct 
-**    Description : Metodo para destruir el Timer
-** ===================================================================
-*/
-void * Timer_Destruct(struct Timer * self);
-/*
-** ===================================================================
-**     Method      :  IncTimer 
-**    Description : Incrementa el valor de la cuenta del Timer
-** ===================================================================
-*/
-void TimerInc(struct Timer * self,Byte inc);
-/*
-** ===================================================================
-**     Method      :  IncTimers 
-**    Description : Incrementa el valor de la cuenta de Todos los timers
-** ===================================================================
-*/
-void IncTimers(int inc);
-/*
-** ===================================================================
-**     Method      :  Timer_isfinish 
-**    Description : Indica si ya termino la cuenta
-** ===================================================================
-*/
-uchar Timer_isfinish(struct Timer * self);
-/*
-** ===================================================================
-**     Method      :  Timer_getCuenta 
-**    Description : Regresa la cuenta actual que se resetea al llegar al tiempo
-** ===================================================================
-*/
-ulong Timer_getCuenta(struct Timer * self);
-/*
-** ===================================================================
-**     Method      :  Timer_Restart 
-**    Description : Reinicia la cuenta del tiempo
-** ===================================================================
-*/
-void Timer_Restart(struct Timer * self);
-/*
-** ===================================================================
-**     Method      :  Timer_setTime 
-**    Description : Setea un tiempo nuevo y reinicia la cuenta del tiempo
-** ===================================================================
-*/
-void Timer_setTime(struct Timer * self,ulong tiempo);
-/*
-** ===================================================================
-**     Method      :  Timer_Sys_getTime 
-**    Description : Obtiene el tiempo a alcanzar
-** ===================================================================
-*/
-ulong Timer_Sys_getTime(struct Timer * self);
 /*
 ** ===================================================================
 **     Method      :  Timer_Stop 
@@ -93,11 +40,101 @@ ulong Timer_Sys_getTime(struct Timer * self);
 */
 void Timer_Stop(struct Timer * self);
 
-#define TIMER_CLASS_INITIALIZATION(description,name,super,contructor,destructor,differ,puto,onTime)\
-  CLASS_INITIALIZATION(description,name,super,contructor,destructor,differ,puto),  \
-  onTime
+
+#ifdef jony_15_08
+/*																			 
+** ===================================================================
+**     Method      :  HabilitarAccionPagApagado 
+** ===================================================================
+*/
+void HabilitarAccionPagApagado(void);
+#endif
+
+
+byte Timer_Run(word tiempo,bool * flag, byte tipo);
+
+/*
+** =======================================================================
+**     Method      :  Timer_Run 
+**
+**     Description :
+**         Arranca un nuevo timer o reconfigura un timer existente 
+**     basandose en la direccion del flag. No bloquea el micro. Y los 
+**     cambios para CONTINUO_XXX se ejecutan a partir de que se termina 
+**     la cuenta actual.
+**      Esta función está pensada para contadores que se utilizan 
+**     costantemente y no para ir agregando/desechando contadores de forma 
+**     periodica, para lo cual habria que implementar una función con 
+**     "allocación" de memoria.
+**     Parameters  :
+**         NAME            - DESCRIPTION
+**         tiempo          - Tiempo de ejecución del timer (en ms)
+**       * flag            - Dirección del flag a modificar pasado el
+**                           tiempo
+**         tipo            - Forma de ejecutar el timer:
+**                           UNICO_SET - se llega al tiempo indicado en 
+**                            time y se pone el flag en 1
+**													 CONTINUO_SET - se llega al tiempo indicado en 
+**                            time, se pone el flag en 1 y se reinicia la
+**                            la operación. 
+**                           CONTINUO_TOG - se llega al tiempo indicado en 
+**                            time, se "togglea" el flag y se reinicia la
+**                            la operación. 
+**                           
+**
+**     Returns     :
+**         ---             - ERR_OK - OK
+**                         - ERR_RANGE - Hay que aumentar	 
+**                          CANTIDAD_CONTADORES en uno para que funcione
+**
+** =======================================================================
+*/
+
+byte Timer_Terminate(bool * flag);
+/*
+** ===================================================================
+**     Method      :  TmDt1_GetTime (bean TimeDate)
+**
+**     Description :
+**         Termina con el contador que se está ejecutando.  
+**     Parameters  :
+**         NAME            - DESCRIPTION
+**       * flag            - Dirección del flag que pertenece al contador
+**     Returns     :
+**         ---             - Error code, possible codes:
+**                           ERR_OK - OK
+**                           ERR_VALUE - El contador especificado no se encuentra.
+** ===================================================================
+*/
+
  
-#pragma DATA_SEG DEFAULT                                            
-#pragma CODE_SEG DEFAULT 
+void TI40ms_OnInterrupt(void);
+/*
+** ===================================================================
+**     Event       :  TI40ms_OnInterrupt (module Events)
+**
+**     From bean   :  TI1 [TimerInt]
+**     Description :
+**         When a timer interrupt occurs this event is called (only
+**         when the bean is enabled - "Enable" and the events are
+**         enabled - "EnableEvent").
+**     Parameters  : None
+**     Returns     : Nothing
+** ===================================================================
+*/
+void TI1ms_OnInterrupt(void);
+/*
+** ===================================================================
+**     Event       :  TI1ms_OnInterrupt (module Events)
+**
+**     From bean   :  TI1 [TimerInt]
+**     Description :
+**         When a timer interrupt occurs this event is called (only
+**         when the bean is enabled - "Enable" and the events are
+**         enabled - "EnableEvent").
+**     Parameters  : None
+**     Returns     : Nothing
+** ===================================================================
+*/
 
 #endif

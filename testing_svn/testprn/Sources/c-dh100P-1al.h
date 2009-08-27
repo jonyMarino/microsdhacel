@@ -102,6 +102,13 @@ usar con cantidad de canales 2*/
                     */ 
 #define jony_27_02_08 
 //////////////////// Tipo de Aparato /////////////////////////////
+//#define VF   
+  #ifdef VF
+  #define F_VF 1
+  #else
+  #define F_VF 0
+  #endif
+
 //#define debug
 //#define _TEST1 // test del tiempo de conversion del aparato
 //#define HD90

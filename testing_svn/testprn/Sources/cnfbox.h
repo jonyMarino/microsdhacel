@@ -177,14 +177,55 @@ typedef union{
 #define R_Drdf 158
 #define R_Abdf 159
 #define R_SPlimst 160
-#define R_PrnIntervalo 161
-#define R_PrnAnio 162
-#define R_PrnMes 163
-#define R_PrnDia 164
-#define R_PrnHora 165
-#define R_PrnHabilitado 166
+
+
+#define R_Vrmp1  161
+#define R_Vrmp2  162
+#define R_Vrmp3  163
+#define R_Vrmp4  164
+#define R_Vrmp5  165
+#define R_Vrmp6  166
+#define R_Vrmp7  167
+#define R_Vrmp8  168
+#define R_Vrmp9  169
+#define R_Vrmp10 170
+
+#define R_Tmpm1  172
+#define R_Tmpm2  173
+#define R_Tmpm3  174
+#define R_Tmpm4  175
+#define R_Tmpm5  176
+#define R_Tmpm6  177
+#define R_Tmpm7  178
+#define R_Tmpm8  179
+#define R_Tmpm9  180
+#define R_Tmpm10 181
+#define R_Tiem1  182
+#define R_Tiem2  183
+#define R_Tiem3  184
+#define R_Tiem4  185
+#define R_Tiem5  186
+#define R_Tiem6  187
+#define R_Tiem7  188
+#define R_Tiem8  189
+#define R_Tiem9  190
+#define R_Tiem10 191
+
+#define R_PrnIntervalo 192
+#define R_PrnAnio 193
+#define R_PrnMes 194
+#define R_PrnDia 195
+#define R_PrnHora 196
+#define R_PrnHabilitado 197
+
+
+
+
 
 // PARAMETROS INDIVIDUALES DE CONGIGURACION (EMPIEZA EN EL INDICE 220 PARA DEJAR LUGAR A LOS ANTERIORES)
+
+#define R_ESP  213 
+#define R_EST  214
 
 #define R_Vrmp 215
 #define R_Tmpm  216
@@ -205,6 +246,7 @@ typedef union{
 #define R_int	 228
 #define R_ATA  229
 
+
 ///////////VERSION/BLOQUEOS////////
 typedef enum{BL1,BL2,BL3,BL4,VER_DIF}TVersion;
 
@@ -218,7 +260,11 @@ typedef enum{BL1,BL2,BL3,BL4,VER_DIF}TVersion;
 
 extern volatile const int PRom[];
 extern const Numerico Principal1;
+extern const Textual boxPrnHabilitado;
 extern const Numerico C1SP;
+#ifdef DOBLE_SP
+extern const Numerico DSP;
+#endif
 #ifdef programador
 extern const Numerico Segmento1;
 #endif
@@ -258,4 +304,7 @@ extern const int Lim_9999;
 #ifdef jony_28_06
 extern const int Lim_32767;
 #endif
+
+extern const TDato Parametros[PARAMETROS];
+
 #endif

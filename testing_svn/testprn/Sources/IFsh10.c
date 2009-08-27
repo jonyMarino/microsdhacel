@@ -290,6 +290,35 @@ byte EscribirWord(word Addr,int valor){
   return ERR_OK;
 };
 
+/*esta funcion es igual que la anterior pero graba siempre, aunque el dato sea igual  */
+ byte EscribirWordSiempre(word Addr,int valor){
+  
+  if (Addr & 1)                        /* Aligned address ? */
+    return ERR_NOTAVAIL;
+  if (Addr<FLASH_PARAMETROS_START)
+    return ERR_RANGE;
+  #ifdef jony_22_08
+  if(1){
+    byte shift;
+    
+    if(PageAddr==0) 
+      PageAddr=Addr&65024;
+    else if (PageAddr!=(Addr&65024))
+      return ERR_BUSY;      /* Todavia no se grabó la página en cola*/  
+  
+    *(word *)&BackupArray[(Addr&511)]= valor;
+    shift=(Addr&511)%16;
+    IndiceFlash[(Addr&511)/16]|= 1<<shift;	 //MSB
+    IndiceFlash[(Addr&511)/16]|= 1<<(shift+1);	 //LSB
+    save_parametros=TRUE;
+  }
+  #endif
+  return ERR_OK;
+};
+
+
+
+
 byte EscribirByte(word Addr,byte valor){
                          
   if (Addr<FLASH_PARAMETROS_START)
@@ -312,6 +341,27 @@ byte EscribirByte(word Addr,byte valor){
   #endif
   return ERR_OK;		
 };
+
+
+/*
+** ===================================================================
+**    Function    :  FlashBkp_getWord 
+**    Description : 
+** ===================================================================
+*/
+word IFsh10_getWord(word dir){
+
+    word control1=(IndiceFlash[(dir&511)/16]&(1<<((dir&511)%16)));
+    word control2=(IndiceFlash[(dir&511)/16]&(1<<((dir+1)&511)%16));
+  
+  if(!save_parametros || !(control1 || control2 ))
+    // con que el primero este para grabar alcanza
+    return *((word*)dir);
+  else
+    return ((word*)BackupArray)[dir];
+
+}
+
 
 /* END IFsh10. */
 

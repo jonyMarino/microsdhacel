@@ -1,6 +1,6 @@
 #include "Math.h"
 
-static const word div_dec[]={1,10,100,1000,10000};// divisores del decimal/////////////////////////
+const word div_dec[]={1,10,100,1000,10000};// divisores del decimal/////////////////////////
 
 word pow10 (byte expo){
 

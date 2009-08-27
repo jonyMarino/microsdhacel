@@ -102,6 +102,13 @@ usar con cantidad de canales 2*/
                     1_  Agregado de las direcciones de ajuste de sensor
                     */  
 //////////////////// Tipo de Aparato /////////////////////////////
+  //#define VF   
+  #ifdef VF
+  #define F_VF 1
+  #else
+  #define F_VF 0
+  #endif
+
 //#define debug
 //#define _TEST1 // test del tiempo de conversion del aparato
 //#define HD90

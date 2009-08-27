@@ -2,7 +2,7 @@
 #define F_TIMER_H
 
 #include "stdtypes.h"
-#include "Timer.h"
+#include "TimerNew.h"
 #include "Object.h"
 
 typedef void(*pfunction)(void);

@@ -71,7 +71,7 @@ int Prop;
 
 //En paso 0 no hago nada hasta que suba la temp por arriba del sp. Cuando sube pongo paso 1
    case 0: 
-   			setPWM_period(PWM_Anl,0);														 //pongo pwm rapido
+   			setPWM_period(PWM_Anl,outc1);														 //pongo pwm rapido
         if (ValFinal[chan]>= (spaut+His_stn/2)){    //Si subo pongo paso 1
           St_Step[chan]++;																		 //
           set_MainText("St 1");                                //anuncio en display 
@@ -124,7 +124,7 @@ int Prop;
 	 break;
 
 //En paso 5 tomo valores							 
-        case 5: setPWM_period(PRom[R_Per+chan],0);
+        case 5: setPWM_period(PRom[R_Per+chan],outc1);
                 EscribirWord((word)&PRom[R_H1+chan],(int)(St_val_max-St_val_min)*2);
 	              EscribirWord((word)&PRom[R_IN1+chan],St_Counter[chan]/1000);
 	              EscribirWord((word)&PRom[R_DR1+chan],(St_Counter[chan]/10000));

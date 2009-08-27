@@ -5,7 +5,7 @@
 #include "cnfbox.h"
 #include "IFsh10.h"
 #include "cnfbox.h"
-#include "TimerOld.h"
+#include "timer.h"
 
 #if End !=0
   #error se va a tener que inicializar los programas en nada[0]=End

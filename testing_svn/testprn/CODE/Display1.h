@@ -6,7 +6,7 @@
 **     Beantype  : ByteIO
 **     Version   : Bean 02.053, Driver 03.08, CPU db: 2.87.392
 **     Compiler  : CodeWarrior HC12 C Compiler
-**     Date/Time : 20/08/2009, 10:06
+**     Date/Time : 23/09/2008, 10:04
 **     Abstract  :
 **         This bean "ByteIO" implements an one-byte input/output.
 **         It uses one 8-bit port.

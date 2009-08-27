@@ -102,6 +102,13 @@ usar con cantidad de canales 2*/
                     1_  Agregado de las direcciones de ajuste de sensor
                     */  
 //////////////////// Tipo de Aparato /////////////////////////////
+  //#define VF   
+  #ifdef VF
+  #define F_VF 1
+  #else
+  #define F_VF 0
+  #endif
+
 //#define debug
 //#define _TEST1 // test del tiempo de conversion del aparato
 //#define HD90
@@ -132,27 +139,10 @@ usar con cantidad de canales 2*/
 #define AD_1s /*  Un ciclo de AD en 1 segundo*/
 //#define AD_500ms /*  Un ciclo de AD en 1 segundo*/
 //#define AD_250ms /*  Un ciclo de AD en 1 segundo*/
-#ifdef AD_2s
-#define AD_TIME_EN_MILI_SEGUNDOS 2000
-#endif
-
-#ifdef AD_1s
-#define AD_TIME_EN_MILI_SEGUNDOS 1000
-#endif
-
-
-#ifdef AD_500ms
-#define AD_TIME_EN_MILI_SEGUNDOS 500
-#endif
-
-
-#ifdef AD_250ms
-#define AD_TIME_EN_MILI_SEGUNDOS 250
-#endif
 
 //#define Pt-200
 
-
+#define AD_TIME_EN_MILI_SEGUNDOS 1000
 
 #if CANTIDAD_CANALES<1
 #error No hay canales de entrada
@@ -196,8 +186,8 @@ usar con cantidad de canales 2*/
   #endif
   
 ////BLOQUES A GRABAR POR APAGADO DEL APARATO/////
-//#define FLASH_APAGADO_START 0x5F00
-//#define FLASH_APAGADO_END   0x5FFF
+#define FLASH_APAGADO_START 0x5F00
+#define FLASH_APAGADO_END   0x5FFF
 /////////////////////////////////////////////////
 
 #define RAM_COMUNICACION_END	 0x1200 /* donde termina la ram a la que se tiene acceso remoto (empieza en 0x1000) */ 
@@ -233,4 +223,4 @@ usar con cantidad de canales 2*/
 #define ERR_OF 1						 /*Error de la funcion de linealizacion*/
 #define ERR_UF 2						 /*Error de la funcion de linealizacion*/
 
- #define numver "5.63 cd101P 1Al   "
+ #define numver "5.62 cd101p 1Al    "
