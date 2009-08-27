@@ -1,9 +1,9 @@
 /*  MODULE: Propiedad.c*/
-
 #include "Object.h"
 #include "stddef.h"
 #include "Propiedad.h"
 #include "display.h"
+
 
 void Prop_DefConstructor(void * self,va_list*args);
 
@@ -29,7 +29,7 @@ const struct GetterClass Propiedad={
 void Prop_Constructor(void * self,void * ClassProp,void * Obj){
   struct GetterVisual * _prop= (struct GetterVisual *)self;
   
-  _prop->_CGetter=(ConstrGetVisual const *)ClassProp;
+  _prop->_CGetter=(struct ConstrGetVisual const *)ClassProp;
   _prop->Obj=Obj;
    
 }

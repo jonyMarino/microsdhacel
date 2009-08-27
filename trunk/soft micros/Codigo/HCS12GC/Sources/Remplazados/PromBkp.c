@@ -46,7 +46,7 @@ void PromBkp_habilitar(void * self){
 void PromBkp_demorarGrabado(void * self,word time){
   struct PromBkp * _p = self;
   if(!_p->timer)
-    _p->timer=new(&Timer,(ulong)time);
+    _p->timer=_new(&Timer,(ulong)time);
   else
     Timer_setTime(_p->timer,(ulong)time);
 }

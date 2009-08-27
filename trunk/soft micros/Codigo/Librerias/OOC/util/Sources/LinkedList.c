@@ -138,7 +138,7 @@ t_Lst_Control LinkedList_add(void * _self, void *dato)
 	struct LinkedList * _l= _self;
 
 	/* creo el nuevo nodo */
-	struct Nodo *n= new(&Nodo,dato,_l->nodo);
+	struct Nodo *n= _new(&Nodo,dato,_l->nodo);
 
 	/* Enlazo a la LinkedLista */
   if(!n)
@@ -160,7 +160,7 @@ t_Lst_Control LinkedList_Aniadir(void *_self, void *dato)
 	struct LinkedList * _l= _self;
 	
 	/* creo el nuevo nodo */
-	struct Nodo*n=new(&Nodo,dato,NULL);
+	struct Nodo*n=_new(&Nodo,dato,NULL);
   
   if(!n)
     return LST_ERROR;	
@@ -280,7 +280,7 @@ void LinkedList_deleteNodo(void *_self,void*tmpNodo,void*tmpNodoAnterior){
   else
     Nodo_setNext(tmpNodoAnterior,Nodo_getNext(tmpNodo));
       
-  delete(tmpNodo);
+  _delete(tmpNodo);
 }
 
 
@@ -320,7 +320,7 @@ void LinkedList_linkedListIterator(void * _self,void * it){
 ** ===================================================================
 */
 void * LinkedList_iterator(void * _self){
-  return new(&LinkedListIterator,_self);  
+  return _new(&LinkedListIterator,_self);  
 }
 
 

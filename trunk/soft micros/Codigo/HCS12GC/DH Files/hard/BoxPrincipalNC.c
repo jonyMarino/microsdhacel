@@ -81,7 +81,7 @@ void BoxPriNC_DefConstructor(void * self, va_list * args){
 */
 BOX_State BoxPriNC_ProcKey(void*self ,uchar tecla){
   struct BoxPriNC * _box= self;
-  byte i,tamanio = size(_box->getters);
+  byte i,tamanio = sizeOf(_box->getters);
   char * msj;
   
   if(Timer_isfinish(&_box->timerPri)){

@@ -42,7 +42,7 @@ void crearLazo(struct AlarmaControl *self,TTipoAlarma tipoAlarma,struct ISalida 
 
   switch(tipoAlarma){
     case ALARMA_RETRANSMISION:
-      newAlloced(&self->lazo,&RetransmisionPWMClass,_AlarmaConf_getRetConf( Alarma_getConfiguracion(self) ),salida,PID_getSensor(self->control));        
+      newAlloced(&self->lazo,&RetransmisionPWM,_AlarmaConf_getRetConf( Alarma_getConfiguracion(self) ),salida,PID_getSensor(self->control));        
     break;
     case ALARMA_CONTROL:
     default:

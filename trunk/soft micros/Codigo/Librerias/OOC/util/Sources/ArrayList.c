@@ -84,7 +84,7 @@ void ArrayList_vaciar(void * _self){
   if(self->objetosSonPropios){
     int i;    
     for(i=0;i< self->cuenta;i++)
-      delete(self->nodos[i]);   
+      _delete(self->nodos[i]);   
   }
   free(self->nodos);
   self->cuenta=0;
@@ -163,7 +163,7 @@ void * ArrayList_iterator(void * _self){
                        ArrayListIterator_hasNext
  };
  
- return new(&ArrayListIterator,_self);
+ return _new(&ArrayListIterator,_self);
    
 }
 

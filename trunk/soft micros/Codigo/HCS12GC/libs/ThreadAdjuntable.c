@@ -21,5 +21,5 @@ const void * const ThreadAdjuntable= &TableThreadAdjuntable;
 struct AdjuntadorAHilo * ThreadAdjuntable_getAdjuntador(void * _self){
   struct ThreadAdjuntable * _t = _self;
   
-  return new(&AdjuntadorAHilo,_t);
+  return _new(&AdjuntadorAHilo,_t);
 }

@@ -67,7 +67,7 @@ volatile const int iCompensacionTempAmb;
 ** ===================================================================
 */
 
-void  SenTPT_Construct(struct TSensor_TermoPT * self,struct TAdc* adc,const SensorConf * conf,const char * desc){
+void  SenTPT_Construct(struct TSensor_TermoPT * self,struct Adc* adc,const SensorConf * conf,const char * desc){
   while(!_AD_isnew(adc)) //Espera a q haya una conversión
     WDog1_Clear();
   _SensorVisual_setDescription(self,desc);

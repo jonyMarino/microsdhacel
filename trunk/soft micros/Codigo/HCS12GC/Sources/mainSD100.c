@@ -82,7 +82,7 @@ volatile const struct AlarmaCntrConf alar_conf[CANTIDAD_SAL_ALARMA];
 
 struct PWM * pwm[CANTIDAD_SAL_ALARMA+CANTIDAD_SAL_CONTROL];
 struct PWMPeriodoEvent pwmConEventoPeriodo[CANTIDAD_SAL_CONTROL];
-struct TAdc  AD1[CANTIDAD_CANALES];
+struct Adc  AD1[CANTIDAD_CANALES];
 struct AlarmaControl alarma[CANTIDAD_SAL_ALARMA];
 struct ControlPID control[CANTIDAD_SAL_CONTROL]; 
 
@@ -96,12 +96,13 @@ const struct getter * gettersAMostrar[]={
   &termometro.sensor[3]
 };					
 
+const NEW_ARRAY_LIST(arrayGettersAMostrar,gettersAMostrar);
 
 static struct MessageOut msj[CANTIDAD_SAL_CONTROL];
 
 const struct BlockConstBoxPriNC CBox_Pri={
       &BoxPriNC,							/* funcion que procesa al box*/
-      gettersAMostrar,      
+      &arrayGettersAMostrar,      
       msj						
 };
 

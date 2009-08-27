@@ -73,7 +73,7 @@ extern const unsigned int crc_control[];
 */
 void com_Init(void){
   Comu_Init();
-  comProps=new(&ArrayList);
+  comProps=_new(&ArrayList);
 }
 /*
 ** ===================================================================
@@ -93,7 +93,7 @@ void com_initialization(struct ArrayList * arrayGetters){
 ** ===================================================================
 */
 struct NodoICModBus * com_Add(const struct ClassPropiedad ** prop,void * Obj,word dir_ini,word dir_end){
-  struct Array * getters = new(&Array,dir_end - dir_ini + 1);
+  struct Array * getters = _new(&Array,dir_end - dir_ini + 1);
   struct NodoICModBus * p_tmp;
   int i;
   
@@ -101,7 +101,7 @@ struct NodoICModBus * com_Add(const struct ClassPropiedad ** prop,void * Obj,wor
     Array_set(getters,i,prop[i]);
   }
   
-  p_tmp=new(&NodoICModBus,getters,Obj,dir_ini,dir_end);
+  p_tmp=_new(&NodoICModBus,getters,Obj,dir_ini,dir_end);
   
 
   com_addNodo(p_tmp);   
@@ -303,7 +303,8 @@ byte DhacelWrite(byte * data){
 **    Description : Devuelve las opciones de compilacion
 ** ===================================================================
 */
-void com_Recognize(byte * data){
+byte com_Recognize(byte * data){
   *(long*)&data[2]=_COMP_OPTIONS;
   ModBus_Send(data,6);  
+  return 0;
 }
