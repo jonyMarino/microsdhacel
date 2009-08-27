@@ -233,7 +233,7 @@ char * AlarmasHmi_getHDesc(struct PropWInc * prop){
 const struct BlockConstBoxPropVarName CBox_H_AlarmaDeSensor=
       {
       &BoxPropVarName,						  /* funcion que procesa al box*/
-			(ConstructorPropWInc*)&ParHA,											/* direccion en la E2Prom - el EEProm Start, if FAlarmaDeSensorSE no guarda valor*/
+			(struct ConstructorPropWInc*)&ParHA,											/* direccion en la E2Prom - el EEProm Start, if FAlarmaDeSensorSE no guarda valor*/
       NULL,
       AlarmasHmi_getHDesc  
 			};
@@ -253,18 +253,18 @@ void * Box_TAlarmaDeSensor1(void * prop,uchar tecla){
 
 const struct BlockConstBoxCondicional CBox_TAlarmaDeSensor1=	{
   			  &BoxCondicional,
-  			  (ConstructorPropWInc*)&ParTAlar,										
+  			  (struct ConstructorPropWInc*)&ParTAlar,										
           Box_TAlarmaDeSensor1
 };
 
 const struct BlockConstBoxPropBase CBox_AdaptSalida=	{
   			  &BoxPropBase,
-  			  (ConstructorPropWInc*)&ParAdaptSalida										
+  			  (struct ConstructorPropWInc*)&ParAdaptSalida										
 };
 
 const struct ConstructorPropWInc*const Props_RET[]=	{
-  			  (ConstructorPropWInc*)&ParRetLow,										
-  			  (ConstructorPropWInc*)&ParRetHi,
+  			  (struct ConstructorPropWInc*)&ParRetLow,										
+  			  (struct ConstructorPropWInc*)&ParRetHi,
   			  NULL
 };
 

@@ -75,7 +75,7 @@ Message MessageOut_AddMessage(void * _self,char * _str){
   struct MessageOut* _m= _self;
   if(!_m->lst){
     
-    _m->lst= new(&DobleList);
+    _m->lst= _new(&DobleList);
     if(!_m->lst)
       return NULL;  //error
   }

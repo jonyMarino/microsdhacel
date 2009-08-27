@@ -1,5 +1,5 @@
-
 **** APARATOS Y PROGRAMAS *************
+* Modificacion del box fuera de limite como corresponde y en la ultima version (error detectado a traves del SD100)
 * Probar todos los casos del Timer, cuando pasa la cuenta y el nextCuenta
 * Checkear estado de la FLASH al inicio
 * hacer mcp del adquisidor bajo consumo para GC64

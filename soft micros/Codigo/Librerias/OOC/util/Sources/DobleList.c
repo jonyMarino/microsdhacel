@@ -109,7 +109,7 @@ uchar DobleList_DeleteNodo(void * _self,struct NodoDbl * _n){
 */
 struct NodoDbl * DobleList_InsertFirst(void * _self,void * dato){
   struct DobleList * _l= _self;
-  struct NodoDbl * _n = new(&NodoDbl,dato,_l->_Nodo,NULL);
+  struct NodoDbl * _n = _new(&NodoDbl,dato,_l->_Nodo,NULL);
   
   if(!_n)
     return NULL;

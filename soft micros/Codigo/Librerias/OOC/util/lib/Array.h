@@ -93,7 +93,7 @@ void *Array_delete(void*_self,void * Obj);
 #define INITIALIZATION_ARRAY(CLASS,ARRAY)\
   &CLASS,    \
   &ARRAY,		\
-  sizeof(ARRAY)/sizeof(void*)-1, \
+  sizeof(ARRAY)/sizeof(void*), \
   FALSE				
   
   

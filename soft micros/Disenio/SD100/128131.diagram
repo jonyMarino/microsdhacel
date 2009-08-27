@@ -19,7 +19,7 @@ relationcanvas 128387 relation_ref 128003 // <generalisation>
 end
 relationcanvas 128643 relation_ref 128131 // <directional aggregation>
   from ref 128131 z 1999 to ref 128515
-  role_a_pos 354 156 3000 no_role_b
-  multiplicity_a_pos 370 181 3000 multiplicity_b_pos 300 179 3000
+  role_a_pos 354 159 3000 no_role_b
+  multiplicity_a_pos 370 184 3000 multiplicity_b_pos 304 189 3000
 end
 end

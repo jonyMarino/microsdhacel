@@ -1,9 +1,12 @@
 #include "BaseTimers_protected.h"
 #include "timer_interrupt.h"
 #include "TI1.h"
+#include "Method.h"
 
 struct BaseTimersGral{
   struct BaseTimers super;
+  struct Method inc1;
+  struct Method inc40;
 };
 
 void BaseTimersGral_DefConstruct(void*_self,va_list *args);
@@ -44,13 +47,15 @@ static void * instance =NULL;
 void BaseTimersGral_DefConstruct(void*_self,va_list *args){
   struct BaseTimersGral * self = _self;
   super_ctor(&BaseTimersGral,_self,args);
-  add1msListener(BaseTimersGral_inc1,_self);
-  add40msListener(BaseTimersGral_inc40,_self);
+  newAlloced(&self->inc1,&Method,BaseTimersGral_inc1,_self);
+  newAlloced(&self->inc40,&Method,BaseTimersGral_inc40,_self);
+  add1msListener(&self->inc1);
+  add40msListener(&self->inc40);
 }
 
 void *BaseTimersGral_getInstance(void){
   if(!instance)
-    instance = new(&BaseTimersGral);
+    instance = _new(&BaseTimersGral);
   return instance;
 }
 

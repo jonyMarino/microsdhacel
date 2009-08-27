@@ -52,6 +52,6 @@ void AdjuntadorAHilo_defConstructor(void * self,va_list * args){
 
 void AdjuntadorAHilo_adjuntar(void * _self,pMethod method, void * Obj){
   struct AdjuntadorAHilo* _a=_self;
-  struct Method * methodObj= new(&Method,method,Obj);
+  struct Method * methodObj= _new(&Method,method,Obj);
   ThreadAdjuntable_Adjuntar(_a->threadAdjuntable,methodObj);
 }

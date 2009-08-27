@@ -27,7 +27,7 @@ void PlataformaEmbedded_ctor(void * _self,va_list * args){
 }
 
 void pthread_create(void * _self,void * attr,void*(*pf)(void*),void* args){
-  _self = new(&Method,pf,args);
+  _self = _new(&Method,pf,args);
   ThreadAdjuntable_Adjuntar(&threads,_self);  
 }
 

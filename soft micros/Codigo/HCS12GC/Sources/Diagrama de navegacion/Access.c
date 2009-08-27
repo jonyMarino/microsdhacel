@@ -79,7 +79,7 @@ void Access_addIndexedBox(void*self,const char *str,void *Cbox,void *Obj,uchar n
       return;
   }
     
-  boxList_tmp=new(&BoxList,str);
+  boxList_tmp=_new(&BoxList,str);
   if(!boxList_tmp)
     return; //error
   BoxList_addIndexedBox(boxList_tmp,Cbox,Obj,num_obj,index);
@@ -103,7 +103,7 @@ struct Box *Access_getNextBox(void*self,uchar list_count,uchar box_count){
   struct BoxList * tmp_list;
   
   if(list_count==0)		 //mostrar acceso
-    return new(&BoxAccess,acceso->name,*acceso->Codigo);  				 // MODIFICAR!,debe ser variable
+    return _new(&BoxAccess,acceso->name,*acceso->Codigo);  				 // MODIFICAR!,debe ser variable
 
   if(list_count>ArrayList_count(acceso)) // se paso de la cantidad de listas
     return NULL;

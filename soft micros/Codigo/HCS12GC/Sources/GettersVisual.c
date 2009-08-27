@@ -57,7 +57,7 @@ void * pGetter_Constructor(void * ClassGet,void * Obj){
 void  GetterVisual_Constructor(void * _self,void* C_Getter,void* Obj){
   struct GetterVisual * _g= (struct GetterVisual *)_self; 
   
-  _g->_CGetter=(ConstrGetVisual const *)C_Getter;
+  _g->_CGetter=(struct ConstrGetVisual const *)C_Getter;
   _g->Obj=Obj; 
 }
 
