@@ -49,10 +49,19 @@ const T_Sensor sensorConf[NUM_SENSORES]={
   #ifdef pirani
   Pir_X,Pir_Y,19,3,3,
   #endif
+  /*
   Lin_X,Lin_Y,2,3,0,
   Lin_X,Lin_Y,2,3,1,
   Lin_X,Lin_Y,2,3,2,
   Lin_X,Lin_Y,2,3,3,
+  */
+  
+  Lin_X,Lin_Y,2,0,0,
+  Lin_X,Lin_Y,2,1,1,
+  Lin_X,Lin_Y,2,2,2,
+  Lin_X,Lin_Y,2,3,3,
+  
+  
   milv_X,milv_Y,2,2,2
 };
 #else
