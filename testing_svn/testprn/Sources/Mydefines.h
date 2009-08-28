@@ -16,7 +16,7 @@
 
 /* ************ DH 101 P *************** */
 
-#include "c-dh101P-1al.h" /* Compilado */
+//#include "c-dh101P-1al.h" /* Compilado */
 //#include "c-dh101P-2al.h" /* Compilado */
 //#include "c-dh101P-3al.h" /* Compilado */
 
@@ -50,7 +50,7 @@
 
 /* ************ DH 101P VP *************** */
 
-//#include "c-dh101P-vp-1al.h" /* Compilado */
+#include "c-dh101P-vp-1al.h" /* Compilado */
 //#include "c-dh101P-vp-2al.h" /* Compilado */
 
 /* ************ DH 100 VP *************** */
@@ -156,6 +156,6 @@
 //Agrego Nicolas										 
 
 //#define DOBLE_SP   /*sirve para agregar un segundo setpoint y con una llave se selecciona uno u otro */										 
-                   /* !solo se debe definir para aparatos que no! sean programador o de dos canales */ 
+                   /* !solo se debe definir para aparatos que no! sean programador o de dos canales */
                    
- //#define _PRINTER                      
+#define _PRINTER                        

@@ -15,8 +15,8 @@ static const int   J_Y[14]  = { -1300,   -400,   0,   1000,   1900,    2200,   2
 static const int  n_X[9]   = { -261,    -51,   0,    898,   1598,    2531,   3470,   4495,   4751};
 static const int  n_Y[9]   = { -1100,  -200,   0,   2900,   4800,    7200,   9600,  12300,  13000};
 
-static const int   K_X[9]   = {  -385,   -77,   0,  1179,  1979,   2996,  3970,   4992};	 
-static const int   K_Y[9]   = { -1100,  -200,   0,  2900,  4800,   7200,  9600,  12300};
+static const int   K_X[9]   = {  -385,   -77,   0,  1179,  1979,   2996,  3970,   4992,     5241};	 
+static const int   K_Y[9]   = { -1100,  -200,   0,  2900,  4800,   7200,  9600,  12300,     13000};
 
 static const int   s_X[10]  = { -155,     0,  59,   299,   619,    939,  1260,   1500,   1740,  1819};
 static const int   s_Y[10]  = { -310,     0, 930,  3720,  6920,   9830, 12540,  14520,  16530, 17220};
@@ -55,12 +55,12 @@ static const int   milv_X[3]= {MINMV,   0,   MAXMV};
 static const int   milv_Y[3]= {MINMV,   0,   MAXMV};
 ////////////////////////////////////////////////////////////////////////////////
 #ifdef _APARATO_VIEJO
-const T_Sensor Sensores[NUM_SENSORES]={
+const T_Sensor Sensor[NUM_SENSORES]={
   J_X,J_Y,13,1,1,
   J_X,J_Y,13,1,0,
   n_X,n_Y,8,1,0,
-  K_X,K_Y,7,1,1,
-  K_X,K_Y,7,1,0,
+  K_X,K_Y,8,1,1,
+  K_X,K_Y,8,1,0,
   s_X,s_Y,9,1,0,
   r_X,r_Y,10,1,0,
   t_X,t_Y,8,1,0,
@@ -76,7 +76,7 @@ const T_Sensor Sensores[NUM_SENSORES]={
   milv_X,milv_Y,2,2,2
 };
 #else
-T_Sensor Sensores[NUM_SENSORES]={
+T_Sensor Sensor[NUM_SENSORES]={
   J_X,J_Y,13,1,
   n_X,n_Y,8,1,
   K_X,K_Y,7,1,
@@ -110,9 +110,9 @@ byte Linealizar(long Vx, t_sensor sensor, int * Vy)
   
   Vx = Vx*MAXMV/MAXAD;//Convierte de lineal a microvolts para los sensores correspondientes 
        
-  xdat = Sensores[sensor].xdat;		 // Tabla abcisas
-  ydat = Sensores[sensor].ydat;		 // Tabla ordenadas
-  r = Sensores[sensor].max_array;	 // Cantidad de puntos -1 
+  xdat = Sensor[sensor].xdat;		 // Tabla abcisas
+  ydat = Sensor[sensor].ydat;		 // Tabla ordenadas
+  r = Sensor[sensor].max_array;	 // Cantidad de puntos -1 
 
   if (Vx <= xdat[0]) {			 // VX es menor igual que el valor minimo en la tabla???
     * Vy = ydat[0];					 // VX =  valor minimo en la tabla

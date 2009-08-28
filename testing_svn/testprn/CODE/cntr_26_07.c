@@ -75,25 +75,17 @@
 #include "boxescolcal.h"
 #include "boxesset.h"
 #include "Timer.h"
-#include "TimerNew.h"
 #ifndef programador
 #include "bkr.h"
 #include "FuncionVF.h" 
 #include "IFsh10.h"
 #include "cnfbox.h"
-#endif
-#include "RlxMTimer.h"
-#include "ManejadorImpresionPersistente.h"
-#include "System.h"
-#include "OutputStream.h"
-#include "SensorAdaptador.h"
-#include "EPM203Manejador.h" 
+#endif 
 ////////////////////////////////////////////////////////////////////////////
 // VARIABLES EN FLASH	 
 ////////////////////////////////////////////////////////////////////////////
-#pragma CONST_SEG PARAMETERS_PAGE
 
-volatile const int PRom[R_ATA+1]  ={
+volatile const int PRom[PARAMETROS] @0x4000 ={
 0,           0,          0,        0,   // R_SetPoint 0
 10,         10,         10,       10,   // R_AL 4	 
 -1,         -1,         -1,       -1,   // R_ALb 8 
@@ -155,7 +147,7 @@ _rel,       _rel,       _rel,     _rel,    // R_T_AL 128
 0,          0,          0,        0,    // R_None 180
 0,          0,          0,        0,    // R_None 184
 0,          0,          0,        0,    // R_None 188
-10,        2008,        1,        1,    // R_None 192
+0,          0,          0,        0,    // R_None 192
 0,          0,          0,        0,    // R_None 196
 0,          0,          0,        0,    // R_None 200
 0,          0,          0,        0,    // R_None 204
@@ -178,18 +170,7 @@ _rel,       _rel,       _rel,     _rel,    // R_T_AL 128
 
 };
 			
-#ifdef _PRINTER
-volatile const struct MIPConf confMI= {
-  10,
-  FALSE
-};
 
-volatile const struct EPM203Conf epm203Conf= {
-  0,1
-};
-#endif
-
-#pragma CONST_SEG DEFAULT
 ////////////////////////////////////////////////////////////////////////////
 // VARIABLES GLOBALES
 ////////////////////////////////////////////////////////////////////////////
@@ -285,9 +266,6 @@ void BorrarPagApagado(void){
 }
 #endif
 
-struct ManejadorImpresionPersistente mi;
-struct EPM203Manejador os;
-struct SensorAdaptador sensorAdaptado;
 
 
 void main(void)
@@ -301,17 +279,7 @@ void main(void)
   /*** Processor Expert internal initialization. DON'T REMOVE THIS CODE!!! ***/
   PE_low_level_init();
   /*** End of Processor Expert internal initialization.                    ***/
-  /* ### Asynchro serial "AS1" init code ... */
-  #ifdef _PRINTER
-  TERMIO_Init();
-  System_init();
-  newAlloced(&sensorAdaptado,&SensorAdaptador,0);
-  newAlloced(&os,&EPM203Manejador,&epm203Conf);
-  newAlloced(&mi,&ManejadorImpresionPersistente,&os,&confMI);
-  LinkedList_add(&mi,&sensorAdaptado);
-  #else
-  AS1_Init();
-  #endif
+
    
   /* Write your code here */   
   #ifdef adquisidor
@@ -489,9 +457,6 @@ ResetScroll();
   #endif
   (*PtrTmp)();                          // Funcion para el box correspondiente; llama a Num Handler, TextHandler, etc.	
   
-  #ifdef _PRINTER
-  RlxMTimer_Handler();
-  #endif
   WDog1_Clear();					              // resetear Watch dog
    
   #ifdef jony_25_06

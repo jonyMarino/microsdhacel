@@ -14,12 +14,6 @@
 #include "boxescolcal.h"
 #include "vfboxes.h"
 
-#ifdef _PRINTER
-#include "MIPConf.h"
-#include "BTFPConf.h"
-#include "boxesPrn.h"
-#endif
-
 #include "Sensores.h"
 #pragma CONST_SEG DEFAULT 
 #pragma STRING_SEG DEFAULT
@@ -41,12 +35,6 @@ extern Titulo Colcal;
 ///VARIABLES EXTERNAS QUE UTILIZAN LOS BOXES //////////////
 extern int Estado_Adquisicion;															
 extern volatile const int PRom[PARAMETROS];
-#ifdef _PRINTER
-extern volatile const struct BTFPConf bTConf;
-extern struct BTFechaPersistente baseTiempo;
-extern volatile const struct MIPConf confMI;
-extern struct ManejadorImpresionPersistente mi;
-#endif
 ////Las de Programacion/////////
 int Lim_Segmento2[CANTIDAD_SAL_CONTROL];  /* Limite para el segmento que se puede cambiar mientras corre*/
 int Lim_TieSeg[CANTIDAD_SAL_CONTROL]; 
@@ -93,13 +81,7 @@ const int Lim_12 = 12;
 const int Lim_2006 = 2006;
 const int Lim_2099 = 2099;
 #endif
-#ifdef _PRINTER
-const int Lim_12 = 12;
-const int Lim_2008 = 2006;
-const int Lim_2099 = 2099;
-const int Lim_31 = 31;
-const int Lim_2359 = 2359;
-#endif
+
 
 /************************************/
 /* Definicion y armado de los boxes */
@@ -122,11 +104,6 @@ const Numerico C2AL1;
 const Numerico P2;
 #elif defined(DOBLE_SP)
  const Numerico DSP;
-#endif
-
-#ifdef _PRINTER
-const Titulo titImpresion;
-const Textual boxPrnHabilitado;
 #endif
 
 const Numerico Codigo1;
@@ -162,51 +139,10 @@ const Titulo Programas;
 #ifdef adquisidor
 const Titulo Adquisicion;
 
-#endif
-
-#ifdef _PRINTER
-
-int anioIngresado=0;
-int mesIngresado=0;	
-
-byte setIntervaloMIVista(int valor,byte chan){
-  return setIntervaloMI(&mi,valor);  
-}
-
-byte setAnioDT(int valor,byte chan){
-  anioIngresado = valor;
-  return setDate(&baseTiempo,valor,1,1);  
-}
-
-byte setMesDT(int valor,byte chan){
-  mesIngresado = valor;
-  if(anioIngresado!=0)
-    return setDate(&baseTiempo,anioIngresado,valor,1); 
-
-  return setDate(&baseTiempo,bTConf.anio,valor,1);   
-}
-
-byte  setDiaDT(int valor,byte chan){
-  int mes = (mesIngresado)?mesIngresado:bTConf.mes;
-  int anio = (anioIngresado)?anioIngresado:bTConf.anio; 
-  
-  return setDate(&baseTiempo,bTConf.anio,mes,valor); 
-}
-
-byte setHoraDT(int valor,byte chan){
-  return setTime(&baseTiempo,valor/100,valor%100,0);
-}
-
-
-byte  setHabilitadoMIVista(int valor,byte chan){
-  return setHabilitadoMI(&mi,valor);
-}	
-
- 
-#endif								
+#endif							
 
 const TDato Parametros[PARAMETROS]={
-/*SP1(0)*/{&PRom[R_SetPoint+0],NO_FUNCTION, &PRom[R_Lim_Inf+0], &PRom[R_Lim_Sup+0], CHAN_1},	 //0
+/*SP1(0)*/{&PRom[R_SetPoint+0], NO_FUNCTION, &PRom[R_Lim_Inf+0], &PRom[R_Lim_Sup+0], CHAN_1},	 //0
 /*SP2*/{&PRom[R_SetPoint+1], NO_FUNCTION, &PRom[R_Lim_Inf+1], &PRom[R_Lim_Sup+1], CHAN_2},
 /*SP3*/{&PRom[R_SetPoint+2], NO_FUNCTION, &PRom[R_Lim_Inf+2], &PRom[R_Lim_Sup+2], CHAN_3},
 /*SP4*/{&PRom[R_SetPoint+3], NO_FUNCTION, &PRom[R_Lim_Inf+3], &PRom[R_Lim_Sup+3], CHAN_4},
@@ -502,16 +438,17 @@ const TDato Parametros[PARAMETROS]={
 /*None52(191)*/{NULL,NO_FUNCTION,&Lim_m1999,&Lim_9999,CHAN_4},
 
 #else
+/*None49(152)*/{NULL,NO_FUNCTION,&Lim_m1999,&Lim_9999,CHAN_1},
+/*None50*/{NULL,NO_FUNCTION,&Lim_m1999,&Lim_9999,CHAN_2},
+/*None51*/{NULL,NO_FUNCTION,&Lim_m1999,&Lim_9999,CHAN_3},
+/*None52*/{NULL,NO_FUNCTION,&Lim_m1999,&Lim_9999,CHAN_4},
 
-/*None56(152)*/{NULL,NO_FUNCTION,&Lim_m1999,&Lim_9999,CHAN_1},
-/*None57*/{NULL,NO_FUNCTION,&Lim_m1999,&Lim_9999,CHAN_2},
-/*None58*/{NULL,NO_FUNCTION,&Lim_m1999,&Lim_9999,CHAN_2},
-/*None59*/{NULL,NO_FUNCTION,&Lim_m1999,&Lim_9999,CHAN_3},
-/*None60*/{NULL,NO_FUNCTION,&Lim_m1999,&Lim_9999,CHAN_4},
-/*None61*/{NULL,NO_FUNCTION,&Lim_m1999,&Lim_9999,CHAN_1},
-/*None62*/{NULL,NO_FUNCTION,&Lim_m1999,&Lim_9999,CHAN_2},
-/*None63*/{NULL,NO_FUNCTION,&Lim_m1999,&Lim_9999,CHAN_3},
-/*None63*/{NULL,NO_FUNCTION,&Lim_m1999,&Lim_9999,CHAN_3},
+/*None49(156)*/{NULL,NO_FUNCTION,&Lim_m1999,&Lim_9999,CHAN_1},
+/*None50*/{NULL,NO_FUNCTION,&Lim_m1999,&Lim_9999,CHAN_2},
+/*None51*/{NULL,NO_FUNCTION,&Lim_m1999,&Lim_9999,CHAN_3},
+/*None52*/{NULL,NO_FUNCTION,&Lim_m1999,&Lim_9999,CHAN_4},
+
+/*None49(160)*/{NULL,NO_FUNCTION,&Lim_m1999,&Lim_9999,CHAN_1},
 
 /*vramp1(161)*/{&PRom[R_Vrmp1],NO_FUNCTION,&Lim_0,&Lim_1000,0},                           
 /*vramp2*/{&PRom[R_Vrmp2],NO_FUNCTION,&Lim_0,&Lim_1000,0},
@@ -555,23 +492,13 @@ const TDato Parametros[PARAMETROS]={
 
 
 
-#ifdef _PRINTER
-/*None53(192)*/{/*&PRom[R_PrnIntervalo]*/&confMI.intervalo,setIntervaloMIVista,&Lim_1,&Lim_9999,CHAN_1},
-/*None54*/{/*&PRom[R_PrnAnio]*/&bTConf.anio,setAnioDT,&Lim_2008,&Lim_2099,CHAN_1},
-/*None55*/{/*&PRom[R_PrnMes]*/&bTConf.mes,setMesDT,&Lim_1,&Lim_12,CHAN_1},
-/*None56*/{/*&PRom[R_PrnDia]*/&bTConf.dia,setDiaDT,&Lim_1,&Lim_31,CHAN_1},
-/*None57*/{/*&PRom[R_PrnHora]*/&bTConf.dia,setHoraDT,&Lim_0,&Lim_2359,CHAN_1},
-/*None58*/{/*&PRom[R_PrnHabilitado]*/&confMI.habilitado,setHabilitadoMIVista,&Lim_0,&Lim_2,CHAN_1},
-
-#else
-/*None53(192)*/{NULL,NO_FUNCTION,&Lim_m1999,&Lim_9999,CHAN_2},
-/*None54*/{NULL,NO_FUNCTION,&Lim_m1999,&Lim_9999,CHAN_3},
-/*None55*/{NULL,NO_FUNCTION,&Lim_m1999,&Lim_9999,CHAN_4},
-/*None56*/{NULL,NO_FUNCTION,&Lim_m1999,&Lim_9999,CHAN_1},
-/*None57*/{NULL,NO_FUNCTION,&Lim_m1999,&Lim_9999,CHAN_2},
+/*None53(192) */{NULL,NO_FUNCTION,&Lim_m1999,&Lim_9999,CHAN_1},
+/*None54*/{NULL,NO_FUNCTION,&Lim_m1999,&Lim_9999,CHAN_2},
+/*None55*/{NULL,NO_FUNCTION,&Lim_m1999,&Lim_9999,CHAN_3},
+/*None56*/{NULL,NO_FUNCTION,&Lim_m1999,&Lim_9999,CHAN_4},
+/*None57*/{NULL,NO_FUNCTION,&Lim_m1999,&Lim_9999,CHAN_1},
 /*None58*/{NULL,NO_FUNCTION,&Lim_m1999,&Lim_9999,CHAN_2},
-#endif
-/*None59(198)*/{NULL,NO_FUNCTION,&Lim_m1999,&Lim_9999,CHAN_3},
+/*None59*/{NULL,NO_FUNCTION,&Lim_m1999,&Lim_9999,CHAN_3},
 /*None60*/{NULL,NO_FUNCTION,&Lim_m1999,&Lim_9999,CHAN_4},
 /*None61*/{NULL,NO_FUNCTION,&Lim_m1999,&Lim_9999,CHAN_1},
 /*None62*/{NULL,NO_FUNCTION,&Lim_m1999,&Lim_9999,CHAN_2},
@@ -586,8 +513,7 @@ const TDato Parametros[PARAMETROS]={
 /*None71*/{NULL,NO_FUNCTION,&Lim_m1999,&Lim_9999,CHAN_3},
 /*None72*/{NULL,NO_FUNCTION,&Lim_m1999,&Lim_9999,CHAN_4},
 /*None73*/{NULL,NO_FUNCTION,&Lim_m1999,&Lim_9999,CHAN_1},
-
-
+ 
 /*R_estapas(213)*/{&PRom[R_ESP],NO_FUNCTION,&Lim_1,&Lim_10,0},
  #ifdef programador
 /*None75(214)*/{NULL,NO_FUNCTION,&Lim_m1999,&Lim_9999,CHAN_3},
@@ -798,10 +724,8 @@ const Numerico AL1=	                                  //nombre variable
 			  #else
 			    #if CANTIDAD_SAL_CONTROL>1
     			(PunteroF*)&C2SP.DirProc,NULL
-					#elif defined(_PRINTER)
-					  (PunteroF*)&boxPrnHabilitado.DirProc,NULL
-					#else 
-  			    (PunteroF*)&Principal1.DirProc,NULL			          //enter rap,enter mant		
+					#else
+  			  (PunteroF*)&Principal1.DirProc,NULL			          //enter rap,enter mant		
           #endif
 			  #endif
       #endif
@@ -823,8 +747,6 @@ const Numerico AL2 =	                                //nombre variable
       #else
 			#ifdef programador
 			(PunteroF*)&P1.DirProc,NULL			 //enter rap,enter mant
-	  	#elif defined(_PRINTER)
-			(PunteroF*)&boxPrnHabilitado.DirProc,NULL
 			#else
 			(PunteroF*)&Principal1.DirProc,NULL			          //enter rap,enter mant		
 			#endif
@@ -848,8 +770,6 @@ const Numerico AL3 =	                                //nombre variable
 #else
 			#ifdef programador
 			(PunteroF*)&P1.DirProc,NULL			 //enter rap,enter mant
-			#elif defined(_PRINTER)
-			(PunteroF*)&boxPrnHabilitado.DirProc,NULL
 			#else
 			(PunteroF*)&Principal1.DirProc,NULL			          //enter rap,enter mant		
 			#endif
@@ -866,8 +786,6 @@ const Numerico P1 =	                                    //nombre variable
 			NULL,							                                //parametro que modifica. 
 			#if CANTIDAD_SAL_CONTROL>1
 			(PunteroF*)&C2SP.DirProc,NULL
-			#elif defined(_PRINTER)
-			(PunteroF*)&boxPrnHabilitado.DirProc,NULL
 			#else
 			(PunteroF*)&Principal1.DirProc,NULL			 //enter rap,enter mant
 			#endif
@@ -919,25 +837,6 @@ const Numerico SegundosSegmento1 =	                                    //nombre 
 
 
 #endif
-#ifdef _PRINTER
-
-static const char * SN[2]={
-      "no  ",									
-			"Si  "
-
-};
-
-const Textual boxPrnHabilitado=
-      {TxtHandler,						/* funcion que procesa al box*/
-			&Parametros[R_PrnHabilitado],											/* direccion en la E2Prom - el EEProm Start, if FALSE no guarda valor*/
-			"ImPriMir    ",									//nombre display
-			SN,             // Array donde estan los textos
-			NULL,						 //parametro que modifica.
-			(PunteroF*)&Principal1.DirProc,NULL					 //Proximos estados	
-      };
-      
-#endif
-			
 			
 #if CANTIDAD_CANALES>1
 /**********SET POINT 2**************/
@@ -1017,35 +916,13 @@ const Numerico Codigo1={
 //			#ifdef adquisidor 
 //			NULL,&Adquisicion.DirProc			//Proximos estados en bl1, primero toque rápido luego toque prolongado
 //			#else
-		 #ifdef _PRINTER 
-			NULL,&titImpresion.DirProc			//Proximos estados en bl1, primero toque rápido luego toque prolongado
-			#elif defined(programador)
+			#ifdef programador
 			NULL,&Programas.DirProc			//Proximos estados en bl1, primero toque rápido luego toque prolongado
 			#else
 			NULL,&Sintonia.DirProc			//Proximos estados en bl1, primero toque rápido luego toque prolongado
 			#endif
 //			#endif
 			};
-
-/* Definicion de los titulos */
-/*****************************/
-#ifdef _PRINTER
-
-const Titulo titImpresion={ 
-      TitleHandler,										// funcion que procesa al box
-			"Prn ",													//nombre display
-			" -- ",													//nombre display
-			NULL,											  //parametro que modifica.
-			#ifdef programador
-			(PunteroF*)&boxAnio.DirProc,&Programas.DirProc	//Proximos estados	
-			#else
-			(PunteroF*)&boxAnio.DirProc,&Sintonia.DirProc		//Proximos estados	
-			#endif
-			};
-			
-#endif			
-			
-			
 /* Etapas */
 /**********/
 

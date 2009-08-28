@@ -22,12 +22,6 @@
 #include "bkr.h"
 #include "FuncionVF.h"
 #include "vfboxes.h"
-#ifdef _PRINTER
-  #include "MIPConf.h"
-  #include "BTFPConf.h"
-  #include "boxesPrn.h"
-  #include "BTFechaPersistente.h"
-#endif
 
 /////////////LEDS//////////////////////
 extern bool Date_EnUser;
@@ -82,12 +76,6 @@ extern int ValCont[CANTIDAD_CANALES];
 extern long vxalar;
 extern bool SaveNow;
 //extern byte flagalar[10];
-
-extern volatile const struct BTFPConf bTConf;
-extern struct BTFechaPersistente baseTiempo;
-extern volatile const struct MIPConf confMI;
-extern struct ManejadorImpresionPersistente mi;
-
 
 #ifndef programador
 extern long tempAct;
@@ -215,147 +203,6 @@ void TitleHandler(void){
 
 }
 
-/* Procesador del  ingreso de fechas    */
-/****************************************/
-
-#if defined( adquisidor)||defined(_PRINTER)
-
-
-void DiaHandler(void){
-static byte Max_day;
-
-
-if (Tecla=='u' || Tecla=='d'){
-	if (Tecla=='u'){
-  		if (Valor_Tmp < Max_day)
-		    Valor_Tmp++;
- 	    else Valor_Tmp=Max_day; 
-	} else if (Tecla=='d'){
-	if (Valor_Tmp > 1)
-		Valor_Tmp--;
-	else Valor_Tmp=1;
-	
-	}
-	Pasar_Numero(Valor_Tmp,0,0);		           //DisplaySup
-  save=TRUE;
-}
-	
-	if (FstTime){
-	    extern int mesIngresado;
-	    extern int anioIngresado;
-	    int mes = (mesIngresado)?mesIngresado:bTConf.mes;
-      int anio = (anioIngresado)?anioIngresado:bTConf.anio; 
-          
-		  FstTime=FALSE;
-		  save=FALSE; /*Reseteo flag de mandar a grabar*/
-		  Max_day = TmDt1_GetMaxday(anio,mes);		
-			PtrBox.Num=(Numerico*)PtrTmp;
-			
-	    Valor_Tmp=*(PtrBox.Num->sDato->Fdir);
-
-			DotNum[0]=PtrBox.Num->Dot;		
-		  
-		  PasarASCII(PtrBox.Num->TxtDpy,1);     //DisplayInf
-			Pasar_Numero(Valor_Tmp,0,0);		           //DisplaySup
-					
-	}
-	
-/////////////////////// T0QUE RÁPIDO //////////////////////////
-
-	if (Tecla=='r'){
-	      if (save){ 
-	      Escribir(PtrBox.Num->sDato,Valor_Tmp);
-	      /* *(PtrBox.Num->Fdir)=Valor_Tmp;
-	        if (Estado_Adquisicion!=1)(void)TmDt1_SetDate(PRom[R_Ano],(byte) PRom[R_mes],(byte)Valor_Tmp);
-	       */
-	       }
-	        Salir_num();
-	      
-	}
-		
-/////////////////////// TOQUE MANTENIDO ////////////////////////
-
-if (Tecla=='f')	Salir_num();
-/////////////////////// EXIT //////////////////////////
-
-if (Tecla== 'k') Exit();
-
-
-
-}
-
-/*   Procesador del  ingreso de hora    */
-/****************************************/
-
-void HoraHandler (void) {
-  if (Tecla=='u' || Tecla=='d'){
-	if (Tecla=='u'){
-  		if (Valor_Tmp < 2359){
-  		   Valor_Tmp++;
-  			 if (((Valor_Tmp%100)%60)==0 && Valor_Tmp!=0) Valor_Tmp +=40;
-  		}
- 	    else Valor_Tmp=0; 
-	} else if (Tecla=='d'){
-	if (Valor_Tmp > 0){
-	  
-		if (((Valor_Tmp%100)%60)==0) Valor_Tmp-=40;
-		Valor_Tmp--; 
-	}
-	else Valor_Tmp=2359;
-	
-	}
-	Pasar_Numero(Valor_Tmp,0,2);		           //DisplaySup
-  save=TRUE;
- // Tecla=' ';
-}
-	
-	if (FstTime){
-	    TIMEREC time;
-	    
-		  FstTime=FALSE;	
-			
-			PtrBox.Num=(Numerico*)PtrTmp;
-			 
-			
-	    getTime(&baseTiempo,&time);
-			Valor_Tmp = time.Hour*100+time.Min;
-			DotNum[0]=PtrBox.Num->Dot;		
-		  
-		  PasarASCII(PtrBox.Num->TxtDpy,1);     //DisplayInf
-			Pasar_Numero(Valor_Tmp,0,2);		           //DisplaySup
-					
-	}
-	
-/////////////////////// T0QUE RÁPIDO //////////////////////////
-
-	if (Tecla=='r'){
-	if (save){ 
-	  setTime(&baseTiempo,Valor_Tmp/100,Valor_Tmp%100,0);
-	  /*
-	  *(PtrBox.Num->Fdir)=Valor_Tmp;
-	  if (Estado_Adquisicion!=1){
-	    (void)TmDt1_SetTime((byte)(Valor_Tmp/100),(byte)(Valor_Tmp%100));
-	    TmDt1_Enable(TRUE);
-	  }
-	  */
-	}
-	
-	Salir_num();
-	}
-		
-/////////////////////// TOQUE MANTENIDO ////////////////////////
-
-if (Tecla=='f')	Salir_num();
-/////////////////////// EXIT //////////////////////////
-
-if (Tecla== 'k') Exit();
-
-
-}
-
-#endif
-
-     
 
 
 /* Procesador de los boxes de Estado*/
@@ -1380,15 +1227,16 @@ byte i;
   #if  CANTIDAD_CANALES == 1 
    
 	  
-	  if((int *)DirPar == &SetPoint[0]){
-	    
+	  if((int *)DirPar == &SetPoint[R_SetPoint+0]){
 	    Valor_Tmp = *(PtrBox.Num->sDato->Fdir);
-	  }else{
 	    
-	    Valor_Tmp = *(int *)DirPar;
 	  }
-	   
+	  else{
 	    
+	    // *(int *)DirPar = *(PtrBox.Num->sDato->Fdir);
+	     Valor_Tmp = *(int *)DirPar;
+	       
+	  }
   #endif
   
   Mostrar_Proc=TRUE;
@@ -1594,7 +1442,7 @@ HAY QUE PONERLO EN OTRA PARTE!!!!!!!!!!!!!!!!
   }
   else{
       
-      if((int *)DirPar!=&SetPoint[R_SetPoint+0] || PRom[R_Programa]!=NO_PROGRAMA )													  // El amod es distinto del SP?
+      if((int *)DirPar!=&SetPoint[R_SetPoint+0] || PRom[R_Programa]!=NO_PROGRAMA)													  // El amod es distinto del SP?
         Pasar_Numero(*(int *)DirPar,1,DotNum[1]);               // Lo muestro en DisplayInf y chau
       else if(PRom[R_Ver]==POT)        
             Pasar_Numero(dutytmp,1,1);                  //presento el valor de la potencia 

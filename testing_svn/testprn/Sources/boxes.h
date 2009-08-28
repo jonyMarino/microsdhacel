@@ -8,7 +8,7 @@
 #include "TmDt1.h"
 #include "Adquisidor.h"
 #include "IFsh10.h"
-#include "TimerNew.h"
+#include "Timer.h"
 
 extern bool FstTime;
 extern bool save_parametros;

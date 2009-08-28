@@ -179,6 +179,37 @@ typedef union{
 #define R_SPlimst 160
 
 
+/*#define R_Vrmp1  161
+#define R_Tmpm1  162
+#define R_Tiem1  163
+#define R_Vrmp2  164
+#define R_Tmpm2  165
+#define R_Tiem2  166
+#define R_Vrmp3  167
+#define R_Tmpm3  168
+#define R_Tiem3  169
+#define R_Vrmp4  170
+#define R_Tmpm4  171
+#define R_Tiem4  172
+#define R_Vrmp5  173
+#define R_Tmpm5  174
+#define R_Tiem5  175
+#define R_Vrmp6  176
+#define R_Tmpm6  177
+#define R_Tiem6  178
+#define R_Vrmp7  179
+#define R_Tmpm7  180
+#define R_Tiem7  181
+#define R_Vrmp8  182
+#define R_Tmpm8  183
+#define R_Tiem8  184
+#define R_Vrmp9  185
+#define R_Tmpm9  186
+#define R_Tiem9  187
+#define R_Vrmp10  188
+#define R_Tmpm10  189
+#define R_Tiem10  190
+  */
 #define R_Vrmp1  161
 #define R_Vrmp2  162
 #define R_Vrmp3  163
@@ -210,18 +241,6 @@ typedef union{
 #define R_Tiem8  189
 #define R_Tiem9  190
 #define R_Tiem10 191
-
-#define R_PrnIntervalo 192
-#define R_PrnAnio 193
-#define R_PrnMes 194
-#define R_PrnDia 195
-#define R_PrnHora 196
-#define R_PrnHabilitado 197
-
-
-
-
-
 // PARAMETROS INDIVIDUALES DE CONGIGURACION (EMPIEZA EN EL INDICE 220 PARA DEJAR LUGAR A LOS ANTERIORES)
 
 #define R_ESP  213 
@@ -260,7 +279,6 @@ typedef enum{BL1,BL2,BL3,BL4,VER_DIF}TVersion;
 
 extern volatile const int PRom[];
 extern const Numerico Principal1;
-extern const Textual boxPrnHabilitado;
 extern const Numerico C1SP;
 #ifdef DOBLE_SP
 extern const Numerico DSP;

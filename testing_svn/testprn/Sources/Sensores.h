@@ -29,7 +29,7 @@ typedef struct{
 #define NUM_SENSORES 9+SEN_PIR
 #endif
 
-extern const T_Sensor Sensores[NUM_SENSORES];
+extern const T_Sensor Sensor[NUM_SENSORES];
 ///////////Sensor//////////////////
 #ifdef _APARATO_VIEJO
 typedef enum{
@@ -69,15 +69,15 @@ typedef enum{
 }t_sensor;
 #endif
 /* Devuelve la cantidad de decimales con que se utiliza la tabla del sensor*/
-#define SENSOR_Decimales(sensor) Sensores[sensor].decimales_max		
+#define SENSOR_Decimales(sensor) Sensor[sensor].decimales_max		
 /* Devuelve la cantidad de decimales con que se muestran las lecturas del sensor*/
 #ifdef _APARATO_VIEJO
-#define SENSOR_Decimales_Mostrar(sensor) Sensores[sensor].decimales_mostrar		
+#define SENSOR_Decimales_Mostrar(sensor) Sensor[sensor].decimales_mostrar		
 #endif
 /* Devulve el minimo valor de temperatura admisible(por el aparato) para Sensor*/
-#define SENSOR_Minimo(sensor)  Sensores[sensor].ydat[0]			
+#define SENSOR_Minimo(sensor)  Sensor[sensor].ydat[0]			
 /* Devulve el maximo valor de temperatura admisible(por el aparato) para Sensor*/
-#define SENSOR_Maximo(sensor)  Sensores[sensor].ydat[Sensores[sensor].max_array]			
+#define SENSOR_Maximo(sensor)  Sensor[sensor].ydat[Sensor[sensor].max_array]			
 
 unsigned char Linealizar(long Vx, t_sensor sensor, int * Vy);
 

@@ -18,7 +18,6 @@
 #include "IO_Map.h" 		
 #include "PUL.h"
 #include "Timer.h"
-#include "TimerNew.h"
 #include "Mydefines.h"
 #include "PE_Types.h"
 #include "teclas.h"

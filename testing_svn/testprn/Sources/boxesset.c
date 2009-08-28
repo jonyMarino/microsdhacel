@@ -482,9 +482,7 @@ const Numerico Tiem={
 extern int SetPoint[];
 extern int dutytmp;
  
-//#pragma CONST_SEG PARAMETERS_PAGE
-volatile const int DirPar=(int)&SetPoint[0];
-//#pragma CONST_SEG DEFAULT
+  int DirPar=(int)&SetPoint[R_SetPoint+0];
  
   
 
