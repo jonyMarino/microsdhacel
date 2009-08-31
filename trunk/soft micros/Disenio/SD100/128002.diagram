@@ -103,8 +103,8 @@ relationcanvas 141442 relation_ref 137858 // <generalisation>
 end
 relationcanvas 143362 relation_ref 139522 // <directional composition>
   from ref 128130 z 1999 to ref 142594
-  role_a_pos 481 89 3000 no_role_b
-  multiplicity_a_pos 511 114 3000 multiplicity_b_pos 454 112 3000
+  role_a_pos 475 89 3000 no_role_b
+  multiplicity_a_pos 505 114 3000 multiplicity_b_pos 456 113 3000
 end
 relationcanvas 146178 relation_ref 146434 // <generalisation>
   from ref 130178 z 1999 to ref 140034
@@ -113,8 +113,8 @@ relationcanvas 146178 relation_ref 146434 // <generalisation>
 end
 relationcanvas 146306 relation_ref 146562 // <directional aggregation>
   from ref 130178 z 1999 to ref 144514
-  role_a_pos 701 433 3000 no_role_b
-  multiplicity_a_pos 675 433 3000 multiplicity_b_pos 650 416 3000
+  role_a_pos 698 431 3000 no_role_b
+  multiplicity_a_pos 672 431 3000 multiplicity_b_pos 651 418 3000
 end
 relationcanvas 146434 relation_ref 146690 // <directional aggregation>
   from ref 130178 z 1999 to ref 144386
@@ -122,7 +122,7 @@ relationcanvas 146434 relation_ref 146690 // <directional aggregation>
   multiplicity_a_pos 697 332 3000 multiplicity_b_pos 688 355 3000
 end
 relationcanvas 146562 relation_ref 146818 // <dependency>
-  from ref 140034 z 1999 to point 737.51 265.03
+  from ref 140034 z 1999 to point 737 265
   line 146690 z 1999 to ref 144386
   no_role_a no_role_b
   no_multiplicity_a no_multiplicity_b
@@ -139,8 +139,8 @@ relationcanvas 146946 relation_ref 148098 // <dependency>
 end
 relationcanvas 148482 relation_ref 153986 // <directional aggregation>
   from ref 128002 z 1999 to ref 128130
-  role_a_pos 296 108 3000 no_role_b
-  multiplicity_a_pos 357 133 3000 multiplicity_b_pos 311 196 3000
+  role_a_pos 293 110 3000 no_role_b
+  multiplicity_a_pos 353 135 3000 multiplicity_b_pos 312 193 3000
 end
 relationcanvas 148738 relation_ref 154114 // <directional composition>
   from ref 148610 z 2009 to ref 148098
@@ -169,7 +169,7 @@ relationcanvas 149762 relation_ref 154754 // <generalisation>
   no_multiplicity_a no_multiplicity_b
 end
 relationcanvas 149890 relation_ref 154882 // <directional composition>
-  from ref 149378 z 1999 to point 146.32 870.48
+  from ref 149378 z 1999 to point 146 870
   line 150018 z 1999 to ref 149634
   role_a_pos 140 854 3000 no_role_b
   multiplicity_a_pos 207 879 3000 multiplicity_b_pos 132 693 3000
