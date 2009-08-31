@@ -1,7 +1,7 @@
 format 66
 "SD100"
-  revision 27
-  modified_by 3 "Nicolas"
+  revision 29
+  modified_by 2 "Desarrollo"
   cpp_root_dir "d:/codigo_uml/"
   idl_root_dir "d:/Jony/HCS12/Codigo generado por uml/"
 
@@ -38,8 +38,19 @@ format 66
 
   mark_for_import
   
-  ncouples 1
+  ncouples 12
   key "check-in-cmd" value "specify the command containing %file and %dir or %dironly"
+  key "gxmi path" value "D:/versionR51/microsdhacel/soft micros/Disenio/XMI/prj.xmi"
+  key "gxmi gen views" value "no"
+  key "gxmi encoding" value "UTF-8"
+  key "gxmi uml2.0" value "no"
+  key "gxmi pk prefix" value "no"
+  key "gxmi vis prefix" value "no"
+  key "gxmi primitive type" value "no"
+  key "gxmi gen extensions" value "no"
+  key "gxmi gen eclipse" value "yes"
+  key "gxmi comment exporter" value "yes"
+  key "gxmi linefeed" value "no"
   classview 128002 "Alarmas"
     //class diagram settings
     draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
@@ -1493,6 +1504,21 @@ ${members}
     package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
     show_infonote default drawing_language default show_stereotype_properties default
     associated_deployment_view deploymentview_ref 130434 // Salida
+    classdiagram 130818 "Salidas"
+      draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility yes show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
+      size A4
+    end
+
+    classdiagram 128131 "PWMs HCS12"
+      draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility yes show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
+      size A4
+    end
+
+    classdiagram 129283 "Valvula proporcional"
+      draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility yes show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
+      size A4
+    end
+
     class 129282 "PWM"
       abstract visibility package stereotype "implementationClass"
       cpp_decl "${comment}${template}class ${name}${inherit} {
@@ -1525,8 +1551,8 @@ ${members}};
 	  b parent class_ref 142338 // IPWM
       end
 
-      operation 129027 "PWM_setPeriodo"
-	public explicit_return_type ""
+      operation 129027 "setPeriodoConfiguracion"
+	protected explicit_return_type ""
 	nparams 1
 	  param in name "period" explicit_type "int"
 	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}${v0}${)}${const}${volatile}${throw}${abstract};
@@ -1552,8 +1578,8 @@ ${members}};
 	  b multiplicity "1" parent class_ref 128131 // TConfPWM
       end
 
-      operation 134915 "PWM_getPeriodo"
-	public explicit_return_type "int"
+      operation 134915 "getPeriodoConfiguracion"
+	protected explicit_return_type "int"
 	nparams 0
 	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
@@ -1567,7 +1593,7 @@ ${members}};
 "
       end
 
-      operation 135043 "PWM_getLimSupPeriodo"
+      operation 135043 "getLimSupPeriodo"
 	public explicit_return_type "int"
 	nparams 0
 	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
@@ -1630,7 +1656,7 @@ ${members}};
       end
 
       operation 128771 "Salida_setPotencia"
-	public explicit_return_type ""
+	protected explicit_return_type ""
 	nparams 1
 	  param in name "potencia" explicit_type "uint"
 	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}${v0}${)}${const}${volatile}${throw}${abstract};
@@ -1643,6 +1669,7 @@ ${members}};
 	
 	idl_decl "${comment}${type} ${name}${(}_self, ${)};
 "
+	comment "setea el valor del atributo duty"
       end
 
       operation 133379 "getConectada"
@@ -1691,14 +1718,11 @@ ${members}};
 "
       end
 
-      operation 133763 "setPotencia"
-	cpp_virtual protected explicit_return_type ""
+      operation 151042 "setPotencia"
+	cpp_virtual public explicit_return_type ""
 	nparams 1
 	  param in name "potencia" explicit_type "uint"
 	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}${v0}${)}${const}${volatile}${throw}${abstract};
-"
-	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
-  ${body}}
 "
 	
 	
@@ -1708,13 +1732,8 @@ ${members}};
       end
     end
 
-    classdiagram 130818 "Salidas"
-      draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
-      size A4
-    end
-
     class 138114 "DecoradorSalida"
-      visibility public stereotype "implementationClass"
+      abstract visibility public stereotype "implementationClass"
       cpp_decl "${comment}${template}class ${name}${inherit} {
 ${members}};
 ${inlines}
@@ -1734,6 +1753,7 @@ ${members}};
 "
       explicit_switch_type ""
       
+      comment "Llama al metodo homologo del atributo decorado."
       operation 139394 "getDecorado"
 	public return_type class_ref 128514 // Salida
 	nparams 0
@@ -1763,6 +1783,81 @@ ${members}};
 "
 	    classrelation_ref 153346 // decorado (<directional aggregation>)
 	  b multiplicity "1" parent class_ref 139522 // ISalida
+      end
+
+      operation 145666 "getPotencia"
+	cpp_virtual public explicit_return_type "uint"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 145794 "setPotencia"
+	cpp_virtual public explicit_return_type ""
+	nparams 1
+	  param in name "potencia" explicit_type "uint"
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}${v0}${)}${const}${volatile}${throw}${abstract};
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 145922 "getTipoSalida"
+	cpp_virtual public return_type class_ref 131587 // TipoSalida
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 146050 "setTipoSalida"
+	cpp_virtual public explicit_return_type ""
+	nparams 1
+	  param in name "tipoSalida" type class_ref 131587 // TipoSalida
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}${v0}${)}${const}${volatile}${throw}${abstract};
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 146178 "getConectada"
+	cpp_virtual public explicit_return_type "bool"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 146306 "setConectada"
+	cpp_virtual public explicit_return_type "void"
+	nparams 1
+	  param in name "conectada" explicit_type "bool"
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}${v0}${)}${const}${volatile}${throw}${abstract};
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
       end
     end
 
@@ -1996,7 +2091,7 @@ ${members}
     end
 
     class 142338 "IPWM"
-      visibility package stereotype "interface"
+      abstract visibility package stereotype "interface"
       cpp_decl "${comment}${template}class ${name}${inherit} {
 ${members}};
 ${inlines}
@@ -2016,13 +2111,10 @@ ${members}
       explicit_switch_type ""
       
       operation 141826 "setPeriodo"
-	cpp_virtual public explicit_return_type "byte"
+	abstract cpp_virtual public explicit_return_type "byte"
 	nparams 1
 	  param in name "period" explicit_type "int"
 	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}${v0}${)}${const}${volatile}${throw}${abstract};
-"
-	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
-  ${body}}
 "
 	
 	
@@ -2032,12 +2124,9 @@ ${members}
       end
 
       operation 141954 "getPeriodo"
-	cpp_virtual public explicit_return_type "int"
+	abstract cpp_virtual public explicit_return_type "int"
 	nparams 0
 	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
-"
-	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
-  ${body}}
 "
 	
 	
@@ -2071,6 +2160,7 @@ ${members}};
 "
       explicit_switch_type ""
       
+      comment "Llama al metodo homologo del atributo decorado."
       classrelation 158338 // <generalisation>
 	relation 157698 ---|>
 	  a public
@@ -2087,6 +2177,37 @@ ${members}};
 	    idl "${type}"
 	    classrelation_ref 158466 // <generalisation>
 	  b parent class_ref 142338 // IPWM
+      end
+
+      operation 146434 "setPeriodo"
+	cpp_virtual public explicit_return_type "byte"
+	nparams 1
+	  param in name "period" explicit_type "int"
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}${v0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 146562 "getPeriodo"
+	cpp_virtual public explicit_return_type "int"
+	nparams 0
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
       end
     end
 
@@ -2105,7 +2226,7 @@ ${members}};
 "
       explicit_switch_type ""
       
-      comment "PWM con evento al cambiar el periodo."
+      comment "Agrega funcionalidad al PWM con evento al cambiar el periodo."
       classrelation 158594 // <generalisation>
 	relation 157954 ---|>
 	  a public
@@ -2156,11 +2277,22 @@ ${members}};
 	idl_decl "  ${comment}${type} ${name};
 "
       end
-    end
 
-    classdiagram 128131 "salida_hc08ac"
-      draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
-      size A4
+      operation 145538 "setPeriodo"
+	cpp_virtual public explicit_return_type "byte"
+	nparams 1
+	  param in name "period" explicit_type "int"
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}${v0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
     end
 
     class 128003 "PWMTpm1"
@@ -2216,11 +2348,6 @@ ${members}
       end
     end
 
-    classdiagram 129283 "Valvula proporcional"
-      draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
-      size A4
-    end
-
     class 129283 "ValvulaProporcional"
       visibility package 
       cpp_decl "${comment}${template}class ${name}${inherit} {
@@ -2245,19 +2372,8 @@ ${members}};
 	  b parent class_ref 128514 // Salida
       end
 
-      classrelation 130435 // <directional aggregation>
-	relation 130435 o-->
-	  a role_name "" multiplicity "1" private
-	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
-"
-	    idl "  ${comment}${type} ${name};
-"
-	    classrelation_ref 130435 // <directional aggregation>
-	  b multiplicity "1" parent class_ref 130435 // ConfValvulaProporcional
-      end
-
       operation 131715 "getTiempoAbierto"
-	public explicit_return_type "int"
+	public explicit_return_type "uint"
 	nparams 0
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
@@ -2270,9 +2386,327 @@ ${members}};
 	idl_decl "${comment}${type} ${name}${(}_self, ${)};
 "
       end
+
+      class 147586 "ConfValvulaProporcional"
+	visibility public stereotype "struct"
+	cpp_decl "${comment}${template}typedef struct ${inherit} {
+${members}}${name};
+${inlines}
+"
+	java_decl ""
+	php_decl ""
+	python_2_2 python_decl ""
+	idl_decl "${comment}${custom}struct ${name}{
+${inherit}
+${members}};
+"
+	explicit_switch_type ""
+	
+	attribute 145282 "tiempoAbierto"
+	  private explicit_type "uint"
+	  cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	  java_decl ""
+	  php_decl ""
+	  python_decl ""
+	  idl_decl "  ${comment}${readonly}${attribute}${type} ${name};
+"
+	end
+
+	attribute 145410 "bandaMuerta"
+	  private explicit_type "uint"
+	  cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	  java_decl ""
+	  php_decl ""
+	  python_decl ""
+	  idl_decl "  ${comment}${readonly}${attribute}${type} ${name};
+"
+	end
+      end
+
+      classrelation 162818 // configuracion (<directional aggregation>)
+	relation 162178 o-->
+	  a role_name "configuracion" private
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    idl "  ${comment}${type} ${name};
+"
+	    classrelation_ref 162818 // configuracion (<directional aggregation>)
+	  b parent class_ref 147586 // ConfValvulaProporcional
+      end
+
+      attribute 144386 "timer"
+	private explicit_type "RlxMTimer"
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl "  ${comment}${type} ${name};
+"
+      end
+
+      attribute 144514 "puertoApertura"
+	private explicit_type "byte *"
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl "  ${comment}${type} ${name};
+"
+      end
+
+      attribute 144642 "mascaraApertura"
+	private explicit_type "byte"
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl "  ${comment}${type} ${name};
+"
+      end
+
+      attribute 144770 "puertoCierre"
+	private explicit_type ""
+	init_value "byte *"
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl "  ${comment}${type} ${name};
+"
+      end
+
+      attribute 144898 "mascaraCierre"
+	private explicit_type "byte"
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl "  ${comment}${type} ${name};
+"
+      end
+
+      attribute 145026 "timeCloseInit"
+	private explicit_type "long"
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl "  ${comment}${type} ${name};
+"
+      end
+
+      attribute 145154 "timeActual"
+	private explicit_type "uint"
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl "  ${comment}${type} ${name};
+"
+      end
+
+      operation 151682 "setTiempoAbierto"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "tiempoAbierto" explicit_type "uint"
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 151810 "getBandaMuerta"
+	public explicit_return_type "uint"
+	nparams 0
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 151938 "setBandaMuerta"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "bandaMuerta" explicit_type "uint"
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 152066 "getLimiteSuperiorTiempoAbierto"
+	class_operation public explicit_return_type "uint"
+	nparams 0
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 152194 "getLimiteSuperiorBandaMuerta"
+	class_operation public explicit_return_type ""
+	nparams 0
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 152322 "cerrar"
+	protected explicit_return_type ""
+	nparams 0
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 152450 "abrir"
+	protected explicit_return_type ""
+	nparams 0
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 152578 "detener"
+	protected explicit_return_type ""
+	nparams 0
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 152706 "onCheckear"
+	class_operation private explicit_return_type ""
+	nparams 1
+	  param in name "self" explicit_type "void*"
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 152834 "getPotencia"
+	cpp_virtual public explicit_return_type "uint"
+	nparams 0
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 152962 "setPotencia"
+	cpp_virtual public explicit_return_type ""
+	nparams 1
+	  param in name "potencia" explicit_type "uint"
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}${v0}${)}${const}${volatile}${throw}${abstract};
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 153090 "getTipoSalida"
+	cpp_virtual public return_type class_ref 131587 // TipoSalida
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 153218 "setTipoSalida"
+	cpp_virtual public explicit_return_type ""
+	nparams 1
+	  param in name "tipoSalida" type class_ref 131587 // TipoSalida
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}${v0}${)}${const}${volatile}${throw}${abstract};
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
     end
 
-    class 130435 "ConfValvulaProporcional"
+    class 145410 "SalidaInvertida"
       visibility package 
       cpp_decl "${comment}${template}class ${name}${inherit} {
 ${members}};
@@ -2287,8 +2721,537 @@ ${members}};
 "
       explicit_switch_type ""
       
-      attribute 130691 "tiempoAbierto"
-	private explicit_type "int"
+      classrelation 160898 // <generalisation>
+	relation 160258 ---|>
+	  a public
+	    cpp default "${type}"
+	    idl "${type}"
+	    classrelation_ref 160898 // <generalisation>
+	  b parent class_ref 138114 // DecoradorSalida
+      end
+
+      attribute 141570 "invertida"
+	private explicit_type "bool"
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl "  ${comment}${type} ${name};
+"
+	get_oper operation_ref 146690 // getInvertida
+	set_oper operation_ref 146818 // setInvertida
+      end
+
+      operation 146690 "getInvertida"
+	force_body_gen const cpp_inline public explicit_return_type "bool"
+	nparams 0
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}const ${type} ${name}${(}${)}${const}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}const ${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  return invertida;
+}
+"
+	cpp_name_spec "get${Name}"
+	final 
+	java_name_spec "get${Name}"
+	php_final 
+	php_name_spec "get${Name}"
+	
+	python_name_spec "get${Name}"
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+	idl_name_spec "get_${name}"
+	get_of_attribute attribute_ref 141570 // invertida
+      end
+
+      operation 146818 "setInvertida"
+	force_body_gen public explicit_return_type "void"
+	nparams 1
+	  param in name "value" explicit_type "bool"
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}${)}${const}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  invertida = ${p0};
+}
+"
+	cpp_name_spec "set${Name}"
+	
+	java_name_spec "set${Name}"
+	
+	php_name_spec "set${Name}"
+	
+	python_name_spec "set${Name}"
+	idl_decl "${comment}${type} ${name}${(}_self, ${t0} ${p0}${)};
+"
+	idl_name_spec "set_${name}"
+	set_of_attribute attribute_ref 141570 // invertida
+      end
+
+      operation 146946 "setPotencia"
+	cpp_virtual public explicit_return_type ""
+	nparams 1
+	  param in name "potencia" explicit_type "uint"
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}${v0}${)}${const}${volatile}${throw}${abstract};
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+    end
+
+    class 145538 "PWMHard"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl "${comment}${custom}struct ${name}{
+${inherit}
+${members}};
+"
+      explicit_switch_type ""
+      
+      comment "Este PWM usa el PWM del hardware del HCS12"
+      classrelation 161026 // <generalisation>
+	relation 160386 ---|>
+	  a public
+	    cpp default "${type}"
+	    idl "${type}"
+	    classrelation_ref 161026 // <generalisation>
+	  b parent class_ref 129282 // PWM
+      end
+
+      operation 147074 "setDuty"
+	protected explicit_return_type ""
+	nparams 2
+	  param in name "pwm" type class_ref 145666 // ReferenciaPWM
+	  param in name "duty" explicit_type "int"
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 147202 "setPrescaler"
+	protected explicit_return_type ""
+	nparams 2
+	  param in name "pwm" type class_ref 145666 // ReferenciaPWM
+	  param in name "valor" explicit_type "byte"
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 147330 "setPeriodoHard"
+	cpp_inline protected explicit_return_type ""
+	nparams 2
+	  param in name "pwm" explicit_type "ReferenciaPWM"
+	  param in name "periodo" explicit_type "uint"
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} ${p0}, ${t1} ${p1}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 147458 "escalar"
+	cpp_inline protected explicit_return_type ""
+	nparams 1
+	  param in name "pwm" type class_ref 145666 // ReferenciaPWM
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 147586 "noEscalar"
+	cpp_inline protected explicit_return_type ""
+	nparams 1
+	  param in name "pwm" type class_ref 145666 // ReferenciaPWM
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      class 145666 "ReferenciaPWM"
+	visibility protected stereotype "enum"
+	cpp_decl "${comment}enum ${name} {
+${items}
+};
+"
+	java_decl "${comment}${@}${visibility}${final}${abstract}enum ${name}${implements} {
+${items};
+${members}}
+"
+	php_decl "${comment}${visibility}final class ${name} {
+${items}}
+"
+	python_2_2 python_decl "class ${name}:
+${docstring}${members}
+"
+	idl_decl "${comment}enum ${name} {
+${items}};
+"
+	explicit_switch_type ""
+	
+	attribute 144002 "RefPWM01"
+	  public type class_ref 145666 // ReferenciaPWM
+	  cpp_decl "  ${name}${value},${comment}"
+	  java_decl ""
+	  php_decl ""
+	  python_decl ""
+	  idl_decl "${name},${comment}"
+	end
+
+	attribute 144130 "RefPWM23"
+	  public type class_ref 145666 // ReferenciaPWM
+	  cpp_decl "  ${name}${value},${comment}"
+	  java_decl ""
+	  php_decl ""
+	  python_decl ""
+	  idl_decl "${name},${comment}"
+	end
+
+	attribute 144258 "RefPWM45"
+	  public type class_ref 145666 // ReferenciaPWM
+	  cpp_decl "  ${name}${value},${comment}"
+	  java_decl ""
+	  php_decl ""
+	  python_decl ""
+	  idl_decl "${name},${comment}"
+	end
+      end
+    end
+
+    class 145794 "PWMHard23"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl "${comment}${custom}struct ${name}{
+${inherit}
+${members}};
+"
+      explicit_switch_type ""
+      
+      classrelation 162178 // <generalisation>
+	relation 161538 ---|>
+	  a public
+	    cpp default "${type}"
+	    idl "${type}"
+	    classrelation_ref 162178 // <generalisation>
+	  b parent class_ref 145538 // PWMHard
+      end
+
+      operation 148738 "setPotencia"
+	cpp_virtual public explicit_return_type ""
+	nparams 1
+	  param in name "potencia" explicit_type "uint"
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}${v0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 148866 "setTipoSalida"
+	cpp_virtual public explicit_return_type ""
+	nparams 1
+	  param in name "tipoSalida" type class_ref 131587 // TipoSalida
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}${v0}${)}${const}${volatile}${throw}${abstract};
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 148994 "getTipoSalida"
+	cpp_virtual public return_type class_ref 131587 // TipoSalida
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 149122 "setPeriodo"
+	cpp_virtual public explicit_return_type "byte"
+	nparams 1
+	  param in name "period" explicit_type "int"
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}${v0}${)}${const}${volatile}${throw}${abstract};
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+    end
+
+    class 146946 "PWMManager01_45"
+      visibility package stereotype "implementationClass"
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl "${comment}${custom}struct ${name}{
+${inherit}
+${members}};
+"
+      explicit_switch_type ""
+      
+      class 147074 "PWMHard01"
+	visibility private 
+	cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+	java_decl ""
+	php_decl ""
+	python_2_2 python_decl ""
+	idl_decl "${comment}${custom}struct ${name}{
+${inherit}
+${members}};
+"
+	explicit_switch_type ""
+	
+	classrelation 162434 // <generalisation>
+	  relation 161794 ---|>
+	    a public
+	      cpp default "${type}"
+	      idl "${type}"
+	      classrelation_ref 162434 // <generalisation>
+	    b parent class_ref 145538 // PWMHard
+	end
+
+	operation 150018 "setPeriodo"
+	  cpp_inline public explicit_return_type ""
+	  nparams 2
+	    param in name "pwm" explicit_type "ReferenciaPWM"
+	    param in name "periodo" explicit_type "uint"
+	  cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	  cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} ${p0}, ${t1} ${p1}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	  
+	  
+	  
+	  idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+	end
+
+	operation 150146 "setPotencia"
+	  cpp_virtual public explicit_return_type ""
+	  nparams 1
+	    param in name "potencia" explicit_type "uint"
+	  cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}${v0}${)}${const}${volatile}${throw}${abstract};
+"
+	  cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	  
+	  
+	  
+	  idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+	end
+
+	operation 150274 "getTipoSalida"
+	  cpp_virtual public return_type class_ref 131587 // TipoSalida
+	  nparams 0
+	  cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	  
+	  
+	  
+	  idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+	end
+
+	operation 150402 "setTipoSalida"
+	  cpp_virtual public explicit_return_type ""
+	  nparams 1
+	    param in name "tipoSalida" type class_ref 131587 // TipoSalida
+	  cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}${v0}${)}${const}${volatile}${throw}${abstract};
+"
+	  
+	  
+	  
+	  idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+	end
+      end
+
+      class 147202 "PWMHard45"
+	visibility private 
+	cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+	java_decl ""
+	php_decl ""
+	python_2_2 python_decl ""
+	idl_decl "${comment}${custom}struct ${name}{
+${inherit}
+${members}};
+"
+	explicit_switch_type ""
+	
+	classrelation 162306 // <generalisation>
+	  relation 161666 ---|>
+	    a public
+	      cpp default "${type}"
+	      idl "${type}"
+	      classrelation_ref 162306 // <generalisation>
+	    b parent class_ref 145538 // PWMHard
+	end
+
+	operation 149506 "setPeriodo"
+	  cpp_inline public explicit_return_type ""
+	  nparams 2
+	    param in name "pwm" explicit_type "ReferenciaPWM"
+	    param in name "periodo" explicit_type "uint"
+	  cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	  cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} ${p0}, ${t1} ${p1}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	  
+	  
+	  
+	  idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+	end
+
+	operation 149634 "setPotencia"
+	  cpp_virtual public explicit_return_type ""
+	  nparams 1
+	    param in name "potencia" explicit_type "uint"
+	  cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}${v0}${)}${const}${volatile}${throw}${abstract};
+"
+	  cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	  
+	  
+	  
+	  idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+	end
+
+	operation 149762 "getTipoSalida"
+	  cpp_virtual public return_type class_ref 131587 // TipoSalida
+	  nparams 0
+	  cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	  
+	  
+	  
+	  idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+	end
+
+	operation 149890 "setTipoSalida"
+	  cpp_virtual public explicit_return_type ""
+	  nparams 1
+	    param in name "tipoSalida" type class_ref 131587 // TipoSalida
+	  cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}${v0}${)}${const}${volatile}${throw}${abstract};
+"
+	  
+	  
+	  
+	  idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+	end
+      end
+
+      operation 149250 "get01"
+	public explicit_return_type "PWMHard *"
+	nparams 0
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 149378 "get45"
+	public explicit_return_type "PWMHard*"
+	nparams 0
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      attribute 142850 "pwmHard01"
+	public type class_ref 147074 // PWMHard01
 	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
 "
 	java_decl ""
@@ -2298,8 +3261,240 @@ ${members}};
 "
       end
 
-      attribute 130819 "bandaMuerta"
-	private explicit_type "int"
+      attribute 142978 "pwmHard45"
+	public type class_ref 147202 // PWMHard45
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl "  ${comment}${type} ${name};
+"
+      end
+    end
+
+    class 147330 "PWMTimer"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl "${comment}${custom}struct ${name}{
+${inherit}
+${members}};
+"
+      explicit_switch_type ""
+      
+      classrelation 162562 // <generalisation>
+	relation 161922 ---|>
+	  a public
+	    cpp default "${type}"
+	    idl "${type}"
+	    classrelation_ref 162562 // <generalisation>
+	  b parent class_ref 129282 // PWM
+      end
+
+      operation 150530 "setPotencia"
+	cpp_virtual public explicit_return_type ""
+	nparams 1
+	  param in name "potencia" explicit_type "uint"
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}${v0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 150658 "setPeriodo"
+	cpp_virtual public explicit_return_type "byte"
+	nparams 1
+	  param in name "period" explicit_type "int"
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}${v0}${)}${const}${volatile}${throw}${abstract};
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 150786 "setTipoSalida"
+	cpp_virtual public explicit_return_type ""
+	nparams 1
+	  param in name "tipoSalida" type class_ref 131587 // TipoSalida
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}${v0}${)}${const}${volatile}${throw}${abstract};
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 150914 "getTipoSalida"
+	cpp_virtual public return_type class_ref 131587 // TipoSalida
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      attribute 143106 "pinNum"
+	private explicit_type "byte"
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl "  ${comment}${type} ${name};
+"
+      end
+
+      attribute 143234 "ticksPeriodo"
+	private explicit_type "ulong"
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl "  ${comment}${type} ${name};
+"
+      end
+
+      attribute 143362 "ticksDuty"
+	private explicit_type "ulong"
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl "  ${comment}${type} ${name};
+"
+      end
+
+      attribute 143490 "ticksDutyFree"
+	private explicit_type "ulong"
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl "  ${comment}${type} ${name};
+"
+      end
+    end
+
+    class 147458 "PWMSoft"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl "${comment}${custom}struct ${name}{
+${inherit}
+${members}};
+"
+      explicit_switch_type ""
+      
+      classrelation 162690 // <generalisation>
+	relation 162050 ---|>
+	  a public
+	    cpp default "${type}"
+	    idl "${type}"
+	    classrelation_ref 162690 // <generalisation>
+	  b parent class_ref 129282 // PWM
+      end
+
+      operation 151170 "setPotencia"
+	cpp_virtual public explicit_return_type ""
+	nparams 1
+	  param in name "potencia" explicit_type "uint"
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}${v0}${)}${const}${volatile}${throw}${abstract};
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 151298 "setPeriodo"
+	cpp_virtual public explicit_return_type "byte"
+	nparams 1
+	  param in name "period" explicit_type "int"
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}${v0}${)}${const}${volatile}${throw}${abstract};
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 151426 "setTipoSalida"
+	cpp_virtual public explicit_return_type ""
+	nparams 1
+	  param in name "tipoSalida" type class_ref 131587 // TipoSalida
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}${v0}${)}${const}${volatile}${throw}${abstract};
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 151554 "getTipoSalida"
+	cpp_virtual public return_type class_ref 131587 // TipoSalida
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      attribute 143618 "timer"
+	private explicit_type "MethodTimer"
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl "  ${comment}${type} ${name};
+"
+      end
+
+      attribute 143746 "salida"
+	private explicit_type "byte *"
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl "  ${comment}${type} ${name};
+"
+      end
+
+      attribute 143874 "mascara"
+	private explicit_type "byte"
 	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
 "
 	java_decl ""
@@ -2311,429 +3506,292 @@ ${members}};
     end
   end
 
-  deploymentview 130434 "Salida"
-    //deployment diagram settings
-    package_name_in_tab default show_context default write_horizontally default auto_label_position default draw_all_relations default shadow default
-    draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
-    artifact 144386 "PWM"
-      stereotype "source"
-      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
-#define ${NAMESPACE}_${NAME}_H
-
-${comment}
-${includes}
-${declarations}
-${namespace_start}
-${definition}
-${namespace_end}
-#endif
+  classview 130306 "System"
+    //class diagram settings
+    draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
+    //collaboration diagram settings
+    show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default draw_all_relations default shadow default show_stereotype_properties default
+    //object diagram settings
+     write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default show_stereotype_properties default
+    //sequence diagram settings
+    show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default
+    //state diagram settings
+    package_name_in_tab default show_context default auto_label_position default write_trans_label_horizontally default show_trans_definition default draw_all_relations default shadow default
+    show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+    //class settings
+    //activity diagram settings
+    package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
+    show_infonote default drawing_language default show_stereotype_properties default
+    associated_deployment_view deploymentview_ref 128003 // System
+    class 142722 "MethodContainer"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
 "
-      cpp_src "${comment}
-${includes}
-${namespace_start}
-${members}
-${namespace_end}"
-      idl_src "#ifndef ${MODULE}_${NAME}_H
-#define ${MODULE}_${NAME}_H
-
-${comment}
-${includes}
-${module_start}
-${definition}
-${module_end}
-#endif
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl "${comment}${custom}struct ${name}{
+${inherit}
+${members}};
 "
-      associated_classes
-	class_ref 129282 // PWM
+      explicit_switch_type ""
+      
+    end
+  end
+
+  classview 131458 "Comunicacion"
+    //class diagram settings
+    draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
+    //collaboration diagram settings
+    show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default draw_all_relations default shadow default show_stereotype_properties default
+    //object diagram settings
+     write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default show_stereotype_properties default
+    //sequence diagram settings
+    show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default
+    //state diagram settings
+    package_name_in_tab default show_context default auto_label_position default write_trans_label_horizontally default show_trans_definition default draw_all_relations default shadow default
+    show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+    //class settings
+    //activity diagram settings
+    package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
+    show_infonote default drawing_language default show_stereotype_properties default
+    associated_deployment_view deploymentview_ref 132866 // Comunicacion
+    classdiagram 133122 "Com"
+      draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
+      size A4
+    end
+
+    class 143874 "NodoICModBus"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl "${comment}${custom}struct ${name}{
+${inherit}
+${members}};
+"
+      explicit_switch_type ""
+      
+      attribute 140034 "dirIni"
+	private explicit_type "int"
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl "  ${comment}${type} ${name};
+"
+	get_oper operation_ref 143618 // get_dirIni
+      end
+
+      attribute 140162 "dirFin"
+	private explicit_type "int"
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl "  ${comment}${type} ${name};
+"
+	get_oper operation_ref 143362 // get_dirFin
+      end
+
+      operation 143362 "get_dirFin"
+	force_body_gen const cpp_inline public explicit_return_type "int"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}const ${type} ${name}${(}${)}${const}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}const ${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  return dirFin;
+}
+"
+	cpp_name_spec "get_${name}"
+	final 
+	java_name_spec "get${Name}"
+	php_final 
+	php_name_spec "get${Name}"
+	
+	python_name_spec "get${Name}"
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+	idl_name_spec "get_${name}"
+	get_of_attribute attribute_ref 140162 // dirFin
+      end
+
+      operation 143618 "get_dirIni"
+	force_body_gen const cpp_inline public explicit_return_type "int"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}const ${type} ${name}${(}${)}${const}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}const ${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  return dirIni;
+}
+"
+	cpp_name_spec "get_${name}"
+	final 
+	java_name_spec "get${Name}"
+	php_final 
+	php_name_spec "get${Name}"
+	
+	python_name_spec "get${Name}"
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+	idl_name_spec "get_${name}"
+	get_of_attribute attribute_ref 140034 // dirIni
+      end
+
+      attribute 140290 "getter"
+	private type class_ref 136450 // Getter
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl "  ${comment}${type} ${name};
+"
+	get_oper operation_ref 143874 // get_getter
+      end
+
+      operation 143874 "get_getter"
+	force_body_gen const cpp_inline public return_type class_ref 136450 // Getter
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}const ${type} ${name}${(}${)}${const}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}const ${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  return getter;
+}
+"
+	cpp_name_spec "get_${name}"
+	final 
+	java_name_spec "get${Name}"
+	php_final 
+	php_name_spec "get${Name}"
+	
+	python_name_spec "get${Name}"
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+	idl_name_spec "get_${name}"
+	get_of_attribute attribute_ref 140290 // getter
+      end
+
+      attribute 140418 "obj"
+	private type class_ref 144002 // Object
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl "  ${comment}${type} ${name};
+"
+	get_oper operation_ref 144002 // get_obj
+      end
+
+      operation 144002 "get_obj"
+	force_body_gen const cpp_inline public return_type class_ref 144002 // Object
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}const ${type} ${name}${(}${)}${const}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}const ${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  return obj;
+}
+"
+	cpp_name_spec "get_${name}"
+	final 
+	java_name_spec "get${Name}"
+	php_final 
+	php_name_spec "get${Name}"
+	
+	python_name_spec "get${Name}"
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+	idl_name_spec "get_${name}"
+	get_of_attribute attribute_ref 140418 // obj
+      end
+
+      operation 144130 "getDato"
+	public explicit_return_type "int"
+	nparams 2
+	  param in name "self" explicit_type "void *"
+	  param in name "direccion" explicit_type "void *"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 144258 "contieneDireccion"
+	public explicit_return_type "bool"
+	nparams 1
+	  param in name "self" explicit_type "void *"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 144386 "setDato"
+	public explicit_return_type "bool"
+	nparams 3
+	  param in name "_self" explicit_type "void *"
+	  param in name "addr" explicit_type "void *"
+	  param in name "dato" explicit_type "uint"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      classrelation 159746 // interfaces (<directional composition>)
+	relation 159106 *-->
+	  a role_name "interfaces" multiplicity "1" private
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	    idl "  ${comment}${type} ${name};
+"
+	    classrelation_ref 159746 // interfaces (<directional composition>)
+	  b multiplicity "*" parent class_ref 144130 // ListaICModBus
       end
     end
 
-    artifact 144514 "Salida"
-      stereotype "source"
-      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
-#define ${NAMESPACE}_${NAME}_H
-
-${comment}
-${includes}
-${declarations}
-${namespace_start}
-${definition}
-${namespace_end}
-#endif
+    class 144130 "ListaICModBus"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
 "
-      cpp_src "${comment}
-${includes}
-${namespace_start}
-${members}
-${namespace_end}"
-      idl_src "#ifndef ${MODULE}_${NAME}_H
-#define ${MODULE}_${NAME}_H
-
-${comment}
-${includes}
-${module_start}
-${definition}
-${module_end}
-#endif
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl "${comment}${custom}struct ${name}{
+${inherit}
+${members}};
 "
-      associated_classes
-	class_ref 128514 // Salida
-      end
-    end
-
-    artifact 144642 "DecoradorSalida"
-      stereotype "source"
-      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
-#define ${NAMESPACE}_${NAME}_H
-
-${comment}
-${includes}
-${declarations}
-${namespace_start}
-${definition}
-${namespace_end}
-#endif
-"
-      cpp_src "${comment}
-${includes}
-${namespace_start}
-${members}
-${namespace_end}"
-      idl_src "#ifndef ${MODULE}_${NAME}_H
-#define ${MODULE}_${NAME}_H
-
-${comment}
-${includes}
-${module_start}
-${definition}
-${module_end}
-#endif
-"
-      associated_classes
-	class_ref 138114 // DecoradorSalida
-      end
-    end
-
-    artifact 144770 "SalidaConPolaridad"
-      stereotype "source"
-      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
-#define ${NAMESPACE}_${NAME}_H
-
-${comment}
-${includes}
-${declarations}
-${namespace_start}
-${definition}
-${namespace_end}
-#endif
-"
-      cpp_src "${comment}
-${includes}
-${namespace_start}
-${members}
-${namespace_end}"
-      idl_src "#ifndef ${MODULE}_${NAME}_H
-#define ${MODULE}_${NAME}_H
-
-${comment}
-${includes}
-${module_start}
-${definition}
-${module_end}
-#endif
-"
-      associated_classes
-	class_ref 138242 // SalidaConPolaridad
-      end
-    end
-
-    artifact 144898 "TPolaridad"
-      stereotype "source"
-      associated_classes
-	class_ref 139394 // TPolaridad
-      end
-    end
-
-    artifact 145026 "ISalida"
-      stereotype "source"
-      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
-#define ${NAMESPACE}_${NAME}_H
-
-${comment}
-${includes}
-${declarations}
-${namespace_start}
-${definition}
-${namespace_end}
-#endif
-"
-      cpp_src "${comment}
-${includes}
-${namespace_start}
-${members}
-${namespace_end}"
-      java_src "${comment}
-${package}
-${imports}
-${definition}"
-      php_src "<?php
-${comment}
-${definition}
-?>
-"
-      idl_src "#ifndef ${MODULE}_${NAME}_H
-#define ${MODULE}_${NAME}_H
-
-${comment}
-${includes}
-${module_start}
-${definition}
-${module_end}
-#endif
-"
-      associated_classes
-	class_ref 139522 // ISalida
-      end
-    end
-
-    artifact 149122 "Retransmision"
-      stereotype "source"
-      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
-#define ${NAMESPACE}_${NAME}_H
-
-${comment}
-${includes}
-${declarations}
-${namespace_start}
-${definition}
-${namespace_end}
-#endif
-"
-      cpp_src "${comment}
-${includes}
-${namespace_start}
-${members}
-${namespace_end}"
-      idl_src "#ifndef ${MODULE}_${NAME}_H
-#define ${MODULE}_${NAME}_H
-
-${comment}
-${includes}
-${module_start}
-${definition}
-${module_end}
-#endif
-"
-      associated_classes
-	class_ref 129026 // Retransmision
-      end
-    end
-
-    artifact 149250 "RetransmisionConf"
-      stereotype "source"
-      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
-#define ${NAMESPACE}_${NAME}_H
-
-${comment}
-${includes}
-${declarations}
-${namespace_start}
-${definition}
-${namespace_end}
-#endif
-"
-      cpp_src "${comment}
-${includes}
-${namespace_start}
-${members}
-${namespace_end}"
-      idl_src "#ifndef ${MODULE}_${NAME}_H
-#define ${MODULE}_${NAME}_H
-
-${comment}
-${includes}
-${module_start}
-${definition}
-${module_end}
-#endif
-"
-      associated_classes
-	class_ref 129154 // RetransmisionConf
-      end
-    end
-
-    artifact 156418 "IPWM"
-      stereotype "source"
-      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
-#define ${NAMESPACE}_${NAME}_H
-
-${comment}
-${includes}
-${declarations}
-${namespace_start}
-${definition}
-${namespace_end}
-#endif
-"
-      cpp_src "${comment}
-${includes}
-${namespace_start}
-${members}
-${namespace_end}"
-      java_src "${comment}
-${package}
-${imports}
-${definition}"
-      php_src "<?php
-${comment}
-${definition}
-?>
-"
-      idl_src "#ifndef ${MODULE}_${NAME}_H
-#define ${MODULE}_${NAME}_H
-
-${comment}
-${includes}
-${module_start}
-${definition}
-${module_end}
-#endif
-"
-      associated_classes
-	class_ref 142338 // IPWM
-      end
-    end
-
-    artifact 156546 "DecoradorPWM"
-      stereotype "source"
-      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
-#define ${NAMESPACE}_${NAME}_H
-
-${comment}
-${includes}
-${declarations}
-${namespace_start}
-${definition}
-${namespace_end}
-#endif
-"
-      cpp_src "${comment}
-${includes}
-${namespace_start}
-${members}
-${namespace_end}"
-      idl_src "#ifndef ${MODULE}_${NAME}_H
-#define ${MODULE}_${NAME}_H
-
-${comment}
-${includes}
-${module_start}
-${definition}
-${module_end}
-#endif
-"
-      associated_classes
-	class_ref 142466 // DecoradorPWM
-      end
-    end
-
-    artifact 156674 "PWMPeriodoEvent"
-      stereotype "source"
-      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
-#define ${NAMESPACE}_${NAME}_H
-
-${comment}
-${includes}
-${declarations}
-${namespace_start}
-${definition}
-${namespace_end}
-#endif
-"
-      cpp_src "${comment}
-${includes}
-${namespace_start}
-${members}
-${namespace_end}"
-      idl_src "#ifndef ${MODULE}_${NAME}_H
-#define ${MODULE}_${NAME}_H
-
-${comment}
-${includes}
-${module_start}
-${definition}
-${module_end}
-#endif
-"
-      associated_classes
-	class_ref 142594 // PWMPeriodoEvent
-      end
-    end
-
-    artifact 129155 "ValvulaProporcional"
-      stereotype "source"
-      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
-#define ${NAMESPACE}_${NAME}_H
-
-${comment}
-${includes}
-${declarations}
-${namespace_start}
-${definition}
-${namespace_end}
-#endif
-"
-      cpp_src "${comment}
-${includes}
-${namespace_start}
-${members}
-${namespace_end}"
-      idl_src "#ifndef ${MODULE}_${NAME}_H
-#define ${MODULE}_${NAME}_H
-
-${comment}
-${includes}
-${module_start}
-${definition}
-${module_end}
-#endif
-"
-      associated_classes
-	class_ref 129283 // ValvulaProporcional
-      end
-    end
-
-    artifact 132867 "TConfPWM"
-      stereotype "source"
-      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
-#define ${NAMESPACE}_${NAME}_H
-
-${comment}
-${includes}
-${declarations}
-${namespace_start}
-${definition}
-${namespace_end}
-#endif
-"
-      cpp_src "${comment}
-${includes}
-${namespace_start}
-${members}
-${namespace_end}"
-      idl_src "#ifndef ${MODULE}_${NAME}_H
-#define ${MODULE}_${NAME}_H
-
-${comment}
-${includes}
-${module_start}
-${definition}
-${module_end}
-#endif
-"
-      associated_classes
-	class_ref 128131 // TConfPWM
-      end
+      explicit_switch_type ""
+      
     end
   end
 
@@ -3695,295 +4753,431 @@ ${module_end}
 	class_ref 131587 // TipoSalida
       end
     end
-
   end
 
-  classview 130306 "System"
-    //class diagram settings
-    draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
-    //collaboration diagram settings
-    show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default draw_all_relations default shadow default show_stereotype_properties default
-    //object diagram settings
-     write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default show_stereotype_properties default
-    //sequence diagram settings
-    show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default
-    //state diagram settings
-    package_name_in_tab default show_context default auto_label_position default write_trans_label_horizontally default show_trans_definition default draw_all_relations default shadow default
-    show_activities default region_horizontally default drawing_language default show_stereotype_properties default
-    //class settings
-    //activity diagram settings
-    package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
-    show_infonote default drawing_language default show_stereotype_properties default
-    associated_deployment_view deploymentview_ref 128003 // System
-    class 142722 "MethodContainer"
-      visibility package 
-      cpp_decl "${comment}${template}class ${name}${inherit} {
-${members}};
-${inlines}
-"
-      java_decl ""
-      php_decl ""
-      python_2_2 python_decl ""
-      idl_decl "${comment}${custom}struct ${name}{
-${inherit}
-${members}};
-"
-      explicit_switch_type ""
-      
-    end
-  end
+  deploymentview 130434 "Salida"
+    //deployment diagram settings
+    package_name_in_tab default show_context default write_horizontally default auto_label_position default draw_all_relations default shadow default
+    draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
+    artifact 144386 "PWM"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
 
-  classview 131458 "Comunicacion"
-    //class diagram settings
-    draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
-    //collaboration diagram settings
-    show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default draw_all_relations default shadow default show_stereotype_properties default
-    //object diagram settings
-     write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default show_stereotype_properties default
-    //sequence diagram settings
-    show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default
-    //state diagram settings
-    package_name_in_tab default show_context default auto_label_position default write_trans_label_horizontally default show_trans_definition default draw_all_relations default shadow default
-    show_activities default region_horizontally default drawing_language default show_stereotype_properties default
-    //class settings
-    //activity diagram settings
-    package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
-    show_infonote default drawing_language default show_stereotype_properties default
-    associated_deployment_view deploymentview_ref 132866 // Comunicacion
-    classdiagram 133122 "Com"
-      draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
-      size A4
-    end
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      idl_src "#ifndef ${MODULE}_${NAME}_H
+#define ${MODULE}_${NAME}_H
 
-    class 143874 "NodoICModBus"
-      visibility package 
-      cpp_decl "${comment}${template}class ${name}${inherit} {
-${members}};
-${inlines}
+${comment}
+${includes}
+${module_start}
+${definition}
+${module_end}
+#endif
 "
-      java_decl ""
-      php_decl ""
-      python_2_2 python_decl ""
-      idl_decl "${comment}${custom}struct ${name}{
-${inherit}
-${members}};
-"
-      explicit_switch_type ""
-      
-      attribute 140034 "dirIni"
-	private explicit_type "int"
-	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
-"
-	java_decl ""
-	php_decl ""
-	python_decl ""
-	idl_decl "  ${comment}${type} ${name};
-"
-	get_oper operation_ref 143618 // get_dirIni
-      end
-
-      attribute 140162 "dirFin"
-	private explicit_type "int"
-	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
-"
-	java_decl ""
-	php_decl ""
-	python_decl ""
-	idl_decl "  ${comment}${type} ${name};
-"
-	get_oper operation_ref 143362 // get_dirFin
-      end
-
-      operation 143362 "get_dirFin"
-	force_body_gen const cpp_inline public explicit_return_type "int"
-	nparams 0
-	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}const ${type} ${name}${(}${)}${const}${volatile}${throw};
-"
-	cpp_def "${comment}${inline}const ${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
-  return dirFin;
-}
-"
-	cpp_name_spec "get_${name}"
-	final 
-	java_name_spec "get${Name}"
-	php_final 
-	php_name_spec "get${Name}"
-	
-	python_name_spec "get${Name}"
-	idl_decl "${comment}${type} ${name}${(}_self, ${)};
-"
-	idl_name_spec "get_${name}"
-	get_of_attribute attribute_ref 140162 // dirFin
-      end
-
-      operation 143618 "get_dirIni"
-	force_body_gen const cpp_inline public explicit_return_type "int"
-	nparams 0
-	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}const ${type} ${name}${(}${)}${const}${volatile}${throw};
-"
-	cpp_def "${comment}${inline}const ${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
-  return dirIni;
-}
-"
-	cpp_name_spec "get_${name}"
-	final 
-	java_name_spec "get${Name}"
-	php_final 
-	php_name_spec "get${Name}"
-	
-	python_name_spec "get${Name}"
-	idl_decl "${comment}${type} ${name}${(}_self, ${)};
-"
-	idl_name_spec "get_${name}"
-	get_of_attribute attribute_ref 140034 // dirIni
-      end
-
-      attribute 140290 "getter"
-	private type class_ref 136450 // Getter
-	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
-"
-	java_decl ""
-	php_decl ""
-	python_decl ""
-	idl_decl "  ${comment}${type} ${name};
-"
-	get_oper operation_ref 143874 // get_getter
-      end
-
-      operation 143874 "get_getter"
-	force_body_gen const cpp_inline public return_type class_ref 136450 // Getter
-	nparams 0
-	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}const ${type} ${name}${(}${)}${const}${volatile}${throw};
-"
-	cpp_def "${comment}${inline}const ${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
-  return getter;
-}
-"
-	cpp_name_spec "get_${name}"
-	final 
-	java_name_spec "get${Name}"
-	php_final 
-	php_name_spec "get${Name}"
-	
-	python_name_spec "get${Name}"
-	idl_decl "${comment}${type} ${name}${(}_self, ${)};
-"
-	idl_name_spec "get_${name}"
-	get_of_attribute attribute_ref 140290 // getter
-      end
-
-      attribute 140418 "obj"
-	private type class_ref 144002 // Object
-	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
-"
-	java_decl ""
-	php_decl ""
-	python_decl ""
-	idl_decl "  ${comment}${type} ${name};
-"
-	get_oper operation_ref 144002 // get_obj
-      end
-
-      operation 144002 "get_obj"
-	force_body_gen const cpp_inline public return_type class_ref 144002 // Object
-	nparams 0
-	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}const ${type} ${name}${(}${)}${const}${volatile}${throw};
-"
-	cpp_def "${comment}${inline}const ${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
-  return obj;
-}
-"
-	cpp_name_spec "get_${name}"
-	final 
-	java_name_spec "get${Name}"
-	php_final 
-	php_name_spec "get${Name}"
-	
-	python_name_spec "get${Name}"
-	idl_decl "${comment}${type} ${name}${(}_self, ${)};
-"
-	idl_name_spec "get_${name}"
-	get_of_attribute attribute_ref 140418 // obj
-      end
-
-      operation 144130 "getDato"
-	public explicit_return_type "int"
-	nparams 2
-	  param in name "self" explicit_type "void *"
-	  param in name "direccion" explicit_type "void *"
-	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
-"
-	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-	idl_decl "${comment}${type} ${name}${(}_self, ${)};
-"
-      end
-
-      operation 144258 "contieneDireccion"
-	public explicit_return_type "bool"
-	nparams 1
-	  param in name "self" explicit_type "void *"
-	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
-"
-	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-	idl_decl "${comment}${type} ${name}${(}_self, ${)};
-"
-      end
-
-      operation 144386 "setDato"
-	public explicit_return_type "bool"
-	nparams 3
-	  param in name "_self" explicit_type "void *"
-	  param in name "addr" explicit_type "void *"
-	  param in name "dato" explicit_type "uint"
-	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
-"
-	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-	idl_decl "${comment}${type} ${name}${(}_self, ${)};
-"
-      end
-
-      classrelation 159746 // interfaces (<directional composition>)
-	relation 159106 *-->
-	  a role_name "interfaces" multiplicity "1" private
-	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
-"
-	    idl "  ${comment}${type} ${name};
-"
-	    classrelation_ref 159746 // interfaces (<directional composition>)
-	  b multiplicity "*" parent class_ref 144130 // ListaICModBus
+      associated_classes
+	class_ref 129282 // PWM
       end
     end
 
-    class 144130 "ListaICModBus"
-      visibility package 
-      cpp_decl "${comment}${template}class ${name}${inherit} {
-${members}};
-${inlines}
+    artifact 144514 "Salida"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
 "
-      java_decl ""
-      php_decl ""
-      python_2_2 python_decl ""
-      idl_decl "${comment}${custom}struct ${name}{
-${inherit}
-${members}};
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      idl_src "#ifndef ${MODULE}_${NAME}_H
+#define ${MODULE}_${NAME}_H
+
+${comment}
+${includes}
+${module_start}
+${definition}
+${module_end}
+#endif
 "
-      explicit_switch_type ""
-      
+      associated_classes
+	class_ref 128514 // Salida
+      end
+    end
+
+    artifact 144642 "DecoradorSalida"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      idl_src "#ifndef ${MODULE}_${NAME}_H
+#define ${MODULE}_${NAME}_H
+
+${comment}
+${includes}
+${module_start}
+${definition}
+${module_end}
+#endif
+"
+      associated_classes
+	class_ref 138114 // DecoradorSalida
+      end
+    end
+
+    artifact 144770 "SalidaConPolaridad"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      idl_src "#ifndef ${MODULE}_${NAME}_H
+#define ${MODULE}_${NAME}_H
+
+${comment}
+${includes}
+${module_start}
+${definition}
+${module_end}
+#endif
+"
+      associated_classes
+	class_ref 138242 // SalidaConPolaridad
+      end
+    end
+
+    artifact 144898 "TPolaridad"
+      stereotype "source"
+      associated_classes
+	class_ref 139394 // TPolaridad
+      end
+    end
+
+    artifact 145026 "ISalida"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      php_src "<?php
+${comment}
+${definition}
+?>
+"
+      idl_src "#ifndef ${MODULE}_${NAME}_H
+#define ${MODULE}_${NAME}_H
+
+${comment}
+${includes}
+${module_start}
+${definition}
+${module_end}
+#endif
+"
+      associated_classes
+	class_ref 139522 // ISalida
+      end
+    end
+
+    artifact 149122 "Retransmision"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      idl_src "#ifndef ${MODULE}_${NAME}_H
+#define ${MODULE}_${NAME}_H
+
+${comment}
+${includes}
+${module_start}
+${definition}
+${module_end}
+#endif
+"
+      associated_classes
+	class_ref 129026 // Retransmision
+      end
+    end
+
+    artifact 149250 "RetransmisionConf"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      idl_src "#ifndef ${MODULE}_${NAME}_H
+#define ${MODULE}_${NAME}_H
+
+${comment}
+${includes}
+${module_start}
+${definition}
+${module_end}
+#endif
+"
+      associated_classes
+	class_ref 129154 // RetransmisionConf
+      end
+    end
+
+    artifact 156418 "IPWM"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      php_src "<?php
+${comment}
+${definition}
+?>
+"
+      idl_src "#ifndef ${MODULE}_${NAME}_H
+#define ${MODULE}_${NAME}_H
+
+${comment}
+${includes}
+${module_start}
+${definition}
+${module_end}
+#endif
+"
+      associated_classes
+	class_ref 142338 // IPWM
+      end
+    end
+
+    artifact 156546 "DecoradorPWM"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      idl_src "#ifndef ${MODULE}_${NAME}_H
+#define ${MODULE}_${NAME}_H
+
+${comment}
+${includes}
+${module_start}
+${definition}
+${module_end}
+#endif
+"
+      associated_classes
+	class_ref 142466 // DecoradorPWM
+      end
+    end
+
+    artifact 156674 "PWMPeriodoEvent"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      idl_src "#ifndef ${MODULE}_${NAME}_H
+#define ${MODULE}_${NAME}_H
+
+${comment}
+${includes}
+${module_start}
+${definition}
+${module_end}
+#endif
+"
+      associated_classes
+	class_ref 142594 // PWMPeriodoEvent
+      end
+    end
+
+    artifact 129155 "ValvulaProporcional"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      idl_src "#ifndef ${MODULE}_${NAME}_H
+#define ${MODULE}_${NAME}_H
+
+${comment}
+${includes}
+${module_start}
+${definition}
+${module_end}
+#endif
+"
+      associated_classes
+	class_ref 129283 // ValvulaProporcional
+      end
+    end
+
+    artifact 132867 "TConfPWM"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      idl_src "#ifndef ${MODULE}_${NAME}_H
+#define ${MODULE}_${NAME}_H
+
+${comment}
+${includes}
+${module_start}
+${definition}
+${module_end}
+#endif
+"
+      associated_classes
+	class_ref 128131 // TConfPWM
+      end
     end
   end
 

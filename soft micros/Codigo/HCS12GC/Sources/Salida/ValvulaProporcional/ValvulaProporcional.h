@@ -35,17 +35,10 @@ struct ValvulaProporcional{
 
   TError set_bandaMuerta(void *_self,int value);
 
-  int get_tiempoAbierto(void *_self);
-  
-  int get_LimSup_tiempoAbierto(void);
-
   int get_bandaMuerta(void *_self);
   
+  int get_LimSup_tiempoAbierto(void); 
+  
   int get_LimSup_bandaMuerta(void);
-  
-  void  ValvulaProporcional_onCheckear(void *_self);
-  
-  void ValvulaProporcional_setTipoSalida(void *_self,TipoSalida tipoSalida);
-  
-  
+    
 #endif
