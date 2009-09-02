@@ -1,19 +1,13 @@
 window_sizes 1024 712 308 710 512 82
 diagrams
-  classdiagram_ref 128002 // Alarmas
-    494 444 109 4 0 0
-  classdiagram_ref 131970 // Alarma de control
-    494 444 100 4 0 237
-  classdiagram_ref 130690 // Alarma de sensor
-    494 444 100 4 19 241
   active  classdiagram_ref 130818 // Salidas
-    710 556 100 4 60 0
+    710 556 100 4 120 0
+  classdiagram_ref 128131 // PWMs HCS12
+    564 444 100 4 0 0
   classdiagram_ref 129283 // Valvula proporcional
-    623 556 100 4 180 138
-  classdiagram_ref 128131 // salida_hc08ac
-    494 444 100 4 0 0
+    564 444 100 4 0 0
 end
-selected class_ref 129282 // PWM
+selected class_ref 142594 // PWMPeriodoEvent
 open
   class_ref 137858 // LazoControlAlSen
   class_ref 129282 // PWM
@@ -22,11 +16,13 @@ open
   class_ref 139522 // ISalida
   class_ref 142338 // IPWM
   class_ref 142466 // DecoradorPWM
+  class_ref 142594 // PWMPeriodoEvent
   class_ref 128131 // TConfPWM
   class_ref 129283 // ValvulaProporcional
-  class_ref 130435 // ConfValvulaProporcional
+  class_ref 147458 // PWMSoft
   classview_ref 130306 // System
   classview_ref 131458 // Comunicacion
+  deploymentview_ref 130434 // Salida
   deploymentview_ref 132866 // Comunicacion
   deploymentview_ref 128003 // System
 end

@@ -6,9 +6,9 @@
 
 class IPWM : public ISalida {
   public:
-  virtual unsigned char setPeriodo(int period);
+  virtual unsigned char setPeriodo(int period) = 0;
 
-  virtual int getPeriodo();
+  virtual int getPeriodo() = 0;
 
 };
 #endif
