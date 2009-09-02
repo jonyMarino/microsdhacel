@@ -1,7 +1,7 @@
 format 66
 "SD100"
-  revision 29
-  modified_by 2 "Desarrollo"
+  revision 30
+  modified_by 3 "Nicolas"
   cpp_root_dir "d:/codigo_uml/"
   idl_root_dir "d:/Jony/HCS12/Codigo generado por uml/"
 
@@ -884,7 +884,10 @@ ${members}};
 
     class 132354 "Method"
       visibility package 
-      cpp_decl ""
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
       java_decl ""
       php_decl ""
       python_2_2 python_decl ""
@@ -2240,9 +2243,9 @@ ${members}};
 	public explicit_return_type "void"
 	nparams 1
 	  param in name "metodo" type class_ref 132354 // Method
-	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}${v0}${)}${const}${volatile}${throw}${abstract};
 "
-	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
   ${body}}
 "
 	
@@ -2252,12 +2255,13 @@ ${members}};
 "
       end
 
-      operation 142210 "deletePeriodoListener"
-	public explicit_return_type ""
-	nparams 0
-	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+      operation 142210 "deletePeriodoListenermetodo"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "metodo" type class_ref 132354 // Method
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}${v0}${)}${const}${volatile}${throw}${abstract};
 "
-	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
   ${body}}
 "
 	

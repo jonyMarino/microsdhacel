@@ -1,10 +1,11 @@
 #ifndef _TCONFPWM_H
 #define _TCONFPWM_H
 
+#include "FshTypeSizes.h"
 
 typedef struct TConfPWM {
-  private:
-    unsigned int periodo;
+  public:
+    fbyte periodo;
 
 };
 #endif
