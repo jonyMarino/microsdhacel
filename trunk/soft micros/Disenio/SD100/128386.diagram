@@ -1,4 +1,4 @@
-format 66
+format 67
 
 classcanvas 128002 class_ref 129410 // ValorControl
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
@@ -107,13 +107,13 @@ relationcanvas 134786 relation_ref 144642 // <generalisation>
 end
 relationcanvas 134914 relation_ref 144770 // <directional aggregation>
   from ref 128130 z 1999 to ref 134402
-  role_a_pos 746 181 3000 no_role_b
-  multiplicity_a_pos 770 206 3000 multiplicity_b_pos 747 206 3000
+  role_a_pos 746 184 3000 no_role_b
+  multiplicity_a_pos 770 209 3000 multiplicity_b_pos 747 208 3000
 end
 relationcanvas 135170 relation_ref 144898 // <directional aggregation>
   from ref 128514 z 1999 to ref 135042
-  role_a_pos 574 183 3000 no_role_b
-  multiplicity_a_pos 598 208 3000 multiplicity_b_pos 578 208 3000
+  role_a_pos 574 186 3000 no_role_b
+  multiplicity_a_pos 598 211 3000 multiplicity_b_pos 578 209 3000
 end
 relationcanvas 135554 relation_ref 145154 // <generalisation>
   from ref 135298 z 1999 to ref 128002

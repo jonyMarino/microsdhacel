@@ -1,25 +1,30 @@
-window_sizes 1024 712 308 710 512 82
+window_sizes 1024 712 308 710 603 35
 diagrams
-  active  classdiagram_ref 130818 // Salidas
-    710 556 100 4 120 0
+  classdiagram_ref 130818 // Salidas
+    710 556 100 4 0 0
   classdiagram_ref 128131 // PWMs HCS12
-    564 444 100 4 0 0
+    710 603 100 4 0 0
   classdiagram_ref 129283 // Valvula proporcional
     564 444 100 4 0 0
+  classdiagram_ref 128002 // Alarmas
+    564 482 100 4 360 0
+  classdiagram_ref 128130 // Retransmision
+    564 482 100 4 0 0
+  classdiagram_ref 128258 // Refrigeracion
+    564 482 100 4 0 0
+  classdiagram_ref 128386 // De Valor
+    564 482 100 4 0 0
+  classdiagram_ref 130690 // Alarma de sensor
+    564 482 100 4 0 0
+  classdiagram_ref 131970 // Alarma de control
+    706 603 100 4 0 0
+  active  classdiagram_ref 135811 // Sensor
+    564 482 100 4 0 0
 end
-selected class_ref 142594 // PWMPeriodoEvent
+selected operation_ref 141699 // addOnNuevoValorListener
 open
-  class_ref 137858 // LazoControlAlSen
-  class_ref 129282 // PWM
-  class_ref 128514 // Salida
-  class_ref 138114 // DecoradorSalida
-  class_ref 139522 // ISalida
-  class_ref 142338 // IPWM
-  class_ref 142466 // DecoradorPWM
-  class_ref 142594 // PWMPeriodoEvent
-  class_ref 128131 // TConfPWM
-  class_ref 129283 // ValvulaProporcional
-  class_ref 147458 // PWMSoft
+  class_ref 136450 // Getter
+  class_ref 128386 // Sensor
   classview_ref 130306 // System
   classview_ref 131458 // Comunicacion
   deploymentview_ref 130434 // Salida
