@@ -1,6 +1,6 @@
-format 66
+format 67
 "SD100"
-  revision 30
+  revision 33
   modified_by 3 "Nicolas"
   cpp_root_dir "d:/codigo_uml/"
   idl_root_dir "d:/Jony/HCS12/Codigo generado por uml/"
@@ -96,37 +96,6 @@ format 66
     classdiagram 131970 "Alarma de control"
       draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
       size A4
-    end
-
-    class 128386 "Sensor"
-      visibility package 
-      cpp_decl "${comment}${template}class ${name}${inherit} {
-${members}};
-${inlines}
-"
-      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
-${members}}
-"
-      php_decl "${comment}${final}${visibility}${abstract}class ${name}${extends}${implements} {
-${members}}
-"
-      python_2_2 python_decl "class ${name}${inherit}:
-${docstring}${members}
-"
-      idl_decl "${comment}${custom}struct ${name}{
-${inherit}
-${members}};
-"
-      explicit_switch_type ""
-      
-      extra_member 129154 "//%-"
-	
-	cpp "" ""
-	java ""
-	php ""
-	python ""
-	idl ""
-      end
     end
 
     class 128002 "Alarma"
@@ -1048,6 +1017,20 @@ ${members}};
 "
       explicit_switch_type ""
       
+      operation 141571 "getValor"
+	public explicit_return_type "int"
+	nparams 0
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
     end
 
     class 136578 "CntrProporcionalInv"
@@ -2474,8 +2457,7 @@ ${members}};
       end
 
       attribute 144770 "puertoCierre"
-	private explicit_type ""
-	init_value "byte *"
+	private explicit_type "byte *"
 	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
 "
 	java_decl ""
@@ -2519,12 +2501,12 @@ ${members}};
       end
 
       operation 151682 "setTiempoAbierto"
-	public explicit_return_type ""
+	public explicit_return_type "uchar"
 	nparams 1
 	  param in name "tiempoAbierto" explicit_type "uint"
-	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}${v0}${)}${const}${volatile}${throw}${abstract};
 "
-	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
   ${body}}
 "
 	
@@ -2550,12 +2532,12 @@ ${members}};
       end
 
       operation 151938 "setBandaMuerta"
-	public explicit_return_type ""
+	public explicit_return_type "uchar"
 	nparams 1
 	  param in name "bandaMuerta" explicit_type "uint"
-	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}${v0}${)}${const}${volatile}${throw}${abstract};
 "
-	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
   ${body}}
 "
 	
@@ -2581,7 +2563,7 @@ ${members}};
       end
 
       operation 152194 "getLimiteSuperiorBandaMuerta"
-	class_operation public explicit_return_type ""
+	class_operation public explicit_return_type "uint"
 	nparams 0
 	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
@@ -2596,7 +2578,7 @@ ${members}};
       end
 
       operation 152322 "cerrar"
-	protected explicit_return_type ""
+	protected explicit_return_type "void"
 	nparams 0
 	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
@@ -2611,7 +2593,7 @@ ${members}};
       end
 
       operation 152450 "abrir"
-	protected explicit_return_type ""
+	protected explicit_return_type "void"
 	nparams 0
 	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
@@ -2793,10 +2775,13 @@ ${members}};
       end
 
       operation 146946 "setPotencia"
-	cpp_virtual public explicit_return_type ""
+	cpp_virtual public explicit_return_type "void"
 	nparams 1
 	  param in name "potencia" explicit_type "uint"
 	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}${v0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
 "
 	
 	
@@ -3507,6 +3492,104 @@ ${members}};
 	idl_decl "  ${comment}${type} ${name};
 "
       end
+    end
+  end
+
+  classview 128003 "Sensores"
+    //class diagram settings
+    draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
+    //collaboration diagram settings
+    show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default draw_all_relations default shadow default show_stereotype_properties default
+    //object diagram settings
+     write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default show_stereotype_properties default
+    //sequence diagram settings
+    show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default
+    //state diagram settings
+    package_name_in_tab default show_context default auto_label_position default write_trans_label_horizontally default show_trans_definition default draw_all_relations default shadow default
+    show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+    //class settings
+    //activity diagram settings
+    package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
+    show_infonote default drawing_language default show_stereotype_properties default
+    class 128386 "Sensor"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl "${comment}${final}${visibility}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      python_2_2 python_decl "class ${name}${inherit}:
+${docstring}${members}
+"
+      idl_decl "${comment}${custom}struct ${name}{
+${inherit}
+${members}};
+"
+      explicit_switch_type ""
+      
+      extra_member 129154 "//%-"
+	
+	cpp "" ""
+	java ""
+	php ""
+	python ""
+	idl ""
+      end
+
+      classrelation 135811 // <generalisation>
+	relation 135811 ---|>
+	  a public
+	    cpp default "${type}"
+	    idl "${type}"
+	    classrelation_ref 135811 // <generalisation>
+	  b parent class_ref 136450 // Getter
+      end
+
+      operation 141699 "addOnNuevoValorListener"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "metodo" type class_ref 132354 // Method
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 141827 "callOnNuevoValorListeners"
+	protected explicit_return_type "void"
+	nparams 0
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+    end
+
+    classdiagram 135811 "Sensor"
+      draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
+      size A4
+    end
+
+    classdiagram 135939 "Sensores HCS12"
+      draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
+      size A4
     end
   end
 
