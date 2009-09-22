@@ -30,7 +30,7 @@ classcanvas 130306 class_ref 130690 // LazoControl
 end
 classcanvas 130818 class_ref 128386 // Sensor
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
-  xyz 688 108 2000
+  xyz 663 2 2000
 end
 classcanvas 131586 class_ref 131842 // AdaptSalidaConf
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
@@ -38,19 +38,19 @@ classcanvas 131586 class_ref 131842 // AdaptSalidaConf
 end
 classcanvas 132610 class_ref 132098 // ValorControlConf
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
-  xyz 689 51 2000
+  xyz 354 19 2000
 end
 classcanvas 134018 class_ref 128514 // Salida
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
-  xyz 444 456 2000
+  xyz 439 384 2000
 end
 classcanvas 134402 class_ref 136450 // Getter
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
-  xyz 787 180 2000
+  xyz 731 257 2000
 end
 classcanvas 135042 class_ref 136450 // Getter
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
-  xyz 615 182 2000
+  xyz 584 245 2000
 end
 classcanvas 135298 class_ref 136578 // CntrProporcionalInv
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
@@ -87,8 +87,8 @@ relationcanvas 133890 relation_ref 134530 // <directional aggregation>
 end
 relationcanvas 134146 relation_ref 143234 // <directional aggregation>
   from ref 128642 z 1999 to ref 134018
-  role_a_pos 405 481 3000 no_role_b
-  multiplicity_a_pos 427 506 3000 multiplicity_b_pos 310 423 3000
+  role_a_pos 400 422 3000 no_role_b
+  multiplicity_a_pos 422 447 3000 multiplicity_b_pos 345 411 3000
 end
 relationcanvas 134274 relation_ref 131586 // <directional aggregation>
   from ref 130306 z 1999 to ref 128642
@@ -107,13 +107,13 @@ relationcanvas 134786 relation_ref 144642 // <generalisation>
 end
 relationcanvas 134914 relation_ref 144770 // <directional aggregation>
   from ref 128130 z 1999 to ref 134402
-  role_a_pos 746 184 3000 no_role_b
-  multiplicity_a_pos 770 209 3000 multiplicity_b_pos 747 208 3000
+  role_a_pos 748 238 3000 no_role_b
+  multiplicity_a_pos 722 238 3000 multiplicity_b_pos 704 226 3000
 end
 relationcanvas 135170 relation_ref 144898 // <directional aggregation>
   from ref 128514 z 1999 to ref 135042
-  role_a_pos 574 186 3000 no_role_b
-  multiplicity_a_pos 598 211 3000 multiplicity_b_pos 578 209 3000
+  role_a_pos 543 241 3000 no_role_b
+  multiplicity_a_pos 567 266 3000 multiplicity_b_pos 560 236 3000
 end
 relationcanvas 135554 relation_ref 145154 // <generalisation>
   from ref 135298 z 1999 to ref 128002
