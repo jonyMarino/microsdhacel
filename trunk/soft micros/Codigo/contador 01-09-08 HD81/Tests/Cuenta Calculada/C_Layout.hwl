@@ -1,0 +1,12 @@
+OPEN source 0 0 60 56
+Source < attributes MARKS off
+OPEN memory 60 0 40 56
+Memory < attributes FORMAT hex,COMPLEMENT None,WORD 1,ASC on,ADR on,ADDRESS 0x80
+OPEN data 60 56 40 44
+Data:1 < attributes SCOPE global,COMPLEMENT None,FORMAT Symb,MODE automatic,UPDATERATE 10,NAMEWIDTH 16
+OPEN data 0 56 60 44
+Data:2 < attributes SCOPE local,COMPLEMENT None,FORMAT Symb,MODE automatic,UPDATERATE 10,NAMEWIDTH 16
+bckcolor 50331647
+font 'Courier New' 9 BLACK
+AUTOSIZE on
+ACTIVATE Source Memory Data:1 Data:2 
