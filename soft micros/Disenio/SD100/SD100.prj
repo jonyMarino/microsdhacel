@@ -1,7 +1,7 @@
 format 67
 "SD100"
-  revision 33
-  modified_by 3 "Nicolas"
+  revision 36
+  modified_by 76 "Iony"
   cpp_root_dir "d:/codigo_uml/"
   idl_root_dir "d:/Jony/HCS12/Codigo generado por uml/"
 
@@ -1006,20 +1006,41 @@ ${members}};
     end
 
     class 136450 "Getter"
-      visibility package 
+      visibility package stereotype "interface"
       cpp_decl ""
-      java_decl ""
-      php_decl ""
+      java_decl "${comment}${@}${visibility}interface ${name}${extends} {
+${members}}
+"
+      php_decl "${comment}${visibility}interface ${name} {
+${members}}
+"
       python_2_2 python_decl ""
-      idl_decl "${comment}${custom}struct ${name}{
+      idl_decl "${comment}${local}struct ${name}{
 ${inherit}
-${members}};
+};
+${members}
 "
       explicit_switch_type ""
       
       operation 141571 "getValor"
 	public explicit_return_type "int"
 	nparams 0
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 129740 "print"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "os" explicit_type "uchar"
 	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
 	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
@@ -1055,14 +1076,18 @@ ${members}};
     end
 
     class 136706 "ManejadorMemoria"
-      visibility package 
-      cpp_decl ""
+      visibility package stereotype "struct"
+      cpp_decl "${comment}${template}typedef struct ${name}${inherit} {
+${members}};
+${inlines}
+"
       java_decl ""
       php_decl ""
       python_2_2 python_decl ""
-      idl_decl "${comment}${custom}struct ${name}{
-${inherit}
-${members}};
+      idl_decl "${comment}struct ${name} {
+${members}
+};
+
 "
       explicit_switch_type ""
       
@@ -1299,61 +1324,6 @@ ${members}};
 	  b parent class_ref 130690 // LazoControl
       end
 
-      classrelation 155906 // <directional composition>
-	relation 155266 *-->
-	  a role_name "" private
-	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
-"
-	    idl "  ${comment}${type} ${name};
-"
-	    classrelation_ref 155906 // <directional composition>
-	  b parent class_ref 136578 // CntrProporcionalInv
-      end
-
-      classrelation 156034 // <directional composition>
-	relation 155394 *-->
-	  a role_name "" private
-	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
-"
-	    idl "  ${comment}${type} ${name};
-"
-	    classrelation_ref 156034 // <directional composition>
-	  b parent class_ref 130434 // SalidaRetenida
-      end
-
-      classrelation 156162 // <directional composition>
-	relation 155522 *-->
-	  a role_name "" private
-	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
-"
-	    idl "  ${comment}${type} ${name};
-"
-	    classrelation_ref 156162 // <directional composition>
-	  b parent class_ref 130178 // SalidaBanda
-      end
-
-      classrelation 156290 // <directional composition>
-	relation 155650 *-->
-	  a role_name "" private
-	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
-"
-	    idl "  ${comment}${type} ${name};
-"
-	    classrelation_ref 156290 // <directional composition>
-	  b parent class_ref 129666 // CntrRelativo
-      end
-
-      classrelation 156418 // <directional composition>
-	relation 155778 *-->
-	  a role_name "" private
-	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
-"
-	    idl "  ${comment}${type} ${name};
-"
-	    classrelation_ref 156418 // <directional composition>
-	  b parent class_ref 129922 // CntrBanda
-      end
-
       classrelation 156546 // configuracion (<directional aggregation>)
 	relation 155906 o-->
 	  a role_name "configuracion" multiplicity "1" private
@@ -1363,6 +1333,151 @@ ${members}};
 "
 	    classrelation_ref 156546 // configuracion (<directional aggregation>)
 	  b multiplicity "1" parent class_ref 140930 // ConfLazoCntrAlCntr
+      end
+
+      class 141772 "AdaptadorSalidaPool"
+	visibility private stereotype "union"
+	cpp_decl "${comment}${template}union ${name} {
+${members}};
+${inlines}
+"
+	java_decl ""
+	php_decl ""
+	python_2_2 python_decl ""
+	idl_decl "${comment}union ${name} switch(${switch}) {
+${members}};
+"
+	explicit_switch_type ""
+	
+	attribute 143308 "salidaRetenida"
+	  private explicit_type "byte[sizeof(SalidaRetenida)]"
+	  cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	  java_decl ""
+	  php_decl ""
+	  python_decl ""
+	  idl_decl "  ${comment}case ${case} : ${readonly}${type} ${name};"
+	end
+
+	classrelation 141900 // <dependency>
+	  relation 141900 -_->
+	    a default
+	      cpp default "#include in source"
+	      classrelation_ref 141900 // <dependency>
+	    b parent class_ref 130434 // SalidaRetenida
+	end
+
+	classrelation 142028 // <dependency>
+	  relation 142028 -_->
+	    a default
+	      cpp default "#include in source"
+	      classrelation_ref 142028 // <dependency>
+	    b parent class_ref 130178 // SalidaBanda
+	end
+
+	attribute 143436 "salidaBanda"
+	  private explicit_type "byte[sizeof(SalidaBanda)]"
+	  cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	  java_decl ""
+	  php_decl ""
+	  python_decl ""
+	  idl_decl "  ${comment}case ${case} : ${readonly}${type} ${name};"
+	end
+      end
+
+      classrelation 142156 // adaptadorSalidaPool (<directional composition>)
+	relation 142156 *-->
+	  a role_name "adaptadorSalidaPool" multiplicity "1" private
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	    idl "  ${comment}${type} ${name};
+"
+	    classrelation_ref 142156 // adaptadorSalidaPool (<directional composition>)
+	  b multiplicity "1" parent class_ref 141772 // AdaptadorSalidaPool
+      end
+
+      class 141900 "ValorControlPool"
+	visibility private stereotype "union"
+	cpp_decl "${comment}${template}union ${name} {
+${members}};
+${inlines}
+"
+	java_decl ""
+	php_decl ""
+	python_2_2 python_decl ""
+	idl_decl "${comment}union ${name} switch(${switch}) {
+${members}};
+"
+	explicit_switch_type ""
+	
+	classrelation 142412 // <dependency>
+	  relation 142412 -_->
+	    a default
+	      cpp default "#include in source"
+	      classrelation_ref 142412 // <dependency>
+	    b parent class_ref 136578 // CntrProporcionalInv
+	end
+
+	classrelation 142540 // <dependency>
+	  relation 142540 -_->
+	    a default
+	      cpp default "#include in source"
+	      classrelation_ref 142540 // <dependency>
+	    b parent class_ref 129666 // CntrRelativo
+	end
+
+	classrelation 142668 // <dependency>
+	  relation 142668 -_->
+	    a default
+	      cpp default "#include in source"
+	      classrelation_ref 142668 // <dependency>
+	    b parent class_ref 129922 // CntrBanda
+	end
+
+	attribute 143564 "cntrProporcionalInv"
+	  private explicit_type "byte[sizeof(CntrProporcionalInv)]"
+	  cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	  java_decl ""
+	  php_decl ""
+	  python_decl ""
+	  idl_decl "  ${comment}${type} ${name};
+"
+	end
+
+	attribute 143692 "cntrRelativo"
+	  private explicit_type "byte[sizeof(CntrRelativo)]"
+	  cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	  java_decl ""
+	  php_decl ""
+	  python_decl ""
+	  idl_decl "  ${comment}${type} ${name};
+"
+	end
+
+	attribute 143820 "cntrBanda"
+	  private explicit_type "byte[sizeof(CntrBanda)]"
+	  cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	  java_decl ""
+	  php_decl ""
+	  python_decl ""
+	  idl_decl "  ${comment}${type} ${name};
+"
+	end
+      end
+
+      classrelation 142284 // valorControlPool (<directional composition>)
+	relation 142284 *-->
+	  a role_name "valorControlPool" multiplicity "1" private
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	    idl "  ${comment}${type} ${name};
+"
+	    classrelation_ref 142284 // valorControlPool (<directional composition>)
+	  b multiplicity "1" parent class_ref 141900 // ValorControlPool
       end
     end
 
@@ -1470,6 +1585,31 @@ ${members}
 "
       explicit_switch_type ""
       
+    end
+
+    class 135244 "AdaptSalidaPool"
+      visibility package stereotype "union"
+      cpp_decl "${comment}${template}union ${name} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl "${comment}union ${name} switch(${switch}) {
+${members}};
+"
+      explicit_switch_type ""
+      
+      attribute 136780 "salidaRetenida"
+	private explicit_type "byte[sizeof(SalidaRetenida)]"
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl "  ${comment}case ${case} : ${readonly}${type} ${name};"
+      end
     end
   end
 
@@ -3511,6 +3651,21 @@ ${members}};
     //activity diagram settings
     package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
     show_infonote default drawing_language default show_stereotype_properties default
+    classdiagram 135811 "Sensor"
+      draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility yes show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
+      size A4
+    end
+
+    classdiagram 135939 "Sensor Termopar PT100"
+      draw_all_relations no hide_attributes default hide_operations default show_members_full_definition default show_members_visibility yes show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
+      size A4
+    end
+
+    classdiagram 128076 "ADC HCS12"
+      draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
+      size A4
+    end
+
     class 128386 "Sensor"
       visibility package 
       cpp_decl "${comment}${template}class ${name}${inherit} {
@@ -3553,7 +3708,7 @@ ${members}};
       operation 141699 "addOnNuevoValorListener"
 	public explicit_return_type "void"
 	nparams 1
-	  param in name "metodo" type class_ref 132354 // Method
+	  param in name "metodo" explicit_type "struct Method*"
 	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
 	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
@@ -3580,16 +3735,1024 @@ ${members}};
 	idl_decl "${comment}${type} ${name}${(}_self, ${)};
 "
       end
+
+      operation 128076 "deleteOnNuevoValorListener"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "method" explicit_type "struct Method *"
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 128204 "getDecimales"
+	public explicit_return_type "uchar"
+	nparams 0
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 128332 "getEstado"
+	public return_type class_ref 128076 // TSensorState
+	nparams 0
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      class 128076 "TSensorState"
+	visibility public stereotype "enum"
+	cpp_decl "${comment}enum ${name} {
+${items}
+};
+"
+	java_decl "${comment}${@}${visibility}${final}${abstract}enum ${name}${implements} {
+${items};
+${members}}
+"
+	php_decl "${comment}${visibility}final class ${name} {
+${items}}
+"
+	python_2_2 python_decl "class ${name}:
+${docstring}${members}
+"
+	idl_decl "${comment}enum ${name} {
+${items}};
+"
+	explicit_switch_type ""
+	
+	attribute 128076 "SENSOR_OK"
+	  public type class_ref 128076 // TSensorState
+	  cpp_decl "  ${name}${value},${comment}"
+	  java_decl ""
+	  php_decl ""
+	  python_decl ""
+	  idl_decl "${name},${comment}"
+	end
+
+	attribute 128204 "SENSOR_OF"
+	  public type class_ref 128076 // TSensorState
+	  cpp_decl "  ${name}${value},${comment}"
+	  java_decl ""
+	  php_decl ""
+	  python_decl ""
+	  idl_decl "${name},${comment}"
+	end
+
+	attribute 128332 "SENSOR_UF"
+	  public type class_ref 128076 // TSensorState
+	  cpp_decl "  ${name}${value},${comment}"
+	  java_decl ""
+	  php_decl ""
+	  python_decl ""
+	  idl_decl "${name},${comment}"
+	end
+      end
+
+      operation 128460 "getLimiteInferior"
+	public explicit_return_type "int"
+	nparams 0
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 128588 "getLimiteSuperior"
+	public explicit_return_type "int"
+	nparams 0
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
     end
 
-    classdiagram 135811 "Sensor"
-      draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
-      size A4
+    class 128204 "SensorTermoPT100"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl "${comment}${custom}struct ${name}{
+${inherit}
+${members}};
+"
+      explicit_switch_type ""
+      
+      classrelation 128076 // <generalisation>
+	relation 128076 ---|>
+	  a public
+	    cpp default "${type}"
+	    idl "${type}"
+	    classrelation_ref 128076 // <generalisation>
+	  b parent class_ref 128386 // Sensor
+      end
+
+      class 128332 "TConfSensor"
+	visibility package stereotype "struct"
+	cpp_decl "${comment}${template}typedef struct {
+${members}}${name};
+${inlines}
+"
+	java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+	php_decl "${comment}${final}${visibility}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+	python_2_2 python_decl "class ${name}${inherit}:
+${docstring}${members}
+"
+	idl_decl "${comment}struct ${name} {
+${members}
+};
+
+"
+	explicit_switch_type ""
+	
+	attribute 128460 "sensor"
+	  public type class_ref 128258 // fbyte
+	  cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	  java_decl ""
+	  php_decl ""
+	  python_decl ""
+	  idl_decl "  ${comment}${readonly}${attribute}${type} ${name};
+"
+	end
+
+	attribute 128716 "filtro"
+	  public type class_ref 128258 // fbyte
+	  cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	  java_decl ""
+	  php_decl ""
+	  python_decl ""
+	  idl_decl "  ${comment}${readonly}${attribute}${type} ${name};
+"
+	end
+
+	attribute 128844 "offset"
+	  public explicit_type "int"
+	  cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	  java_decl ""
+	  php_decl ""
+	  python_decl ""
+	  idl_decl "  ${comment}${readonly}${attribute}${type} ${name};
+"
+	end
+
+	attribute 128972 "ganancia"
+	  public explicit_type "int"
+	  cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	  java_decl ""
+	  php_decl ""
+	  python_decl ""
+	  idl_decl "  ${comment}${readonly}${attribute}${type} ${name};
+"
+	end
+
+	attribute 129100 "ceroTermopar"
+	  public explicit_type "int"
+	  cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	  java_decl ""
+	  php_decl ""
+	  python_decl ""
+	  idl_decl "  ${comment}${readonly}${attribute}${type} ${name};
+"
+	end
+
+	attribute 129228 "gananciaTermopar"
+	  public explicit_type "int"
+	  cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	  java_decl ""
+	  php_decl ""
+	  python_decl ""
+	  idl_decl "  ${comment}${readonly}${attribute}${type} ${name};
+"
+	end
+
+	attribute 129356 "ceroPT100"
+	  public explicit_type "int"
+	  cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	  java_decl ""
+	  php_decl ""
+	  python_decl ""
+	  idl_decl "  ${comment}${readonly}${attribute}${type} ${name};
+"
+	end
+
+	attribute 129484 "gananciaPT100"
+	  public explicit_type "int"
+	  cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	  java_decl ""
+	  php_decl ""
+	  python_decl ""
+	  idl_decl "  ${comment}${readonly}${attribute}${type} ${name};
+"
+	end
+      end
+
+      classrelation 128204 // manejadorMemoria (<directional aggregation>)
+	relation 128204 o-->
+	  a role_name "manejadorMemoria" multiplicity "1" private
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    idl "  ${comment}${type} ${name};
+"
+	    classrelation_ref 128204 // manejadorMemoria (<directional aggregation>)
+	  b multiplicity "1" parent class_ref 136706 // ManejadorMemoria
+      end
+
+      classrelation 128332 // configuracion (<directional aggregation>)
+	relation 128332 o-->
+	  a role_name "configuracion" multiplicity "1" private
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    idl "  ${comment}${type} ${name};
+"
+	    classrelation_ref 128332 // configuracion (<directional aggregation>)
+	  b multiplicity "1" parent class_ref 128332 // TConfSensor
+      end
+
+      attribute 129612 "valor"
+	private explicit_type "int"
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl "  ${comment}${type} ${name};
+"
+      end
+
+      attribute 129740 "bufferFiltro"
+	private explicit_type "long"
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl "  ${comment}${type} ${name};
+"
+      end
+
+      attribute 129868 "estado"
+	private type class_ref 128076 // TSensorState
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl "  ${comment}${type} ${name};
+"
+      end
+
+      operation 128716 "SensorTermoPT100"
+	public explicit_return_type ""
+	nparams 3
+	  param in name "_adc" type class_ref 128460 // IAdc
+	  param in name "_conf" type class_ref 128332 // TConfSensor
+	  param in name "_manejadorMemoria" type class_ref 136706 // ManejadorMemoria
+	cpp_decl "  ${comment}${inline}${name}${(}const ${t0} & ${p0}${v0}, const ${t1} & ${p1}${v1}, const struct ${t2} & ${p2}${v2}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}const ${t0} & ${p0}, const ${t1} & ${p1}, const struct ${t2} & ${p2}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}factory init_${name}${(}_self, ${)};
+"
+      end
+
+      operation 128844 "getDecimales"
+	public explicit_return_type "uchar"
+	nparams 0
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 128972 "getEstado"
+	public return_type class_ref 128076 // TSensorState
+	nparams 0
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 129100 "getLimiteInferior"
+	public explicit_return_type "int"
+	nparams 0
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 129228 "getLimiteSuperior"
+	public explicit_return_type "int"
+	nparams 0
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 129356 "getValor"
+	public explicit_return_type "int"
+	nparams 0
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 129484 "checkADC"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param in name "_self" explicit_type "void*"
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+	comment "reesmplazo de SenTPT_Handler"
+      end
+
+      operation 129612 "procesar"
+	private explicit_return_type "void"
+	nparams 0
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 129868 "print"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "os" explicit_type "uchar"
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 129996 "getSensor"
+	public return_type class_ref 128258 // fbyte
+	nparams 0
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 130124 "setSensor"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "sensor" type class_ref 128258 // fbyte
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 130252 "getLimSupSensor"
+	public return_type class_ref 128258 // fbyte
+	nparams 0
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 130380 "onSensorChange"
+	private explicit_return_type ""
+	nparams 0
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 130508 "getDecimales"
+	public return_type class_ref 128258 // fbyte
+	nparams 0
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 130636 "getFiltro"
+	public explicit_return_type "byte"
+	nparams 0
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 130764 "setFiltro"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "filtro" explicit_type "byte"
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 137292 "getOffset"
+	public explicit_return_type "int"
+	nparams 0
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 137420 "setOffset"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "valor" explicit_type "int"
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 137548 "getGanancia"
+	public explicit_return_type "int"
+	nparams 0
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 137676 "setGanancia"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "valor" explicit_type "int"
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 137804 "getCeroTermopar"
+	public explicit_return_type "int"
+	nparams 0
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 137932 "setCeroTermopar"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "valor" explicit_type "int"
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 138060 "getGananciaTermopar"
+	public explicit_return_type "int"
+	nparams 0
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 138188 "setGananciaTermopar"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "valor" explicit_type "int"
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 138316 "getCeroPT100"
+	public explicit_return_type "int"
+	nparams 0
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 138444 "setCeroPT100"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "valor" explicit_type "int"
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 138572 "getGananciaPT100"
+	public explicit_return_type "int"
+	nparams 0
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 138700 "setGananciaPT100"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "valor" explicit_type "int"
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 138828 "getAjusteTemperaturaAmbiente"
+	public explicit_return_type "int"
+	nparams 0
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 138956 "setAjusteTemperaturaAmbiente"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "valor" explicit_type "int"
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 139084 "getTiempoMuestreo"
+	public explicit_return_type "int"
+	nparams 0
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      classrelation 135244 // <generalisation>
+	relation 135244 ---|>
+	  a public
+	    cpp default "${type}"
+	    idl "${type}"
+	    classrelation_ref 135244 // <generalisation>
+	  b parent class_ref 134988 // Adc
+      end
     end
 
-    classdiagram 135939 "Sensores HCS12"
-      draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
-      size A4
+    class 128460 "IAdc"
+      visibility package stereotype "interface"
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl "${comment}${@}${visibility}interface ${name}${extends} {
+${members}}
+"
+      php_decl "${comment}${visibility}interface ${name} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl "${comment}${local}struct ${name}{
+${inherit}
+};
+${members}
+"
+      explicit_switch_type ""
+      
+      classrelation 135116 // <generalisation>
+	relation 135116 ---|>
+	  a public
+	    cpp default "${type}"
+	    idl "${type}"
+	    classrelation_ref 135116 // <generalisation>
+	  b parent class_ref 136450 // Getter
+      end
+
+      operation 139212 "isNewVal"
+	public explicit_return_type "bool"
+	nparams 0
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 139340 "getState"
+	public return_type class_ref 135116 // AD_State
+	nparams 0
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      class 135116 "AD_State"
+	visibility package stereotype "enum"
+	cpp_decl "${comment}enum ${name} {
+${items}
+};
+"
+	java_decl "${comment}${@}${visibility}${final}${abstract}enum ${name}${implements} {
+${items};
+${members}}
+"
+	php_decl "${comment}${visibility}final class ${name} {
+${items}}
+"
+	python_2_2 python_decl "class ${name}:
+${docstring}${members}
+"
+	idl_decl "${comment}enum ${name} {
+${items}};
+"
+	explicit_switch_type ""
+	
+	attribute 136396 "AD_CONVERTING"
+	  public type class_ref 135116 // AD_State
+	  cpp_decl "  ${name}${value},${comment}"
+	  java_decl ""
+	  php_decl ""
+	  python_decl ""
+	  idl_decl "${name},${comment}"
+	end
+
+	attribute 136524 "AD_WAITING"
+	  public type class_ref 135116 // AD_State
+	  cpp_decl "  ${name}${value},${comment}"
+	  java_decl ""
+	  php_decl ""
+	  python_decl ""
+	  idl_decl "${name},${comment}"
+	end
+      end
+    end
+
+    class 134988 "Adc"
+      visibility package stereotype "implementationClass"
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl "${comment}${custom}struct ${name}{
+${inherit}
+${members}};
+"
+      explicit_switch_type ""
+      
+      classrelation 134988 // <generalisation>
+	relation 134988 ---|>
+	  a public
+	    cpp default "${type}"
+	    idl "${type}"
+	    classrelation_ref 134988 // <generalisation>
+	  b parent class_ref 128460 // IAdc
+      end
+
+      operation 139468 "isNewVal"
+	public explicit_return_type "bool"
+	nparams 0
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 139596 "getState"
+	public return_type class_ref 135116 // AD_State
+	nparams 0
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 139724 "getValor"
+	public explicit_return_type "int"
+	nparams 0
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      operation 139852 "print"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "os" explicit_type "uchar"
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}${type} ${name}${(}_self, ${)};
+"
+      end
+
+      attribute 136652 "pin"
+	private explicit_type "byte"
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl "  ${comment}${type} ${name};
+"
+      end
+
+      operation 139980 "Adc"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "_pin" explicit_type "byte"
+	cpp_decl "  ${comment}${inline}${name}${(}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	idl_decl "${comment}factory init_${name}${(}_self, ${)};
+"
+      end
     end
   end
 
@@ -4838,6 +6001,39 @@ ${module_end}
 "
       associated_classes
 	class_ref 131587 // TipoSalida
+      end
+    end
+
+    artifact 128076 "AdaptSalidaPool"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      idl_src "#ifndef ${MODULE}_${NAME}_H
+#define ${MODULE}_${NAME}_H
+
+${comment}
+${includes}
+${module_start}
+${definition}
+${module_end}
+#endif
+"
+      associated_classes
+	class_ref 135244 // AdaptSalidaPool
       end
     end
   end

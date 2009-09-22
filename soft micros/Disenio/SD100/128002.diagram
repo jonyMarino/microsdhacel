@@ -6,15 +6,15 @@ classcanvas 128002 class_ref 128002 // Alarma
 end
 classcanvas 128130 class_ref 128130 // AlarmaConf
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity yes show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties yes
-  xyz 370.02 73.85 2000
+  xyz 559.02 123.85 2000
 end
 classcanvas 128131 class_ref 129154 // RetransmisionConf
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
-  xyz 454.68 496.32 2000
+  xyz 403.68 491.32 2000
 end
 classcanvas 128514 class_ref 128386 // Sensor
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
-  xyz 254.8 85.44 2000
+  xyz 275.8 10.44 2000
 end
 classcanvas 129666 class_ref 128770 // AlarmaControl
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
@@ -22,19 +22,19 @@ classcanvas 129666 class_ref 128770 // AlarmaControl
 end
 classcanvas 130178 class_ref 129026 // Retransmision
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
-  xyz 571.32 355.88 2005
+  xyz 487.32 366.88 2005
 end
 classcanvas 131586 class_ref 129282 // PWM
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
-  xyz 71.91 85.41 2000
+  xyz 59.91 50.41 2000
 end
 classcanvas 136578 class_ref 130690 // LazoControl
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
-  xyz 474.68 353.92 2000
+  xyz 390.68 364.92 2000
 end
 classcanvas 140034 class_ref 132610 // Lazo
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
-  xyz 517.72 222.12 2000
+  xyz 396.72 236.12 2000
 end
 classcanvas 141058 class_ref 128898 // Control
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
@@ -46,15 +46,15 @@ classcanvas 141314 class_ref 133890 // AlarmaSensor
 end
 classcanvas 142594 class_ref 129154 // RetransmisionConf
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
-  xyz 522.16 68.24 2000
+  xyz 717.16 48.24 2000
 end
 classcanvas 144386 class_ref 128386 // Sensor
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
-  xyz 714.4 297.76 2000
+  xyz 657.4 217.76 2000
 end
 classcanvas 144514 class_ref 128514 // Salida
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
-  xyz 695.24 450.56 2000
+  xyz 611.24 461.56 2000
 end
 classcanvas 148098 class_ref 137986 // ConfLazoCntrlAlSen
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
@@ -78,8 +78,8 @@ classcanvas 149634 class_ref 140930 // ConfLazoCntrAlCntr
 end
 relationcanvas 128259 relation_ref 129026 // <directional aggregation>
   from ref 130178 z 1999 to ref 128131
-  role_a_pos 558 477 3000 no_role_b
-  multiplicity_a_pos 532 477 3000 multiplicity_b_pos 591 418 3000
+  role_a_pos 500 472 3000 no_role_b
+  multiplicity_a_pos 474 472 3000 multiplicity_b_pos 512 429 3000
 end
 relationcanvas 128387 relation_ref 128770 // <directional aggregation>
   from ref 129666 z 1999 to ref 141058
@@ -103,8 +103,8 @@ relationcanvas 141442 relation_ref 137858 // <generalisation>
 end
 relationcanvas 143362 relation_ref 139522 // <directional composition>
   from ref 128130 z 1999 to ref 142594
-  role_a_pos 475 89 3000 no_role_b
-  multiplicity_a_pos 505 114 3000 multiplicity_b_pos 456 113 3000
+  role_a_pos 670 87 3000 no_role_b
+  multiplicity_a_pos 700 112 3000 multiplicity_b_pos 645 144 3000
 end
 relationcanvas 146178 relation_ref 146434 // <generalisation>
   from ref 130178 z 1999 to ref 140034
@@ -113,16 +113,16 @@ relationcanvas 146178 relation_ref 146434 // <generalisation>
 end
 relationcanvas 146306 relation_ref 146562 // <directional aggregation>
   from ref 130178 z 1999 to ref 144514
-  role_a_pos 698 431 3000 no_role_b
-  multiplicity_a_pos 672 431 3000 multiplicity_b_pos 651 418 3000
+  role_a_pos 614 442 3000 no_role_b
+  multiplicity_a_pos 588 442 3000 multiplicity_b_pos 567 429 3000
 end
 relationcanvas 146434 relation_ref 146690 // <directional aggregation>
   from ref 130178 z 1999 to ref 144386
-  role_a_pos 669 333 3000 no_role_b
-  multiplicity_a_pos 697 358 3000 multiplicity_b_pos 713 362 3000
+  role_a_pos 612 310 3000 no_role_b
+  multiplicity_a_pos 640 335 3000 multiplicity_b_pos 611 367 3000
 end
 relationcanvas 146562 relation_ref 146818 // <dependency>
-  from ref 140034 z 1999 to point 737 265
+  from ref 140034 z 1999 to point 653 276
   line 146690 z 1999 to ref 144386
   no_role_a no_role_b
   no_multiplicity_a no_multiplicity_b
@@ -139,8 +139,8 @@ relationcanvas 146946 relation_ref 148098 // <dependency>
 end
 relationcanvas 148482 relation_ref 153986 // <directional aggregation>
   from ref 128002 z 1999 to ref 128130
-  role_a_pos 293 110 3000 no_role_b
-  multiplicity_a_pos 353 135 3000 multiplicity_b_pos 312 193 3000
+  role_a_pos 482 145 3000 no_role_b
+  multiplicity_a_pos 542 170 3000 multiplicity_b_pos 312 238 3000
 end
 relationcanvas 148738 relation_ref 154114 // <directional composition>
   from ref 148610 z 2009 to ref 148098
