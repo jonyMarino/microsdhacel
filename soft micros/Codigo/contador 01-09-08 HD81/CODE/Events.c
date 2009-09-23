@@ -25,7 +25,6 @@
 
 
 #include "Cpu.h"
-#include "Event.h"
 #include "Events.h"
 #include "BoxesStruct.h"
 #include "Masks.h"
@@ -33,7 +32,6 @@
 #include "display.h"
 #include "IFsh10.h"
 #include "FormasConteo.h"
-#include "Comunicacion.h"
 
 #ifdef TEST_CUENTA_CALCULADA
   #undef vx1_GetVal
@@ -107,7 +105,7 @@ void TI2_OnInterrupt(void)
   static byte pwsn;
   static bool PwsnError;
   extern bool led[2];
-  extern bool AS1_Tx;  
+    
  Cpu_EnableInt();
  #ifdef TEST_MODE
  PP4_SetVal();
@@ -126,14 +124,11 @@ void TI2_OnInterrupt(void)
   if(CNT1_RTI)
      CNT1_RTI--;
   
-  //////////////Comunicacion////////////////////////////
-    
-    if(ASespera)	        // evito dar la vuelta
-      ASespera--;		        //decremento contador de la comunicacion
-	  else if (Step)
-	    Step=0; // error (recibimiento parcial de un mensaje)
-	  else if (AS1_Tx)
-	    ModBus_Send();
+  if(ASespera)	        // evito dar la vuelta
+    ASespera--;		      //decremento contador de la comunicacion
+	else if (Step)
+	  Step=0; // error (recibimiento parcial de un mensaje)
+
 
   
   if(screen_cont!=MAIN_TEXT_PERIOD)			//Contador para mostrar diferentes cosas en pantalla

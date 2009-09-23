@@ -11,8 +11,6 @@
 #include "Masks.h"
 #include "TECLAS3.h"
 #include "Mensajes.h"
-#include "Display1.h"
-#include "Display2.h"
 /////////////LEDS//////////////////////
 extern bool Date_EnUser;
 ///////////////////////////////////
@@ -35,6 +33,7 @@ extern word CNT1_RTI;
 /* variables de uso temporal por los boxes cuando se activan */
 bool FstTime=TRUE;	/* set cuando se ejecuto al menos una vez el procesador */
 
+char paso;
 
 /* Drivers para simular el hardware */
 /************************************/
@@ -45,6 +44,10 @@ extern char	DigitoParpadeante;
 void Exit(void);					 // Salir a pantalla principal
 void Salir_num(char RF);	 // Salir por toque rapido o sostenido en pantalla numérica
 void A_Cod(long Numero);
+
+ void CodHandler(void);
+
+
 void A_ResetTot(byte number);
 void A_ModoCuenta(byte Modo);
 void ResetCuenta(void);
@@ -60,7 +63,10 @@ void A_Adquiriendo (void); // Accion al poner si o no en el adquisidor
          
 void TitleHandler(void){
 		
-	
+ CodHandler();
+
+if(!paso){
+  
 // Primer Ingreso
 	if (FstTime){					// es la primera vez que ingresa??
 		FstTime=FALSE;			// sacar primera vez
@@ -98,10 +104,12 @@ void TitleHandler(void){
 // EXIT 
 
 	if (KeyEdge== 'k') Exit();	 // Boton de Exit
+
+}
 }
 
 
-     
+
 
 /* Procesador de los boxes de Estado*/
 /************************************/
@@ -446,6 +454,7 @@ static long incrementador,Digito;
       incrementador=1;
     }
     KeyEdge=' ';							//Borrar tecla presionada
+    
   }
 
 /* proceso tecla UP */
@@ -469,7 +478,7 @@ static long incrementador,Digito;
 	  cont= SCROLL*4;
 	  Pasar_Numero(ValorTmpNum,0); // Mostrar DisplaySup
 		KeyEdge=' ';							//Borrar tecla presionada
-
+   
 	}
 																						
 
@@ -714,21 +723,49 @@ void A_ResetTot(byte number){
   switch (number){
     case 0:
            TotCuenta=0;
-           OverflowFlags&= ~OF_TOT1_MASK;
+           OverflowFlags&= ~OF_TOT1_MASK;      //0x FE
            ContFlags&= ~ TOT_CNT_STOP_MASK;
            PreTotalizador=-Cnt_getCuenta(); 
             break;
     case 1:
     			TotOnSPP=0;
-          OverflowFlags&= ~OF_TOT2_MASK; 
+          OverflowFlags&= ~OF_TOT2_MASK;       //0x FD
           ContFlags&= ~ TOT_ON_SPP_STOP_MASK;
   }
 }
 
+
+
+/*
 void A_Cod(long Numero){
   if (!(Numero==SetC) && !(Numero==2602))
   PtrTmp=&B_Principal1.DirProc; 
 }
+
+*/
+
+
+void CodHandler(void){
+
+  //NumHandlerRam();
+ //if(KeyEdge =='f'){
+ 
+ 
+  if (!(ValorTmpNum==SetC) && !(ValorTmpNum==2602)){
+    DigitoParpadeante=NO_DIGIT;
+	  PtrTmp=&B_Principal1.DirProc;											//Volver a la pantalla principal
+	  FstTime=TRUE;
+	  paso = 1;
+  } else paso = 0;
+ 
+ 
+ //} 
+
+
+}
+
+
+
 #ifdef adquisidor
 void A_Adquiriendo(void)
 {

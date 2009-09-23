@@ -5,6 +5,7 @@
 #include "PE_Types.h"
 #include "FormasConteo.h"
 #include "BoxesStruct.h"
+#include "boxes.h"
 #pragma STRING_SEG DEFAULT
 
 
@@ -19,7 +20,6 @@ long PreTotalizador;
 byte ContFlags;
 byte OverflowFlags;
 word OverFlows;
-static int cero = 0;
 #pragma DATA_SEG DEFAULT
 long ValProc,ValDisp;
 
@@ -42,6 +42,7 @@ volatile const long PulsosXvuelta;
 volatile const byte Sensor[1]=TRANSISTOR;
 volatile const ModoSetPoint[2];
 volatile const byte ModoRele[2];
+
 volatile const byte RPM;
 #pragma CONST_SEG DEFAULT
 ///VARIABLES EXTERNAS QUE UTILIZAN LOS BOXES //////////////
@@ -68,7 +69,7 @@ const long Lim_2006 = 2006;
 const long Lim_2099 = 2099;
 #endif
 
-
+extern void CodHandler(void);
 
 #ifdef TEST_MODE
 extern long Entries;
@@ -106,6 +107,7 @@ const Numerico B_TOT1;
 const Numerico B_TOT2;								
 /*Cod*/
 const Numerico B_Codigo;
+
 /*Conf*/
 const Titulo B_Configuracion;
 const Textual B_TipoSensor1;
@@ -121,7 +123,8 @@ const Numerico B_PuntoDecimal1;
 const Numerico B_FactorEscala1;
 const Numerico B_FactorEscala2;
 
-#if !defined(_UN_SET_POINT)
+//#if !defined(_UN_SET_POINT)
+#ifndef  _UN_SET_POINT
 /*Entrada Set Point Auxiliar*/
 const Textual Box_EntradaSPA;
 /*Accion del Set Point Auxiliar*/
@@ -174,7 +177,7 @@ const Numerico B_Principal1={
 const Numerico B_TOT1={
       Num_realtime_Handler,					/* funcion que procesa al box*/
       &TotCuenta,					    /* direccion en la E2Prom - el EEProm Start, if FALSE no guarda valor*/
-			"tot  1",							        /* texto del titulo */
+			"tot cu",							        /* texto del titulo */
 			0,											      // pos punto dec
 			&Lim_0, &Lim_999999,					// limites
 			NULL,									        // Parametro que modifica
@@ -231,13 +234,19 @@ const Numerico B_SP2={
 /**********/
 
 const Numerico B_Codigo={
-      NumHandlerRam,				        /* funcion que procesa al box*/
+     NumHandlerRam,				        /* funcion que procesa al box*/
+       
+     // CodHandler,
+
+
       &Lim_0,						            /* direccion en la E2Prom - el EEProm Start, if FALSE no guarda valor*/
 			"Cod   ",				              // nombre display
 			0,								            /* punto decimal a enc */
 			&Lim_0, &Lim_9999,					  // limites
 			NULL,						              // parametro que modifica.
 			NULL,&B_Configuracion.DirProc	// Proximos estados en bl1, primero toque rápido luego toque prolongado
+			
+			
 			};
 			
 						
@@ -329,17 +338,19 @@ const Textual B_Rele1=
       {
       TxtHandler,						        // funcion que procesa al box
 			#ifdef _UN_SET_POINT
-      (byte*)&ModoRele[1],          // direccion en la E2Prom /
+      (byte*)&ModoRele[0],          // direccion en la E2Prom /
       #else
-      (byte*)&ModoRele[0],				  /* direccion en la E2Prom - el EEProm Start, if FALSE no guarda valor*/
+     //(byte*)&ModoRele[1],				  /* direccion en la E2Prom - el EEProm Start, if FALSE no guarda valor*/
+		  (byte*)&ModoRele[0],
 			#endif
 			"reLe 1",									    // nombre display
 			2,											      // Cantidad de textos validos
 			&DESPEGUE_RELE[0],            // Array donde estan los textos
 			#ifdef _UN_SET_POINT
-      (byte*)&ModoRele[1],          // direccion en la E2Prom /
+      (byte*)&ModoRele[0],          // direccion en la E2Prom /
       #else
-      (byte*)&ModoRele[0],				  /* direccion en la E2Prom - el EEProm Start, if FALSE no guarda valor*/
+      //(byte*)&ModoRele[1],				  /* direccion en la E2Prom - el EEProm Start, if FALSE no guarda valor*/
+		  (byte*)&ModoRele[0],
 			#endif
 			NEXT_RELE1,NULL					      //Proximos estados
 			};
@@ -430,19 +441,23 @@ const Textual B_ModoCuenta2={
 			2,											      // Cantidad de textos validos
 			&MODO_CUENTA2[0],             // Array donde estan los textos
 			NULL,						              // parametro que modifica.
-			#if !defined(_UN_SET_POINT)
+		//	#if !defined(_UN_SET_POINT)
+			
+			#ifndef _UN_SET_POINT
 			  (PunteroF*)&Box_EntradaSPA.DirProc,NULL	// Proximos estados
 			#else
 			  (PunteroF*)&B_PuntoDecimal1.DirProc,NULL	// Proximos estados
 			#endif
 			};  
 
-#if !defined(_UN_SET_POINT)
+//#if !defined(_UN_SET_POINT)
+
+#ifndef _UN_SET_POINT
 /*Entrada Set Point Auxiliar*/
 extern volatile const TModoSP_Auxiliar ModoSP_Auxiliar;
 static const char strs_EntradaSPA[3][7]={
       "CuEnta",
-      "tot1  ",									
+      "tot cu",									
 			"tot2  "
 };
 
@@ -540,7 +555,7 @@ const Textual B_ResetTot1=
       {
       TxtHandlerRam,						// funcion que procesa al box
 			(byte*)&Lim_0,            // direccion en la E2Prom /
-			"tot  1",									//nombre display
+			"tot cu",									//nombre display
 			2,											//Cantidad de textos validos
 			&RESET[0],             // Array donde estan los textos
 			NULL,						 //parametro que modifica.

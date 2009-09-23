@@ -29,8 +29,10 @@ extern long PreTotalizador;
 extern long ValProc;
 extern bool led[2];
 extern volatile const ModoSetPoint[2];
+extern volatile const long SP_Auxiliar;
 
 void StopCmpValSPA(void);
+void ContinueCmpValSPA(void);
 /*
 ** ===================================================================
 **     Method      :  FormasConteo_Contador (bean PE_Timer)
@@ -43,8 +45,8 @@ extern long TotCuenta;
 extern long TotOnSPP;
 extern byte DebounceTime;
 extern long Cuenta;
-
 extern byte Sensor[1];
+char flag_TotCuSetUP_SPA;
 
 
 /***********Cuenta****************/
@@ -147,24 +149,58 @@ void StopCmpValSPA(void){
    switch(ModoSP_Auxiliar){
     case MODO_SPA_TOT_CUENTA:
         ContFlags|= TOT_CNT_STOP_MASK;
+        if(TotCuenta>=SP_Auxiliar){
+          //PreTotalizador = SP_Auxiliar;
+          flag_TotCuSetUP_SPA = 1;
+        }
+        else {
+          flag_TotCuSetUP_SPA = 0;
+          //PreTotalizador = 0;
+        }
       break;
     case MODO_SPA_TOT_ON_SPP:
         ContFlags|= TOT_ON_SPP_STOP_MASK;
+        if(TotOnSPP>=SP_Auxiliar) 
+        flag_TotCuSetUP_SPA = 1;
+      else flag_TotCuSetUP_SPA = 0;  
       break;     
    }
 }
+
+
+void ContinueCmpValSPA(void) {         
+  switch(ModoSP_Auxiliar){
+    case MODO_SPA_TOT_CUENTA:
+      if(TotCuenta>SP_Auxiliar) 
+        flag_TotCuSetUP_SPA = 1;
+      else flag_TotCuSetUP_SPA = 0; 
+      break;
+    case MODO_SPA_TOT_ON_SPP:
+       if(TotOnSPP>SP_Auxiliar) 
+        flag_TotCuSetUP_SPA = 1;
+      else flag_TotCuSetUP_SPA = 0;  
+      break;     
+   }
+
+
+}
+
 
 void Cnt_OnValEqualToSPA(void){
   if(ModoSP_Auxiliar!=MODO_SPA_CUENTA)	 
   	 switch(AccionSPA){
   	  case ACCION_CONTINUE:
-  	 //   ContFlags&=~SPA_MASK;
+  	   // ContFlags&=~SPA_MASK;
+  	    ContinueCmpValSPA();
   	    break;
       case ACCION_STOP:
         StopCmpValSPA();
+        //flag_TotCuSetUP_SPA = 0;
+        break;
       case ACCION_AUTO_RESET:
   	   Cnt_clrValCmpSPA();
   	   ContFlags&=~SPA_MASK;
+  	   flag_TotCuSetUP_SPA = 0;
   	   break;
   	  
   	 }

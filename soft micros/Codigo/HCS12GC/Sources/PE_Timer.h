@@ -42,7 +42,7 @@ void PE_Timer_LngMul(dword va1, dword va2, dlong *var);
 ** ===================================================================
 */
 
-bool PE_Timer_LngHi2(dword Low, dword High, word *Out);
+bool PE_Timer_LngHi3(dword Low, dword High, word *Out);
 /*
 ** ===================================================================
 **     Method      :  PE_Timer_LngHi2 (bean PE_Timer)

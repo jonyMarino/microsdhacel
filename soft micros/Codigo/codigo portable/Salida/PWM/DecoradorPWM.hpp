@@ -10,9 +10,9 @@
  */
 class DecoradorPWM : public DecoradorSalida, public IPWM {
   public:
-  virtual unsigned char setPeriodo(int period);
+  virtual unsigned char setPeriodo(TPeriod period);
 
-  virtual int getPeriodo();
+  virtual TPeriod getPeriodo();
 
 };
 #endif

@@ -1,5 +1,5 @@
-#ifndef _SALIDA_H
-#define _SALIDA_H
+#ifndef _SALIDA_HPP
+#define _SALIDA_HPP
 
 
 #include "ISalida.hpp"
@@ -14,11 +14,11 @@ class Salida : public ISalida {
   public:
    void Salida_setPotencia(unsigned int potencia);
 
-  bool getConectada();
+   bool getConectada();
 
    void setConectada(unsigned int conectada);
 
-  virtual unsigned int getPotencia();
+   virtual unsigned int getPotencia();
 
 
   protected:

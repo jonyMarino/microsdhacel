@@ -34,7 +34,7 @@ const struct PromBkpClass RamSimulaFlash={
 ** ===================================================================
 */
 byte RamSimulaFlash_setWord(void* self,word*Address,word valor){
-  struct RamSimulaFlash * _f=self;
+  struct RamSimulaFlash * _f=(struct RamSimulaFlash *)self;
   
   *Address = valor;
   
@@ -47,7 +47,7 @@ byte RamSimulaFlash_setWord(void* self,word*Address,word valor){
 ** ===================================================================
 */
 word RamSimulaFlash_getWord(void*self,word*direccion){
-  struct RamSimulaFlash * _f=self;
+  struct RamSimulaFlash * _f=(struct RamSimulaFlash *)self;
 
   return *direccion;
 
@@ -60,8 +60,9 @@ word RamSimulaFlash_getWord(void*self,word*direccion){
 **    Description : 
 ** ===================================================================
 */
-void *RamSimulaFlash_grabarProm(void*self){
-  struct RamSimulaFlash * _f=self;
+void * RamSimulaFlash_grabarProm(void*self){
+  struct RamSimulaFlash * _f=(struct RamSimulaFlash *)self;
+  return NULL;
 }
 /*
 ** ===================================================================
@@ -70,7 +71,7 @@ void *RamSimulaFlash_grabarProm(void*self){
 ** ===================================================================
 */
 byte RamSimulaFlash_borrarProm(void*self,void*direccion){
-  struct RamSimulaFlash * _f=self;
+  struct RamSimulaFlash * _f=(struct RamSimulaFlash *)self;
   
   return ERR_OK;    
 }

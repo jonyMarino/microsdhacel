@@ -24,7 +24,6 @@
 
 /* Including used modules for compiling procedure */
 #include "Cpu.h"
-#include "Event.h"
 #include "Events.h"
 #include "Display1.h"
 #include "Display2.h"
@@ -60,6 +59,7 @@
 #include "Masks.h"
 #include "FormasConteo.h"
 #include "Mensajes.h"
+#include "cnfbox.h"
 ////////////////////////////////////////////////////////////////////////////
 // VARIABLES EN FLASH	 
 ////////////////////////////////////////////////////////////////////////////
@@ -89,9 +89,14 @@ extern long CntRele[2];
 extern volatile const TAccionSP AccionSPP;
 extern volatile const TAccionSP AccionSPA;
 bool ActivarSP[2];
-
+char cuentaSetUP = 0;      // 1: modo continuo y el valor de la cuenta es mayor al setpoint
+char continue_flag = 0;    // 1: modo continuo
+char encendido_SPA = 0;    // con dos setpoint, 1: SPA activado  
+extern char flag_TotCuSetUP_SPA;
 extern bool RSave;
-
+extern volatile const long SP_Auxiliar;
+extern long TotCuenta;
+char flag=0;  // variable que activa el SPA cuando llego al setpoint en modo STOP
 void main(void)
 {
   /*** Processor Expert internal initialization. DON'T REMOVE THIS CODE!!! ***/
@@ -148,104 +153,150 @@ void main(void)
     #endif
     /*Entrada a boxes*/
     (*PtrTmp)();            // Funcion para el box correspondiente; llama a Num Handler, TextHandler, etc.	
-		/*Lectura*/
-		if(!(ContFlags&CNT_STOP_MASK)){
-		  ValProc = Cnt_getCuentaEscalada(); 
-		/*Veo El Modo de Contar y mostrar en el display*/ 
-		  if(AccionSPP!=ACCION_CONTINUE && ModoCuenta==MODO_DOWN){
-		    ValProc = SP_Principal - ValProc;
-		    ActivarSP[1]=(ValProc<=0);
-		    if(ActivarSP[1])ValProc=0; 		  
-		  }else {
-		    ActivarSP[1]=ValProc>=SP_Principal;
-		  }
-		  
-		  
-			
-			ValDisp=ValProc;
+		
+	/*Lectura*/
+ if(!(ContFlags&CNT_STOP_MASK)){     //if de control
+   ValProc = Cnt_getCuentaEscalada(); 
+/*Veo El Modo de Contar y mostrar en el display*/ 
+   if(AccionSPP!=ACCION_CONTINUE && ModoCuenta==MODO_DOWN){
+     ValProc = SP_Principal - ValProc;
+     ActivarSP[1]=(ValProc<=0);
+       if(ActivarSP[1])ValProc=0; 		  
+    }else {
+      ActivarSP[1]=ValProc>=SP_Principal;
+	}
+ 
+ 
+		ValDisp=ValProc;
 
   #ifdef _UN_SET_POINT
 
 
 		  /*Control*/
-//		  if(ActivarSP[0] && (!(ContFlags&SPA_MASK))){
-//		    Rele1_PutVal(led[0]=(ModoSetPoint[0]==EXCESO)?1:0);
-//		    CntRele[0] = TiempoRele[1]; 
-//		    ContFlags|=SPA_MASK;
-//		  }
-		  if(ActivarSP[1] && !(ContFlags&SPP_MASK)){
+
+		  if(ActivarSP[1] && !(ContFlags & SPP_MASK) && !cuentaSetUP){  //if principal para un setpoint
  		    Rele1_PutVal(led[0]=(ModoSetPoint[0]==EXCESO)?1:0);
 		    if(!(OverflowFlags&OF_TOT2_MASK))
 		      TotOnSPP++;
 		    CntRele[0] = TiempoRele[1];
 		    ContFlags |= SPP_MASK;
-
-          
-
-
+		  
   #else
   		  /*Control*/
-  		  if(ActivarSP[1] && !(ContFlags&SPP_MASK)){
+  		  
+  		  if(ActivarSP[1] && !(ContFlags&SPP_MASK) && !cuentaSetUP){   //if principal para dos setpoint  
    		    Rele2_PutVal(led[1]=(ModoSetPoint[1]==EXCESO)?1:0);
   		    if(!(ContFlags&TOT_ON_SPP_STOP_MASK) && !(OverflowFlags&OF_TOT2_MASK))
   		      TotOnSPP++;
   		    CntRele[1] = TiempoRele[1];
-  		    ContFlags |= SPP_MASK;
-  #endif
-
-
-
-
+  		    ContFlags |= SPP_MASK; 
+  		    
+  		  
+   #endif
 
   		    switch(AccionSPP){
 
   		      case ACCION_STOP:
-  		              //  ValProc = SP_Principal;
-  		                ContFlags|=CNT_STOP_MASK;
-  		  						  break;
-  		      case ACCION_AUTO_RESET:
-  		    					  if(!(ContFlags&TOT_CNT_STOP_MASK))
-  		    					    PreTotalizador+=Cnt_getCuenta();
+  		           ContFlags|=CNT_STOP_MASK;
+			           continue_flag = 0;
+  		  	    break;
+  		      
+		         case ACCION_AUTO_RESET:
+  		    	  if(!(ContFlags&TOT_CNT_STOP_MASK))
+  		    	    PreTotalizador+=Cnt_getCuenta();
   	                  Cnt_setCuenta(0);
   	                  ValProc=0;
-  	                  ContFlags=0;		  						
+  	                  ContFlags=0;
+  	                  cuentaSetUP = 0;
+  	                  continue_flag = 0;
+  	          break;
+  	       
+  	       	 case ACCION_CONTINUE:
+  	            cuentaSetUP = 1;
+  	            continue_flag= 1;
+  	          break;		  						
   		  
   		    }
-  		  } 
   		  
-  		  {
-    		  long a=Cnt_getValCmpSPA();
+
+      }
+      // esta llave cierra el if principal para dos setpoint
+   
+   /*una ves verificado el primer SP, paso al segundo  */
+
+#ifndef _UN_SET_POINT      
+      else{
+  		      
+          long a=Cnt_getValCmpSPA();
     		  long b=SP_Auxiliar;  
     		  ActivarSP[0]=(a>=b);
-  		  }
-  		  if(ActivarSP[0] && (!(ContFlags&SPA_MASK))){
-  		    Rele1_PutVal(led[0]=(ModoSetPoint[0]==EXCESO)?1:0);
-  		    CntRele[0] = TiempoRele[0]; 
+  		    
+  		    
+  		    if(ActivarSP[0] && (!(ContFlags&SPA_MASK))  ){
+  		       
+  		      if((!encendido_SPA && !flag_TotCuSetUP_SPA)||(AccionSPA==ACCION_STOP && ModoSP_Auxiliar==MODO_SPA_TOT_CUENTA && TotCuenta>=SP_Auxiliar && !flag)){
+  		      
+  		      flag=1;
+  		      Rele1_PutVal(led[0]=(ModoSetPoint[0]==EXCESO)?1:0); 
+  		      CntRele[0] = TiempoRele[0];       
+  		      encendido_SPA = 1;
+  		    }
+  		    
   		    ContFlags|=SPA_MASK;
-  		    Cnt_OnValEqualToSPA();
-  		  }
+  		    Cnt_OnValEqualToSPA(); // funcion que determina el modo 
+  		                           // continuo, stop o autoreset
+  		                           // no hace nada si se trabaja sobre la cuenta
+  		  }                           
   		  
+        
+        if(!Cuenta)encendido_SPA = 0;
+        
+        //flag lo utilizo para que se active el rele1 solo una ves, 
+        //produce esto solo en modo STOP, 
+        
+        if(!TotCuenta)flag = 0;        //segun totalizador de cuenta(1)
+
+  		  if(!TotOnSPP)flag = 0;        // segun totalizador2
+  		  
+  		    }
+#endif 		  
+		
+	/*controlo que en accion continua solo se activen segun el valor de la cuenta   */	  
+	
+	 if(Cuenta < SP_Principal && continue_flag) 
+   		cuentaSetUP = 0;
+
+	 if(Cuenta >= SP_Principal && continue_flag && !CntRele[0] && (ModoRele[0] !=MANUAL)){
+   		Rele1_PutVal(led[0]=(ModoSetPoint[0]==EXCESO)?0:1);
+   		cuentaSetUP = 1;
+	 }	
+	
+	
+	
+		/*Verifico Over Flows*/
+ 
+      if((AccionSPA!=ACCION_STOP ) || TotCuenta<SP_Auxiliar )
   		  if(!(ContFlags&TOT_CNT_STOP_MASK) && !(OverflowFlags&OF_TOT1_MASK))
-          TotCuenta = (PreTotalizador + Cnt_getCuenta())* (FactorEscala[1] / 10000.0);
-  		  /*Verifico Over Flows*/
-  	//	  if(!(OverflowFlags&OF_TOT1_MASK) && TotCuenta<0)
-  	//	    OverflowFlags|=OF_TOT1_MASK;
-  	//	  if(!(OverflowFlags&OF_TOT2_MASK) && TotOnSPP<0)
-  	//	    OverflowFlags|=OF_TOT2_MASK;
-  		 // if(Cuenta<0 || ValProc<0)
-  		 //   ContFlags|=STOP_MASK;
-  		}
-  		/*Resets*/
-  		if(!Reset_GetVal())
+          TotCuenta = (PreTotalizador + Cnt_getCuenta())* (FactorEscala[1] / 10000.0); 		  
+  		 
+		  }
+		  // esta llave cierra el if principal para un setpoint
+ 
+ 		/*Resets*/
+  		
+		if(!Reset_GetVal())
   		  ResetCuenta();
   		   		
-  		if(ModoRele[0]==AUTOMATICO && !CntRele[0]/* && (ContFlags&SP1_MASK)*/){
+  		if(ModoRele[0]==AUTOMATICO && !CntRele[0] ){
   		  Rele1_PutVal(led[0]=(ModoSetPoint[0]==EXCESO)?0:1);
-  		  ContFlags&=~SPA_MASK;		  
+  		  ContFlags&=~SPA_MASK;
+  		  
   		}
+  		
   		if(ModoRele[1]==AUTOMATICO && !CntRele[1]/*&& (ContFlags&SP2_MASK)*/){
   		  Rele2_PutVal(led[1]=(ModoSetPoint[1]==EXCESO)?0:1);		  
   		  ContFlags&=~SPP_MASK;
+  		   
   		}
 		
 		/*FLASH*/
@@ -261,6 +312,12 @@ void main(void)
       if(!err)
         RSave=FALSE;  
     }			
+		/*Comunicacion */
+    if (AS1_Tx==TRUE)						//Hay algo para enviar??
+	    AS1_TxChar();						// Enviar
+		
+    if ( AS1_RecvChar(&msn[Step])==ERR_OK)  //Recibi algo????		
+	    AS1_OnRxChar();											// Procesar
 
     /* veo si vuelvo a la pantalla principal*/
 	  if(CNT1_RTI==0 && PtrTmp!=&B_Principal1.DirProc)		// PAsaron 10 segundos fuera de la pantalla principal??
@@ -269,7 +326,9 @@ void main(void)
 	    PtrTmp=&B_Principal1.DirProc;											//Volver a la pantalla principal
 	    FstTime=TRUE;
 	  }
-  }
+ } 
+ //esta llave cierra el if de control
+ 
   /*** Processor Expert end of main routine. DON'T MODIFY THIS CODE!!! ***/
   for(;;){}
   /*** Processor Expert end of main routine. DON'T WRITE CODE BELOW!!! ***/
