@@ -4,11 +4,6 @@
 //#define _UN_SET_POINT
 #define CANTIDAD_CANALES 1 /*Cantidad de canales */
 
-#define _APARATO_VIEJO
-#define _NMODBUS		 // no modbus
-
-#define jony_23_08
-
 #define DEBOUNCE_TIME 100  /* en ms tiempo de MICROSWITCH*/
 
 #define MAX_INDICACION_DISP 999999

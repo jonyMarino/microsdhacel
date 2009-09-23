@@ -2,7 +2,7 @@
 PE_DesktopFileVersion=920
 
 [Desktop]
-StartupPrj=D:\Jony\HCS12\contador 01-09-08 HD81\contador_12_06_06.pe
+StartupPrj=D:\contador_nico\contador 14-03-08 HD81\contador_12_06_06.pe
 
 [PE_IDE_PlugIn]
 
@@ -14,7 +14,7 @@ WindowState=NORMAL
 Rect=[-4|58|318|530]
 
 [CpuPanel]
-Status=hiden
+Status=Visible
 WindowState=NORMAL
 Rect=[-234|88|651|650]
 CpuPanViewMode=Default
@@ -39,9 +39,9 @@ BF_LicensedOnly=Yes
 BF_BA_AllQuestions=Yes
 
 [ObjInspector]
-Status=hiden
-WindowState=NORMAL
-Rect=[-50|167|606|537]
+Status=Visible
+WindowState=MAXIMAL
+Rect=[46|162|606|537]
 ObjInspectorDockedWithPrphInit=No
 ColWidth01=194
 ColWidth02=280

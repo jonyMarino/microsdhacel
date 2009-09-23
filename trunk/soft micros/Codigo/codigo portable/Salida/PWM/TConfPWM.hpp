@@ -3,9 +3,9 @@
 
 #include "FshTypeSizes.h"
 
-typedef struct TConfPWM {
+typedef struct  {
   public:
     fbyte periodo;
 
-};
+}TConfPWM;
 #endif

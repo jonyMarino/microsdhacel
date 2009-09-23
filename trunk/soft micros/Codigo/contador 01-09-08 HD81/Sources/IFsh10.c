@@ -50,7 +50,7 @@
 #pragma CONST_SEG DEFAULT
 word SavedAddress;
 word BackupArray[256];								/* Array for backup data from erased sector */
-byte IndiceFlash[256/8];
+byte IndiceFlash[255/8+1];
 static byte WaitInRAMcode[]={
  0x1E, 0x01, 0x05, 0x20, 0x05,         /* BRSET _FSTAT,#32,*+10 */
  0x1F, 0x01, 0x05, 0x10, 0x03,         /* BRCLR _FSTAT,#16,*+8 */
@@ -175,13 +175,13 @@ byte EraseSectorInternal(word Addr)
 ** ===================================================================
 */
 void EnterDatainBackup(word Addr,word * Data,word* Backup,byte* Indice) {
-int i,a;
+byte i,a;
 
 Cpu_DisableInt();
-  for (a=0;a<(256/8);a++){
-    for (i=0;i<8;i++){
+  for (a=0;a<(512/2/16);a++){
+    for (i=0;i<16;i++){
       if (!(Indice[a]&1))
-        Backup[a*8+i]=*(volatile word*)(Addr+(a*8+i)*2);
+        Backup[a*16+i]=*(volatile word*)(Addr+(a*16+i)*2);
     Indice[a]>>=1;
     }
   }
@@ -324,29 +324,8 @@ byte IFsh10_SetLong(word Addr,long Data)
 	 }
 	 return ERR_OK;
 }
-byte IFsh10_SetWord(word Address,word Data){
-  byte err;
-  word Addr  =  Address;
-   if (FSTAT_CCIF == 0)                 // Is previous command complete ? 
-    return ERR_BUSY;                   // If yes then error 
-	 BackupSector(Addr&65024,BackupArray );                      // Backup sector 
-   err=EraseSectorInternal(Addr);     // Erase sector 
-    if(err)
-      return(err);                     // Return error code if previous operation finished not correctly 
-    if (Addr & 1) {
-      BackupArray[((Addr-1)&511)/2]&=0xFF00;
-      BackupArray[((Addr-1)&511)/2]|= Data/256; 
-      BackupArray[((Addr+1)&511)/2]&=0x00FF; 
-      BackupArray[((Addr+1)&511)/2]|= ((word)(Data%256)<<8);
-		}else{ 
-       BackupArray[(Addr&511)/2]= Data;
-		}
-   err = WriteArray(Addr&65024,0,512,BackupArray); // Restore sector 
-    if (err)
-      return err;                      // Previous operation was error ? 
-	 return ERR_OK;	
-}
 
+		
 
 byte IFsh10_Setbyte(word Addr,byte Data)
 {

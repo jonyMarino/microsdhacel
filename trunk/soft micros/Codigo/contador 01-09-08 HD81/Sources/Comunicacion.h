@@ -1,12 +1,10 @@
 #ifndef _Comunicacion
 #define _Comunicacion
 
-#include "AS1.h"
-
 /* MODULE Comunicacion*/
 
-void ModBus_Recive(AS1_TComData dat);
+void AS1_OnRxChar(void);
 
-void ModBus_Send(void);
+void AS1_TxChar(void);
 
 #endif

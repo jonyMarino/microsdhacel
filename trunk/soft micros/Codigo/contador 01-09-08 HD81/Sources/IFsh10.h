@@ -59,7 +59,6 @@ byte IFsh10_SetWordsArray(word Addr,word * Data,byte* Indice);
 byte IFsh10_DeleteSector(word Addr,byte CantidadBytes);
 byte EraseSectorInternal(word Addr);
 byte IFsh10_Setbyte(word Addr,byte Data);
-byte IFsh10_SetWord(word Addr,word Data);
 byte IFsh10_SetLong(word Addr,long Data);
 /*
 ** ===================================================================

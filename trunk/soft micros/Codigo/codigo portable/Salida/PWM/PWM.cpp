@@ -1,17 +1,26 @@
 
 #include "PWM.hpp"
 #include "pwm_periodos.h"
-#include "TConfPWM.hpp"
 
-unsigned char PWM::setPeriodoConfiguracion(int period) {
-  return setPeriodo(period);
+
+unsigned char PWM::setPeriodoConfiguracion(TPeriod period) {
+  
+ return _MANEJADOR_MEMORIA_SET_BYTE(&manejadorMemoria,&(conf.periodo),period);
 }
 
-fbyte PWM::getPeriodoConfiguracion() {
-  return conf->periodo;
+TPeriod PWM::getPeriodoConfiguracion() {
+  return _MANEJADOR_MEMORIA_GET_BYTE(&manejadorMemoria,&(conf.periodo));
 }
 
 fbyte PWM::getLimSupPeriodo() {
   return PWM_MAX_VALUE_PERIODS;
 }
 
+void PWM::addOnToggleListener(struct Method* method){
+  listeners.add (method);
+
+}
+
+void PWM::callOnToggleListeners(){
+  listeners.executeMethods();
+}

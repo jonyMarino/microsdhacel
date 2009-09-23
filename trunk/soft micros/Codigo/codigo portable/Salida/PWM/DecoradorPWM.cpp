@@ -1,11 +1,12 @@
 
 #include "DecoradorPWM.hpp"
+#include "pwm_periodos.h"
 
-unsigned char DecoradorPWM::setPeriodo(int period) {
+unsigned char DecoradorPWM::setPeriodo(TPeriod period) {
   return setPeriodo(period);
 }
 
-int DecoradorPWM::getPeriodo() {
+TPeriod DecoradorPWM::getPeriodo() {
   return getPeriodo();
 }
 
