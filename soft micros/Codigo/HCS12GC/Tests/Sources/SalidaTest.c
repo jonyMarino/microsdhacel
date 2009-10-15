@@ -6,7 +6,7 @@
 #include "ClassADC.h"
 #include "Grabacion.h"
 #include "PWMTimer.h"
-#include "FlashBkpEnFlash.h"
+#include "RamSimulaFlash.h"
 #include "timer_interrupt.h"
 
 
@@ -18,7 +18,7 @@ struct Timer * timer;
 struct PWM * pwm[2];
 
 
-NEW_FLASH_BKP_EN_FLASH(flash,0x4400);
+NEW_RAM_SIMULA_FLASH(flash);
 
 
 void on1ms(void  * a){
@@ -31,6 +31,7 @@ void on1ms(void  * a){
 void main (void){  
 //  timer= newObj(Timer,(ulong)500);
  /*** Processor Expert internal initialization. DON'T REMOVE THIS CODE!!! ***/
+  struct Method * m = _new(&Method,on1ms,0);
   PE_low_level_init();
  /*** End of Processor Expert internal initialization.                    ***/
   Teclas_Init();
@@ -38,19 +39,19 @@ void main (void){
 
   PasarASCII("tESt",0);
   
-  add1msListener(on1ms,0);
+  add1msListener(m);
   //add40msListener(on);
 
-  pwm[0]= newObj(PWMTimer,&pwmconf,1);
-  pwm[1]= newObj(PWMTimer,&pwmconf,0);
- 	Salida_conectar(pwm[0],TRUE);
- 	Salida_conectar(pwm[1],TRUE);
+  pwm[0]= _new(&PWMTimer,&pwmconf,1);
+  pwm[1]= _new(&PWMTimer,&pwmconf,0);
+ 	setConectada(pwm[0],TRUE);
+ 	setConectada(pwm[1],TRUE);
  
  	setPeriodo(pwm[0],PWM_1sec);
  	setPeriodo(pwm[1],PWM_1sec);
  	
- 	_Salida_OnOff(pwm[0],FALSE);
- 	_Salida_OnOff(pwm[1],FALSE);
+ 	setTipoSalida(pwm[0],FALSE);
+ 	setTipoSalida(pwm[1],FALSE);
  	
  	setPotenciaSalida(pwm[0],500);
   setPotenciaSalida(pwm[1],750);

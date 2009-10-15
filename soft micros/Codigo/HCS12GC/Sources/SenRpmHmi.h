@@ -2,6 +2,10 @@
 #define _SEN_RPM_HMI_H
 
 #include "SensorRPM.h"
+#include "ClassBoxLineal.h"
+
+extern const struct BlockCnstrBoxLin CBox_SenRpm;
+extern const struct Array arraySenGetters;
 /*
 ** ===================================================================
 **     Function      :  SnsHmi_ComuAdd 

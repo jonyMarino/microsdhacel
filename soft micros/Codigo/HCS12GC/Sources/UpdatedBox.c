@@ -2,11 +2,11 @@
 
 /*MODULE: UpdatedBox.c*/
 #include "ReadOnlyBox.h"
-#include "Timer.h"
+#include "TimerFlag.h"
 
 struct UpdatedBox {
     struct ReadOnlyBox _base;
-    struct Timer timer;
+    struct TimerFlag timer;
 };
 
 #include "UpdatedBox.h"
@@ -58,7 +58,7 @@ void UpdatedBox_Constructor(void * _self, void * BlockConst,void * Obj,uchar Num
   struct BlockConstrUpdatedBox * Block = (struct BlockConstrUpdatedBox *) BlockConst;
   
   ReadOnlyBox_Constructor ( _self, BlockConst, Obj, NumObj);
-  newAlloced(&_box->timer,&Timer, (ulong) Block->time);
+  newAlloced(&_box->timer,&TimerFlag, (ulong) Block->time);
 }
 /*
 ** ===================================================================
@@ -91,8 +91,9 @@ void UpdatedBox_Destructor(void* _self){
 BOX_State UpdatedBox_ProcKey(void* _self,uchar tecla){
   
   struct UpdatedBox * _box = (struct UpdatedBox *)_self;
-  if(Timer_isfinish(&_box->timer)){
+  if(TimerFlag_getFlag(&_box->timer)){
          ReadOnlyBox_Refresh(_self);
+         TimerFlag_reset(&_box->timer);
 				 Timer_Restart(&_box->timer);
   }
   return ReadOnlyBox_ProcKey(_self, tecla);

@@ -1,10 +1,6 @@
 /*MODULE: MethodTimer.c*/
 
 #include "MethodTimer.h"
-
-
-
-
 #include <stdarg.h>
 #include <stdlib.h>
 

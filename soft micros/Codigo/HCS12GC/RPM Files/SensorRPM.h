@@ -34,7 +34,7 @@ typedef struct {
 
 /********Clase*********************/
 struct SensorRpm{
-  const struct SensorVisual * base;			// clase base
+  const struct SensorVisual base;			// clase base
   volatile const SensorRpmConf * conf;		// Variables de configuración en Rom
   uint procVal;  											// Valor Leido y procesado del sensor
   long bufferFiltro;                     // Privado: acumulacion del filtro  

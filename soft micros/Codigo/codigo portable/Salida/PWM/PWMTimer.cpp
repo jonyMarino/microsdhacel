@@ -13,9 +13,9 @@ void PWMTimer::PWMTimer(struct ManejadorMemoria &_manejadorMemoria,TConfPWM &_co
 }
 
 void PWMTimer::setPotencia(unsigned int potencia) {
-  if(pwm_timer_isEnable(pinNum))			/* PID?*/
+  if(pwm_timer_isEnable(pinNum)){/* PID?*/
     PWM_SetRatio16(this,potencia);
-  else{
+  }else{
     if(potencia==0){
       estadoSalida=FALSE;
       PWM_ClrValue(pinNum);
@@ -39,9 +39,6 @@ unsigned char PWMTimer::setPeriodo(TPeriod period) {
   return err;
 }
 
-TPeriod PWMTimer::getPeriodo(){
- return getPeriodoConfiguracion();
-}
 
 void PWMTimer::setTipoSalida(TipoSalida tipoSalida) {
   if(tipoSalida==SALIDA_ONOFF)
@@ -54,24 +51,6 @@ TipoSalida PWMTimer::getTipoSalida() {
   return (pwm_timer_isEnable(pinNum))?SALIDA_PROPORCIONAL:SALIDA_ONOFF;
 }
 
-
-bool PWMTimer::getConectada() {
-
-  return conectado;
-}
-
- void PWMTimer::setConectada(bool conectada) {
-  if(conectado && !conectada)
-    setPotencia(0); 
-   
-   conectado=conectada;
-  
-}
-
-unsigned int PWMTimer::getPotencia() {
-
-  return potencia;
-}
 
  void PWMTimer::pwm_setPotencia(unsigned int _potencia) {
   

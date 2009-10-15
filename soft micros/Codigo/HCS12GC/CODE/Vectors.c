@@ -244,7 +244,7 @@ const tIsrFunc _vect[] @0xFF80 = {     /* Interrupt table */
         Int51,                /* Interrupt no. 51 (Used) - ivVtimch4, address 0xFFE6  */
         Int52,                 /* 52 Default (unused) interrupt, address 0xFFE8 */
         Int53,                 /* Interrupt no. 53 (Used) - ivVtimch2, address 0xFFEA  */
-        Int54,                 /* Interrupt no. 54 (Used) - ivVtimch1, address 0xFFEC  */
+        PWM1_Interrupt,                 /* Interrupt no. 54 (Used) - ivVtimch1, address 0xFFEC  */
         Int55,                 /* Interrupt no. 55 (Used) - ivVtimch0, address 0xFFEE  */
         Int56,                 /* 56 Default (unused) interrupt, address 0xFFF0 */
         Cpu_Interrupt,                 /* 57 Default (unused) interrupt, address 0xFFF2 */

@@ -36,7 +36,7 @@ const struct BlockConstBoxPropBase CBoxSetC={
 }; 
 
 
-
+/*
 void Sets_Init(void){
   DN_AddAccess("Cod ",&SetC);  
 }
@@ -44,7 +44,7 @@ void Sets_Init(void){
 void Sets_Init2(uint nListas){
   DN_AddSizedAccess("Cod ",&SetC,nListas);  
 }								
-
+  */
 int Sets_getCodigo(void * self){
   return SetC;
 }

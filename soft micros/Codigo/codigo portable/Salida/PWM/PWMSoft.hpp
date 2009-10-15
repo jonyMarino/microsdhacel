@@ -4,19 +4,23 @@
 
 #include "PWM.hpp"
 #include "TipoSalida.hpp"
+#include "MethodTimer.h"
 
 class PWMSoft : public PWM {
   public:
-  virtual  setPotencia(unsigned int potencia);
+  virtual void setPotencia(unsigned int potencia);
 
   virtual unsigned char setPeriodo(int period);
 
-  virtual  setTipoSalida(TipoSalida tipoSalida);
+  virtual void setTipoSalida(TipoSalida tipoSalida);
 
-    virtual TipoSalida getTipoSalida();
-
+  virtual TipoSalida getTipoSalida();
+   
+  friend void Salida_setPotencia(unsigned int potencia);
 
   private:
+    TipoSalida tipoSalida; 
+    
     MethodTimer timer;
 
     byte * salida;

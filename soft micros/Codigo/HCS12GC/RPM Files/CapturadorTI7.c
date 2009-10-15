@@ -59,7 +59,7 @@ void CapturadorTI7_DefConstructor(void*_self,va_list * args){
 void * CapturadorTI7_getInstancia(void){
   
   if (CapturadorTI7_Instancia==NULL)
-    CapturadorTI7_Instancia=new(&CapturadorTI7);
+    CapturadorTI7_Instancia=_new(&CapturadorTI7);
   
   return CapturadorTI7_Instancia;
 }

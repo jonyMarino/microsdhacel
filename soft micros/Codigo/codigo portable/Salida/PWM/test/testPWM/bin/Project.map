@@ -1,0 +1,2298 @@
+
+PROGRAM "D:\versionR51\microsdhacel\soft micros\Codigo\codigo portable\Salida\PWM\test\testPWM\bin\Project.abs"
+
+*********************************************************************************************
+TARGET SECTION
+---------------------------------------------------------------------------------------------
+Processor   : Freescale HC12
+Memory Model: SMALL
+File Format : ELF\DWARF 2.0
+Linker      : SmartLinker V-5.0.36 Build 9056, Feb 26 2009
+
+*********************************************************************************************
+FILE SECTION
+---------------------------------------------------------------------------------------------
+MC9S12GC32.c.o                          Model: SMALL,         Lang: C++
+main.cpp.o                              Model: SMALL,         Lang: C++
+datapage.c.o                            Model: SMALL,         Lang: C++
+Start12.cpp.o                           Model: SMALL,         Lang: C++
+ASSERT.C.o (ansisi.lib)                 Model: SMALL,         Lang: ANSI-C
+EMBEDDED.C.o (ansisi.lib)               Model: SMALL,         Lang: ANSI-C
+HEAP.C.o (ansisi.lib)                   Model: SMALL,         Lang: ANSI-C
+PRINTF.C.o (ansisi.lib)                 Model: SMALL,         Lang: ANSI-C
+ALLOC.C.o (ansisi.lib)                  Model: SMALL,         Lang: ANSI-C
+rtshc12.c.o (ansisi.lib)                Model: SMALL,         Lang: ANSI-C
+NEW.CPP.o (cppsi.lib)                   Model: SMALL,         Lang: C++
+AS1.c.o                                 Model: SMALL,         Lang: C++
+FC321.c.o                               Model: SMALL,         Lang: C++
+testVector.c.o                          Model: SMALL,         Lang: C++
+D:\Jony\HCS12\Librerias\OOC\lang\reflect\reflect_Data\C_Ms_no_float\ObjectCode\Method.c.o (reflect_si.lib)Model: SMALL,         Lang: ANSI-C
+D:\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\util\util_hcs12_cpp_Data\C++_Ms_no_float\ObjectCode\LinkedList.cpp.o (util_cpp_si.lib)Model: SMALL,         Lang: C++
+D:\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\util\util_hcs12_cpp_Data\C++_Ms_no_float\ObjectCode\nodo.cpp.o (util_cpp_si.lib)Model: SMALL,         Lang: C++
+D:\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\ooc\ooc_hcs12_Data\C_Ms_no_float\ObjectCode\Object.c.o (ooc_si.lib)Model: SMALL,         Lang: ANSI-C
+D:\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\ooc\ooc_hcs12_Data\C_Ms_no_float\ObjectCode\OutputStream.c.o (ooc_si.lib)Model: SMALL,         Lang: ANSI-C
+Cpu.c.o                                 Model: SMALL,         Lang: C++
+PWMHard.cpp.o                           Model: SMALL,         Lang: C++
+PWMHard23.cpp.o                         Model: SMALL,         Lang: C++
+PWMManager01_45.cpp.o                   Model: SMALL,         Lang: C++
+PWM.cpp.o                               Model: SMALL,         Lang: C++
+RamSimulaFlash.c.o                      Model: SMALL,         Lang: C++
+PromBkp.c.o                             Model: SMALL,         Lang: C++
+MethodContainer.cpp.o                   Model: SMALL,         Lang: C++
+
+*********************************************************************************************
+STARTUP SECTION
+---------------------------------------------------------------------------------------------
+Entry point: 0x4802 (_EntryPoint)
+_startupData is allocated at 0x482B and uses 14 Bytes
+extern struct _tagStartup {
+  unsigned nofZeroOut     1
+  _Range   pZeroOut       0x1000     421
+  _Copy    *toCopyDownBeg 0x5DC5
+  int      nofInitBodies  0
+  _Cpp     *initBodies    0x483D
+  int      nofFiniBodies  0
+  _Cpp     *finiBodies    0x483D
+} _startupData;
+
+*********************************************************************************************
+SECTION-ALLOCATION SECTION
+Section Name                    Size  Type     From       To       Segment
+---------------------------------------------------------------------------------------------
+.init                             43     R     0x4800     0x482A   ROM_4600
+.startData                        18     R     0x482B     0x483C   ROM_4600
+.rodata                          298     R     0x483D     0x4966   ROM_4600
+.rodata1                         221     R     0x4967     0x4A43   ROM_4600
+NON_BANKED                        30     R     0x4A44     0x4A61   ROM_4600
+.text                           3692     R     0x4A62     0x58CD   ROM_4600
+.copy                              8     R     0x5DC5     0x5DCC   ROM_4600
+.abs_section_8                     1   N/I        0x8        0x8   .absSeg0
+.abs_section_9                     1   N/I        0x9        0x9   .absSeg1
+.abs_section_a                     1   N/I        0xA        0xA   .absSeg2
+.abs_section_b                     1   N/I        0xB        0xB   .absSeg3
+.abs_section_c                     1   N/I        0xC        0xC   .absSeg4
+.abs_section_d                     1   N/I        0xD        0xD   .absSeg5
+.abs_section_e                     1   N/I        0xE        0xE   .absSeg6
+.abs_section_10                    1   N/I       0x10       0x10   .absSeg7
+.abs_section_11                    1   N/I       0x11       0x11   .absSeg8
+.abs_section_13                    1   N/I       0x13       0x13   .absSeg9
+.abs_section_15                    1   N/I       0x15       0x15   .absSeg10
+.abs_section_16                    1   N/I       0x16       0x16   .absSeg11
+.abs_section_19                    1   N/I       0x19       0x19   .absSeg12
+.abs_section_1c                    1   N/I       0x1C       0x1C   .absSeg13
+.abs_section_1d                    1   N/I       0x1D       0x1D   .absSeg14
+.abs_section_1e                    1   N/I       0x1E       0x1E   .absSeg15
+.abs_section_1f                    1   N/I       0x1F       0x1F   .absSeg16
+.abs_section_20                    1   N/I       0x20       0x20   .absSeg17
+.abs_section_21                    1   N/I       0x21       0x21   .absSeg18
+.abs_section_24                    1   N/I       0x24       0x24   .absSeg19
+.abs_section_25                    1   N/I       0x25       0x25   .absSeg20
+.abs_section_28                    1   N/I       0x28       0x28   .absSeg21
+.abs_section_29                    1   N/I       0x29       0x29   .absSeg22
+.abs_section_2a                    1   N/I       0x2A       0x2A   .absSeg23
+.abs_section_2d                    1   N/I       0x2D       0x2D   .absSeg24
+.abs_section_30                    1   N/I       0x30       0x30   .absSeg25
+.abs_section_34                    1   N/I       0x34       0x34   .absSeg26
+.abs_section_35                    1   N/I       0x35       0x35   .absSeg27
+.abs_section_37                    1   N/I       0x37       0x37   .absSeg28
+.abs_section_38                    1   N/I       0x38       0x38   .absSeg29
+.abs_section_39                    1   N/I       0x39       0x39   .absSeg30
+.abs_section_3a                    1   N/I       0x3A       0x3A   .absSeg31
+.abs_section_3b                    1   N/I       0x3B       0x3B   .absSeg32
+.abs_section_3c                    1   N/I       0x3C       0x3C   .absSeg33
+.abs_section_3f                    1   N/I       0x3F       0x3F   .absSeg34
+.abs_section_40                    1   N/I       0x40       0x40   .absSeg35
+.abs_section_41                    1   N/I       0x41       0x41   .absSeg36
+.abs_section_42                    1   N/I       0x42       0x42   .absSeg37
+.abs_section_43                    1   N/I       0x43       0x43   .absSeg38
+.abs_section_46                    1   N/I       0x46       0x46   .absSeg39
+.abs_section_47                    1   N/I       0x47       0x47   .absSeg40
+.abs_section_48                    1   N/I       0x48       0x48   .absSeg41
+.abs_section_49                    1   N/I       0x49       0x49   .absSeg42
+.abs_section_4a                    1   N/I       0x4A       0x4A   .absSeg43
+.abs_section_4b                    1   N/I       0x4B       0x4B   .absSeg44
+.abs_section_4c                    1   N/I       0x4C       0x4C   .absSeg45
+.abs_section_4d                    1   N/I       0x4D       0x4D   .absSeg46
+.abs_section_4e                    1   N/I       0x4E       0x4E   .absSeg47
+.abs_section_4f                    1   N/I       0x4F       0x4F   .absSeg48
+.abs_section_60                    1   N/I       0x60       0x60   .absSeg49
+.abs_section_61                    1   N/I       0x61       0x61   .absSeg50
+.abs_section_86                    1   N/I       0x86       0x86   .absSeg51
+.abs_section_89                    1   N/I       0x89       0x89   .absSeg52
+.abs_section_8b                    1   N/I       0x8B       0x8B   .absSeg53
+.abs_section_8d                    1   N/I       0x8D       0x8D   .absSeg54
+.abs_section_8f                    1   N/I       0x8F       0x8F   .absSeg55
+.abs_section_ca                    1   N/I       0xCA       0xCA   .absSeg56
+.abs_section_cb                    1   N/I       0xCB       0xCB   .absSeg57
+.abs_section_cc                    1   N/I       0xCC       0xCC   .absSeg58
+.abs_section_cd                    1   N/I       0xCD       0xCD   .absSeg59
+.abs_section_ce                    1   N/I       0xCE       0xCE   .absSeg60
+.abs_section_cf                    1   N/I       0xCF       0xCF   .absSeg61
+.abs_section_d8                    1   N/I       0xD8       0xD8   .absSeg62
+.abs_section_d9                    1   N/I       0xD9       0xD9   .absSeg63
+.abs_section_da                    1   N/I       0xDA       0xDA   .absSeg64
+.abs_section_db                    1   N/I       0xDB       0xDB   .absSeg65
+.abs_section_dd                    1   N/I       0xDD       0xDD   .absSeg66
+.abs_section_e0                    1   N/I       0xE0       0xE0   .absSeg67
+.abs_section_e1                    1   N/I       0xE1       0xE1   .absSeg68
+.abs_section_e2                    1   N/I       0xE2       0xE2   .absSeg69
+.abs_section_e3                    1   N/I       0xE3       0xE3   .absSeg70
+.abs_section_e4                    1   N/I       0xE4       0xE4   .absSeg71
+.abs_section_e5                    1   N/I       0xE5       0xE5   .absSeg72
+.abs_section_e8                    1   N/I       0xE8       0xE8   .absSeg73
+.abs_section_e9                    1   N/I       0xE9       0xE9   .absSeg74
+.abs_section_fe                    1   N/I       0xFE       0xFE   .absSeg75
+.abs_section_100                   1   N/I      0x100      0x100   .absSeg76
+.abs_section_101                   1   N/I      0x101      0x101   .absSeg77
+.abs_section_103                   1   N/I      0x103      0x103   .absSeg78
+.abs_section_104                   1   N/I      0x104      0x104   .absSeg79
+.abs_section_105                   1   N/I      0x105      0x105   .absSeg80
+.abs_section_106                   1   N/I      0x106      0x106   .absSeg81
+.abs_section_240                   1   N/I      0x240      0x240   .absSeg82
+.abs_section_241                   1   N/I      0x241      0x241   .absSeg83
+.abs_section_242                   1   N/I      0x242      0x242   .absSeg84
+.abs_section_243                   1   N/I      0x243      0x243   .absSeg85
+.abs_section_244                   1   N/I      0x244      0x244   .absSeg86
+.abs_section_245                   1   N/I      0x245      0x245   .absSeg87
+.abs_section_247                   1   N/I      0x247      0x247   .absSeg88
+.abs_section_248                   1   N/I      0x248      0x248   .absSeg89
+.abs_section_249                   1   N/I      0x249      0x249   .absSeg90
+.abs_section_24a                   1   N/I      0x24A      0x24A   .absSeg91
+.abs_section_24b                   1   N/I      0x24B      0x24B   .absSeg92
+.abs_section_24c                   1   N/I      0x24C      0x24C   .absSeg93
+.abs_section_24d                   1   N/I      0x24D      0x24D   .absSeg94
+.abs_section_24e                   1   N/I      0x24E      0x24E   .absSeg95
+.abs_section_250                   1   N/I      0x250      0x250   .absSeg96
+.abs_section_251                   1   N/I      0x251      0x251   .absSeg97
+.abs_section_252                   1   N/I      0x252      0x252   .absSeg98
+.abs_section_253                   1   N/I      0x253      0x253   .absSeg99
+.abs_section_254                   1   N/I      0x254      0x254   .absSeg100
+.abs_section_255                   1   N/I      0x255      0x255   .absSeg101
+.abs_section_256                   1   N/I      0x256      0x256   .absSeg102
+.abs_section_258                   1   N/I      0x258      0x258   .absSeg103
+.abs_section_259                   1   N/I      0x259      0x259   .absSeg104
+.abs_section_25a                   1   N/I      0x25A      0x25A   .absSeg105
+.abs_section_25b                   1   N/I      0x25B      0x25B   .absSeg106
+.abs_section_25c                   1   N/I      0x25C      0x25C   .absSeg107
+.abs_section_25d                   1   N/I      0x25D      0x25D   .absSeg108
+.abs_section_25e                   1   N/I      0x25E      0x25E   .absSeg109
+.abs_section_25f                   1   N/I      0x25F      0x25F   .absSeg110
+.abs_section_268                   1   N/I      0x268      0x268   .absSeg111
+.abs_section_269                   1   N/I      0x269      0x269   .absSeg112
+.abs_section_26a                   1   N/I      0x26A      0x26A   .absSeg113
+.abs_section_26b                   1   N/I      0x26B      0x26B   .absSeg114
+.abs_section_26c                   1   N/I      0x26C      0x26C   .absSeg115
+.abs_section_26d                   1   N/I      0x26D      0x26D   .absSeg116
+.abs_section_26e                   1   N/I      0x26E      0x26E   .absSeg117
+.abs_section_26f                   1   N/I      0x26F      0x26F   .absSeg118
+.abs_section_270                   1   N/I      0x270      0x270   .absSeg119
+.abs_section_271                   1   N/I      0x271      0x271   .absSeg120
+.abs_section_272                   1   N/I      0x272      0x272   .absSeg121
+.abs_section_273                   1   N/I      0x273      0x273   .absSeg122
+.abs_section_274                   1   N/I      0x274      0x274   .absSeg123
+.abs_section_275                   1   N/I      0x275      0x275   .absSeg124
+.abs_section_0                     2   N/I        0x0        0x1   .absSeg125
+.abs_section_2                     2   N/I        0x2        0x3   .absSeg126
+.abs_section_1a                    2   N/I       0x1A       0x1B   .absSeg127
+.abs_section_22                    2   N/I       0x22       0x23   .absSeg128
+.abs_section_26                    2   N/I       0x26       0x27   .absSeg129
+.abs_section_2b                    2   N/I       0x2B       0x2C   .absSeg130
+.abs_section_2e                    2   N/I       0x2E       0x2F   .absSeg131
+.abs_section_44                    2   N/I       0x44       0x45   .absSeg132
+.abs_section_50                    2   N/I       0x50       0x51   .absSeg133
+.abs_section_52                    2   N/I       0x52       0x53   .absSeg134
+.abs_section_54                    2   N/I       0x54       0x55   .absSeg135
+.abs_section_56                    2   N/I       0x56       0x57   .absSeg136
+.abs_section_58                    2   N/I       0x58       0x59   .absSeg137
+.abs_section_5a                    2   N/I       0x5A       0x5B   .absSeg138
+.abs_section_5c                    2   N/I       0x5C       0x5D   .absSeg139
+.abs_section_5e                    2   N/I       0x5E       0x5F   .absSeg140
+.abs_section_62                    2   N/I       0x62       0x63   .absSeg141
+.abs_section_82                    2   N/I       0x82       0x83   .absSeg142
+.abs_section_84                    2   N/I       0x84       0x85   .absSeg143
+.abs_section_90                    2   N/I       0x90       0x91   .absSeg144
+.abs_section_92                    2   N/I       0x92       0x93   .absSeg145
+.abs_section_94                    2   N/I       0x94       0x95   .absSeg146
+.abs_section_96                    2   N/I       0x96       0x97   .absSeg147
+.abs_section_98                    2   N/I       0x98       0x99   .absSeg148
+.abs_section_9a                    2   N/I       0x9A       0x9B   .absSeg149
+.abs_section_9c                    2   N/I       0x9C       0x9D   .absSeg150
+.abs_section_9e                    2   N/I       0x9E       0x9F   .absSeg151
+.abs_section_c8                    2   N/I       0xC8       0xC9   .absSeg152
+.abs_section_ec                    2   N/I       0xEC       0xED   .absSeg153
+.abs_section_ee                    2   N/I       0xEE       0xEF   .absSeg154
+.abs_section_f0                    2   N/I       0xF0       0xF1   .absSeg155
+.abs_section_f2                    2   N/I       0xF2       0xF3   .absSeg156
+.abs_section_f4                    2   N/I       0xF4       0xF5   .absSeg157
+.abs_section_f6                    2   N/I       0xF6       0xF7   .absSeg158
+.abs_section_f8                    2   N/I       0xF8       0xF9   .absSeg159
+.abs_section_fa                    2   N/I       0xFA       0xFB   .absSeg160
+.abs_section_fc                    2   N/I       0xFC       0xFD   .absSeg161
+.abs_section_ff80                128     R     0xFF80     0xFFFF   .absSeg162
+.bss                              12   R/W     0x1000     0x100B   RAM_1000
+VIRTUAL_TABLE_SEGMENT            336     R     0x58CE     0x5A1D   ROM_4600
+GEN_FUNCS_SEGMENT                 57     R     0x5A1E     0x5A56   ROM_4600
+NODO_CODE                          5     R     0x5A57     0x5A5B   ROM_4600
+LinkedList_CODE                  372     R     0x5A5C     0x5BCF   ROM_4600
+METHOD_CODE                       35     R     0x5BD0     0x5BF2   ROM_4600
+AS1_DATA                           4   R/W     0x100C     0x100F   RAM_1000
+AS1_CODE                          70     R     0x5BF3     0x5C38   ROM_4600
+RUNTIME                          362     R     0x5C39     0x5DA2   ROM_4600
+HEAP_SEGMENT                     400   R/W     0x1010     0x119F   RAM_1000
+FC321_CODE                        16     R     0x5DA3     0x5DB2   ROM_4600
+FC321_DATA                         5   R/W     0x11A0     0x11A4   RAM_1000
+Nodo_CODE                         18     R     0x5DB3     0x5DC4   ROM_4600
+.stack                           336   R/W     0x11A5     0x12F4   RAM_1000
+
+Summary of section sizes per section type:
+READ_ONLY (R):        164D (dec:     5709)
+READ_WRITE (R/W):      2F5 (dec:      757)
+NO_INIT (N/I):          C7 (dec:      199)
+
+*********************************************************************************************
+VECTOR-ALLOCATION SECTION
+    Address     InitValue   InitFunction
+---------------------------------------------------------------------------------------------
+
+*********************************************************************************************
+OBJECT-ALLOCATION SECTION
+     Name               Module                 Addr   hSize   dSize     Ref    Section   RLIB
+---------------------------------------------------------------------------------------------
+MODULE:                 -- MC9S12GC32.c.o --
+- PROCEDURES:
+- VARIABLES:
+     _PORTE                                       8       1       1       0   .abs_section_8
+     _DDRE                                        9       1       1       1   .abs_section_9
+     _PEAR                                        A       1       1       2   .abs_section_a
+     _MODE                                        B       1       1       0   .abs_section_b
+     _PUCR                                        C       1       1       1   .abs_section_c
+     _RDRIV                                       D       1       1       0   .abs_section_d
+     _EBICTL                                      E       1       1       0   .abs_section_e
+     _INITRM                                     10       1       1       1   .abs_section_10
+     _INITRG                                     11       1       1       0   .abs_section_11
+     _MISC                                       13       1       1       1   .abs_section_13
+     _ITCR                                       15       1       1       0   .abs_section_15
+     _ITEST                                      16       1       1       0   .abs_section_16
+     _VREGCTRL                                   19       1       1       0   .abs_section_19
+     _MEMSIZ0                                    1C       1       1       0   .abs_section_1c
+     _MEMSIZ1                                    1D       1       1       0   .abs_section_1d
+     _INTCR                                      1E       1       1       0   .abs_section_1e
+     _HPRIO                                      1F       1       1       1   .abs_section_1f
+     _DBGC1                                      20       1       1       0   .abs_section_20
+     _DBGSC                                      21       1       1       0   .abs_section_21
+     _DBGCNT                                     24       1       1       0   .abs_section_24
+     _DBGCCX                                     25       1       1       0   .abs_section_25
+     _DBGC2                                      28       1       1       0   .abs_section_28
+     _DBGC3                                      29       1       1       0   .abs_section_29
+     _DBGCAX                                     2A       1       1       0   .abs_section_2a
+     _DBGCBX                                     2D       1       1       0   .abs_section_2d
+     _PPAGE                                      30       1       1       0   .abs_section_30
+     _SYNR                                       34       1       1       1   .abs_section_34
+     _REFDV                                      35       1       1       1   .abs_section_35
+     _CRGFLG                                     37       1       1       1   .abs_section_37
+     _CRGINT                                     38       1       1       0   .abs_section_38
+     _CLKSEL                                     39       1       1       2   .abs_section_39
+     _PLLCTL                                     3A       1       1       2   .abs_section_3a
+     _RTICTL                                     3B       1       1       0   .abs_section_3b
+     _COPCTL                                     3C       1       1       2   .abs_section_3c
+     _ARMCOP                                     3F       1       1       0   .abs_section_3f
+     _TIOS                                       40       1       1       1   .abs_section_40
+     _CFORC                                      41       1       1       0   .abs_section_41
+     _OC7M                                       42       1       1       1   .abs_section_42
+     _OC7D                                       43       1       1       0   .abs_section_43
+     _TSCR1                                      46       1       1       3   .abs_section_46
+     _TTOV                                       47       1       1       1   .abs_section_47
+     _TCTL1                                      48       1       1       1   .abs_section_48
+     _TCTL2                                      49       1       1       1   .abs_section_49
+     _TCTL3                                      4A       1       1       0   .abs_section_4a
+     _TCTL4                                      4B       1       1       0   .abs_section_4b
+     _TIE                                        4C       1       1       1   .abs_section_4c
+     _TSCR2                                      4D       1       1       2   .abs_section_4d
+     _TFLG1                                      4E       1       1       2   .abs_section_4e
+     _TFLG2                                      4F       1       1       0   .abs_section_4f
+     _PACTL                                      60       1       1       0   .abs_section_60
+     _PAFLG                                      61       1       1       0   .abs_section_61
+     _ATDSTAT0                                   86       1       1       0   .abs_section_86
+     _ATDTEST1                                   89       1       1       0   .abs_section_89
+     _ATDSTAT1                                   8B       1       1       0   .abs_section_8b
+     _ATDDIEN                                    8D       1       1       1   .abs_section_8d
+     _PORTAD0                                    8F       1       1       0   .abs_section_8f
+     _SCICR1                                     CA       1       1       1   .abs_section_ca
+     _SCICR2                                     CB       1       1       5   .abs_section_cb
+     _SCISR1                                     CC       1       1       5   .abs_section_cc
+     _SCISR2                                     CD       1       1       1   .abs_section_cd
+     _SCIDRH                                     CE       1       1       0   .abs_section_ce
+     _SCIDRL                                     CF       1       1       2   .abs_section_cf
+     _SPICR1                                     D8       1       1       0   .abs_section_d8
+     _SPICR2                                     D9       1       1       0   .abs_section_d9
+     _SPIBR                                      DA       1       1       0   .abs_section_da
+     _SPISR                                      DB       1       1       0   .abs_section_db
+     _SPIDR                                      DD       1       1       0   .abs_section_dd
+     _PWME                                       E0       1       1      12   .abs_section_e0
+     _PWMPOL                                     E1       1       1       2   .abs_section_e1
+     _PWMCLK                                     E2       1       1       6   .abs_section_e2
+     _PWMPRCLK                                   E3       1       1       7   .abs_section_e3
+     _PWMCAE                                     E4       1       1       0   .abs_section_e4
+     _PWMCTL                                     E5       1       1       3   .abs_section_e5
+     _PWMSCLA                                    E8       1       1       3   .abs_section_e8
+     _PWMSCLB                                    E9       1       1       1   .abs_section_e9
+     _PWMSDN                                     FE       1       1       1   .abs_section_fe
+     _FCLKDIV                                   100       1       1       0   .abs_section_100
+     _FSEC                                      101       1       1       0   .abs_section_101
+     _FCNFG                                     103       1       1       0   .abs_section_103
+     _FPROT                                     104       1       1       0   .abs_section_104
+     _FSTAT                                     105       1       1       0   .abs_section_105
+     _FCMD                                      106       1       1       0   .abs_section_106
+     _PTT                                       240       1       1       8   .abs_section_240
+     _PTIT                                      241       1       1       0   .abs_section_241
+     _DDRT                                      242       1       1       4   .abs_section_242
+     _RDRT                                      243       1       1       0   .abs_section_243
+     _PERT                                      244       1       1       0   .abs_section_244
+     _PPST                                      245       1       1       0   .abs_section_245
+     _MODRR                                     247       1       1       2   .abs_section_247
+     _PTS                                       248       1       1       2   .abs_section_248
+     _PTIS                                      249       1       1       0   .abs_section_249
+     _DDRS                                      24A       1       1       3   .abs_section_24a
+     _RDRS                                      24B       1       1       0   .abs_section_24b
+     _PERS                                      24C       1       1       0   .abs_section_24c
+     _PPSS                                      24D       1       1       0   .abs_section_24d
+     _WOMS                                      24E       1       1       1   .abs_section_24e
+     _PTM                                       250       1       1       1   .abs_section_250
+     _PTIM                                      251       1       1       0   .abs_section_251
+     _DDRM                                      252       1       1       1   .abs_section_252
+     _RDRM                                      253       1       1       0   .abs_section_253
+     _PERM                                      254       1       1       0   .abs_section_254
+     _PPSM                                      255       1       1       0   .abs_section_255
+     _WOMM                                      256       1       1       0   .abs_section_256
+     _PTP                                       258       1       1       4   .abs_section_258
+     _PTIP                                      259       1       1       0   .abs_section_259
+     _DDRP                                      25A       1       1       2   .abs_section_25a
+     _RDRP                                      25B       1       1       0   .abs_section_25b
+     _PERP                                      25C       1       1       1   .abs_section_25c
+     _PPSP                                      25D       1       1       0   .abs_section_25d
+     _PIEP                                      25E       1       1       1   .abs_section_25e
+     _PIFP                                      25F       1       1       0   .abs_section_25f
+     _PTJ                                       268       1       1       1   .abs_section_268
+     _PTIJ                                      269       1       1       0   .abs_section_269
+     _DDRJ                                      26A       1       1       1   .abs_section_26a
+     _RDRJ                                      26B       1       1       0   .abs_section_26b
+     _PERJ                                      26C       1       1       1   .abs_section_26c
+     _PPSJ                                      26D       1       1       0   .abs_section_26d
+     _PIEJ                                      26E       1       1       1   .abs_section_26e
+     _PIFJ                                      26F       1       1       0   .abs_section_26f
+     _PTAD                                      270       1       1       1   .abs_section_270
+     _PTIAD                                     271       1       1       0   .abs_section_271
+     _DDRAD                                     272       1       1       1   .abs_section_272
+     _RDRAD                                     273       1       1       0   .abs_section_273
+     _PERAD                                     274       1       1       1   .abs_section_274
+     _PPSAD                                     275       1       1       0   .abs_section_275
+     _PORTAB                                      0       2       2       2   .abs_section_0
+     _DDRAB                                       2       2       2       2   .abs_section_2
+     _PARTID                                     1A       2       2       0   .abs_section_1a
+     _DBGTB                                      22       2       2       0   .abs_section_22
+     _DBGCC                                      26       2       2       0   .abs_section_26
+     _DBGCA                                      2B       2       2       0   .abs_section_2b
+     _DBGCB                                      2E       2       2       0   .abs_section_2e
+     _TCNT                                       44       2       2       0   .abs_section_44
+     _TC0                                        50       2       2       0   .abs_section_50
+     _TC1                                        52       2       2       0   .abs_section_52
+     _TC2                                        54       2       2       0   .abs_section_54
+     _TC3                                        56       2       2       0   .abs_section_56
+     _TC4                                        58       2       2       0   .abs_section_58
+     _TC5                                        5A       2       2       0   .abs_section_5a
+     _TC6                                        5C       2       2       0   .abs_section_5c
+     _TC7                                        5E       2       2       1   .abs_section_5e
+     _PACNT                                      62       2       2       0   .abs_section_62
+     _ATDCTL23                                   82       2       2       0   .abs_section_82
+     _ATDCTL45                                   84       2       2       0   .abs_section_84
+     _ATDDR0                                     90       2       2       0   .abs_section_90
+     _ATDDR1                                     92       2       2       0   .abs_section_92
+     _ATDDR2                                     94       2       2       0   .abs_section_94
+     _ATDDR3                                     96       2       2       0   .abs_section_96
+     _ATDDR4                                     98       2       2       0   .abs_section_98
+     _ATDDR5                                     9A       2       2       0   .abs_section_9a
+     _ATDDR6                                     9C       2       2       0   .abs_section_9c
+     _ATDDR7                                     9E       2       2       0   .abs_section_9e
+     _SCIBD                                      C8       2       2       1   .abs_section_c8
+     _PWMCNT01                                   EC       2       2       1   .abs_section_ec
+     _PWMCNT23                                   EE       2       2       1   .abs_section_ee
+     _PWMCNT45                                   F0       2       2       0   .abs_section_f0
+     _PWMPER01                                   F2       2       2       2   .abs_section_f2
+     _PWMPER23                                   F4       2       2       1   .abs_section_f4
+     _PWMPER45                                   F6       2       2       1   .abs_section_f6
+     _PWMDTY01                                   F8       2       2       1   .abs_section_f8
+     _PWMDTY23                                   FA       2       2       0   .abs_section_fa
+     _PWMDTY45                                   FC       2       2       1   .abs_section_fc
+MODULE:                 -- main.cpp.o --
+- PROCEDURES:
+     main                                      4A62      66     102       1   .text       
+     testPwmHard45__FR7PWMHard                 4AC8      58      88       1   .text       
+     print__FPSc                               4B20      38      56       1   .text       
+     __ct__7ISalidaFv                          5A1E       A      10       1   GEN_FUNCS_SEGMENT
+     __ct__4IPWMFv                             5A28       E      14       2   GEN_FUNCS_SEGMENT
+     __ct__10CollectionFv                      5A36       A      10       1   GEN_FUNCS_SEGMENT
+     __ct__4ListFv                             5A40       E      14       1   GEN_FUNCS_SEGMENT
+     __ct__7PromBkpFv                          5A4E       6       6       1   GEN_FUNCS_SEGMENT
+     __ct__14RamSimulaFlashFv                  5A54       3       3       2   GEN_FUNCS_SEGMENT
+- VARIABLES:
+     STRING.testing....periodo.1.6             4967      1C      28       1   .rodata1    
+     ____vtbl__ISalida                         58CE      18      24       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__IPWMISalida                     58E6      24      36       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__Collection                      590A      1C      28       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__ListCollection                  5926      20      32       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__LinkedListListCollection        5946      24      36       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__MethodContainerLinkedListListCollection       596A      24      36       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__PWMIPWMISalida                  598E      24      36       2   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__PWMHardPWMIPWMISalida           59B2      24      36       2   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__PWMHard23PWMHardPWMIPWMISalida       59D6      24      36       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__PWMHard01PWMHardPWMIPWMISalida       59FA      24      36       1   VIRTUAL_TABLE_SEGMENT
+     potencia1                                 100C       2       2       2   AS1_DATA    
+MODULE:                 -- datapage.c.o --
+- PROCEDURES:
+     _LOAD_FAR_16                              5C39       B      11      16   RUNTIME     
+- VARIABLES:
+MODULE:                 -- Start12.cpp.o --
+- PROCEDURES:
+     Init__Fv                                  4B58      3C      60       1   .text       
+     _Startup                                  4B94       8       8       1   .text       
+- VARIABLES:
+     _startupData                              482B       E      14       5   .startData  
+- LABELS:
+     __SEG_END_SSTACK                          12F5       0       0       1               
+MODULE:                 -- ASSERT.C.o (ansisi.lib) --
+- PROCEDURES:
+     _assert                                   4B9C       7       7       3   .text       
+- VARIABLES:
+MODULE:                 -- EMBEDDED.C.o (ansisi.lib) --
+- PROCEDURES:
+     abort                                     4BA3       4       4       1   .text       
+     exit                                      4BA7       4       4       1   .text       
+- VARIABLES:
+MODULE:                 -- HEAP.C.o (ansisi.lib) --
+- PROCEDURES:
+     _heapcrash_                               4BAB       C      12       3   .text       
+- VARIABLES:
+     _heap_                                    1010     190     400       2   HEAP_SEGMENT
+MODULE:                 -- PRINTF.C.o (ansisi.lib) --
+- PROCEDURES:
+     vprintf                                   4BB7     43B    1083      46   .text       
+     _out                                      4FF2       C      12       9   .text       
+     deposit_char                              4FFE       F      15       1   .text       
+     sprintf                                   500D      29      41       1   .text       
+- VARIABLES:
+     pow10                                     483D      28      40       4   .rodata     
+     pow16                                     4865      20      32       4   .rodata     
+     pow8                                      4885      2C      44       4   .rodata     
+     pbuf                                      1000       6       6      15   .bss        
+MODULE:                 -- ALLOC.C.o (ansisi.lib) --
+- PROCEDURES:
+     malloc                                    5036      A5     165       1   .text       
+     free                                      50DB      C4     196       2   .text       
+- VARIABLES:
+     heap_end                                  1006       2       2       3   .bss        
+     free_ptr                                  1008       2       2       8   .bss        
+MODULE:                 -- rtshc12.c.o (ansisi.lib) --
+- PROCEDURES:
+     _BSHL                                     5C44       8       8       2   RUNTIME     
+     _LCMP_P                                   5C4C      15      21       3   RUNTIME     
+     _LNEG                                     5C61       D      13       1   RUNTIME     
+     _LINC                                     5C6E       5       5       1   RUNTIME     
+     _LMUL                                     5C73      27      39       1   RUNTIME     
+     _lDivMod                                  5C9A      BE     190       1   RUNTIME     
+     _LDIVU                                    5D58       E      14       1   RUNTIME     
+     _ILSEXT                                   5D66       7       7       2   RUNTIME     
+     _CASE_DIRECT_BYTE                         5D6D       5       5       1   RUNTIME     
+     _CASE_SEARCH_8                            5D72      17      23       1   RUNTIME     
+     _CASE_SEARCH_8_BYTE                       5D89      1A      26       1   RUNTIME     
+- VARIABLES:
+MODULE:                 -- NEW.CPP.o (cppsi.lib) --
+- PROCEDURES:
+     __nw__FGUi                                519F      12      18       2   .text       
+     __dl__FGPv                                51B1       3       3       2   .text       
+- VARIABLES:
+MODULE:                 -- AS1.c.o --
+- PROCEDURES:
+     AS1_Enable__Fv                            5BF3      1D      29       1   AS1_CODE    
+     AS1_Disable__Fv                           5C10       D      13       1   AS1_CODE    
+     AS1_Init__Fv                              5C1D      1C      28       1   AS1_CODE    
+- VARIABLES:
+     SerFlag                                   100E       1       1       2   AS1_DATA    
+     EnUser                                    100F       1       1       5   AS1_DATA    
+MODULE:                 -- FC321.c.o --
+- PROCEDURES:
+     FC321_Interrupt__Fv                       4A44      1E      30       2   NON_BANKED  
+     FC321_Init__Fv                            5DA3      10      16       1   FC321_CODE  
+- VARIABLES:
+     TTicks                                    11A0       4       4       6   FC321_DATA  
+     TOvf                                      11A4       1       1       2   FC321_DATA  
+MODULE:                 -- testVector.c.o --
+- PROCEDURES:
+     Cpu_Interrupt41__Fv                       51B4       2       2       1   .text       
+     Cpu_Interrupt43__Fv                       51B6       2       2       1   .text       
+     Cpu_Interrupt49__Fv                       51B8       2       2       1   .text       
+     Cpu_Interrupt50__Fv                       51BA       2       2       1   .text       
+     Cpu_Interrupt51__Fv                       51BC       2       2       1   .text       
+     Cpu_Interrupt52__Fv                       51BE       2       2       1   .text       
+     Cpu_Interrupt53__Fv                       51C0       2       2       1   .text       
+     Cpu_Interrupt54__Fv                       51C2       2       2       1   .text       
+     Cpu_Interrupt55__Fv                       51C4       2       2       1   .text       
+     Cpu_Interrupt56__Fv                       51C6       2       2       1   .text       
+- VARIABLES:
+     _vect                                     FF80      80     128       0   .abs_section_ff80
+MODULE:                 -- D:\Jony\HCS12\Librerias\OOC\lang\reflect\reflect_Data\C_Ms_no_float\ObjectCode\Method.c.o (reflect_si.lib) --
+- PROCEDURES:
+     Method_constructor                        5BD0       9       9       1   METHOD_CODE 
+     Method_defConstructor                     5BD9      1A      26       1   METHOD_CODE 
+- VARIABLES:
+     Method                                    48B1      10      16       1   .rodata     
+     STRING..1                                 4983       1       1       1   .rodata1    
+MODULE:                 -- D:\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\util\util_hcs12_cpp_Data\C++_Ms_no_float\ObjectCode\LinkedList.cpp.o (util_cpp_si.lib) --
+- PROCEDURES:
+     getNext__4NodoFv.2                        5A57       5       5       1   NODO_CODE   
+     __ct__10LinkedListFv                      5A5C      13      19       2   LinkedList_CODE
+     isEmpty__10LinkedListFv                   5A6F       B      11       2   LinkedList_CODE
+     clear__10LinkedListFv                     5A7A      21      33       2   LinkedList_CODE
+     add__10LinkedListFPv                      5A9B      27      39       2   LinkedList_CODE
+     aniadir__10LinkedListFPv                  5AC2      60      96       2   LinkedList_CODE
+     size__10LinkedListFv                      5B22      13      19       2   LinkedList_CODE
+     get__10LinkedListFUi                      5B35      26      38       2   LinkedList_CODE
+     moveOut__10LinkedListFPv                  5B5B      2F      47       2   LinkedList_CODE
+     deleteNodo__10LinkedListFP4NodoT1         5B8A      25      37       1   LinkedList_CODE
+     contains__10LinkedListFPv                 5BAF      1E      30       2   LinkedList_CODE
+     iterator__10LinkedListFv                  5BCD       3       3       2   LinkedList_CODE
+- VARIABLES:
+MODULE:                 -- D:\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\util\util_hcs12_cpp_Data\C++_Ms_no_float\ObjectCode\nodo.cpp.o (util_cpp_si.lib) --
+- PROCEDURES:
+     __ct__4NodoFPvP4Nodo                      5DB3       D      13       2   Nodo_CODE   
+     setNext__4NodoFP4Nodo                     5DC0       5       5       2   Nodo_CODE   
+- VARIABLES:
+MODULE:                 -- D:\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\ooc\ooc_hcs12_Data\C_Ms_no_float\ObjectCode\Object.c.o (ooc_si.lib) --
+- PROCEDURES:
+     Object_ctor                               51C8       1       1       2   .text       
+     Object_dtor                               51C9       1       1       3   .text       
+     Object_differ                             51CA       E      14       3   .text       
+     Object_puto                               51D8      3F      63       3   .text       
+     classOf                                   5217      1E      30       4   .text       
+     newAlloced                                5235      3A      58       2   .text       
+     ctor                                      526F      1F      31       1   .text       
+- VARIABLES:
+     Object                                    48C1      10      16       4   .rodata     
+     Class                                     48D1      10      16       2   .rodata     
+     STRING..at..1                             4984       5       5       1   .rodata1    
+     STRING..x.2                               4989       3       3       1   .rodata1    
+     STRING.D..versionR51.micros.3             498C      51      81       2   .rodata1    
+     STRING.Object.5                           49DD       7       7       1   .rodata1    
+     STRING.Object.6                           49E4       7       7       1   .rodata1    
+MODULE:                 -- D:\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\ooc\ooc_hcs12_Data\C_Ms_no_float\ObjectCode\OutputStream.c.o (ooc_si.lib) --
+- PROCEDURES:
+     write                                     528E      2C      44       3   .text       
+- VARIABLES:
+     STRING.D..versionR51.micros.3             49EB      57      87       1   .rodata1    
+MODULE:                 -- Cpu.c.o --
+- PROCEDURES:
+     PE_low_level_init__Fv                     52BA      AA     170       1   .text       
+     Cpu_Interrupt__Fv                         4800       2       2      50   .init       
+     _EntryPoint                               4802      29      41       2   .init       
+- VARIABLES:
+MODULE:                 -- PWMHard.cpp.o --
+- PROCEDURES:
+     __sf_7PWMHard_setDuty__F13ReferenciaPWMi       5364      40      64       3   .text       
+     __sf_7PWMHard_setPeriodoHard__F13ReferenciaPWMUi       53A4       F      15       6   .text       
+     __sf_7PWMHard_escalar__F13ReferenciaPWM       53B3       F      15       3   .text       
+     __sf_7PWMHard_noEscalar__F13ReferenciaPWM       53C2      10      16       5   .text       
+     getConectada__7PWMHardFv                  53D2       5       5       3   .text       
+     setConectada__7PWMHardFUc                 53D7      35      53       3   .text       
+- VARIABLES:
+MODULE:                 -- PWMHard23.cpp.o --
+- PROCEDURES:
+     __ct__7PWMHardFR16ManejadorMemoriaR8TConfPWM.4       540C      30      48       1   .text       
+     __ct__9PWMHard23FR16ManejadorMemoriaR8TConfPWM       543C      39      57       1   .text       
+     setPotencia__9PWMHard23FUi                5475      2A      42       1   .text       
+     setTipoSalida__9PWMHard23F10TipoSalida       549F       B      11       1   .text       
+     getTipoSalida__9PWMHard23Fv               54AA       A      10       1   .text       
+     setPeriodo__9PWMHard23F7TPeriod           54B4      4D      77       1   .text       
+     getEstadoSalida__9PWMHard23Fv             5501       9       9       1   .text       
+- VARIABLES:
+     periodos                                  48E1      14      20       1   .rodata     
+MODULE:                 -- PWMManager01_45.cpp.o --
+- PROCEDURES:
+     __ct__7PWMHardFR16ManejadorMemoriaR8TConfPWM.4       550A      30      48       1   .text       
+     __ct__24PWMHard01PWMManager01_45FR16ManejadorMemoriaR8TConfPWM       553A      31      49       1   .text       
+     setPotencia__24PWMHard01PWMManager01_45FUi       556B      29      41       1   .text       
+     getTipoSalida__24PWMHard01PWMManager01_45Fv       5594       A      10       1   .text       
+     setTipoSalida__24PWMHard01PWMManager01_45F10TipoSalida       559E       B      11       1   .text       
+     getEstadoSalida__24PWMHard01PWMManager01_45Fv       55A9       7       7       1   .text       
+     setPeriodo__24PWMHard01PWMManager01_45F7TPeriod       55B0      26      38       1   .text       
+     __sf_15PWMManager01_45_PWMManager01_45_setPeriodo__FP3PWM7TPeriod       55D6      D1     209       1   .text       
+     __sf_15PWMManager01_45_PWMManager01_45_configCaso1__F13ReferenciaPWMT0       56A7      21      33       1   .text       
+     __sf_15PWMManager01_45_PWMManager01_45_configCaso2__F13ReferenciaPWMN20       56C8      42      66       1   .text       
+     __sf_15PWMManager01_45_PWMManager01_45_configCaso3__F13ReferenciaPWMN30       570A      57      87       1   .text       
+     __sf_15PWMManager01_45_PWM45_actualizarPotencia__FUi       5761      2C      44       1   .text       
+     __sf_15PWMManager01_45_PWM01_actualizarPotencia__FUi       578D      20      32       1   .text       
+- VARIABLES:
+     periodosCaso2                             48F5      14      20       1   .rodata     
+     periodosCaso3                             4909      14      20       2   .rodata     
+     escaladoresCaso2_3                        491D       A      10       3   .rodata     
+     __sf_15PWMManager01_45_pwmHard01          100A       2       2       1   .bss        
+MODULE:                 -- PWM.cpp.o --
+- PROCEDURES:
+     setPeriodoConfiguracion__3PWMF7TPeriod       57AD      15      21       2   .text       
+     getPeriodoConfiguracion__3PWMFv           57C2      10      16       1   .text       
+     setPotencia__3PWMFUi                      57D2      3E      62       3   .text       
+     getPeriodo__3PWMFv                        5810       4       4       4   .text       
+     getPotencia__3PWMFv                       5814       5       5       4   .text       
+     getConectada__3PWMFv                      5819       5       5       1   .text       
+     setConectada__3PWMFUc                     581E      35      53       1   .text       
+     Salida_setPotencia__3PWMFUi               5853      37      55       2   .text       
+- VARIABLES:
+MODULE:                 -- RamSimulaFlash.c.o --
+- PROCEDURES:
+     RamSimulaFlash_setWord__FPvPUiUi          588A       6       6       2   .text       
+     RamSimulaFlash_getWord__FPvPUi            5890       5       5       2   .text       
+     RamSimulaFlash_grabarProm__FPv            5895       3       3       1   .text       
+     RamSimulaFlash_borrarProm__FPvT0          5898       2       2       1   .text       
+- VARIABLES:
+     RamSimulaFlash                            4927      20      32       2   .rodata     
+     STRING..3                                 4A42       1       1       1   .rodata1    
+MODULE:                 -- PromBkp.c.o --
+- PROCEDURES:
+     PromBkp_ctor__FPvPPSc                     589A       B      11       1   .text       
+- VARIABLES:
+     PromBkp                                   4947      20      32       1   .rodata     
+     STRING..3                                 4A43       1       1       1   .rodata1    
+MODULE:                 -- MethodContainer.cpp.o --
+- PROCEDURES:
+     __ct__15MethodContainerFv                 58A5       F      15       2   .text       
+     add__15MethodContainerFPv                 58B4      1A      26       1   .text       
+- VARIABLES:
+
+*********************************************************************************************
+MODULE STATISTIC
+  Name                                      Data   Code  Const
+---------------------------------------------------------------------------------------------
+  MC9S12GC32.c.o                             199      0      0
+  main.cpp.o                                   2    303    364
+  datapage.c.o                                 0     11      0
+  Start12.cpp.o                                0     68      0
+  ASSERT.C.o (ansisi.lib)                      0      7      0
+  EMBEDDED.C.o (ansisi.lib)                    0      8      0
+  HEAP.C.o (ansisi.lib)                      400     12      0
+  PRINTF.C.o (ansisi.lib)                      6   1151    116
+  ALLOC.C.o (ansisi.lib)                       4    361      0
+  rtshc12.c.o (ansisi.lib)                     0    351      0
+  NEW.CPP.o (cppsi.lib)                        0     21      0
+  AS1.c.o                                      2     70      0
+  FC321.c.o                                    5     46      0
+  testVector.c.o                               0     20    128
+  D:\Jony\HCS12\Librerias\OOC\lang\reflect\reflect_Data\C_Ms_no_float\ObjectCode\Method.c.o (reflect_si.lib)     0     35     17
+  D:\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\util\util_hcs12_cpp_Data\C++_Ms_no_float\ObjectCode\LinkedList.cpp.o (util_cpp_si.lib)     0    377      0
+  D:\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\util\util_hcs12_cpp_Data\C++_Ms_no_float\ObjectCode\nodo.cpp.o (util_cpp_si.lib)     0     18      0
+  D:\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\ooc\ooc_hcs12_Data\C_Ms_no_float\ObjectCode\Object.c.o (ooc_si.lib)     0    198    135
+  D:\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\ooc\ooc_hcs12_Data\C_Ms_no_float\ObjectCode\OutputStream.c.o (ooc_si.lib)     0     44     87
+  Cpu.c.o                                      0    213      0
+  PWMHard.cpp.o                                0    168      0
+  PWMHard23.cpp.o                              0    254     20
+  PWMManager01_45.cpp.o                        2    675     50
+  PWM.cpp.o                                    0    221      0
+  RamSimulaFlash.c.o                           0     16     33
+  PromBkp.c.o                                  0     11     33
+  MethodContainer.cpp.o                        0     41      0
+  other                                      336     18      8
+
+*********************************************************************************************
+SECTION USE IN OBJECT-ALLOCATION SECTION
+---------------------------------------------------------------------------------------------
+SECTION: ".text"
+  main testPwmHard45__FR7PWMHard print__FPSc Init__Fv _Startup _assert abort 
+  exit _heapcrash_ vprintf _out deposit_char sprintf malloc free __nw__FGUi 
+  __dl__FGPv Cpu_Interrupt41__Fv Cpu_Interrupt43__Fv Cpu_Interrupt49__Fv 
+  Cpu_Interrupt50__Fv Cpu_Interrupt51__Fv Cpu_Interrupt52__Fv 
+  Cpu_Interrupt53__Fv Cpu_Interrupt54__Fv Cpu_Interrupt55__Fv 
+  Cpu_Interrupt56__Fv Object_ctor Object_dtor Object_differ Object_puto classOf 
+  newAlloced ctor write PE_low_level_init__Fv 
+  __sf_7PWMHard_setDuty__F13ReferenciaPWMi 
+  __sf_7PWMHard_setPeriodoHard__F13ReferenciaPWMUi 
+  __sf_7PWMHard_escalar__F13ReferenciaPWM 
+  __sf_7PWMHard_noEscalar__F13ReferenciaPWM getConectada__7PWMHardFv 
+  setConectada__7PWMHardFUc __ct__7PWMHardFR16ManejadorMemoriaR8TConfPWM.4 
+  __ct__9PWMHard23FR16ManejadorMemoriaR8TConfPWM setPotencia__9PWMHard23FUi 
+  setTipoSalida__9PWMHard23F10TipoSalida getTipoSalida__9PWMHard23Fv 
+  setPeriodo__9PWMHard23F7TPeriod getEstadoSalida__9PWMHard23Fv 
+  __ct__7PWMHardFR16ManejadorMemoriaR8TConfPWM.4 
+  __ct__24PWMHard01PWMManager01_45FR16ManejadorMemoriaR8TConfPWM 
+  setPotencia__24PWMHard01PWMManager01_45FUi 
+  getTipoSalida__24PWMHard01PWMManager01_45Fv 
+  setTipoSalida__24PWMHard01PWMManager01_45F10TipoSalida 
+  getEstadoSalida__24PWMHard01PWMManager01_45Fv 
+  setPeriodo__24PWMHard01PWMManager01_45F7TPeriod 
+  __sf_15PWMManager01_45_PWMManager01_45_setPeriodo__FP3PWM7TPeriod 
+  __sf_15PWMManager01_45_PWMManager01_45_configCaso1__F13ReferenciaPWMT0 
+  __sf_15PWMManager01_45_PWMManager01_45_configCaso2__F13ReferenciaPWMN20 
+  __sf_15PWMManager01_45_PWMManager01_45_configCaso3__F13ReferenciaPWMN30 
+  __sf_15PWMManager01_45_PWM45_actualizarPotencia__FUi 
+  __sf_15PWMManager01_45_PWM01_actualizarPotencia__FUi 
+  setPeriodoConfiguracion__3PWMF7TPeriod getPeriodoConfiguracion__3PWMFv 
+  setPotencia__3PWMFUi getPeriodo__3PWMFv getPotencia__3PWMFv 
+  getConectada__3PWMFv setConectada__3PWMFUc Salida_setPotencia__3PWMFUi 
+  RamSimulaFlash_setWord__FPvPUiUi RamSimulaFlash_getWord__FPvPUi 
+  RamSimulaFlash_grabarProm__FPv RamSimulaFlash_borrarProm__FPvT0 
+  PromBkp_ctor__FPvPPSc __ct__15MethodContainerFv add__15MethodContainerFPv 
+SECTION: ".bss"
+  pbuf heap_end free_ptr __sf_15PWMManager01_45_pwmHard01 
+SECTION: ".init"
+  Cpu_Interrupt__Fv _EntryPoint 
+SECTION: ".rodata"
+  pow10 pow16 pow8 Method Object Class periodos periodosCaso2 periodosCaso3 
+  escaladoresCaso2_3 RamSimulaFlash PromBkp 
+SECTION: ".rodata1"
+  STRING.testing....periodo.1.6 STRING..1 STRING..at..1 STRING..x.2 
+  STRING.D..versionR51.micros.3 STRING.Object.5 STRING.Object.6 
+  STRING.D..versionR51.micros.3 STRING..3 STRING..3 
+SECTION: "NON_BANKED"
+  FC321_Interrupt__Fv 
+SECTION: ".abs_section_8"
+  _PORTE 
+SECTION: ".abs_section_9"
+  _DDRE 
+SECTION: ".abs_section_a"
+  _PEAR 
+SECTION: ".abs_section_b"
+  _MODE 
+SECTION: ".abs_section_c"
+  _PUCR 
+SECTION: ".abs_section_d"
+  _RDRIV 
+SECTION: ".abs_section_e"
+  _EBICTL 
+SECTION: ".abs_section_10"
+  _INITRM 
+SECTION: ".abs_section_11"
+  _INITRG 
+SECTION: ".abs_section_13"
+  _MISC 
+SECTION: ".abs_section_15"
+  _ITCR 
+SECTION: ".abs_section_16"
+  _ITEST 
+SECTION: ".abs_section_19"
+  _VREGCTRL 
+SECTION: ".abs_section_1c"
+  _MEMSIZ0 
+SECTION: ".abs_section_1d"
+  _MEMSIZ1 
+SECTION: ".abs_section_1e"
+  _INTCR 
+SECTION: ".abs_section_1f"
+  _HPRIO 
+SECTION: ".abs_section_20"
+  _DBGC1 
+SECTION: ".abs_section_21"
+  _DBGSC 
+SECTION: ".abs_section_24"
+  _DBGCNT 
+SECTION: ".abs_section_25"
+  _DBGCCX 
+SECTION: ".abs_section_28"
+  _DBGC2 
+SECTION: ".abs_section_29"
+  _DBGC3 
+SECTION: ".abs_section_2a"
+  _DBGCAX 
+SECTION: ".abs_section_2d"
+  _DBGCBX 
+SECTION: ".abs_section_30"
+  _PPAGE 
+SECTION: ".abs_section_34"
+  _SYNR 
+SECTION: ".abs_section_35"
+  _REFDV 
+SECTION: ".abs_section_37"
+  _CRGFLG 
+SECTION: ".abs_section_38"
+  _CRGINT 
+SECTION: ".abs_section_39"
+  _CLKSEL 
+SECTION: ".abs_section_3a"
+  _PLLCTL 
+SECTION: ".abs_section_3b"
+  _RTICTL 
+SECTION: ".abs_section_3c"
+  _COPCTL 
+SECTION: ".abs_section_3f"
+  _ARMCOP 
+SECTION: ".abs_section_40"
+  _TIOS 
+SECTION: ".abs_section_41"
+  _CFORC 
+SECTION: ".abs_section_42"
+  _OC7M 
+SECTION: ".abs_section_43"
+  _OC7D 
+SECTION: ".abs_section_46"
+  _TSCR1 
+SECTION: ".abs_section_47"
+  _TTOV 
+SECTION: ".abs_section_48"
+  _TCTL1 
+SECTION: ".abs_section_49"
+  _TCTL2 
+SECTION: ".abs_section_4a"
+  _TCTL3 
+SECTION: ".abs_section_4b"
+  _TCTL4 
+SECTION: ".abs_section_4c"
+  _TIE 
+SECTION: ".abs_section_4d"
+  _TSCR2 
+SECTION: ".abs_section_4e"
+  _TFLG1 
+SECTION: ".abs_section_4f"
+  _TFLG2 
+SECTION: ".abs_section_60"
+  _PACTL 
+SECTION: ".abs_section_61"
+  _PAFLG 
+SECTION: ".abs_section_86"
+  _ATDSTAT0 
+SECTION: ".abs_section_89"
+  _ATDTEST1 
+SECTION: ".abs_section_8b"
+  _ATDSTAT1 
+SECTION: ".abs_section_8d"
+  _ATDDIEN 
+SECTION: ".abs_section_8f"
+  _PORTAD0 
+SECTION: ".abs_section_ca"
+  _SCICR1 
+SECTION: ".abs_section_cb"
+  _SCICR2 
+SECTION: ".abs_section_cc"
+  _SCISR1 
+SECTION: ".abs_section_cd"
+  _SCISR2 
+SECTION: ".abs_section_ce"
+  _SCIDRH 
+SECTION: ".abs_section_cf"
+  _SCIDRL 
+SECTION: ".abs_section_d8"
+  _SPICR1 
+SECTION: ".abs_section_d9"
+  _SPICR2 
+SECTION: ".abs_section_da"
+  _SPIBR 
+SECTION: ".abs_section_db"
+  _SPISR 
+SECTION: ".abs_section_dd"
+  _SPIDR 
+SECTION: ".abs_section_e0"
+  _PWME 
+SECTION: ".abs_section_e1"
+  _PWMPOL 
+SECTION: ".abs_section_e2"
+  _PWMCLK 
+SECTION: ".abs_section_e3"
+  _PWMPRCLK 
+SECTION: ".abs_section_e4"
+  _PWMCAE 
+SECTION: ".abs_section_e5"
+  _PWMCTL 
+SECTION: ".abs_section_e8"
+  _PWMSCLA 
+SECTION: ".abs_section_e9"
+  _PWMSCLB 
+SECTION: ".abs_section_fe"
+  _PWMSDN 
+SECTION: ".abs_section_100"
+  _FCLKDIV 
+SECTION: ".abs_section_101"
+  _FSEC 
+SECTION: ".abs_section_103"
+  _FCNFG 
+SECTION: ".abs_section_104"
+  _FPROT 
+SECTION: ".abs_section_105"
+  _FSTAT 
+SECTION: ".abs_section_106"
+  _FCMD 
+SECTION: ".abs_section_240"
+  _PTT 
+SECTION: ".abs_section_241"
+  _PTIT 
+SECTION: ".abs_section_242"
+  _DDRT 
+SECTION: ".abs_section_243"
+  _RDRT 
+SECTION: ".abs_section_244"
+  _PERT 
+SECTION: ".abs_section_245"
+  _PPST 
+SECTION: ".abs_section_247"
+  _MODRR 
+SECTION: ".abs_section_248"
+  _PTS 
+SECTION: ".abs_section_249"
+  _PTIS 
+SECTION: ".abs_section_24a"
+  _DDRS 
+SECTION: ".abs_section_24b"
+  _RDRS 
+SECTION: ".abs_section_24c"
+  _PERS 
+SECTION: ".abs_section_24d"
+  _PPSS 
+SECTION: ".abs_section_24e"
+  _WOMS 
+SECTION: ".abs_section_250"
+  _PTM 
+SECTION: ".abs_section_251"
+  _PTIM 
+SECTION: ".abs_section_252"
+  _DDRM 
+SECTION: ".abs_section_253"
+  _RDRM 
+SECTION: ".abs_section_254"
+  _PERM 
+SECTION: ".abs_section_255"
+  _PPSM 
+SECTION: ".abs_section_256"
+  _WOMM 
+SECTION: ".abs_section_258"
+  _PTP 
+SECTION: ".abs_section_259"
+  _PTIP 
+SECTION: ".abs_section_25a"
+  _DDRP 
+SECTION: ".abs_section_25b"
+  _RDRP 
+SECTION: ".abs_section_25c"
+  _PERP 
+SECTION: ".abs_section_25d"
+  _PPSP 
+SECTION: ".abs_section_25e"
+  _PIEP 
+SECTION: ".abs_section_25f"
+  _PIFP 
+SECTION: ".abs_section_268"
+  _PTJ 
+SECTION: ".abs_section_269"
+  _PTIJ 
+SECTION: ".abs_section_26a"
+  _DDRJ 
+SECTION: ".abs_section_26b"
+  _RDRJ 
+SECTION: ".abs_section_26c"
+  _PERJ 
+SECTION: ".abs_section_26d"
+  _PPSJ 
+SECTION: ".abs_section_26e"
+  _PIEJ 
+SECTION: ".abs_section_26f"
+  _PIFJ 
+SECTION: ".abs_section_270"
+  _PTAD 
+SECTION: ".abs_section_271"
+  _PTIAD 
+SECTION: ".abs_section_272"
+  _DDRAD 
+SECTION: ".abs_section_273"
+  _RDRAD 
+SECTION: ".abs_section_274"
+  _PERAD 
+SECTION: ".abs_section_275"
+  _PPSAD 
+SECTION: ".abs_section_0"
+  _PORTAB 
+SECTION: ".abs_section_2"
+  _DDRAB 
+SECTION: ".abs_section_1a"
+  _PARTID 
+SECTION: ".abs_section_22"
+  _DBGTB 
+SECTION: ".abs_section_26"
+  _DBGCC 
+SECTION: ".abs_section_2b"
+  _DBGCA 
+SECTION: ".abs_section_2e"
+  _DBGCB 
+SECTION: ".abs_section_44"
+  _TCNT 
+SECTION: ".abs_section_50"
+  _TC0 
+SECTION: ".abs_section_52"
+  _TC1 
+SECTION: ".abs_section_54"
+  _TC2 
+SECTION: ".abs_section_56"
+  _TC3 
+SECTION: ".abs_section_58"
+  _TC4 
+SECTION: ".abs_section_5a"
+  _TC5 
+SECTION: ".abs_section_5c"
+  _TC6 
+SECTION: ".abs_section_5e"
+  _TC7 
+SECTION: ".abs_section_62"
+  _PACNT 
+SECTION: ".abs_section_82"
+  _ATDCTL23 
+SECTION: ".abs_section_84"
+  _ATDCTL45 
+SECTION: ".abs_section_90"
+  _ATDDR0 
+SECTION: ".abs_section_92"
+  _ATDDR1 
+SECTION: ".abs_section_94"
+  _ATDDR2 
+SECTION: ".abs_section_96"
+  _ATDDR3 
+SECTION: ".abs_section_98"
+  _ATDDR4 
+SECTION: ".abs_section_9a"
+  _ATDDR5 
+SECTION: ".abs_section_9c"
+  _ATDDR6 
+SECTION: ".abs_section_9e"
+  _ATDDR7 
+SECTION: ".abs_section_c8"
+  _SCIBD 
+SECTION: ".abs_section_ec"
+  _PWMCNT01 
+SECTION: ".abs_section_ee"
+  _PWMCNT23 
+SECTION: ".abs_section_f0"
+  _PWMCNT45 
+SECTION: ".abs_section_f2"
+  _PWMPER01 
+SECTION: ".abs_section_f4"
+  _PWMPER23 
+SECTION: ".abs_section_f6"
+  _PWMPER45 
+SECTION: ".abs_section_f8"
+  _PWMDTY01 
+SECTION: ".abs_section_fa"
+  _PWMDTY23 
+SECTION: ".abs_section_fc"
+  _PWMDTY45 
+SECTION: "VIRTUAL_TABLE_SEGMENT"
+  ____vtbl__ISalida ____vtbl__IPWMISalida ____vtbl__Collection 
+  ____vtbl__ListCollection ____vtbl__LinkedListListCollection 
+  ____vtbl__MethodContainerLinkedListListCollection ____vtbl__PWMIPWMISalida 
+  ____vtbl__PWMHardPWMIPWMISalida ____vtbl__PWMHard23PWMHardPWMIPWMISalida 
+  ____vtbl__PWMHard01PWMHardPWMIPWMISalida 
+SECTION: "GEN_FUNCS_SEGMENT"
+  __ct__7ISalidaFv __ct__4IPWMFv __ct__10CollectionFv __ct__4ListFv 
+  __ct__7PromBkpFv __ct__14RamSimulaFlashFv 
+SECTION: "NODO_CODE"
+  getNext__4NodoFv.2 
+SECTION: "LinkedList_CODE"
+  __ct__10LinkedListFv isEmpty__10LinkedListFv clear__10LinkedListFv 
+  add__10LinkedListFPv aniadir__10LinkedListFPv size__10LinkedListFv 
+  get__10LinkedListFUi moveOut__10LinkedListFPv 
+  deleteNodo__10LinkedListFP4NodoT1 contains__10LinkedListFPv 
+  iterator__10LinkedListFv 
+SECTION: "METHOD_CODE"
+  Method_constructor Method_defConstructor 
+SECTION: "AS1_DATA"
+  potencia1 SerFlag EnUser 
+SECTION: "AS1_CODE"
+  AS1_Enable__Fv AS1_Disable__Fv AS1_Init__Fv 
+SECTION: "RUNTIME"
+  _LOAD_FAR_16 _BSHL _LCMP_P _LNEG _LINC _LMUL _lDivMod _LDIVU _ILSEXT 
+  _CASE_DIRECT_BYTE _CASE_SEARCH_8 _CASE_SEARCH_8_BYTE 
+SECTION: "HEAP_SEGMENT"
+  _heap_ 
+SECTION: "FC321_CODE"
+  FC321_Init__Fv 
+SECTION: "FC321_DATA"
+  TTicks TOvf 
+SECTION: ".abs_section_ff80"
+  _vect 
+SECTION: "Nodo_CODE"
+  __ct__4NodoFPvP4Nodo setNext__4NodoFP4Nodo 
+
+*********************************************************************************************
+OBJECT LIST SORTED BY ADDRESS
+     Name                                      Addr   hSize   dSize     Ref    Section   RLIB
+---------------------------------------------------------------------------------------------
+     _PORTAB                                      0       2       2       2   .abs_section_0
+     _DDRAB                                       2       2       2       2   .abs_section_2
+     _PORTE                                       8       1       1       0   .abs_section_8
+     _DDRE                                        9       1       1       1   .abs_section_9
+     _PEAR                                        A       1       1       2   .abs_section_a
+     _MODE                                        B       1       1       0   .abs_section_b
+     _PUCR                                        C       1       1       1   .abs_section_c
+     _RDRIV                                       D       1       1       0   .abs_section_d
+     _EBICTL                                      E       1       1       0   .abs_section_e
+     _INITRM                                     10       1       1       1   .abs_section_10
+     _INITRG                                     11       1       1       0   .abs_section_11
+     _MISC                                       13       1       1       1   .abs_section_13
+     _ITCR                                       15       1       1       0   .abs_section_15
+     _ITEST                                      16       1       1       0   .abs_section_16
+     _VREGCTRL                                   19       1       1       0   .abs_section_19
+     _PARTID                                     1A       2       2       0   .abs_section_1a
+     _MEMSIZ0                                    1C       1       1       0   .abs_section_1c
+     _MEMSIZ1                                    1D       1       1       0   .abs_section_1d
+     _INTCR                                      1E       1       1       0   .abs_section_1e
+     _HPRIO                                      1F       1       1       1   .abs_section_1f
+     _DBGC1                                      20       1       1       0   .abs_section_20
+     _DBGSC                                      21       1       1       0   .abs_section_21
+     _DBGTB                                      22       2       2       0   .abs_section_22
+     _DBGCNT                                     24       1       1       0   .abs_section_24
+     _DBGCCX                                     25       1       1       0   .abs_section_25
+     _DBGCC                                      26       2       2       0   .abs_section_26
+     _DBGC2                                      28       1       1       0   .abs_section_28
+     _DBGC3                                      29       1       1       0   .abs_section_29
+     _DBGCAX                                     2A       1       1       0   .abs_section_2a
+     _DBGCA                                      2B       2       2       0   .abs_section_2b
+     _DBGCBX                                     2D       1       1       0   .abs_section_2d
+     _DBGCB                                      2E       2       2       0   .abs_section_2e
+     _PPAGE                                      30       1       1       0   .abs_section_30
+     _SYNR                                       34       1       1       1   .abs_section_34
+     _REFDV                                      35       1       1       1   .abs_section_35
+     _CRGFLG                                     37       1       1       1   .abs_section_37
+     _CRGINT                                     38       1       1       0   .abs_section_38
+     _CLKSEL                                     39       1       1       2   .abs_section_39
+     _PLLCTL                                     3A       1       1       2   .abs_section_3a
+     _RTICTL                                     3B       1       1       0   .abs_section_3b
+     _COPCTL                                     3C       1       1       2   .abs_section_3c
+     _ARMCOP                                     3F       1       1       0   .abs_section_3f
+     _TIOS                                       40       1       1       1   .abs_section_40
+     _CFORC                                      41       1       1       0   .abs_section_41
+     _OC7M                                       42       1       1       1   .abs_section_42
+     _OC7D                                       43       1       1       0   .abs_section_43
+     _TCNT                                       44       2       2       0   .abs_section_44
+     _TSCR1                                      46       1       1       3   .abs_section_46
+     _TTOV                                       47       1       1       1   .abs_section_47
+     _TCTL1                                      48       1       1       1   .abs_section_48
+     _TCTL2                                      49       1       1       1   .abs_section_49
+     _TCTL3                                      4A       1       1       0   .abs_section_4a
+     _TCTL4                                      4B       1       1       0   .abs_section_4b
+     _TIE                                        4C       1       1       1   .abs_section_4c
+     _TSCR2                                      4D       1       1       2   .abs_section_4d
+     _TFLG1                                      4E       1       1       2   .abs_section_4e
+     _TFLG2                                      4F       1       1       0   .abs_section_4f
+     _TC0                                        50       2       2       0   .abs_section_50
+     _TC1                                        52       2       2       0   .abs_section_52
+     _TC2                                        54       2       2       0   .abs_section_54
+     _TC3                                        56       2       2       0   .abs_section_56
+     _TC4                                        58       2       2       0   .abs_section_58
+     _TC5                                        5A       2       2       0   .abs_section_5a
+     _TC6                                        5C       2       2       0   .abs_section_5c
+     _TC7                                        5E       2       2       1   .abs_section_5e
+     _PACTL                                      60       1       1       0   .abs_section_60
+     _PAFLG                                      61       1       1       0   .abs_section_61
+     _PACNT                                      62       2       2       0   .abs_section_62
+     _ATDCTL23                                   82       2       2       0   .abs_section_82
+     _ATDCTL45                                   84       2       2       0   .abs_section_84
+     _ATDSTAT0                                   86       1       1       0   .abs_section_86
+     _ATDTEST1                                   89       1       1       0   .abs_section_89
+     _ATDSTAT1                                   8B       1       1       0   .abs_section_8b
+     _ATDDIEN                                    8D       1       1       1   .abs_section_8d
+     _PORTAD0                                    8F       1       1       0   .abs_section_8f
+     _ATDDR0                                     90       2       2       0   .abs_section_90
+     _ATDDR1                                     92       2       2       0   .abs_section_92
+     _ATDDR2                                     94       2       2       0   .abs_section_94
+     _ATDDR3                                     96       2       2       0   .abs_section_96
+     _ATDDR4                                     98       2       2       0   .abs_section_98
+     _ATDDR5                                     9A       2       2       0   .abs_section_9a
+     _ATDDR6                                     9C       2       2       0   .abs_section_9c
+     _ATDDR7                                     9E       2       2       0   .abs_section_9e
+     _SCIBD                                      C8       2       2       1   .abs_section_c8
+     _SCICR1                                     CA       1       1       1   .abs_section_ca
+     _SCICR2                                     CB       1       1       5   .abs_section_cb
+     _SCISR1                                     CC       1       1       5   .abs_section_cc
+     _SCISR2                                     CD       1       1       1   .abs_section_cd
+     _SCIDRH                                     CE       1       1       0   .abs_section_ce
+     _SCIDRL                                     CF       1       1       2   .abs_section_cf
+     _SPICR1                                     D8       1       1       0   .abs_section_d8
+     _SPICR2                                     D9       1       1       0   .abs_section_d9
+     _SPIBR                                      DA       1       1       0   .abs_section_da
+     _SPISR                                      DB       1       1       0   .abs_section_db
+     _SPIDR                                      DD       1       1       0   .abs_section_dd
+     _PWME                                       E0       1       1      12   .abs_section_e0
+     _PWMPOL                                     E1       1       1       2   .abs_section_e1
+     _PWMCLK                                     E2       1       1       6   .abs_section_e2
+     _PWMPRCLK                                   E3       1       1       7   .abs_section_e3
+     _PWMCAE                                     E4       1       1       0   .abs_section_e4
+     _PWMCTL                                     E5       1       1       3   .abs_section_e5
+     _PWMSCLA                                    E8       1       1       3   .abs_section_e8
+     _PWMSCLB                                    E9       1       1       1   .abs_section_e9
+     _PWMCNT01                                   EC       2       2       1   .abs_section_ec
+     _PWMCNT23                                   EE       2       2       1   .abs_section_ee
+     _PWMCNT45                                   F0       2       2       0   .abs_section_f0
+     _PWMPER01                                   F2       2       2       2   .abs_section_f2
+     _PWMPER23                                   F4       2       2       1   .abs_section_f4
+     _PWMPER45                                   F6       2       2       1   .abs_section_f6
+     _PWMDTY01                                   F8       2       2       1   .abs_section_f8
+     _PWMDTY23                                   FA       2       2       0   .abs_section_fa
+     _PWMDTY45                                   FC       2       2       1   .abs_section_fc
+     _PWMSDN                                     FE       1       1       1   .abs_section_fe
+     _FCLKDIV                                   100       1       1       0   .abs_section_100
+     _FSEC                                      101       1       1       0   .abs_section_101
+     _FCNFG                                     103       1       1       0   .abs_section_103
+     _FPROT                                     104       1       1       0   .abs_section_104
+     _FSTAT                                     105       1       1       0   .abs_section_105
+     _FCMD                                      106       1       1       0   .abs_section_106
+     _PTT                                       240       1       1       8   .abs_section_240
+     _PTIT                                      241       1       1       0   .abs_section_241
+     _DDRT                                      242       1       1       4   .abs_section_242
+     _RDRT                                      243       1       1       0   .abs_section_243
+     _PERT                                      244       1       1       0   .abs_section_244
+     _PPST                                      245       1       1       0   .abs_section_245
+     _MODRR                                     247       1       1       2   .abs_section_247
+     _PTS                                       248       1       1       2   .abs_section_248
+     _PTIS                                      249       1       1       0   .abs_section_249
+     _DDRS                                      24A       1       1       3   .abs_section_24a
+     _RDRS                                      24B       1       1       0   .abs_section_24b
+     _PERS                                      24C       1       1       0   .abs_section_24c
+     _PPSS                                      24D       1       1       0   .abs_section_24d
+     _WOMS                                      24E       1       1       1   .abs_section_24e
+     _PTM                                       250       1       1       1   .abs_section_250
+     _PTIM                                      251       1       1       0   .abs_section_251
+     _DDRM                                      252       1       1       1   .abs_section_252
+     _RDRM                                      253       1       1       0   .abs_section_253
+     _PERM                                      254       1       1       0   .abs_section_254
+     _PPSM                                      255       1       1       0   .abs_section_255
+     _WOMM                                      256       1       1       0   .abs_section_256
+     _PTP                                       258       1       1       4   .abs_section_258
+     _PTIP                                      259       1       1       0   .abs_section_259
+     _DDRP                                      25A       1       1       2   .abs_section_25a
+     _RDRP                                      25B       1       1       0   .abs_section_25b
+     _PERP                                      25C       1       1       1   .abs_section_25c
+     _PPSP                                      25D       1       1       0   .abs_section_25d
+     _PIEP                                      25E       1       1       1   .abs_section_25e
+     _PIFP                                      25F       1       1       0   .abs_section_25f
+     _PTJ                                       268       1       1       1   .abs_section_268
+     _PTIJ                                      269       1       1       0   .abs_section_269
+     _DDRJ                                      26A       1       1       1   .abs_section_26a
+     _RDRJ                                      26B       1       1       0   .abs_section_26b
+     _PERJ                                      26C       1       1       1   .abs_section_26c
+     _PPSJ                                      26D       1       1       0   .abs_section_26d
+     _PIEJ                                      26E       1       1       1   .abs_section_26e
+     _PIFJ                                      26F       1       1       0   .abs_section_26f
+     _PTAD                                      270       1       1       1   .abs_section_270
+     _PTIAD                                     271       1       1       0   .abs_section_271
+     _DDRAD                                     272       1       1       1   .abs_section_272
+     _RDRAD                                     273       1       1       0   .abs_section_273
+     _PERAD                                     274       1       1       1   .abs_section_274
+     _PPSAD                                     275       1       1       0   .abs_section_275
+     pbuf                                      1000       6       6      15   .bss        
+     heap_end                                  1006       2       2       3   .bss        
+     free_ptr                                  1008       2       2       8   .bss        
+     __sf_15PWMManager01_45_pwmHard01          100A       2       2       1   .bss        
+     potencia1                                 100C       2       2       2   AS1_DATA    
+     SerFlag                                   100E       1       1       2   AS1_DATA    
+     EnUser                                    100F       1       1       5   AS1_DATA    
+     _heap_                                    1010     190     400       2   HEAP_SEGMENT
+     TTicks                                    11A0       4       4       6   FC321_DATA  
+     TOvf                                      11A4       1       1       2   FC321_DATA  
+     Cpu_Interrupt__Fv                         4800       2       2      50   .init       
+     _EntryPoint                               4802      29      41       2   .init       
+     pow10                                     483D      28      40       4   .rodata     
+     pow16                                     4865      20      32       4   .rodata     
+     pow8                                      4885      2C      44       4   .rodata     
+     Method                                    48B1      10      16       1   .rodata     
+     Object                                    48C1      10      16       4   .rodata     
+     Class                                     48D1      10      16       2   .rodata     
+     periodos                                  48E1      14      20       1   .rodata     
+     periodosCaso2                             48F5      14      20       1   .rodata     
+     periodosCaso3                             4909      14      20       2   .rodata     
+     escaladoresCaso2_3                        491D       A      10       3   .rodata     
+     RamSimulaFlash                            4927      20      32       2   .rodata     
+     PromBkp                                   4947      20      32       1   .rodata     
+     STRING.testing....periodo.1.6             4967      1C      28       1   .rodata1    
+     STRING..1                                 4983       1       1       1   .rodata1    
+     STRING..at..1                             4984       5       5       1   .rodata1    
+     STRING..x.2                               4989       3       3       1   .rodata1    
+     STRING.D..versionR51.micros.3             498C      51      81       2   .rodata1    
+     STRING.Object.5                           49DD       7       7       1   .rodata1    
+     STRING.Object.6                           49E4       7       7       1   .rodata1    
+     STRING.D..versionR51.micros.3             49EB      57      87       1   .rodata1    
+     STRING..3                                 4A42       1       1       1   .rodata1    
+     STRING..3                                 4A43       1       1       1   .rodata1    
+     FC321_Interrupt__Fv                       4A44      1E      30       2   NON_BANKED  
+     main                                      4A62      66     102       1   .text       
+     testPwmHard45__FR7PWMHard                 4AC8      58      88       1   .text       
+     print__FPSc                               4B20      38      56       1   .text       
+     Init__Fv                                  4B58      3C      60       1   .text       
+     _Startup                                  4B94       8       8       1   .text       
+     _assert                                   4B9C       7       7       3   .text       
+     abort                                     4BA3       4       4       1   .text       
+     exit                                      4BA7       4       4       1   .text       
+     _heapcrash_                               4BAB       C      12       3   .text       
+     vprintf                                   4BB7     43B    1083      46   .text       
+     _out                                      4FF2       C      12       9   .text       
+     deposit_char                              4FFE       F      15       1   .text       
+     sprintf                                   500D      29      41       1   .text       
+     malloc                                    5036      A5     165       1   .text       
+     free                                      50DB      C4     196       2   .text       
+     __nw__FGUi                                519F      12      18       2   .text       
+     __dl__FGPv                                51B1       3       3       2   .text       
+     Cpu_Interrupt41__Fv                       51B4       2       2       1   .text       
+     Cpu_Interrupt43__Fv                       51B6       2       2       1   .text       
+     Cpu_Interrupt49__Fv                       51B8       2       2       1   .text       
+     Cpu_Interrupt50__Fv                       51BA       2       2       1   .text       
+     Cpu_Interrupt51__Fv                       51BC       2       2       1   .text       
+     Cpu_Interrupt52__Fv                       51BE       2       2       1   .text       
+     Cpu_Interrupt53__Fv                       51C0       2       2       1   .text       
+     Cpu_Interrupt54__Fv                       51C2       2       2       1   .text       
+     Cpu_Interrupt55__Fv                       51C4       2       2       1   .text       
+     Cpu_Interrupt56__Fv                       51C6       2       2       1   .text       
+     Object_ctor                               51C8       1       1       2   .text       
+     Object_dtor                               51C9       1       1       3   .text       
+     Object_differ                             51CA       E      14       3   .text       
+     Object_puto                               51D8      3F      63       3   .text       
+     classOf                                   5217      1E      30       4   .text       
+     newAlloced                                5235      3A      58       2   .text       
+     ctor                                      526F      1F      31       1   .text       
+     write                                     528E      2C      44       3   .text       
+     PE_low_level_init__Fv                     52BA      AA     170       1   .text       
+     __sf_7PWMHard_setDuty__F13ReferenciaPWMi       5364      40      64       3   .text       
+     __sf_7PWMHard_setPeriodoHard__F13ReferenciaPWMUi       53A4       F      15       6   .text       
+     __sf_7PWMHard_escalar__F13ReferenciaPWM       53B3       F      15       3   .text       
+     __sf_7PWMHard_noEscalar__F13ReferenciaPWM       53C2      10      16       5   .text       
+     getConectada__7PWMHardFv                  53D2       5       5       3   .text       
+     setConectada__7PWMHardFUc                 53D7      35      53       3   .text       
+     __ct__7PWMHardFR16ManejadorMemoriaR8TConfPWM.4       540C      30      48       1   .text       
+     __ct__9PWMHard23FR16ManejadorMemoriaR8TConfPWM       543C      39      57       1   .text       
+     setPotencia__9PWMHard23FUi                5475      2A      42       1   .text       
+     setTipoSalida__9PWMHard23F10TipoSalida       549F       B      11       1   .text       
+     getTipoSalida__9PWMHard23Fv               54AA       A      10       1   .text       
+     setPeriodo__9PWMHard23F7TPeriod           54B4      4D      77       1   .text       
+     getEstadoSalida__9PWMHard23Fv             5501       9       9       1   .text       
+     __ct__7PWMHardFR16ManejadorMemoriaR8TConfPWM.4       550A      30      48       1   .text       
+     __ct__24PWMHard01PWMManager01_45FR16ManejadorMemoriaR8TConfPWM       553A      31      49       1   .text       
+     setPotencia__24PWMHard01PWMManager01_45FUi       556B      29      41       1   .text       
+     getTipoSalida__24PWMHard01PWMManager01_45Fv       5594       A      10       1   .text       
+     setTipoSalida__24PWMHard01PWMManager01_45F10TipoSalida       559E       B      11       1   .text       
+     getEstadoSalida__24PWMHard01PWMManager01_45Fv       55A9       7       7       1   .text       
+     setPeriodo__24PWMHard01PWMManager01_45F7TPeriod       55B0      26      38       1   .text       
+     __sf_15PWMManager01_45_PWMManager01_45_setPeriodo__FP3PWM7TPeriod       55D6      D1     209       1   .text       
+     __sf_15PWMManager01_45_PWMManager01_45_configCaso1__F13ReferenciaPWMT0       56A7      21      33       1   .text       
+     __sf_15PWMManager01_45_PWMManager01_45_configCaso2__F13ReferenciaPWMN20       56C8      42      66       1   .text       
+     __sf_15PWMManager01_45_PWMManager01_45_configCaso3__F13ReferenciaPWMN30       570A      57      87       1   .text       
+     __sf_15PWMManager01_45_PWM45_actualizarPotencia__FUi       5761      2C      44       1   .text       
+     __sf_15PWMManager01_45_PWM01_actualizarPotencia__FUi       578D      20      32       1   .text       
+     setPeriodoConfiguracion__3PWMF7TPeriod       57AD      15      21       2   .text       
+     getPeriodoConfiguracion__3PWMFv           57C2      10      16       1   .text       
+     setPotencia__3PWMFUi                      57D2      3E      62       3   .text       
+     getPeriodo__3PWMFv                        5810       4       4       4   .text       
+     getPotencia__3PWMFv                       5814       5       5       4   .text       
+     getConectada__3PWMFv                      5819       5       5       1   .text       
+     setConectada__3PWMFUc                     581E      35      53       1   .text       
+     Salida_setPotencia__3PWMFUi               5853      37      55       2   .text       
+     RamSimulaFlash_setWord__FPvPUiUi          588A       6       6       2   .text       
+     RamSimulaFlash_getWord__FPvPUi            5890       5       5       2   .text       
+     RamSimulaFlash_grabarProm__FPv            5895       3       3       1   .text       
+     RamSimulaFlash_borrarProm__FPvT0          5898       2       2       1   .text       
+     PromBkp_ctor__FPvPPSc                     589A       B      11       1   .text       
+     __ct__15MethodContainerFv                 58A5       F      15       2   .text       
+     add__15MethodContainerFPv                 58B4      1A      26       1   .text       
+     ____vtbl__ISalida                         58CE      18      24       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__IPWMISalida                     58E6      24      36       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__Collection                      590A      1C      28       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__ListCollection                  5926      20      32       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__LinkedListListCollection        5946      24      36       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__MethodContainerLinkedListListCollection       596A      24      36       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__PWMIPWMISalida                  598E      24      36       2   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__PWMHardPWMIPWMISalida           59B2      24      36       2   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__PWMHard23PWMHardPWMIPWMISalida       59D6      24      36       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__PWMHard01PWMHardPWMIPWMISalida       59FA      24      36       1   VIRTUAL_TABLE_SEGMENT
+     __ct__7ISalidaFv                          5A1E       A      10       1   GEN_FUNCS_SEGMENT
+     __ct__4IPWMFv                             5A28       E      14       2   GEN_FUNCS_SEGMENT
+     __ct__10CollectionFv                      5A36       A      10       1   GEN_FUNCS_SEGMENT
+     __ct__4ListFv                             5A40       E      14       1   GEN_FUNCS_SEGMENT
+     __ct__7PromBkpFv                          5A4E       6       6       1   GEN_FUNCS_SEGMENT
+     __ct__14RamSimulaFlashFv                  5A54       3       3       2   GEN_FUNCS_SEGMENT
+     getNext__4NodoFv.2                        5A57       5       5       1   NODO_CODE   
+     __ct__10LinkedListFv                      5A5C      13      19       2   LinkedList_CODE
+     isEmpty__10LinkedListFv                   5A6F       B      11       2   LinkedList_CODE
+     clear__10LinkedListFv                     5A7A      21      33       2   LinkedList_CODE
+     add__10LinkedListFPv                      5A9B      27      39       2   LinkedList_CODE
+     aniadir__10LinkedListFPv                  5AC2      60      96       2   LinkedList_CODE
+     size__10LinkedListFv                      5B22      13      19       2   LinkedList_CODE
+     get__10LinkedListFUi                      5B35      26      38       2   LinkedList_CODE
+     moveOut__10LinkedListFPv                  5B5B      2F      47       2   LinkedList_CODE
+     deleteNodo__10LinkedListFP4NodoT1         5B8A      25      37       1   LinkedList_CODE
+     contains__10LinkedListFPv                 5BAF      1E      30       2   LinkedList_CODE
+     iterator__10LinkedListFv                  5BCD       3       3       2   LinkedList_CODE
+     Method_constructor                        5BD0       9       9       1   METHOD_CODE 
+     Method_defConstructor                     5BD9      1A      26       1   METHOD_CODE 
+     AS1_Enable__Fv                            5BF3      1D      29       1   AS1_CODE    
+     AS1_Disable__Fv                           5C10       D      13       1   AS1_CODE    
+     AS1_Init__Fv                              5C1D      1C      28       1   AS1_CODE    
+     _LOAD_FAR_16                              5C39       B      11      16   RUNTIME     
+     _BSHL                                     5C44       8       8       2   RUNTIME     
+     _LCMP_P                                   5C4C      15      21       3   RUNTIME     
+     _LNEG                                     5C61       D      13       1   RUNTIME     
+     _LINC                                     5C6E       5       5       1   RUNTIME     
+     _LMUL                                     5C73      27      39       1   RUNTIME     
+     _lDivMod                                  5C9A      BE     190       1   RUNTIME     
+     _LDIVU                                    5D58       E      14       1   RUNTIME     
+     _ILSEXT                                   5D66       7       7       2   RUNTIME     
+     _CASE_DIRECT_BYTE                         5D6D       5       5       1   RUNTIME     
+     _CASE_SEARCH_8                            5D72      17      23       1   RUNTIME     
+     _CASE_SEARCH_8_BYTE                       5D89      1A      26       1   RUNTIME     
+     FC321_Init__Fv                            5DA3      10      16       1   FC321_CODE  
+     __ct__4NodoFPvP4Nodo                      5DB3       D      13       2   Nodo_CODE   
+     setNext__4NodoFP4Nodo                     5DC0       5       5       2   Nodo_CODE   
+     _vect                                     FF80      80     128       0   .abs_section_ff80
+
+*********************************************************************************************
+UNUSED-OBJECTS SECTION
+---------------------------------------------------------------------------------------------
+NOT USED PROCEDURES
+main.cpp.o:
+  __ct__3PWMFR16ManejadorMemoriaR8TConfPWM.3 
+  __ct__7PWMHardFR16ManejadorMemoriaR8TConfPWM.4 testPwmHard01__FR7PWMHard 
+  __ct__7ISalidaFRC7ISalida __as__7ISalidaFRC7ISalida __ct__4IPWMFRC4IPWM 
+  __as__4IPWMFRC4IPWM __ct__4NodoFRC4Nodo __as__4NodoFRC4Nodo __ct__8IteratorFv 
+  __ct__8IteratorFRC8Iterator __as__8IteratorFRC8Iterator 
+  __ct__10CollectionFRC10Collection __as__10CollectionFRC10Collection 
+  __ct__4ListFRC4List __as__4ListFRC4List 
+  __ct__28LinkedListIteratorLinkedListFRC28LinkedListIteratorLinkedList 
+  __ct__10LinkedListFRC10LinkedList 
+  __as__28LinkedListIteratorLinkedListFRC28LinkedListIteratorLinkedList 
+  __as__10LinkedListFRC10LinkedList __ct__15MethodContainerFRC15MethodContainer 
+  __as__15MethodContainerFRC15MethodContainer __dt__15MethodContainerFv 
+  __ct__10BaseTimersFv __ct__10BaseTimersFRC10BaseTimers 
+  __as__10BaseTimersFRC10BaseTimers __dt__10BaseTimersFv __ct__3PWMFRC3PWM 
+  __dt__3PWMFv __ct__7PWMHardFRC7PWMHard __dt__7PWMHardFv __ct__6SalidaFv 
+  __ct__6SalidaFRC6Salida __as__6SalidaFRC6Salida __ct__9PWMHard23FRC9PWMHard23 
+  __dt__9PWMHard23Fv 
+  __ct__24PWMHard01PWMManager01_45FRC24PWMHard01PWMManager01_45 
+  __ct__24PWMHard45PWMManager01_45FRC24PWMHard45PWMManager01_45 
+  __ct__15PWMManager01_45FRC15PWMManager01_45 
+  __as__15PWMManager01_45FRC15PWMManager01_45 
+  __dt__24PWMHard01PWMManager01_45Fv __dt__24PWMHard45PWMManager01_45Fv 
+  __ct__7PromBkpFRC7PromBkp __as__7PromBkpFRC7PromBkp __dt__7PromBkpFv 
+  __ct__14RamSimulaFlashFRC14RamSimulaFlash 
+  __as__14RamSimulaFlashFRC14RamSimulaFlash __dt__14RamSimulaFlashFv 
+  getNext__4NodoFv.2 getDato__4NodoFv.1 
+datapage.c.o:
+  _SET_PAGE _LOAD_FAR_8 _LOAD_FAR_24 _LOAD_FAR_32 _STORE_FAR_8 _STORE_FAR_16 
+  _STORE_FAR_24 _STORE_FAR_32 _FAR_COPY_RC _FAR_COPY 
+EMBEDDED.C.o (ansisi.lib):
+  printf scanf gets puts fopen fflush fclose fprintf fputs fputc fgetc remove 
+  clock 
+PRINTF.C.o (ansisi.lib):
+  set_printf vsprintf 
+ALLOC.C.o (ansisi.lib):
+  calloc realloc 
+rtshc12.c.o (ansisi.lib):
+  _BSHRS _BSHRU _BDIVMODU _BDIVMODS _ISHL _ISHRU _ISHRS _LSHL _LSHRU _LSHRS 
+  _LADD _LSUB _LAND _LOR _LXOR _LCMP _LCMP_PP _LCOM _LDEC _LMULU16x32 
+  _LMULS16x32 _NEG_P _LDIVS _LMODU _LMODS _COPY _CASE_DIRECT _CASE_CHECKED 
+  _CASE_CHECKED_BYTE _CASE_SEARCH _CASE_SEARCH_BYTE _FCALL _FPCMP 
+NEW.CPP.o (cppsi.lib):
+  abs__Fl __ct__7InitiosFv.31 __sf_3ios_sync_with_stdio__Fv.30 
+  rdbuf__3iosFP9streambuf.29 rdbuf__3iosFv.28 exceptions__3iosFi.27 
+  exceptions__3iosFv.26 __nt__3iosFv.25 __opPv__3iosFv.24 rdstate__3iosFv.23 
+  bad__3iosFv.22 fail__3iosFv.21 eof__3iosFv.20 good__3iosFv.19 
+  setstate__3iosFi.18 set__3iosFi.17 clear__3iosFi.16 _throw_failure__3iosFv.14 
+  width__3iosFi.13 width__3iosFv.12 unsetf__3iosFUl.11 setf__3iosFUlT1.10 
+  setf__3iosFUl.9 precision__3iosFi.8 precision__3iosFv.7 flags__3iosFUl.6 
+  flags__3iosFv.5 fill__3iosFs.4 fill__3iosFv.3 tie__3iosFP7ostream.2 
+  tie__3iosFv.1 saving__12streammarkerFv.39 set_offset__12streammarkerFi.38 
+  stossc__9streambufFv.99 snextc__9streambufFv.98 sgetc__9streambufFv.97 
+  sbumpc__9streambufFv.96 sputc__9streambufFi.95 sgetn__9streambufFPScl.94 
+  padn__9streambufFScl.93 sputn__9streambufFPCScl.92 
+  out_waiting__9streambufFv.91 in_avail__9streambufFv.90 
+  allocbuf__9streambufFv.89 allocate__9streambufFv.88 
+  linebuffered__9streambufFi.87 unbuffered__9streambufFi.86 
+  linebuffered__9streambufFv.85 unbuffered__9streambufFv.84 
+  pubseekpos__9streambufFli.80 pubseekoff__9streambufFl8seek_diri.78 
+  put_mode__9streambufFv.72 have_markers__9streambufFv.71 
+  have_backup__9streambufFv.70 eNptr__9streambufFv.69 Nbase__9streambufFv.68 
+  eBptr__9streambufFv.67 Bptr__9streambufFv.66 Bbase__9streambufFv.65 
+  eGptr__9streambufFv.64 Gbase__9streambufFv.63 in_backup__9streambufFv.62 
+  shortbuf__9streambufFv.61 setg__9streambufFPScN21.60 
+  setp__9streambufFPScT1.59 pbump__9streambufFi.57 gbump__9streambufFi.56 
+  xsetflags__9streambufFiT1.55 xsetflags__9streambufFi.54 
+  xflags__9streambufFi.53 xflags__9streambufFv.52 xput_char__9streambufFSc.51 
+  blen__9streambufFv.50 ebuf__9streambufFv.49 base__9streambufFv.48 
+  eback__9streambufFv.47 pbase__9streambufFv.46 epptr__9streambufFv.45 
+  egptr__9streambufFv.44 pptr__9streambufFv.43 gptr__9streambufFv.42 
+  xchain__9streambufFv.41 _vtable__9streambufFv.40 file_ptr__7filebufFv.108 
+  cur_ptr__7filebufFv.107 is_reading__7filebufFv.106 fd__7filebufFv.104 
+  is_open__7filebufFv.103 init__3iosFP9streambufP7ostream.36 
+  __ct__3iosFP9streambufP7ostream.32 __dt__3iosFv.35 
+  __ls__7ostreamFPFR3ios_R3ios.117 __ls__7ostreamFPFR7ostream_R7ostream.116 
+  __ls__7ostreamFUc.115 put__7ostreamFSc.114 osfx__7ostreamFv.113 
+  opfx__7ostreamFv.112 __ct__7ostreamFUcP11_ios_fields.110 
+  __ct__7ostreamFUc.109 __rs__7istreamFPFR7istream_R7istream.142 
+  __rs__7istreamFPFR3ios_R3ios.141 scan__7istreamFPCSce.140 
+  unget__7istreamFv.139 putback__7istreamFSc.138 gcount__7istreamFv.135 
+  get__7istreamFv.134 isfx__7istreamFv.133 ipfx1__7istreamFv.132 
+  ipfx0__7istreamFv.131 ipfx__7istreamFi.130 getline__7istreamFPUciSc.126 
+  get__7istreamFPUciSc.123 __ct__7istreamFUcP11_ios_fields.119 
+  __ct__7istreamFUc.118 __ct__8iostreamFv.143 __as__5RegexFRC5Regex.146 
+  __ct__5RegexFRC5Regex.145 length__6StringFv.200 empty__6StringFv.201 
+  chars__6StringFv.202 allocation__6StringFv.203 length__9SubStringFv.204 
+  empty__9SubStringFv.205 chars__9SubStringFv.206 __ct__6StringFv.207 
+  __ct__6StringFRC6String.208 __ct__6StringFPCSc.209 __ct__6StringFPCSci.210 
+  __ct__6StringFRC9SubString.211 __ct__6StringFSc.212 __dt__6StringFv.213 
+  __ct__9SubStringFRC9SubString.214 __ct__9SubStringFR6StringiT2.215 
+  __dt__9SubStringFv.216 __as__6StringFRC6String.217 __as__6StringFPCSc.218 
+  __as__6StringFRC9SubString.219 __as__6StringFSc.220 __as__9SubStringFPCSc.221 
+  __as__9SubStringFSc.222 __as__9SubStringFRC6String.223 
+  __as__9SubStringFRC9SubString.224 cat__FRC6StringT0R6String 
+  cat__FRC6StringRC9SubStringR6String cat__FRC6StringPCScR6String 
+  cat__FRC6StringScR6String cat__FRC9SubStringRC6StringR6String 
+  cat__FRC9SubStringT0R6String cat__FRC9SubStringPCScR6String 
+  cat__FRC9SubStringScR6String cat__FPCScRC6StringR6String 
+  cat__FPCScRC9SubStringR6String cat__FPCScT0R6String cat__FPCScScR6String 
+  cat__FRC6StringN20R6String cat__FRC6StringT0RC9SubStringR6String 
+  cat__FRC6StringT0PCScR6String cat__FRC6StringT0ScR6String 
+  cat__FRC6StringRC9SubStringT0R6String cat__FRC6StringRC9SubStringT1R6String 
+  cat__FRC6StringRC9SubStringPCScR6String cat__FRC6StringRC9SubStringScR6String 
+  cat__FRC6StringPCScT0R6String cat__FRC6StringPCScRC9SubStringR6String 
+  cat__FRC6StringPCScT1R6String cat__FRC6StringPCScScR6String 
+  cat__FPCScRC6StringT1R6String cat__FPCScRC6StringRC9SubStringR6String 
+  cat__FPCScRC6StringT0R6String cat__FPCScRC6StringScR6String 
+  cat__FPCScRC9SubStringRC6StringR6String cat__FPCScRC9SubStringT1R6String 
+  cat__FPCScRC9SubStringT0R6String cat__FPCScRC9SubStringScR6String 
+  cat__FPCScT0RC6StringR6String cat__FPCScT0RC9SubStringR6String 
+  cat__FPCScN20R6String cat__FPCScT0ScR6String __apl__6StringFRC6String.225 
+  __apl__6StringFRC9SubString.226 __apl__6StringFPCSc.227 __apl__6StringFSc.228 
+  __pl__FGRC6StringT0 __pl__FGRC6StringRC9SubString __pl__FGRC6StringPCSc 
+  __pl__FGRC6StringSc __pl__FGRC9SubStringRC6String __pl__FGRC9SubStringT0 
+  __pl__FGRC9SubStringPCSc __pl__FGRC9SubStringSc __pl__FGPCScRC6String 
+  __pl__FGPCScRC9SubString reverse__FRC6String upcase__FRC6String 
+  downcase__FRC6String capitalize__FRC6String prepend__6StringFRC6String.229 
+  prepend__6StringFPCSc.230 prepend__6StringFSc.231 
+  prepend__6StringFRC9SubString.232 reverse__6StringFv.233 
+  upcase__6StringFv.234 downcase__6StringFv.235 capitalize__6StringFv.236 
+  __vc__6StringFi.237 __vc__6StringFi.239 elem__6StringFi.241 
+  firstchar__6StringFv.243 lastchar__6StringFv.244 index__6StringFSci.245 
+  index__6StringFPCSci.246 index__6StringFRC6Stringi.247 
+  index__6StringFRC9SubStringi.248 index__6StringFRC5Regexi.249 
+  contains__6StringFSc.250 contains__6StringFPCSc.251 
+  contains__6StringFRC6String.252 contains__6StringFRC9SubString.253 
+  contains__6StringFSci.254 contains__6StringFPCSci.255 
+  contains__6StringFRC6Stringi.256 contains__6StringFRC9SubStringi.257 
+  contains__6StringFRC5Regex.258 contains__6StringFRC5Regexi.259 
+  matches__6StringFRC9SubStringi.260 matches__6StringFRC6Stringi.261 
+  matches__6StringFPCSci.262 matches__6StringFSci.263 
+  matches__6StringFRC5Regexi.264 contains__9SubStringFPCSc.265 
+  contains__9SubStringFRC6String.266 contains__9SubStringFRC9SubString.267 
+  contains__9SubStringFSc.268 contains__9SubStringFRC5Regex.269 
+  matches__9SubStringFRC5Regex.270 gsub__6StringFRC6StringT1.271 
+  gsub__6StringFRC9SubStringRC6String.272 gsub__6StringFRC5RegexRC6String.273 
+  gsub__6StringFPCScRC6String.274 gsub__6StringFPCScT1.275 
+  __ls__FGR7ostreamRC6String __eq__FGRC6StringT0 __ne__FGRC6StringT0 
+  __gt__FGRC6StringT0 __ge__FGRC6StringT0 __lt__FGRC6StringT0 
+  __le__FGRC6StringT0 __eq__FGRC6StringRC9SubString 
+  __ne__FGRC6StringRC9SubString __gt__FGRC6StringRC9SubString 
+  __ge__FGRC6StringRC9SubString __lt__FGRC6StringRC9SubString 
+  __le__FGRC6StringRC9SubString __eq__FGRC6StringPCSc __ne__FGRC6StringPCSc 
+  __gt__FGRC6StringPCSc __ge__FGRC6StringPCSc __lt__FGRC6StringPCSc 
+  __le__FGRC6StringPCSc __eq__FGRC9SubStringRC6String 
+  __ne__FGRC9SubStringRC6String __gt__FGRC9SubStringRC6String 
+  __ge__FGRC9SubStringRC6String __lt__FGRC9SubStringRC6String 
+  __le__FGRC9SubStringRC6String __eq__FGRC9SubStringT0 __ne__FGRC9SubStringT0 
+  __gt__FGRC9SubStringT0 __ge__FGRC9SubStringT0 __lt__FGRC9SubStringT0 
+  __le__FGRC9SubStringT0 __eq__FGRC9SubStringPCSc __ne__FGRC9SubStringPCSc 
+  __gt__FGRC9SubStringPCSc __ge__FGRC9SubStringPCSc __lt__FGRC9SubStringPCSc 
+  __le__FGRC9SubStringPCSc _substr__6StringFiT1.276 __dt__5TraceFv.278 
+  __ct__5TraceFPSc.277 set_new_handler __ct__7Std_ErrFRC7Std_Err 
+  __as__7Std_ErrFRC7Std_Err __ct__5TraceFRC5Trace __as__5TraceFRC5Trace 
+AS1.c.o:
+  AS1_Interrupt__Fv AS1_RecvChar__FPUc AS1_SendChar__FUc AS1_InterruptRx__Fv 
+  AS1_InterruptTx__Fv AS1_InterruptError__Fv 
+FC321.c.o:
+  FC321_Enable__Fv LoadTicks__Fv FC321_Reset__Fv FC321_GetTimeUS__FPUi 
+  FC321_GetTimeMS__FPUi 
+testVector.c.o:
+  Cpu_Interrupt0__Fv Cpu_Interrupt1__Fv Cpu_Interrupt2__Fv Cpu_Interrupt3__Fv 
+  Cpu_Interrupt4__Fv Cpu_Interrupt5__Fv Cpu_Interrupt6__Fv Cpu_Interrupt7__Fv 
+  Cpu_Interrupt8__Fv Cpu_Interrupt9__Fv Cpu_Interrupt10__Fv Cpu_Interrupt11__Fv 
+  Cpu_Interrupt12__Fv Cpu_Interrupt13__Fv Cpu_Interrupt14__Fv 
+  Cpu_Interrupt15__Fv Cpu_Interrupt16__Fv Cpu_Interrupt17__Fv 
+  Cpu_Interrupt47__Fv Cpu_Interrupt48__Fv 
+D:\Jony\HCS12\Librerias\OOC\lang\reflect\reflect_Data\C_Ms_no_float\ObjectCode\Method.c.o (reflect_si.lib):
+  Method_execute Method_getMethod Method_setMethod Method_getObj 
+D:\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\util\util_hcs12_cpp_Data\C++_Ms_no_float\ObjectCode\LinkedList.cpp.o (util_cpp_si.lib):
+  getDato__4NodoFv.1 __dt__10LinkedListFv differ__10LinkedListFP10LinkedList 
+  eliminarPrimero__10LinkedListFv 
+  linkedListIterator__10LinkedListFP28LinkedListIteratorLinkedList 
+  getPrimerNodo__10LinkedListFv setPrimerNodo__10LinkedListFP4Nodo 
+  __ct__28LinkedListIteratorLinkedListFv 
+  __ct__28LinkedListIteratorLinkedListFP10LinkedList 
+  hasNext__28LinkedListIteratorLinkedListFv 
+  next__28LinkedListIteratorLinkedListFv 
+D:\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\util\util_hcs12_cpp_Data\C++_Ms_no_float\ObjectCode\nodo.cpp.o (util_cpp_si.lib):
+  getNext__4NodoFv.2 getDato__4NodoFv.1 setDato__4NodoFPv differ__4NodoFP4Nodo 
+D:\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\ooc\ooc_hcs12_Data\C_Ms_no_float\ObjectCode\Object.c.o (ooc_si.lib):
+  instanceOf sizeOf Class_ctor Class_dtor super _new _delete deleteAndNil 
+  deleteAlloced super_ctor dtor super_dtor differ super_differ puto super_puto 
+D:\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\ooc\ooc_hcs12_Data\C_Ms_no_float\ObjectCode\OutputStream.c.o (ooc_si.lib):
+  OutputStream_close OutputStream_flush OutputStream_write 
+  OutputStream_writeByte close flush writeByte 
+PWMHard.cpp.o:
+  __ct__3PWMFR16ManejadorMemoriaR8TConfPWM.3 
+  __ct__7PWMHardFR16ManejadorMemoriaR8TConfPWM.4 
+  setPrescaler__7PWMHardF13ReferenciaPWMUc getNext__4NodoFv.2 
+  getDato__4NodoFv.1 
+PWMHard23.cpp.o:
+  __ct__3PWMFR16ManejadorMemoriaR8TConfPWM.3 getNext__4NodoFv.2 
+  getDato__4NodoFv.1 
+PWMManager01_45.cpp.o:
+  __ct__3PWMFR16ManejadorMemoriaR8TConfPWM.3 
+  __ct__24PWMHard45PWMManager01_45FR16ManejadorMemoriaR8TConfPWM 
+  setPotencia__24PWMHard45PWMManager01_45FUi 
+  getTipoSalida__24PWMHard45PWMManager01_45Fv 
+  setTipoSalida__24PWMHard45PWMManager01_45F10TipoSalida 
+  get01__15PWMManager01_45Fv get45__15PWMManager01_45Fv 
+  getEstadoSalida__24PWMHard45PWMManager01_45Fv 
+  setPeriodo__24PWMHard45PWMManager01_45F7TPeriod getNext__4NodoFv.2 
+  getDato__4NodoFv.1 
+PWM.cpp.o:
+  __ct__3PWMFR16ManejadorMemoriaR8TConfPWM.3 getLimSupPeriodo__3PWMFv 
+  addOnToggleListener__3PWMFP6Method callOnToggleListeners__3PWMFv 
+  getNext__4NodoFv.2 getDato__4NodoFv.1 
+RamSimulaFlash.c.o:
+  getNext__4NodoFv.2 getDato__4NodoFv.1 
+PromBkp.c.o:
+  PromBkp_deshabilitar__FPv PromBkp_habilitar__FPv 
+  PromBkp_demorarGrabado__FPvUi PromBkp_listoParaGrabarOBorrar__FPv 
+  PromBkp_grabacionOBorradoEnEspera__FPv PromBkp_borrarPagina__FPvT0 
+  PromBkp_grabarOBorrar__FPv PromBkp_setAGrabar__FPvUc PromBkp_getAGrabar__FPv 
+  getNext__4NodoFv.2 getDato__4NodoFv.1 
+MethodContainer.cpp.o:
+  executeMethods__15MethodContainerFv getNext__4NodoFv.2 getDato__4NodoFv.1 
+NOT USED VARIABLES
+main.cpp.o:
+  periodos STRING.testing....periodo.2.5 ____vtbl__Iterator 
+  ____vtbl__LinkedListIteratorIterator 
+  ____vtbl__BaseTimersLinkedListListCollection ____vtbl__SalidaISalida 
+  ____vtbl__PWMHard45PWMHardPWMIPWMISalida potencia 
+  __sf_15PWMManager01_45_pwmHard45 
+EMBEDDED.C.o (ansisi.lib):
+  STRING..1 
+rtshc12.c.o (ansisi.lib):
+  _PowOfTwo_8 _PowOfTwo_16 _PowOfTwo_32 errno 
+NEW.CPP.o (cppsi.lib):
+  STRING.invalid.index.238 STRING.invalid.index.240 STRING.invalid.index.242 
+  _nilStrRep ____vtbl__ios ____vtbl__streambuf ____vtbl__filebufstreambuf 
+  ____vtbl__ostreamios ____vtbl__istreamios ____vtbl__iostreamistreamios 
+  ____vtbl__iostreamostreamios ____vtbl__iostreamios 
+  ____vtbl___IO_istream_withassignistreamios 
+  ____vtbl___IO_ostream_withassignostreamios __sf_9streambuf__list_all 
+  __sf_7filebuf_openprot _nilString __sf_7Std_Err_program_name 
+  __sf_5Trace_nesting 
+AS1.c.o:
+  BufferRead CCR_reg 
+FC321.c.o:
+  LTicks CCR_reg 
+D:\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\util\util_hcs12_cpp_Data\C++_Ms_no_float\ObjectCode\LinkedList.cpp.o (util_cpp_si.lib):
+  ____vtbl__Iterator ____vtbl__LinkedListIteratorIterator 
+D:\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\ooc\ooc_hcs12_Data\C_Ms_no_float\ObjectCode\Object.c.o (ooc_si.lib):
+  STRING..s..cannot.destroy._.4 channels 
+D:\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\ooc\ooc_hcs12_Data\C_Ms_no_float\ObjectCode\OutputStream.c.o (ooc_si.lib):
+  OutputStreamClass OutputStream STRING..1 STRING..c.2 
+Cpu.c.o:
+  CCR_reg 
+PWMHard.cpp.o:
+  ____vtbl__Iterator ____vtbl__LinkedListIteratorIterator 
+  ____vtbl__BaseTimersLinkedListListCollection 
+PWMHard23.cpp.o:
+  ____vtbl__Iterator ____vtbl__LinkedListIteratorIterator 
+  ____vtbl__BaseTimersLinkedListListCollection ____vtbl__SalidaISalida 
+  pwmconf23 
+PWMManager01_45.cpp.o:
+  periodos ____vtbl__Iterator ____vtbl__LinkedListIteratorIterator 
+  ____vtbl__BaseTimersLinkedListListCollection ____vtbl__SalidaISalida 
+  ____vtbl__PWMHard45PWMHardPWMIPWMISalida pwmconf01 pwmconf45 
+  __sf_15PWMManager01_45_pwmHard45 
+PWM.cpp.o:
+  ____vtbl__Iterator ____vtbl__LinkedListIteratorIterator 
+  ____vtbl__BaseTimersLinkedListListCollection 
+RamSimulaFlash.c.o:
+  ____vtbl__Iterator ____vtbl__LinkedListIteratorIterator 
+  ____vtbl__BaseTimersLinkedListListCollection 
+PromBkp.c.o:
+  PromBkpClass ____vtbl__Iterator ____vtbl__LinkedListIteratorIterator 
+  ____vtbl__BaseTimersLinkedListListCollection Timer 
+MethodContainer.cpp.o:
+  ____vtbl__Iterator ____vtbl__LinkedListIteratorIterator 
+
+*********************************************************************************************
+COPYDOWN SECTION
+---------------------------------------------------------------------------------------------
+------- ROM-ADDRESS: 0x5DC5 ---- SIZE       4 ---
+Filling bytes inserted
+ 0002100C
+------- ROM-ADDRESS: 0x5DC9 ---- RAM-ADDRESS: 0x100C ---- SIZE       2 ---
+Name of initialized Object : potencia1
+ 01F4
+------- ROM-ADDRESS: 0x5DCB ---- SIZE       2 ---
+Filling bytes inserted
+ 0000
+
+*********************************************************************************************
+OBJECT-DEPENDENCIES SECTION
+---------------------------------------------------------------------------------------------
+_EntryPoint               USES _INITRM _MISC _PEAR _CLKSEL _PLLCTL _SYNR 
+                                _REFDV _CRGFLG _Startup 
+Method                    USES STRING..1 Object Method_defConstructor 
+Object                    USES Class STRING.Object.5 Object Object_ctor 
+                                Object_dtor Object_differ Object_puto 
+Class                     USES Class STRING.Object.6 Object Object_ctor 
+                                Object_dtor Object_differ Object_puto 
+RamSimulaFlash            USES STRING..3 PromBkp 
+                                RamSimulaFlash_getWord__FPvPUi RamSimulaFlash_setWord__FPvPUiUi 
+                                RamSimulaFlash_borrarProm__FPvT0 RamSimulaFlash_grabarProm__FPv 
+PromBkp                   USES STRING..3 Object PromBkp_ctor__FPvPPSc 
+                                Object_dtor Object_differ Object_puto 
+FC321_Interrupt__Fv       USES TTicks _LINC TOvf _TFLG1 
+main                      USES PE_low_level_init__Fv __ct__14RamSimulaFlashFv 
+                                RamSimulaFlash newAlloced 
+                                __ct__24PWMHard01PWMManager01_45FR16ManejadorMemoriaR8TConfPWM __ct__9PWMHard23FR16ManejadorMemoriaR8TConfPWM 
+                                testPwmHard45__FR7PWMHard 
+testPwmHard45__FR7PWMHard USES potencia1 STRING.testing....periodo.1.6 
+                                print__FPSc _LOAD_FAR_16 
+print__FPSc               USES AS1_Enable__Fv _SCISR1 _SCIDRL AS1_Disable__Fv 
+Init__Fv                  USES _startupData 
+_Startup                  USES __SEG_END_SSTACK Init__Fv main 
+_assert                   USES abort 
+vprintf                   USES vprintf _out _CASE_SEARCH_8_BYTE 
+                                _CASE_DIRECT_BYTE _CASE_SEARCH_8 pbuf _ILSEXT _LNEG pow8 _LCMP_P 
+                                pow16 pow10 
+_out                      USES pbuf 
+deposit_char              USES pbuf 
+sprintf                   USES pbuf deposit_char vprintf 
+malloc                    USES heap_end _heap_ free_ptr _heapcrash_ 
+free                      USES _heap_ heap_end free free_ptr _heapcrash_ 
+__nw__FGUi                USES malloc exit 
+__dl__FGPv                USES free 
+Object_puto               USES classOf write STRING..at..1 STRING..x.2 sprintf 
+classOf                   USES STRING.D..versionR51.micros.3 _assert 
+newAlloced                USES ctor STRING.D..versionR51.micros.3 _assert 
+ctor                      USES classOf 
+write                     USES classOf STRING.D..versionR51.micros.3 _assert 
+PE_low_level_init__Fv     USES _HPRIO _PORTAB _PUCR _DDRAB _PTM _DDRM _PIEJ 
+                                _PTJ _PERJ _DDRJ _PTS _WOMS _DDRS _PIEP _PTP _PERP 
+                                _DDRP _PEAR _DDRE _COPCTL _TSCR1 _OC7M _TCTL1 _TCTL2 
+                                _TIE _TIOS _TTOV _TSCR2 _TFLG1 _PTT _DDRT _ATDDIEN 
+                                _PTAD _PERAD _DDRAD _PWMCTL _PWMSDN AS1_Init__Fv 
+                                FC321_Init__Fv 
+__sf_7PWMHard_setDuty__F13ReferenciaPWMi USES _PWMPER01 _PWMDTY01 _ILSEXT 
+                                _LMUL _LDIVU 
+__sf_7PWMHard_setPeriodoHard__F13ReferenciaPWMUi USES _PWMPER01 
+__sf_7PWMHard_escalar__F13ReferenciaPWM USES _BSHL _PWMCLK 
+__sf_7PWMHard_noEscalar__F13ReferenciaPWM USES _BSHL _PWMCLK 
+setConectada__7PWMHardFUc USES _LOAD_FAR_16 
+__ct__7PWMHardFR16ManejadorMemoriaR8TConfPWM.4 USES __ct__4IPWMFv 
+                                __ct__15MethodContainerFv ____vtbl__PWMIPWMISalida 
+                                ____vtbl__PWMHardPWMIPWMISalida 
+__ct__9PWMHard23FR16ManejadorMemoriaR8TConfPWM USES 
+                                __ct__7PWMHardFR16ManejadorMemoriaR8TConfPWM.4 ____vtbl__PWMHard23PWMHardPWMIPWMISalida 
+                                _PWMCTL _PWMPOL _PWME _PWMCNT23 _PWMPRCLK _DDRT _MODRR 
+setPotencia__9PWMHard23FUi USES _PWME __sf_7PWMHard_setDuty__F13ReferenciaPWMi 
+                                _PTT Salida_setPotencia__3PWMFUi 
+setTipoSalida__9PWMHard23F10TipoSalida USES _PWME 
+getTipoSalida__9PWMHard23Fv USES _PWME 
+setPeriodo__9PWMHard23F7TPeriod USES setPeriodoConfiguracion__3PWMF7TPeriod 
+                                _PWMCLK _PWMSCLB periodos _PWMPER23 
+getEstadoSalida__9PWMHard23Fv USES _PTT 
+__ct__7PWMHardFR16ManejadorMemoriaR8TConfPWM.4 USES __ct__4IPWMFv 
+                                __ct__15MethodContainerFv ____vtbl__PWMIPWMISalida 
+                                ____vtbl__PWMHardPWMIPWMISalida 
+__ct__24PWMHard01PWMManager01_45FR16ManejadorMemoriaR8TConfPWM USES 
+                                __ct__7PWMHardFR16ManejadorMemoriaR8TConfPWM.4 ____vtbl__PWMHard01PWMHardPWMIPWMISalida 
+                                _PWMCTL _PWMPOL _PWME _PWMCNT01 _MODRR _DDRT _DDRP 
+setPotencia__24PWMHard01PWMManager01_45FUi USES _PWME 
+                                __sf_7PWMHard_setDuty__F13ReferenciaPWMi _PTT Salida_setPotencia__3PWMFUi 
+getTipoSalida__24PWMHard01PWMManager01_45Fv USES _PWME 
+setTipoSalida__24PWMHard01PWMManager01_45F10TipoSalida USES _PWME 
+getEstadoSalida__24PWMHard01PWMManager01_45Fv USES _PTP 
+setPeriodo__24PWMHard01PWMManager01_45F7TPeriod USES 
+                                setPeriodoConfiguracion__3PWMF7TPeriod 
+                                __sf_15PWMManager01_45_PWMManager01_45_setPeriodo__FP3PWM7TPeriod 
+__sf_15PWMManager01_45_PWMManager01_45_setPeriodo__FP3PWM7TPeriod USES 
+                                __sf_15PWMManager01_45_pwmHard01 _LOAD_FAR_16 
+                                __sf_15PWMManager01_45_PWMManager01_45_configCaso1__F13ReferenciaPWMT0 
+                                __sf_15PWMManager01_45_PWMManager01_45_configCaso2__F13ReferenciaPWMN20 
+                                __sf_15PWMManager01_45_PWMManager01_45_configCaso3__F13ReferenciaPWMN30 
+                                __sf_15PWMManager01_45_PWM45_actualizarPotencia__FUi 
+                                __sf_15PWMManager01_45_PWM01_actualizarPotencia__FUi 
+__sf_15PWMManager01_45_PWMManager01_45_configCaso1__F13ReferenciaPWMT0 USES 
+                                _PWMPRCLK _PWMSCLA 
+                                __sf_7PWMHard_setPeriodoHard__F13ReferenciaPWMUi __sf_7PWMHard_noEscalar__F13ReferenciaPWM 
+__sf_15PWMManager01_45_PWMManager01_45_configCaso2__F13ReferenciaPWMN20 USES 
+                                _PWMPRCLK _PWMSCLA 
+                                __sf_7PWMHard_setPeriodoHard__F13ReferenciaPWMUi periodosCaso2 
+                                __sf_7PWMHard_noEscalar__F13ReferenciaPWM escaladoresCaso2_3 
+                                __sf_7PWMHard_escalar__F13ReferenciaPWM 
+__sf_15PWMManager01_45_PWMManager01_45_configCaso3__F13ReferenciaPWMN30 USES 
+                                _PWMPRCLK _PWMSCLA periodosCaso3 
+                                __sf_7PWMHard_setPeriodoHard__F13ReferenciaPWMUi escaladoresCaso2_3 
+                                __sf_7PWMHard_escalar__F13ReferenciaPWM __sf_7PWMHard_noEscalar__F13ReferenciaPWM 
+__sf_15PWMManager01_45_PWM45_actualizarPotencia__FUi USES _PWME _PWMPER45 
+                                _PWMDTY45 _PTP 
+__sf_15PWMManager01_45_PWM01_actualizarPotencia__FUi USES _PWME 
+                                __sf_7PWMHard_setDuty__F13ReferenciaPWMi _PTT 
+setPotencia__3PWMFUi      USES _LOAD_FAR_16 
+getPeriodo__3PWMFv        USES getPeriodoConfiguracion__3PWMFv 
+setConectada__3PWMFUc     USES _LOAD_FAR_16 
+Salida_setPotencia__3PWMFUi USES _LOAD_FAR_16 setPotencia__3PWMFUi 
+__ct__15MethodContainerFv USES __ct__10LinkedListFv 
+                                ____vtbl__MethodContainerLinkedListListCollection 
+add__15MethodContainerFPv USES classOf Method add__10LinkedListFPv 
+____vtbl__LinkedListListCollection USES add__10LinkedListFPv 
+                                clear__10LinkedListFv contains__10LinkedListFPv 
+                                isEmpty__10LinkedListFv iterator__10LinkedListFv 
+                                moveOut__10LinkedListFPv size__10LinkedListFv get__10LinkedListFUi 
+                                aniadir__10LinkedListFPv 
+____vtbl__MethodContainerLinkedListListCollection USES 
+                                add__15MethodContainerFPv clear__10LinkedListFv 
+                                contains__10LinkedListFPv isEmpty__10LinkedListFv 
+                                iterator__10LinkedListFv moveOut__10LinkedListFPv size__10LinkedListFv 
+                                get__10LinkedListFUi aniadir__10LinkedListFPv 
+____vtbl__PWMIPWMISalida  USES getPotencia__3PWMFv setPotencia__3PWMFUi 
+                                getConectada__3PWMFv setConectada__3PWMFUc getPeriodo__3PWMFv 
+____vtbl__PWMHardPWMIPWMISalida USES getPotencia__3PWMFv setPotencia__3PWMFUi 
+                                getConectada__7PWMHardFv setConectada__7PWMHardFUc getPeriodo__3PWMFv 
+____vtbl__PWMHard23PWMHardPWMIPWMISalida USES getPotencia__3PWMFv 
+                                setPotencia__9PWMHard23FUi getTipoSalida__9PWMHard23Fv 
+                                setTipoSalida__9PWMHard23F10TipoSalida getConectada__7PWMHardFv 
+                                setConectada__7PWMHardFUc setPeriodo__9PWMHard23F7TPeriod 
+                                getPeriodo__3PWMFv getEstadoSalida__9PWMHard23Fv 
+____vtbl__PWMHard01PWMHardPWMIPWMISalida USES getPotencia__3PWMFv 
+                                setPotencia__24PWMHard01PWMManager01_45FUi getTipoSalida__24PWMHard01PWMManager01_45Fv 
+                                setTipoSalida__24PWMHard01PWMManager01_45F10TipoSalida getConectada__7PWMHardFv 
+                                setConectada__7PWMHardFUc 
+                                setPeriodo__24PWMHard01PWMManager01_45F7TPeriod getPeriodo__3PWMFv 
+                                getEstadoSalida__24PWMHard01PWMManager01_45Fv 
+__ct__7ISalidaFv          USES ____vtbl__ISalida 
+__ct__4IPWMFv             USES __ct__7ISalidaFv ____vtbl__IPWMISalida 
+__ct__10CollectionFv      USES ____vtbl__Collection 
+__ct__4ListFv             USES __ct__10CollectionFv ____vtbl__ListCollection 
+__ct__7PromBkpFv          USES __ct__10LinkedListFv 
+__ct__14RamSimulaFlashFv  USES __ct__7PromBkpFv 
+__ct__10LinkedListFv      USES __ct__4ListFv 
+                                ____vtbl__LinkedListListCollection 
+clear__10LinkedListFv     USES __dl__FGPv 
+add__10LinkedListFPv      USES __nw__FGUi __ct__4NodoFPvP4Nodo 
+aniadir__10LinkedListFPv  USES __nw__FGUi __ct__4NodoFPvP4Nodo _LOAD_FAR_16 
+                                setNext__4NodoFP4Nodo 
+moveOut__10LinkedListFPv  USES deleteNodo__10LinkedListFP4NodoT1 
+deleteNodo__10LinkedListFP4NodoT1 USES getNext__4NodoFv.2 
+                                setNext__4NodoFP4Nodo __dl__FGPv 
+Method_defConstructor     USES Method_constructor 
+AS1_Enable__Fv            USES EnUser _SCICR2 SerFlag _SCISR1 
+AS1_Disable__Fv           USES EnUser _SCICR2 
+AS1_Init__Fv              USES SerFlag EnUser _SCICR1 _SCISR2 _SCISR1 _SCICR2 
+                                _SCIBD 
+_LDIVU                    USES _lDivMod 
+FC321_Init__Fv            USES TTicks TOvf _TC7 
+_vect                     USES Cpu_Interrupt__Fv Cpu_Interrupt41__Fv 
+                                Cpu_Interrupt43__Fv FC321_Interrupt__Fv Cpu_Interrupt49__Fv 
+                                Cpu_Interrupt50__Fv Cpu_Interrupt51__Fv Cpu_Interrupt52__Fv 
+                                Cpu_Interrupt53__Fv Cpu_Interrupt54__Fv Cpu_Interrupt55__Fv 
+                                Cpu_Interrupt56__Fv _EntryPoint 
+
+*********************************************************************************************
+DEPENDENCY TREE
+*********************************************************************************************
+ main and _Startup Group
+ | 
+ +- main                
+ |  | 
+ |  +- PE_low_level_init__Fv
+ |  |  | 
+ |  |  +- AS1_Init__Fv        
+ |  |  |    
+ |  |  +- FC321_Init__Fv      
+ |  |       
+ |  +- __ct__14RamSimulaFlashFv
+ |  |  | 
+ |  |  +- __ct__7PromBkpFv    
+ |  |     | 
+ |  |     +- __ct__10LinkedListFv
+ |  |        | 
+ |  |        +- __ct__4ListFv       
+ |  |        |  | 
+ |  |        |  +- __ct__10CollectionFv
+ |  |        |       
+ |  |        +- ____vtbl__LinkedListListCollection
+ |  |           | 
+ |  |           +- add__10LinkedListFPv
+ |  |           |  | 
+ |  |           |  +- __nw__FGUi          
+ |  |           |  |  | 
+ |  |           |  |  +- malloc              
+ |  |           |  |  |  | 
+ |  |           |  |  |  +- _heapcrash_         
+ |  |           |  |  |       
+ |  |           |  |  +- exit                
+ |  |           |  |       
+ |  |           |  +- __ct__4NodoFPvP4Nodo
+ |  |           |       
+ |  |           +- clear__10LinkedListFv
+ |  |           |  | 
+ |  |           |  +- __dl__FGPv          
+ |  |           |     | 
+ |  |           |     +- free                
+ |  |           |        | 
+ |  |           |        +- _heapcrash_          (see above)
+ |  |           |           
+ |  |           +- contains__10LinkedListFPv
+ |  |           |    
+ |  |           +- isEmpty__10LinkedListFv
+ |  |           |    
+ |  |           +- iterator__10LinkedListFv
+ |  |           |    
+ |  |           +- moveOut__10LinkedListFPv
+ |  |           |  | 
+ |  |           |  +- deleteNodo__10LinkedListFP4NodoT1
+ |  |           |     | 
+ |  |           |     +- getNext__4NodoFv.2  
+ |  |           |     |    
+ |  |           |     +- setNext__4NodoFP4Nodo
+ |  |           |     |    
+ |  |           |     +- __dl__FGPv           (see above)
+ |  |           |        
+ |  |           +- size__10LinkedListFv
+ |  |           |    
+ |  |           +- get__10LinkedListFUi
+ |  |           |    
+ |  |           +- aniadir__10LinkedListFPv
+ |  |              | 
+ |  |              +- __nw__FGUi           (see above)
+ |  |              |  
+ |  |              +- __ct__4NodoFPvP4Nodo (see above)
+ |  |              |  
+ |  |              +- _LOAD_FAR_16        
+ |  |              |    
+ |  |              +- setNext__4NodoFP4Nodo (see above)
+ |  |                 
+ |  +- RamSimulaFlash      
+ |  |  | 
+ |  |  +- PromBkp             
+ |  |  |  | 
+ |  |  |  +- Object              
+ |  |  |  |  | 
+ |  |  |  |  +- Class               
+ |  |  |  |  |  | 
+ |  |  |  |  |  +- Object               (see above)
+ |  |  |  |  |  |  
+ |  |  |  |  |  +- Object_ctor         
+ |  |  |  |  |  |    
+ |  |  |  |  |  +- Object_dtor         
+ |  |  |  |  |  |    
+ |  |  |  |  |  +- Object_differ       
+ |  |  |  |  |  |    
+ |  |  |  |  |  +- Object_puto         
+ |  |  |  |  |     | 
+ |  |  |  |  |     +- classOf             
+ |  |  |  |  |     |  | 
+ |  |  |  |  |     |  +- _assert             
+ |  |  |  |  |     |     | 
+ |  |  |  |  |     |     +- abort               
+ |  |  |  |  |     |          
+ |  |  |  |  |     +- write               
+ |  |  |  |  |     |  | 
+ |  |  |  |  |     |  +- classOf              (see above)
+ |  |  |  |  |     |  |  
+ |  |  |  |  |     |  +- _assert              (see above)
+ |  |  |  |  |     |     
+ |  |  |  |  |     +- sprintf             
+ |  |  |  |  |        | 
+ |  |  |  |  |        +- deposit_char        
+ |  |  |  |  |        |    
+ |  |  |  |  |        +- vprintf             
+ |  |  |  |  |           | 
+ |  |  |  |  |           +- _out                
+ |  |  |  |  |           |    
+ |  |  |  |  |           +- _CASE_SEARCH_8_BYTE 
+ |  |  |  |  |           |    
+ |  |  |  |  |           +- _CASE_DIRECT_BYTE   
+ |  |  |  |  |           |    
+ |  |  |  |  |           +- _CASE_SEARCH_8      
+ |  |  |  |  |           |    
+ |  |  |  |  |           +- _ILSEXT             
+ |  |  |  |  |           |    
+ |  |  |  |  |           +- _LNEG               
+ |  |  |  |  |           |    
+ |  |  |  |  |           +- _LCMP_P             
+ |  |  |  |  |                
+ |  |  |  |  +- Object_ctor          (see above)
+ |  |  |  |  |  
+ |  |  |  |  +- Object_dtor          (see above)
+ |  |  |  |  |  
+ |  |  |  |  +- Object_differ        (see above)
+ |  |  |  |  |  
+ |  |  |  |  +- Object_puto          (see above)
+ |  |  |  |     
+ |  |  |  +- PromBkp_ctor__FPvPPSc
+ |  |  |  |    
+ |  |  |  +- Object_dtor          (see above)
+ |  |  |  |  
+ |  |  |  +- Object_differ        (see above)
+ |  |  |  |  
+ |  |  |  +- Object_puto          (see above)
+ |  |  |     
+ |  |  +- RamSimulaFlash_getWord__FPvPUi
+ |  |  |    
+ |  |  +- RamSimulaFlash_setWord__FPvPUiUi
+ |  |  |    
+ |  |  +- RamSimulaFlash_borrarProm__FPvT0
+ |  |  |    
+ |  |  +- RamSimulaFlash_grabarProm__FPv
+ |  |       
+ |  +- newAlloced          
+ |  |  | 
+ |  |  +- ctor                
+ |  |  |  | 
+ |  |  |  +- classOf              (see above)
+ |  |  |     
+ |  |  +- _assert              (see above)
+ |  |     
+ |  +- __ct__24PWMHard01PWMManager01_45FR16ManejadorMemoriaR8TConfPWM
+ |  |  | 
+ |  |  +- __ct__7PWMHardFR16ManejadorMemoriaR8TConfPWM.4
+ |  |  |  | 
+ |  |  |  +- __ct__4IPWMFv       
+ |  |  |  |  | 
+ |  |  |  |  +- __ct__7ISalidaFv    
+ |  |  |  |       
+ |  |  |  +- __ct__15MethodContainerFv
+ |  |  |  |  | 
+ |  |  |  |  +- __ct__10LinkedListFv (see above)
+ |  |  |  |  |  
+ |  |  |  |  +- ____vtbl__MethodContainerLinkedListListCollection
+ |  |  |  |     | 
+ |  |  |  |     +- add__15MethodContainerFPv
+ |  |  |  |     |  | 
+ |  |  |  |     |  +- classOf              (see above)
+ |  |  |  |     |  |  
+ |  |  |  |     |  +- Method              
+ |  |  |  |     |  |  | 
+ |  |  |  |     |  |  +- Object               (see above)
+ |  |  |  |     |  |  |  
+ |  |  |  |     |  |  +- Method_defConstructor
+ |  |  |  |     |  |     | 
+ |  |  |  |     |  |     +- Method_constructor  
+ |  |  |  |     |  |          
+ |  |  |  |     |  +- add__10LinkedListFPv (see above)
+ |  |  |  |     |     
+ |  |  |  |     +- clear__10LinkedListFv (see above)
+ |  |  |  |     |  
+ |  |  |  |     +- contains__10LinkedListFPv (see above)
+ |  |  |  |     |  
+ |  |  |  |     +- isEmpty__10LinkedListFv (see above)
+ |  |  |  |     |  
+ |  |  |  |     +- iterator__10LinkedListFv (see above)
+ |  |  |  |     |  
+ |  |  |  |     +- moveOut__10LinkedListFPv (see above)
+ |  |  |  |     |  
+ |  |  |  |     +- size__10LinkedListFv (see above)
+ |  |  |  |     |  
+ |  |  |  |     +- get__10LinkedListFUi (see above)
+ |  |  |  |     |  
+ |  |  |  |     +- aniadir__10LinkedListFPv (see above)
+ |  |  |  |        
+ |  |  |  +- ____vtbl__PWMIPWMISalida
+ |  |  |  |  | 
+ |  |  |  |  +- getPotencia__3PWMFv 
+ |  |  |  |  |    
+ |  |  |  |  +- setPotencia__3PWMFUi
+ |  |  |  |  |  | 
+ |  |  |  |  |  +- _LOAD_FAR_16         (see above)
+ |  |  |  |  |     
+ |  |  |  |  +- getConectada__3PWMFv
+ |  |  |  |  |    
+ |  |  |  |  +- setConectada__3PWMFUc
+ |  |  |  |  |  | 
+ |  |  |  |  |  +- _LOAD_FAR_16         (see above)
+ |  |  |  |  |     
+ |  |  |  |  +- getPeriodo__3PWMFv  
+ |  |  |  |     | 
+ |  |  |  |     +- getPeriodoConfiguracion__3PWMFv
+ |  |  |  |          
+ |  |  |  +- ____vtbl__PWMHardPWMIPWMISalida
+ |  |  |     | 
+ |  |  |     +- getPotencia__3PWMFv  (see above)
+ |  |  |     |  
+ |  |  |     +- setPotencia__3PWMFUi (see above)
+ |  |  |     |  
+ |  |  |     +- getConectada__7PWMHardFv
+ |  |  |     |    
+ |  |  |     +- setConectada__7PWMHardFUc
+ |  |  |     |  | 
+ |  |  |     |  +- _LOAD_FAR_16         (see above)
+ |  |  |     |     
+ |  |  |     +- getPeriodo__3PWMFv   (see above)
+ |  |  |        
+ |  |  +- ____vtbl__PWMHard01PWMHardPWMIPWMISalida
+ |  |     | 
+ |  |     +- getPotencia__3PWMFv  (see above)
+ |  |     |  
+ |  |     +- setPotencia__24PWMHard01PWMManager01_45FUi
+ |  |     |  | 
+ |  |     |  +- __sf_7PWMHard_setDuty__F13ReferenciaPWMi
+ |  |     |  |  | 
+ |  |     |  |  +- _ILSEXT              (see above)
+ |  |     |  |  |  
+ |  |     |  |  +- _LMUL               
+ |  |     |  |  |    
+ |  |     |  |  +- _LDIVU              
+ |  |     |  |     | 
+ |  |     |  |     +- _lDivMod            
+ |  |     |  |          
+ |  |     |  +- Salida_setPotencia__3PWMFUi
+ |  |     |     | 
+ |  |     |     +- _LOAD_FAR_16         (see above)
+ |  |     |     |  
+ |  |     |     +- setPotencia__3PWMFUi (see above)
+ |  |     |        
+ |  |     +- getTipoSalida__24PWMHard01PWMManager01_45Fv
+ |  |     |    
+ |  |     +- setTipoSalida__24PWMHard01PWMManager01_45F10TipoSalida
+ |  |     |    
+ |  |     +- getConectada__7PWMHardFv (see above)
+ |  |     |  
+ |  |     +- setConectada__7PWMHardFUc (see above)
+ |  |     |  
+ |  |     +- setPeriodo__24PWMHard01PWMManager01_45F7TPeriod
+ |  |     |  | 
+ |  |     |  +- setPeriodoConfiguracion__3PWMF7TPeriod
+ |  |     |  |    
+ |  |     |  +- __sf_15PWMManager01_45_PWMManager01_45_setPeriodo__FP3PWM7TPeriod
+ |  |     |     | 
+ |  |     |     +- _LOAD_FAR_16         (see above)
+ |  |     |     |  
+ |  |     |     +- __sf_15PWMManager01_45_PWMManager01_45_configCaso1__F13ReferenciaPWMT0
+ |  |     |     |  | 
+ |  |     |     |  +- __sf_7PWMHard_setPeriodoHard__F13ReferenciaPWMUi
+ |  |     |     |  |    
+ |  |     |     |  +- __sf_7PWMHard_noEscalar__F13ReferenciaPWM
+ |  |     |     |     | 
+ |  |     |     |     +- _BSHL               
+ |  |     |     |          
+ |  |     |     +- __sf_15PWMManager01_45_PWMManager01_45_configCaso2__F13ReferenciaPWMN20
+ |  |     |     |  | 
+ |  |     |     |  +- __sf_7PWMHard_setPeriodoHard__F13ReferenciaPWMUi (see above)
+ |  |     |     |  |  
+ |  |     |     |  +- __sf_7PWMHard_noEscalar__F13ReferenciaPWM (see above)
+ |  |     |     |  |  
+ |  |     |     |  +- __sf_7PWMHard_escalar__F13ReferenciaPWM
+ |  |     |     |     | 
+ |  |     |     |     +- _BSHL                (see above)
+ |  |     |     |        
+ |  |     |     +- __sf_15PWMManager01_45_PWMManager01_45_configCaso3__F13ReferenciaPWMN30
+ |  |     |     |  | 
+ |  |     |     |  +- __sf_7PWMHard_setPeriodoHard__F13ReferenciaPWMUi (see above)
+ |  |     |     |  |  
+ |  |     |     |  +- __sf_7PWMHard_escalar__F13ReferenciaPWM (see above)
+ |  |     |     |  |  
+ |  |     |     |  +- __sf_7PWMHard_noEscalar__F13ReferenciaPWM (see above)
+ |  |     |     |     
+ |  |     |     +- __sf_15PWMManager01_45_PWM45_actualizarPotencia__FUi
+ |  |     |     |    
+ |  |     |     +- __sf_15PWMManager01_45_PWM01_actualizarPotencia__FUi
+ |  |     |        | 
+ |  |     |        +- __sf_7PWMHard_setDuty__F13ReferenciaPWMi (see above)
+ |  |     |           
+ |  |     +- getPeriodo__3PWMFv   (see above)
+ |  |     |  
+ |  |     +- getEstadoSalida__24PWMHard01PWMManager01_45Fv
+ |  |          
+ |  +- __ct__9PWMHard23FR16ManejadorMemoriaR8TConfPWM
+ |  |  | 
+ |  |  +- __ct__7PWMHardFR16ManejadorMemoriaR8TConfPWM.4
+ |  |  |  | 
+ |  |  |  +- __ct__4IPWMFv        (see above)
+ |  |  |  |  
+ |  |  |  +- __ct__15MethodContainerFv (see above)
+ |  |  |  |  
+ |  |  |  +- ____vtbl__PWMIPWMISalida (see above)
+ |  |  |  |  
+ |  |  |  +- ____vtbl__PWMHardPWMIPWMISalida (see above)
+ |  |  |     
+ |  |  +- ____vtbl__PWMHard23PWMHardPWMIPWMISalida
+ |  |     | 
+ |  |     +- getPotencia__3PWMFv  (see above)
+ |  |     |  
+ |  |     +- setPotencia__9PWMHard23FUi
+ |  |     |  | 
+ |  |     |  +- __sf_7PWMHard_setDuty__F13ReferenciaPWMi (see above)
+ |  |     |  |  
+ |  |     |  +- Salida_setPotencia__3PWMFUi (see above)
+ |  |     |     
+ |  |     +- getTipoSalida__9PWMHard23Fv
+ |  |     |    
+ |  |     +- setTipoSalida__9PWMHard23F10TipoSalida
+ |  |     |    
+ |  |     +- getConectada__7PWMHardFv (see above)
+ |  |     |  
+ |  |     +- setConectada__7PWMHardFUc (see above)
+ |  |     |  
+ |  |     +- setPeriodo__9PWMHard23F7TPeriod
+ |  |     |  | 
+ |  |     |  +- setPeriodoConfiguracion__3PWMF7TPeriod (see above)
+ |  |     |     
+ |  |     +- getPeriodo__3PWMFv   (see above)
+ |  |     |  
+ |  |     +- getEstadoSalida__9PWMHard23Fv
+ |  |          
+ |  +- testPwmHard45__FR7PWMHard
+ |     | 
+ |     +- print__FPSc         
+ |     |  | 
+ |     |  +- AS1_Enable__Fv      
+ |     |  |    
+ |     |  +- AS1_Disable__Fv     
+ |     |       
+ |     +- _LOAD_FAR_16         (see above)
+ |        
+ +- _EntryPoint         
+    | 
+    +- _Startup            
+       | 
+       +- Init__Fv            
+       |    
+       +- main                 (see above)
+          
+ _vect               
+ | 
+ +- Cpu_Interrupt__Fv   
+ |    
+ +- Cpu_Interrupt41__Fv 
+ |    
+ +- Cpu_Interrupt43__Fv 
+ |    
+ +- FC321_Interrupt__Fv 
+ |  | 
+ |  +- _LINC               
+ |       
+ +- Cpu_Interrupt49__Fv 
+ |    
+ +- Cpu_Interrupt50__Fv 
+ |    
+ +- Cpu_Interrupt51__Fv 
+ |    
+ +- Cpu_Interrupt52__Fv 
+ |    
+ +- Cpu_Interrupt53__Fv 
+ |    
+ +- Cpu_Interrupt54__Fv 
+ |    
+ +- Cpu_Interrupt55__Fv 
+ |    
+ +- Cpu_Interrupt56__Fv 
+ |    
+ +- _EntryPoint          (see above)
+    
+*********************************************************************************************
+STATISTIC SECTION
+---------------------------------------------------------------------------------------------
+
+ExeFile:
+--------
+Number of blocks to be downloaded: 13
+Total size of all blocks to be downloaded: 5709
+

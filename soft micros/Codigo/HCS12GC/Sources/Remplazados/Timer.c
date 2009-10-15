@@ -141,17 +141,17 @@ ulong Timer_getCuenta(struct Timer * self){
   return cuentaTmp - (nextCuentaTmp - tiempoTmp);
 }
 
+
+
 /*
 ** ===================================================================
-**     Method      :  Timer_isfinish 
-**    Description : Indica si ya termino la cuenta
+**     Method      :  Timer_setTime 
+**    Description : Setea un tiempo nuevo y reinicia la cuenta del tiempo
 ** ===================================================================
 */
-uchar Timer_isfinish(struct TimerAllocable * self){
-//uchar Timer_isfinish(struct Timer * self){
-  if(self->baseTimer)
-    return !contains(self->baseTimer,self);
-  return TRUE;
+void Timer_setTime(struct Timer * self,ulong tiempo){					 
+  self->tiempo=tiempo;
+  Timer_Restart(self);
 }
 
 /*
@@ -173,13 +173,15 @@ void Timer_Restart(struct Timer * self){
 
 /*
 ** ===================================================================
-**     Method      :  Timer_setTime 
-**    Description : Setea un tiempo nuevo y reinicia la cuenta del tiempo
+**     Method      :  Timer_isfinish 
+**    Description : Indica si ya termino la cuenta
 ** ===================================================================
 */
-void Timer_setTime(struct Timer * self,ulong tiempo){					 
-  self->tiempo=tiempo;
-  Timer_Restart(self);
+uchar Timer_isfinish(struct TimerAllocable * self){
+//uchar Timer_isfinish(struct Timer * self){
+  if(self->baseTimer)
+    return !contains(self->baseTimer,self);
+  return TRUE;
 }
 
 /*

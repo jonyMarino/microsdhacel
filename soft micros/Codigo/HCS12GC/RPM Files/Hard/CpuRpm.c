@@ -196,6 +196,8 @@ void PE_low_level_init(void)
   clrReg8Bits(PEAR, 4);                 
   /* DDRE: BIT2=0 */
   clrReg8Bits(DDRE, 4);                 
+  /* PLLCTL: PCE=0 */
+  clrReg8Bits(PLLCTL, 2);
   /* COPCTL: WCOP=0,RSBCK=1,CR2=1,CR1=1,CR0=1 */
   clrSetReg8Bits(COPCTL, 128, 71);      
   /* TSCR1: TEN=0,TSWAI=1,TSFRZ=1,TFFCA=0 */
@@ -266,7 +268,7 @@ void PE_low_level_init(void)
   /* ### TimerInt "TI1" init code ... */
   TI1_Init();
   /* TSCR1: TEN=1 TSWAI= 1*/
-  setReg8Bits(TSCR1, 192);              
+  setReg8Bits(TSCR1, 224);              
   INTCR_IRQEN = 0;                     /* Disable the IRQ interrupt. IRQ interrupt is enabled after CPU reset by default. */
   __EI();                              /* Enable interrupts */
 }

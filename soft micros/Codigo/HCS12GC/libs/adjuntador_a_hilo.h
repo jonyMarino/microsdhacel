@@ -8,7 +8,7 @@ struct AdjuntadorAHilo{
   struct ThreadAdjuntable * threadAdjuntable;
 };
 
-extern const void * const AdjuntadorAHilo;
+extern const struct Class AdjuntadorAHilo;
 
 /*
 ** ===================================================================

@@ -63,7 +63,7 @@ void CapturadorPT2_DefConstructor(void*_self,va_list * args){
 void * CapturadorPT2_getInstancia(void){
   
   if (CapturadorPT2_Instancia==NULL)
-    CapturadorPT2_Instancia=new(&CapturadorPT2);
+    CapturadorPT2_Instancia=_new(&CapturadorPT2);
   
   return CapturadorPT2_Instancia;
 }

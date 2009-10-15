@@ -4,11 +4,11 @@
 
 #include "Salida.hpp"
 #include "TipoSalida.hpp"
+#include "RlxMTimer.h"
 
 class ValvulaProporcional : public Salida {
+  
   public:
-    unsigned int getTiempoAbierto();
-
     typedef struct  {
       private:
         unsigned int tiempoAbierto;
@@ -17,50 +17,18 @@ class ValvulaProporcional : public Salida {
 
     }ConfValvulaProporcional;
     
+    unsigned int getTiempoAbierto();
 
-  private:
-    ConfValvulaProporcional * configuracion;
-
-    RlxMTimer timer;
-
-    byte * puertoApertura;
-
-    unsigned char mascaraApertura;
-
-     puertoCierre;
-
-    unsigned char mascaraCierre;
-
-    long timeCloseInit;
-
-    unsigned int timeActual;
-
-
-  public:
-   setTiempoAbierto();
+  unsigned char setTiempoAbierto(unsigned int value);
 
   unsigned int getBandaMuerta();
 
-   setBandaMuerta();
+  unsigned char setBandaMuerta(unsigned int bandaMuerta);
 
   static unsigned int getLimiteSuperiorTiempoAbierto();
 
-  static  getLimiteSuperiorBandaMuerta();
+  static unsigned int getLimiteSuperiorBandaMuerta();
 
-
-  protected:
-   cerrar();
-
-   abrir();
-
-   detener();
-
-
-  private:
-  static  onCheckear();
-
-
-  public:
   virtual unsigned int getPotencia();
 
   virtual  setPotencia(unsigned int potencia);
@@ -68,6 +36,37 @@ class ValvulaProporcional : public Salida {
     virtual TipoSalida getTipoSalida();
 
   virtual  setTipoSalida(TipoSalida tipoSalida);
+
+
+  protected:
+  void cerrar();
+
+  void abrir();
+
+   detener();
+   
+   private:
+    struct ManejadorMemoria manejadorMemoria;
+    
+    ConfValvulaProporcional * conf;
+
+   struct RlxMTimer timer;
+
+    byte * puertoApertura;
+
+    unsigned char mascaraApertura;
+
+    byte * puertoCierre;  
+
+    unsigned char mascaraCierre;
+
+    long timeCloseInit;
+
+    static void onCheckear();
+
+    unsigned int timeActual;
+
+
 
 };
 #endif
