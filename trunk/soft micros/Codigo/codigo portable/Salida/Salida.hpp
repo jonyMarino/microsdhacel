@@ -12,8 +12,7 @@ class Salida : public ISalida {
 
 
   public:
-   void Salida_setPotencia(unsigned int potencia);
-
+   
    bool getConectada();
 
    void setConectada(unsigned int conectada);

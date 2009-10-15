@@ -36,7 +36,8 @@ const struct BoxClass BoxPri={
                           BoxPri_ProcKey,
                           NULL) 
 };
-
+extern struct FlashBkp256 flash;
+static struct ManejadorMemoria *const pFlash=&flash;
 
 void BoxPri_ActDpySup(struct BoxPri * self);
 /*
@@ -59,7 +60,7 @@ void BoxPri_Constructor(void* self,
   
   _GetterPrint(sensor,_DPY_SUP);
   
-  PasarASCII("tEMP",_DPY_INF);
+  PasarASCII("MEdicion",_DPY_INF);
   
   newAlloced(&_box->timerPri,&TimerFlag,(ulong)TIME_BETWEEN_PARS);
 

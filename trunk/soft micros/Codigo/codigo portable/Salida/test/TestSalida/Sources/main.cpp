@@ -8,14 +8,15 @@
 #include "RamSimulaFlash.h"
 #include "cpu.h"
 
+
 void testPwm (PWM &pwm);
 void onToggle(void * self);
 void print(char *msj);
 unsigned int potencia=500;
-TPeriod period= PWM_100ms;
-bool pasoEnable=FALSE;
+TPeriod period=PWM_100ms;
 char j=0;
-
+char flag;
+bool paso=FALSE;
 void main(void) {
   PE_low_level_init();
   
@@ -28,7 +29,7 @@ void main(void) {
   
   //FC321_Init();
   //AS1_Init();
-	EnableInterrupts;
+//	EnableInterrupts;
   testPwm (test);	
  
 
@@ -44,14 +45,13 @@ void main(void) {
 
 
 void testPwm (PWM &pwm){
- struct Method* m=(struct Method*)(_new(&Method,onToggle,NULL));
- 
- 
- pwm.setPeriodo(period);
- pwm.setPotencia(potencia);
+ struct Method* m=(struct Method*)(_new(&Method,onToggle,&pwm));
+ pwm.setConectada(TRUE);
+ pwm.setPeriodo(PWM_100ms);
  pwm.setTipoSalida((TipoSalida)SALIDA_PROPORCIONAL);
-// pwm.setPotencia(potencia);
+ pwm.setPotencia(potencia);
  pwm.addOnToggleListener(m);
+// EnableInterrupts;
  print("testing... periodo:100ms'\n'");
  
     
@@ -59,27 +59,36 @@ void testPwm (PWM &pwm){
 
 void onToggle(void * self){
  bool state;
- word * time;
+ word  time;            
+//return; 
+ 
  state=((IPWM*)self)->getEstadoSalida();
- if(state==TRUE){
-  pasoEnable = TRUE;
+ if(state==TRUE && paso==FALSE){
+  flag=1;
+  paso=TRUE;
   FC321_Enable();
- }else if(pasoEnable == TRUE){
-   pasoEnable = FALSE; 
-   FC321_Reset(); 
-   FC321_Disable();
-   FC321_GetTimeMS(time);
+  return;
+ }else if(flag == 1){
+   //flag=2;
+   //paso=~paso;
+   
+   FC321_GetTimeMS(&time);
+   FC321_Reset();
+    
  }
  
- if((*time==(potencia*period)/1000) && *time!=0){
+ if((time==(potencia*100)/1000) && time!=0){
   j++;
   if(j>10){
     j=0;
     print("test OK '\n'");
  }else
     return;    
-}else
+}else //if(flag=2){
   print("test FAIL '\n'");
+  //DisableInterrupts;
+  //setReg8Bits(TSCR1,0);
+//}
 }
 
 

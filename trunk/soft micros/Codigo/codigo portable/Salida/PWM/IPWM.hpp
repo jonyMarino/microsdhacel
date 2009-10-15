@@ -12,6 +12,11 @@ class IPWM : public ISalida {
 
   virtual TPeriod getPeriodo() = 0;
 
-  virtual unsigned char getEstadoSalida () = 0;
+  virtual bool getEstadoSalida () = 0;
+  
+  virtual bool getConectada() = 0;
+
+  virtual void setConectada(bool conectada) = 0;
+
 };
 #endif

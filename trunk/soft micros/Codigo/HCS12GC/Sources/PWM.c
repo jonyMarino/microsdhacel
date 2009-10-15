@@ -32,8 +32,7 @@ const struct IPWMClass PWM={
                             )  
 };
 
-extern struct ManejadorMemoria flash;
-static struct ManejadorMemoria *const pFlash=&flash;
+extern struct ManejadorMemoria *const pFlash;
 
 /*
 ** ===================================================================
@@ -76,7 +75,7 @@ TError setPeriodo(void* self,int periodo){
 */
 TError PWM_setPeriodo(void* _self,int period){
   struct PWM* self = (struct PWM*)_self;
-  return _MANEJADOR_MEMORIA_SET_BYTE(&flash,&self->conf->period,(uchar)period);
+  return _MANEJADOR_MEMORIA_SET_BYTE(pFlash,&self->conf->period,(uchar)period);
 }
 
 /*

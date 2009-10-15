@@ -17,7 +17,6 @@
 #include "funciones.h"
 #include "IFsh10.h"
 #include "ControlPID.h"
-#include "RlxMTimer.h"
 #include "ManejadorMemoria.h"
 
 #pragma DATA_SEG PID_DATA                                            
@@ -48,8 +47,7 @@ const struct TControlClass TableControlPID={
 
 const void *const ControlPID= &TableControlPID;
 
-extern struct FlashBkpEnFlash flash;
-static struct ManejadorMemoria *const pFlash=&flash;
+extern struct ManejadorMemoria *const pFlash;
 
 
 void PID_ActValCont(void * self);

@@ -18,12 +18,12 @@ byte Nletras[CANTIDAD_DISPLAYS];
 static byte corrimiento[CANTIDAD_DISPLAYS];
 
 #ifdef HD90
-struct Timer HD90Timer;
+struct TimerFlag HD90Timer;
 #endif
 
 void Display_Init(void){
   #ifdef HD90
-  newAlloced(&HD90Timer,&Timer,(ulong)CHANGE_HD90_TEXT);
+  newAlloced(&HD90Timer,&TimerFlag,(ulong)CHANGE_HD90_TEXT);
   #endif
   newAlloced(&ScrollTimer,&TimerFlag,(ulong)TIME_SCROLL);
 }
@@ -64,7 +64,7 @@ void DpyAndSwitch(void)
   byte leds; //conjunto de leds a mostrar
   int i;
   //#ifdef HD90
-  bool HD90_flag=Timer_isfinish(&HD90Timer);
+  bool HD90_flag=TimerFlag_getFlag(&HD90Timer);
   extern byte	KeyEdge;
   //#endif
  // bool Scroll=Timer_isfinish(&ScrollTimer);
@@ -166,11 +166,11 @@ void DpyAndSwitch(void)
   #ifdef HD90
   	if(!HD90_flag && (KeyEdge=='u' || KeyEdge=='d'))
   	  KeyEdge=0;
-    if (KeyEdge=='r' || KeyEdge=='f'){
+    if (KeyEdge=='r' || KeyEdge=='f' || KeyEdge=='k'){
       HD90_flag = 0;
      
-       Timer_setTime(&HD90Timer,CHANGE_HD90_TEXT);
-     
+     TimerFlag_reset(&HD90Timer);
+     Timer_Restart(&HD90Timer); 
     }
    
      

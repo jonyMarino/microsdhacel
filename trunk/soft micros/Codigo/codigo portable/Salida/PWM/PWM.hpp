@@ -12,24 +12,10 @@
 #include "TConfPWM.hpp"
 
 class PWM : public IPWM {
+ 
+ public:
   
-  protected:
-   unsigned char setPeriodoConfiguracion(TPeriod period);
-    
-   TPeriod getPeriodoConfiguracion();
-   
-   void callOnToggleListeners();
-
-
-  private:
-    TConfPWM& conf;
-    MethodContainer listeners;
-    struct ManejadorMemoria &manejadorMemoria;
-    PWM();//{stderr<<"error";}
   
-
-  public:
-   
   PWM(struct ManejadorMemoria &_manejadorMemoria,TConfPWM &_conf):listeners(),manejadorMemoria(_manejadorMemoria),conf(_conf){}
   
   fbyte getLimSupPeriodo();
@@ -37,5 +23,41 @@ class PWM : public IPWM {
   void addOnToggleListener(struct Method* method);
 
   friend void llama_callOnToggleListeners(char n);
+ 
+  TPeriod getPeriodo();
+   
+  virtual unsigned int getPotencia();
+  
+  virtual void setPotencia(unsigned int potencia);
+  
+  protected:
+  
+   void Salida_setPotencia(unsigned int potencia);
+   
+   unsigned char setPeriodoConfiguracion(TPeriod period);
+    
+   TPeriod getPeriodoConfiguracion();
+   
+   void callOnToggleListeners();
+   
+   bool getConectada();
+
+   void setConectada(bool conectada);
+
+
+  private:
+  
+    TConfPWM& conf;
+  
+    unsigned int potencia;
+  
+    bool conectado; 
+    
+    MethodContainer listeners;
+    
+    struct ManejadorMemoria &manejadorMemoria;
+    
+    
+  
 };
 #endif

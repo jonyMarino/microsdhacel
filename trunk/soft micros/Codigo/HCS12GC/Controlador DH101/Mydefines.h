@@ -78,7 +78,7 @@
 
 //////////////////// Tipo de Aparato /////////////////////////////
 //#define debug
-//#define HD90
+#define HD90
 #define _ADQUISIDOR
 #define _DISPLAY_2x4
 //#define _PROGRAMADOR

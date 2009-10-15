@@ -58,8 +58,8 @@ const struct SensorDecLimClass SensorRpm={
 };
 
 
-extern struct FlashBkpEnFlash flash;
-static struct ManejadorDePROM * pFlash=&flash;
+
+extern struct ManejadorMemoria *const pFlash;
 
 
 int SenRpm_getDifDecView (void * _self){
@@ -76,6 +76,7 @@ int SenRpm_getDifDecView (void * _self){
 void  SenRpm_Construct(struct SensorRpm * self,struct AdjuntadorAHilo*adj,uint tiempoDeMuestreo,struct Capturador * capturador,const SensorRpmConf * conf,const char * desc){
 //  while(!_AD_isnew(adc)) //Espera a q haya una conversión
 //    WDog1_Clear();
+  Sensor_constructor(self);
   _SensorVisual_setDescription(self,desc);
   self->conf=conf; 
   self->capturador=capturador;

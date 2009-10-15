@@ -59,7 +59,7 @@ void CapturadorSimulado_DefConstructor(void*_self,va_list * args){
 void * CapturadorSimulado_getInstancia(void){
   
   if (CapturadorSimulado_Instancia==NULL)
-    CapturadorSimulado_Instancia=new(&CapturadorSimulado);
+    CapturadorSimulado_Instancia=_new(&CapturadorSimulado);
   
   return CapturadorSimulado_Instancia;
 }

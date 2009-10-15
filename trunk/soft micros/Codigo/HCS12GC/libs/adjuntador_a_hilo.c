@@ -4,7 +4,7 @@
 
 void AdjuntadorAHilo_defConstructor(void * self,va_list * args);
 
-const struct Class TableAdjuntadorAHilo={
+const struct Class AdjuntadorAHilo={
     &Class,
   "",
   &Object,
@@ -14,9 +14,6 @@ const struct Class TableAdjuntadorAHilo={
     NULL, // differ
   NULL, // puto
 };
-
-
-const void * const AdjuntadorAHilo= &TableAdjuntadorAHilo;
 
 
 /*

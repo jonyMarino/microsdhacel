@@ -51,14 +51,14 @@
   };
 
   
-  const struct PropiedadGenerica *const SenRpmProps[]={
+  const void *const SenRpmProps[]={
     &ParRpmDecimales,
     &ParRpmFiltro,
     &ParRpmPulsosPorRevolucion,
     &GetterRpmValSen
   };
   
-
+   const NEW_ARRAY(arraySenGetters,SenRpmProps);
 /*
 ** ===================================================================
 **     Function      :  SnsHmi_ComuAdd 
