@@ -7,6 +7,34 @@ void MedidorFunciones_setDeltaTiempo(uint delta){
   DELTAT=delta;
 }
 
+/*
+FILTRO
+
+Vf = Vx / (1 + sTf)
+Vf + sTfVf = Vx
+Vf + Tf DVf = Vx
+Vfk + (Tf/h)(Vfk - Vfk-1) = Vxk
+Vfk [1+(Tf/h)] = Vxk + (Tf/h)Vfk-1
+Vfk [h+Tf] = h Vxk + Tf Vfk-1
+
+
+MUCHO CUIDDO!!!!!EL TfMAX ES POR LOS ERRORES DE REDONDEO DE 
+DIVISION ENTERA EN CALCULOS ITERATIVOS!!!. PERDI DOS DIAS CON ESO!!!!!
+
+Empiezo con un Vx alto, y lo bajo al final
+
+Vfk1 = (h Vxk TfMAX + Tf Vfk-1)/(h+Tf)
+
+y despues
+
+Vfk = Vfk1/TfMax
+
+Tf en decimas de segundo
+DEL_T idem
+
+*/
+
+
 int filtrar (int val_x,int Tf,int DEL_T,int TfMAX,long *buffer_fil){
  
   *buffer_fil = ((long)TfMAX*(long)DEL_T*(long)val_x + (long)Tf**buffer_fil)/((long)DEL_T+(long)Tf);

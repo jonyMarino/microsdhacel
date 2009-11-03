@@ -19,7 +19,7 @@ const struct Object {
 
 void Object_ctor (void * _self, va_list * app);
 void Object_dtor (void * _self);
-int Object_differ (const void * _self, const void * b);
+unsigned char Object_differ (const void * _self, const void * b);
 int Object_puto (const void * _self, struct OutputStream * os);
 
 
@@ -30,7 +30,7 @@ struct Class {
 	size_t size;					/* class' object's size */
 	void (* ctor) (void * self, va_list * app);
 	void (* dtor) (void * self);
-	int (* differ) (const void * self, const void * b);
+	unsigned char (* differ) (const void * self, const void * b);
 	int (* puto) (const void * self, struct OutputStream * os);
 };
 

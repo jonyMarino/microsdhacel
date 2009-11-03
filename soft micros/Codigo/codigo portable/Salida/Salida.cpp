@@ -22,3 +22,9 @@ unsigned int Salida::getPotencia() {
 }
 
  
+void Salida::setPotencia(unsigned int _potencia){
+  if(!getConectada() || _potencia<0 || _potencia>1000)  
+    return; //error
+    
+  setPotencia(_potencia);
+}

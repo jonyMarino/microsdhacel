@@ -82,7 +82,7 @@ void  SenRpm_Construct(struct SensorRpm * self,struct AdjuntadorAHilo*adj,uint t
   self->capturador=capturador;
   self->bufferFiltro=0;
   Capturador_Comenzar(capturador);
-  newAlloced(&self->timerMuestreo,&MethodTimer,(ulong)tiempoDeMuestreo,SenRpm_procesarCaptura,self);
+  newAlloced(&self->timerMuestreo,&MethodTimer,(ulong)/*tiempoDeMuestreo*/10000,SenRpm_procesarCaptura,self);
   AdjuntadorAHilo_adjuntar(adj,SenRpm_procesar,self);
   self->onNewVal=NULL;
   self->state= SENSOR_OK;

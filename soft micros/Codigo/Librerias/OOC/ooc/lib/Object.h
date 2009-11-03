@@ -30,7 +30,7 @@ size_t sizeOf (const void * self);
 
 void ctor (void * self, va_list * app);
 void dtor (void * self);
-int differ (const void * _self, const void * b);
+unsigned char differ (const void * _self, const void * b);
 int puto (const void * _self, struct OutputStream * os);
 
 //extern const void * Class;	/* new(&Class, "name", superPointer, size

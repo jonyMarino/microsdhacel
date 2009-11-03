@@ -5,6 +5,7 @@
 #include "PromBkp.h"
 #include "PromBkpProtected.h"
 #include "Timer.h"
+#include "Object.h"
 
 void PromBkp_ctor(void * _self,va_list * args);
 

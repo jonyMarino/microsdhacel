@@ -5,6 +5,7 @@
 #include "nodo.hpp"
 #include "Iterator.hpp"
 #include "List.hpp"
+#include "LinkedList.hpp"
 
 #pragma CODE_SEG  LinkedList_CODE
 #pragma DATA_SEG  LinkedList_DATA
@@ -32,6 +33,7 @@ class LinkedList:public List
   bool moveOut(void * dato);
   bool isEmpty();
   void clear();
+// private:
   unsigned char differ(LinkedList * _l);
   
   class LinkedListIterator:public Iterator{
