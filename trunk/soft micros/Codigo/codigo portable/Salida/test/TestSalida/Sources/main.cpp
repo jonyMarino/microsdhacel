@@ -46,7 +46,7 @@ void main(void) {
 
 void testPwm (PWM &pwm){
  struct Method* m=(struct Method*)(_new(&Method,onToggle,&pwm));
- pwm.setConectada(TRUE);
+ //pwm.setConectada(TRUE);
  pwm.setPeriodo(PWM_100ms);
  pwm.setTipoSalida((TipoSalida)SALIDA_PROPORCIONAL);
  pwm.setPotencia(potencia);

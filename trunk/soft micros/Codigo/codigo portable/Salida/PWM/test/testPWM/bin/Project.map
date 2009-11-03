@@ -24,13 +24,12 @@ ALLOC.C.o (ansisi.lib)                  Model: SMALL,         Lang: ANSI-C
 rtshc12.c.o (ansisi.lib)                Model: SMALL,         Lang: ANSI-C
 NEW.CPP.o (cppsi.lib)                   Model: SMALL,         Lang: C++
 AS1.c.o                                 Model: SMALL,         Lang: C++
+TI1.c.o                                 Model: SMALL,         Lang: C++
 FC321.c.o                               Model: SMALL,         Lang: C++
 testVector.c.o                          Model: SMALL,         Lang: C++
 D:\Jony\HCS12\Librerias\OOC\lang\reflect\reflect_Data\C_Ms_no_float\ObjectCode\Method.c.o (reflect_si.lib)Model: SMALL,         Lang: ANSI-C
 D:\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\util\util_hcs12_cpp_Data\C++_Ms_no_float\ObjectCode\LinkedList.cpp.o (util_cpp_si.lib)Model: SMALL,         Lang: C++
 D:\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\util\util_hcs12_cpp_Data\C++_Ms_no_float\ObjectCode\nodo.cpp.o (util_cpp_si.lib)Model: SMALL,         Lang: C++
-D:\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\ooc\ooc_hcs12_Data\C_Ms_no_float\ObjectCode\Object.c.o (ooc_si.lib)Model: SMALL,         Lang: ANSI-C
-D:\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\ooc\ooc_hcs12_Data\C_Ms_no_float\ObjectCode\OutputStream.c.o (ooc_si.lib)Model: SMALL,         Lang: ANSI-C
 Cpu.c.o                                 Model: SMALL,         Lang: C++
 PWMHard.cpp.o                           Model: SMALL,         Lang: C++
 PWMHard23.cpp.o                         Model: SMALL,         Lang: C++
@@ -38,34 +37,47 @@ PWMManager01_45.cpp.o                   Model: SMALL,         Lang: C++
 PWM.cpp.o                               Model: SMALL,         Lang: C++
 RamSimulaFlash.c.o                      Model: SMALL,         Lang: C++
 PromBkp.c.o                             Model: SMALL,         Lang: C++
+Salida.cpp.o                            Model: SMALL,         Lang: C++
 MethodContainer.cpp.o                   Model: SMALL,         Lang: C++
+ValvulaProporcional.cpp.o               Model: SMALL,         Lang: C++
+RlxMTimer.c.o                           Model: SMALL,         Lang: C++
+PlataformaEmbedded.cpp.o                Model: SMALL,         Lang: C++
+ThreadAttachable.cpp.o                  Model: SMALL,         Lang: C++
+D:\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\ooc\ooc_hcs12_Data\C_Ms_no_float\ObjectCode\Object.c.o (ooc_si.lib)Model: SMALL,         Lang: ANSI-C
+D:\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\ooc\ooc_hcs12_Data\C_Ms_no_float\ObjectCode\OutputStream.c.o (ooc_si.lib)Model: SMALL,         Lang: ANSI-C
+MethodTimer.c.o                         Model: SMALL,         Lang: C++
+Timer.c.o                               Model: SMALL,         Lang: C++
+BaseTimers_1ms_40ms.cpp.o               Model: SMALL,         Lang: C++
+BaseTimers.cpp.o                        Model: SMALL,         Lang: C++
+timer_interrupt.c.o                     Model: SMALL,         Lang: C++
 
 *********************************************************************************************
 STARTUP SECTION
 ---------------------------------------------------------------------------------------------
-Entry point: 0x4802 (_EntryPoint)
-_startupData is allocated at 0x482B and uses 14 Bytes
+Entry point: 0x440E (_EntryPoint)
+_startupData is allocated at 0x443D and uses 14 Bytes
 extern struct _tagStartup {
   unsigned nofZeroOut     1
-  _Range   pZeroOut       0x1000     421
-  _Copy    *toCopyDownBeg 0x5DC5
-  int      nofInitBodies  0
-  _Cpp     *initBodies    0x483D
-  int      nofFiniBodies  0
-  _Cpp     *finiBodies    0x483D
+  _Range   pZeroOut       0x1000     841
+  _Copy    *toCopyDownBeg 0x6417
+  int      nofInitBodies  2
+  _Cpp     *initBodies    0x444F
+  int      nofFiniBodies  1
+  _Cpp     *finiBodies    0x4453
 } _startupData;
 
 *********************************************************************************************
 SECTION-ALLOCATION SECTION
 Section Name                    Size  Type     From       To       Segment
 ---------------------------------------------------------------------------------------------
-.init                             43     R     0x4800     0x482A   ROM_4600
-.startData                        18     R     0x482B     0x483C   ROM_4600
-.rodata                          298     R     0x483D     0x4966   ROM_4600
-.rodata1                         221     R     0x4967     0x4A43   ROM_4600
-NON_BANKED                        30     R     0x4A44     0x4A61   ROM_4600
-.text                           3692     R     0x4A62     0x58CD   ROM_4600
-.copy                              8     R     0x5DC5     0x5DCC   ROM_4600
+.data                              2   R/W     0x1000     0x1001   RAM_1000
+.init                             55     R     0x4406     0x443C   ROM_4600
+.startData                        24     R     0x443D     0x4454   ROM_4600
+.rodata                          352     R     0x4455     0x45B4   ROM_4600
+.rodata1                         319     R     0x45B5     0x46F3   ROM_4600
+NON_BANKED                        59     R     0x46F4     0x472E   ROM_4600
+.text                           5009     R     0x472F     0x5ABF   ROM_4600
+.copy                              8     R     0x6417     0x641E   ROM_4600
 .abs_section_8                     1   N/I        0x8        0x8   .absSeg0
 .abs_section_9                     1   N/I        0x9        0x9   .absSeg1
 .abs_section_a                     1   N/I        0xA        0xA   .absSeg2
@@ -229,24 +241,32 @@ NON_BANKED                        30     R     0x4A44     0x4A61   ROM_4600
 .abs_section_fa                    2   N/I       0xFA       0xFB   .absSeg160
 .abs_section_fc                    2   N/I       0xFC       0xFD   .absSeg161
 .abs_section_ff80                128     R     0xFF80     0xFFFF   .absSeg162
-.bss                              12   R/W     0x1000     0x100B   RAM_1000
-VIRTUAL_TABLE_SEGMENT            336     R     0x58CE     0x5A1D   ROM_4600
-GEN_FUNCS_SEGMENT                 57     R     0x5A1E     0x5A56   ROM_4600
-NODO_CODE                          5     R     0x5A57     0x5A5B   ROM_4600
-LinkedList_CODE                  372     R     0x5A5C     0x5BCF   ROM_4600
-METHOD_CODE                       35     R     0x5BD0     0x5BF2   ROM_4600
-AS1_DATA                           4   R/W     0x100C     0x100F   RAM_1000
-AS1_CODE                          70     R     0x5BF3     0x5C38   ROM_4600
-RUNTIME                          362     R     0x5C39     0x5DA2   ROM_4600
-HEAP_SEGMENT                     400   R/W     0x1010     0x119F   RAM_1000
-FC321_CODE                        16     R     0x5DA3     0x5DB2   ROM_4600
-FC321_DATA                         5   R/W     0x11A0     0x11A4   RAM_1000
-Nodo_CODE                         18     R     0x5DB3     0x5DC4   ROM_4600
-.stack                           336   R/W     0x11A5     0x12F4   RAM_1000
+.bss                              14   R/W     0x1002     0x100F   RAM_1000
+.fini                              6     R     0x4400     0x4405   ROM_4600
+VIRTUAL_TABLE_SEGMENT            528     R     0x5AC0     0x5CCF   ROM_4600
+GEN_FUNCS_SEGMENT                128     R     0x5CD0     0x5D4F   ROM_4600
+NODO_CODE                          5     R     0x5D50     0x5D54   ROM_4600
+LinkedList_CODE                  462     R     0x5D55     0x5F22   ROM_4600
+METHOD_CODE                       35     R     0x5F23     0x5F45   ROM_4600
+Timer_CODE                       336     R     0x5F46     0x6095   ROM_4600
+AS1_DATA                           2   R/W     0x1010     0x1011   RAM_1000
+AS1_CODE                          70     R     0x6096     0x60DB   ROM_4600
+MethodTimer_CODE                  85     R     0x60DC     0x6130   ROM_4600
+RlxMTimer_DATA                     2   R/W     0x1012     0x1013   RAM_1000
+RlxMTimer_CODE                   310     R     0x6131     0x6266   ROM_4600
+.common                           14   R/W     0x1014     0x1021   RAM_1000
+RUNTIME                          370     R     0x6267     0x63D8   ROM_4600
+HEAP_SEGMENT                     800   R/W     0x1022     0x1341   RAM_1000
+TI1_CODE                          28     R     0x63D9     0x63F4   ROM_4600
+TI1_DATA                           2   R/W     0x1342     0x1343   RAM_1000
+FC321_CODE                        16     R     0x63F5     0x6404   ROM_4600
+FC321_DATA                         5   R/W     0x1344     0x1348   RAM_1000
+Nodo_CODE                         18     R     0x6405     0x6416   ROM_4600
+.stack                           336   R/W     0x1349     0x1498   RAM_1000
 
 Summary of section sizes per section type:
-READ_ONLY (R):        164D (dec:     5709)
-READ_WRITE (R/W):      2F5 (dec:      757)
+READ_ONLY (R):        209F (dec:     8351)
+READ_WRITE (R/W):      499 (dec:     1177)
 NO_INIT (N/I):          C7 (dec:      199)
 
 *********************************************************************************************
@@ -306,9 +326,9 @@ MODULE:                 -- MC9S12GC32.c.o --
      _TCTL2                                      49       1       1       1   .abs_section_49
      _TCTL3                                      4A       1       1       0   .abs_section_4a
      _TCTL4                                      4B       1       1       0   .abs_section_4b
-     _TIE                                        4C       1       1       1   .abs_section_4c
+     _TIE                                        4C       1       1       4   .abs_section_4c
      _TSCR2                                      4D       1       1       2   .abs_section_4d
-     _TFLG1                                      4E       1       1       2   .abs_section_4e
+     _TFLG1                                      4E       1       1       5   .abs_section_4e
      _TFLG2                                      4F       1       1       0   .abs_section_4f
      _PACTL                                      60       1       1       0   .abs_section_60
      _PAFLG                                      61       1       1       0   .abs_section_61
@@ -343,7 +363,7 @@ MODULE:                 -- MC9S12GC32.c.o --
      _FPROT                                     104       1       1       0   .abs_section_104
      _FSTAT                                     105       1       1       0   .abs_section_105
      _FCMD                                      106       1       1       0   .abs_section_106
-     _PTT                                       240       1       1       8   .abs_section_240
+     _PTT                                       240       1       1      10   .abs_section_240
      _PTIT                                      241       1       1       0   .abs_section_241
      _DDRT                                      242       1       1       4   .abs_section_242
      _RDRT                                      243       1       1       0   .abs_section_243
@@ -394,7 +414,7 @@ MODULE:                 -- MC9S12GC32.c.o --
      _DBGCA                                      2B       2       2       0   .abs_section_2b
      _DBGCB                                      2E       2       2       0   .abs_section_2e
      _TCNT                                       44       2       2       0   .abs_section_44
-     _TC0                                        50       2       2       0   .abs_section_50
+     _TC0                                        50       2       2       3   .abs_section_50
      _TC1                                        52       2       2       0   .abs_section_52
      _TC2                                        54       2       2       0   .abs_section_54
      _TC3                                        56       2       2       0   .abs_section_56
@@ -425,291 +445,432 @@ MODULE:                 -- MC9S12GC32.c.o --
      _PWMDTY45                                   FC       2       2       1   .abs_section_fc
 MODULE:                 -- main.cpp.o --
 - PROCEDURES:
-     main                                      4A62      66     102       1   .text       
-     testPwmHard45__FR7PWMHard                 4AC8      58      88       1   .text       
-     print__FPSc                               4B20      38      56       1   .text       
-     __ct__7ISalidaFv                          5A1E       A      10       1   GEN_FUNCS_SEGMENT
-     __ct__4IPWMFv                             5A28       E      14       2   GEN_FUNCS_SEGMENT
-     __ct__10CollectionFv                      5A36       A      10       1   GEN_FUNCS_SEGMENT
-     __ct__4ListFv                             5A40       E      14       1   GEN_FUNCS_SEGMENT
-     __ct__7PromBkpFv                          5A4E       6       6       1   GEN_FUNCS_SEGMENT
-     __ct__14RamSimulaFlashFv                  5A54       3       3       2   GEN_FUNCS_SEGMENT
+     main                                      472F      9F     159       1   .text       
+     testValvulaProporcional__FR19ValvulaProporcional       47CE      94     148       1   .text       
+     print__FPSc                               4862      38      56       4   .text       
+     __ct__7ISalidaFv                          5CD0       A      10       2   GEN_FUNCS_SEGMENT
+     __ct__4IPWMFv                             5CDA       E      14       2   GEN_FUNCS_SEGMENT
+     __ct__8IteratorFv                         5CE8       A      10       1   GEN_FUNCS_SEGMENT
+     __ct__10CollectionFv                      5CF2       A      10       1   GEN_FUNCS_SEGMENT
+     __ct__4ListFv                             5CFC       E      14       1   GEN_FUNCS_SEGMENT
+     __dt__15MethodContainerFv                 5D0A       3       3       1   GEN_FUNCS_SEGMENT
+     __ct__10BaseTimersFv                      5D0D       F      15       1   GEN_FUNCS_SEGMENT
+     __ct__6SalidaFv                           5D1C       F      15       1   GEN_FUNCS_SEGMENT
+     __ct__7PromBkpFv                          5D2B       6       6       1   GEN_FUNCS_SEGMENT
+     __ct__14RamSimulaFlashFv                  5D31       3       3       3   GEN_FUNCS_SEGMENT
+     __ct__16ThreadAttachableFv                5D34       F      15       1   GEN_FUNCS_SEGMENT
+     __dt__16ThreadAttachableFv                5D43       3       3       1   GEN_FUNCS_SEGMENT
+     __ct__18PlataformaEmbeddedFv              5D46       A      10       1   GEN_FUNCS_SEGMENT
+     __ConstructorInit__                       4406       6       6       0   .init       
 - VARIABLES:
-     STRING.testing....periodo.1.6             4967      1C      28       1   .rodata1    
-     ____vtbl__ISalida                         58CE      18      24       1   VIRTUAL_TABLE_SEGMENT
-     ____vtbl__IPWMISalida                     58E6      24      36       1   VIRTUAL_TABLE_SEGMENT
-     ____vtbl__Collection                      590A      1C      28       1   VIRTUAL_TABLE_SEGMENT
-     ____vtbl__ListCollection                  5926      20      32       1   VIRTUAL_TABLE_SEGMENT
-     ____vtbl__LinkedListListCollection        5946      24      36       1   VIRTUAL_TABLE_SEGMENT
-     ____vtbl__MethodContainerLinkedListListCollection       596A      24      36       1   VIRTUAL_TABLE_SEGMENT
-     ____vtbl__PWMIPWMISalida                  598E      24      36       2   VIRTUAL_TABLE_SEGMENT
-     ____vtbl__PWMHardPWMIPWMISalida           59B2      24      36       2   VIRTUAL_TABLE_SEGMENT
-     ____vtbl__PWMHard23PWMHardPWMIPWMISalida       59D6      24      36       1   VIRTUAL_TABLE_SEGMENT
-     ____vtbl__PWMHard01PWMHardPWMIPWMISalida       59FA      24      36       1   VIRTUAL_TABLE_SEGMENT
-     potencia1                                 100C       2       2       2   AS1_DATA    
+     STRING.testing....valvula.p.6             45B5      23      35       1   .rodata1    
+     STRING.esperando.cierre.ini.7             45D8      20      32       1   .rodata1    
+     STRING.esperando.que.se.det.8             45F8      20      32       1   .rodata1    
+     STRING.test.ok....9                       4618       B      11       1   .rodata1    
+     STRING.test.fail....10                    4623       D      13       1   .rodata1    
+     potencia1                                 1000       2       2       3   .data       
+     ____vtbl__ISalida                         5AC0      18      24       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__IPWMISalida                     5AD8      24      36       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__Iterator                        5AFC       8       8       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__Collection                      5B04      1C      28       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__ListCollection                  5B20      20      32       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__LinkedListIteratorIterator       5B40       8       8       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__LinkedListListCollection        5B48      24      36       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__MethodContainerLinkedListListCollection       5B6C      24      36       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__BaseTimersLinkedListListCollection       5B90      2C      44       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__PWMIPWMISalida                  5BBC      24      36       2   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__PWMHardPWMIPWMISalida           5BE0      24      36       2   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__SalidaISalida                   5C04      18      24       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__PWMHard23PWMHardPWMIPWMISalida       5C1C      24      36       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__PWMHard01PWMHardPWMIPWMISalida       5C40      24      36       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__ValvulaProporcionalSalidaISalida       5C64      18      24       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__ThreadAttachableMethodContainerLinkedListListCollection       5C7C      24      36       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__PlataformaEmbedded              5CA0       4       4       1   VIRTUAL_TABLE_SEGMENT
+     pote                                      1014       2       2       1   .common     
+     plataforma                                1016       3       3       3   .common     
 MODULE:                 -- datapage.c.o --
 - PROCEDURES:
-     _LOAD_FAR_16                              5C39       B      11      16   RUNTIME     
+     _LOAD_FAR_16                              6267       B      11      41   RUNTIME     
 - VARIABLES:
 MODULE:                 -- Start12.cpp.o --
 - PROCEDURES:
-     Init__Fv                                  4B58      3C      60       1   .text       
-     _Startup                                  4B94       8       8       1   .text       
+     Init__Fv                                  489A      3C      60       1   .text       
+     _Startup                                  48D6       8       8       1   .text       
 - VARIABLES:
-     _startupData                              482B       E      14       5   .startData  
+     _startupData                              443D       E      14       5   .startData  
 - LABELS:
-     __SEG_END_SSTACK                          12F5       0       0       1               
+     __SEG_END_SSTACK                          1499       0       0       1               
 MODULE:                 -- ASSERT.C.o (ansisi.lib) --
 - PROCEDURES:
-     _assert                                   4B9C       7       7       3   .text       
+     _assert                                   48DE       7       7       4   .text       
 - VARIABLES:
 MODULE:                 -- EMBEDDED.C.o (ansisi.lib) --
 - PROCEDURES:
-     abort                                     4BA3       4       4       1   .text       
-     exit                                      4BA7       4       4       1   .text       
+     abort                                     48E5       4       4       1   .text       
+     exit                                      48E9       4       4       1   .text       
 - VARIABLES:
 MODULE:                 -- HEAP.C.o (ansisi.lib) --
 - PROCEDURES:
-     _heapcrash_                               4BAB       C      12       3   .text       
+     _heapcrash_                               48ED       C      12       3   .text       
 - VARIABLES:
-     _heap_                                    1010     190     400       2   HEAP_SEGMENT
+     _heap_                                    1022     320     800       2   HEAP_SEGMENT
 MODULE:                 -- PRINTF.C.o (ansisi.lib) --
 - PROCEDURES:
-     vprintf                                   4BB7     43B    1083      46   .text       
-     _out                                      4FF2       C      12       9   .text       
-     deposit_char                              4FFE       F      15       1   .text       
-     sprintf                                   500D      29      41       1   .text       
+     vprintf                                   48F9     43B    1083      46   .text       
+     _out                                      4D34       C      12       9   .text       
+     deposit_char                              4D40       F      15       1   .text       
+     sprintf                                   4D4F      29      41       1   .text       
 - VARIABLES:
-     pow10                                     483D      28      40       4   .rodata     
-     pow16                                     4865      20      32       4   .rodata     
-     pow8                                      4885      2C      44       4   .rodata     
-     pbuf                                      1000       6       6      15   .bss        
+     pow10                                     4455      28      40       4   .rodata     
+     pow16                                     447D      20      32       4   .rodata     
+     pow8                                      449D      2C      44       4   .rodata     
+     pbuf                                      1002       6       6      15   .bss        
 MODULE:                 -- ALLOC.C.o (ansisi.lib) --
 - PROCEDURES:
-     malloc                                    5036      A5     165       1   .text       
-     free                                      50DB      C4     196       2   .text       
+     malloc                                    4D78      A5     165       2   .text       
+     free                                      4E1D      C4     196       2   .text       
 - VARIABLES:
-     heap_end                                  1006       2       2       3   .bss        
-     free_ptr                                  1008       2       2       8   .bss        
+     heap_end                                  1008       2       2       3   .bss        
+     free_ptr                                  100A       2       2       8   .bss        
 MODULE:                 -- rtshc12.c.o (ansisi.lib) --
 - PROCEDURES:
-     _BSHL                                     5C44       8       8       2   RUNTIME     
-     _LCMP_P                                   5C4C      15      21       3   RUNTIME     
-     _LNEG                                     5C61       D      13       1   RUNTIME     
-     _LINC                                     5C6E       5       5       1   RUNTIME     
-     _LMUL                                     5C73      27      39       1   RUNTIME     
-     _lDivMod                                  5C9A      BE     190       1   RUNTIME     
-     _LDIVU                                    5D58       E      14       1   RUNTIME     
-     _ILSEXT                                   5D66       7       7       2   RUNTIME     
-     _CASE_DIRECT_BYTE                         5D6D       5       5       1   RUNTIME     
-     _CASE_SEARCH_8                            5D72      17      23       1   RUNTIME     
-     _CASE_SEARCH_8_BYTE                       5D89      1A      26       1   RUNTIME     
+     _BSHL                                     6272       8       8       4   RUNTIME     
+     _LCMP_P                                   627A      15      21       6   RUNTIME     
+     _LNEG                                     628F       D      13       1   RUNTIME     
+     _LINC                                     629C       5       5       1   RUNTIME     
+     _LDEC                                     62A1       8       8       1   RUNTIME     
+     _LMUL                                     62A9      27      39       1   RUNTIME     
+     _lDivMod                                  62D0      BE     190       1   RUNTIME     
+     _LDIVU                                    638E       E      14       1   RUNTIME     
+     _ILSEXT                                   639C       7       7       3   RUNTIME     
+     _CASE_DIRECT_BYTE                         63A3       5       5       1   RUNTIME     
+     _CASE_SEARCH_8                            63A8      17      23       1   RUNTIME     
+     _CASE_SEARCH_8_BYTE                       63BF      1A      26       1   RUNTIME     
 - VARIABLES:
 MODULE:                 -- NEW.CPP.o (cppsi.lib) --
 - PROCEDURES:
-     __nw__FGUi                                519F      12      18       2   .text       
-     __dl__FGPv                                51B1       3       3       2   .text       
+     __nw__FGUi                                4EE1      12      18       6   .text       
+     __dl__FGPv                                4EF3       3       3       3   .text       
 - VARIABLES:
 MODULE:                 -- AS1.c.o --
 - PROCEDURES:
-     AS1_Enable__Fv                            5BF3      1D      29       1   AS1_CODE    
-     AS1_Disable__Fv                           5C10       D      13       1   AS1_CODE    
-     AS1_Init__Fv                              5C1D      1C      28       1   AS1_CODE    
+     AS1_Enable__Fv                            6096      1D      29       1   AS1_CODE    
+     AS1_Disable__Fv                           60B3       D      13       1   AS1_CODE    
+     AS1_Init__Fv                              60C0      1C      28       1   AS1_CODE    
 - VARIABLES:
-     SerFlag                                   100E       1       1       2   AS1_DATA    
-     EnUser                                    100F       1       1       5   AS1_DATA    
+     SerFlag                                   1010       1       1       2   AS1_DATA    
+     EnUser                                    1011       1       1       5   AS1_DATA    
+MODULE:                 -- TI1.c.o --
+- PROCEDURES:
+     TI1_Interrupt__Fv                         46F4      1D      29       1   NON_BANKED  
+     TI1_Enable__Fv                            63D9       9       9       1   TI1_CODE    
+     TI1_Disable__Fv                           63E2       8       8       1   TI1_CODE    
+     TI1_Init__Fv                              63EA       B      11       1   TI1_CODE    
+- VARIABLES:
+     CmpVal                                    1342       2       2       3   TI1_DATA    
 MODULE:                 -- FC321.c.o --
 - PROCEDURES:
-     FC321_Interrupt__Fv                       4A44      1E      30       2   NON_BANKED  
-     FC321_Init__Fv                            5DA3      10      16       1   FC321_CODE  
+     FC321_Interrupt__Fv                       4711      1E      30       2   NON_BANKED  
+     FC321_Init__Fv                            63F5      10      16       1   FC321_CODE  
 - VARIABLES:
-     TTicks                                    11A0       4       4       6   FC321_DATA  
-     TOvf                                      11A4       1       1       2   FC321_DATA  
+     TTicks                                    1344       4       4       6   FC321_DATA  
+     TOvf                                      1348       1       1       2   FC321_DATA  
 MODULE:                 -- testVector.c.o --
 - PROCEDURES:
-     Cpu_Interrupt41__Fv                       51B4       2       2       1   .text       
-     Cpu_Interrupt43__Fv                       51B6       2       2       1   .text       
-     Cpu_Interrupt49__Fv                       51B8       2       2       1   .text       
-     Cpu_Interrupt50__Fv                       51BA       2       2       1   .text       
-     Cpu_Interrupt51__Fv                       51BC       2       2       1   .text       
-     Cpu_Interrupt52__Fv                       51BE       2       2       1   .text       
-     Cpu_Interrupt53__Fv                       51C0       2       2       1   .text       
-     Cpu_Interrupt54__Fv                       51C2       2       2       1   .text       
-     Cpu_Interrupt55__Fv                       51C4       2       2       1   .text       
-     Cpu_Interrupt56__Fv                       51C6       2       2       1   .text       
+     Cpu_Interrupt41__Fv                       4EF6       2       2       1   .text       
+     Cpu_Interrupt43__Fv                       4EF8       2       2       1   .text       
+     Cpu_Interrupt49__Fv                       4EFA       2       2       1   .text       
+     Cpu_Interrupt50__Fv                       4EFC       2       2       1   .text       
+     Cpu_Interrupt51__Fv                       4EFE       2       2       1   .text       
+     Cpu_Interrupt52__Fv                       4F00       2       2       1   .text       
+     Cpu_Interrupt53__Fv                       4F02       2       2       1   .text       
+     Cpu_Interrupt54__Fv                       4F04       2       2       1   .text       
+     Cpu_Interrupt56__Fv                       4F06       2       2       1   .text       
 - VARIABLES:
      _vect                                     FF80      80     128       0   .abs_section_ff80
 MODULE:                 -- D:\Jony\HCS12\Librerias\OOC\lang\reflect\reflect_Data\C_Ms_no_float\ObjectCode\Method.c.o (reflect_si.lib) --
 - PROCEDURES:
-     Method_constructor                        5BD0       9       9       1   METHOD_CODE 
-     Method_defConstructor                     5BD9      1A      26       1   METHOD_CODE 
+     Method_constructor                        5F23       9       9       1   METHOD_CODE 
+     Method_defConstructor                     5F2C      1A      26       1   METHOD_CODE 
 - VARIABLES:
-     Method                                    48B1      10      16       1   .rodata     
-     STRING..1                                 4983       1       1       1   .rodata1    
+     Method                                    44C9      10      16       4   .rodata     
+     STRING..1                                 4630       1       1       1   .rodata1    
 MODULE:                 -- D:\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\util\util_hcs12_cpp_Data\C++_Ms_no_float\ObjectCode\LinkedList.cpp.o (util_cpp_si.lib) --
 - PROCEDURES:
-     getNext__4NodoFv.2                        5A57       5       5       1   NODO_CODE   
-     __ct__10LinkedListFv                      5A5C      13      19       2   LinkedList_CODE
-     isEmpty__10LinkedListFv                   5A6F       B      11       2   LinkedList_CODE
-     clear__10LinkedListFv                     5A7A      21      33       2   LinkedList_CODE
-     add__10LinkedListFPv                      5A9B      27      39       2   LinkedList_CODE
-     aniadir__10LinkedListFPv                  5AC2      60      96       2   LinkedList_CODE
-     size__10LinkedListFv                      5B22      13      19       2   LinkedList_CODE
-     get__10LinkedListFUi                      5B35      26      38       2   LinkedList_CODE
-     moveOut__10LinkedListFPv                  5B5B      2F      47       2   LinkedList_CODE
-     deleteNodo__10LinkedListFP4NodoT1         5B8A      25      37       1   LinkedList_CODE
-     contains__10LinkedListFPv                 5BAF      1E      30       2   LinkedList_CODE
-     iterator__10LinkedListFv                  5BCD       3       3       2   LinkedList_CODE
+     getNext__4NodoFv.2                        5D50       5       5       1   NODO_CODE   
+     __ct__10LinkedListFv                      5D55      13      19       4   LinkedList_CODE
+     __dt__10LinkedListFv                      5D68      23      35       2   LinkedList_CODE
+     isEmpty__10LinkedListFv                   5D8B       B      11       5   LinkedList_CODE
+     clear__10LinkedListFv                     5D96      21      33       5   LinkedList_CODE
+     add__10LinkedListFPv                      5DB7      27      39       4   LinkedList_CODE
+     aniadir__10LinkedListFPv                  5DDE      60      96       5   LinkedList_CODE
+     size__10LinkedListFv                      5E3E      13      19       5   LinkedList_CODE
+     get__10LinkedListFUi                      5E51      26      38       5   LinkedList_CODE
+     moveOut__10LinkedListFPv                  5E77      2F      47       4   LinkedList_CODE
+     deleteNodo__10LinkedListFP4NodoT1         5EA6      25      37       1   LinkedList_CODE
+     contains__10LinkedListFPv                 5ECB      1E      30       5   LinkedList_CODE
+     linkedListIterator__10LinkedListFP28LinkedListIteratorLinkedList       5EE9       B      11       3   LinkedList_CODE
+     iterator__10LinkedListFv                  5EF4       3       3       5   LinkedList_CODE
+     __ct__28LinkedListIteratorLinkedListFv       5EF7       F      15       3   LinkedList_CODE
+     hasNext__28LinkedListIteratorLinkedListFv       5F06       B      11       4   LinkedList_CODE
+     next__28LinkedListIteratorLinkedListFv       5F11      12      18       4   LinkedList_CODE
 - VARIABLES:
 MODULE:                 -- D:\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\util\util_hcs12_cpp_Data\C++_Ms_no_float\ObjectCode\nodo.cpp.o (util_cpp_si.lib) --
 - PROCEDURES:
-     __ct__4NodoFPvP4Nodo                      5DB3       D      13       2   Nodo_CODE   
-     setNext__4NodoFP4Nodo                     5DC0       5       5       2   Nodo_CODE   
+     __ct__4NodoFPvP4Nodo                      6405       D      13       2   Nodo_CODE   
+     setNext__4NodoFP4Nodo                     6412       5       5       2   Nodo_CODE   
 - VARIABLES:
-MODULE:                 -- D:\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\ooc\ooc_hcs12_Data\C_Ms_no_float\ObjectCode\Object.c.o (ooc_si.lib) --
-- PROCEDURES:
-     Object_ctor                               51C8       1       1       2   .text       
-     Object_dtor                               51C9       1       1       3   .text       
-     Object_differ                             51CA       E      14       3   .text       
-     Object_puto                               51D8      3F      63       3   .text       
-     classOf                                   5217      1E      30       4   .text       
-     newAlloced                                5235      3A      58       2   .text       
-     ctor                                      526F      1F      31       1   .text       
-- VARIABLES:
-     Object                                    48C1      10      16       4   .rodata     
-     Class                                     48D1      10      16       2   .rodata     
-     STRING..at..1                             4984       5       5       1   .rodata1    
-     STRING..x.2                               4989       3       3       1   .rodata1    
-     STRING.D..versionR51.micros.3             498C      51      81       2   .rodata1    
-     STRING.Object.5                           49DD       7       7       1   .rodata1    
-     STRING.Object.6                           49E4       7       7       1   .rodata1    
-MODULE:                 -- D:\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\ooc\ooc_hcs12_Data\C_Ms_no_float\ObjectCode\OutputStream.c.o (ooc_si.lib) --
-- PROCEDURES:
-     write                                     528E      2C      44       3   .text       
-- VARIABLES:
-     STRING.D..versionR51.micros.3             49EB      57      87       1   .rodata1    
 MODULE:                 -- Cpu.c.o --
 - PROCEDURES:
-     PE_low_level_init__Fv                     52BA      AA     170       1   .text       
-     Cpu_Interrupt__Fv                         4800       2       2      50   .init       
-     _EntryPoint                               4802      29      41       2   .init       
+     PE_low_level_init__Fv                     4F08      B0     176       1   .text       
+     Cpu_Interrupt__Fv                         440C       2       2      50   .init       
+     _EntryPoint                               440E      29      41       2   .init       
 - VARIABLES:
 MODULE:                 -- PWMHard.cpp.o --
 - PROCEDURES:
-     __sf_7PWMHard_setDuty__F13ReferenciaPWMi       5364      40      64       3   .text       
-     __sf_7PWMHard_setPeriodoHard__F13ReferenciaPWMUi       53A4       F      15       6   .text       
-     __sf_7PWMHard_escalar__F13ReferenciaPWM       53B3       F      15       3   .text       
-     __sf_7PWMHard_noEscalar__F13ReferenciaPWM       53C2      10      16       5   .text       
-     getConectada__7PWMHardFv                  53D2       5       5       3   .text       
-     setConectada__7PWMHardFUc                 53D7      35      53       3   .text       
+     __sf_7PWMHard_setDuty__F13ReferenciaPWMi       4FB8      40      64       3   .text       
+     __sf_7PWMHard_setPeriodoHard__F13ReferenciaPWMUi       4FF8       F      15       6   .text       
+     __sf_7PWMHard_escalar__F13ReferenciaPWM       5007       F      15       3   .text       
+     __sf_7PWMHard_noEscalar__F13ReferenciaPWM       5016      10      16       5   .text       
+     getConectada__7PWMHardFv                  5026       5       5       3   .text       
+     setConectada__7PWMHardFUc                 502B      35      53       3   .text       
 - VARIABLES:
 MODULE:                 -- PWMHard23.cpp.o --
 - PROCEDURES:
-     __ct__7PWMHardFR16ManejadorMemoriaR8TConfPWM.4       540C      30      48       1   .text       
-     __ct__9PWMHard23FR16ManejadorMemoriaR8TConfPWM       543C      39      57       1   .text       
-     setPotencia__9PWMHard23FUi                5475      2A      42       1   .text       
-     setTipoSalida__9PWMHard23F10TipoSalida       549F       B      11       1   .text       
-     getTipoSalida__9PWMHard23Fv               54AA       A      10       1   .text       
-     setPeriodo__9PWMHard23F7TPeriod           54B4      4D      77       1   .text       
-     getEstadoSalida__9PWMHard23Fv             5501       9       9       1   .text       
+     __ct__7PWMHardFR16ManejadorMemoriaR8TConfPWM.4       5060      30      48       1   .text       
+     __ct__9PWMHard23FR16ManejadorMemoriaR8TConfPWM       5090      39      57       1   .text       
+     setPotencia__9PWMHard23FUi                50C9      2A      42       1   .text       
+     setTipoSalida__9PWMHard23F10TipoSalida       50F3       B      11       1   .text       
+     getTipoSalida__9PWMHard23Fv               50FE       A      10       1   .text       
+     setPeriodo__9PWMHard23F7TPeriod           5108      4D      77       1   .text       
+     getEstadoSalida__9PWMHard23Fv             5155       9       9       1   .text       
 - VARIABLES:
-     periodos                                  48E1      14      20       1   .rodata     
+     periodos                                  44D9      14      20       1   .rodata     
 MODULE:                 -- PWMManager01_45.cpp.o --
 - PROCEDURES:
-     __ct__7PWMHardFR16ManejadorMemoriaR8TConfPWM.4       550A      30      48       1   .text       
-     __ct__24PWMHard01PWMManager01_45FR16ManejadorMemoriaR8TConfPWM       553A      31      49       1   .text       
-     setPotencia__24PWMHard01PWMManager01_45FUi       556B      29      41       1   .text       
-     getTipoSalida__24PWMHard01PWMManager01_45Fv       5594       A      10       1   .text       
-     setTipoSalida__24PWMHard01PWMManager01_45F10TipoSalida       559E       B      11       1   .text       
-     getEstadoSalida__24PWMHard01PWMManager01_45Fv       55A9       7       7       1   .text       
-     setPeriodo__24PWMHard01PWMManager01_45F7TPeriod       55B0      26      38       1   .text       
-     __sf_15PWMManager01_45_PWMManager01_45_setPeriodo__FP3PWM7TPeriod       55D6      D1     209       1   .text       
-     __sf_15PWMManager01_45_PWMManager01_45_configCaso1__F13ReferenciaPWMT0       56A7      21      33       1   .text       
-     __sf_15PWMManager01_45_PWMManager01_45_configCaso2__F13ReferenciaPWMN20       56C8      42      66       1   .text       
-     __sf_15PWMManager01_45_PWMManager01_45_configCaso3__F13ReferenciaPWMN30       570A      57      87       1   .text       
-     __sf_15PWMManager01_45_PWM45_actualizarPotencia__FUi       5761      2C      44       1   .text       
-     __sf_15PWMManager01_45_PWM01_actualizarPotencia__FUi       578D      20      32       1   .text       
+     __ct__7PWMHardFR16ManejadorMemoriaR8TConfPWM.4       515E      30      48       1   .text       
+     __ct__24PWMHard01PWMManager01_45FR16ManejadorMemoriaR8TConfPWM       518E      31      49       1   .text       
+     setPotencia__24PWMHard01PWMManager01_45FUi       51BF      29      41       1   .text       
+     getTipoSalida__24PWMHard01PWMManager01_45Fv       51E8       A      10       1   .text       
+     setTipoSalida__24PWMHard01PWMManager01_45F10TipoSalida       51F2       B      11       1   .text       
+     getEstadoSalida__24PWMHard01PWMManager01_45Fv       51FD       7       7       1   .text       
+     setPeriodo__24PWMHard01PWMManager01_45F7TPeriod       5204      26      38       1   .text       
+     __sf_15PWMManager01_45_PWMManager01_45_setPeriodo__FP3PWM7TPeriod       522A      D1     209       1   .text       
+     __sf_15PWMManager01_45_PWMManager01_45_configCaso1__F13ReferenciaPWMT0       52FB      21      33       1   .text       
+     __sf_15PWMManager01_45_PWMManager01_45_configCaso2__F13ReferenciaPWMN20       531C      42      66       1   .text       
+     __sf_15PWMManager01_45_PWMManager01_45_configCaso3__F13ReferenciaPWMN30       535E      57      87       1   .text       
+     __sf_15PWMManager01_45_PWM45_actualizarPotencia__FUi       53B5      2C      44       1   .text       
+     __sf_15PWMManager01_45_PWM01_actualizarPotencia__FUi       53E1      20      32       1   .text       
 - VARIABLES:
-     periodosCaso2                             48F5      14      20       1   .rodata     
-     periodosCaso3                             4909      14      20       2   .rodata     
-     escaladoresCaso2_3                        491D       A      10       3   .rodata     
-     __sf_15PWMManager01_45_pwmHard01          100A       2       2       1   .bss        
+     periodosCaso2                             44ED      14      20       1   .rodata     
+     periodosCaso3                             4501      14      20       2   .rodata     
+     escaladoresCaso2_3                        4515       A      10       3   .rodata     
+     __sf_15PWMManager01_45_pwmHard01          100C       2       2       1   .bss        
 MODULE:                 -- PWM.cpp.o --
 - PROCEDURES:
-     setPeriodoConfiguracion__3PWMF7TPeriod       57AD      15      21       2   .text       
-     getPeriodoConfiguracion__3PWMFv           57C2      10      16       1   .text       
-     setPotencia__3PWMFUi                      57D2      3E      62       3   .text       
-     getPeriodo__3PWMFv                        5810       4       4       4   .text       
-     getPotencia__3PWMFv                       5814       5       5       4   .text       
-     getConectada__3PWMFv                      5819       5       5       1   .text       
-     setConectada__3PWMFUc                     581E      35      53       1   .text       
-     Salida_setPotencia__3PWMFUi               5853      37      55       2   .text       
+     setPeriodoConfiguracion__3PWMF7TPeriod       5401      15      21       2   .text       
+     getPeriodoConfiguracion__3PWMFv           5416      10      16       1   .text       
+     setPotencia__3PWMFUi                      5426      3E      62       2   .text       
+     getPeriodo__3PWMFv                        5464       4       4       4   .text       
+     getPotencia__3PWMFv                       5468       5       5       4   .text       
+     getConectada__3PWMFv                      546D       5       5       1   .text       
+     setConectada__3PWMFUc                     5472      35      53       1   .text       
+     Salida_setPotencia__3PWMFUi               54A7      51      81       2   .text       
 - VARIABLES:
 MODULE:                 -- RamSimulaFlash.c.o --
 - PROCEDURES:
-     RamSimulaFlash_setWord__FPvPUiUi          588A       6       6       2   .text       
-     RamSimulaFlash_getWord__FPvPUi            5890       5       5       2   .text       
-     RamSimulaFlash_grabarProm__FPv            5895       3       3       1   .text       
-     RamSimulaFlash_borrarProm__FPvT0          5898       2       2       1   .text       
+     RamSimulaFlash_setWord__FPvPUiUi          54F8       6       6       2   .text       
+     RamSimulaFlash_getWord__FPvPUi            54FE       5       5       2   .text       
+     RamSimulaFlash_grabarProm__FPv            5503       3       3       1   .text       
+     RamSimulaFlash_borrarProm__FPvT0          5506       2       2       1   .text       
 - VARIABLES:
-     RamSimulaFlash                            4927      20      32       2   .rodata     
-     STRING..3                                 4A42       1       1       1   .rodata1    
+     RamSimulaFlash                            451F      20      32       3   .rodata     
+     STRING..3                                 4631       1       1       1   .rodata1    
 MODULE:                 -- PromBkp.c.o --
 - PROCEDURES:
-     PromBkp_ctor__FPvPPSc                     589A       B      11       1   .text       
+     PromBkp_ctor__FPvPPSc                     5508       B      11       1   .text       
 - VARIABLES:
-     PromBkp                                   4947      20      32       1   .rodata     
-     STRING..3                                 4A43       1       1       1   .rodata1    
+     PromBkp                                   453F      20      32       1   .rodata     
+     STRING..3                                 4632       1       1       1   .rodata1    
+MODULE:                 -- Salida.cpp.o --
+- PROCEDURES:
+     getConectada__6SalidaFv                   5513       5       5       1   .text       
+     getPotencia__6SalidaFv                    5518       5       5       1   .text       
+     setPotencia__6SalidaFUi                   551D      51      81       1   .text       
+- VARIABLES:
 MODULE:                 -- MethodContainer.cpp.o --
 - PROCEDURES:
-     __ct__15MethodContainerFv                 58A5       F      15       2   .text       
-     add__15MethodContainerFPv                 58B4      1A      26       1   .text       
+     __ct__15MethodContainerFv                 556E       F      15       5   .text       
+     add__15MethodContainerFPv                 557D      1A      26       2   .text       
+     executeMethods__15MethodContainerFv       5597      34      52       3   .text       
 - VARIABLES:
+MODULE:                 -- ValvulaProporcional.cpp.o --
+- PROCEDURES:
+     __ct__19ValvulaProporcionalFR16ManejadorMemoriaP42ConfValvulaProporcionalValvulaProporcionalPUciT3T4       55CB      79     121       1   .text       
+     __sf_19ValvulaProporcional_onCheckear__FPv       5644      C0     192       2   .text       
+     __sf_19ValvulaProporcional_getTiempoAbierto__FPv       5704      12      18       1   .text       
+     __sf_19ValvulaProporcional_setTiempoAbierto__FPvUi       5716      1A      26       1   .text       
+     getPotencia__19ValvulaProporcionalFv       5730       E      14       1   .text       
+     setPotencia__19ValvulaProporcionalFUi       573E       B      11       1   .text       
+     getTipoSalida__19ValvulaProporcionalFv       5749       4       4       1   .text       
+     setTipoSalida__19ValvulaProporcionalF10TipoSalida       574D       1       1       1   .text       
+     getConectada__19ValvulaProporcionalFv       574E       3       3       1   .text       
+     setConectada__19ValvulaProporcionalFUc       5751       1       1       1   .text       
+     cerrar__19ValvulaProporcionalFv           5752      1D      29       2   .text       
+     abrir__19ValvulaProporcionalFv            576F      1D      29       2   .text       
+     detener__19ValvulaProporcionalFv          578C      1C      28       2   .text       
+     getStatus__19ValvulaProporcionalFv        57A8       6       6       1   .text       
+- VARIABLES:
+MODULE:                 -- RlxMTimer.c.o --
+- PROCEDURES:
+     RlxMTimer_Construct__FPvUlPFPv_vT0        6131      63      99       1   RlxMTimer_CODE
+     RlxMTimer_DefConstruct__FPvPPSc           6194      25      37       1   RlxMTimer_CODE
+     RlxMTimer_Destruct__FPv                   61B9      60      96       1   RlxMTimer_CODE
+     RlxMTimer_OnTime__FPv                     6219       A      10       1   RlxMTimer_CODE
+     RlxMTimer_Handler__FPv                    6223      44      68       1   RlxMTimer_CODE
+- VARIABLES:
+     RlxMTimer                                 455F      12      18       1   .rodata     
+     STRING..3                                 4633       1       1       1   .rodata1    
+     _RlxMTCont                                1012       2       2      14   RlxMTimer_DATA
+MODULE:                 -- PlataformaEmbedded.cpp.o --
+- PROCEDURES:
+     pthread_create__FPvT0PFPv_PvT0            57AE      15      21       1   .text       
+     mainLoop__18PlataformaEmbeddedFv          57C3       6       6       3   .text       
+     __ConstructorInit__                       4437       6       6       0   .init       
+     __DestructorInit__                        4400       6       6       0   .fini       
+- VARIABLES:
+     threads                                   1019       5       5       4   .common     
+MODULE:                 -- ThreadAttachable.cpp.o --
+- PROCEDURES:
+     adjuntar__16ThreadAttachableFP6Method       57C9      2B      43       1   .text       
+     executeThreads__16ThreadAttachableFv       57F4       3       3       1   .text       
+- VARIABLES:
+MODULE:                 -- D:\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\ooc\ooc_hcs12_Data\C_Ms_no_float\ObjectCode\Object.c.o (ooc_si.lib) --
+- PROCEDURES:
+     Object_ctor                               57F7       1       1       2   .text       
+     Object_dtor                               57F8       1       1       3   .text       
+     Object_differ                             57F9       E      14       3   .text       
+     Object_puto                               5807      3F      63       3   .text       
+     classOf                                   5846      1E      30       4   .text       
+     _new                                      5864      45      69       1   .text       
+     newAlloced                                58A9      3A      58       6   .text       
+     ctor                                      58E3      1F      31       2   .text       
+- VARIABLES:
+     Object                                    4571      10      16       5   .rodata     
+     Class                                     4581      10      16       2   .rodata     
+     STRING..at..1                             4634       5       5       1   .rodata1    
+     STRING..x.2                               4639       3       3       1   .rodata1    
+     STRING.D..versionR51.micros.3             463C      51      81       3   .rodata1    
+     STRING.Object.5                           468D       7       7       1   .rodata1    
+     STRING.Object.6                           4694       7       7       1   .rodata1    
+MODULE:                 -- D:\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\ooc\ooc_hcs12_Data\C_Ms_no_float\ObjectCode\OutputStream.c.o (ooc_si.lib) --
+- PROCEDURES:
+     write                                     5902      2C      44       3   .text       
+- VARIABLES:
+     STRING.D..versionR51.micros.3             469B      57      87       1   .rodata1    
+MODULE:                 -- MethodTimer.c.o --
+- PROCEDURES:
+     MTimer_Construct__FPvUlPFPv_vT0           60DC      1A      26       2   MethodTimer_CODE
+     MTimer_DefConstruct__FPvPPSc              60F6      24      36       1   MethodTimer_CODE
+     MethodTimer_setMetodo__FPvPFPv_vT0        611A       D      13       1   MethodTimer_CODE
+     MTimer_OnTime__FPv                        6127       A      10       1   MethodTimer_CODE
+- VARIABLES:
+     MethodTimer                               4591      12      18       1   .rodata     
+     STRING..3                                 46F2       1       1       1   .rodata1    
+MODULE:                 -- Timer.c.o --
+- PROCEDURES:
+     Timer_Construct__FPvUl                    5F46      66     102       2   Timer_CODE  
+     Timer_DefConstruct__FPvPPSc               5FAC      15      21       1   Timer_CODE  
+     Timer_Destruct__FPv                       5FC1       3       3       3   Timer_CODE  
+     Timer_OnTime__FPv                         5FC4       3       3       1   Timer_CODE  
+     TimerComp__FPv                            5FC7      9F     159       1   Timer_CODE  
+     Timer_Stop__FPv                           6066      30      48       2   Timer_CODE  
+- VARIABLES:
+     Timer                                     45A3      12      18       1   .rodata     
+     STRING..3                                 46F3       1       1       1   .rodata1    
+     ____vtbl__BaseTimers_1ms_40msBaseTimersLinkedListListCollection       5CA4      2C      44       1   VIRTUAL_TABLE_SEGMENT
+MODULE:                 -- BaseTimers_1ms_40ms.cpp.o --
+- PROCEDURES:
+     __ct__19BaseTimers_1ms_40msFv             592E      40      64       1   .text       
+     __sf_19BaseTimers_1ms_40ms_getInstance__Fv       596E      16      22       1   .text       
+     lockInc__19BaseTimers_1ms_40msFv          5984       3       3       1   .text       
+     unlockInc__19BaseTimers_1ms_40msFv        5987       3       3       1   .text       
+     __sf_19BaseTimers_1ms_40ms_inc1__FPv       598A       F      15       1   .text       
+     __sf_19BaseTimers_1ms_40ms_inc40__FPv       5999       F      15       1   .text       
+- VARIABLES:
+     __sf_19BaseTimers_1ms_40ms_instance       100E       2       2       3   .bss        
+MODULE:                 -- BaseTimers.cpp.o --
+- PROCEDURES:
+     incrementar__10BaseTimersFUi              59A8       F      15       2   .text       
+     moveOut__10BaseTimersFPv                  59B7      49      73       2   .text       
+     actualizarTimers__10BaseTimersFv          5A00      2D      45       2   .text       
+     getCuenta__10BaseTimersFv                 5A2D       9       9       2   .text       
+- VARIABLES:
+MODULE:                 -- timer_interrupt.c.o --
+- PROCEDURES:
+     timerInterrupt_init__Fv                   5A36      18      24       1   .text       
+     TI1ms_OnInterrupt__Fv                     5A4E       6       6       1   .text       
+     TI40ms_OnInterrupt__Fv                    5A54       6       6       1   .text       
+     add1msListener__FP6Method                 5A5A      33      51       1   .text       
+     add40msListener__FP6Method                5A8D      33      51       1   .text       
+- VARIABLES:
+     listeners1ms                              101E       2       2       5   .common     
+     listeners40ms                             1020       2       2       5   .common     
 
 *********************************************************************************************
 MODULE STATISTIC
   Name                                      Data   Code  Const
 ---------------------------------------------------------------------------------------------
   MC9S12GC32.c.o                             199      0      0
-  main.cpp.o                                   2    303    364
+  main.cpp.o                                   7    497    607
   datapage.c.o                                 0     11      0
   Start12.cpp.o                                0     68      0
   ASSERT.C.o (ansisi.lib)                      0      7      0
   EMBEDDED.C.o (ansisi.lib)                    0      8      0
-  HEAP.C.o (ansisi.lib)                      400     12      0
+  HEAP.C.o (ansisi.lib)                      800     12      0
   PRINTF.C.o (ansisi.lib)                      6   1151    116
   ALLOC.C.o (ansisi.lib)                       4    361      0
-  rtshc12.c.o (ansisi.lib)                     0    351      0
+  rtshc12.c.o (ansisi.lib)                     0    359      0
   NEW.CPP.o (cppsi.lib)                        0     21      0
   AS1.c.o                                      2     70      0
+  TI1.c.o                                      2     57      0
   FC321.c.o                                    5     46      0
-  testVector.c.o                               0     20    128
+  testVector.c.o                               0     18    128
   D:\Jony\HCS12\Librerias\OOC\lang\reflect\reflect_Data\C_Ms_no_float\ObjectCode\Method.c.o (reflect_si.lib)     0     35     17
-  D:\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\util\util_hcs12_cpp_Data\C++_Ms_no_float\ObjectCode\LinkedList.cpp.o (util_cpp_si.lib)     0    377      0
+  D:\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\util\util_hcs12_cpp_Data\C++_Ms_no_float\ObjectCode\LinkedList.cpp.o (util_cpp_si.lib)     0    467      0
   D:\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\util\util_hcs12_cpp_Data\C++_Ms_no_float\ObjectCode\nodo.cpp.o (util_cpp_si.lib)     0     18      0
-  D:\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\ooc\ooc_hcs12_Data\C_Ms_no_float\ObjectCode\Object.c.o (ooc_si.lib)     0    198    135
-  D:\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\ooc\ooc_hcs12_Data\C_Ms_no_float\ObjectCode\OutputStream.c.o (ooc_si.lib)     0     44     87
-  Cpu.c.o                                      0    213      0
+  Cpu.c.o                                      0    219      0
   PWMHard.cpp.o                                0    168      0
   PWMHard23.cpp.o                              0    254     20
   PWMManager01_45.cpp.o                        2    675     50
-  PWM.cpp.o                                    0    221      0
+  PWM.cpp.o                                    0    247      0
   RamSimulaFlash.c.o                           0     16     33
   PromBkp.c.o                                  0     11     33
-  MethodContainer.cpp.o                        0     41      0
-  other                                      336     18      8
+  Salida.cpp.o                                 0     91      0
+  MethodContainer.cpp.o                        0     93      0
+  ValvulaProporcional.cpp.o                    0    483      0
+  RlxMTimer.c.o                                2    310     19
+  PlataformaEmbedded.cpp.o                     5     39      0
+  ThreadAttachable.cpp.o                       0     46      0
+  D:\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\ooc\ooc_hcs12_Data\C_Ms_no_float\ObjectCode\Object.c.o (ooc_si.lib)     0    267    135
+  D:\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\ooc\ooc_hcs12_Data\C_Ms_no_float\ObjectCode\OutputStream.c.o (ooc_si.lib)     0     44     87
+  MethodTimer.c.o                              0     85     19
+  Timer.c.o                                    0    336     63
+  BaseTimers_1ms_40ms.cpp.o                    2    122      0
+  BaseTimers.cpp.o                             0    142      0
+  timer_interrupt.c.o                          4    138      0
+  other                                      336     24      8
 
 *********************************************************************************************
 SECTION USE IN OBJECT-ALLOCATION SECTION
 ---------------------------------------------------------------------------------------------
 SECTION: ".text"
-  main testPwmHard45__FR7PWMHard print__FPSc Init__Fv _Startup _assert abort 
-  exit _heapcrash_ vprintf _out deposit_char sprintf malloc free __nw__FGUi 
-  __dl__FGPv Cpu_Interrupt41__Fv Cpu_Interrupt43__Fv Cpu_Interrupt49__Fv 
-  Cpu_Interrupt50__Fv Cpu_Interrupt51__Fv Cpu_Interrupt52__Fv 
-  Cpu_Interrupt53__Fv Cpu_Interrupt54__Fv Cpu_Interrupt55__Fv 
-  Cpu_Interrupt56__Fv Object_ctor Object_dtor Object_differ Object_puto classOf 
-  newAlloced ctor write PE_low_level_init__Fv 
+  main testValvulaProporcional__FR19ValvulaProporcional print__FPSc Init__Fv 
+  _Startup _assert abort exit _heapcrash_ vprintf _out deposit_char sprintf 
+  malloc free __nw__FGUi __dl__FGPv Cpu_Interrupt41__Fv Cpu_Interrupt43__Fv 
+  Cpu_Interrupt49__Fv Cpu_Interrupt50__Fv Cpu_Interrupt51__Fv 
+  Cpu_Interrupt52__Fv Cpu_Interrupt53__Fv Cpu_Interrupt54__Fv 
+  Cpu_Interrupt56__Fv PE_low_level_init__Fv 
   __sf_7PWMHard_setDuty__F13ReferenciaPWMi 
   __sf_7PWMHard_setPeriodoHard__F13ReferenciaPWMUi 
   __sf_7PWMHard_escalar__F13ReferenciaPWM 
@@ -736,20 +897,50 @@ SECTION: ".text"
   getConectada__3PWMFv setConectada__3PWMFUc Salida_setPotencia__3PWMFUi 
   RamSimulaFlash_setWord__FPvPUiUi RamSimulaFlash_getWord__FPvPUi 
   RamSimulaFlash_grabarProm__FPv RamSimulaFlash_borrarProm__FPvT0 
-  PromBkp_ctor__FPvPPSc __ct__15MethodContainerFv add__15MethodContainerFPv 
+  PromBkp_ctor__FPvPPSc getConectada__6SalidaFv getPotencia__6SalidaFv 
+  setPotencia__6SalidaFUi __ct__15MethodContainerFv add__15MethodContainerFPv 
+  executeMethods__15MethodContainerFv 
+  __ct__19ValvulaProporcionalFR16ManejadorMemoriaP42ConfValvulaProporcionalValvulaProporcionalPUciT3T4 
+  __sf_19ValvulaProporcional_onCheckear__FPv 
+  __sf_19ValvulaProporcional_getTiempoAbierto__FPv 
+  __sf_19ValvulaProporcional_setTiempoAbierto__FPvUi 
+  getPotencia__19ValvulaProporcionalFv setPotencia__19ValvulaProporcionalFUi 
+  getTipoSalida__19ValvulaProporcionalFv 
+  setTipoSalida__19ValvulaProporcionalF10TipoSalida 
+  getConectada__19ValvulaProporcionalFv setConectada__19ValvulaProporcionalFUc 
+  cerrar__19ValvulaProporcionalFv abrir__19ValvulaProporcionalFv 
+  detener__19ValvulaProporcionalFv getStatus__19ValvulaProporcionalFv 
+  pthread_create__FPvT0PFPv_PvT0 mainLoop__18PlataformaEmbeddedFv 
+  adjuntar__16ThreadAttachableFP6Method executeThreads__16ThreadAttachableFv 
+  Object_ctor Object_dtor Object_differ Object_puto classOf _new newAlloced 
+  ctor write __ct__19BaseTimers_1ms_40msFv 
+  __sf_19BaseTimers_1ms_40ms_getInstance__Fv lockInc__19BaseTimers_1ms_40msFv 
+  unlockInc__19BaseTimers_1ms_40msFv __sf_19BaseTimers_1ms_40ms_inc1__FPv 
+  __sf_19BaseTimers_1ms_40ms_inc40__FPv incrementar__10BaseTimersFUi 
+  moveOut__10BaseTimersFPv actualizarTimers__10BaseTimersFv 
+  getCuenta__10BaseTimersFv timerInterrupt_init__Fv TI1ms_OnInterrupt__Fv 
+  TI40ms_OnInterrupt__Fv add1msListener__FP6Method add40msListener__FP6Method 
+SECTION: ".data"
+  potencia1 
 SECTION: ".bss"
   pbuf heap_end free_ptr __sf_15PWMManager01_45_pwmHard01 
+  __sf_19BaseTimers_1ms_40ms_instance 
 SECTION: ".init"
-  Cpu_Interrupt__Fv _EntryPoint 
+  __ConstructorInit__ Cpu_Interrupt__Fv _EntryPoint __ConstructorInit__ 
+SECTION: ".fini"
+  __DestructorInit__ 
 SECTION: ".rodata"
-  pow10 pow16 pow8 Method Object Class periodos periodosCaso2 periodosCaso3 
-  escaladoresCaso2_3 RamSimulaFlash PromBkp 
+  pow10 pow16 pow8 Method periodos periodosCaso2 periodosCaso3 
+  escaladoresCaso2_3 RamSimulaFlash PromBkp RlxMTimer Object Class MethodTimer 
+  Timer 
 SECTION: ".rodata1"
-  STRING.testing....periodo.1.6 STRING..1 STRING..at..1 STRING..x.2 
+  STRING.testing....valvula.p.6 STRING.esperando.cierre.ini.7 
+  STRING.esperando.que.se.det.8 STRING.test.ok....9 STRING.test.fail....10 
+  STRING..1 STRING..3 STRING..3 STRING..3 STRING..at..1 STRING..x.2 
   STRING.D..versionR51.micros.3 STRING.Object.5 STRING.Object.6 
   STRING.D..versionR51.micros.3 STRING..3 STRING..3 
 SECTION: "NON_BANKED"
-  FC321_Interrupt__Fv 
+  TI1_Interrupt__Fv FC321_Interrupt__Fv 
 SECTION: ".abs_section_8"
   _PORTE 
 SECTION: ".abs_section_9"
@@ -1075,33 +1266,62 @@ SECTION: ".abs_section_fa"
 SECTION: ".abs_section_fc"
   _PWMDTY45 
 SECTION: "VIRTUAL_TABLE_SEGMENT"
-  ____vtbl__ISalida ____vtbl__IPWMISalida ____vtbl__Collection 
-  ____vtbl__ListCollection ____vtbl__LinkedListListCollection 
-  ____vtbl__MethodContainerLinkedListListCollection ____vtbl__PWMIPWMISalida 
-  ____vtbl__PWMHardPWMIPWMISalida ____vtbl__PWMHard23PWMHardPWMIPWMISalida 
+  ____vtbl__ISalida ____vtbl__IPWMISalida ____vtbl__Iterator 
+  ____vtbl__Collection ____vtbl__ListCollection 
+  ____vtbl__LinkedListIteratorIterator ____vtbl__LinkedListListCollection 
+  ____vtbl__MethodContainerLinkedListListCollection 
+  ____vtbl__BaseTimersLinkedListListCollection ____vtbl__PWMIPWMISalida 
+  ____vtbl__PWMHardPWMIPWMISalida ____vtbl__SalidaISalida 
+  ____vtbl__PWMHard23PWMHardPWMIPWMISalida 
   ____vtbl__PWMHard01PWMHardPWMIPWMISalida 
+  ____vtbl__ValvulaProporcionalSalidaISalida 
+  ____vtbl__ThreadAttachableMethodContainerLinkedListListCollection 
+  ____vtbl__PlataformaEmbedded 
+  ____vtbl__BaseTimers_1ms_40msBaseTimersLinkedListListCollection 
 SECTION: "GEN_FUNCS_SEGMENT"
-  __ct__7ISalidaFv __ct__4IPWMFv __ct__10CollectionFv __ct__4ListFv 
-  __ct__7PromBkpFv __ct__14RamSimulaFlashFv 
+  __ct__7ISalidaFv __ct__4IPWMFv __ct__8IteratorFv __ct__10CollectionFv 
+  __ct__4ListFv __dt__15MethodContainerFv __ct__10BaseTimersFv __ct__6SalidaFv 
+  __ct__7PromBkpFv __ct__14RamSimulaFlashFv __ct__16ThreadAttachableFv 
+  __dt__16ThreadAttachableFv __ct__18PlataformaEmbeddedFv 
 SECTION: "NODO_CODE"
   getNext__4NodoFv.2 
 SECTION: "LinkedList_CODE"
-  __ct__10LinkedListFv isEmpty__10LinkedListFv clear__10LinkedListFv 
-  add__10LinkedListFPv aniadir__10LinkedListFPv size__10LinkedListFv 
-  get__10LinkedListFUi moveOut__10LinkedListFPv 
+  __ct__10LinkedListFv __dt__10LinkedListFv isEmpty__10LinkedListFv 
+  clear__10LinkedListFv add__10LinkedListFPv aniadir__10LinkedListFPv 
+  size__10LinkedListFv get__10LinkedListFUi moveOut__10LinkedListFPv 
   deleteNodo__10LinkedListFP4NodoT1 contains__10LinkedListFPv 
-  iterator__10LinkedListFv 
+  linkedListIterator__10LinkedListFP28LinkedListIteratorLinkedList 
+  iterator__10LinkedListFv __ct__28LinkedListIteratorLinkedListFv 
+  hasNext__28LinkedListIteratorLinkedListFv 
+  next__28LinkedListIteratorLinkedListFv 
 SECTION: "METHOD_CODE"
   Method_constructor Method_defConstructor 
+SECTION: "Timer_CODE"
+  Timer_Construct__FPvUl Timer_DefConstruct__FPvPPSc Timer_Destruct__FPv 
+  Timer_OnTime__FPv TimerComp__FPv Timer_Stop__FPv 
 SECTION: "AS1_DATA"
-  potencia1 SerFlag EnUser 
+  SerFlag EnUser 
 SECTION: "AS1_CODE"
   AS1_Enable__Fv AS1_Disable__Fv AS1_Init__Fv 
+SECTION: "MethodTimer_CODE"
+  MTimer_Construct__FPvUlPFPv_vT0 MTimer_DefConstruct__FPvPPSc 
+  MethodTimer_setMetodo__FPvPFPv_vT0 MTimer_OnTime__FPv 
+SECTION: "RlxMTimer_DATA"
+  _RlxMTCont 
+SECTION: "RlxMTimer_CODE"
+  RlxMTimer_Construct__FPvUlPFPv_vT0 RlxMTimer_DefConstruct__FPvPPSc 
+  RlxMTimer_Destruct__FPv RlxMTimer_OnTime__FPv RlxMTimer_Handler__FPv 
+SECTION: ".common"
+  pote plataforma threads listeners1ms listeners40ms 
 SECTION: "RUNTIME"
-  _LOAD_FAR_16 _BSHL _LCMP_P _LNEG _LINC _LMUL _lDivMod _LDIVU _ILSEXT 
+  _LOAD_FAR_16 _BSHL _LCMP_P _LNEG _LINC _LDEC _LMUL _lDivMod _LDIVU _ILSEXT 
   _CASE_DIRECT_BYTE _CASE_SEARCH_8 _CASE_SEARCH_8_BYTE 
 SECTION: "HEAP_SEGMENT"
   _heap_ 
+SECTION: "TI1_CODE"
+  TI1_Enable__Fv TI1_Disable__Fv TI1_Init__Fv 
+SECTION: "TI1_DATA"
+  CmpVal 
 SECTION: "FC321_CODE"
   FC321_Init__Fv 
 SECTION: "FC321_DATA"
@@ -1168,11 +1388,11 @@ OBJECT LIST SORTED BY ADDRESS
      _TCTL2                                      49       1       1       1   .abs_section_49
      _TCTL3                                      4A       1       1       0   .abs_section_4a
      _TCTL4                                      4B       1       1       0   .abs_section_4b
-     _TIE                                        4C       1       1       1   .abs_section_4c
+     _TIE                                        4C       1       1       4   .abs_section_4c
      _TSCR2                                      4D       1       1       2   .abs_section_4d
-     _TFLG1                                      4E       1       1       2   .abs_section_4e
+     _TFLG1                                      4E       1       1       5   .abs_section_4e
      _TFLG2                                      4F       1       1       0   .abs_section_4f
-     _TC0                                        50       2       2       0   .abs_section_50
+     _TC0                                        50       2       2       3   .abs_section_50
      _TC1                                        52       2       2       0   .abs_section_52
      _TC2                                        54       2       2       0   .abs_section_54
      _TC3                                        56       2       2       0   .abs_section_56
@@ -1234,7 +1454,7 @@ OBJECT LIST SORTED BY ADDRESS
      _FPROT                                     104       1       1       0   .abs_section_104
      _FSTAT                                     105       1       1       0   .abs_section_105
      _FCMD                                      106       1       1       0   .abs_section_106
-     _PTT                                       240       1       1       8   .abs_section_240
+     _PTT                                       240       1       1      10   .abs_section_240
      _PTIT                                      241       1       1       0   .abs_section_241
      _DDRT                                      242       1       1       4   .abs_section_242
      _RDRT                                      243       1       1       0   .abs_section_243
@@ -1277,166 +1497,264 @@ OBJECT LIST SORTED BY ADDRESS
      _RDRAD                                     273       1       1       0   .abs_section_273
      _PERAD                                     274       1       1       1   .abs_section_274
      _PPSAD                                     275       1       1       0   .abs_section_275
-     pbuf                                      1000       6       6      15   .bss        
-     heap_end                                  1006       2       2       3   .bss        
-     free_ptr                                  1008       2       2       8   .bss        
-     __sf_15PWMManager01_45_pwmHard01          100A       2       2       1   .bss        
-     potencia1                                 100C       2       2       2   AS1_DATA    
-     SerFlag                                   100E       1       1       2   AS1_DATA    
-     EnUser                                    100F       1       1       5   AS1_DATA    
-     _heap_                                    1010     190     400       2   HEAP_SEGMENT
-     TTicks                                    11A0       4       4       6   FC321_DATA  
-     TOvf                                      11A4       1       1       2   FC321_DATA  
-     Cpu_Interrupt__Fv                         4800       2       2      50   .init       
-     _EntryPoint                               4802      29      41       2   .init       
-     pow10                                     483D      28      40       4   .rodata     
-     pow16                                     4865      20      32       4   .rodata     
-     pow8                                      4885      2C      44       4   .rodata     
-     Method                                    48B1      10      16       1   .rodata     
-     Object                                    48C1      10      16       4   .rodata     
-     Class                                     48D1      10      16       2   .rodata     
-     periodos                                  48E1      14      20       1   .rodata     
-     periodosCaso2                             48F5      14      20       1   .rodata     
-     periodosCaso3                             4909      14      20       2   .rodata     
-     escaladoresCaso2_3                        491D       A      10       3   .rodata     
-     RamSimulaFlash                            4927      20      32       2   .rodata     
-     PromBkp                                   4947      20      32       1   .rodata     
-     STRING.testing....periodo.1.6             4967      1C      28       1   .rodata1    
-     STRING..1                                 4983       1       1       1   .rodata1    
-     STRING..at..1                             4984       5       5       1   .rodata1    
-     STRING..x.2                               4989       3       3       1   .rodata1    
-     STRING.D..versionR51.micros.3             498C      51      81       2   .rodata1    
-     STRING.Object.5                           49DD       7       7       1   .rodata1    
-     STRING.Object.6                           49E4       7       7       1   .rodata1    
-     STRING.D..versionR51.micros.3             49EB      57      87       1   .rodata1    
-     STRING..3                                 4A42       1       1       1   .rodata1    
-     STRING..3                                 4A43       1       1       1   .rodata1    
-     FC321_Interrupt__Fv                       4A44      1E      30       2   NON_BANKED  
-     main                                      4A62      66     102       1   .text       
-     testPwmHard45__FR7PWMHard                 4AC8      58      88       1   .text       
-     print__FPSc                               4B20      38      56       1   .text       
-     Init__Fv                                  4B58      3C      60       1   .text       
-     _Startup                                  4B94       8       8       1   .text       
-     _assert                                   4B9C       7       7       3   .text       
-     abort                                     4BA3       4       4       1   .text       
-     exit                                      4BA7       4       4       1   .text       
-     _heapcrash_                               4BAB       C      12       3   .text       
-     vprintf                                   4BB7     43B    1083      46   .text       
-     _out                                      4FF2       C      12       9   .text       
-     deposit_char                              4FFE       F      15       1   .text       
-     sprintf                                   500D      29      41       1   .text       
-     malloc                                    5036      A5     165       1   .text       
-     free                                      50DB      C4     196       2   .text       
-     __nw__FGUi                                519F      12      18       2   .text       
-     __dl__FGPv                                51B1       3       3       2   .text       
-     Cpu_Interrupt41__Fv                       51B4       2       2       1   .text       
-     Cpu_Interrupt43__Fv                       51B6       2       2       1   .text       
-     Cpu_Interrupt49__Fv                       51B8       2       2       1   .text       
-     Cpu_Interrupt50__Fv                       51BA       2       2       1   .text       
-     Cpu_Interrupt51__Fv                       51BC       2       2       1   .text       
-     Cpu_Interrupt52__Fv                       51BE       2       2       1   .text       
-     Cpu_Interrupt53__Fv                       51C0       2       2       1   .text       
-     Cpu_Interrupt54__Fv                       51C2       2       2       1   .text       
-     Cpu_Interrupt55__Fv                       51C4       2       2       1   .text       
-     Cpu_Interrupt56__Fv                       51C6       2       2       1   .text       
-     Object_ctor                               51C8       1       1       2   .text       
-     Object_dtor                               51C9       1       1       3   .text       
-     Object_differ                             51CA       E      14       3   .text       
-     Object_puto                               51D8      3F      63       3   .text       
-     classOf                                   5217      1E      30       4   .text       
-     newAlloced                                5235      3A      58       2   .text       
-     ctor                                      526F      1F      31       1   .text       
-     write                                     528E      2C      44       3   .text       
-     PE_low_level_init__Fv                     52BA      AA     170       1   .text       
-     __sf_7PWMHard_setDuty__F13ReferenciaPWMi       5364      40      64       3   .text       
-     __sf_7PWMHard_setPeriodoHard__F13ReferenciaPWMUi       53A4       F      15       6   .text       
-     __sf_7PWMHard_escalar__F13ReferenciaPWM       53B3       F      15       3   .text       
-     __sf_7PWMHard_noEscalar__F13ReferenciaPWM       53C2      10      16       5   .text       
-     getConectada__7PWMHardFv                  53D2       5       5       3   .text       
-     setConectada__7PWMHardFUc                 53D7      35      53       3   .text       
-     __ct__7PWMHardFR16ManejadorMemoriaR8TConfPWM.4       540C      30      48       1   .text       
-     __ct__9PWMHard23FR16ManejadorMemoriaR8TConfPWM       543C      39      57       1   .text       
-     setPotencia__9PWMHard23FUi                5475      2A      42       1   .text       
-     setTipoSalida__9PWMHard23F10TipoSalida       549F       B      11       1   .text       
-     getTipoSalida__9PWMHard23Fv               54AA       A      10       1   .text       
-     setPeriodo__9PWMHard23F7TPeriod           54B4      4D      77       1   .text       
-     getEstadoSalida__9PWMHard23Fv             5501       9       9       1   .text       
-     __ct__7PWMHardFR16ManejadorMemoriaR8TConfPWM.4       550A      30      48       1   .text       
-     __ct__24PWMHard01PWMManager01_45FR16ManejadorMemoriaR8TConfPWM       553A      31      49       1   .text       
-     setPotencia__24PWMHard01PWMManager01_45FUi       556B      29      41       1   .text       
-     getTipoSalida__24PWMHard01PWMManager01_45Fv       5594       A      10       1   .text       
-     setTipoSalida__24PWMHard01PWMManager01_45F10TipoSalida       559E       B      11       1   .text       
-     getEstadoSalida__24PWMHard01PWMManager01_45Fv       55A9       7       7       1   .text       
-     setPeriodo__24PWMHard01PWMManager01_45F7TPeriod       55B0      26      38       1   .text       
-     __sf_15PWMManager01_45_PWMManager01_45_setPeriodo__FP3PWM7TPeriod       55D6      D1     209       1   .text       
-     __sf_15PWMManager01_45_PWMManager01_45_configCaso1__F13ReferenciaPWMT0       56A7      21      33       1   .text       
-     __sf_15PWMManager01_45_PWMManager01_45_configCaso2__F13ReferenciaPWMN20       56C8      42      66       1   .text       
-     __sf_15PWMManager01_45_PWMManager01_45_configCaso3__F13ReferenciaPWMN30       570A      57      87       1   .text       
-     __sf_15PWMManager01_45_PWM45_actualizarPotencia__FUi       5761      2C      44       1   .text       
-     __sf_15PWMManager01_45_PWM01_actualizarPotencia__FUi       578D      20      32       1   .text       
-     setPeriodoConfiguracion__3PWMF7TPeriod       57AD      15      21       2   .text       
-     getPeriodoConfiguracion__3PWMFv           57C2      10      16       1   .text       
-     setPotencia__3PWMFUi                      57D2      3E      62       3   .text       
-     getPeriodo__3PWMFv                        5810       4       4       4   .text       
-     getPotencia__3PWMFv                       5814       5       5       4   .text       
-     getConectada__3PWMFv                      5819       5       5       1   .text       
-     setConectada__3PWMFUc                     581E      35      53       1   .text       
-     Salida_setPotencia__3PWMFUi               5853      37      55       2   .text       
-     RamSimulaFlash_setWord__FPvPUiUi          588A       6       6       2   .text       
-     RamSimulaFlash_getWord__FPvPUi            5890       5       5       2   .text       
-     RamSimulaFlash_grabarProm__FPv            5895       3       3       1   .text       
-     RamSimulaFlash_borrarProm__FPvT0          5898       2       2       1   .text       
-     PromBkp_ctor__FPvPPSc                     589A       B      11       1   .text       
-     __ct__15MethodContainerFv                 58A5       F      15       2   .text       
-     add__15MethodContainerFPv                 58B4      1A      26       1   .text       
-     ____vtbl__ISalida                         58CE      18      24       1   VIRTUAL_TABLE_SEGMENT
-     ____vtbl__IPWMISalida                     58E6      24      36       1   VIRTUAL_TABLE_SEGMENT
-     ____vtbl__Collection                      590A      1C      28       1   VIRTUAL_TABLE_SEGMENT
-     ____vtbl__ListCollection                  5926      20      32       1   VIRTUAL_TABLE_SEGMENT
-     ____vtbl__LinkedListListCollection        5946      24      36       1   VIRTUAL_TABLE_SEGMENT
-     ____vtbl__MethodContainerLinkedListListCollection       596A      24      36       1   VIRTUAL_TABLE_SEGMENT
-     ____vtbl__PWMIPWMISalida                  598E      24      36       2   VIRTUAL_TABLE_SEGMENT
-     ____vtbl__PWMHardPWMIPWMISalida           59B2      24      36       2   VIRTUAL_TABLE_SEGMENT
-     ____vtbl__PWMHard23PWMHardPWMIPWMISalida       59D6      24      36       1   VIRTUAL_TABLE_SEGMENT
-     ____vtbl__PWMHard01PWMHardPWMIPWMISalida       59FA      24      36       1   VIRTUAL_TABLE_SEGMENT
-     __ct__7ISalidaFv                          5A1E       A      10       1   GEN_FUNCS_SEGMENT
-     __ct__4IPWMFv                             5A28       E      14       2   GEN_FUNCS_SEGMENT
-     __ct__10CollectionFv                      5A36       A      10       1   GEN_FUNCS_SEGMENT
-     __ct__4ListFv                             5A40       E      14       1   GEN_FUNCS_SEGMENT
-     __ct__7PromBkpFv                          5A4E       6       6       1   GEN_FUNCS_SEGMENT
-     __ct__14RamSimulaFlashFv                  5A54       3       3       2   GEN_FUNCS_SEGMENT
-     getNext__4NodoFv.2                        5A57       5       5       1   NODO_CODE   
-     __ct__10LinkedListFv                      5A5C      13      19       2   LinkedList_CODE
-     isEmpty__10LinkedListFv                   5A6F       B      11       2   LinkedList_CODE
-     clear__10LinkedListFv                     5A7A      21      33       2   LinkedList_CODE
-     add__10LinkedListFPv                      5A9B      27      39       2   LinkedList_CODE
-     aniadir__10LinkedListFPv                  5AC2      60      96       2   LinkedList_CODE
-     size__10LinkedListFv                      5B22      13      19       2   LinkedList_CODE
-     get__10LinkedListFUi                      5B35      26      38       2   LinkedList_CODE
-     moveOut__10LinkedListFPv                  5B5B      2F      47       2   LinkedList_CODE
-     deleteNodo__10LinkedListFP4NodoT1         5B8A      25      37       1   LinkedList_CODE
-     contains__10LinkedListFPv                 5BAF      1E      30       2   LinkedList_CODE
-     iterator__10LinkedListFv                  5BCD       3       3       2   LinkedList_CODE
-     Method_constructor                        5BD0       9       9       1   METHOD_CODE 
-     Method_defConstructor                     5BD9      1A      26       1   METHOD_CODE 
-     AS1_Enable__Fv                            5BF3      1D      29       1   AS1_CODE    
-     AS1_Disable__Fv                           5C10       D      13       1   AS1_CODE    
-     AS1_Init__Fv                              5C1D      1C      28       1   AS1_CODE    
-     _LOAD_FAR_16                              5C39       B      11      16   RUNTIME     
-     _BSHL                                     5C44       8       8       2   RUNTIME     
-     _LCMP_P                                   5C4C      15      21       3   RUNTIME     
-     _LNEG                                     5C61       D      13       1   RUNTIME     
-     _LINC                                     5C6E       5       5       1   RUNTIME     
-     _LMUL                                     5C73      27      39       1   RUNTIME     
-     _lDivMod                                  5C9A      BE     190       1   RUNTIME     
-     _LDIVU                                    5D58       E      14       1   RUNTIME     
-     _ILSEXT                                   5D66       7       7       2   RUNTIME     
-     _CASE_DIRECT_BYTE                         5D6D       5       5       1   RUNTIME     
-     _CASE_SEARCH_8                            5D72      17      23       1   RUNTIME     
-     _CASE_SEARCH_8_BYTE                       5D89      1A      26       1   RUNTIME     
-     FC321_Init__Fv                            5DA3      10      16       1   FC321_CODE  
-     __ct__4NodoFPvP4Nodo                      5DB3       D      13       2   Nodo_CODE   
-     setNext__4NodoFP4Nodo                     5DC0       5       5       2   Nodo_CODE   
+     potencia1                                 1000       2       2       3   .data       
+     pbuf                                      1002       6       6      15   .bss        
+     heap_end                                  1008       2       2       3   .bss        
+     free_ptr                                  100A       2       2       8   .bss        
+     __sf_15PWMManager01_45_pwmHard01          100C       2       2       1   .bss        
+     __sf_19BaseTimers_1ms_40ms_instance       100E       2       2       3   .bss        
+     SerFlag                                   1010       1       1       2   AS1_DATA    
+     EnUser                                    1011       1       1       5   AS1_DATA    
+     _RlxMTCont                                1012       2       2      14   RlxMTimer_DATA
+     pote                                      1014       2       2       1   .common     
+     plataforma                                1016       3       3       3   .common     
+     threads                                   1019       5       5       4   .common     
+     listeners1ms                              101E       2       2       5   .common     
+     listeners40ms                             1020       2       2       5   .common     
+     _heap_                                    1022     320     800       2   HEAP_SEGMENT
+     CmpVal                                    1342       2       2       3   TI1_DATA    
+     TTicks                                    1344       4       4       6   FC321_DATA  
+     TOvf                                      1348       1       1       2   FC321_DATA  
+     __DestructorInit__                        4400       6       6       0   .fini       
+     __ConstructorInit__                       4406       6       6       0   .init       
+     Cpu_Interrupt__Fv                         440C       2       2      50   .init       
+     _EntryPoint                               440E      29      41       2   .init       
+     __ConstructorInit__                       4437       6       6       0   .init       
+     pow10                                     4455      28      40       4   .rodata     
+     pow16                                     447D      20      32       4   .rodata     
+     pow8                                      449D      2C      44       4   .rodata     
+     Method                                    44C9      10      16       4   .rodata     
+     periodos                                  44D9      14      20       1   .rodata     
+     periodosCaso2                             44ED      14      20       1   .rodata     
+     periodosCaso3                             4501      14      20       2   .rodata     
+     escaladoresCaso2_3                        4515       A      10       3   .rodata     
+     RamSimulaFlash                            451F      20      32       3   .rodata     
+     PromBkp                                   453F      20      32       1   .rodata     
+     RlxMTimer                                 455F      12      18       1   .rodata     
+     Object                                    4571      10      16       5   .rodata     
+     Class                                     4581      10      16       2   .rodata     
+     MethodTimer                               4591      12      18       1   .rodata     
+     Timer                                     45A3      12      18       1   .rodata     
+     STRING.testing....valvula.p.6             45B5      23      35       1   .rodata1    
+     STRING.esperando.cierre.ini.7             45D8      20      32       1   .rodata1    
+     STRING.esperando.que.se.det.8             45F8      20      32       1   .rodata1    
+     STRING.test.ok....9                       4618       B      11       1   .rodata1    
+     STRING.test.fail....10                    4623       D      13       1   .rodata1    
+     STRING..1                                 4630       1       1       1   .rodata1    
+     STRING..3                                 4631       1       1       1   .rodata1    
+     STRING..3                                 4632       1       1       1   .rodata1    
+     STRING..3                                 4633       1       1       1   .rodata1    
+     STRING..at..1                             4634       5       5       1   .rodata1    
+     STRING..x.2                               4639       3       3       1   .rodata1    
+     STRING.D..versionR51.micros.3             463C      51      81       3   .rodata1    
+     STRING.Object.5                           468D       7       7       1   .rodata1    
+     STRING.Object.6                           4694       7       7       1   .rodata1    
+     STRING.D..versionR51.micros.3             469B      57      87       1   .rodata1    
+     STRING..3                                 46F2       1       1       1   .rodata1    
+     STRING..3                                 46F3       1       1       1   .rodata1    
+     TI1_Interrupt__Fv                         46F4      1D      29       1   NON_BANKED  
+     FC321_Interrupt__Fv                       4711      1E      30       2   NON_BANKED  
+     main                                      472F      9F     159       1   .text       
+     testValvulaProporcional__FR19ValvulaProporcional       47CE      94     148       1   .text       
+     print__FPSc                               4862      38      56       4   .text       
+     Init__Fv                                  489A      3C      60       1   .text       
+     _Startup                                  48D6       8       8       1   .text       
+     _assert                                   48DE       7       7       4   .text       
+     abort                                     48E5       4       4       1   .text       
+     exit                                      48E9       4       4       1   .text       
+     _heapcrash_                               48ED       C      12       3   .text       
+     vprintf                                   48F9     43B    1083      46   .text       
+     _out                                      4D34       C      12       9   .text       
+     deposit_char                              4D40       F      15       1   .text       
+     sprintf                                   4D4F      29      41       1   .text       
+     malloc                                    4D78      A5     165       2   .text       
+     free                                      4E1D      C4     196       2   .text       
+     __nw__FGUi                                4EE1      12      18       6   .text       
+     __dl__FGPv                                4EF3       3       3       3   .text       
+     Cpu_Interrupt41__Fv                       4EF6       2       2       1   .text       
+     Cpu_Interrupt43__Fv                       4EF8       2       2       1   .text       
+     Cpu_Interrupt49__Fv                       4EFA       2       2       1   .text       
+     Cpu_Interrupt50__Fv                       4EFC       2       2       1   .text       
+     Cpu_Interrupt51__Fv                       4EFE       2       2       1   .text       
+     Cpu_Interrupt52__Fv                       4F00       2       2       1   .text       
+     Cpu_Interrupt53__Fv                       4F02       2       2       1   .text       
+     Cpu_Interrupt54__Fv                       4F04       2       2       1   .text       
+     Cpu_Interrupt56__Fv                       4F06       2       2       1   .text       
+     PE_low_level_init__Fv                     4F08      B0     176       1   .text       
+     __sf_7PWMHard_setDuty__F13ReferenciaPWMi       4FB8      40      64       3   .text       
+     __sf_7PWMHard_setPeriodoHard__F13ReferenciaPWMUi       4FF8       F      15       6   .text       
+     __sf_7PWMHard_escalar__F13ReferenciaPWM       5007       F      15       3   .text       
+     __sf_7PWMHard_noEscalar__F13ReferenciaPWM       5016      10      16       5   .text       
+     getConectada__7PWMHardFv                  5026       5       5       3   .text       
+     setConectada__7PWMHardFUc                 502B      35      53       3   .text       
+     __ct__7PWMHardFR16ManejadorMemoriaR8TConfPWM.4       5060      30      48       1   .text       
+     __ct__9PWMHard23FR16ManejadorMemoriaR8TConfPWM       5090      39      57       1   .text       
+     setPotencia__9PWMHard23FUi                50C9      2A      42       1   .text       
+     setTipoSalida__9PWMHard23F10TipoSalida       50F3       B      11       1   .text       
+     getTipoSalida__9PWMHard23Fv               50FE       A      10       1   .text       
+     setPeriodo__9PWMHard23F7TPeriod           5108      4D      77       1   .text       
+     getEstadoSalida__9PWMHard23Fv             5155       9       9       1   .text       
+     __ct__7PWMHardFR16ManejadorMemoriaR8TConfPWM.4       515E      30      48       1   .text       
+     __ct__24PWMHard01PWMManager01_45FR16ManejadorMemoriaR8TConfPWM       518E      31      49       1   .text       
+     setPotencia__24PWMHard01PWMManager01_45FUi       51BF      29      41       1   .text       
+     getTipoSalida__24PWMHard01PWMManager01_45Fv       51E8       A      10       1   .text       
+     setTipoSalida__24PWMHard01PWMManager01_45F10TipoSalida       51F2       B      11       1   .text       
+     getEstadoSalida__24PWMHard01PWMManager01_45Fv       51FD       7       7       1   .text       
+     setPeriodo__24PWMHard01PWMManager01_45F7TPeriod       5204      26      38       1   .text       
+     __sf_15PWMManager01_45_PWMManager01_45_setPeriodo__FP3PWM7TPeriod       522A      D1     209       1   .text       
+     __sf_15PWMManager01_45_PWMManager01_45_configCaso1__F13ReferenciaPWMT0       52FB      21      33       1   .text       
+     __sf_15PWMManager01_45_PWMManager01_45_configCaso2__F13ReferenciaPWMN20       531C      42      66       1   .text       
+     __sf_15PWMManager01_45_PWMManager01_45_configCaso3__F13ReferenciaPWMN30       535E      57      87       1   .text       
+     __sf_15PWMManager01_45_PWM45_actualizarPotencia__FUi       53B5      2C      44       1   .text       
+     __sf_15PWMManager01_45_PWM01_actualizarPotencia__FUi       53E1      20      32       1   .text       
+     setPeriodoConfiguracion__3PWMF7TPeriod       5401      15      21       2   .text       
+     getPeriodoConfiguracion__3PWMFv           5416      10      16       1   .text       
+     setPotencia__3PWMFUi                      5426      3E      62       2   .text       
+     getPeriodo__3PWMFv                        5464       4       4       4   .text       
+     getPotencia__3PWMFv                       5468       5       5       4   .text       
+     getConectada__3PWMFv                      546D       5       5       1   .text       
+     setConectada__3PWMFUc                     5472      35      53       1   .text       
+     Salida_setPotencia__3PWMFUi               54A7      51      81       2   .text       
+     RamSimulaFlash_setWord__FPvPUiUi          54F8       6       6       2   .text       
+     RamSimulaFlash_getWord__FPvPUi            54FE       5       5       2   .text       
+     RamSimulaFlash_grabarProm__FPv            5503       3       3       1   .text       
+     RamSimulaFlash_borrarProm__FPvT0          5506       2       2       1   .text       
+     PromBkp_ctor__FPvPPSc                     5508       B      11       1   .text       
+     getConectada__6SalidaFv                   5513       5       5       1   .text       
+     getPotencia__6SalidaFv                    5518       5       5       1   .text       
+     setPotencia__6SalidaFUi                   551D      51      81       1   .text       
+     __ct__15MethodContainerFv                 556E       F      15       5   .text       
+     add__15MethodContainerFPv                 557D      1A      26       2   .text       
+     executeMethods__15MethodContainerFv       5597      34      52       3   .text       
+     __ct__19ValvulaProporcionalFR16ManejadorMemoriaP42ConfValvulaProporcionalValvulaProporcionalPUciT3T4       55CB      79     121       1   .text       
+     __sf_19ValvulaProporcional_onCheckear__FPv       5644      C0     192       2   .text       
+     __sf_19ValvulaProporcional_getTiempoAbierto__FPv       5704      12      18       1   .text       
+     __sf_19ValvulaProporcional_setTiempoAbierto__FPvUi       5716      1A      26       1   .text       
+     getPotencia__19ValvulaProporcionalFv       5730       E      14       1   .text       
+     setPotencia__19ValvulaProporcionalFUi       573E       B      11       1   .text       
+     getTipoSalida__19ValvulaProporcionalFv       5749       4       4       1   .text       
+     setTipoSalida__19ValvulaProporcionalF10TipoSalida       574D       1       1       1   .text       
+     getConectada__19ValvulaProporcionalFv       574E       3       3       1   .text       
+     setConectada__19ValvulaProporcionalFUc       5751       1       1       1   .text       
+     cerrar__19ValvulaProporcionalFv           5752      1D      29       2   .text       
+     abrir__19ValvulaProporcionalFv            576F      1D      29       2   .text       
+     detener__19ValvulaProporcionalFv          578C      1C      28       2   .text       
+     getStatus__19ValvulaProporcionalFv        57A8       6       6       1   .text       
+     pthread_create__FPvT0PFPv_PvT0            57AE      15      21       1   .text       
+     mainLoop__18PlataformaEmbeddedFv          57C3       6       6       3   .text       
+     adjuntar__16ThreadAttachableFP6Method       57C9      2B      43       1   .text       
+     executeThreads__16ThreadAttachableFv       57F4       3       3       1   .text       
+     Object_ctor                               57F7       1       1       2   .text       
+     Object_dtor                               57F8       1       1       3   .text       
+     Object_differ                             57F9       E      14       3   .text       
+     Object_puto                               5807      3F      63       3   .text       
+     classOf                                   5846      1E      30       4   .text       
+     _new                                      5864      45      69       1   .text       
+     newAlloced                                58A9      3A      58       6   .text       
+     ctor                                      58E3      1F      31       2   .text       
+     write                                     5902      2C      44       3   .text       
+     __ct__19BaseTimers_1ms_40msFv             592E      40      64       1   .text       
+     __sf_19BaseTimers_1ms_40ms_getInstance__Fv       596E      16      22       1   .text       
+     lockInc__19BaseTimers_1ms_40msFv          5984       3       3       1   .text       
+     unlockInc__19BaseTimers_1ms_40msFv        5987       3       3       1   .text       
+     __sf_19BaseTimers_1ms_40ms_inc1__FPv       598A       F      15       1   .text       
+     __sf_19BaseTimers_1ms_40ms_inc40__FPv       5999       F      15       1   .text       
+     incrementar__10BaseTimersFUi              59A8       F      15       2   .text       
+     moveOut__10BaseTimersFPv                  59B7      49      73       2   .text       
+     actualizarTimers__10BaseTimersFv          5A00      2D      45       2   .text       
+     getCuenta__10BaseTimersFv                 5A2D       9       9       2   .text       
+     timerInterrupt_init__Fv                   5A36      18      24       1   .text       
+     TI1ms_OnInterrupt__Fv                     5A4E       6       6       1   .text       
+     TI40ms_OnInterrupt__Fv                    5A54       6       6       1   .text       
+     add1msListener__FP6Method                 5A5A      33      51       1   .text       
+     add40msListener__FP6Method                5A8D      33      51       1   .text       
+     ____vtbl__ISalida                         5AC0      18      24       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__IPWMISalida                     5AD8      24      36       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__Iterator                        5AFC       8       8       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__Collection                      5B04      1C      28       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__ListCollection                  5B20      20      32       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__LinkedListIteratorIterator       5B40       8       8       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__LinkedListListCollection        5B48      24      36       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__MethodContainerLinkedListListCollection       5B6C      24      36       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__BaseTimersLinkedListListCollection       5B90      2C      44       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__PWMIPWMISalida                  5BBC      24      36       2   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__PWMHardPWMIPWMISalida           5BE0      24      36       2   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__SalidaISalida                   5C04      18      24       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__PWMHard23PWMHardPWMIPWMISalida       5C1C      24      36       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__PWMHard01PWMHardPWMIPWMISalida       5C40      24      36       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__ValvulaProporcionalSalidaISalida       5C64      18      24       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__ThreadAttachableMethodContainerLinkedListListCollection       5C7C      24      36       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__PlataformaEmbedded              5CA0       4       4       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__BaseTimers_1ms_40msBaseTimersLinkedListListCollection       5CA4      2C      44       1   VIRTUAL_TABLE_SEGMENT
+     __ct__7ISalidaFv                          5CD0       A      10       2   GEN_FUNCS_SEGMENT
+     __ct__4IPWMFv                             5CDA       E      14       2   GEN_FUNCS_SEGMENT
+     __ct__8IteratorFv                         5CE8       A      10       1   GEN_FUNCS_SEGMENT
+     __ct__10CollectionFv                      5CF2       A      10       1   GEN_FUNCS_SEGMENT
+     __ct__4ListFv                             5CFC       E      14       1   GEN_FUNCS_SEGMENT
+     __dt__15MethodContainerFv                 5D0A       3       3       1   GEN_FUNCS_SEGMENT
+     __ct__10BaseTimersFv                      5D0D       F      15       1   GEN_FUNCS_SEGMENT
+     __ct__6SalidaFv                           5D1C       F      15       1   GEN_FUNCS_SEGMENT
+     __ct__7PromBkpFv                          5D2B       6       6       1   GEN_FUNCS_SEGMENT
+     __ct__14RamSimulaFlashFv                  5D31       3       3       3   GEN_FUNCS_SEGMENT
+     __ct__16ThreadAttachableFv                5D34       F      15       1   GEN_FUNCS_SEGMENT
+     __dt__16ThreadAttachableFv                5D43       3       3       1   GEN_FUNCS_SEGMENT
+     __ct__18PlataformaEmbeddedFv              5D46       A      10       1   GEN_FUNCS_SEGMENT
+     getNext__4NodoFv.2                        5D50       5       5       1   NODO_CODE   
+     __ct__10LinkedListFv                      5D55      13      19       4   LinkedList_CODE
+     __dt__10LinkedListFv                      5D68      23      35       2   LinkedList_CODE
+     isEmpty__10LinkedListFv                   5D8B       B      11       5   LinkedList_CODE
+     clear__10LinkedListFv                     5D96      21      33       5   LinkedList_CODE
+     add__10LinkedListFPv                      5DB7      27      39       4   LinkedList_CODE
+     aniadir__10LinkedListFPv                  5DDE      60      96       5   LinkedList_CODE
+     size__10LinkedListFv                      5E3E      13      19       5   LinkedList_CODE
+     get__10LinkedListFUi                      5E51      26      38       5   LinkedList_CODE
+     moveOut__10LinkedListFPv                  5E77      2F      47       4   LinkedList_CODE
+     deleteNodo__10LinkedListFP4NodoT1         5EA6      25      37       1   LinkedList_CODE
+     contains__10LinkedListFPv                 5ECB      1E      30       5   LinkedList_CODE
+     linkedListIterator__10LinkedListFP28LinkedListIteratorLinkedList       5EE9       B      11       3   LinkedList_CODE
+     iterator__10LinkedListFv                  5EF4       3       3       5   LinkedList_CODE
+     __ct__28LinkedListIteratorLinkedListFv       5EF7       F      15       3   LinkedList_CODE
+     hasNext__28LinkedListIteratorLinkedListFv       5F06       B      11       4   LinkedList_CODE
+     next__28LinkedListIteratorLinkedListFv       5F11      12      18       4   LinkedList_CODE
+     Method_constructor                        5F23       9       9       1   METHOD_CODE 
+     Method_defConstructor                     5F2C      1A      26       1   METHOD_CODE 
+     Timer_Construct__FPvUl                    5F46      66     102       2   Timer_CODE  
+     Timer_DefConstruct__FPvPPSc               5FAC      15      21       1   Timer_CODE  
+     Timer_Destruct__FPv                       5FC1       3       3       3   Timer_CODE  
+     Timer_OnTime__FPv                         5FC4       3       3       1   Timer_CODE  
+     TimerComp__FPv                            5FC7      9F     159       1   Timer_CODE  
+     Timer_Stop__FPv                           6066      30      48       2   Timer_CODE  
+     AS1_Enable__Fv                            6096      1D      29       1   AS1_CODE    
+     AS1_Disable__Fv                           60B3       D      13       1   AS1_CODE    
+     AS1_Init__Fv                              60C0      1C      28       1   AS1_CODE    
+     MTimer_Construct__FPvUlPFPv_vT0           60DC      1A      26       2   MethodTimer_CODE
+     MTimer_DefConstruct__FPvPPSc              60F6      24      36       1   MethodTimer_CODE
+     MethodTimer_setMetodo__FPvPFPv_vT0        611A       D      13       1   MethodTimer_CODE
+     MTimer_OnTime__FPv                        6127       A      10       1   MethodTimer_CODE
+     RlxMTimer_Construct__FPvUlPFPv_vT0        6131      63      99       1   RlxMTimer_CODE
+     RlxMTimer_DefConstruct__FPvPPSc           6194      25      37       1   RlxMTimer_CODE
+     RlxMTimer_Destruct__FPv                   61B9      60      96       1   RlxMTimer_CODE
+     RlxMTimer_OnTime__FPv                     6219       A      10       1   RlxMTimer_CODE
+     RlxMTimer_Handler__FPv                    6223      44      68       1   RlxMTimer_CODE
+     _LOAD_FAR_16                              6267       B      11      41   RUNTIME     
+     _BSHL                                     6272       8       8       4   RUNTIME     
+     _LCMP_P                                   627A      15      21       6   RUNTIME     
+     _LNEG                                     628F       D      13       1   RUNTIME     
+     _LINC                                     629C       5       5       1   RUNTIME     
+     _LDEC                                     62A1       8       8       1   RUNTIME     
+     _LMUL                                     62A9      27      39       1   RUNTIME     
+     _lDivMod                                  62D0      BE     190       1   RUNTIME     
+     _LDIVU                                    638E       E      14       1   RUNTIME     
+     _ILSEXT                                   639C       7       7       3   RUNTIME     
+     _CASE_DIRECT_BYTE                         63A3       5       5       1   RUNTIME     
+     _CASE_SEARCH_8                            63A8      17      23       1   RUNTIME     
+     _CASE_SEARCH_8_BYTE                       63BF      1A      26       1   RUNTIME     
+     TI1_Enable__Fv                            63D9       9       9       1   TI1_CODE    
+     TI1_Disable__Fv                           63E2       8       8       1   TI1_CODE    
+     TI1_Init__Fv                              63EA       B      11       1   TI1_CODE    
+     FC321_Init__Fv                            63F5      10      16       1   FC321_CODE  
+     __ct__4NodoFPvP4Nodo                      6405       D      13       2   Nodo_CODE   
+     setNext__4NodoFP4Nodo                     6412       5       5       2   Nodo_CODE   
      _vect                                     FF80      80     128       0   .abs_section_ff80
 
 *********************************************************************************************
@@ -1445,9 +1763,11 @@ UNUSED-OBJECTS SECTION
 NOT USED PROCEDURES
 main.cpp.o:
   __ct__3PWMFR16ManejadorMemoriaR8TConfPWM.3 
-  __ct__7PWMHardFR16ManejadorMemoriaR8TConfPWM.4 testPwmHard01__FR7PWMHard 
+  __ct__7PWMHardFR16ManejadorMemoriaR8TConfPWM.4 
+  getTimeCloseInit__19ValvulaProporcionalFv.5 testPwmHard01__FR7PWMHard 
+  testPwmHard45__FR7PWMHard nroToAscii__FUi retornoDeCarro__Fv 
   __ct__7ISalidaFRC7ISalida __as__7ISalidaFRC7ISalida __ct__4IPWMFRC4IPWM 
-  __as__4IPWMFRC4IPWM __ct__4NodoFRC4Nodo __as__4NodoFRC4Nodo __ct__8IteratorFv 
+  __as__4IPWMFRC4IPWM __ct__4NodoFRC4Nodo __as__4NodoFRC4Nodo 
   __ct__8IteratorFRC8Iterator __as__8IteratorFRC8Iterator 
   __ct__10CollectionFRC10Collection __as__10CollectionFRC10Collection 
   __ct__4ListFRC4List __as__4ListFRC4List 
@@ -1455,10 +1775,9 @@ main.cpp.o:
   __ct__10LinkedListFRC10LinkedList 
   __as__28LinkedListIteratorLinkedListFRC28LinkedListIteratorLinkedList 
   __as__10LinkedListFRC10LinkedList __ct__15MethodContainerFRC15MethodContainer 
-  __as__15MethodContainerFRC15MethodContainer __dt__15MethodContainerFv 
-  __ct__10BaseTimersFv __ct__10BaseTimersFRC10BaseTimers 
+  __as__15MethodContainerFRC15MethodContainer __ct__10BaseTimersFRC10BaseTimers 
   __as__10BaseTimersFRC10BaseTimers __dt__10BaseTimersFv __ct__3PWMFRC3PWM 
-  __dt__3PWMFv __ct__7PWMHardFRC7PWMHard __dt__7PWMHardFv __ct__6SalidaFv 
+  __dt__3PWMFv __ct__7PWMHardFRC7PWMHard __dt__7PWMHardFv 
   __ct__6SalidaFRC6Salida __as__6SalidaFRC6Salida __ct__9PWMHard23FRC9PWMHard23 
   __dt__9PWMHard23Fv 
   __ct__24PWMHard01PWMManager01_45FRC24PWMHard01PWMManager01_45 
@@ -1469,7 +1788,14 @@ main.cpp.o:
   __ct__7PromBkpFRC7PromBkp __as__7PromBkpFRC7PromBkp __dt__7PromBkpFv 
   __ct__14RamSimulaFlashFRC14RamSimulaFlash 
   __as__14RamSimulaFlashFRC14RamSimulaFlash __dt__14RamSimulaFlashFv 
-  getNext__4NodoFv.2 getDato__4NodoFv.1 
+  __ct__19ValvulaProporcionalFRC19ValvulaProporcional 
+  __ct__30ThreadAttacherThreadAttachableFRC30ThreadAttacherThreadAttachable 
+  __ct__16ThreadAttachableFRC16ThreadAttachable 
+  __as__30ThreadAttacherThreadAttachableFRC30ThreadAttacherThreadAttachable 
+  __as__16ThreadAttachableFRC16ThreadAttachable 
+  __ct__18PlataformaEmbeddedFRC18PlataformaEmbedded 
+  __as__18PlataformaEmbeddedFRC18PlataformaEmbedded getNext__4NodoFv.2 
+  getDato__4NodoFv.1 
 datapage.c.o:
   _SET_PAGE _LOAD_FAR_8 _LOAD_FAR_24 _LOAD_FAR_32 _STORE_FAR_8 _STORE_FAR_16 
   _STORE_FAR_24 _STORE_FAR_32 _FAR_COPY_RC _FAR_COPY 
@@ -1482,8 +1808,8 @@ ALLOC.C.o (ansisi.lib):
   calloc realloc 
 rtshc12.c.o (ansisi.lib):
   _BSHRS _BSHRU _BDIVMODU _BDIVMODS _ISHL _ISHRU _ISHRS _LSHL _LSHRU _LSHRS 
-  _LADD _LSUB _LAND _LOR _LXOR _LCMP _LCMP_PP _LCOM _LDEC _LMULU16x32 
-  _LMULS16x32 _NEG_P _LDIVS _LMODU _LMODS _COPY _CASE_DIRECT _CASE_CHECKED 
+  _LADD _LSUB _LAND _LOR _LXOR _LCMP _LCMP_PP _LCOM _LMULU16x32 _LMULS16x32 
+  _NEG_P _LDIVS _LMODU _LMODS _COPY _CASE_DIRECT _CASE_CHECKED 
   _CASE_CHECKED_BYTE _CASE_SEARCH _CASE_SEARCH_BYTE _FCALL _FPCMP 
 NEW.CPP.o (cppsi.lib):
   abs__Fl __ct__7InitiosFv.31 __sf_3ios_sync_with_stdio__Fv.30 
@@ -1601,35 +1927,30 @@ NEW.CPP.o (cppsi.lib):
 AS1.c.o:
   AS1_Interrupt__Fv AS1_RecvChar__FPUc AS1_SendChar__FUc AS1_InterruptRx__Fv 
   AS1_InterruptTx__Fv AS1_InterruptError__Fv 
+TI1.c.o:
+  TI1_SetPeriodMode__F8TI1_mode 
 FC321.c.o:
   FC321_Enable__Fv LoadTicks__Fv FC321_Reset__Fv FC321_GetTimeUS__FPUi 
   FC321_GetTimeMS__FPUi 
 testVector.c.o:
-  Cpu_Interrupt0__Fv Cpu_Interrupt1__Fv Cpu_Interrupt2__Fv Cpu_Interrupt3__Fv 
-  Cpu_Interrupt4__Fv Cpu_Interrupt5__Fv Cpu_Interrupt6__Fv Cpu_Interrupt7__Fv 
-  Cpu_Interrupt8__Fv Cpu_Interrupt9__Fv Cpu_Interrupt10__Fv Cpu_Interrupt11__Fv 
+  __ct__3PWMFR16ManejadorMemoriaR8TConfPWM.3 Cpu_Interrupt0__Fv 
+  Cpu_Interrupt1__Fv Cpu_Interrupt2__Fv Cpu_Interrupt3__Fv Cpu_Interrupt4__Fv 
+  Cpu_Interrupt5__Fv Cpu_Interrupt6__Fv Cpu_Interrupt7__Fv Cpu_Interrupt8__Fv 
+  Cpu_Interrupt9__Fv Cpu_Interrupt10__Fv Cpu_Interrupt11__Fv 
   Cpu_Interrupt12__Fv Cpu_Interrupt13__Fv Cpu_Interrupt14__Fv 
   Cpu_Interrupt15__Fv Cpu_Interrupt16__Fv Cpu_Interrupt17__Fv 
-  Cpu_Interrupt47__Fv Cpu_Interrupt48__Fv 
+  Cpu_Interrupt47__Fv Cpu_Interrupt48__Fv Cpu_Interrupt55__Fv 
+  __ct__8PWMTimerFRC8PWMTimer __dt__8PWMTimerFv getNext__4NodoFv.2 
+  getDato__4NodoFv.1 
 D:\Jony\HCS12\Librerias\OOC\lang\reflect\reflect_Data\C_Ms_no_float\ObjectCode\Method.c.o (reflect_si.lib):
   Method_execute Method_getMethod Method_setMethod Method_getObj 
 D:\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\util\util_hcs12_cpp_Data\C++_Ms_no_float\ObjectCode\LinkedList.cpp.o (util_cpp_si.lib):
-  getDato__4NodoFv.1 __dt__10LinkedListFv differ__10LinkedListFP10LinkedList 
-  eliminarPrimero__10LinkedListFv 
-  linkedListIterator__10LinkedListFP28LinkedListIteratorLinkedList 
-  getPrimerNodo__10LinkedListFv setPrimerNodo__10LinkedListFP4Nodo 
-  __ct__28LinkedListIteratorLinkedListFv 
+  getDato__4NodoFv.1 differ__10LinkedListFP10LinkedList 
+  eliminarPrimero__10LinkedListFv getPrimerNodo__10LinkedListFv 
+  setPrimerNodo__10LinkedListFP4Nodo 
   __ct__28LinkedListIteratorLinkedListFP10LinkedList 
-  hasNext__28LinkedListIteratorLinkedListFv 
-  next__28LinkedListIteratorLinkedListFv 
 D:\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\util\util_hcs12_cpp_Data\C++_Ms_no_float\ObjectCode\nodo.cpp.o (util_cpp_si.lib):
   getNext__4NodoFv.2 getDato__4NodoFv.1 setDato__4NodoFPv differ__4NodoFP4Nodo 
-D:\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\ooc\ooc_hcs12_Data\C_Ms_no_float\ObjectCode\Object.c.o (ooc_si.lib):
-  instanceOf sizeOf Class_ctor Class_dtor super _new _delete deleteAndNil 
-  deleteAlloced super_ctor dtor super_dtor differ super_differ puto super_puto 
-D:\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\ooc\ooc_hcs12_Data\C_Ms_no_float\ObjectCode\OutputStream.c.o (ooc_si.lib):
-  OutputStream_close OutputStream_flush OutputStream_write 
-  OutputStream_writeByte close flush writeByte 
 PWMHard.cpp.o:
   __ct__3PWMFR16ManejadorMemoriaR8TConfPWM.3 
   __ct__7PWMHardFR16ManejadorMemoriaR8TConfPWM.4 
@@ -1660,14 +1981,51 @@ PromBkp.c.o:
   PromBkp_grabacionOBorradoEnEspera__FPv PromBkp_borrarPagina__FPvT0 
   PromBkp_grabarOBorrar__FPv PromBkp_setAGrabar__FPvUc PromBkp_getAGrabar__FPv 
   getNext__4NodoFv.2 getDato__4NodoFv.1 
+Salida.cpp.o:
+  setConectada__6SalidaFUi 
 MethodContainer.cpp.o:
-  executeMethods__15MethodContainerFv getNext__4NodoFv.2 getDato__4NodoFv.1 
+  getNext__4NodoFv.2 getDato__4NodoFv.1 
+ValvulaProporcional.cpp.o:
+  getTimeCloseInit__19ValvulaProporcionalFv.3 
+  __ct__3PWMFR16ManejadorMemoriaR8TConfPWM.4 
+  __sf_19ValvulaProporcional_getBandaMuerta__FPv 
+  __sf_19ValvulaProporcional_setBandaMuerta__FPvUi 
+  __sf_19ValvulaProporcional_getLimiteSuperiorTiempoAbierto__FPv 
+  __sf_19ValvulaProporcional_getLimiteSuperiorBandaMuerta__FPv 
+  getNext__4NodoFv.2 getDato__4NodoFv.1 
+RlxMTimer.c.o:
+  getNext__4NodoFv.2 getDato__4NodoFv.1 
+PlataformaEmbedded.cpp.o:
+  getNext__4NodoFv.2 getDato__4NodoFv.1 
+ThreadAttachable.cpp.o:
+  getAdjuntador__16ThreadAttachableFv 
+  __ct__30ThreadAttacherThreadAttachableFP16ThreadAttachable 
+  adjuntar__30ThreadAttacherThreadAttachableFP6Method getNext__4NodoFv.2 
+  getDato__4NodoFv.1 
+D:\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\ooc\ooc_hcs12_Data\C_Ms_no_float\ObjectCode\Object.c.o (ooc_si.lib):
+  instanceOf sizeOf Class_ctor Class_dtor super _delete deleteAndNil 
+  deleteAlloced super_ctor dtor super_dtor differ super_differ puto super_puto 
+D:\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\ooc\ooc_hcs12_Data\C_Ms_no_float\ObjectCode\OutputStream.c.o (ooc_si.lib):
+  OutputStream_close OutputStream_flush OutputStream_write 
+  OutputStream_writeByte close flush writeByte 
+MethodTimer.c.o:
+  getNext__4NodoFv.2 getDato__4NodoFv.1 
+Timer.c.o:
+  getNext__4NodoFv.2 getDato__4NodoFv.1 
+  __ct__19BaseTimers_1ms_40msFRC19BaseTimers_1ms_40ms 
+  __as__19BaseTimers_1ms_40msFRC19BaseTimers_1ms_40ms 
+  setBaseTimer__FPvP10BaseTimers Timer_getCuenta__FPv Timer_isfinish__FPv 
+  Timer_Restart__FPv Timer_setTime__FPvUl Timer_getTime__FPv 
+BaseTimers_1ms_40ms.cpp.o:
+  getNext__4NodoFv.2 getDato__4NodoFv.1 
+BaseTimers.cpp.o:
+  getNext__4NodoFv.2 getDato__4NodoFv.1 
+timer_interrupt.c.o:
+  getNext__4NodoFv.2 getDato__4NodoFv.1 
 NOT USED VARIABLES
 main.cpp.o:
-  periodos STRING.testing....periodo.2.5 ____vtbl__Iterator 
-  ____vtbl__LinkedListIteratorIterator 
-  ____vtbl__BaseTimersLinkedListListCollection ____vtbl__SalidaISalida 
-  ____vtbl__PWMHard45PWMHardPWMIPWMISalida potencia 
+  periodos STRING.testing....periodo.2.11 STRING.testing....periodo.1.12 
+  potencia ____vtbl__PWMHard45PWMHardPWMIPWMISalida 
   __sf_15PWMManager01_45_pwmHard45 
 EMBEDDED.C.o (ansisi.lib):
   STRING..1 
@@ -1684,75 +2042,80 @@ NEW.CPP.o (cppsi.lib):
   __sf_5Trace_nesting 
 AS1.c.o:
   BufferRead CCR_reg 
+TI1.c.o:
+  HighComp 
 FC321.c.o:
   LTicks CCR_reg 
-D:\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\util\util_hcs12_cpp_Data\C++_Ms_no_float\ObjectCode\LinkedList.cpp.o (util_cpp_si.lib):
-  ____vtbl__Iterator ____vtbl__LinkedListIteratorIterator 
+testVector.c.o:
+  ____vtbl__PWMTimerPWMIPWMISalida 
+Cpu.c.o:
+  CCR_reg 
+PWMHard23.cpp.o:
+  pwmconf23 
+PWMManager01_45.cpp.o:
+  periodos ____vtbl__PWMHard45PWMHardPWMIPWMISalida pwmconf01 pwmconf45 
+  __sf_15PWMManager01_45_pwmHard45 
+PromBkp.c.o:
+  PromBkpClass 
 D:\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\ooc\ooc_hcs12_Data\C_Ms_no_float\ObjectCode\Object.c.o (ooc_si.lib):
   STRING..s..cannot.destroy._.4 channels 
 D:\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\ooc\ooc_hcs12_Data\C_Ms_no_float\ObjectCode\OutputStream.c.o (ooc_si.lib):
   OutputStreamClass OutputStream STRING..1 STRING..c.2 
-Cpu.c.o:
-  CCR_reg 
-PWMHard.cpp.o:
-  ____vtbl__Iterator ____vtbl__LinkedListIteratorIterator 
-  ____vtbl__BaseTimersLinkedListListCollection 
-PWMHard23.cpp.o:
-  ____vtbl__Iterator ____vtbl__LinkedListIteratorIterator 
-  ____vtbl__BaseTimersLinkedListListCollection ____vtbl__SalidaISalida 
-  pwmconf23 
-PWMManager01_45.cpp.o:
-  periodos ____vtbl__Iterator ____vtbl__LinkedListIteratorIterator 
-  ____vtbl__BaseTimersLinkedListListCollection ____vtbl__SalidaISalida 
-  ____vtbl__PWMHard45PWMHardPWMIPWMISalida pwmconf01 pwmconf45 
-  __sf_15PWMManager01_45_pwmHard45 
-PWM.cpp.o:
-  ____vtbl__Iterator ____vtbl__LinkedListIteratorIterator 
-  ____vtbl__BaseTimersLinkedListListCollection 
-RamSimulaFlash.c.o:
-  ____vtbl__Iterator ____vtbl__LinkedListIteratorIterator 
-  ____vtbl__BaseTimersLinkedListListCollection 
-PromBkp.c.o:
-  PromBkpClass ____vtbl__Iterator ____vtbl__LinkedListIteratorIterator 
-  ____vtbl__BaseTimersLinkedListListCollection Timer 
-MethodContainer.cpp.o:
-  ____vtbl__Iterator ____vtbl__LinkedListIteratorIterator 
+Timer.c.o:
+  TimerClass 
 
 *********************************************************************************************
 COPYDOWN SECTION
 ---------------------------------------------------------------------------------------------
-------- ROM-ADDRESS: 0x5DC5 ---- SIZE       4 ---
+------- ROM-ADDRESS: 0x6417 ---- SIZE       4 ---
 Filling bytes inserted
- 0002100C
-------- ROM-ADDRESS: 0x5DC9 ---- RAM-ADDRESS: 0x100C ---- SIZE       2 ---
+ 00021000
+------- ROM-ADDRESS: 0x641B ---- RAM-ADDRESS: 0x1000 ---- SIZE       2 ---
 Name of initialized Object : potencia1
  01F4
-------- ROM-ADDRESS: 0x5DCB ---- SIZE       2 ---
+------- ROM-ADDRESS: 0x641D ---- SIZE       2 ---
 Filling bytes inserted
  0000
 
 *********************************************************************************************
 OBJECT-DEPENDENCIES SECTION
 ---------------------------------------------------------------------------------------------
+__DestructorInit__        USES threads __dt__16ThreadAttachableFv 
+__ConstructorInit__       USES plataforma __ct__18PlataformaEmbeddedFv 
 _EntryPoint               USES _INITRM _MISC _PEAR _CLKSEL _PLLCTL _SYNR 
                                 _REFDV _CRGFLG _Startup 
+__ConstructorInit__       USES threads __ct__16ThreadAttachableFv 
 Method                    USES STRING..1 Object Method_defConstructor 
-Object                    USES Class STRING.Object.5 Object Object_ctor 
-                                Object_dtor Object_differ Object_puto 
-Class                     USES Class STRING.Object.6 Object Object_ctor 
-                                Object_dtor Object_differ Object_puto 
 RamSimulaFlash            USES STRING..3 PromBkp 
                                 RamSimulaFlash_getWord__FPvPUi RamSimulaFlash_setWord__FPvPUiUi 
                                 RamSimulaFlash_borrarProm__FPvT0 RamSimulaFlash_grabarProm__FPv 
 PromBkp                   USES STRING..3 Object PromBkp_ctor__FPvPPSc 
                                 Object_dtor Object_differ Object_puto 
+RlxMTimer                 USES STRING..3 MethodTimer 
+                                RlxMTimer_DefConstruct__FPvPPSc RlxMTimer_Destruct__FPv RlxMTimer_OnTime__FPv 
+Object                    USES Class STRING.Object.5 Object Object_ctor 
+                                Object_dtor Object_differ Object_puto 
+Class                     USES Class STRING.Object.6 Object Object_ctor 
+                                Object_dtor Object_differ Object_puto 
+MethodTimer               USES STRING..3 Timer MTimer_DefConstruct__FPvPPSc 
+                                Timer_Destruct__FPv MTimer_OnTime__FPv 
+Timer                     USES STRING..3 Object Timer_DefConstruct__FPvPPSc 
+                                Timer_Destruct__FPv Timer_OnTime__FPv 
+TI1_Interrupt__Fv         USES _TC0 CmpVal _TFLG1 TI1ms_OnInterrupt__Fv 
+                                TI40ms_OnInterrupt__Fv 
 FC321_Interrupt__Fv       USES TTicks _LINC TOvf _TFLG1 
 main                      USES PE_low_level_init__Fv __ct__14RamSimulaFlashFv 
                                 RamSimulaFlash newAlloced 
                                 __ct__24PWMHard01PWMManager01_45FR16ManejadorMemoriaR8TConfPWM __ct__9PWMHard23FR16ManejadorMemoriaR8TConfPWM 
-                                testPwmHard45__FR7PWMHard 
-testPwmHard45__FR7PWMHard USES potencia1 STRING.testing....periodo.1.6 
-                                print__FPSc _LOAD_FAR_16 
+                                _PTT 
+                                __ct__19ValvulaProporcionalFR16ManejadorMemoriaP42ConfValvulaProporcionalValvulaProporcionalPUciT3T4 
+                                testValvulaProporcional__FR19ValvulaProporcional 
+testValvulaProporcional__FR19ValvulaProporcional USES 
+                                STRING.testing....valvula.p.6 print__FPSc _LOAD_FAR_16 potencia1 
+                                STRING.esperando.cierre.ini.7 plataforma mainLoop__18PlataformaEmbeddedFv 
+                                _LCMP_P STRING.esperando.que.se.det.8 
+                                getStatus__19ValvulaProporcionalFv pote STRING.test.ok....9 
+                                STRING.test.fail....10 
 print__FPSc               USES AS1_Enable__Fv _SCISR1 _SCIDRL AS1_Disable__Fv 
 Init__Fv                  USES _startupData 
 _Startup                  USES __SEG_END_SSTACK Init__Fv main 
@@ -1767,17 +2130,12 @@ malloc                    USES heap_end _heap_ free_ptr _heapcrash_
 free                      USES _heap_ heap_end free free_ptr _heapcrash_ 
 __nw__FGUi                USES malloc exit 
 __dl__FGPv                USES free 
-Object_puto               USES classOf write STRING..at..1 STRING..x.2 sprintf 
-classOf                   USES STRING.D..versionR51.micros.3 _assert 
-newAlloced                USES ctor STRING.D..versionR51.micros.3 _assert 
-ctor                      USES classOf 
-write                     USES classOf STRING.D..versionR51.micros.3 _assert 
 PE_low_level_init__Fv     USES _HPRIO _PORTAB _PUCR _DDRAB _PTM _DDRM _PIEJ 
                                 _PTJ _PERJ _DDRJ _PTS _WOMS _DDRS _PIEP _PTP _PERP 
                                 _DDRP _PEAR _DDRE _COPCTL _TSCR1 _OC7M _TCTL1 _TCTL2 
                                 _TIE _TIOS _TTOV _TSCR2 _TFLG1 _PTT _DDRT _ATDDIEN 
                                 _PTAD _PERAD _DDRAD _PWMCTL _PWMSDN AS1_Init__Fv 
-                                FC321_Init__Fv 
+                                TI1_Init__Fv FC321_Init__Fv timerInterrupt_init__Fv 
 __sf_7PWMHard_setDuty__F13ReferenciaPWMi USES _PWMPER01 _PWMDTY01 _ILSEXT 
                                 _LMUL _LDIVU 
 __sf_7PWMHard_setPeriodoHard__F13ReferenciaPWMUi USES _PWMPER01 
@@ -1837,10 +2195,63 @@ __sf_15PWMManager01_45_PWM01_actualizarPotencia__FUi USES _PWME
 setPotencia__3PWMFUi      USES _LOAD_FAR_16 
 getPeriodo__3PWMFv        USES getPeriodoConfiguracion__3PWMFv 
 setConectada__3PWMFUc     USES _LOAD_FAR_16 
-Salida_setPotencia__3PWMFUi USES _LOAD_FAR_16 setPotencia__3PWMFUi 
+Salida_setPotencia__3PWMFUi USES _LOAD_FAR_16 
+setPotencia__6SalidaFUi   USES _LOAD_FAR_16 
 __ct__15MethodContainerFv USES __ct__10LinkedListFv 
                                 ____vtbl__MethodContainerLinkedListListCollection 
 add__15MethodContainerFPv USES classOf Method add__10LinkedListFPv 
+executeMethods__15MethodContainerFv USES 
+                                __ct__28LinkedListIteratorLinkedListFv 
+                                linkedListIterator__10LinkedListFP28LinkedListIteratorLinkedList next__28LinkedListIteratorLinkedListFv 
+                                hasNext__28LinkedListIteratorLinkedListFv 
+__ct__19ValvulaProporcionalFR16ManejadorMemoriaP42ConfValvulaProporcionalValvulaProporcionalPUciT3T4 USES 
+                                __ct__6SalidaFv ____vtbl__ValvulaProporcionalSalidaISalida 
+                                _BSHL 
+                                __sf_19ValvulaProporcional_getTiempoAbierto__FPv 
+                                __sf_19ValvulaProporcional_setTiempoAbierto__FPvUi __sf_19ValvulaProporcional_onCheckear__FPv 
+                                RlxMTimer newAlloced 
+__sf_19ValvulaProporcional_onCheckear__FPv USES _LCMP_P _LDEC 
+                                cerrar__19ValvulaProporcionalFv __sf_19ValvulaProporcional_onCheckear__FPv 
+                                abrir__19ValvulaProporcionalFv detener__19ValvulaProporcionalFv 
+pthread_create__FPvT0PFPv_PvT0 USES Method _new threads 
+                                adjuntar__16ThreadAttachableFP6Method 
+mainLoop__18PlataformaEmbeddedFv USES threads 
+                                executeThreads__16ThreadAttachableFv 
+adjuntar__16ThreadAttachableFP6Method USES _LOAD_FAR_16 
+executeThreads__16ThreadAttachableFv USES executeMethods__15MethodContainerFv 
+Object_puto               USES classOf write STRING..at..1 STRING..x.2 sprintf 
+classOf                   USES STRING.D..versionR51.micros.3 _assert 
+_new                      USES malloc ctor STRING.D..versionR51.micros.3 
+                                _assert 
+newAlloced                USES ctor STRING.D..versionR51.micros.3 _assert 
+ctor                      USES classOf 
+write                     USES classOf STRING.D..versionR51.micros.3 _assert 
+__ct__19BaseTimers_1ms_40msFv USES __ct__10BaseTimersFv 
+                                ____vtbl__BaseTimers_1ms_40msBaseTimersLinkedListListCollection __sf_19BaseTimers_1ms_40ms_inc1__FPv Method 
+                                newAlloced __sf_19BaseTimers_1ms_40ms_inc40__FPv 
+                                add1msListener__FP6Method add40msListener__FP6Method 
+__sf_19BaseTimers_1ms_40ms_getInstance__Fv USES 
+                                __sf_19BaseTimers_1ms_40ms_instance __nw__FGUi __ct__19BaseTimers_1ms_40msFv 
+lockInc__19BaseTimers_1ms_40msFv USES TI1_Disable__Fv 
+unlockInc__19BaseTimers_1ms_40msFv USES TI1_Enable__Fv 
+__sf_19BaseTimers_1ms_40ms_inc1__FPv USES incrementar__10BaseTimersFUi 
+                                actualizarTimers__10BaseTimersFv 
+__sf_19BaseTimers_1ms_40ms_inc40__FPv USES incrementar__10BaseTimersFUi 
+                                actualizarTimers__10BaseTimersFv 
+moveOut__10BaseTimersFPv  USES moveOut__10LinkedListFPv _LOAD_FAR_16 
+actualizarTimers__10BaseTimersFv USES __ct__28LinkedListIteratorLinkedListFv 
+                                linkedListIterator__10LinkedListFP28LinkedListIteratorLinkedList next__28LinkedListIteratorLinkedListFv 
+                                TimerComp__FPv hasNext__28LinkedListIteratorLinkedListFv 
+timerInterrupt_init__Fv   USES __nw__FGUi listeners40ms 
+                                __ct__15MethodContainerFv listeners1ms 
+TI1ms_OnInterrupt__Fv     USES listeners1ms 
+                                executeMethods__15MethodContainerFv 
+TI40ms_OnInterrupt__Fv    USES listeners40ms 
+                                executeMethods__15MethodContainerFv 
+add1msListener__FP6Method USES listeners1ms _LOAD_FAR_16 
+add40msListener__FP6Method USES listeners40ms _LOAD_FAR_16 
+____vtbl__LinkedListIteratorIterator USES 
+                                next__28LinkedListIteratorLinkedListFv hasNext__28LinkedListIteratorLinkedListFv 
 ____vtbl__LinkedListListCollection USES add__10LinkedListFPv 
                                 clear__10LinkedListFv contains__10LinkedListFPv 
                                 isEmpty__10LinkedListFv iterator__10LinkedListFv 
@@ -1851,10 +2262,17 @@ ____vtbl__MethodContainerLinkedListListCollection USES
                                 contains__10LinkedListFPv isEmpty__10LinkedListFv 
                                 iterator__10LinkedListFv moveOut__10LinkedListFPv size__10LinkedListFv 
                                 get__10LinkedListFUi aniadir__10LinkedListFPv 
+____vtbl__BaseTimersLinkedListListCollection USES add__10LinkedListFPv 
+                                clear__10LinkedListFv contains__10LinkedListFPv 
+                                isEmpty__10LinkedListFv iterator__10LinkedListFv 
+                                moveOut__10BaseTimersFPv size__10LinkedListFv get__10LinkedListFUi 
+                                aniadir__10LinkedListFPv 
 ____vtbl__PWMIPWMISalida  USES getPotencia__3PWMFv setPotencia__3PWMFUi 
                                 getConectada__3PWMFv setConectada__3PWMFUc getPeriodo__3PWMFv 
 ____vtbl__PWMHardPWMIPWMISalida USES getPotencia__3PWMFv setPotencia__3PWMFUi 
                                 getConectada__7PWMHardFv setConectada__7PWMHardFUc getPeriodo__3PWMFv 
+____vtbl__SalidaISalida   USES getPotencia__6SalidaFv setPotencia__6SalidaFUi 
+                                getConectada__6SalidaFv 
 ____vtbl__PWMHard23PWMHardPWMIPWMISalida USES getPotencia__3PWMFv 
                                 setPotencia__9PWMHard23FUi getTipoSalida__9PWMHard23Fv 
                                 setTipoSalida__9PWMHard23F10TipoSalida getConectada__7PWMHardFv 
@@ -1866,14 +2284,41 @@ ____vtbl__PWMHard01PWMHardPWMIPWMISalida USES getPotencia__3PWMFv
                                 setConectada__7PWMHardFUc 
                                 setPeriodo__24PWMHard01PWMManager01_45F7TPeriod getPeriodo__3PWMFv 
                                 getEstadoSalida__24PWMHard01PWMManager01_45Fv 
+____vtbl__ValvulaProporcionalSalidaISalida USES 
+                                getPotencia__19ValvulaProporcionalFv setPotencia__19ValvulaProporcionalFUi 
+                                getTipoSalida__19ValvulaProporcionalFv 
+                                setTipoSalida__19ValvulaProporcionalF10TipoSalida getConectada__19ValvulaProporcionalFv 
+                                setConectada__19ValvulaProporcionalFUc 
+____vtbl__ThreadAttachableMethodContainerLinkedListListCollection USES 
+                                add__15MethodContainerFPv clear__10LinkedListFv 
+                                contains__10LinkedListFPv isEmpty__10LinkedListFv 
+                                iterator__10LinkedListFv moveOut__10LinkedListFPv size__10LinkedListFv 
+                                get__10LinkedListFUi aniadir__10LinkedListFPv 
+____vtbl__PlataformaEmbedded USES mainLoop__18PlataformaEmbeddedFv 
+____vtbl__BaseTimers_1ms_40msBaseTimersLinkedListListCollection USES 
+                                add__10LinkedListFPv clear__10LinkedListFv 
+                                contains__10LinkedListFPv isEmpty__10LinkedListFv 
+                                iterator__10LinkedListFv moveOut__10BaseTimersFPv size__10LinkedListFv 
+                                get__10LinkedListFUi aniadir__10LinkedListFPv 
+                                lockInc__19BaseTimers_1ms_40msFv unlockInc__19BaseTimers_1ms_40msFv 
 __ct__7ISalidaFv          USES ____vtbl__ISalida 
 __ct__4IPWMFv             USES __ct__7ISalidaFv ____vtbl__IPWMISalida 
+__ct__8IteratorFv         USES ____vtbl__Iterator 
 __ct__10CollectionFv      USES ____vtbl__Collection 
 __ct__4ListFv             USES __ct__10CollectionFv ____vtbl__ListCollection 
+__dt__15MethodContainerFv USES __dt__10LinkedListFv 
+__ct__10BaseTimersFv      USES __ct__10LinkedListFv 
+                                ____vtbl__BaseTimersLinkedListListCollection 
+__ct__6SalidaFv           USES __ct__7ISalidaFv ____vtbl__SalidaISalida 
 __ct__7PromBkpFv          USES __ct__10LinkedListFv 
 __ct__14RamSimulaFlashFv  USES __ct__7PromBkpFv 
+__ct__16ThreadAttachableFv USES __ct__15MethodContainerFv 
+                                ____vtbl__ThreadAttachableMethodContainerLinkedListListCollection 
+__dt__16ThreadAttachableFv USES __dt__15MethodContainerFv 
+__ct__18PlataformaEmbeddedFv USES ____vtbl__PlataformaEmbedded 
 __ct__10LinkedListFv      USES __ct__4ListFv 
                                 ____vtbl__LinkedListListCollection 
+__dt__10LinkedListFv      USES _LOAD_FAR_16 
 clear__10LinkedListFv     USES __dl__FGPv 
 add__10LinkedListFPv      USES __nw__FGUi __ct__4NodoFPvP4Nodo 
 aniadir__10LinkedListFPv  USES __nw__FGUi __ct__4NodoFPvP4Nodo _LOAD_FAR_16 
@@ -1881,17 +2326,42 @@ aniadir__10LinkedListFPv  USES __nw__FGUi __ct__4NodoFPvP4Nodo _LOAD_FAR_16
 moveOut__10LinkedListFPv  USES deleteNodo__10LinkedListFP4NodoT1 
 deleteNodo__10LinkedListFP4NodoT1 USES getNext__4NodoFv.2 
                                 setNext__4NodoFP4Nodo __dl__FGPv 
+__ct__28LinkedListIteratorLinkedListFv USES __ct__8IteratorFv 
+                                ____vtbl__LinkedListIteratorIterator 
 Method_defConstructor     USES Method_constructor 
+Timer_Construct__FPvUl    USES __sf_19BaseTimers_1ms_40ms_getInstance__Fv 
+                                getCuenta__10BaseTimersFv _LCMP_P _LOAD_FAR_16 
+Timer_DefConstruct__FPvPPSc USES Timer_Construct__FPvUl 
+Timer_Destruct__FPv       USES Timer_Stop__FPv 
+Timer_OnTime__FPv         USES Timer_Stop__FPv 
+TimerComp__FPv            USES getCuenta__10BaseTimersFv _ILSEXT 
+Timer_Stop__FPv           USES _LOAD_FAR_16 
 AS1_Enable__Fv            USES EnUser _SCICR2 SerFlag _SCISR1 
 AS1_Disable__Fv           USES EnUser _SCICR2 
 AS1_Init__Fv              USES SerFlag EnUser _SCICR1 _SCISR2 _SCISR1 _SCICR2 
                                 _SCIBD 
+MTimer_Construct__FPvUlPFPv_vT0 USES Timer_Construct__FPvUl 
+                                MethodTimer_setMetodo__FPvPFPv_vT0 
+MTimer_DefConstruct__FPvPPSc USES MTimer_Construct__FPvUlPFPv_vT0 
+RlxMTimer_Construct__FPvUlPFPv_vT0 USES MTimer_Construct__FPvUlPFPv_vT0 
+                                _RlxMTCont __nw__FGUi __ct__10LinkedListFv 
+                                RlxMTimer_Handler__FPv pthread_create__FPvT0PFPv_PvT0 _LOAD_FAR_16 
+RlxMTimer_DefConstruct__FPvPPSc USES RlxMTimer_Construct__FPvUlPFPv_vT0 
+RlxMTimer_Destruct__FPv   USES _RlxMTCont _LOAD_FAR_16 __dt__10LinkedListFv 
+                                __dl__FGPv Timer_Destruct__FPv 
+RlxMTimer_Handler__FPv    USES _RlxMTCont 
+                                __ct__28LinkedListIteratorLinkedListFv 
+                                linkedListIterator__10LinkedListFP28LinkedListIteratorLinkedList next__28LinkedListIteratorLinkedListFv 
+                                hasNext__28LinkedListIteratorLinkedListFv 
 _LDIVU                    USES _lDivMod 
+TI1_Enable__Fv            USES _TFLG1 _TIE 
+TI1_Disable__Fv           USES _TFLG1 _TIE 
+TI1_Init__Fv              USES CmpVal _TC0 _TIE 
 FC321_Init__Fv            USES TTicks TOvf _TC7 
 _vect                     USES Cpu_Interrupt__Fv Cpu_Interrupt41__Fv 
                                 Cpu_Interrupt43__Fv FC321_Interrupt__Fv Cpu_Interrupt49__Fv 
                                 Cpu_Interrupt50__Fv Cpu_Interrupt51__Fv Cpu_Interrupt52__Fv 
-                                Cpu_Interrupt53__Fv Cpu_Interrupt54__Fv Cpu_Interrupt55__Fv 
+                                Cpu_Interrupt53__Fv Cpu_Interrupt54__Fv TI1_Interrupt__Fv 
                                 Cpu_Interrupt56__Fv _EntryPoint 
 
 *********************************************************************************************
@@ -1905,128 +2375,170 @@ DEPENDENCY TREE
  |  |  | 
  |  |  +- AS1_Init__Fv        
  |  |  |    
+ |  |  +- TI1_Init__Fv        
+ |  |  |    
  |  |  +- FC321_Init__Fv      
- |  |       
+ |  |  |    
+ |  |  +- timerInterrupt_init__Fv
+ |  |     | 
+ |  |     +- __nw__FGUi          
+ |  |     |  | 
+ |  |     |  +- malloc              
+ |  |     |  |  | 
+ |  |     |  |  +- _heapcrash_         
+ |  |     |  |       
+ |  |     |  +- exit                
+ |  |     |       
+ |  |     +- __ct__15MethodContainerFv
+ |  |        | 
+ |  |        +- __ct__10LinkedListFv
+ |  |        |  | 
+ |  |        |  +- __ct__4ListFv       
+ |  |        |  |  | 
+ |  |        |  |  +- __ct__10CollectionFv
+ |  |        |  |       
+ |  |        |  +- ____vtbl__LinkedListListCollection
+ |  |        |     | 
+ |  |        |     +- add__10LinkedListFPv
+ |  |        |     |  | 
+ |  |        |     |  +- __nw__FGUi           (see above)
+ |  |        |     |  |  
+ |  |        |     |  +- __ct__4NodoFPvP4Nodo
+ |  |        |     |       
+ |  |        |     +- clear__10LinkedListFv
+ |  |        |     |  | 
+ |  |        |     |  +- __dl__FGPv          
+ |  |        |     |     | 
+ |  |        |     |     +- free                
+ |  |        |     |        | 
+ |  |        |     |        +- _heapcrash_          (see above)
+ |  |        |     |           
+ |  |        |     +- contains__10LinkedListFPv
+ |  |        |     |    
+ |  |        |     +- isEmpty__10LinkedListFv
+ |  |        |     |    
+ |  |        |     +- iterator__10LinkedListFv
+ |  |        |     |    
+ |  |        |     +- moveOut__10LinkedListFPv
+ |  |        |     |  | 
+ |  |        |     |  +- deleteNodo__10LinkedListFP4NodoT1
+ |  |        |     |     | 
+ |  |        |     |     +- getNext__4NodoFv.2  
+ |  |        |     |     |    
+ |  |        |     |     +- setNext__4NodoFP4Nodo
+ |  |        |     |     |    
+ |  |        |     |     +- __dl__FGPv           (see above)
+ |  |        |     |        
+ |  |        |     +- size__10LinkedListFv
+ |  |        |     |    
+ |  |        |     +- get__10LinkedListFUi
+ |  |        |     |    
+ |  |        |     +- aniadir__10LinkedListFPv
+ |  |        |        | 
+ |  |        |        +- __nw__FGUi           (see above)
+ |  |        |        |  
+ |  |        |        +- __ct__4NodoFPvP4Nodo (see above)
+ |  |        |        |  
+ |  |        |        +- _LOAD_FAR_16        
+ |  |        |        |    
+ |  |        |        +- setNext__4NodoFP4Nodo (see above)
+ |  |        |           
+ |  |        +- ____vtbl__MethodContainerLinkedListListCollection
+ |  |           | 
+ |  |           +- add__15MethodContainerFPv
+ |  |           |  | 
+ |  |           |  +- classOf             
+ |  |           |  |  | 
+ |  |           |  |  +- _assert             
+ |  |           |  |     | 
+ |  |           |  |     +- abort               
+ |  |           |  |          
+ |  |           |  +- Method              
+ |  |           |  |  | 
+ |  |           |  |  +- Object              
+ |  |           |  |  |  | 
+ |  |           |  |  |  +- Class               
+ |  |           |  |  |  |  | 
+ |  |           |  |  |  |  +- Object               (see above)
+ |  |           |  |  |  |  |  
+ |  |           |  |  |  |  +- Object_ctor         
+ |  |           |  |  |  |  |    
+ |  |           |  |  |  |  +- Object_dtor         
+ |  |           |  |  |  |  |    
+ |  |           |  |  |  |  +- Object_differ       
+ |  |           |  |  |  |  |    
+ |  |           |  |  |  |  +- Object_puto         
+ |  |           |  |  |  |     | 
+ |  |           |  |  |  |     +- classOf              (see above)
+ |  |           |  |  |  |     |  
+ |  |           |  |  |  |     +- write               
+ |  |           |  |  |  |     |  | 
+ |  |           |  |  |  |     |  +- classOf              (see above)
+ |  |           |  |  |  |     |  |  
+ |  |           |  |  |  |     |  +- _assert              (see above)
+ |  |           |  |  |  |     |     
+ |  |           |  |  |  |     +- sprintf             
+ |  |           |  |  |  |        | 
+ |  |           |  |  |  |        +- deposit_char        
+ |  |           |  |  |  |        |    
+ |  |           |  |  |  |        +- vprintf             
+ |  |           |  |  |  |           | 
+ |  |           |  |  |  |           +- _out                
+ |  |           |  |  |  |           |    
+ |  |           |  |  |  |           +- _CASE_SEARCH_8_BYTE 
+ |  |           |  |  |  |           |    
+ |  |           |  |  |  |           +- _CASE_DIRECT_BYTE   
+ |  |           |  |  |  |           |    
+ |  |           |  |  |  |           +- _CASE_SEARCH_8      
+ |  |           |  |  |  |           |    
+ |  |           |  |  |  |           +- _ILSEXT             
+ |  |           |  |  |  |           |    
+ |  |           |  |  |  |           +- _LNEG               
+ |  |           |  |  |  |           |    
+ |  |           |  |  |  |           +- _LCMP_P             
+ |  |           |  |  |  |                
+ |  |           |  |  |  +- Object_ctor          (see above)
+ |  |           |  |  |  |  
+ |  |           |  |  |  +- Object_dtor          (see above)
+ |  |           |  |  |  |  
+ |  |           |  |  |  +- Object_differ        (see above)
+ |  |           |  |  |  |  
+ |  |           |  |  |  +- Object_puto          (see above)
+ |  |           |  |  |     
+ |  |           |  |  +- Method_defConstructor
+ |  |           |  |     | 
+ |  |           |  |     +- Method_constructor  
+ |  |           |  |          
+ |  |           |  +- add__10LinkedListFPv (see above)
+ |  |           |     
+ |  |           +- clear__10LinkedListFv (see above)
+ |  |           |  
+ |  |           +- contains__10LinkedListFPv (see above)
+ |  |           |  
+ |  |           +- isEmpty__10LinkedListFv (see above)
+ |  |           |  
+ |  |           +- iterator__10LinkedListFv (see above)
+ |  |           |  
+ |  |           +- moveOut__10LinkedListFPv (see above)
+ |  |           |  
+ |  |           +- size__10LinkedListFv (see above)
+ |  |           |  
+ |  |           +- get__10LinkedListFUi (see above)
+ |  |           |  
+ |  |           +- aniadir__10LinkedListFPv (see above)
+ |  |              
  |  +- __ct__14RamSimulaFlashFv
  |  |  | 
  |  |  +- __ct__7PromBkpFv    
  |  |     | 
- |  |     +- __ct__10LinkedListFv
- |  |        | 
- |  |        +- __ct__4ListFv       
- |  |        |  | 
- |  |        |  +- __ct__10CollectionFv
- |  |        |       
- |  |        +- ____vtbl__LinkedListListCollection
- |  |           | 
- |  |           +- add__10LinkedListFPv
- |  |           |  | 
- |  |           |  +- __nw__FGUi          
- |  |           |  |  | 
- |  |           |  |  +- malloc              
- |  |           |  |  |  | 
- |  |           |  |  |  +- _heapcrash_         
- |  |           |  |  |       
- |  |           |  |  +- exit                
- |  |           |  |       
- |  |           |  +- __ct__4NodoFPvP4Nodo
- |  |           |       
- |  |           +- clear__10LinkedListFv
- |  |           |  | 
- |  |           |  +- __dl__FGPv          
- |  |           |     | 
- |  |           |     +- free                
- |  |           |        | 
- |  |           |        +- _heapcrash_          (see above)
- |  |           |           
- |  |           +- contains__10LinkedListFPv
- |  |           |    
- |  |           +- isEmpty__10LinkedListFv
- |  |           |    
- |  |           +- iterator__10LinkedListFv
- |  |           |    
- |  |           +- moveOut__10LinkedListFPv
- |  |           |  | 
- |  |           |  +- deleteNodo__10LinkedListFP4NodoT1
- |  |           |     | 
- |  |           |     +- getNext__4NodoFv.2  
- |  |           |     |    
- |  |           |     +- setNext__4NodoFP4Nodo
- |  |           |     |    
- |  |           |     +- __dl__FGPv           (see above)
- |  |           |        
- |  |           +- size__10LinkedListFv
- |  |           |    
- |  |           +- get__10LinkedListFUi
- |  |           |    
- |  |           +- aniadir__10LinkedListFPv
- |  |              | 
- |  |              +- __nw__FGUi           (see above)
- |  |              |  
- |  |              +- __ct__4NodoFPvP4Nodo (see above)
- |  |              |  
- |  |              +- _LOAD_FAR_16        
- |  |              |    
- |  |              +- setNext__4NodoFP4Nodo (see above)
- |  |                 
+ |  |     +- __ct__10LinkedListFv (see above)
+ |  |        
  |  +- RamSimulaFlash      
  |  |  | 
  |  |  +- PromBkp             
  |  |  |  | 
- |  |  |  +- Object              
- |  |  |  |  | 
- |  |  |  |  +- Class               
- |  |  |  |  |  | 
- |  |  |  |  |  +- Object               (see above)
- |  |  |  |  |  |  
- |  |  |  |  |  +- Object_ctor         
- |  |  |  |  |  |    
- |  |  |  |  |  +- Object_dtor         
- |  |  |  |  |  |    
- |  |  |  |  |  +- Object_differ       
- |  |  |  |  |  |    
- |  |  |  |  |  +- Object_puto         
- |  |  |  |  |     | 
- |  |  |  |  |     +- classOf             
- |  |  |  |  |     |  | 
- |  |  |  |  |     |  +- _assert             
- |  |  |  |  |     |     | 
- |  |  |  |  |     |     +- abort               
- |  |  |  |  |     |          
- |  |  |  |  |     +- write               
- |  |  |  |  |     |  | 
- |  |  |  |  |     |  +- classOf              (see above)
- |  |  |  |  |     |  |  
- |  |  |  |  |     |  +- _assert              (see above)
- |  |  |  |  |     |     
- |  |  |  |  |     +- sprintf             
- |  |  |  |  |        | 
- |  |  |  |  |        +- deposit_char        
- |  |  |  |  |        |    
- |  |  |  |  |        +- vprintf             
- |  |  |  |  |           | 
- |  |  |  |  |           +- _out                
- |  |  |  |  |           |    
- |  |  |  |  |           +- _CASE_SEARCH_8_BYTE 
- |  |  |  |  |           |    
- |  |  |  |  |           +- _CASE_DIRECT_BYTE   
- |  |  |  |  |           |    
- |  |  |  |  |           +- _CASE_SEARCH_8      
- |  |  |  |  |           |    
- |  |  |  |  |           +- _ILSEXT             
- |  |  |  |  |           |    
- |  |  |  |  |           +- _LNEG               
- |  |  |  |  |           |    
- |  |  |  |  |           +- _LCMP_P             
- |  |  |  |  |                
- |  |  |  |  +- Object_ctor          (see above)
- |  |  |  |  |  
- |  |  |  |  +- Object_dtor          (see above)
- |  |  |  |  |  
- |  |  |  |  +- Object_differ        (see above)
- |  |  |  |  |  
- |  |  |  |  +- Object_puto          (see above)
- |  |  |  |     
+ |  |  |  +- Object               (see above)
+ |  |  |  |  
  |  |  |  +- PromBkp_ctor__FPvPPSc
  |  |  |  |    
  |  |  |  +- Object_dtor          (see above)
@@ -2059,42 +2571,8 @@ DEPENDENCY TREE
  |  |  |  |  | 
  |  |  |  |  +- __ct__7ISalidaFv    
  |  |  |  |       
- |  |  |  +- __ct__15MethodContainerFv
- |  |  |  |  | 
- |  |  |  |  +- __ct__10LinkedListFv (see above)
- |  |  |  |  |  
- |  |  |  |  +- ____vtbl__MethodContainerLinkedListListCollection
- |  |  |  |     | 
- |  |  |  |     +- add__15MethodContainerFPv
- |  |  |  |     |  | 
- |  |  |  |     |  +- classOf              (see above)
- |  |  |  |     |  |  
- |  |  |  |     |  +- Method              
- |  |  |  |     |  |  | 
- |  |  |  |     |  |  +- Object               (see above)
- |  |  |  |     |  |  |  
- |  |  |  |     |  |  +- Method_defConstructor
- |  |  |  |     |  |     | 
- |  |  |  |     |  |     +- Method_constructor  
- |  |  |  |     |  |          
- |  |  |  |     |  +- add__10LinkedListFPv (see above)
- |  |  |  |     |     
- |  |  |  |     +- clear__10LinkedListFv (see above)
- |  |  |  |     |  
- |  |  |  |     +- contains__10LinkedListFPv (see above)
- |  |  |  |     |  
- |  |  |  |     +- isEmpty__10LinkedListFv (see above)
- |  |  |  |     |  
- |  |  |  |     +- iterator__10LinkedListFv (see above)
- |  |  |  |     |  
- |  |  |  |     +- moveOut__10LinkedListFPv (see above)
- |  |  |  |     |  
- |  |  |  |     +- size__10LinkedListFv (see above)
- |  |  |  |     |  
- |  |  |  |     +- get__10LinkedListFUi (see above)
- |  |  |  |     |  
- |  |  |  |     +- aniadir__10LinkedListFPv (see above)
- |  |  |  |        
+ |  |  |  +- __ct__15MethodContainerFv (see above)
+ |  |  |  |  
  |  |  |  +- ____vtbl__PWMIPWMISalida
  |  |  |  |  | 
  |  |  |  |  +- getPotencia__3PWMFv 
@@ -2146,8 +2624,6 @@ DEPENDENCY TREE
  |  |     |  +- Salida_setPotencia__3PWMFUi
  |  |     |     | 
  |  |     |     +- _LOAD_FAR_16         (see above)
- |  |     |     |  
- |  |     |     +- setPotencia__3PWMFUi (see above)
  |  |     |        
  |  |     +- getTipoSalida__24PWMHard01PWMManager01_45Fv
  |  |     |    
@@ -2239,7 +2715,257 @@ DEPENDENCY TREE
  |  |     |  
  |  |     +- getEstadoSalida__9PWMHard23Fv
  |  |          
- |  +- testPwmHard45__FR7PWMHard
+ |  +- __ct__19ValvulaProporcionalFR16ManejadorMemoriaP42ConfValvulaProporcionalValvulaProporcionalPUciT3T4
+ |  |  | 
+ |  |  +- __ct__6SalidaFv     
+ |  |  |  | 
+ |  |  |  +- __ct__7ISalidaFv     (see above)
+ |  |  |  |  
+ |  |  |  +- ____vtbl__SalidaISalida
+ |  |  |     | 
+ |  |  |     +- getPotencia__6SalidaFv
+ |  |  |     |    
+ |  |  |     +- setPotencia__6SalidaFUi
+ |  |  |     |  | 
+ |  |  |     |  +- _LOAD_FAR_16         (see above)
+ |  |  |     |     
+ |  |  |     +- getConectada__6SalidaFv
+ |  |  |          
+ |  |  +- ____vtbl__ValvulaProporcionalSalidaISalida
+ |  |  |  | 
+ |  |  |  +- getPotencia__19ValvulaProporcionalFv
+ |  |  |  |    
+ |  |  |  +- setPotencia__19ValvulaProporcionalFUi
+ |  |  |  |    
+ |  |  |  +- getTipoSalida__19ValvulaProporcionalFv
+ |  |  |  |    
+ |  |  |  +- setTipoSalida__19ValvulaProporcionalF10TipoSalida
+ |  |  |  |    
+ |  |  |  +- getConectada__19ValvulaProporcionalFv
+ |  |  |  |    
+ |  |  |  +- setConectada__19ValvulaProporcionalFUc
+ |  |  |       
+ |  |  +- _BSHL                (see above)
+ |  |  |  
+ |  |  +- __sf_19ValvulaProporcional_getTiempoAbierto__FPv
+ |  |  |    
+ |  |  +- __sf_19ValvulaProporcional_setTiempoAbierto__FPvUi
+ |  |  |    
+ |  |  +- __sf_19ValvulaProporcional_onCheckear__FPv
+ |  |  |  | 
+ |  |  |  +- _LCMP_P              (see above)
+ |  |  |  |  
+ |  |  |  +- _LDEC               
+ |  |  |  |    
+ |  |  |  +- cerrar__19ValvulaProporcionalFv
+ |  |  |  |    
+ |  |  |  +- abrir__19ValvulaProporcionalFv
+ |  |  |  |    
+ |  |  |  +- detener__19ValvulaProporcionalFv
+ |  |  |       
+ |  |  +- RlxMTimer           
+ |  |  |  | 
+ |  |  |  +- MethodTimer         
+ |  |  |  |  | 
+ |  |  |  |  +- Timer               
+ |  |  |  |  |  | 
+ |  |  |  |  |  +- Object               (see above)
+ |  |  |  |  |  |  
+ |  |  |  |  |  +- Timer_DefConstruct__FPvPPSc
+ |  |  |  |  |  |  | 
+ |  |  |  |  |  |  +- Timer_Construct__FPvUl
+ |  |  |  |  |  |     | 
+ |  |  |  |  |  |     +- __sf_19BaseTimers_1ms_40ms_getInstance__Fv
+ |  |  |  |  |  |     |  | 
+ |  |  |  |  |  |     |  +- __nw__FGUi           (see above)
+ |  |  |  |  |  |     |  |  
+ |  |  |  |  |  |     |  +- __ct__19BaseTimers_1ms_40msFv
+ |  |  |  |  |  |     |     | 
+ |  |  |  |  |  |     |     +- __ct__10BaseTimersFv
+ |  |  |  |  |  |     |     |  | 
+ |  |  |  |  |  |     |     |  +- __ct__10LinkedListFv (see above)
+ |  |  |  |  |  |     |     |  |  
+ |  |  |  |  |  |     |     |  +- ____vtbl__BaseTimersLinkedListListCollection
+ |  |  |  |  |  |     |     |     | 
+ |  |  |  |  |  |     |     |     +- add__10LinkedListFPv (see above)
+ |  |  |  |  |  |     |     |     |  
+ |  |  |  |  |  |     |     |     +- clear__10LinkedListFv (see above)
+ |  |  |  |  |  |     |     |     |  
+ |  |  |  |  |  |     |     |     +- contains__10LinkedListFPv (see above)
+ |  |  |  |  |  |     |     |     |  
+ |  |  |  |  |  |     |     |     +- isEmpty__10LinkedListFv (see above)
+ |  |  |  |  |  |     |     |     |  
+ |  |  |  |  |  |     |     |     +- iterator__10LinkedListFv (see above)
+ |  |  |  |  |  |     |     |     |  
+ |  |  |  |  |  |     |     |     +- moveOut__10BaseTimersFPv
+ |  |  |  |  |  |     |     |     |  | 
+ |  |  |  |  |  |     |     |     |  +- moveOut__10LinkedListFPv (see above)
+ |  |  |  |  |  |     |     |     |  |  
+ |  |  |  |  |  |     |     |     |  +- _LOAD_FAR_16         (see above)
+ |  |  |  |  |  |     |     |     |     
+ |  |  |  |  |  |     |     |     +- size__10LinkedListFv (see above)
+ |  |  |  |  |  |     |     |     |  
+ |  |  |  |  |  |     |     |     +- get__10LinkedListFUi (see above)
+ |  |  |  |  |  |     |     |     |  
+ |  |  |  |  |  |     |     |     +- aniadir__10LinkedListFPv (see above)
+ |  |  |  |  |  |     |     |        
+ |  |  |  |  |  |     |     +- ____vtbl__BaseTimers_1ms_40msBaseTimersLinkedListListCollection
+ |  |  |  |  |  |     |     |  | 
+ |  |  |  |  |  |     |     |  +- add__10LinkedListFPv (see above)
+ |  |  |  |  |  |     |     |  |  
+ |  |  |  |  |  |     |     |  +- clear__10LinkedListFv (see above)
+ |  |  |  |  |  |     |     |  |  
+ |  |  |  |  |  |     |     |  +- contains__10LinkedListFPv (see above)
+ |  |  |  |  |  |     |     |  |  
+ |  |  |  |  |  |     |     |  +- isEmpty__10LinkedListFv (see above)
+ |  |  |  |  |  |     |     |  |  
+ |  |  |  |  |  |     |     |  +- iterator__10LinkedListFv (see above)
+ |  |  |  |  |  |     |     |  |  
+ |  |  |  |  |  |     |     |  +- moveOut__10BaseTimersFPv (see above)
+ |  |  |  |  |  |     |     |  |  
+ |  |  |  |  |  |     |     |  +- size__10LinkedListFv (see above)
+ |  |  |  |  |  |     |     |  |  
+ |  |  |  |  |  |     |     |  +- get__10LinkedListFUi (see above)
+ |  |  |  |  |  |     |     |  |  
+ |  |  |  |  |  |     |     |  +- aniadir__10LinkedListFPv (see above)
+ |  |  |  |  |  |     |     |  |  
+ |  |  |  |  |  |     |     |  +- lockInc__19BaseTimers_1ms_40msFv
+ |  |  |  |  |  |     |     |  |  | 
+ |  |  |  |  |  |     |     |  |  +- TI1_Disable__Fv     
+ |  |  |  |  |  |     |     |  |       
+ |  |  |  |  |  |     |     |  +- unlockInc__19BaseTimers_1ms_40msFv
+ |  |  |  |  |  |     |     |     | 
+ |  |  |  |  |  |     |     |     +- TI1_Enable__Fv      
+ |  |  |  |  |  |     |     |          
+ |  |  |  |  |  |     |     +- __sf_19BaseTimers_1ms_40ms_inc1__FPv
+ |  |  |  |  |  |     |     |  | 
+ |  |  |  |  |  |     |     |  +- incrementar__10BaseTimersFUi
+ |  |  |  |  |  |     |     |  |    
+ |  |  |  |  |  |     |     |  +- actualizarTimers__10BaseTimersFv
+ |  |  |  |  |  |     |     |     | 
+ |  |  |  |  |  |     |     |     +- __ct__28LinkedListIteratorLinkedListFv
+ |  |  |  |  |  |     |     |     |  | 
+ |  |  |  |  |  |     |     |     |  +- __ct__8IteratorFv   
+ |  |  |  |  |  |     |     |     |  |    
+ |  |  |  |  |  |     |     |     |  +- ____vtbl__LinkedListIteratorIterator
+ |  |  |  |  |  |     |     |     |     | 
+ |  |  |  |  |  |     |     |     |     +- next__28LinkedListIteratorLinkedListFv
+ |  |  |  |  |  |     |     |     |     |    
+ |  |  |  |  |  |     |     |     |     +- hasNext__28LinkedListIteratorLinkedListFv
+ |  |  |  |  |  |     |     |     |          
+ |  |  |  |  |  |     |     |     +- linkedListIterator__10LinkedListFP28LinkedListIteratorLinkedList
+ |  |  |  |  |  |     |     |     |    
+ |  |  |  |  |  |     |     |     +- next__28LinkedListIteratorLinkedListFv (see above)
+ |  |  |  |  |  |     |     |     |  
+ |  |  |  |  |  |     |     |     +- TimerComp__FPv      
+ |  |  |  |  |  |     |     |     |  | 
+ |  |  |  |  |  |     |     |     |  +- getCuenta__10BaseTimersFv
+ |  |  |  |  |  |     |     |     |  |    
+ |  |  |  |  |  |     |     |     |  +- _ILSEXT              (see above)
+ |  |  |  |  |  |     |     |     |     
+ |  |  |  |  |  |     |     |     +- hasNext__28LinkedListIteratorLinkedListFv (see above)
+ |  |  |  |  |  |     |     |        
+ |  |  |  |  |  |     |     +- Method               (see above)
+ |  |  |  |  |  |     |     |  
+ |  |  |  |  |  |     |     +- newAlloced           (see above)
+ |  |  |  |  |  |     |     |  
+ |  |  |  |  |  |     |     +- __sf_19BaseTimers_1ms_40ms_inc40__FPv
+ |  |  |  |  |  |     |     |  | 
+ |  |  |  |  |  |     |     |  +- incrementar__10BaseTimersFUi (see above)
+ |  |  |  |  |  |     |     |  |  
+ |  |  |  |  |  |     |     |  +- actualizarTimers__10BaseTimersFv (see above)
+ |  |  |  |  |  |     |     |     
+ |  |  |  |  |  |     |     +- add1msListener__FP6Method
+ |  |  |  |  |  |     |     |  | 
+ |  |  |  |  |  |     |     |  +- _LOAD_FAR_16         (see above)
+ |  |  |  |  |  |     |     |     
+ |  |  |  |  |  |     |     +- add40msListener__FP6Method
+ |  |  |  |  |  |     |        | 
+ |  |  |  |  |  |     |        +- _LOAD_FAR_16         (see above)
+ |  |  |  |  |  |     |           
+ |  |  |  |  |  |     +- getCuenta__10BaseTimersFv (see above)
+ |  |  |  |  |  |     |  
+ |  |  |  |  |  |     +- _LCMP_P              (see above)
+ |  |  |  |  |  |     |  
+ |  |  |  |  |  |     +- _LOAD_FAR_16         (see above)
+ |  |  |  |  |  |        
+ |  |  |  |  |  +- Timer_Destruct__FPv 
+ |  |  |  |  |  |  | 
+ |  |  |  |  |  |  +- Timer_Stop__FPv     
+ |  |  |  |  |  |     | 
+ |  |  |  |  |  |     +- _LOAD_FAR_16         (see above)
+ |  |  |  |  |  |        
+ |  |  |  |  |  +- Timer_OnTime__FPv   
+ |  |  |  |  |     | 
+ |  |  |  |  |     +- Timer_Stop__FPv      (see above)
+ |  |  |  |  |        
+ |  |  |  |  +- MTimer_DefConstruct__FPvPPSc
+ |  |  |  |  |  | 
+ |  |  |  |  |  +- MTimer_Construct__FPvUlPFPv_vT0
+ |  |  |  |  |     | 
+ |  |  |  |  |     +- Timer_Construct__FPvUl (see above)
+ |  |  |  |  |     |  
+ |  |  |  |  |     +- MethodTimer_setMetodo__FPvPFPv_vT0
+ |  |  |  |  |          
+ |  |  |  |  +- Timer_Destruct__FPv  (see above)
+ |  |  |  |  |  
+ |  |  |  |  +- MTimer_OnTime__FPv  
+ |  |  |  |       
+ |  |  |  +- RlxMTimer_DefConstruct__FPvPPSc
+ |  |  |  |  | 
+ |  |  |  |  +- RlxMTimer_Construct__FPvUlPFPv_vT0
+ |  |  |  |     | 
+ |  |  |  |     +- MTimer_Construct__FPvUlPFPv_vT0 (see above)
+ |  |  |  |     |  
+ |  |  |  |     +- __nw__FGUi           (see above)
+ |  |  |  |     |  
+ |  |  |  |     +- __ct__10LinkedListFv (see above)
+ |  |  |  |     |  
+ |  |  |  |     +- RlxMTimer_Handler__FPv
+ |  |  |  |     |  | 
+ |  |  |  |     |  +- __ct__28LinkedListIteratorLinkedListFv (see above)
+ |  |  |  |     |  |  
+ |  |  |  |     |  +- linkedListIterator__10LinkedListFP28LinkedListIteratorLinkedList (see above)
+ |  |  |  |     |  |  
+ |  |  |  |     |  +- next__28LinkedListIteratorLinkedListFv (see above)
+ |  |  |  |     |  |  
+ |  |  |  |     |  +- hasNext__28LinkedListIteratorLinkedListFv (see above)
+ |  |  |  |     |     
+ |  |  |  |     +- pthread_create__FPvT0PFPv_PvT0
+ |  |  |  |     |  | 
+ |  |  |  |     |  +- Method               (see above)
+ |  |  |  |     |  |  
+ |  |  |  |     |  +- _new                
+ |  |  |  |     |  |  | 
+ |  |  |  |     |  |  +- malloc               (see above)
+ |  |  |  |     |  |  |  
+ |  |  |  |     |  |  +- ctor                 (see above)
+ |  |  |  |     |  |  |  
+ |  |  |  |     |  |  +- _assert              (see above)
+ |  |  |  |     |  |     
+ |  |  |  |     |  +- adjuntar__16ThreadAttachableFP6Method
+ |  |  |  |     |     | 
+ |  |  |  |     |     +- _LOAD_FAR_16         (see above)
+ |  |  |  |     |        
+ |  |  |  |     +- _LOAD_FAR_16         (see above)
+ |  |  |  |        
+ |  |  |  +- RlxMTimer_Destruct__FPv
+ |  |  |  |  | 
+ |  |  |  |  +- _LOAD_FAR_16         (see above)
+ |  |  |  |  |  
+ |  |  |  |  +- __dt__10LinkedListFv
+ |  |  |  |  |  | 
+ |  |  |  |  |  +- _LOAD_FAR_16         (see above)
+ |  |  |  |  |     
+ |  |  |  |  +- __dl__FGPv           (see above)
+ |  |  |  |  |  
+ |  |  |  |  +- Timer_Destruct__FPv  (see above)
+ |  |  |  |     
+ |  |  |  +- RlxMTimer_OnTime__FPv
+ |  |  |       
+ |  |  +- newAlloced           (see above)
+ |  |     
+ |  +- testValvulaProporcional__FR19ValvulaProporcional
  |     | 
  |     +- print__FPSc         
  |     |  | 
@@ -2248,13 +2974,75 @@ DEPENDENCY TREE
  |     |  +- AS1_Disable__Fv     
  |     |       
  |     +- _LOAD_FAR_16         (see above)
- |        
+ |     |  
+ |     +- mainLoop__18PlataformaEmbeddedFv
+ |     |  | 
+ |     |  +- executeThreads__16ThreadAttachableFv
+ |     |     | 
+ |     |     +- executeMethods__15MethodContainerFv
+ |     |        | 
+ |     |        +- __ct__28LinkedListIteratorLinkedListFv (see above)
+ |     |        |  
+ |     |        +- linkedListIterator__10LinkedListFP28LinkedListIteratorLinkedList (see above)
+ |     |        |  
+ |     |        +- next__28LinkedListIteratorLinkedListFv (see above)
+ |     |        |  
+ |     |        +- hasNext__28LinkedListIteratorLinkedListFv (see above)
+ |     |           
+ |     +- _LCMP_P              (see above)
+ |     |  
+ |     +- getStatus__19ValvulaProporcionalFv
+ |          
  +- _EntryPoint         
     | 
     +- _Startup            
        | 
        +- Init__Fv            
-       |    
+       |  | 
+       |  +- _startupData        
+       |     | 
+       |     +- __ConstructorInit__ 
+       |     |  | 
+       |     |  +- __ct__16ThreadAttachableFv
+       |     |     | 
+       |     |     +- __ct__15MethodContainerFv (see above)
+       |     |     |  
+       |     |     +- ____vtbl__ThreadAttachableMethodContainerLinkedListListCollection
+       |     |        | 
+       |     |        +- add__15MethodContainerFPv (see above)
+       |     |        |  
+       |     |        +- clear__10LinkedListFv (see above)
+       |     |        |  
+       |     |        +- contains__10LinkedListFPv (see above)
+       |     |        |  
+       |     |        +- isEmpty__10LinkedListFv (see above)
+       |     |        |  
+       |     |        +- iterator__10LinkedListFv (see above)
+       |     |        |  
+       |     |        +- moveOut__10LinkedListFPv (see above)
+       |     |        |  
+       |     |        +- size__10LinkedListFv (see above)
+       |     |        |  
+       |     |        +- get__10LinkedListFUi (see above)
+       |     |        |  
+       |     |        +- aniadir__10LinkedListFPv (see above)
+       |     |           
+       |     +- __ConstructorInit__ 
+       |     |  | 
+       |     |  +- __ct__18PlataformaEmbeddedFv
+       |     |     | 
+       |     |     +- ____vtbl__PlataformaEmbedded
+       |     |        | 
+       |     |        +- mainLoop__18PlataformaEmbeddedFv (see above)
+       |     |           
+       |     +- __DestructorInit__  
+       |        | 
+       |        +- __dt__16ThreadAttachableFv
+       |           | 
+       |           +- __dt__15MethodContainerFv
+       |              | 
+       |              +- __dt__10LinkedListFv (see above)
+       |                 
        +- main                 (see above)
           
  _vect               
@@ -2281,8 +3069,16 @@ DEPENDENCY TREE
  |    
  +- Cpu_Interrupt54__Fv 
  |    
- +- Cpu_Interrupt55__Fv 
- |    
+ +- TI1_Interrupt__Fv   
+ |  | 
+ |  +- TI1ms_OnInterrupt__Fv
+ |  |  | 
+ |  |  +- executeMethods__15MethodContainerFv (see above)
+ |  |     
+ |  +- TI40ms_OnInterrupt__Fv
+ |     | 
+ |     +- executeMethods__15MethodContainerFv (see above)
+ |        
  +- Cpu_Interrupt56__Fv 
  |    
  +- _EntryPoint          (see above)
@@ -2293,6 +3089,6 @@ STATISTIC SECTION
 
 ExeFile:
 --------
-Number of blocks to be downloaded: 13
-Total size of all blocks to be downloaded: 5709
+Number of blocks to be downloaded: 15
+Total size of all blocks to be downloaded: 8351
 

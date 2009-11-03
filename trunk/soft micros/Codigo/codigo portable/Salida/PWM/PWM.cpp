@@ -62,6 +62,6 @@ void PWM::Salida_setPotencia(unsigned int potencia) {
   if(!getConectada() || potencia<0 || potencia>1000)  
     return; //error
     
-PWM::setPotencia(potencia);
+setPotencia(potencia);
   
 }

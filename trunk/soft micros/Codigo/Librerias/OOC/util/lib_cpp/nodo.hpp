@@ -15,6 +15,7 @@ class Nodo {
     void  setNext(Nodo * nodo);
     unsigned char differ(Nodo* node);
   private:
+   // unsigned char differ(Nodo* node);
   	void * dato;
   	Nodo * next;
 };

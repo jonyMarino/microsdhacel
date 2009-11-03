@@ -55,7 +55,7 @@ void Nodo::setNext(Nodo * nodo){
 */
 unsigned char Nodo::differ(Nodo* node){
   
-  return dato!=node->dato;
+  return (unsigned char)(dato!=node->dato);
 }
 
 

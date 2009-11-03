@@ -45,7 +45,7 @@ LinkedList::~LinkedList(void){
 ** ===================================================================
 */
 unsigned char LinkedList::differ(LinkedList * _l){
-  return nodo==_l->nodo;
+  return (unsigned char)(nodo ==_l->nodo);
 }
 
 /*

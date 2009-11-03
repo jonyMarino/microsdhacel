@@ -1,6 +1,6 @@
 format 69
 "SD100"
-  revision 46
+  revision 48
   modified_by 3 "Nicolas"
   cpp_root_dir "d:/codigo_uml/"
   idl_root_dir "d:/Jony/HCS12/Codigo generado por uml/"
@@ -1008,7 +1008,10 @@ ${members}};
 
     class 136450 "Getter"
       visibility package stereotype "interface"
-      cpp_decl ""
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
       java_decl "${comment}${@}${visibility}interface ${name}${extends} {
 ${members}}
 "
@@ -3810,6 +3813,7 @@ ${members}};
     //activity diagram settings
     package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
     show_infonote default drawing_language default show_stereotype_properties default
+    associated_deployment_view deploymentview_ref 134531 // Sensores
     classdiagram 135811 "Sensor"
       draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility yes show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
       size A4
@@ -3899,9 +3903,9 @@ ${members}};
 	public explicit_return_type "void"
 	nparams 1
 	  param in name "method" explicit_type "struct Method *"
-	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+	cpp_decl "  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}${v0}${)}${const}${volatile}${throw}${abstract};
 "
-	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
   ${body}}
 "
 	
@@ -4217,9 +4221,9 @@ ${members}
 	  param in name "_adc" type class_ref 128460 // IAdc
 	  param in name "_conf" type class_ref 128332 // TConfSensor
 	  param in name "_manejadorMemoria" type class_ref 136706 // ManejadorMemoria
-	cpp_decl "  ${comment}${inline}${name}${(}const ${t0} & ${p0}${v0}, const ${t1} & ${p1}${v1}, const struct ${t2} & ${p2}${v2}${)}${volatile}${throw};
+	cpp_decl "  ${comment}${inline}${name}${(}const ${t0} & ${p0}${v0}, const ${t1} & ${p1}${v1}, const ${t2} & ${p2}${v2}${)}${volatile}${throw};
 "
-	cpp_def "${comment}${inline}${class}::${name}${(}const ${t0} & ${p0}, const ${t1} & ${p1}, const struct ${t2} & ${p2}${)}${volatile}${throw} {
+	cpp_def "${comment}${inline}${class}::${name}${(}const ${t0} & ${p0}, const ${t1} & ${p1}, const ${t2} & ${p2}${)}${volatile}${throw} {
   ${body}}
 "
 	
@@ -4691,13 +4695,15 @@ ${members}
 "
       end
 
-      classrelation 135244 // <generalisation>
-	relation 135244 ---|>
-	  a public
-	    cpp default "${type}"
-	    idl "${type}"
-	    classrelation_ref 135244 // <generalisation>
-	  b parent class_ref 134988 // Adc
+      classrelation 142339 // adc (<directional aggregation>)
+	relation 142339 o-->
+	  a role_name "adc" multiplicity "1" private
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    idl "  ${comment}${type} ${name};
+"
+	    classrelation_ref 142339 // adc (<directional aggregation>)
+	  b multiplicity "1" parent class_ref 128460 // IAdc
       end
     end
 
@@ -7118,6 +7124,119 @@ ${module_end}
 "
       associated_classes
 	class_ref 142722 // MethodContainer
+      end
+    end
+  end
+
+  deploymentview 134531 "Sensores"
+    //deployment diagram settings
+    package_name_in_tab default show_context default write_horizontally default auto_label_position default draw_all_relations default shadow default
+    draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
+    artifact 153347 "SensorTermoPT100"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      idl_src "#ifndef ${MODULE}_${NAME}_H
+#define ${MODULE}_${NAME}_H
+
+${comment}
+${includes}
+${module_start}
+${definition}
+${module_end}
+#endif
+"
+      associated_classes
+	class_ref 128204 // SensorTermoPT100
+      end
+    end
+
+    artifact 153475 "IAdc"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      php_src "<?php
+${comment}
+${definition}
+?>
+"
+      idl_src "#ifndef ${MODULE}_${NAME}_H
+#define ${MODULE}_${NAME}_H
+
+${comment}
+${includes}
+${module_start}
+${definition}
+${module_end}
+#endif
+"
+      associated_classes
+	class_ref 128460 // IAdc
+      end
+    end
+
+    artifact 153603 "Adc"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      idl_src "#ifndef ${MODULE}_${NAME}_H
+#define ${MODULE}_${NAME}_H
+
+${comment}
+${includes}
+${module_start}
+${definition}
+${module_end}
+#endif
+"
+      associated_classes
+	class_ref 134988 // Adc
       end
     end
   end

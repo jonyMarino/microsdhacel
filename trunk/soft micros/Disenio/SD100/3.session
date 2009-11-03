@@ -4,22 +4,28 @@ diagrams
     745 556 100 4 0 0
   classdiagram_ref 130818 // Salidas
     745 556 100 4 120 0
-  active  classdiagram_ref 129283 // Valvula proporcional
+  classdiagram_ref 129283 // Valvula proporcional
     745 556 100 4 60 0
+  active  classdiagram_ref 135811 // Sensor
+    592 444 100 4 0 0
+  classdiagram_ref 128076 // ADC HCS12
+    592 444 100 4 0 0
+  classdiagram_ref 135939 // Sensor Termopar PT100
+    592 444 100 4 0 0
+  classdiagram_ref 128002 // Alarmas
+    592 444 100 4 60 0
+  classdiagram_ref 130690 // Alarma de sensor
+    741 556 100 4 120 0
+  classdiagram_ref 131970 // Alarma de control
+    592 444 100 4 195 268
 end
 show_stereotypes
-selected classview_ref 129154 // Salida
+selected classdiagram_ref 135811 // Sensor
 open
   classview_ref 128002 // Alarmas
-  class_ref 128514 // Salida
-  class_ref 128003 // PWMTpm1
-  class_ref 147586 // ConfValvulaProporcional
-  class_ref 145410 // SalidaInvertida
-  class_ref 145538 // PWMHard
-  class_ref 145794 // PWMHard23
-  class_ref 147202 // PWMHard45
-  class_ref 147330 // PWMTimer
-  class_ref 147458 // PWMSoft
+  class_ref 128386 // Sensor
+  class_ref 128332 // TConfSensor
+  deploymentview_ref 131714 // Alarmas
   deploymentview_ref 130434 // Salida
 end
 end
