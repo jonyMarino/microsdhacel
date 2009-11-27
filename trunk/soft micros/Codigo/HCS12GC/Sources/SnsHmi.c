@@ -38,7 +38,6 @@
   
   
   /*Sensor*/ 
-
   const struct ConstPropTxt ParSensor={
     (const struct Class * const)&PropiedadGenerica,get_Sensor,set_Sensor,get_LimInf_Sensores,get_LimSup_Sensores,&PropTxt,"SEn",SENSOR_getText
   };
@@ -90,6 +89,13 @@
   const struct ConstPropNum ParAjTempAmb={
     (const struct Class * const)&PropiedadGenerica,get_AjTempAmb,set_AjTempAmb,NULL,NULL,&PropNum,"AtA ",1
   };
+  /*Estado del Sensor*/
+  int getEstadoSensorVista(void *sensor){
+    return SenTPT_getState(sensor);
+  }
+  const struct GetterGenerico GetterEstadoSen={
+    (const struct Class * const)&GetterGenerico,getEstadoSensorVista
+  };
   
   const void *const SensProps[]={
     &ParSensor,
@@ -103,7 +109,8 @@
     &ParAjGanPT,
     &ParAjTempAmb,
     &GetterValSen,
-    &GetterDecimales
+    &GetterDecimales,
+    &GetterEstadoSen
   };
   
   const NEW_ARRAY(arraySenGetters,SensProps);

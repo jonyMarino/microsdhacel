@@ -46,10 +46,14 @@
     &ParPeriodo,
     &GetterPot
   };
-  
+
+  const void *const PWMGetterPot[]={
+    &GetterPot
+  };  
 
 
   const NEW_ARRAY(arrayPWMGetters,PWMGetters);
+  const NEW_ARRAY(arrayPWMGetterPot,PWMGetterPot);  
 /*
 ** ===================================================================
 **     Function      :  PwmHmi_ComuAdd 
