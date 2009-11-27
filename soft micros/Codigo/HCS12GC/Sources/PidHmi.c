@@ -133,19 +133,26 @@
   const struct ConstPropNum ParPotencia={
     (const struct Class * const)&PropiedadGenerica,get_PotenciaManual,set_PotenciaManual,get_LimInf_PotenciaManual,get_LimSup_PotenciaManual,&PropNum,"Pot",1
   };
+  
+  /*Valor actual SP*/
+  const struct GetterGenerico GetterSPActual={
+    (const struct Class * const)&GetterGenerico,ControlVista_getSP
+  };
+
 
   const void *const PidProps[]={
-    &ParH,
-    &ParSP,
-    &ParLimInfSP,
-    &ParLimSupSP,
-    &ParIntegral,
-    &ParDerivada,
-    &ParLimPotInf,
-    &ParLimPotSup,
-    &ParTipoSalControl,
-    &ParPotencia,
-    &ParReset
+    &ParH,                //0
+    &ParSP,               //1
+    &ParLimInfSP,         //2
+    &ParLimSupSP,         //3
+    &ParIntegral,         //4
+    &ParDerivada,         //5
+    &ParLimPotInf,        //6
+    &ParLimPotSup,        //7
+    &ParTipoSalControl,   //8
+    &ParPotencia,         //9
+    &ParReset,            //10
+    &GetterSPActual       //11
   };
   
   const NEW_ARRAY(arrayPidGetters,PidProps);

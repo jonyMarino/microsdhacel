@@ -6,8 +6,8 @@
 extern const struct Array arrayPWMGetters;
 #define PWM_GETTERS_ARRAY arrayPWMGetters
 
-extern const struct Array arrayPWMGetters;
-#define PWM_GETTER_POT_ARRAY arrayPWMGetters
+extern const struct Array arrayPWMGetterPot;
+#define PWM_GETTER_POT_ARRAY arrayPWMGetterPot
 
 /*
 ** ===================================================================

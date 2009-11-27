@@ -109,31 +109,31 @@ const struct BlockConstBoxPriNC CBox_Pri={
 /*  COMUNICACION  */
   /*PWM*/
   static const NEW_NODO_IC_MODBUS(PWM1Com,&PWM_GETTERS_ARRAY,1000,&pwmConEventoPeriodo[0]);
-  static const NEW_NODO_IC_MODBUS(PWM2Com,&PWM_GETTERS_ARRAY,1010,&pwmConEventoPeriodo[1]);
-  static const NEW_NODO_IC_MODBUS(PWM3Com,&PWM_GETTERS_ARRAY,1020,&pwmConEventoPeriodo[2]);
-  static const NEW_NODO_IC_MODBUS(PWM4Com,&PWM_GETTERS_ARRAY,1030,&pwmConEventoPeriodo[3]);
-  static const NEW_NODO_IC_MODBUS(PWM5Com,&PWM_GETTER_POT_ARRAY,1041,&pwmsTimer[4]);
-  static const NEW_NODO_IC_MODBUS(PWM6Com,&PWM_GETTER_POT_ARRAY,1051,&pwmsTimer[5]);
-  static const NEW_NODO_IC_MODBUS(PWM7Com,&PWM_GETTER_POT_ARRAY,1061,&pwmsTimer[6]);
-  static const NEW_NODO_IC_MODBUS(PWM8Com,&PWM_GETTER_POT_ARRAY,1071,&pwmSoft);
+  static const NEW_NODO_IC_MODBUS(PWM2Com,&PWM_GETTERS_ARRAY,2000,&pwmConEventoPeriodo[1]);
+  static const NEW_NODO_IC_MODBUS(PWM3Com,&PWM_GETTERS_ARRAY,3000,&pwmConEventoPeriodo[2]);
+  static const NEW_NODO_IC_MODBUS(PWM4Com,&PWM_GETTERS_ARRAY,4000,&pwmConEventoPeriodo[3]);
+  static const NEW_NODO_IC_MODBUS(PWM5Com,&PWM_GETTER_POT_ARRAY,1110,&pwmsTimer[4]);
+  static const NEW_NODO_IC_MODBUS(PWM6Com,&PWM_GETTER_POT_ARRAY,2110,&pwmsTimer[5]);
+  static const NEW_NODO_IC_MODBUS(PWM7Com,&PWM_GETTER_POT_ARRAY,2110,&pwmsTimer[6]);
+  static const NEW_NODO_IC_MODBUS(PWM8Com,&PWM_GETTER_POT_ARRAY,2110,&pwmSoft);
   /*Sensor*/
-  static const NEW_NODO_IC_MODBUS(Sen1Com,&SNS_GETTERS_ARRAY,1100,&termometro.sensor[0]);
-  static const NEW_NODO_IC_MODBUS(Sen2Com,&SNS_GETTERS_ARRAY,1120,&termometro.sensor[1]);
-  static const NEW_NODO_IC_MODBUS(Sen3Com,&SNS_GETTERS_ARRAY,1140,&termometro.sensor[2]);
-  static const NEW_NODO_IC_MODBUS(Sen4Com,&SNS_GETTERS_ARRAY,1160,&termometro.sensor[3]);
+  static const NEW_NODO_IC_MODBUS(Sen1Com,&SNS_GETTERS_ARRAY,1120,&termometro.sensor[0]);
+  static const NEW_NODO_IC_MODBUS(Sen2Com,&SNS_GETTERS_ARRAY,2120,&termometro.sensor[1]);
+  static const NEW_NODO_IC_MODBUS(Sen3Com,&SNS_GETTERS_ARRAY,3120,&termometro.sensor[2]);
+  static const NEW_NODO_IC_MODBUS(Sen4Com,&SNS_GETTERS_ARRAY,4120,&termometro.sensor[3]);
 
   /*Alarma*/
-  static const NEW_NODO_IC_MODBUS(Al1Com,&AL_GETTERS_ARRAY,1200,&alarma[0]);
-  static const NEW_NODO_IC_MODBUS(Al2Com,&AL_GETTERS_ARRAY,1220,&alarma[1]);
-  static const NEW_NODO_IC_MODBUS(Al3Com,&AL_GETTERS_ARRAY,1240,&alarma[2]);
-  static const NEW_NODO_IC_MODBUS(Al4Com,&AL_GETTERS_ARRAY,1260,&alarma[3]);
+  static const NEW_NODO_IC_MODBUS(Al1Com,&AL_GETTERS_ARRAY,1150,&alarma[0]);
+  static const NEW_NODO_IC_MODBUS(Al2Com,&AL_GETTERS_ARRAY,2150,&alarma[1]);
+  static const NEW_NODO_IC_MODBUS(Al3Com,&AL_GETTERS_ARRAY,3150,&alarma[2]);
+  static const NEW_NODO_IC_MODBUS(Al4Com,&AL_GETTERS_ARRAY,4150,&alarma[3]);
   /*PID*/
-  static const NEW_NODO_IC_MODBUS(Pid1Com,&PID_GETTERS_ARRAY,1300,&control[0]);
-  static const NEW_NODO_IC_MODBUS(Pid2Com,&PID_GETTERS_ARRAY,1320,&control[1]);
-  static const NEW_NODO_IC_MODBUS(Pid3Com,&PID_GETTERS_ARRAY,1340,&control[2]);
-  static const NEW_NODO_IC_MODBUS(Pid4Com,&PID_GETTERS_ARRAY,1360,&control[3]);
+  static const NEW_NODO_IC_MODBUS(Pid1Com,&PID_GETTERS_ARRAY,1200,&control[0]);
+  static const NEW_NODO_IC_MODBUS(Pid2Com,&PID_GETTERS_ARRAY,2200,&control[1]);
+  static const NEW_NODO_IC_MODBUS(Pid3Com,&PID_GETTERS_ARRAY,3200,&control[2]);
+  static const NEW_NODO_IC_MODBUS(Pid4Com,&PID_GETTERS_ARRAY,4200,&control[3]);
   /*Comunicacion*/
-  static const NEW_NODO_IC_MODBUS(ModBusCom,&MODBUS_GETTERS_ARRAY,1400,NULL);
+  static const NEW_NODO_IC_MODBUS(ModBusCom,&MODBUS_GETTERS_ARRAY,1300,NULL);
   /*Codigo*/
   static const NEW_NODO_IC_MODBUS(CodCom,&COD_GETTERS_ARRAY,1500,NULL);
 
