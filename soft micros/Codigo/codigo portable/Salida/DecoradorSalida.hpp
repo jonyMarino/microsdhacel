@@ -14,7 +14,8 @@ class DecoradorSalida : public ISalida {
 
 
   public:
-    virtual unsigned int getPotencia();
+  
+  virtual unsigned int getPotencia();
 
   virtual void setPotencia(unsigned int potencia);
 

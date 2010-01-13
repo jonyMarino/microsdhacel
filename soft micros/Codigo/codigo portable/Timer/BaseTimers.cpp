@@ -1,5 +1,5 @@
 #include "BaseTimers.hpp"
-#include "Timer.h"
+#include "Timer.hpp"
 
 
 
@@ -22,7 +22,7 @@ void BaseTimers::actualizarTimers(void){
   linkedListIterator(&iterator);
   
   while(iterator.hasNext()){
-    TimerComp((struct Timer *)iterator.next());      
+    ((Timer *)iterator.next())->comparar();      
   }
 }
 

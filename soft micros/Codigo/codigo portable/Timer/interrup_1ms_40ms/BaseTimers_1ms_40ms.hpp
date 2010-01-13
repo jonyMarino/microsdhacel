@@ -2,7 +2,7 @@
 #define _Base_Timers_1ms_40ms_hpp
 
 #include "BaseTimers.hpp"
-#include "Method.h"
+#include "Method.hpp"
 
 //void inc1(void * _self);
 //void inc40(void * _self);

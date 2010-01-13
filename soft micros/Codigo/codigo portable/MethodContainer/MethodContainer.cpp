@@ -2,8 +2,7 @@
 
 #include <stdlib.h>
 #include "MethodContainer.hpp"
-#include "Method.h"
-#include "Object.h"
+#include "Method.hpp"
 
 MethodContainer::MethodContainer(){}
 /*
@@ -15,8 +14,8 @@ MethodContainer::MethodContainer(){}
 */
 bool MethodContainer::add(void *obj){
   
-  if(classOf(obj)!=&Method)
-    return EXIT_FAILURE; 
+//  if(classOf(obj)!=&Method)
+//    return EXIT_FAILURE; 
   LinkedList::add(obj);
   return EXIT_SUCCESS;
 }
@@ -34,7 +33,7 @@ void MethodContainer::executeMethods(){
   
   while(it.hasNext()){
     struct Method * m = (struct Method *)it.next();
-    (*(m->pmethod))(m->Obj);
+    (*(m->pmethod))(m->obj);
   }
 }
 

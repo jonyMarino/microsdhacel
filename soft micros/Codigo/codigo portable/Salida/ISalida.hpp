@@ -1,7 +1,7 @@
 #ifndef _ISALIDA_H
 #define _ISALIDA_H
 
-#include "PE_Types.h"
+#include "../../Librerias/PE/include/PE_Types.h"
 #include "TipoSalida.hpp"
 
 class ISalida {
