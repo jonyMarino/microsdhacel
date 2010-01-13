@@ -1,5 +1,5 @@
-#ifndef _OUTPUTSTREAM_H
-#define _OUTPUTSTREAM_H
+#ifndef _OUTPUTSTREAM_HPP
+#define _OUTPUTSTREAM_HPP
 
 
 class OutputStream
@@ -27,7 +27,7 @@ class OutputStream
   virtual void write(const char * b);
   
   //    Writes b.length bytes from the specified byte array to this output stream.
-  virtual void write(uchar b);
+  virtual void write(unsigned char b);
 };
 
 #endif

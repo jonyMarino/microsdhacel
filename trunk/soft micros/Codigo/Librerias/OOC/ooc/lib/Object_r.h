@@ -9,7 +9,7 @@ extern "C"
 {
 #endif
 
-
+  
 
 struct Class;
 
@@ -19,8 +19,8 @@ const struct Object {
 
 void Object_ctor (void * _self, va_list * app);
 void Object_dtor (void * _self);
-unsigned char Object_differ (const void * _self, const void * b);
-int Object_puto (const void * _self, struct OutputStream * os);
+int Object_differ (const void * _self, const void * b);
+int Object_puto (const void * _self, struct OutStream * os);
 
 
 struct Class {
@@ -30,8 +30,8 @@ struct Class {
 	size_t size;					/* class' object's size */
 	void (* ctor) (void * self, va_list * app);
 	void (* dtor) (void * self);
-	unsigned char (* differ) (const void * self, const void * b);
-	int (* puto) (const void * self, struct OutputStream * os);
+	int (* differ) (const void * self, const void * b);
+	int (* puto) (const void * self, struct OutStream * os);
 };
 
 void  super_ctor (const void * _class, void * self, va_list * app);
@@ -54,5 +54,5 @@ int super_puto (const void * _class, const void * self, FILE * fp);
 #ifdef __cplusplus
 }
 #endif
-
+  
 #endif

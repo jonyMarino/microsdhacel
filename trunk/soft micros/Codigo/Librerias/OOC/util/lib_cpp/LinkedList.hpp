@@ -5,7 +5,6 @@
 #include "nodo.hpp"
 #include "Iterator.hpp"
 #include "List.hpp"
-#include "LinkedList.hpp"
 
 #pragma CODE_SEG  LinkedList_CODE
 #pragma DATA_SEG  LinkedList_DATA

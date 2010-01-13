@@ -5,16 +5,16 @@
 #pragma CODE_SEG METHOD_CODE 
 #pragma CONST_SEG DEFAULT
 
-
+ /*
 Method::Method(pMethod method,void * _obj):obj(_obj),pmethod(method){
 
-}
+}    */
 
-void Method::execute(void){
+void Method::execute(void)const{
   (*pmethod)(obj);
 }
 
-void Method::setMethod(pMethod method){
+/*void Method::setMethod(pMethod method){
   
   pmethod = method;
 }
@@ -23,7 +23,7 @@ void Method::setObj(void* _obj){
 
   obj = _obj;
 
-}
+}   */
  
 #pragma CODE_SEG METHOD_CODE
 

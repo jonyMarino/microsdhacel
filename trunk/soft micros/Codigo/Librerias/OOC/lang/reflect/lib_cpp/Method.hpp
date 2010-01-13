@@ -1,5 +1,5 @@
-#ifndef _METHOD_H
-#define _METHOD_H
+#ifndef _METHOD_HPP
+#define _METHOD_HPP
 
 
 #pragma DATA_SEG METHOD_DATA                                            
@@ -8,23 +8,18 @@
 
 
 
-class Method{
+struct Method{
   public:
     typedef void (*pMethod)(void*);
     
-    Method(pMethod method,void * obj);   
+   // Method(pMethod method,void * obj);   
     
-    void execute(void);
+    void execute(void)const;
 
-    inline pMethod getMethod(void){return pmethod;}
+    inline pMethod getMethod(void)const{return pmethod;}
 
-    void setMethod(pMethod method);
-
-    inline void * getObj(void){return obj;}; 
-    
-    void setObj(void *); 
+    inline void * getObj(void)const {return obj;}; 
   
-  private:
     pMethod pmethod;
     void* obj;
 };

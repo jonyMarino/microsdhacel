@@ -23,7 +23,7 @@ int Object_differ (const void * _self, const void * b)
 	return _self != b;
 }
 
-int Object_puto (const void * _self, struct OutputStream * os)
+int Object_puto (const void * _self, struct OutStream * os)
 {	const struct Class * _class = (const struct Class *)classOf(_self);
  // itostr
   char dir[10];
@@ -237,7 +237,7 @@ void super_dtor (const void * __class, void * _self)
 	  superclass -> dtor(_self);
 }
 
-int differ (const void * _self, const void * b)
+unsigned char differ (const void * _self, const void * b)
 {	const struct Class * _class = (const struct Class *)classOf(_self);
 
 	assert(_class -> differ);
@@ -251,14 +251,14 @@ int super_differ (const void * __class, const void * _self, const void * b)
 	return superclass -> differ(_self, b);
 }
 
-int puto (const void * _self, struct OutputStream * os)
+int puto (const void * _self, struct OutStream * os)
 {	const struct Class * _class = (const struct Class *)classOf(_self);
 
 	assert(_class -> puto);
 	return _class -> puto(_self, os);
 }
 
-int super_puto (const void * __class, const void * _self, struct OutputStream * fp)
+int super_puto (const void * __class, const void * _self, struct OutStream * fp)
 {	const struct Class * superclass = (const struct Class *) super(__class);
 
 	assert(_self && superclass -> puto);

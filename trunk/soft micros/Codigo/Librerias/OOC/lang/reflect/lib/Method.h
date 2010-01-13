@@ -16,7 +16,7 @@ extern "C"
 typedef void (*pMethod)(void*);
 
 struct Method{
-  void * Class;
+  const void * Class;
   pMethod pmethod;
   void* Obj;
 };

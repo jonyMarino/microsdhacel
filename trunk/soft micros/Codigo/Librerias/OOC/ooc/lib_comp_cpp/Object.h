@@ -8,7 +8,7 @@
 #include <stdtypes.h>
 #include <stdio.h>
 #include "Object_r.h"
-#include "OutputStream.h"
+#include "OutStream.h"
 
 //extern const void * Object;		/* new(&Object); */
 extern const struct Class Object;
@@ -27,7 +27,7 @@ size_t sizeOf (const void * self);
 void ctor (void * self, va_list * app);
 void dtor (void * self);
 int differ (const void * _self, const void * b);
-int puto (const void * _self, struct OutputStream * os);
+int puto (const void * _self, struct OutStream * os);
 
 //extern const void * Class;	/* new(&Class, "name", superPointer, size
 //										sel, meth, ... 0); */

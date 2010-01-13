@@ -11,7 +11,7 @@
 #pragma CONST_SEG DEFAULT
 
 void Array_defConstructor(void *, va_list *);
-void *Array_destructor(void *);
+void Array_destructor(void *);
 
 const struct Class Array={
   CLASS_INITIALIZATION(Class,
@@ -32,10 +32,10 @@ const struct Class Array={
 ** ===================================================================
 */
 void Array_Constructor(void * self,int cantidad){
-  struct Array *_a =self;
+  struct Array *_a = (struct Array *)self;
   
   _a->cantidad=cantidad;
-  _a->nodos=calloc(cantidad, sizeof(void*));
+  _a->nodos=(void**)calloc(cantidad, sizeof(void*));
   _a->objetosSonPropios=FALSE;
 }
 
@@ -56,8 +56,8 @@ void Array_defConstructor(void * self, va_list * arg){
 **    Description  :  Destructor
 ** ===================================================================
 */
-void *Array_destructor(void * self){
-  struct Array* _a =self;
+void Array_destructor(void * self){
+  struct Array* _a =(struct Array *)self;
   
   if(_a->objetosSonPropios){
     int i;
@@ -66,7 +66,6 @@ void *Array_destructor(void * self){
       deleteAndNil(&_a->nodos[i]);  
   }
   free(_a->nodos);
-  return self;
 }
 
 
@@ -77,7 +76,7 @@ void *Array_destructor(void * self){
 ** ===================================================================
 */
 void* Array_get(void * self,int index){
-  struct Array* _a =self;
+  struct Array* _a =(struct Array *)self;
   
   if(index>_a->cantidad)
     return NULL;
@@ -91,7 +90,7 @@ void* Array_get(void * self,int index){
 ** ===================================================================
 */
 void Array_set(void * self,int index,void * dato){
-  struct Array* _a =self;
+  struct Array* _a =(struct Array *)self;
   
   if(index>_a->cantidad)
     return;  //cambiar : error
@@ -109,7 +108,7 @@ void Array_set(void * self,int index,void * dato){
 ** ===================================================================
 */
 void Array_ownsObjects(void* self,bool owns){
-    struct Array* _a =self;
+    struct Array* _a =(struct Array *)self;
     
     _a->objetosSonPropios=owns;  
 }
@@ -121,7 +120,7 @@ void Array_ownsObjects(void* self,bool owns){
 ** ===================================================================
 */
 int Array_count(void * self){
-  struct Array* _a =self;
+  struct Array* _a =(struct Array *)self;
   
   return _a->cantidad;
 }
@@ -134,12 +133,12 @@ int Array_count(void * self){
 ** ===================================================================
 */
 void * Array_search(void * self,void * comparator){
-  struct Array* _a =self;
+  struct Array* _a =(struct Array *)self;
   int i;
   
   for(i=0;i<_a->cantidad;i++){
-    if(_Comparator_equals(comparator,_a->nodos[i]))
-      return _a->nodos[i];
+   /* if(_Comparator_equals(comparator,_a->nodos[i]))
+      return _a->nodos[i];       */
   }
   
   return NULL;

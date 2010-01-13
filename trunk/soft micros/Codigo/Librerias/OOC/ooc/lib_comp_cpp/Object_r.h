@@ -9,7 +9,7 @@ _class Object:public Object
 {
  public:
   virtual int differ (const void * b);
-  virtual int puto (OutputStream * os);
+  virtual int puto (OutStream * os);
 
 }
 */
@@ -26,7 +26,7 @@ const struct Object {
 void Object_ctor (void * _self, va_list * app);
 void Object_dtor (void * _self);
 int Object_differ (const void * _self, const void * b);
-int Object_puto (const void * _self, struct OutputStream * os);
+int Object_puto (const void * _self, struct OutStream * os);
 
 
 struct Class {
@@ -37,7 +37,7 @@ struct Class {
 	void (* ctor) (void * self, va_list * app);
 	void (* dtor) (void * self);
 	int (* differ) (const void * self, const void * b);
-	int (* puto) (const void * self, struct OutputStream * os);
+	int (* puto) (const void * self, struct OutStream * os);
 };
 
 void  super_ctor (const void * _class, void * self, va_list * app);

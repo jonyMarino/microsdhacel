@@ -9,12 +9,13 @@
 class Nodo {
   public:
     Nodo(void * _dato,Nodo * _next);
-    inline void* getDato(void){return dato;}
+    inline void* getDato(void){return dato;};
     void  setDato(void* dato);
-    inline Nodo* getNext(void){ return next;}
+    inline Nodo* getNext(void){ return next;};
     void  setNext(Nodo * nodo);
-    unsigned char differ(Nodo* node);
+    
   private:
+    unsigned char differ(Nodo* node);
    // unsigned char differ(Nodo* node);
   	void * dato;
   	Nodo * next;

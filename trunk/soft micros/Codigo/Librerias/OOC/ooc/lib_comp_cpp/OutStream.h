@@ -8,18 +8,19 @@ struct OutputStreamClass{
   struct Class super;
   void (*close)(void*_self);
   void (*flush)(void * _self);
-  void (*write)(void * _self,uchar * b);
+  void (*write)(void * _self,const char * b);
   void (*writeByte)(void * _self,uchar b);
 };
 
 extern const struct Class OutputStreamClass;
 
 
+
 /*C++ 
-_class OutStream:public Object
+_class OutputStream:public Object
 {
  public:
-  OutStream();
+  OutputStream();
   void OutputStream_close(void);
   void OutputStream_flush(void);
   void OutputStream_write(uchar * b);
@@ -30,11 +31,11 @@ _class OutStream:public Object
 
 }
 */
-struct OutputStream{
+struct OutStream{
   struct Object super;
 };
 
-extern const struct OutputStreamClass OutputStream;
+extern const struct OutputStreamClass OutStream;
 
 /**
   @fn  void close(void*_self);
@@ -46,13 +47,13 @@ void close(void*_self);
 //
 //If the intended destination of this stream is an abstraction provided by the underlying operating system, for example a file, then flushing the stream guarantees only that bytes previously written to the stream are passed to the operating system for writing; it does not guarantee that they are actually written to a physical device such as a disk drive.
 //
-//The flush method of OutStream does nothing. 
+//The flush method of OutputStream does nothing. 
 void flush(void * _self);
 //public void write(byte[] b)
 //           throws IOException
 //
 //    Writes b.length bytes from the specified byte array to this output stream.
-void write(void * _self,char * b);
+void write(void * _self,const char * b);
 
 //Writes the specified byte to this output stream. The general contract for write is that one byte is written to the output stream.
 void writeByte(void * _self,uchar b);
@@ -64,7 +65,7 @@ void OutputStream_close(void*_self);
 // OutputStream_flush(void * _self)
 void OutputStream_flush(void * _self);
 // OutputStream_write(void * _self,uchar * b);
-void OutputStream_write(void * _self,uchar * b);
+void OutputStream_write(void * _self,const char * b);
 // OutputStream_writeByte(void * _self,uchar b);
 void OutputStream_writeByte(void * _self,uchar b);
 
