@@ -6,6 +6,8 @@
  *	OutputStream
  */
  
+ OutputStream::OutputStream(){
+ }
 // OutputStream_close(void*_self)
  void OutputStream::close(void){
 }
