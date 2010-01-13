@@ -33,7 +33,7 @@
 #include "bits2ULN.h"
 #include "trx.h"
 #include "PTSL.h"
-#include "PWSN.h"
+//#include "PWSN.h"
 #include "PUL.h"
 #include "WDog1.h"
 #include "AS1.h"
@@ -325,10 +325,17 @@ void PE_low_level_init(void)
   DDRS &= ~1;
   PTS |= 2;
   DDRS |= 2;
+  
+  #if _ADC
   /* ### Init_ADC "ADC1" init code ... */
   ADC1_Init();
+  #endif
+  
+  #if _FLASH
   /* ### Init_FLASH "FLASH1" init code ... */
   FLASH1_Init();
+  #endif
+  
   /* ### TimerInt "TI1" init code ... */
   #if defined(_TI) || defined(_TI3) || defined(_TI7)
   TI1_Init();

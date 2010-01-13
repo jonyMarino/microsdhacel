@@ -28,7 +28,9 @@
 #include "bits2ULN.h"
 #include "trx.h"
 #include "PTSL.h"
+#ifdef _PWSN
 #include "PWSN.h"
+#endif
 #include "PUL.h"
 #include "WDog1.h"
 #include "AS1.h"

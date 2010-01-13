@@ -28,7 +28,7 @@
 /* DataSheet : 9S12C128DGV1/D V01.05 */
 
 #include "PE_types.h"
-#include "IO_Map.h"
+#include "mc9s12gc32.h"
 
 
 /* * * * *  8-BIT REGISTERS  * * * * * * * * * * * * * * * */
