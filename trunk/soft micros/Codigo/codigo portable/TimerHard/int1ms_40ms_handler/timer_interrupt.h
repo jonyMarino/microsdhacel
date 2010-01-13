@@ -1,7 +1,7 @@
 #ifndef _TIMER_INTERRUPT_H
 #define _TIMER_INTERRUPT_H
 
-#include "Method.h"
+#include "Method.hpp"
 
 void timerInterrupt_init(void);
 

@@ -62,6 +62,8 @@ void add1msListener(struct Method * method){
   if(!method)
     return; //error
   Cpu_DisableInt();
+  if(!listeners1ms)
+    listeners1ms = new MethodContainer();
   listeners1ms->add(method);
   Cpu_EnableInt();    
 }
@@ -76,6 +78,8 @@ void add40msListener(struct Method * method){
   if(!method)
     return; //error
   Cpu_DisableInt();
+  if(!listeners40ms)
+    listeners40ms = new MethodContainer();
   listeners40ms->add(method);
   Cpu_EnableInt();    
 }

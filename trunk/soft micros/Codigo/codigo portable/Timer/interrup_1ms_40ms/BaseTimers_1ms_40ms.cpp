@@ -3,13 +3,16 @@
 #include "TI1.h"
 
 
+
 BaseTimers_1ms_40ms* BaseTimers_1ms_40ms::instance=NULL;
 
 
 
 BaseTimers_1ms_40ms::BaseTimers_1ms_40ms(){
-  newAlloced(&on1ms,&Method,inc1,this);
-  newAlloced(&on40ms,&Method,inc40,this);
+  on1ms.pmethod= inc1;
+  on1ms.obj=this;
+  on40ms.pmethod= inc40;
+  on40ms.obj=this;
   add1msListener(&on1ms);
   add40msListener(&on40ms);
 }

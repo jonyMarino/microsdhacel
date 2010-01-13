@@ -2,7 +2,7 @@
 #define _NODOICMODBUS_H
 
 #include "Object.h"
-#include "Getter.h"
+#include "Getter.hpp"
 #include "PE_Types.h"
 #include "PropiedadGenerica.h"
 #include "Array.h"
