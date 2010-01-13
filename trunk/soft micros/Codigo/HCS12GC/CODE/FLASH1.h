@@ -62,7 +62,7 @@
 #include "PE_Types.h"
 #include "PE_Error.h"
 #include "PE_Const.h"
-#include "IO_Map.h"
+#include "mc9s12gc32.h"
 /* Include inherited beans */
 
 #include "Cpu.h"

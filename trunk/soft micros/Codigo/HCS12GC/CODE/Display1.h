@@ -56,10 +56,12 @@
 #include "PE_Types.h"
 #include "PE_Error.h"
 #include "PE_Const.h"
-#include "IO_Map.h"
+#include "mc9s12gc32.h"
 #include "Cpu.h"
 
-#pragma CODE_SEG Display1_CODE                     
+#pragma CODE_SEG Display1_CODE
+
+#define P_DISPLAY1 PORTA                     
 /*
 ** ===================================================================
 **     Method      :  Display1_PutVal (bean ByteIO)
