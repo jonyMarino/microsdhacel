@@ -5,7 +5,7 @@
 Display::Display(byte* _puerto):puerto(_puerto),corrimiento(0),nLetras(0){}
 
 
-void Display::write(char* str){
+void Display::write(const char* str){
   byte temp, digitoTmp;
   	
 	if(nLetras>4)		 // En el anterior hubo scrolling?
@@ -32,6 +32,12 @@ void Display::write(char* str){
     nLetras++;  
     str++;
   }
+}
+
+void Display::write(unsigned char b){
+	char str[2]=" ";
+	str[0]=b;
+	write(str);	
 }
 
 void Display::borrar(){

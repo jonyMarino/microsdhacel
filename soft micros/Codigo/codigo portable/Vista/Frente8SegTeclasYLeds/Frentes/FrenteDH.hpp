@@ -3,19 +3,25 @@
 
 #include "Vista/Frente8SegTeclasYLeds/FrenteCustom.hpp"
 
+#define CANTIDAD_DISPLAYS 2
 
 class FrenteDH:public FrenteCustom{
   public:
-    FrenteDH* getInstancia();
+    static FrenteDH* getInstancia();
     virtual Display* getDisplay(byte numDisplay);
   protected:
     FrenteDH();
     virtual void seleccionarDigito(byte barrido);
     virtual void encenderLeds(byte leds);
     virtual bool isTeclaPresionada();
-    virtual byte getTecla(byte barrido);
+    virtual byte getTeclaPosicion(byte barrido);
   private:
-    Display displays[CANTIDAD_DISPLAYS];
+    Display display1;
+    Display display2;
+    static const byte codigoSelectorDigito[8];
+    static const byte codigoTecla[8];
+    static FrenteDH * instancia;
+    
 };
 
 
