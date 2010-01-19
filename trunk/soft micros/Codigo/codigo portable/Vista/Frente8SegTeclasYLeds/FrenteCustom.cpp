@@ -1,8 +1,18 @@
 #include "FrenteCustom.hpp"
+#include "TimerHard/int1ms_40ms_handler/timer_interrupt.h"
 
 /*FrenteCustom()*/
 FrenteCustom::FrenteCustom():scrollTimer(TIME_SCROLL),leds(0),barrido(0),barridoTeclas(0),teclasPresionadas(0),posiblesTeclas(0),debounce(0){      
+  mOn1ms.pmethod = on1msStatic;
+  mOn1ms.obj = this;
+  add1msListener(&mOn1ms);
 }
+
+void FrenteCustom::on1msStatic(void*_self){
+  FrenteCustom * self = (FrenteCustom *)_self;
+  self->on1ms();    
+}
+
 /*setLed()*/
 void FrenteCustom::setLed(bool val,byte num){
  if(val)
@@ -63,11 +73,12 @@ void FrenteCustom::on1ms(){
   display->apagar();
   seleccionarDigito(barrido);
   display->imprimirDigito(barrido%DIGITOS);
+  ++barrido;  //actualizo el paso de barrido
 }
 
 /* se fija si se encuentra el barrido en la posicion para leer una tecla, el barrido se encuentra en la posicion anterior para mayor estabilidad*/
 void FrenteCustom::actualizarTeclas(){
-  byte tecla = getTecla(barrido);
+  byte tecla = getTeclaPosicion(barrido);
   if(!tecla) return;  //no es la posicion del barrido que corresponde a la lectura de una letra
   
   if(isTeclaPresionada()) teclasPresionadas|=tecla;
@@ -94,8 +105,7 @@ void FrenteCustom::actualizarTeclas(){
   
 }
 
-/*
-void FrenteCustom::seleccionarDigito(byte barrido){
-  SelectorDigitos_putVal(getCodigoSelectorDigito(barrido));  
+byte FrenteCustom::getTecla(){
+  return teclas.getTecla();
 }
-  */
+

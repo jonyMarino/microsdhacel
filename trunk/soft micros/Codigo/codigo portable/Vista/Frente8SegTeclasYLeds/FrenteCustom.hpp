@@ -2,26 +2,28 @@
 #define _FRENTE_CUSTOM_HPP
 
 
-#include "Display/Display.hpp"
+#include "Vista/Display/Display.hpp"
 #include "Timer/FlagTimer/FlagTimer.hpp"
-#include "Teclas.hpp"
-#include "PE_Types.h"
+#include "Vista/Teclas/Teclas.hpp"
+#include "PE/include/PE_Types.h"
+#include "OOC/lang/reflect/lib_cpp/Method.hpp"
 
 #define CANTIDAD_VALIDACIONES 8
 
 class FrenteCustom{
   public:
-    FrenteCustom * getInstancia();
     virtual Display* getDisplay(byte numDisplay)=0;
     void setLed(bool val,byte num); 
-    void borrar(void);  
+    void borrar(void); 
+    byte getTecla(); 
+    Teclas * getTeclas();
   protected:
     virtual void on1ms();
     FrenteCustom();
     virtual void seleccionarDigito(byte barrido)=0;
     virtual void encenderLeds(byte leds)=0;
     virtual bool isTeclaPresionada()=0;
-    virtual byte getTecla(byte barrido)=0;
+    virtual byte getTeclaPosicion(byte barrido)=0;
   private:   
     FlagTimer scrollTimer;
     Teclas teclas;
@@ -32,7 +34,9 @@ class FrenteCustom{
     byte posiblesTeclas;      // conjunto de teclas presionadas en un barrido posiblemente validas
     byte debounce;          // contador del numero de entradas iguales hasta aceptar la tecla
     void actualizarTeclas();
-    void resetScroll();   
+    void resetScroll(); 
+    struct Method mOn1ms;
+    static void on1msStatic(void*self);  
 };
 
 #endif
