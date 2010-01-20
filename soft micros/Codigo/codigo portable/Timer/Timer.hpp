@@ -1,8 +1,8 @@
 #ifndef _TIMER_HPP
 #define _TIMER_HPP
 
-#include "stdtypes.h"
-#include "BaseTimers.hpp"
+#include <stdtypes.h>
+#include "Timer/BaseTimers.hpp"
 
 class Timer{
   public:
@@ -71,13 +71,16 @@ class Timer{
     ** ===================================================================
     */
     void stop();
+    
+    static void  setBaseTimerDefault(BaseTimers& b);
   protected:
-    void onTime();  
+    virtual void onTime();  
   private:
     ulong next_cuenta;
     ulong tiempo;
     uchar of;
     BaseTimers * baseTimer;
+    static BaseTimers *baseTimerDefault;
 };
 
 #endif

@@ -2,8 +2,8 @@
 #define _METHOD_TIMER_HPP
 
 #include "stdtypes.h"
-#include "Timer.hpp"
-#include "Method.hpp"
+#include "Timer/Timer.hpp"
+#include "./OOC/lang/reflect/lib_cpp/Method.hpp"
 
 #pragma DATA_SEG MethodTimer_DATA                                            
 #pragma CODE_SEG MethodTimer_CODE 
@@ -11,7 +11,7 @@
 
 class MethodTimer:public Timer{
   public:
-    MethodTimer(ulong tiempo,struct Method& metodo);
+    MethodTimer(ulong tiempo,const struct Method& metodo);
     void setMetodo(struct Method& metodo);
     struct Method&  getMetodo();
   protected:
