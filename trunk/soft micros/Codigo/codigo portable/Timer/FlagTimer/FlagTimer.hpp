@@ -2,7 +2,7 @@
 #define _FLAG_TIMER_HPP
 
 #include "stdtypes.h"
-#include "Timer.hpp"
+#include "Timer/Timer.hpp"
 
 
 typedef void(*pfunction)(void);

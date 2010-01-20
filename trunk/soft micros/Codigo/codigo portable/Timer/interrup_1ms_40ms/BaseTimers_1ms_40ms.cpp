@@ -1,6 +1,6 @@
 #include "BaseTimers_1ms_40ms.hpp"
 #include "timer_interrupt.h"
-#include "TI1.h"
+#include "Cpu.h"
 
 
 
@@ -24,11 +24,11 @@ BaseTimers_1ms_40ms *BaseTimers_1ms_40ms::getInstance(void){
 }
 
 void BaseTimers_1ms_40ms::lockInc(){
-  TI1_Disable();
+  Cpu_DisableInt();
 }
 
 void BaseTimers_1ms_40ms::unlockInc(){
-  TI1_Enable();
+  Cpu_EnableInt();
 }
 
 void BaseTimers_1ms_40ms::inc1(void * _self){
@@ -39,7 +39,7 @@ void BaseTimers_1ms_40ms::inc1(void * _self){
 
 void BaseTimers_1ms_40ms::inc40(void * _self){
   BaseTimers_1ms_40ms * self=(BaseTimers_1ms_40ms *)_self;
-  self->incrementar(TIEMPO_GRABACION);
+  self->incrementar(40);
   self->actualizarTimers();
 }
 

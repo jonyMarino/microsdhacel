@@ -2,13 +2,17 @@
 
 #include "stddef.h"
 #include "stdtypes.h"
-#include "Cpu.h"
-#include "BaseTimers_1ms_40ms.hpp"
+#include "BaseTimers.hpp"
 
 #pragma DATA_SEG Timer_DATA                                            
 #pragma CODE_SEG Timer_CODE 
 #pragma CONST_SEG DEFAULT
 
+BaseTimers *Timer::baseTimerDefault=NULL;
+
+void  Timer::setBaseTimerDefault(BaseTimers& b){
+  baseTimerDefault = &b;  
+}
 
 /*
 ** ===================================================================
@@ -18,9 +22,8 @@
 ** ===================================================================
 */
 Timer::Timer(ulong tiempo){
-  BaseTimers * baseTimer = BaseTimers_1ms_40ms::getInstance(); 
+  baseTimer = baseTimerDefault; 
   ulong cuenta = baseTimer->getCuenta();
-  this->baseTimer = baseTimer;
   this->tiempo= tiempo;
   this->next_cuenta=cuenta+tiempo;
   
@@ -51,7 +54,9 @@ Timer::~Timer(){
 **    Description : setea la entrada de ticks del timer
 ** ===================================================================
 */
-void Timer::setBaseTimer(BaseTimers * base){ 
+void Timer::setBaseTimer(BaseTimers * base){
+  if(baseTimer)
+    baseTimer->moveOut(this);   
   baseTimer = base;
 }
 /*
@@ -72,7 +77,6 @@ void Timer::onTime(){
 */
 void Timer::comparar(){  
   bool comp;
-  BaseTimers * baseTimer = this->baseTimer;  
   ulong cuentaTmp = baseTimer->getCuenta();
   ulong nextCuentaTmp = this->next_cuenta;
   ulong tiempoTmp = this->tiempo;
@@ -86,7 +90,9 @@ void Timer::comparar(){
     int error = cuentaTmp - nextCuentaTmp;
     error = (error<0)?-error:error;
     nextCuentaTmp +=   error + tiempoTmp;
+    baseTimer->lockInc();
     this->next_cuenta=nextCuentaTmp;    
+    baseTimer->unlockInc();
     if(cuentaTmp >= nextCuentaTmp){
       this->of=TRUE;        
     }
@@ -108,12 +114,8 @@ ulong Timer::getCuenta(){
   if(isFinished())
     return 0;
   cuentaTmp = this->baseTimer->getCuenta();
-
-  Cpu_DisableInt();
-    nextCuentaTmp = this->next_cuenta;
-    tiempoTmp = this->tiempo;
-  Cpu_EnableInt();
-   
+  nextCuentaTmp = this->next_cuenta;
+  tiempoTmp = this->tiempo;  
   return cuentaTmp - (nextCuentaTmp - tiempoTmp);
 }
 
@@ -137,7 +139,9 @@ uchar Timer::isFinished(){
 */
 void Timer::restart(){
   ulong cuenta = this->baseTimer->getCuenta();
+  baseTimer->lockInc();
   this->next_cuenta= cuenta + this->tiempo ;
+  baseTimer->unlockInc();
   if(cuenta >= this->next_cuenta)
     this->of=TRUE;  
   else
@@ -152,8 +156,10 @@ void Timer::restart(){
 **    Description : Setea un tiempo nuevo y reinicia la cuenta del tiempo
 ** ===================================================================
 */
-void Timer::setTime(ulong tiempo){					 
+void Timer::setTime(ulong tiempo){
+  baseTimer->lockInc();					 
   this->tiempo=tiempo;
+  baseTimer->unlockInc();
   restart();
 }
 

@@ -28,8 +28,8 @@ void BaseTimers::actualizarTimers(void){
 
 unsigned long BaseTimers::getCuenta(){
   unsigned long cuentatmp;
-  //lockInc(_self);
+  lockInc();
   cuentatmp = cuenta;
-  //unlockInc(_self);   
+  unlockInc();   
   return cuentatmp;
 }

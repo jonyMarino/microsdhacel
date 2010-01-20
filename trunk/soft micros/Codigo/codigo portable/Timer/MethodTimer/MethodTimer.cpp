@@ -5,7 +5,6 @@
 
 #include "stddef.h"
 #include "stdtypes.h"
-#include "Cpu.h"
 
 
 #pragma DATA_SEG MethodTimer_DATA                                            
@@ -20,7 +19,7 @@
 **                  valores de configuración del Timer
 ** ===================================================================
 */
-MethodTimer::MethodTimer(ulong tiempo,struct Method& _metodo):Timer(tiempo),metodo(_metodo){}
+MethodTimer::MethodTimer(ulong tiempo,const struct Method& _metodo):Timer(tiempo),metodo(_metodo){}
 
 
 /*
@@ -32,6 +31,10 @@ MethodTimer::MethodTimer(ulong tiempo,struct Method& _metodo):Timer(tiempo),meto
 */
 void MethodTimer::setMetodo(struct Method& _metodo){
   metodo = _metodo; 
+}
+
+struct Method&  MethodTimer::getMetodo(){
+  return metodo;
 }
 /*
 ** ===================================================================
