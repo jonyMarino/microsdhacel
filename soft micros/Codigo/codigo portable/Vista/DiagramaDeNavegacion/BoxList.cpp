@@ -18,7 +18,7 @@ Box * BoxList::getNextBox(uchar boxCount)const{
   
   fb= (struct FstBoxPointer *)Array_get(this,boxCount-1);
   
-  return fb->getNextBox();
+  return &fb->getNextBox();
 }
 /*
 ** =====================================================================

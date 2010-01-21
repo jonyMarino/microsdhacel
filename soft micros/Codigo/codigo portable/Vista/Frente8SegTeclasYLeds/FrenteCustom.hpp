@@ -16,7 +16,7 @@ class FrenteCustom{
     void setLed(bool val,byte num); 
     void borrar(void); 
     byte getTecla(); 
-    Teclas * getTeclas();
+    Teclas& getTeclas();
   protected:
     virtual void on1ms();
     FrenteCustom();

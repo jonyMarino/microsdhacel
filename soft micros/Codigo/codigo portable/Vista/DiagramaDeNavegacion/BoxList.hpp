@@ -12,7 +12,7 @@ struct BoxList{
 
 #define NEW_BOX_LIST(NAME,arrayFstBoxes,STR_NAME)  \
   struct BoxList NAME ={									\
-    INITIALIZATION_ARRAY(BoxList,arrayFstBoxes),  \
-    STR_NAME																								\
+    INITIALIZATION_ARRAY(arrayFstBoxes),  \
+    STR_NAME															\
   }
 #endif

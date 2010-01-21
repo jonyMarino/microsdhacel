@@ -5,10 +5,10 @@
 #include "Box.hpp"
 
 struct FstBoxPointer{	
-  struct ConstructorBox * constructor;
+  const struct ConstructorBox * constructor;
   void* objeto;
   uchar numObjeto;
-  Box * getNextBox()const;
+  Box& getNextBox()const;
 };
 
 

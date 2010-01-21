@@ -10,7 +10,9 @@ class Display:public OutputStream{
   public:
     Display(byte*puerto);
     void write(const char* str);
-    void write(unsigned char b);
+    //void writeByte(unsigned char b);
+    void write(int i);
+    void writeAsFloat(int i,uchar decimales);
     void borrar();
     bool isScrolling();
     void apagar();

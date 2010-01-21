@@ -6,6 +6,6 @@
 **    Description :  Obtiene el Box inicial del fst box pointer
 ** =====================================================================
 */
-Box *FstBoxPointer::getNextBox()const{
+Box& FstBoxPointer::getNextBox()const{
   return constructor->getBox(objeto,numObjeto);  
 }

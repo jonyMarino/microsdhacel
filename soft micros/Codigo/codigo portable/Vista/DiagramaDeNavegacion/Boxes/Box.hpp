@@ -7,8 +7,8 @@
 
 class Box{
   public:
-    Box(uchar _numObjeto):numObjeto(_numObjeto){}
-    
+    Box(){}
+    virtual ~Box(){}
     typedef enum{
       STAY_BOX,
       EXIT_BOX
@@ -30,21 +30,19 @@ class Box{
     **                  - Constructor del siguiente box
     ** ===================================================================
     */
-    virtual Box * procesarTecla(uchar tecla,TEstadoBox& estado)=0;
-    
-    void printDescripcion(const char * str, OutputStream& os);
+    virtual Box * procesarTecla(uchar tecla,TEstadoBox& estado)=0;    
     inline uchar getNumObjeto(){return numObjeto;}
   private:
     uchar numObjeto;
 };
 
 struct BoxFactory{
-  virtual Box& getBox(void*args,void*obj,uchar numObjeto)const=0;
+  virtual Box& getBox(const void*args,void*obj,uchar numObjeto)const=0;
 };
 
 struct ConstructorBox{
   const struct BoxFactory * factory;
-  Box * getBox(void*obj,uchar numObjeto)const;
+  Box& getBox(void*obj,uchar numObjeto)const;
 };
 
 

@@ -15,7 +15,7 @@
 **     Description :  Constructor del Box
 ** ===================================================================
 */
-BoxTitulo::BoxTitulo(const char*str1,const char*str2):Box(0){
+BoxTitulo::BoxTitulo(const char*str1,const char*str2):Box(){
   getDisplay(0).write(str2);
   getDisplay(1).write(str1);     
 }

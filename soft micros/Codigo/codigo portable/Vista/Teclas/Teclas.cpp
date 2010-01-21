@@ -4,7 +4,7 @@
 /*  Definicion de nombre de tecla y su forma de ser invocada*/
 
 /* definiciones del teclado */
-#define KEY_RAMPA_INI	20 /*A los cuantos ingresos(la primera vez) iguales se repite la salida para ese pulsador*/
+#define KEY_RAMPA_INI	40 /*A los cuantos ingresos(la primera vez) iguales se repite la salida para ese pulsador*/
 #define KEY_RAMPA_FIN	0  /*Maxima velociadad de ingresos iguales a los que se repite la salida para ese pulsador*/
 #define KEY_DELTA	1  /*Variacion de velociadad una vez realizada la salida*/
 

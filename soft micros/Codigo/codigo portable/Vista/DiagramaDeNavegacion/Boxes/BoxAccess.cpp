@@ -20,7 +20,7 @@
 **     Description :  Constructor del Box
 ** ===================================================================
 */
-void BoxAccess::BoxAccess(const char*str,int _codigo):Box(0){
+void BoxAccess::BoxAccess(const char*str,int _codigo):Box(){
 
   valorTmp=0;
   codigo=_codigo;
@@ -44,7 +44,7 @@ Box * BoxAccess::procesarTecla(uchar tecla,TEstadoBox& estado)
       valorTmp--;
     else if(valorTmp<9999)
       valorTmp++;   
-    sprintf(str,"%(4)i",valorTmp);
+    sprintf(str,"%4i",valorTmp);
     getDisplay(0).write(str);
   }else if (tecla=='r'){
     
@@ -56,6 +56,7 @@ Box * BoxAccess::procesarTecla(uchar tecla,TEstadoBox& estado)
       estado = EXIT_BOX;
       return NULL;
     }else{
+      valorTmp = 0;
       getDisplay(0).write("   0"); 
     } 
   }

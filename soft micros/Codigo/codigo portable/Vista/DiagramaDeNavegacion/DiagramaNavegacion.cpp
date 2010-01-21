@@ -52,6 +52,7 @@ DiagramaNavegacion::DiagramaNavegacion(const struct BoxList * _boxesOp,const str
   
   accesos = _accesos;
   boxesOp = _boxesOp;
+  boxActual=NULL;
   
   if(!timer)			  // si no pude poner el Timer intentar saltar a principal
     goPrincipal();
@@ -86,9 +87,10 @@ void DiagramaNavegacion::goPrincipal(){
   listCount=0;
   boxListCount=1;
   accessCount=0;
-  delete boxActual;
+  if(boxActual)
+    delete boxActual;
   fb=(struct FstBoxPointer *)Array_get((void*)boxesOp,0);
-  boxActual= fb->getNextBox();//vBoxes_Construct(fb->Cbox,NULL,0);
+  boxActual= &fb->getNextBox();//vBoxes_Construct(fb->Cbox,NULL,0);
 }
 /*
 ** =====================================================================
@@ -157,7 +159,7 @@ void DiagramaNavegacion::procesar(uchar tecla){
   if(!boxActual)			 // Todavia no se cargo el box inicial?
     return;
   
-  if(tecla=='k' || (frente->getTeclas()->isTimePass() && !(accessCount==0 && listCount==0)) ){					//Exit
+  if(tecla=='k' || (frente->getTeclas().isTimePass() && !(accessCount==0 && listCount==0)) ){					//Exit
     goPrincipal();
     return;
   } 
