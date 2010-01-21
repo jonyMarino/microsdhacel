@@ -1,16 +1,18 @@
+#include <stdio.h>
+#include <stdlib.h>
 #include "Display.hpp"
 #include "matriz.h"
-
+#include "OOC/lang/Math.hpp"
 
 Display::Display(byte* _puerto):puerto(_puerto),corrimiento(0),nLetras(0){}
 
 
 void Display::write(const char* str){
   byte temp, digitoTmp;
-  	
+  
 	if(nLetras>4)		 // En el anterior hubo scrolling?
-    resetearCorrimiento();	
-	nLetras=0;		 
+    resetearCorrimiento();
+	nLetras=0;
 	
   while(*str!='\0')
   {
@@ -22,10 +24,10 @@ void Display::write(const char* str){
       mensaje[nLetras-1]|=0x80;
       continue;
     }
- 	
+
     if((*str)!=' ')
       digitoTmp=(byte)Car_Ini[temp];
-    else 	
+    else
       digitoTmp=0x00;
 
     mensaje[nLetras]=digitoTmp;
@@ -34,11 +36,39 @@ void Display::write(const char* str){
   }
 }
 
-void Display::write(unsigned char b){
+void Display::write(int i){
+  char str[5];
+  sprintf(str,"%*i",DIGITOS,abs(i));
+  
+  write(str);
+  if(i<0)
+    mensaje[0]|= Car_Ini[0];
+}
+
+void Display::writeAsFloat(int i,uchar decimales){
+  if(!decimales){ 
+    write(i);
+    return;
+  }
+  char str[6];
+  int a;
+  a=sprintf(str,"%*i.",DIGITOS-decimales,abs(i)/ Math::pow10(decimales));
+  //str+=a;
+  sprintf(str+a,"%0*i",decimales,abs(i)% Math::pow10(decimales));
+
+  write(str);
+  if(i<0)
+    mensaje[0]|= Car_Ini[0];
+
+  
+}
+    
+/*
+void Display::writeByte(unsigned char b){
 	char str[2]=" ";
 	str[0]=b;
-	write(str);	
-}
+	write(str);
+} */
 
 void Display::borrar(){
   nLetras = 0;  

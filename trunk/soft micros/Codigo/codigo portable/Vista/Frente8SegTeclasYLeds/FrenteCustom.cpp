@@ -109,3 +109,7 @@ byte FrenteCustom::getTecla(){
   return teclas.getTecla();
 }
 
+Teclas& FrenteCustom::getTeclas(){
+  return teclas;
+}
+

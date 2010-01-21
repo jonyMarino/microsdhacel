@@ -26,7 +26,7 @@ struct ConstructorBoxPrincipal{
 class BoxPrincipal:public Box{
   public:
     BoxPrincipal(struct ConstructorBoxPrincipal * constructor);
-    ~BoxPrincipal();
+    virtual ~BoxPrincipal();
     virtual Box * procesarTecla(uchar tecla,TEstadoBox& estado);
   protected:
     struct ConstructorBoxPrincipal * constructor;
@@ -36,10 +36,12 @@ class BoxPrincipal:public Box{
 };
 
 struct BoxPrincipalFactory:public BoxFactory{
-  virtual Box& getBox(void*args,void*obj,uchar numObjeto)const{
+  virtual Box& getBox(const void*args,void*obj,uchar numObjeto)const{
     return *new BoxPrincipal((struct ConstructorBoxPrincipal *)args);
   }
 };
+
+extern const struct BoxPrincipalFactory boxPrincipalFactory; 
 
                         
 #pragma DATA_SEG DEFAULT                                            

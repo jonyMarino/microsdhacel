@@ -1,6 +1,6 @@
 #include "PropGetterVisual.hpp"
 
-
+PropGetterVisual::PropGetterVisual(void*obj,const struct ArgumentosPropGetterVisual* args):PropiedadGetter(obj,(const struct ArgumentosPropiedadGetter*)args){}
 /*
 ** ===================================================================
 **     Method      :  PropVisual_getDescripcion 
@@ -9,18 +9,22 @@
 ** ===================================================================
 */
 
-const char * PropGetterVisual::getDescripcion(void * self){
-  return constructor.descripcion;  
+const char * PropGetterVisual::getDescripcion(){
+  return ((const struct ArgumentosPropGetterVisual*)getArgumentos())->descripcion;  
 }
 
-/*
-** ===================================================================
-**     Method      :  PropVisual_Print 
-**     Description :  Forma en que imprime 
-** ===================================================================
-*/
-void PropGetterVisual::print(OutputStream& os){
-  char * str[5];
-  sprintf(str,"%i",getVal());
-  os.write(str);
+
+void BoxPropiedad::printDescripcion(OutputStream& os){
+  const char * desc = getDescripcion();
+  if(numObjeto){
+    char strTmp[30];
+    sprintf(strTmp,"%s%d",desc,numObjeto);
+    os.write(strTmp);
+  } else
+      os.write(desc);
 }
+
+
+PropiedadGetter& PropGetterVisualFactory::getPropiedad(void*obj,const struct ArgumentosPropiedadGetter* args)const{
+  return *new PropGetterVisual(obj,(const struct ArgumentosPropGetterVisual*)args);
+} 

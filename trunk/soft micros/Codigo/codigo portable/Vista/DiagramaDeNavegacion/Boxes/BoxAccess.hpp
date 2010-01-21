@@ -7,7 +7,8 @@
 
 class BoxAccess:public Box{
   public:
-    BoxAccess(const char*desc,int codigo); 
+    BoxAccess(const char*desc,int codigo);
+    virtual ~BoxAccess(){}
     virtual Box * procesarTecla(uchar tecla,TEstadoBox& estado);
   private:
     int valorTmp;

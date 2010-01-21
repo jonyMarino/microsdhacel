@@ -14,7 +14,7 @@ struct Access{											 // sabe get_new_box
 
 #define NEW_ACCESS(name,arrayBoxList,strName,pCodigo)  \
   struct Access name={                                  \
-    INITIALIZATION_ARRAY(Access,arrayBoxList),  \
+    INITIALIZATION_ARRAY(arrayBoxList),  \
     pCodigo,																							\
     strName  																							\
 }

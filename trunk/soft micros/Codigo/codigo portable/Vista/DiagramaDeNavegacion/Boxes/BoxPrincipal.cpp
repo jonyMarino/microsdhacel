@@ -18,16 +18,17 @@
   #define TIME_BETWEEN_PARS 2000
 #endif  
 
-
+const struct BoxPrincipalFactory boxPrincipalFactory;
 /*
 ** ===================================================================
 **     Method      :  BoxPri_Constructor 
 **     Description :  Constructor del Box
 ** ===================================================================
 */
-BoxPrincipal::BoxPrincipal(struct ConstructorBoxPrincipal * constructor):Box(0),timerPri(TIME_BETWEEN_PARS)
+BoxPrincipal::BoxPrincipal(struct ConstructorBoxPrincipal * _constructor):Box(),timerPri(TIME_BETWEEN_PARS)
 {
   msj_index=0;  
+  constructor=_constructor;
   constructor->flash->habilitar();  
   constructor->snsr1->print(getDisplay(0));  
   getDisplay(1).write("MEdicion");

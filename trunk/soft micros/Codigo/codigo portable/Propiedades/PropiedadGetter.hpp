@@ -1,39 +1,22 @@
 #ifndef _PROPIEDAD_GETTER_HPP
 #define _PROPIEDAD_GETTER_HPP
 
+#include "Standard/Getter.hpp" 
 
-#include "ConstructorPropiedadGetter.hpp"
-
-class PropiedadGetter{ 
-  public:  
-    class ConstructorPropiedadGetter{
-      public:
-       // struct PropiedadGetterFactory * factory;  
-        void* (*creator)(void* _obj,ConstructorPropiedadGetter* _constructor);
-        int (*get)(void * obj);
-    };
+struct ArgumentosPropiedadGetter{
+  int (*get)(void * obj);
+}; 
     
-    PropiedadGetter(void* _obj,ConstructorPropiedadGetter* _constructor);
-    int get();
+class PropiedadGetter:public Getter{ 
+  public:      
+    PropiedadGetter(void* _obj,const struct ArgumentosPropiedadGetter* _constructor);
+    int getVal();
     void * getObjeto();
-    
-
-    
-    /*struct PropiedadGetterFactory{
-      public:
-        virtual PropiedadGetter& getPropiedad(void*obj,struct ConstructorPropiedadGetter& args)const;
-    };*/
-    
-    static  PropiedadGetter* creator(void* _obj,ConstructorPropiedadGetter* _constructor);
-    
-    
-    
-   // static Getter * getGetter(ConstructorPropiedadGetter * self,void * obj);
-    
+    void print(OutputStream& os);         
   protected:
-    ConstructorPropiedadGetter* getConstructor();  
+    const struct ArgumentosPropiedadGetter* getArgumentos();  
   private:
-    const ConstructorPropiedadGetter* constructor;
+    const struct ArgumentosPropiedadGetter* pget;
     void * obj;  
 };
 

@@ -8,8 +8,7 @@
 #include "Vista/Frente8SegTeclasYLeds/FrenteCustom.hpp"
 #include "OOC/lang/reflect/lib_cpp/Method.hpp"
 #include "FstBoxPointer.hpp"
-//#include "Errores.h"
-//#include "BoxPrincipal.h"
+
 
 #pragma DATA_SEG DIAGRAMA_NAVEGACION_DATA 
 #pragma CODE_SEG DIAGRAMA_NAVEGACION_CODE
