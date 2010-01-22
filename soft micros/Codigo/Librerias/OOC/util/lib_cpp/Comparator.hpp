@@ -1,7 +1,7 @@
 #ifndef _COMPARATOR_HPP
 #define _COMPARATOR_HPP
 
-#include "PE_Types.h"
+#include "PE/include/PE_Types.h"
 
 class Comparator{
   public:

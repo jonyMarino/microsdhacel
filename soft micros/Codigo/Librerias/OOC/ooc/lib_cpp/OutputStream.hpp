@@ -1,6 +1,7 @@
 #ifndef _OUTPUTSTREAM_HPP
 #define _OUTPUTSTREAM_HPP
 
+#include <stdtypes.h>
 
 class OutputStream
 {
@@ -24,10 +25,14 @@ class OutputStream
   //public void write(byte[] b)
   //           throws IOException
   //
-  virtual void write(const char * b);
+  virtual void write(const char * b)=0;
   
-  //    Writes b.length bytes from the specified byte array to this output stream.
-  virtual void write(unsigned char b);
+//  virtual void writeByte(unsigned char b)=0;
+  //    Writes 
+  virtual void write(int i)=0; 
+  //    Writes 
+  virtual void writeAsFloat(int i,uchar decimales)=0;   
+  
 };
 
 #endif

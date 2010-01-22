@@ -1,8 +1,8 @@
 #ifndef _DOBLE_LIST_HPP
 #define _DOBLE_LIST_HPP
 
-#include "NodoDoble.hpp"
-#include "LinkedList.hpp"
+#include "OOC/util/lib_cpp/NodoDoble.hpp"
+#include "OOC/util/lib_cpp/LinkedList.hpp"
 
 class DobleList:public LinkedList{
   public:

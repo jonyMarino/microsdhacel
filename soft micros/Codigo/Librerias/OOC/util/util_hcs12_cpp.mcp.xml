@@ -506,6 +506,16 @@
                         <SETTING><NAME>FrameworkPath</NAME><VALUE>false</VALUE></SETTING>
                         <SETTING><NAME>HostFlags</NAME><VALUE>All</VALUE></SETTING>
                     </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>SearchPath</NAME>
+                            <SETTING><NAME>Path</NAME><VALUE>..\..</VALUE></SETTING>
+                            <SETTING><NAME>PathFormat</NAME><VALUE>Windows</VALUE></SETTING>
+                            <SETTING><NAME>PathRoot</NAME><VALUE>Project</VALUE></SETTING>
+                        </SETTING>
+                        <SETTING><NAME>Recursive</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>FrameworkPath</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>HostFlags</NAME><VALUE>All</VALUE></SETTING>
+                    </SETTING>
                 </SETTING>
                 <SETTING><NAME>SystemSearchPaths</NAME>
                     <SETTING>
@@ -1219,13 +1229,6 @@
                 </FILE>
                 <FILE>
                     <PATHTYPE>Name</PATHTYPE>
-                    <PATH>ooc_comp_cpp_si.lib</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                    <FILEKIND>Unknown</FILEKIND>
-                    <FILEFLAGS>Debug</FILEFLAGS>
-                </FILE>
-                <FILE>
-                    <PATHTYPE>Name</PATHTYPE>
                     <PATH>Array.c</PATH>
                     <PATHFORMAT>Windows</PATHFORMAT>
                     <FILEKIND>Text</FILEKIND>
@@ -1283,11 +1286,6 @@
                 <FILEREF>
                     <PATHTYPE>Name</PATHTYPE>
                     <PATH>List.cpp</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>ooc_comp_cpp_si.lib</PATH>
                     <PATHFORMAT>Windows</PATHFORMAT>
                 </FILEREF>
                 <FILEREF>
@@ -1428,6 +1426,16 @@
                     <SETTING>
                         <SETTING><NAME>SearchPath</NAME>
                             <SETTING><NAME>Path</NAME><VALUE>Sources</VALUE></SETTING>
+                            <SETTING><NAME>PathFormat</NAME><VALUE>Windows</VALUE></SETTING>
+                            <SETTING><NAME>PathRoot</NAME><VALUE>Project</VALUE></SETTING>
+                        </SETTING>
+                        <SETTING><NAME>Recursive</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>FrameworkPath</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>HostFlags</NAME><VALUE>All</VALUE></SETTING>
+                    </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>SearchPath</NAME>
+                            <SETTING><NAME>Path</NAME><VALUE>..\..</VALUE></SETTING>
                             <SETTING><NAME>PathFormat</NAME><VALUE>Windows</VALUE></SETTING>
                             <SETTING><NAME>PathRoot</NAME><VALUE>Project</VALUE></SETTING>
                         </SETTING>
@@ -2148,13 +2156,6 @@
                 </FILE>
                 <FILE>
                     <PATHTYPE>Name</PATHTYPE>
-                    <PATH>ooc_comp_cpp_si.lib</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                    <FILEKIND>Unknown</FILEKIND>
-                    <FILEFLAGS>Debug</FILEFLAGS>
-                </FILE>
-                <FILE>
-                    <PATHTYPE>Name</PATHTYPE>
                     <PATH>Array.c</PATH>
                     <PATHFORMAT>Windows</PATHFORMAT>
                     <FILEKIND>Text</FILEKIND>
@@ -2212,11 +2213,6 @@
                 <FILEREF>
                     <PATHTYPE>Name</PATHTYPE>
                     <PATH>List.cpp</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>ooc_comp_cpp_si.lib</PATH>
                     <PATHFORMAT>Windows</PATHFORMAT>
                 </FILEREF>
                 <FILEREF>
@@ -2293,12 +2289,6 @@
                 <TARGETNAME>C++ Mb no float</TARGETNAME>
                 <PATHTYPE>Name</PATHTYPE>
                 <PATH>List.cpp</PATH>
-                <PATHFORMAT>Windows</PATHFORMAT>
-            </FILEREF>
-            <FILEREF>
-                <TARGETNAME>C++ Mb no float</TARGETNAME>
-                <PATHTYPE>Name</PATHTYPE>
-                <PATH>ooc_comp_cpp_si.lib</PATH>
                 <PATHFORMAT>Windows</PATHFORMAT>
             </FILEREF>
             <FILEREF>
