@@ -15,10 +15,10 @@ extern const struct PromBkpClass RamSimulaFlash;
 #define INITIALIZATION_RAM_SIMULA_FLASH(class)       \
     INITIALIZATION_PROM_BKP(class)              							\
 
-
+/*
 #define NEW_RAM_SIMULA_FLASH(name) \
   struct RamSimulaFlash name={														\
     INITIALIZATION_RAM_SIMULA_FLASH(&RamSimulaFlash) \
   }
-
+  */
 #endif

@@ -63,9 +63,10 @@
 #include "PE_Types.h"
 #include "PE_Error.h"
 #include "PE_Const.h"
-#include "IO_Map.h"
+//#include "mc9s12gc32.h"
+#include "mc9s12gc32.h"
 #include "Cpu.h"
-#include "Mydefines.h"
+//#include "Mydefines.h"
 //#include "AD_Time.h"
 
 
@@ -76,10 +77,10 @@
 
 #define ADC_EnableTrigger ADC_EnableExtChanTrigger
 /*************PARAMETROS DE LA CONVERSION*****************/
-#define MAXAD      10000          //cuentas maximo que salen del ad
+/*#define MAXAD      10000          //cuentas maximo que salen del ad
 #define MAXMV      5000          //decivoltios para esa cuenta
 #define MINAD      -2000          //cuentas minimo que salen del ad
-#define MINMV      -1000          //decivoltios para esa cuenta
+#define MINMV      -1000    */      //decivoltios para esa cuenta
 
 #define BUS_CLOCK 16000000.0		 /*Hz*/
 #define ATD_PRESCALER	8					 /*Clock Prescaler (ATDCTL4+1)*2 */
@@ -89,6 +90,8 @@
 #define No_BITS 10               /*Resolucion en bits de una conversion ATDCTL5*/
 
 #define CONVERSION_TIME  (No_BITS+SAMPLE_TIME+2)/ATD_CLOCK * No_CONVERSIONS	 // 0.000112
+#define _TIEMPO_AD_EN_MILISEGUNDOS 1000
+
 /*
 ** ===================================================================
 **     Method      :  AD1_Enable (bean ADC)
@@ -173,6 +176,8 @@ Como no estoy en el maximo, lo ajuste experimentalmente a 2900
 Las constantes de medicion de temperatura ambiente se determinaron 
 experimentalmente.
 */
+//#define CANTIDAD_CANALES 2
+
 #if CANTIDAD_CANALES==2
   #if _TIEMPO_AD_EN_MILISEGUNDOS==2000
     #define KNMEDCH     5714		 /*Numero de secuencias para obteber el resultado final*/

@@ -1,8 +1,8 @@
  #ifndef _PROM_BKP_HPP
  #define _PROM_BKP_HPP 
  
-#include "ManejadorMemoria.hpp"
-#include "LinkedList.hpp" 
+#include "Memoria/ManejadorMemoria.hpp"
+#include "OOC/util/lib_cpp/LinkedList.hpp" 
 
 
 
@@ -11,8 +11,8 @@
  class PromBkp: public ManejadorMemoria{
   public:
     PromBkp();
-    virtual byte borrarProm(void*);
-    virtual void * grabarProm();
+    virtual byte borrarProm(void*)=0;
+    virtual void * grabarProm()=0;
     bool listoParaGrabarOBorrar();
     bool grabacionOBorradoEnEspera();
     byte borrarPagina(void * address);

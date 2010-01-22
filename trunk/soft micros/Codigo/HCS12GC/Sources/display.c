@@ -9,7 +9,8 @@
 #include "stdtypes.h" 
 #include "display.h"
 #include "Math.h"
-#include "Mydefines.h"
+#include "display_teclas.h"
+//#include "Mydefines.h"
 
 
 ///////////////////////////////////////////////////////////////////////

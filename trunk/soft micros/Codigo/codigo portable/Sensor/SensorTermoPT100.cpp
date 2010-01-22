@@ -1,19 +1,19 @@
 
 #include "SensorTermoPT100.hpp"
-#include "ManejadorMemoria.h"
+#include "Memoria/ManejadorMemoria.hpp"
 #include "IAdc.hpp"
 #include "Adc.hpp"
 #include "WDog1.h"
 #include "Math.h"
 #include "funciones.h"
-#include "str_lib.h"
 #include "PTSL.h"
 #include "ADC.h"
-#include "Math.h"
+#include "Math.hpp"
+#include "CharPointer.hpp"
 
 int * SensorTermoPT100::compensacionTempAmb=NULL;
 
-SensorTermoPT100::SensorTermoPT100(Adc & _adc_, const SensorTermoPT100::TConfSensor & _conf, struct ManejadorMemoria & _manejadorMemoria):_adc(_adc_),configuracion(_conf),manejadorMemoria(_manejadorMemoria) {
+SensorTermoPT100::SensorTermoPT100(Adc & _adc_, const SensorTermoPT100::TConfSensor & _conf, ManejadorMemoria & _manejadorMemoria):_adc(_adc_),configuracion(_conf),manejadorMemoria(_manejadorMemoria) {
   while(!_adc.isNewVal()) //Espera a q haya una conversión
     WDog1_Clear();
  
@@ -27,7 +27,7 @@ unsigned char SensorTermoPT100::getDecimales() {
 
 
 void SensorTermoPT100::setDecimales(int val){
-  _MANEJADOR_MEMORIA_SET_BYTE(&manejadorMemoria,(unsigned int * const)&configuracion.decimales,val);
+  manejadorMemoria.setByte((unsigned int * const)&configuracion.decimales,val);
 }
 
 
@@ -40,7 +40,7 @@ int SensorTermoPT100::getLimiteInferior() {
   byte decimal_chan = SENSOR_Decimales(getSensor());      
   byte decimales=getDecimales();
 
-  return min_sens/pow10(decimal_chan-decimales);
+  return min_sens/Math::pow10(decimal_chan-decimales);
 }
 
 int SensorTermoPT100::getLimiteSuperior() {
@@ -51,7 +51,7 @@ int SensorTermoPT100::getLimiteSuperior() {
   if(SENSOR_is_Lineal(getSensor()))
     return max_sens; 
   else
-    return max_sens/pow10(decimal_chan-decimales); 
+    return max_sens/Math::pow10(decimal_chan-decimales); 
 }
 
 int SensorTermoPT100::getVal() {
@@ -86,9 +86,8 @@ void SensorTermoPT100::procesar() {
   int CompTempAmb=0;
   
   if (sensor<SENSOR_PT){  
-    int Ta_Temp= _adc.getTemperaturaAmbiente()  + *compensacionTempAmb*10/pow10(SENSOR_Decimales(sensor));  //El menos inicial es porque el diodo esta conectado alreves 
+    int Ta_Temp= _adc.getTemperaturaAmbiente()  + *compensacionTempAmb*10/Math::pow10(SENSOR_Decimales(sensor));  //El menos inicial es porque el diodo esta conectado alreves 
     Sens_getColdComp(Ta_Temp,&CompTempAmb,sensor);
-    setConfiguracionTemperaturaAmbiente(&Ta_Temp);
   }
   vx=(vx+ceroTP)*(1000+ganTP)/1000;
   vx = vx*MAXMV/MAXAD;//Convierte de lineal a microvolts para los sensores correspondientes 
@@ -111,17 +110,14 @@ void SensorTermoPT100::procesar() {
 }
 
 void SensorTermoPT100::print(OutputStream& os) {
-  byte sensor = getSensor();
-  byte decimales= SENSOR_Decimales_Mostrar(sensor);
-  int Val=valor; 
-  											 
-  Val/= pow10(SENSOR_Decimales(sensor)-decimales);  			//Ajusto el valor a mostrar por la cantidad de decimales del sensor
    
   switch (estado){
     case SENSOR_OK:
-        char str[6];
-        FloatToStr(Val,str,6,decimales);
-        os.write(str);//(uchar)_getDec(self));
+        byte sensor = getSensor();
+        uchar decimales= SENSOR_Decimales_Mostrar(sensor);
+        int val=valor;      											 
+        val/= Math::pow10(SENSOR_Decimales(sensor)-decimales);  			//Ajusto el valor a mostrar por la cantidad de decimales del sensor
+        os.writeAsFloat(val,decimales);
     break;
 
     case SENSOR_OF:
@@ -141,13 +137,13 @@ static void SensorTermoPT100::setConfiguracionTemperaturaAmbiente(int * ta){
 
 
 fbyte SensorTermoPT100::getSensor() {
-  return TConfSensor.sensor;
+  return configuracion.sensor;
 }
 
 void SensorTermoPT100::setSensor(fbyte _sensor) {
   char err;
   
-  err=_MANEJADOR_MEMORIA_SET_BYTE((struct ManejadorMemoria*)&manejadorMemoria,(unsigned int * const)&configuracion.sensor , (fbyte)_sensor );
+  err=manejadorMemoria.setByte((unsigned int * const)&configuracion.sensor , (fbyte)_sensor );
   if(!err){
     err= onSensorChange(_sensor);
   }
@@ -182,60 +178,60 @@ char SensorTermoPT100::onSensorChange(fbyte val) {
 }
 
 unsigned char SensorTermoPT100::getFiltro() {
-  return TConfSensor.filtro;
+  return configuracion.filtro;
 }
 
 void SensorTermoPT100::setFiltro(unsigned char val) {
-  _MANEJADOR_MEMORIA_SET_BYTE(&manejadorMemoria,(unsigned int * const)&configuracion.filtro,val);
+  manejadorMemoria.setByte((unsigned int * const)&configuracion.filtro,val);
 
 }
 
 int SensorTermoPT100::getOffset() {
-  return TConfSensor.offset;
+  return configuracion.offset;
 }
 
 void  SensorTermoPT100::setOffset(int valor) {
-  _MANEJADOR_MEMORIA_SET_WORD(&manejadorMemoria, (unsigned int * const)&configuracion.offset,valor);
+  manejadorMemoria.setWord((unsigned int * const)&configuracion.offset,valor);
 }
 
 int SensorTermoPT100::getGanancia() {
-  return TConfSensor.ganancia;
+  return configuracion.ganancia;
 }
 
 void  SensorTermoPT100::setGanancia(int valor) {
- _MANEJADOR_MEMORIA_SET_WORD(&manejadorMemoria, (unsigned int * const)&configuracion.ganancia,valor);
+  manejadorMemoria.setWord((unsigned int * const)&configuracion.ganancia,valor);
 }
 
 int SensorTermoPT100::getCeroTermopar() {
-  return TConfSensor.ceroTermopar;
+  return configuracion.ceroTermopar;
 }
 
 void  SensorTermoPT100::setCeroTermopar(int valor) {
-  _MANEJADOR_MEMORIA_SET_WORD(&manejadorMemoria,(unsigned int * const)&configuracion.ceroTermopar,valor);
+  manejadorMemoria.setWord((unsigned int * const)&configuracion.ceroTermopar,valor);
 }
 
 int SensorTermoPT100::getGananciaTermopar() {
-  return TConfSensor.gananciaTermopar;
+  return configuracion.gananciaTermopar;
 }
 
 void  SensorTermoPT100::setGananciaTermopar(int valor) {
-  _MANEJADOR_MEMORIA_SET_WORD(&manejadorMemoria,(unsigned int * const)&configuracion.gananciaTermopar,valor);
+  manejadorMemoria.setWord((unsigned int * const)&configuracion.gananciaTermopar,valor);
 }
 
 int SensorTermoPT100::getCeroPT100() {
-  return TConfSensor.ceroPT100;
+  return configuracion.ceroPT100;
 }
 
 void  SensorTermoPT100::setCeroPT100(int valor) {
-  _MANEJADOR_MEMORIA_SET_WORD(&manejadorMemoria,(unsigned int * const)&configuracion.ceroPT100,valor);
+  manejadorMemoria.setWord((unsigned int * const)&configuracion.ceroPT100,valor);
 }
 
 int SensorTermoPT100::getGananciaPT100() {
-  return TConfSensor.gananciaPT100;
+  return configuracion.gananciaPT100;
 }
 
 void  SensorTermoPT100::setGananciaPT100(int valor) {
- _MANEJADOR_MEMORIA_SET_WORD(&manejadorMemoria,(unsigned int * const)&configuracion.gananciaPT100,valor);
+  manejadorMemoria.setWord((unsigned int * const)&configuracion.gananciaPT100,valor);
 }
 
 int SensorTermoPT100::getAjusteTemperaturaAmbiente() {
@@ -243,7 +239,7 @@ int SensorTermoPT100::getAjusteTemperaturaAmbiente() {
 }
 
 void  SensorTermoPT100::setAjusteTemperaturaAmbiente(int valor) {
-  _MANEJADOR_MEMORIA_SET_WORD(&manejadorMemoria,(unsigned int * const)compensacionTempAmb,valor);
+  manejadorMemoria.setWord((unsigned int * const)compensacionTempAmb,valor);
 }
 
 int SensorTermoPT100::getTiempoMuestreo() {

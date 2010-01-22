@@ -1,6 +1,6 @@
 #include "Sensores.h"
-#include "ADC.h"
-#include "Mydefines.h"
+//#include "ADC.h"
+//#include "Mydefines.h"
 #include "SearchLib.h"
 
 #pragma CONST_SEG DEFAULT
@@ -48,14 +48,7 @@ const T_Sensor sensorConf[NUM_SENSORES]={
   Pt_X,Pt_Y,11,1,1,
   #ifdef pirani
   Pir_X,Pir_Y,19,3,3,
-  #endif
-  /*
-  Lin_X,Lin_Y,2,3,0,
-  Lin_X,Lin_Y,2,3,1,
-  Lin_X,Lin_Y,2,3,2,
-  Lin_X,Lin_Y,2,3,3,
-  */
-  
+  #endif  
   Lin_X,Lin_Y,2,0,0,
   Lin_X,Lin_Y,2,1,1,
   Lin_X,Lin_Y,2,2,2,
@@ -92,12 +85,12 @@ T_Sensor Sensor[NUM_SENSORES]={
 **     Para hacer las tablas de termopar en mv, preciso hacer la conversion
 ** ===================================================================
 */
-TSensorState Linealizar(int Vx, t_sensor sensor, int * Vy)
+TADState Linealizar(int Vx, t_sensor sensor, int * Vy)
 {
  int r;
  const int * xdat;
  const int * ydat;
- TSensorState state;
+ TADState state;
          
   xdat = sensorConf[sensor].xdat;		 // Tabla abcisas
   ydat = sensorConf[sensor].ydat;		 // Tabla ordenadas
@@ -219,7 +212,7 @@ bool SENSOR_is_Lineal(t_sensor sensor){
     };
   #endif
   
-char * SENSOR_getText(byte sensor){
+const char * SENSOR_getText(byte sensor){
   return strSensor[sensor];
 };
 

@@ -7,8 +7,8 @@
 
 struct ConstructorBoxSaltoCondicional{
   struct ConstructorBox super;
-  const struct ConstructorPropiedadGetter * propiedad;
-  Box * (*getNextBox)(PropiedadGetter* prop,uchar tecla);
+  const struct ConstructorPropGetterVisual * propiedad;
+  Box * (*getNextBox)(PropGetterVisual * prop,uchar tecla);
 };
 
 class BoxSaltoCondicional:public BoxPropiedad{

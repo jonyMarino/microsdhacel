@@ -3,10 +3,10 @@
 #include "stddef.h"
 #include "IFsh10.h"
 
-byte RamSimulaFlash_setWord(void*,word*,word);
-word RamSimulaFlash_getWord(void*,word*);
-void *RamSimulaFlash_grabarProm(void*);  
-byte RamSimulaFlash_borrarProm(void*self,void*direccion);
+ byte RamSimulaFlash_setWord(void*,word*,word);
+ word RamSimulaFlash_getWord(void*,word*);
+ void *RamSimulaFlash_grabarProm(void*);  
+ byte RamSimulaFlash_borrarProm(void*self,void*direccion);
   
 const struct PromBkpClass RamSimulaFlash={
   PROM_BKP_CLASS_INITIALIZATION(PromBkpClass,
@@ -38,7 +38,7 @@ byte RamSimulaFlash_setWord(void* self,word*Address,word valor){
   
   *Address = valor;
   
-  return ERR_OK;
+  return (byte)ERR_OK;
 }
 /*
 ** ===================================================================

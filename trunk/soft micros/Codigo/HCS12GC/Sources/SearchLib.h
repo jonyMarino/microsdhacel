@@ -8,6 +8,6 @@ typedef enum{
 }LinState;
 
 
-LinState BinSearchLin(int x,int * y, int * xdat,int* ydat, int max);
+LinState BinSearchLin(int x,int * y,const  int * xdat,const int* ydat, int max);
 
 #endif

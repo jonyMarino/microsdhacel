@@ -2,20 +2,20 @@
 #define _MANEJADOR_MEMORIA_HPP
 
 
-#include "Timer.hpp"
-#include "PE_Types.h"
-#include "PE_Error.h"
-#include "FshTypeSizes.h"
+#include "Timer/Timer.hpp"
+#include "PE/include/PE_Types.h"
+#include "PE/include/PE_Error.h"
+#include "Memoria/FshTypeSizes.h"
 
 
 class ManejadorMemoria{
   public:
-    virtual fbyte getByte(void*,fbyte*);
-    virtual byte setByte(void*,fbyte*,fbyte);  
-    virtual word getWord(void*,word*);
-    virtual byte setWord(void*,word*,word); 
-    virtual dword getDWord(void*,dword*); 
-    virtual byte setDWord(void*,dword*,dword);    
+    virtual fbyte getByte(fbyte*)=0;
+    virtual byte setByte(fbyte*,fbyte)=0;  
+    virtual word getWord(word*)=0;
+    virtual byte setWord(word*,word)=0; 
+    //virtual dword getDWord(dword*)=0; 
+    //virtual byte setDWord(dword*,dword)=0;    
 
 };
 

@@ -7,7 +7,7 @@
 
 struct ConstructorBoxLineal{
   struct ConstructorBox super;
-  const struct ConstructorPropiedadGetter *const* propiedades;
+  const struct ConstructorPropGetterVisual *const* propiedades;
   const struct ConstructorBox * proximoBox;    
 };
 
@@ -19,7 +19,7 @@ class BoxLineal:public BoxPropiedad{
   private:
     struct ConstructorBoxLineal * constructor;
     uchar numProp;
-    void mostrarPropiedad(void * obj);
+    void mostrarPropiedad(void * obj,int numObjeto);
 };
 
 

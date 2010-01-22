@@ -1,7 +1,7 @@
 #ifndef _COMPILATION_OPTIONS_H
 #define _COMPILATION_OPTIONS_H
 
-#include "Mydefines.h"
+//#include "Mydefines.h"
 
 #ifdef _PROGRAMADOR
   #define _PROG 1
@@ -33,8 +33,8 @@
 
 
  
-#define _COMP_OPTIONS	(CANTIDAD_CANALES-1) /*2bit*/     \
-                     | CANTIDAD_SAL_CONTROL<<2/*3bit*/| AD_T<<5/*3 bit*/ \
-                     | CANTIDAD_SAL_ALARMA<<8/*3bit*/ \
-                     | _DSP << 11 /* 1 bit */| _ADQ<<12/*1 bit*/
+#define _COMP_OPTIONS	(CANTIDAD_CANALES-1) /*2bit*/  //   \
+  //                   | CANTIDAD_SAL_CONTROL<<2/*3bit*/| AD_T<<5/*3 bit*/ \
+  //                   | CANTIDAD_SAL_ALARMA<<8/*3bit*/ \
+  //                   | _DSP << 11 /* 1 bit */| _ADQ<<12/*1 bit*/
 #endif 

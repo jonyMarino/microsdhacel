@@ -1,4 +1,4 @@
-#ifndef _GETTER_H
+#ifdef _GETTER_H
 #define _GETTER_H
 
 #include "Object.h"

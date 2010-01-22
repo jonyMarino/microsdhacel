@@ -29,7 +29,7 @@
 #include "PE_Types.h"
 #include "PE_Error.h"
 #include "PE_Const.h"
-#include "IO_Map.h"
+#include "mc9s12gc32.h"
 #include "Display1.h"
 #include "bits5ULN.h"
 #include "bits2ULN.h"

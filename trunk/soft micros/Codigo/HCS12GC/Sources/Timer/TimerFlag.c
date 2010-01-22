@@ -38,7 +38,7 @@ void TimerFlag_DefConstruct(void * self,va_list *args){
 ** ===================================================================
 */
 void TimerFlag_Construct(void * _self,ulong tiempo){
-  struct TimerFlag * self = _self;
+  struct TimerFlag * self = (struct TimerFlag * )_self;
   Timer_Construct((struct Timer *) self,tiempo);
   self->flag = FALSE;    
 }
@@ -52,7 +52,7 @@ void TimerFlag_Construct(void * _self,ulong tiempo){
 ** ===================================================================
 */
 void TimerFlag_OnTime(void * _self){
-  struct TimerFlag * self = _self;
+  struct TimerFlag * self = ( struct TimerFlag *)_self;
   self->flag = TRUE;  
 }
 /*
@@ -62,7 +62,7 @@ void TimerFlag_OnTime(void * _self){
 ** ===================================================================
 */
 void TimerFlag_reset(void * _self){
-  struct TimerFlag * self = _self;
+  struct TimerFlag * self = ( struct TimerFlag *)_self;
   self->flag = FALSE;  
 }
 

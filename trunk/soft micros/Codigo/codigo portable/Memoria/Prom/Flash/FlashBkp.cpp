@@ -1,11 +1,11 @@
 #include <assert.h>
 #include "FlashBkp.hpp"
-#include "IFshMem.h"
 #include "stddef.h"
-#include "IFsh10.h"
+#include "flash.h"
 
 
 FlashBkp::FlashBkp(void * _direccionBkp):direccionBkp(_direccionBkp),escrituraHabilitada(TRUE),paginaAGrabar(NULL){
+  Flash_init();
 }
 
 
@@ -23,7 +23,7 @@ const void * FlashBkp::getDireccionBkp(){
 byte FlashBkp::setWord(word*Address,word valor){
   word Addr = (word)Address;
   
-  if (Addr & 1 || IFsh10_isInPage(Address,direccionBkp)){
+  if (Addr & 1 || Flash_isInPage(Address,direccionBkp)){
     /* Aligned address ? */
     return ERR_NOTAVAIL;
   }
@@ -41,7 +41,7 @@ byte FlashBkp::setWord(word*Address,word valor){
     else if (paginaAGrabar!=(void*)(Addr & (65535 ^ (PAGE_SIZE-1))))
       return ERR_BUSY;      /* Todavia no se grabo la página en cola*/  
   
-    WriteWord(&((word*)direccionBkp)[(Addr&(PAGE_SIZE-1))/2], valor);
+    Flash_writeWord(&((word*)direccionBkp)[(Addr&(PAGE_SIZE-1))/2], valor);
     setIndexArray(Addr&(PAGE_SIZE-1));
     setAGrabar(TRUE);
   }
@@ -63,13 +63,13 @@ byte FlashBkp::setByte(word*address,fbyte valor){
 word FlashBkp::getWord(word*direccion){
   word dir = (word)direccion;
   
-  if(!getAGrabar() || !IFsh10_isInPage(direccion,paginaAGrabar) ||   !isParaGrabar(dir)) // con que el primero este para grabar alcanza
+  if(!getAGrabar() || !Flash_isInPage(direccion,paginaAGrabar) ||   !isParaGrabar(dir)) // con que el primero este para grabar alcanza
     return *direccion;
   else
     return *(word *)&((word*)direccionBkp)[(dir&(PAGE_SIZE-1))/2];
 }
 
-fbyte FlashBkp::getByte(word*direccion){
+fbyte FlashBkp::getByte(fbyte*direccion){
   return (fbyte)getWord(direccion);
 }
 
@@ -86,7 +86,7 @@ void FlashBkp::backupSector(){
       if (!getIndexArray(a)){
         word * addr = &(((word*)direccionBkp)[a/2]);
         word value = *(((word*)paginaAGrabar)+a/2);
-        WriteWord(addr,value);
+        Flash_writeWord(addr,value);
     
     }
   }
@@ -108,7 +108,7 @@ void *FlashBkp::grabarProm(){
      return direccionBkp;
 	 }
    //PromBkp_callPreEraseListeners(self,paginaTmp);
-   err=IFsh10_GrabarFlash(paginaTmp,(word *)direccionBkp);
+   err=Flash_grabarFlash(paginaTmp,(word *)direccionBkp);
     if(err)
       return NULL;                     /* Return error code if previous operation finished not correctly */
  	 paginaAGrabar=0;  	 
@@ -122,10 +122,10 @@ void *FlashBkp::grabarProm(){
 ** ===================================================================
 */
 byte FlashBkp::borrarProm(void*direccion){
-  byte err=EraseSectorInternal(direccion);
+  byte err=Flash_eraseSector(direccion);
   if(err)
     return err;
-  if(IFsh10_getPage(direccion)==IFsh10_getPage(direccionBkp)){
+  if(Flash_getPage(direccion)==Flash_getPage(direccionBkp)){
     setAGrabar(FALSE);
     escrituraHabilitada=TRUE;
   }

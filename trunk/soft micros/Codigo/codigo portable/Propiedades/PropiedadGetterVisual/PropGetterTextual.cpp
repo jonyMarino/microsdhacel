@@ -1,6 +1,6 @@
 #include "PropGetterTextual.hpp"
 
-PropGetterTextual::PropGetterTextual(void*obj,const struct ArgumentosPropGetterTextual* args):PropGetterVisual(obj,(const struct ArgumentosPropGetterVisual*)args){}
+PropGetterTextual::PropGetterTextual(void*obj,const struct ArgumentosPropGetterTextual* args,uchar numObjeto):PropGetterVisual(obj,(const struct ArgumentosPropGetterVisual*)args,numObjeto){}
 /*
 ** ===================================================================
 **     Method      :  PropVisual_getDescripcion 
@@ -17,6 +17,6 @@ void PropGetterTextual::print(OutputStream&os){
   os.write(str);   
 }
 
-PropiedadGetter& PropGetterTextualFactory::getPropiedad(void*obj,const struct ArgumentosPropiedadGetter* args)const{
-  return *new PropGetterTextual(obj,(const struct ArgumentosPropGetterTextual*)args);
+PropiedadGetter& PropGetterTextualFactory::getPropiedad(void*obj,const struct ArgumentosPropiedadGetter* args,uchar numObjeto)const{
+  return *new PropGetterTextual(obj,(const struct ArgumentosPropGetterTextual*)args, numObjeto);
 } 

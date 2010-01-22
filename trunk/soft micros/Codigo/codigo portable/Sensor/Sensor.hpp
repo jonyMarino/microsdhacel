@@ -1,11 +1,9 @@
-#ifndef _SENSOR_H
-#define _SENSOR_H
+#ifndef _SENSOR_HPP
+#define _SENSOR_HPP
 
 
 #include "Getter.hpp"
 #include "MethodContainer.hpp"
-
-class Method;
 
 class Sensor : public Getter {
   public:

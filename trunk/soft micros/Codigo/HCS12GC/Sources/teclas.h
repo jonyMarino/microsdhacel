@@ -1,5 +1,5 @@
-#ifndef _TECLAS3_H
-#define _TECLAS3_H 
+#ifndef _TECLAS_H
+#define _TECLAS_H 
 
 #include "PE_Types.h"
 

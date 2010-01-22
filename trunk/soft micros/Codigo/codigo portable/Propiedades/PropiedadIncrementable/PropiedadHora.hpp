@@ -10,18 +10,18 @@
 
 class PropiedadHora:public PropiedadIncrementable{
   public:
-    PropiedadHora(void*obj,const struct ArgumentosPropiedadIncrementable* args);
+    PropiedadHora(void*obj,const struct ArgumentosPropiedadIncrementable* args,uchar numObjeto);
     virtual void incrementar();
     virtual void decrementar();
     virtual void print(OutputStream&os);
 };
 
-struct PropiedadHoraFactory:public PropiedadGetterFactory{
-    virtual PropiedadGetter& getPropiedad(void*obj,const struct ArgumentosPropiedadGetter* args)const;
+struct PropiedadHoraFactory:public PropGetterVisualFactory{
+    virtual PropiedadGetter& getPropiedad(void*obj,const struct ArgumentosPropiedadGetter* args,uchar numObjeto)const;
 };
 
 struct ConstructorPropiedadHora{
-    const struct PropiedadGetterFactory * factory;
+    const struct PropGetterVisualFactory * factory;
     struct ArgumentosPropiedadIncrementable args;
 };
 

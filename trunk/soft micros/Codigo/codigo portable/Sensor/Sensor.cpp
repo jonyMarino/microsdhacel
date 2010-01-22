@@ -1,6 +1,6 @@
 
 #include "Sensor.hpp"
-#include "Method.h"
+#include "Method.hpp"
 
 void Sensor::addOnNuevoValorListener(const struct Method* metodo) {
   listeners.add((void*)metodo);

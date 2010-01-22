@@ -2,7 +2,7 @@
 #include "PE/include/PE_Types.h"
 #include "OOC/lang/CharPointer.hpp"
 
-PropiedadHora::PropiedadHora(void*obj,const struct ArgumentosPropiedadIncrementable* args):PropiedadIncrementable(obj,args){}
+PropiedadHora::PropiedadHora(void*obj,const struct ArgumentosPropiedadIncrementable* args,uchar numObjeto):PropiedadIncrementable(obj,args,numObjeto){}
 
 
 void PropiedadHora::print(OutputStream&os){
@@ -31,6 +31,6 @@ void PropiedadHora::decrementar(){
 	setValorTmp(valorTmp);  
 }
 
-PropiedadGetter& PropiedadHoraFactory::getPropiedad(void*obj,const struct ArgumentosPropiedadGetter* args)const{
-  return *new PropiedadHora(obj,(const struct ArgumentosPropiedadIncrementable*)args);
+PropiedadGetter& PropiedadHoraFactory::getPropiedad(void*obj,const struct ArgumentosPropiedadGetter* args,uchar numObjeto)const{
+  return *new PropiedadHora(obj,(const struct ArgumentosPropiedadIncrementable*)args,numObjeto);
 } 

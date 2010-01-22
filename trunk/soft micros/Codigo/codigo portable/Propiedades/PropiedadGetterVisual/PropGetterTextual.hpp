@@ -2,7 +2,6 @@
 #define _PROP_GETTER_TEXTUAL_HPP
 
 #include <stdtypes.h>
-#include "PropiedadGetterFactory.hpp"
 #include "PropGetterVisual.hpp"
 
 #pragma DATA_SEG PROP_GETTER_TEXTUAL_DATA                                            
@@ -16,16 +15,16 @@ struct ArgumentosPropGetterTextual{
 
 class PropGetterTextual:public PropGetterVisual{
   public:
-    PropGetterTextual(void*obj,const struct ArgumentosPropGetterTextual* args);
+    PropGetterTextual(void*obj,const struct ArgumentosPropGetterTextual* args,uchar numObjeto);
     virtual void print(OutputStream&os);
 };
 
-struct PropGetterTextualFactory:public PropiedadGetterFactory{
-    virtual PropiedadGetter& getPropiedad(void*obj,const struct ArgumentosPropiedadGetter* args)const;
+struct PropGetterTextualFactory:public PropGetterVisualFactory{
+    virtual PropiedadGetter& getPropiedad(void*obj,const struct ArgumentosPropiedadGetter* args,uchar numObjeto)const;
 };
 
 struct ConstructorPropGetterTextual{
-    const struct PropiedadGetterFactory * factory;
+    const struct PropGetterVisualFactory * factory;
     struct ArgumentosPropGetterTextual args;
 };
 

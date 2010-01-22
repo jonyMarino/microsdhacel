@@ -1,7 +1,7 @@
 #include "PropiedadIncrementable.hpp"
 
 
-PropiedadIncrementable::PropiedadIncrementable(void*obj,const struct ArgumentosPropiedadIncrementable* args):PropGetterVisual(obj,(const struct ArgumentosPropGetterVisual*)args){
+PropiedadIncrementable::PropiedadIncrementable(void*obj,const struct ArgumentosPropiedadIncrementable* args,uchar numObjeto):PropGetterVisual(obj,(const struct ArgumentosPropGetterVisual*)args,numObjeto){
   valorTmp = PropGetterVisual::getVal();
 }
 

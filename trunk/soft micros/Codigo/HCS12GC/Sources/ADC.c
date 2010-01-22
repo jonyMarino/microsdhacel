@@ -66,7 +66,7 @@
 #pragma MESSAGE DISABLE C12056         /* Disable warning C12056 "SP debug info incorrect because of optimization or inline assembler" */
 
 #include "ADC.h"
-#include "Mydefines.h"
+//#include "Mydefines.h"
 #pragma DATA_SEG ADC_DATA                                            
 #pragma CODE_SEG ADC_CODE                     
 #pragma CONST_SEG DEFAULT            /* Constant section for this module */

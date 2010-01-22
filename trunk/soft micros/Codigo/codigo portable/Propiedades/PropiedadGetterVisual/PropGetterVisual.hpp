@@ -4,7 +4,6 @@
 #include <stdtypes.h>
 #include "../PropiedadGetter.hpp"
 #include "OOC/ooc/lib_cpp/OutputStream.hpp"
-#include "PropiedadGetterFactory.hpp"
 
 #pragma DATA_SEG GETTERS_VISUAL_DATA                                            
 #pragma CODE_SEG GETTERS_VISUAL_CODE 
@@ -17,21 +16,24 @@ struct ArgumentosPropGetterVisual{
 
 class PropGetterVisual:public PropiedadGetter{
   public:
-    PropGetterVisual(void*obj,int numObjeto,const struct ArgumentosPropGetterVisual* args);
+    PropGetterVisual(void*obj,const struct ArgumentosPropGetterVisual* args,uchar numObjeto);
     void printDescripcion(OutputStream&os);
+    inline uchar getNumObjeto(){ return numObjeto;}
   private:
-    const char * getDescripcion();  
+    const char * getDescripcion();
+    uchar numObjeto;  
 };
 
-struct PropGetterVisualFactory:public PropiedadGetterFactory{
-    virtual PropiedadGetter& getPropiedad(void*obj,const struct ArgumentosPropiedadGetter* args)const;/*{
+struct PropGetterVisualFactory{
+    virtual PropiedadGetter& getPropiedad(void*obj,const struct ArgumentosPropiedadGetter* args,uchar numObjeto)const;/*{
       return *new PropGetterVisual(obj,args);
     }          */
 };
 
 struct ConstructorPropGetterVisual{
-    const struct PropiedadGetterFactory * factory;
+    const struct PropGetterVisualFactory * factory;
     struct ArgumentosPropGetterVisual args;
+    PropiedadGetter& getPropiedad(void*obj,uchar numObjeto)const;
 };
 
 

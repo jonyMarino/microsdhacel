@@ -39,11 +39,9 @@
 **                    y accesos  ya inicializados y constanter
 ** =====================================================================
 */
-DiagramaNavegacion::DiagramaNavegacion(const struct BoxList * _boxesOp,const struct Array *_accesos,FrenteCustom * _frente){
+DiagramaNavegacion::DiagramaNavegacion(const struct BoxList * _boxesOp,const struct Array *_accesos,FrenteCustom * _frente):metodoParaTimer(showCompilacion,this){
   //Mostrar: Dhacel version,y compilacion
   frente = _frente;
-  metodoParaTimer.obj = this;
-  metodoParaTimer.pmethod = showCompilacion;
   
   timer= new RlxMTimer(_VERSION_TIME,metodoParaTimer);
   
@@ -174,7 +172,7 @@ void DiagramaNavegacion::procesar(uchar tecla){
   //pbox_next=vBox_getNextBlockConstr(DN.BoxActual,tecla);
   
   delete boxActual;
-  frente->borrar(); // borro la pantalla para que quede limpia para el siguiente box
+ // frente->borrar(); // borro la pantalla para que quede limpia para el siguiente box
   
   if(pbox_next){							 // Me mantengo en el mismo objeto??
     /*struct FstBoxPointer* fbp;
