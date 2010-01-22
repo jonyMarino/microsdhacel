@@ -2,11 +2,10 @@
 #define _ARRAY_H
 
 #include <limits.h>
-#include "Object.h"
+//#include "Object.h"
 
-#include "PE_Types.h"
-#include "Comparator.hpp"
-#include "Object.h"
+#include "PE/include/PE_Types.h"
+#include "OOC/util/lib_cpp/Comparator.hpp"
 
 #pragma DATA_SEG ARRAY_LIST_DATA                                            
 #pragma CODE_SEG ARRAY_LIST_CODE 
@@ -18,7 +17,7 @@ extern "C"
 #endif
 
 struct Array{
-  struct Object super;
+  //struct Object super;
   void ** nodos;
   int cantidad;
   bool objetosSonPropios;
@@ -40,7 +39,7 @@ extern const struct Class Array;
 **    Description : 
 ** ===================================================================
 */
-void* Array_get(void * _self,int index);
+void* Array_get(const void * _self,int index);
 
 /*
 ** ===================================================================
@@ -68,7 +67,7 @@ void Array_ownsObjects(void * _self,bool owns);
 **    Description : Devuelve la cantidad de elementos en el array
 ** ===================================================================
 */
-int Array_count(void * _self);
+int Array_count(const void * _self);
 
 /*
 ** ===================================================================
@@ -96,16 +95,15 @@ bool Array_isEmpty(void * _self);
 void *Array_delete(void * _self,void * Obj);
 
 
-#define INITIALIZATION_ARRAY(CLASS,ARRAY)\
-  &CLASS,    \
+#define INITIALIZATION_ARRAY(ARRAY)\
   (void**)&ARRAY,		\
   sizeof(ARRAY)/sizeof(void*), \
-  FALSE				
+  FALSE
   
   
 #define NEW_ARRAY(name,ARRAY) \
   struct Array name = { \
-    INITIALIZATION_ARRAY(Array,ARRAY) \
+    INITIALIZATION_ARRAY(ARRAY) \
   }
   
 #ifdef __cplusplus

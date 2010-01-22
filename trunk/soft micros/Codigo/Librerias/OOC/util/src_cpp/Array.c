@@ -11,26 +11,26 @@
 #pragma CODE_SEG ARRAY_LIST_CODE 
 #pragma CONST_SEG DEFAULT
 
-void Array_Constructor(void * _self,va_list * args);
+/*void Array_Constructor(void * _self,va_list * args);
 void Array_destructor(void * _self);
 
 const struct Class Array={
   CLASS_INITIALIZATION(Class,Array,Object,Array_Constructor,Array_destructor,Object_differ,Object_puto)  
 };
-
+  */
 /*
 ** ===================================================================
 **     Method      :  Array_Constructor 
 **    Description : Constructor
 ** ===================================================================
 */
-void Array_Constructor(void * _self,va_list * args){
+/*void Array_Constructor(void * _self,va_list * args){
   struct Array *_a =(struct Array *)_self;
   int cantidad = va_arg(*args,int);
   _a->cantidad=cantidad;
   _a->nodos=(void**)calloc(cantidad, sizeof(void*));
   _a->objetosSonPropios=FALSE;
-}
+}  */
 
 
 
@@ -59,8 +59,8 @@ void Array_destructor(void * _self){
 **    Description : 
 ** ===================================================================
 */
-void* Array_get(void * _self,int index){
-  struct Array* _a =(struct Array *)_self;
+void* Array_get(const void * _self,int index){
+  const struct Array* _a =(struct Array *)_self;
   
   if(index>_a->cantidad)
     return NULL;
@@ -103,8 +103,8 @@ void Array_ownsObjects(void * _self,bool owns){
 **    Description : Devuelve la cantidad de elementos en el array
 ** ===================================================================
 */
-int Array_count(void * _self){
-  struct Array* _a =(struct Array *)_self;
+int Array_count(const void * _self){
+  const struct Array* _a =(struct Array *)_self;
   
   return _a->cantidad;
 }

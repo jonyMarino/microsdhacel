@@ -2,9 +2,9 @@
 #define _LINKED_LIST_HPP
 
 #include "stddef.h"
-#include "nodo.hpp"
-#include "Iterator.hpp"
-#include "List.hpp"
+#include "OOC/util/lib_cpp/nodo.hpp"
+#include "OOC/util/lib_cpp/Iterator.hpp"
+#include "OOC/util/lib_cpp/List.hpp"
 
 #pragma CODE_SEG  LinkedList_CODE
 #pragma DATA_SEG  LinkedList_DATA

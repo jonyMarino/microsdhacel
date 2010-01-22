@@ -1,7 +1,7 @@
 #ifndef _NODO_DOBLE_H
 #define _NODO_DOBLE_H
 
-#include "nodo.hpp"
+#include "OOC/util/lib_cpp/nodo.hpp"
 
 #pragma DATA_SEG NodoDoble_DATA                                            
 #pragma CODE_SEG NodoDoble_CODE 

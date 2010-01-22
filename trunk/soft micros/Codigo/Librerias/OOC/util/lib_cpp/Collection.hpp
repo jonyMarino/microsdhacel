@@ -1,7 +1,7 @@
 #ifndef _COLLECTION_HPP
 #define _COLLECTION_HPP
 
-#include "Iterator.hpp"
+#include "OOC/util/lib_cpp/Iterator.hpp"
 
 
 class Collection
