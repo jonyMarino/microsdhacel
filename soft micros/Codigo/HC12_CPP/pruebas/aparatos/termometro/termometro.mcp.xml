@@ -604,6 +604,26 @@
                         <SETTING><NAME>FrameworkPath</NAME><VALUE>false</VALUE></SETTING>
                         <SETTING><NAME>HostFlags</NAME><VALUE>All</VALUE></SETTING>
                     </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>SearchPath</NAME>
+                            <SETTING><NAME>Path</NAME><VALUE>..\..\..\..\codigo portable\Vista\DiagramaDeNavegacion\lib\libHC12\lib</VALUE></SETTING>
+                            <SETTING><NAME>PathFormat</NAME><VALUE>Windows</VALUE></SETTING>
+                            <SETTING><NAME>PathRoot</NAME><VALUE>Project</VALUE></SETTING>
+                        </SETTING>
+                        <SETTING><NAME>Recursive</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>FrameworkPath</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>HostFlags</NAME><VALUE>All</VALUE></SETTING>
+                    </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>SearchPath</NAME>
+                            <SETTING><NAME>Path</NAME><VALUE>..\..\..\..\codigo portable\Aparatos\Vista</VALUE></SETTING>
+                            <SETTING><NAME>PathFormat</NAME><VALUE>Windows</VALUE></SETTING>
+                            <SETTING><NAME>PathRoot</NAME><VALUE>Project</VALUE></SETTING>
+                        </SETTING>
+                        <SETTING><NAME>Recursive</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>FrameworkPath</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>HostFlags</NAME><VALUE>All</VALUE></SETTING>
+                    </SETTING>
                 </SETTING>
                 <SETTING><NAME>SystemSearchPaths</NAME>
                     <SETTING>
@@ -1527,13 +1547,6 @@
                 </FILE>
                 <FILE>
                     <PATHTYPE>Name</PATHTYPE>
-                    <PATH>termio1.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                    <FILEKIND>Text</FILEKIND>
-                    <FILEFLAGS>Debug</FILEFLAGS>
-                </FILE>
-                <FILE>
-                    <PATHTYPE>Name</PATHTYPE>
                     <PATH>derivative.h</PATH>
                     <PATHFORMAT>Windows</PATHFORMAT>
                     <FILEKIND>Text</FILEKIND>
@@ -1562,42 +1575,7 @@
                 </FILE>
                 <FILE>
                     <PATHTYPE>Name</PATHTYPE>
-                    <PATH>O2.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                    <FILEKIND>Text</FILEKIND>
-                    <FILEFLAGS>Debug</FILEFLAGS>
-                </FILE>
-                <FILE>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>O4.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                    <FILEKIND>Text</FILEKIND>
-                    <FILEFLAGS>Debug</FILEFLAGS>
-                </FILE>
-                <FILE>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>O6.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                    <FILEKIND>Text</FILEKIND>
-                    <FILEFLAGS>Debug</FILEFLAGS>
-                </FILE>
-                <FILE>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>O7.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                    <FILEKIND>Text</FILEKIND>
-                    <FILEFLAGS>Debug</FILEFLAGS>
-                </FILE>
-                <FILE>
-                    <PATHTYPE>Name</PATHTYPE>
                     <PATH>PUL.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                    <FILEKIND>Text</FILEKIND>
-                    <FILEFLAGS>Debug</FILEFLAGS>
-                </FILE>
-                <FILE>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>test.c</PATH>
                     <PATHFORMAT>Windows</PATHFORMAT>
                     <FILEKIND>Text</FILEKIND>
                     <FILEFLAGS>Debug</FILEFLAGS>
@@ -1612,20 +1590,6 @@
                 <FILE>
                     <PATHTYPE>Name</PATHTYPE>
                     <PATH>WDog1.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                    <FILEKIND>Text</FILEKIND>
-                    <FILEFLAGS>Debug</FILEFLAGS>
-                </FILE>
-                <FILE>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>In2.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                    <FILEKIND>Text</FILEKIND>
-                    <FILEFLAGS>Debug</FILEFLAGS>
-                </FILE>
-                <FILE>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>In1.c</PATH>
                     <PATHFORMAT>Windows</PATHFORMAT>
                     <FILEKIND>Text</FILEKIND>
                     <FILEFLAGS>Debug</FILEFLAGS>
@@ -1681,13 +1645,6 @@
                 </FILE>
                 <FILE>
                     <PATHTYPE>Name</PATHTYPE>
-                    <PATH>ooc_hcs12_cpp_si.lib</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                    <FILEKIND>Unknown</FILEKIND>
-                    <FILEFLAGS>Debug</FILEFLAGS>
-                </FILE>
-                <FILE>
-                    <PATHTYPE>Name</PATHTYPE>
                     <PATH>BaseTimers_1ms_40ms.cpp</PATH>
                     <PATHFORMAT>Windows</PATHFORMAT>
                     <FILEKIND>Text</FILEKIND>
@@ -1730,224 +1687,7 @@
                 </FILE>
                 <FILE>
                     <PATHTYPE>Name</PATHTYPE>
-                    <PATH>Math.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                    <FILEKIND>Text</FILEKIND>
-                    <FILEFLAGS>Debug</FILEFLAGS>
-                </FILE>
-                <FILE>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>MessagesOut.cpp</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                    <FILEKIND>Text</FILEKIND>
-                    <FILEFLAGS>Debug</FILEFLAGS>
-                </FILE>
-                <FILE>
-                    <PATHTYPE>Name</PATHTYPE>
                     <PATH>MessagesOut.hpp</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                    <FILEKIND>Text</FILEKIND>
-                    <FILEFLAGS></FILEFLAGS>
-                </FILE>
-                <FILE>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>ConstructorPropiedadGetter.cpp</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                    <FILEKIND>Text</FILEKIND>
-                    <FILEFLAGS>Debug</FILEFLAGS>
-                </FILE>
-                <FILE>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>PropiedadGetter.cpp</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                    <FILEKIND>Text</FILEKIND>
-                    <FILEFLAGS>Debug</FILEFLAGS>
-                </FILE>
-                <FILE>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>PropGetterVisual.cpp</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                    <FILEKIND>Text</FILEKIND>
-                    <FILEFLAGS>Debug</FILEFLAGS>
-                </FILE>
-                <FILE>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>PropGetterNumerico.cpp</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                    <FILEKIND>Text</FILEKIND>
-                    <FILEFLAGS>Debug</FILEFLAGS>
-                </FILE>
-                <FILE>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>PropGetterTextual.cpp</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                    <FILEKIND>Text</FILEKIND>
-                    <FILEFLAGS>Debug</FILEFLAGS>
-                </FILE>
-                <FILE>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>PropiedadIncrementable.cpp</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                    <FILEKIND>Text</FILEKIND>
-                    <FILEFLAGS>Debug</FILEFLAGS>
-                </FILE>
-                <FILE>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>PropiedadHora.cpp</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                    <FILEKIND>Text</FILEKIND>
-                    <FILEFLAGS>Debug</FILEFLAGS>
-                </FILE>
-                <FILE>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>PropiedadTextual.cpp</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                    <FILEKIND>Text</FILEKIND>
-                    <FILEFLAGS>Debug</FILEFLAGS>
-                </FILE>
-                <FILE>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>PropiedadNumerica.cpp</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                    <FILEKIND>Text</FILEKIND>
-                    <FILEFLAGS>Debug</FILEFLAGS>
-                </FILE>
-                <FILE>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>PropNumLFPV.cpp</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                    <FILEKIND>Text</FILEKIND>
-                    <FILEFLAGS>Debug</FILEFLAGS>
-                </FILE>
-                <FILE>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>PropNumLVPF.cpp</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                    <FILEKIND>Text</FILEKIND>
-                    <FILEFLAGS>Debug</FILEFLAGS>
-                </FILE>
-                <FILE>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>Box.cpp</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                    <FILEKIND>Text</FILEKIND>
-                    <FILEFLAGS>Debug</FILEFLAGS>
-                </FILE>
-                <FILE>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>Box.hpp</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                    <FILEKIND>Text</FILEKIND>
-                    <FILEFLAGS></FILEFLAGS>
-                </FILE>
-                <FILE>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>BoxLineal.cpp</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                    <FILEKIND>Text</FILEKIND>
-                    <FILEFLAGS>Debug</FILEFLAGS>
-                </FILE>
-                <FILE>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>BoxLineal.hpp</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                    <FILEKIND>Text</FILEKIND>
-                    <FILEFLAGS></FILEFLAGS>
-                </FILE>
-                <FILE>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>BoxAccess.cpp</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                    <FILEKIND>Text</FILEKIND>
-                    <FILEFLAGS>Debug</FILEFLAGS>
-                </FILE>
-                <FILE>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>BoxAccess.hpp</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                    <FILEKIND>Text</FILEKIND>
-                    <FILEFLAGS></FILEFLAGS>
-                </FILE>
-                <FILE>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>BoxTitle.cpp</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                    <FILEKIND>Text</FILEKIND>
-                    <FILEFLAGS>Debug</FILEFLAGS>
-                </FILE>
-                <FILE>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>BoxTitle.hpp</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                    <FILEKIND>Text</FILEKIND>
-                    <FILEFLAGS></FILEFLAGS>
-                </FILE>
-                <FILE>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>BoxPrincipal.cpp</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                    <FILEKIND>Text</FILEKIND>
-                    <FILEFLAGS>Debug</FILEFLAGS>
-                </FILE>
-                <FILE>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>BoxPrincipal.hpp</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                    <FILEKIND>Text</FILEKIND>
-                    <FILEFLAGS></FILEFLAGS>
-                </FILE>
-                <FILE>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>Access.cpp</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                    <FILEKIND>Text</FILEKIND>
-                    <FILEFLAGS>Debug</FILEFLAGS>
-                </FILE>
-                <FILE>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>Access.hpp</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                    <FILEKIND>Text</FILEKIND>
-                    <FILEFLAGS></FILEFLAGS>
-                </FILE>
-                <FILE>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>BoxList.cpp</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                    <FILEKIND>Text</FILEKIND>
-                    <FILEFLAGS>Debug</FILEFLAGS>
-                </FILE>
-                <FILE>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>BoxList.hpp</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                    <FILEKIND>Text</FILEKIND>
-                    <FILEFLAGS></FILEFLAGS>
-                </FILE>
-                <FILE>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>FstBoxPointer.cpp</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                    <FILEKIND>Text</FILEKIND>
-                    <FILEFLAGS>Debug</FILEFLAGS>
-                </FILE>
-                <FILE>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>FstBoxPointer.hpp</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                    <FILEKIND>Text</FILEKIND>
-                    <FILEFLAGS></FILEFLAGS>
-                </FILE>
-                <FILE>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>DiagramaNavegacion.cpp</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                    <FILEKIND>Text</FILEKIND>
-                    <FILEFLAGS>Debug</FILEFLAGS>
-                </FILE>
-                <FILE>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>DiagramaNavegacion.hpp</PATH>
                     <PATHFORMAT>Windows</PATHFORMAT>
                     <FILEKIND>Text</FILEKIND>
                     <FILEFLAGS></FILEFLAGS>
@@ -1958,13 +1698,6 @@
                     <PATHFORMAT>Windows</PATHFORMAT>
                     <FILEKIND>Text</FILEKIND>
                     <FILEFLAGS></FILEFLAGS>
-                </FILE>
-                <FILE>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>Sensores.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                    <FILEKIND>Text</FILEKIND>
-                    <FILEFLAGS>Debug</FILEFLAGS>
                 </FILE>
                 <FILE>
                     <PATHTYPE>Name</PATHTYPE>
@@ -2006,6 +1739,27 @@
                     <PATH>opcionescompilacion.c</PATH>
                     <PATHFORMAT>Windows</PATHFORMAT>
                     <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS>Debug</FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>navegacion_hc12_si.lib</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Unknown</FILEKIND>
+                    <FILEFLAGS>Debug</FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>VistaSetContrasenia.cpp</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS>Debug</FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>ooc_hc12_si.lib</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Unknown</FILEKIND>
                     <FILEFLAGS>Debug</FILEFLAGS>
                 </FILE>
             </FILELIST>
@@ -2207,11 +1961,6 @@
                 </FILEREF>
                 <FILEREF>
                     <PATHTYPE>Name</PATHTYPE>
-                    <PATH>termio1.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <PATHTYPE>Name</PATHTYPE>
                     <PATH>derivative.h</PATH>
                     <PATHFORMAT>Windows</PATHFORMAT>
                 </FILEREF>
@@ -2232,32 +1981,7 @@
                 </FILEREF>
                 <FILEREF>
                     <PATHTYPE>Name</PATHTYPE>
-                    <PATH>O2.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>O4.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>O6.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>O7.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <PATHTYPE>Name</PATHTYPE>
                     <PATH>PUL.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>test.c</PATH>
                     <PATHFORMAT>Windows</PATHFORMAT>
                 </FILEREF>
                 <FILEREF>
@@ -2268,16 +1992,6 @@
                 <FILEREF>
                     <PATHTYPE>Name</PATHTYPE>
                     <PATH>WDog1.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>In2.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>In1.c</PATH>
                     <PATHFORMAT>Windows</PATHFORMAT>
                 </FILEREF>
                 <FILEREF>
@@ -2317,11 +2031,6 @@
                 </FILEREF>
                 <FILEREF>
                     <PATHTYPE>Name</PATHTYPE>
-                    <PATH>ooc_hcs12_cpp_si.lib</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <PATHTYPE>Name</PATHTYPE>
                     <PATH>BaseTimers_1ms_40ms.cpp</PATH>
                     <PATHFORMAT>Windows</PATHFORMAT>
                 </FILEREF>
@@ -2352,172 +2061,12 @@
                 </FILEREF>
                 <FILEREF>
                     <PATHTYPE>Name</PATHTYPE>
-                    <PATH>Math.c</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>MessagesOut.cpp</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <PATHTYPE>Name</PATHTYPE>
                     <PATH>MessagesOut.hpp</PATH>
                     <PATHFORMAT>Windows</PATHFORMAT>
                 </FILEREF>
                 <FILEREF>
                     <PATHTYPE>Name</PATHTYPE>
-                    <PATH>ConstructorPropiedadGetter.cpp</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>PropiedadGetter.cpp</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>PropGetterVisual.cpp</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>PropGetterNumerico.cpp</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>PropGetterTextual.cpp</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>PropiedadIncrementable.cpp</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>PropiedadHora.cpp</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>PropiedadTextual.cpp</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>PropiedadNumerica.cpp</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>PropNumLFPV.cpp</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>PropNumLVPF.cpp</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>Box.cpp</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>Box.hpp</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>BoxLineal.cpp</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>BoxLineal.hpp</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>BoxAccess.cpp</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>BoxAccess.hpp</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>BoxTitle.cpp</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>BoxTitle.hpp</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>BoxPrincipal.cpp</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>BoxPrincipal.hpp</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>Access.cpp</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>Access.hpp</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>BoxList.cpp</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>BoxList.hpp</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>FstBoxPointer.cpp</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>FstBoxPointer.hpp</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>DiagramaNavegacion.cpp</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>DiagramaNavegacion.hpp</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <PATHTYPE>Name</PATHTYPE>
                     <PATH>obtenciondisplay.hpp</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>Sensores.c</PATH>
                     <PATHFORMAT>Windows</PATHFORMAT>
                 </FILEREF>
                 <FILEREF>
@@ -2550,6 +2099,21 @@
                     <PATH>opcionescompilacion.c</PATH>
                     <PATHFORMAT>Windows</PATHFORMAT>
                 </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>navegacion_hc12_si.lib</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>VistaSetContrasenia.cpp</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>ooc_hc12_si.lib</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
             </LINKORDER>
         </TARGET>
     </TARGETLIST>
@@ -2563,18 +2127,6 @@
             <FILEREF>
                 <TARGETNAME>Standard</TARGETNAME>
                 <PATHTYPE>Name</PATHTYPE>
-                <PATH>SelectorDigito.h</PATH>
-                <PATHFORMAT>Windows</PATHFORMAT>
-            </FILEREF>
-            <FILEREF>
-                <TARGETNAME>Standard</TARGETNAME>
-                <PATHTYPE>Name</PATHTYPE>
-                <PATH>SelectorDigito.c</PATH>
-                <PATHFORMAT>Windows</PATHFORMAT>
-            </FILEREF>
-            <FILEREF>
-                <TARGETNAME>Standard</TARGETNAME>
-                <PATHTYPE>Name</PATHTYPE>
                 <PATH>ADC1.c</PATH>
                 <PATHFORMAT>Windows</PATHFORMAT>
             </FILEREF>
@@ -2582,12 +2134,6 @@
                 <TARGETNAME>Standard</TARGETNAME>
                 <PATHTYPE>Name</PATHTYPE>
                 <PATH>PUL.c</PATH>
-                <PATHFORMAT>Windows</PATHFORMAT>
-            </FILEREF>
-            <FILEREF>
-                <TARGETNAME>Standard</TARGETNAME>
-                <PATHTYPE>Name</PATHTYPE>
-                <PATH>test.c</PATH>
                 <PATHFORMAT>Windows</PATHFORMAT>
             </FILEREF>
             <FILEREF>
@@ -2605,13 +2151,7 @@
             <FILEREF>
                 <TARGETNAME>Standard</TARGETNAME>
                 <PATHTYPE>Name</PATHTYPE>
-                <PATH>In2.c</PATH>
-                <PATHFORMAT>Windows</PATHFORMAT>
-            </FILEREF>
-            <FILEREF>
-                <TARGETNAME>Standard</TARGETNAME>
-                <PATHTYPE>Name</PATHTYPE>
-                <PATH>In1.c</PATH>
+                <PATH>Cpu.c</PATH>
                 <PATHFORMAT>Windows</PATHFORMAT>
             </FILEREF>
             <FILEREF>
@@ -2624,42 +2164,6 @@
                 <TARGETNAME>Standard</TARGETNAME>
                 <PATHTYPE>Name</PATHTYPE>
                 <PATH>bits5ULN.c</PATH>
-                <PATHFORMAT>Windows</PATHFORMAT>
-            </FILEREF>
-            <FILEREF>
-                <TARGETNAME>Standard</TARGETNAME>
-                <PATHTYPE>Name</PATHTYPE>
-                <PATH>Cpu.c</PATH>
-                <PATHFORMAT>Windows</PATHFORMAT>
-            </FILEREF>
-            <FILEREF>
-                <TARGETNAME>Standard</TARGETNAME>
-                <PATHTYPE>Name</PATHTYPE>
-                <PATH>Display1.c</PATH>
-                <PATHFORMAT>Windows</PATHFORMAT>
-            </FILEREF>
-            <FILEREF>
-                <TARGETNAME>Standard</TARGETNAME>
-                <PATHTYPE>Name</PATHTYPE>
-                <PATH>O2.c</PATH>
-                <PATHFORMAT>Windows</PATHFORMAT>
-            </FILEREF>
-            <FILEREF>
-                <TARGETNAME>Standard</TARGETNAME>
-                <PATHTYPE>Name</PATHTYPE>
-                <PATH>O4.c</PATH>
-                <PATHFORMAT>Windows</PATHFORMAT>
-            </FILEREF>
-            <FILEREF>
-                <TARGETNAME>Standard</TARGETNAME>
-                <PATHTYPE>Name</PATHTYPE>
-                <PATH>O6.c</PATH>
-                <PATHFORMAT>Windows</PATHFORMAT>
-            </FILEREF>
-            <FILEREF>
-                <TARGETNAME>Standard</TARGETNAME>
-                <PATHTYPE>Name</PATHTYPE>
-                <PATH>O7.c</PATH>
                 <PATHFORMAT>Windows</PATHFORMAT>
             </FILEREF>
             <FILEREF>
@@ -2686,133 +2190,9 @@
                 <PATH>Vectors.c</PATH>
                 <PATHFORMAT>Windows</PATHFORMAT>
             </FILEREF>
-            <FILEREF>
-                <TARGETNAME>Standard</TARGETNAME>
-                <PATHTYPE>Name</PATHTYPE>
-                <PATH>flash.c</PATH>
-                <PATHFORMAT>Windows</PATHFORMAT>
-            </FILEREF>
         </GROUP>
         <GROUP><NAME>Sources</NAME>
             <GROUP><NAME>Vista</NAME>
-                <GROUP><NAME>Boxes</NAME>
-                    <FILEREF>
-                        <TARGETNAME>Standard</TARGETNAME>
-                        <PATHTYPE>Name</PATHTYPE>
-                        <PATH>Box.cpp</PATH>
-                        <PATHFORMAT>Windows</PATHFORMAT>
-                    </FILEREF>
-                    <FILEREF>
-                        <TARGETNAME>Standard</TARGETNAME>
-                        <PATHTYPE>Name</PATHTYPE>
-                        <PATH>Box.hpp</PATH>
-                        <PATHFORMAT>Windows</PATHFORMAT>
-                    </FILEREF>
-                    <FILEREF>
-                        <TARGETNAME>Standard</TARGETNAME>
-                        <PATHTYPE>Name</PATHTYPE>
-                        <PATH>BoxLineal.cpp</PATH>
-                        <PATHFORMAT>Windows</PATHFORMAT>
-                    </FILEREF>
-                    <FILEREF>
-                        <TARGETNAME>Standard</TARGETNAME>
-                        <PATHTYPE>Name</PATHTYPE>
-                        <PATH>BoxLineal.hpp</PATH>
-                        <PATHFORMAT>Windows</PATHFORMAT>
-                    </FILEREF>
-                    <FILEREF>
-                        <TARGETNAME>Standard</TARGETNAME>
-                        <PATHTYPE>Name</PATHTYPE>
-                        <PATH>BoxAccess.cpp</PATH>
-                        <PATHFORMAT>Windows</PATHFORMAT>
-                    </FILEREF>
-                    <FILEREF>
-                        <TARGETNAME>Standard</TARGETNAME>
-                        <PATHTYPE>Name</PATHTYPE>
-                        <PATH>BoxAccess.hpp</PATH>
-                        <PATHFORMAT>Windows</PATHFORMAT>
-                    </FILEREF>
-                    <FILEREF>
-                        <TARGETNAME>Standard</TARGETNAME>
-                        <PATHTYPE>Name</PATHTYPE>
-                        <PATH>BoxTitle.cpp</PATH>
-                        <PATHFORMAT>Windows</PATHFORMAT>
-                    </FILEREF>
-                    <FILEREF>
-                        <TARGETNAME>Standard</TARGETNAME>
-                        <PATHTYPE>Name</PATHTYPE>
-                        <PATH>BoxTitle.hpp</PATH>
-                        <PATHFORMAT>Windows</PATHFORMAT>
-                    </FILEREF>
-                    <FILEREF>
-                        <TARGETNAME>Standard</TARGETNAME>
-                        <PATHTYPE>Name</PATHTYPE>
-                        <PATH>BoxPrincipal.cpp</PATH>
-                        <PATHFORMAT>Windows</PATHFORMAT>
-                    </FILEREF>
-                    <FILEREF>
-                        <TARGETNAME>Standard</TARGETNAME>
-                        <PATHTYPE>Name</PATHTYPE>
-                        <PATH>BoxPrincipal.hpp</PATH>
-                        <PATHFORMAT>Windows</PATHFORMAT>
-                    </FILEREF>
-                </GROUP>
-                <GROUP><NAME>DiagramaNavegacion</NAME>
-                    <FILEREF>
-                        <TARGETNAME>Standard</TARGETNAME>
-                        <PATHTYPE>Name</PATHTYPE>
-                        <PATH>Access.cpp</PATH>
-                        <PATHFORMAT>Windows</PATHFORMAT>
-                    </FILEREF>
-                    <FILEREF>
-                        <TARGETNAME>Standard</TARGETNAME>
-                        <PATHTYPE>Name</PATHTYPE>
-                        <PATH>Access.hpp</PATH>
-                        <PATHFORMAT>Windows</PATHFORMAT>
-                    </FILEREF>
-                    <FILEREF>
-                        <TARGETNAME>Standard</TARGETNAME>
-                        <PATHTYPE>Name</PATHTYPE>
-                        <PATH>BoxList.cpp</PATH>
-                        <PATHFORMAT>Windows</PATHFORMAT>
-                    </FILEREF>
-                    <FILEREF>
-                        <TARGETNAME>Standard</TARGETNAME>
-                        <PATHTYPE>Name</PATHTYPE>
-                        <PATH>BoxList.hpp</PATH>
-                        <PATHFORMAT>Windows</PATHFORMAT>
-                    </FILEREF>
-                    <FILEREF>
-                        <TARGETNAME>Standard</TARGETNAME>
-                        <PATHTYPE>Name</PATHTYPE>
-                        <PATH>FstBoxPointer.cpp</PATH>
-                        <PATHFORMAT>Windows</PATHFORMAT>
-                    </FILEREF>
-                    <FILEREF>
-                        <TARGETNAME>Standard</TARGETNAME>
-                        <PATHTYPE>Name</PATHTYPE>
-                        <PATH>FstBoxPointer.hpp</PATH>
-                        <PATHFORMAT>Windows</PATHFORMAT>
-                    </FILEREF>
-                    <FILEREF>
-                        <TARGETNAME>Standard</TARGETNAME>
-                        <PATHTYPE>Name</PATHTYPE>
-                        <PATH>DiagramaNavegacion.cpp</PATH>
-                        <PATHFORMAT>Windows</PATHFORMAT>
-                    </FILEREF>
-                    <FILEREF>
-                        <TARGETNAME>Standard</TARGETNAME>
-                        <PATHTYPE>Name</PATHTYPE>
-                        <PATH>DiagramaNavegacion.hpp</PATH>
-                        <PATHFORMAT>Windows</PATHFORMAT>
-                    </FILEREF>
-                </GROUP>
-                <FILEREF>
-                    <TARGETNAME>Standard</TARGETNAME>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>MessagesOut.cpp</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
                 <FILEREF>
                     <TARGETNAME>Standard</TARGETNAME>
                     <PATHTYPE>Name</PATHTYPE>
@@ -2843,72 +2223,28 @@
                     <PATH>opcionescompilacion.c</PATH>
                     <PATHFORMAT>Windows</PATHFORMAT>
                 </FILEREF>
-            </GROUP>
-            <GROUP><NAME>Propiedades&amp;Getters</NAME>
                 <FILEREF>
                     <TARGETNAME>Standard</TARGETNAME>
                     <PATHTYPE>Name</PATHTYPE>
-                    <PATH>ConstructorPropiedadGetter.cpp</PATH>
+                    <PATH>SelectorDigito.h</PATH>
                     <PATHFORMAT>Windows</PATHFORMAT>
                 </FILEREF>
                 <FILEREF>
                     <TARGETNAME>Standard</TARGETNAME>
                     <PATHTYPE>Name</PATHTYPE>
-                    <PATH>PropiedadGetter.cpp</PATH>
+                    <PATH>SelectorDigito.c</PATH>
                     <PATHFORMAT>Windows</PATHFORMAT>
                 </FILEREF>
                 <FILEREF>
                     <TARGETNAME>Standard</TARGETNAME>
                     <PATHTYPE>Name</PATHTYPE>
-                    <PATH>PropGetterVisual.cpp</PATH>
+                    <PATH>Display1.c</PATH>
                     <PATHFORMAT>Windows</PATHFORMAT>
                 </FILEREF>
                 <FILEREF>
                     <TARGETNAME>Standard</TARGETNAME>
                     <PATHTYPE>Name</PATHTYPE>
-                    <PATH>PropGetterNumerico.cpp</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <TARGETNAME>Standard</TARGETNAME>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>PropGetterTextual.cpp</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <TARGETNAME>Standard</TARGETNAME>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>PropiedadIncrementable.cpp</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <TARGETNAME>Standard</TARGETNAME>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>PropiedadHora.cpp</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <TARGETNAME>Standard</TARGETNAME>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>PropiedadTextual.cpp</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <TARGETNAME>Standard</TARGETNAME>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>PropiedadNumerica.cpp</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <TARGETNAME>Standard</TARGETNAME>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>PropNumLFPV.cpp</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <TARGETNAME>Standard</TARGETNAME>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>PropNumLVPF.cpp</PATH>
+                    <PATH>VistaSetContrasenia.cpp</PATH>
                     <PATHFORMAT>Windows</PATHFORMAT>
                 </FILEREF>
             </GROUP>
@@ -2918,6 +2254,56 @@
                 <PATH>main.cpp</PATH>
                 <PATHFORMAT>Windows</PATHFORMAT>
             </FILEREF>
+            <GROUP><NAME>Modelo</NAME>
+                <FILEREF>
+                    <TARGETNAME>Standard</TARGETNAME>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>Adc.cpp</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <TARGETNAME>Standard</TARGETNAME>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>ADC.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <TARGETNAME>Standard</TARGETNAME>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>SensorTermoPT100.cpp</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <TARGETNAME>Standard</TARGETNAME>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>Sensores.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <TARGETNAME>Standard</TARGETNAME>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>Sensores.h</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <TARGETNAME>Standard</TARGETNAME>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>Sensor.cpp</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <TARGETNAME>Standard</TARGETNAME>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>Termometro.cpp</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <TARGETNAME>Standard</TARGETNAME>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>flash.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+            </GROUP>
             <FILEREF>
                 <TARGETNAME>Standard</TARGETNAME>
                 <PATHTYPE>Name</PATHTYPE>
@@ -2945,37 +2331,7 @@
             <FILEREF>
                 <TARGETNAME>Standard</TARGETNAME>
                 <PATHTYPE>Name</PATHTYPE>
-                <PATH>Termometro.cpp</PATH>
-                <PATHFORMAT>Windows</PATHFORMAT>
-            </FILEREF>
-            <FILEREF>
-                <TARGETNAME>Standard</TARGETNAME>
-                <PATHTYPE>Name</PATHTYPE>
                 <PATH>datapage.c</PATH>
-                <PATHFORMAT>Windows</PATHFORMAT>
-            </FILEREF>
-            <FILEREF>
-                <TARGETNAME>Standard</TARGETNAME>
-                <PATHTYPE>Name</PATHTYPE>
-                <PATH>Adc.cpp</PATH>
-                <PATHFORMAT>Windows</PATHFORMAT>
-            </FILEREF>
-            <FILEREF>
-                <TARGETNAME>Standard</TARGETNAME>
-                <PATHTYPE>Name</PATHTYPE>
-                <PATH>ADC.c</PATH>
-                <PATHFORMAT>Windows</PATHFORMAT>
-            </FILEREF>
-            <FILEREF>
-                <TARGETNAME>Standard</TARGETNAME>
-                <PATHTYPE>Name</PATHTYPE>
-                <PATH>Sensor.cpp</PATH>
-                <PATHFORMAT>Windows</PATHFORMAT>
-            </FILEREF>
-            <FILEREF>
-                <TARGETNAME>Standard</TARGETNAME>
-                <PATHTYPE>Name</PATHTYPE>
-                <PATH>SensorTermoPT100.cpp</PATH>
                 <PATHFORMAT>Windows</PATHFORMAT>
             </FILEREF>
             <FILEREF>
@@ -2988,18 +2344,6 @@
                 <TARGETNAME>Standard</TARGETNAME>
                 <PATHTYPE>Name</PATHTYPE>
                 <PATH>timer_interrupt.c</PATH>
-                <PATHFORMAT>Windows</PATHFORMAT>
-            </FILEREF>
-            <FILEREF>
-                <TARGETNAME>Standard</TARGETNAME>
-                <PATHTYPE>Name</PATHTYPE>
-                <PATH>Sensores.c</PATH>
-                <PATHFORMAT>Windows</PATHFORMAT>
-            </FILEREF>
-            <FILEREF>
-                <TARGETNAME>Standard</TARGETNAME>
-                <PATHTYPE>Name</PATHTYPE>
-                <PATH>Sensores.h</PATH>
                 <PATHFORMAT>Windows</PATHFORMAT>
             </FILEREF>
             <FILEREF>
@@ -3141,12 +2485,6 @@
             <FILEREF>
                 <TARGETNAME>Standard</TARGETNAME>
                 <PATHTYPE>Name</PATHTYPE>
-                <PATH>termio1.c</PATH>
-                <PATHFORMAT>Windows</PATHFORMAT>
-            </FILEREF>
-            <FILEREF>
-                <TARGETNAME>Standard</TARGETNAME>
-                <PATHTYPE>Name</PATHTYPE>
                 <PATH>funciones.c</PATH>
                 <PATHFORMAT>Windows</PATHFORMAT>
             </FILEREF>
@@ -3154,12 +2492,6 @@
                 <TARGETNAME>Standard</TARGETNAME>
                 <PATHTYPE>Name</PATHTYPE>
                 <PATH>SearchLib.c</PATH>
-                <PATHFORMAT>Windows</PATHFORMAT>
-            </FILEREF>
-            <FILEREF>
-                <TARGETNAME>Standard</TARGETNAME>
-                <PATHTYPE>Name</PATHTYPE>
-                <PATH>Math.c</PATH>
                 <PATHFORMAT>Windows</PATHFORMAT>
             </FILEREF>
             <FILEREF>
@@ -3189,13 +2521,13 @@
             <FILEREF>
                 <TARGETNAME>Standard</TARGETNAME>
                 <PATHTYPE>Name</PATHTYPE>
-                <PATH>ooc_hcs12_cpp_si.lib</PATH>
+                <PATH>reflect_si_cpp.lib</PATH>
                 <PATHFORMAT>Windows</PATHFORMAT>
             </FILEREF>
             <FILEREF>
                 <TARGETNAME>Standard</TARGETNAME>
                 <PATHTYPE>Name</PATHTYPE>
-                <PATH>reflect_si_cpp.lib</PATH>
+                <PATH>lang_hc12_si.lib</PATH>
                 <PATHFORMAT>Windows</PATHFORMAT>
             </FILEREF>
             <FILEREF>
@@ -3219,7 +2551,13 @@
             <FILEREF>
                 <TARGETNAME>Standard</TARGETNAME>
                 <PATHTYPE>Name</PATHTYPE>
-                <PATH>lang_hc12_si.lib</PATH>
+                <PATH>navegacion_hc12_si.lib</PATH>
+                <PATHFORMAT>Windows</PATHFORMAT>
+            </FILEREF>
+            <FILEREF>
+                <TARGETNAME>Standard</TARGETNAME>
+                <PATHTYPE>Name</PATHTYPE>
+                <PATH>ooc_hc12_si.lib</PATH>
                 <PATHFORMAT>Windows</PATHFORMAT>
             </FILEREF>
         </GROUP>

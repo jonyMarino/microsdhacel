@@ -19,7 +19,9 @@ void start(void * a){
   ADC_Start();  
 }
 
-const struct Method Adc::onPeriodo(start,NULL);
+const struct Method Adc::onPeriodo={
+start,NULL
+};
 
 Adc::Adc(int _pin):pin(_pin) {
   if(!init){

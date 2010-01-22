@@ -7,6 +7,7 @@
 
 class Sensor : public Getter {
   public:
+    Sensor(){}
     void addOnNuevoValorListener(const struct Method* metodo);
     void deleteOnNuevoValorListener(const struct Method * metodo);
 

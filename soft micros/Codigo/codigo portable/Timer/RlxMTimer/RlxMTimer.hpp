@@ -1,7 +1,7 @@
 #ifndef _RELAXED_M_TIMER_HPP
 #define _RELAXED_M_TIMER_HPP
 
-#include "MethodTimer.hpp"
+#include "Timer/MethodTimer/MethodTimer.hpp"
 #include "OOC/util/lib_cpp/LinkedList.hpp"
 
 #pragma DATA_SEG RlxMTimer_DATA                                            
