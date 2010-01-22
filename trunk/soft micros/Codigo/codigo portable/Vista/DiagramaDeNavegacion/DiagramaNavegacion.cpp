@@ -39,9 +39,11 @@
 **                    y accesos  ya inicializados y constanter
 ** =====================================================================
 */
-DiagramaNavegacion::DiagramaNavegacion(const struct BoxList * _boxesOp,const struct Array *_accesos,FrenteCustom * _frente):metodoParaTimer(showCompilacion,this){
+DiagramaNavegacion::DiagramaNavegacion(const struct BoxList * _boxesOp,const struct Array *_accesos,FrenteCustom * _frente){
   //Mostrar: Dhacel version,y compilacion
   frente = _frente;
+  metodoParaTimer.pmethod=showCompilacion;
+  metodoParaTimer.obj=this;
   
   timer= new RlxMTimer(_VERSION_TIME,metodoParaTimer);
   

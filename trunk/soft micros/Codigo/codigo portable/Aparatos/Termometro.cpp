@@ -25,7 +25,11 @@ void fOn40ms(void * _self){
 
 }
 
-Termometro::Termometro(struct PromBkp &_flash):on1ms(fOn1ms,this),on40ms(fOn40ms,this),flash(_flash){
+Termometro::Termometro(struct PromBkp &_flash):flash(_flash){
+  on1ms.pmethod=fOn1ms;
+  on1ms.obj=this;
+  on40ms.pmethod=fOn40ms;
+  on40ms.obj=this;
   add1msListener(&on1ms);  //agregar a la interrupcion del timer cuando dura 1ms
   add40msListener(&on40ms);//agregar a la interrupcion del timer cuando dura 40ms
 }
