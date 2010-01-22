@@ -17,18 +17,18 @@ struct ArgumentosPropNumLF{
 
 class PropNumLF:public PropiedadNumerica{
   public:
-    PropNumLF(void*obj,const struct ArgumentosPropNumLF* args);
+    PropNumLF(void*obj,const struct ArgumentosPropNumLF* args,uchar numObjeto);
     virtual int getLimiteInferior();
     virtual int getLimiteSuperior();
     virtual uchar getCantidadDecimales();
 };
 
-struct PropNumLFFactory:public PropiedadGetterFactory{
-    virtual PropiedadGetter& getPropiedad(void*obj,const struct ArgumentosPropiedadGetter* args)const;
+struct PropNumLFFactory:public PropGetterVisualFactory{
+    virtual PropiedadGetter& getPropiedad(void*obj,const struct ArgumentosPropiedadGetter* args,uchar numObjeto)const;
 };
 
 struct ConstructorPropNumLF{
-    const struct PropiedadGetterFactory * factory;
+    const struct PropGetterVisualFactory * factory;
     struct ArgumentosPropNumLF args;
 };
 

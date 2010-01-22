@@ -11,10 +11,10 @@ const struct BoxSaltoCondicionalFactory boxSaltoCondicionalFactory;
 **     Description :  Constructor del Box Lineal
 ** ===================================================================
 */
-BoxSaltoCondicional::BoxSaltoCondicional(struct ConstructorBoxSaltoCondicional * _constructor,void*obj,uchar numObjeto):BoxPropiedad(numObjeto){
+BoxSaltoCondicional::BoxSaltoCondicional(struct ConstructorBoxSaltoCondicional * _constructor,void*obj,uchar numObjeto):BoxPropiedad(){
   constructor =  _constructor;
 
-  propiedad = (PropiedadIncrementable*)&((constructor->propiedad)->getPropiedad(obj));
+  propiedad = (PropiedadIncrementable*)&((constructor->propiedad)->getPropiedad(obj,numObjeto));
   setPropiedad(*propiedad,TRUE);
 }
 

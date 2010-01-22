@@ -5,7 +5,7 @@
 
 const struct BoxPropiedadFactory boxPropiedadFactory;;
 
-BoxPropiedad::BoxPropiedad(uchar _numObjeto):numObjeto(_numObjeto),propiedad(NULL),save(FALSE){}
+BoxPropiedad::BoxPropiedad():propiedad(NULL),save(FALSE){}
 
 BoxPropiedad::~BoxPropiedad(){
   if(propiedad)
@@ -17,9 +17,8 @@ void BoxPropiedad::setPropiedad(PropGetterVisual& _propiedad,bool _isIncrementab
   if(propiedad)
     delete propiedad;
   propiedad = &_propiedad;
-  desc = propiedad->getDescripcion();
+  propiedad->printDescripcion(getDisplay(1));
   propiedad->print(getDisplay(0));
-  printDescripcion(desc,getDisplay(1));
   save=FALSE;
   isIncrementable = _isIncrementable; 
 }

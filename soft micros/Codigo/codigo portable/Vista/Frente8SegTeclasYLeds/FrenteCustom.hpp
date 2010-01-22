@@ -26,6 +26,7 @@ class FrenteCustom{
     virtual byte getTeclaPosicion(byte barrido)=0;
   private:   
     FlagTimer scrollTimer;
+    struct Method mOn1ms;
     Teclas teclas;
     byte leds;              // indica los leds que fueron presionados
     byte barrido;           // contador de la etapa de barrido actual (0-DIGITOS*DISPLAYS)
@@ -34,8 +35,7 @@ class FrenteCustom{
     byte posiblesTeclas;      // conjunto de teclas presionadas en un barrido posiblemente validas
     byte debounce;          // contador del numero de entradas iguales hasta aceptar la tecla
     void actualizarTeclas();
-    void resetScroll(); 
-    struct Method mOn1ms;
+    void resetScroll();
     static void on1msStatic(void*self);  
 };
 

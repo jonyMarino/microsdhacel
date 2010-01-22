@@ -1,7 +1,7 @@
 #include "PropNumLVPF.hpp"
 //#include "PE/include/PE_Types.h"
 
-PropNumLVPF::PropNumLVPF(void*obj,const struct ArgumentosPropNumLVPF* args):PropiedadNumerica(obj,(const struct ArgumentosPropiedadIncrementable*)args){}
+PropNumLVPF::PropNumLVPF(void*obj,const struct ArgumentosPropNumLVPF* args,uchar numObjeto):PropiedadNumerica(obj,(const struct ArgumentosPropiedadIncrementable*)args,numObjeto){}
 
 int PropNumLVPF::getLimiteInferior(){
   struct ArgumentosPropNumLVPF* arg= (struct ArgumentosPropNumLVPF*)getArgumentos();
@@ -19,6 +19,6 @@ uchar PropNumLVPF::getCantidadDecimales(){
   return arg->cantidadDecimales;
 }
 
-PropiedadGetter& PropNumLVPFFactory::getPropiedad(void*obj,const struct ArgumentosPropiedadGetter* args)const{
-  return *new PropNumLVPF(obj,(const struct ArgumentosPropNumLVPF*)args);
+PropiedadGetter& PropNumLVPFFactory::getPropiedad(void*obj,const struct ArgumentosPropiedadGetter* args,uchar numObjeto)const{
+  return *new PropNumLVPF(obj,(const struct ArgumentosPropNumLVPF*)args,numObjeto);
 } 

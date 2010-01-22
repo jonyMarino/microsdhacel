@@ -2,10 +2,11 @@
 #define _THREAD_ATACHABLE_HPP
 
 #include "MethodContainer.hpp"
-#include "Method.h"
+#include "Method.hpp"
 
 class ThreadAttachable:public MethodContainer{
   public:
+    ThreadAttachable(){}
     void adjuntar(struct Method * method);
     void executeThreads();
     

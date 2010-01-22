@@ -10,10 +10,10 @@ const struct BoxLinealFactory boxLinealFactory;
 **     Description :  Constructor del Box Lineal
 ** ===================================================================
 */
-BoxLineal::BoxLineal(struct ConstructorBoxLineal * _constructor,void*obj,uchar numObjeto):BoxPropiedad(numObjeto){
+BoxLineal::BoxLineal(struct ConstructorBoxLineal * _constructor,void*obj,uchar numObjeto):BoxPropiedad(){
   constructor =  _constructor;
   numProp=0;
-  mostrarPropiedad(obj); 
+  mostrarPropiedad(obj,numObjeto); 
   
 }
 
@@ -33,9 +33,9 @@ BoxLineal::~BoxLineal(){
 ** ===================================================================
 */
 
-void BoxLineal::mostrarPropiedad(void * obj){
+void BoxLineal::mostrarPropiedad(void * obj,int numObjeto){
 
-  PropiedadIncrementable* propiedadActual = (PropiedadIncrementable*)&((constructor->propiedades[numProp])->getPropiedad(obj)); 
+  PropiedadIncrementable* propiedadActual = (PropiedadIncrementable*)&((constructor->propiedades[numProp])->getPropiedad(obj,numObjeto)); 
   setPropiedad(*propiedadActual,TRUE);
 }
 
@@ -50,13 +50,16 @@ Box * BoxLineal::procesarTecla(uchar tecla,TEstadoBox& estado){
   BoxPropiedad::procesarTecla(tecla,estado);
   if (tecla=='r'){
     void * obj = getPropiedad()->getObjeto();
+    int numObj = getPropiedad()->getNumObjeto();
+    numProp++;
     if(constructor->propiedades[numProp]==NULL){    
       estado = EXIT_BOX;
       if(!constructor->proximoBox)
         return NULL;
-      return &constructor->proximoBox->getBox(obj,getNumObjeto());
+      return &constructor->proximoBox->getBox(obj,numObj);
     }
-    mostrarPropiedad(obj);
+    estado=STAY_BOX;  
+    mostrarPropiedad(obj,numObj);
   }
   return NULL;
 }

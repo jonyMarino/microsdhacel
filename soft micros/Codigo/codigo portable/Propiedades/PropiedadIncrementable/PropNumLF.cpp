@@ -3,7 +3,7 @@
 
 const struct PropNumLFFactory propNumLFFactory;
 
-PropNumLF::PropNumLF(void*obj,const struct ArgumentosPropNumLF* args):PropiedadNumerica(obj,(const struct ArgumentosPropiedadIncrementable*)args){}
+PropNumLF::PropNumLF(void*obj,const struct ArgumentosPropNumLF* args,uchar numObjeto):PropiedadNumerica(obj,(const struct ArgumentosPropiedadIncrementable*)args,numObjeto){}
 
 int PropNumLF::getLimiteInferior(){
   struct ArgumentosPropNumLF* arg= (struct ArgumentosPropNumLF*)getArgumentos();
@@ -19,6 +19,6 @@ uchar PropNumLF::getCantidadDecimales(){
   return 0;
 }
 
-PropiedadGetter& PropNumLFFactory::getPropiedad(void*obj,const struct ArgumentosPropiedadGetter* args)const{
-  return *new PropNumLF(obj,(const struct ArgumentosPropNumLF*)args);
+PropiedadGetter& PropNumLFFactory::getPropiedad(void*obj,const struct ArgumentosPropiedadGetter* args,uchar numObjeto)const{
+  return *new PropNumLF(obj,(const struct ArgumentosPropNumLF*)args,numObjeto);
 } 

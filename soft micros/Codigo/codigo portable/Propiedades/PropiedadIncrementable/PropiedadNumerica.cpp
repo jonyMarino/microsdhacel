@@ -1,7 +1,7 @@
 #include "PropiedadNumerica.hpp"
 #include "PE/include/PE_Types.h"
 
-PropiedadNumerica::PropiedadNumerica(void*obj,const struct ArgumentosPropiedadIncrementable* args):PropiedadIncrementable(obj,args){}
+PropiedadNumerica::PropiedadNumerica(void*obj,const struct ArgumentosPropiedadIncrementable* args,uchar numObjeto):PropiedadIncrementable(obj,args,numObjeto){}
 
 
 void PropiedadNumerica::print(OutputStream&os){

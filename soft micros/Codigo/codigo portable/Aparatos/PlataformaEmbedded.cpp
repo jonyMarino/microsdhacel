@@ -1,19 +1,23 @@
 #include <assert.h>
 #include "PlataformaEmbedded.hpp"
-#include "ThreadAttachable.hpp"
 #include "Thread.h"
-#include "Method.h"
+#include "Method.hpp"
+#include "WDog1.h"
 
 
-ThreadAttachable threads;
+ThreadAttachable PlataformaEmbedded::threads;
 
 void pthread_create(void * _self,void * attr,void*(*pf)(void*),void* args){
-  _self = _new(&Method,pf,args);
-  threads.adjuntar((struct Method *)_self);  
+  struct Method * m = new Method();
+  m->pmethod=(Method::pMethod)pf;
+  m->obj=args;
+  _self = (void*)m;
+  PlataformaEmbedded::threads.adjuntar(m);  
 }
 
 
 void PlataformaEmbedded::mainLoop(void){
+  WDog1_Clear();
   threads.executeThreads();
 }
 

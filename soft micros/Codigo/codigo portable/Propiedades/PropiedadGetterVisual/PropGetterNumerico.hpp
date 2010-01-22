@@ -15,16 +15,16 @@ struct ArgumentosPropGetterNumerico{
 
 class PropGetterNumerico:public PropGetterVisual{
   public:
-    PropGetterNumerico(void*obj,const struct ArgumentosPropGetterNumerico* args);
+    PropGetterNumerico(void*obj,const struct ArgumentosPropGetterNumerico* args,uchar numObjeto);
     virtual void print(OutputStream&os);
 };
 
-struct PropGetterNumericoFactory:public PropiedadGetterFactory{
-    virtual PropiedadGetter& getPropiedad(void*obj,const struct ArgumentosPropiedadGetter* args)const;
+struct PropGetterNumericoFactory:public PropGetterVisualFactory{
+    virtual PropiedadGetter& getPropiedad(void*obj,const struct ArgumentosPropiedadGetter* args,uchar numObjeto)const;
 };
 
 struct ConstructorPropGetterNumerico{
-    const struct PropiedadGetterFactory * factory;
+    const struct PropGetterVisualFactory * factory;
     struct ArgumentosPropGetterNumerico args;
 };
 

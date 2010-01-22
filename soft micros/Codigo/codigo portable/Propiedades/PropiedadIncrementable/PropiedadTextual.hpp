@@ -16,18 +16,18 @@ struct ArgumentosPropiedadTextual{
 
 class PropiedadTextual:public PropiedadIncrementable{
   public:
-    PropiedadTextual(void*obj,const struct ArgumentosPropiedadTextual* args);
+    PropiedadTextual(void*obj,const struct ArgumentosPropiedadTextual* args,uchar numObjeto);
     virtual void incrementar();
     virtual void decrementar();
     virtual void print(OutputStream&os);
 };
 
-struct PropiedadTextualFactory:public PropiedadGetterFactory{
-    virtual PropiedadGetter& getPropiedad(void*obj,const struct ArgumentosPropiedadGetter* args)const;
+struct PropiedadTextualFactory:public PropGetterVisualFactory{
+    virtual PropiedadGetter& getPropiedad(void*obj,const struct ArgumentosPropiedadGetter* args,uchar numObjeto)const;
 };
 
 struct ConstructorPropiedadTextual{
-    const struct PropiedadGetterFactory * factory;
+    const struct PropGetterVisualFactory * factory;
     struct ArgumentosPropiedadTextual args;
 };
 

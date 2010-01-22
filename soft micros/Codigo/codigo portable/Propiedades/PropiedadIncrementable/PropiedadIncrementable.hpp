@@ -15,7 +15,7 @@ struct ArgumentosPropiedadIncrementable{
 
 class PropiedadIncrementable:public PropGetterVisual{
   public:
-    PropiedadIncrementable(void*obj,const struct ArgumentosPropiedadIncrementable* args);
+    PropiedadIncrementable(void*obj,const struct ArgumentosPropiedadIncrementable* args,uchar numObjeto);
     virtual void incrementar()=0;
     virtual void decrementar()=0;
     void guardar(); //para que los incrementos surjan efecto en el objeto controlado por la propiedad
@@ -27,12 +27,12 @@ class PropiedadIncrementable:public PropGetterVisual{
     
 };
 /*
-struct PropiedadIncrementableFactory:public PropiedadGetterFactory{
+struct PropiedadIncrementableFactory:public PropGetterVisualFactory{
     virtual PropiedadGetter& getPropiedad(void*obj,const struct ArgumentosPropiedadIncrementable* args)const;
 };
 
 struct ConstructorPropiedadIncrementable{
-    const struct PropiedadGetterFactory * factory;
+    const struct PropGetterVisualFactory * factory;
     struct ArgumentosPropiedadIncrementable args;
 };
     */

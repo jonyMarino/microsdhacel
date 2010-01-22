@@ -89,14 +89,14 @@ void Display::resetearCorrimiento(){
 
 void Display::incrementarCorrimiento(){
   corrimiento++;
-  if ( corrimiento==nLetras + DIGITOS )
-    corrimiento=0;
+ // if ( corrimiento==nLetras + DIGITOS )
+ //   corrimiento=0;
 }
 
 void Display::imprimirDigito(byte numDigito){
-  byte caracterAMostrar = numDigito+corrimiento;
+  byte caracterAMostrar = (numDigito+corrimiento)%(nLetras+DIGITOS-1);
   if(caracterAMostrar<nLetras)
-    *puerto = mensaje[numDigito+corrimiento];
+    *puerto = mensaje[caracterAMostrar];
   else
     *puerto = 0;
 }

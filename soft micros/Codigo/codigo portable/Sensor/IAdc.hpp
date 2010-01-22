@@ -13,7 +13,7 @@ class IAdc : public Getter {
         AD_WAITING
 
       };
-    virtual AD_State getState()=0;
+   // virtual AD_State getState()=0;
 
 };
 #endif

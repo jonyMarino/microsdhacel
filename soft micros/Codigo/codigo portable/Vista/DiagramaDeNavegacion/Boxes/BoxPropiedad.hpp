@@ -9,7 +9,7 @@
 
 class BoxPropiedad:public Box{
   public:
-    BoxPropiedad(uchar _numObjeto);
+    BoxPropiedad();
     virtual ~BoxPropiedad();
     /*
     ** ===================================================================
@@ -31,7 +31,6 @@ class BoxPropiedad:public Box{
     virtual Box * procesarTecla(uchar tecla,TEstadoBox& estado);
     
     void printDescripcion(const char * str, OutputStream& os);
-    inline uchar getNumObjeto(){return numObjeto;}
   protected:
     void setPropiedad(PropGetterVisual& propiedad,bool isIncrementable);
     PropGetterVisual * getPropiedad();
@@ -39,21 +38,20 @@ class BoxPropiedad:public Box{
   private:
     PropGetterVisual * propiedad;
     bool isIncrementable;
-    uchar numObjeto;
     bool save;
     friend struct BoxPropiedadFactory;
 };
 
 struct ConstructorBoxPropiedad{
   struct ConstructorBox super;
-  const struct ConstructorPropiedadGetter * propiedad;  
+  const struct ConstructorPropGetterVisual * propiedad;  
 };
 
 struct BoxPropiedadFactory:public BoxFactory{
   virtual Box& getBox(const void*args,void*obj,uchar numObjeto)const{
-    BoxPropiedad&b = *new BoxPropiedad(numObjeto);
+    BoxPropiedad&b = *new BoxPropiedad();
     struct ConstructorBoxPropiedad * c = (struct ConstructorBoxPropiedad *)args;
-    b.setPropiedad(*(PropGetterVisual*)&c->propiedad->getPropiedad(obj),TRUE);
+    b.setPropiedad(*(PropGetterVisual*)&c->propiedad->getPropiedad(obj,numObjeto),TRUE);
     return b;
   }
 };

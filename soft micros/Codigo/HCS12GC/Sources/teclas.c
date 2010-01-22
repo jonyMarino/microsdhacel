@@ -15,14 +15,15 @@
 //////////////////////////////////////////////////////////////
 
 /* archivos include */
-#include "IO_Map.h" 		
+//#include "mc9s12gc32.h"
+#include "mc9s12gc32.h" 		
 #include "PUL.h"
 #include "TimerFlag.h"
 #include "PE_Types.h"
 #include "teclas.h"
-#include "Mydefines.h"
+//#include "Mydefines.h"
 #include "Object.h"
-						 
+#define TRETURN 30000 						 
 /*  Definicion de nombre de tecla y su forma de ser invocada*/
 
 typedef struct {
@@ -79,7 +80,7 @@ void Switches(byte Pulsador)
 /* armo el SwAct cada 4 interrupciones insertando en un registro */
  
   if(!PUL_GetVal()) SwAct|=Pulsador;
-
+                     
 	CntInt++;
 	if(CntInt==CANTIDAD_TECLAS){	  
 	  CntInt=0;				// reinicia...
@@ -99,29 +100,29 @@ void Switches(byte Pulsador)
 	  
 	//acaba de terminar la validacion
 		
-    if (KeyAnt!=ValidKey && KeyDeb==0){
+    else if (KeyAnt!=ValidKey){
 
-	   for(i=0;keys[i].nombre!=0;i++){
-	    if(keys[i].teclas==ValidKey){
-	     KeyEdge=keys[i].nombre;
-	     break;
-	    }
-	   }
-
-	  if(ValidKey==KEY_NULL){
-	    for(i=0;hold_keys[i].nombre!=0;i++){				 // Al soltar para los que tienen otra funcion en toque mantenido
-  	    if(hold_keys[i].tecla==KeyAnt && hold_keys[i].nombre_hold!=KeepKeyAnt){
-  	     KeyEdge=hold_keys[i].nombre;
+  	   for(i=0;keys[i].nombre!=0;i++){
+  	    if(keys[i].teclas==ValidKey){
+  	     KeyEdge=keys[i].nombre;
   	     break;
   	    }
-	    }
-	    KeepKeyAnt=' ';
-	  }
-	  TimerFlag_reset(&TeclaTimer);
-	  Timer_Restart(&TeclaTimer);
-	  KeyAnt = ValidKey;
-	  KeyCnt=0;
-	  KeyRampa=KEY_RAMPA_INI;
+  	   }
+
+  	  if(ValidKey==KEY_NULL){
+  	    for(i=0;hold_keys[i].nombre!=0;i++){				 // Al soltar para los que tienen otra funcion en toque mantenido
+    	    if(hold_keys[i].tecla==KeyAnt && hold_keys[i].nombre_hold!=KeepKeyAnt){
+    	     KeyEdge=hold_keys[i].nombre;
+    	     break;
+    	    }
+  	    }
+  	    KeepKeyAnt=' ';
+  	  }
+  	  TimerFlag_reset(&TeclaTimer);
+  	  Timer_Restart(&TeclaTimer);
+  	  KeyAnt = ValidKey;
+  	  KeyCnt=0;
+  	  KeyRampa=KEY_RAMPA_INI;
     }
 	  
 	}

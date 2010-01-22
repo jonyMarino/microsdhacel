@@ -2,8 +2,15 @@
 #define _SENSORES_H 
 
 #include "PE_Types.h"
-#include "Mydefines.h"
 #include "Sensor.h"
+
+#define _APARATO_VIEJO
+
+enum TADState {
+  AD_OK,
+  AD_OF,
+  AD_UF
+};
 
 typedef struct{
   const int * xdat;
@@ -78,7 +85,7 @@ extern const T_Sensor sensorConf[NUM_SENSORES];
 /* Devulve el maximo valor de temperatura admisible(por el aparato) para Sensor*/
 #define SENSOR_Maximo(sensor)  sensorConf[sensor].ydat[sensorConf[sensor].max_array]			
 
-TSensorState Linealizar(int Vx, t_sensor sensor, int * Vy);
+TADState Linealizar(int Vx, t_sensor sensor, int * Vy);
 
 /*
 ** ===================================================================
@@ -87,7 +94,7 @@ TSensorState Linealizar(int Vx, t_sensor sensor, int * Vy);
 **     Description : Devuelve los centiV de compensación
 ** ===================================================================
 */
-TSensorState Sens_getColdComp(int temp_amb,int * ColdComp, t_sensor sensor);
+TADState Sens_getColdComp(int temp_amb,int * ColdComp, t_sensor sensor);
 
 
 bool SENSOR_is_Lineal(t_sensor sensor);
@@ -98,6 +105,11 @@ bool SENSOR_is_Lineal(t_sensor sensor);
 **     Description :  Devuelve un string con el nombre del sensor
 ** ===================================================================
 */
-char * SENSOR_getText(byte sensor);
+const char * SENSOR_getText(byte sensor);
+
+#define MAXAD      10000          //cuentas maximo que salen del ad
+#define MAXMV      5000          //decivoltios para esa cuenta
+#define MINAD      -2000          //cuentas minimo que salen del ad
+#define MINMV      -1000          //decivoltios para esa cuenta
 
 #endif

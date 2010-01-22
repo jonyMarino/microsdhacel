@@ -57,7 +57,7 @@
 #include "PE_Types.h"
 #include "PE_Error.h"
 #include "PE_Const.h"
-#include "IO_Map.h"
+#include "mc9s12gc32.h"
 #include "Cpu.h"
 
 #pragma DATA_SEG bits5ULN_DATA                                            

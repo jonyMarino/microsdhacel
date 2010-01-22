@@ -4,7 +4,7 @@
 
 const struct PropiedadTextualFactory propiedadTextualFactory;
 
-PropiedadTextual::PropiedadTextual(void*obj,const struct ArgumentosPropiedadTextual* args):PropiedadIncrementable(obj,(const struct ArgumentosPropiedadIncrementable*)args){}
+PropiedadTextual::PropiedadTextual(void*obj,const struct ArgumentosPropiedadTextual* args,uchar numObjeto):PropiedadIncrementable(obj,(const struct ArgumentosPropiedadIncrementable*)args,numObjeto){}
 
 
 void PropiedadTextual::print(OutputStream&os){
@@ -34,6 +34,6 @@ void PropiedadTextual::decrementar(){
 	  
 }
 
-PropiedadGetter& PropiedadTextualFactory::getPropiedad(void*obj,const struct ArgumentosPropiedadGetter* args)const{
-  return *new PropiedadTextual(obj,(const struct ArgumentosPropiedadTextual*)args);
+PropiedadGetter& PropiedadTextualFactory::getPropiedad(void*obj,const struct ArgumentosPropiedadGetter* args,uchar numObjeto)const{
+  return *new PropiedadTextual(obj,(const struct ArgumentosPropiedadTextual*)args,numObjeto);
 } 

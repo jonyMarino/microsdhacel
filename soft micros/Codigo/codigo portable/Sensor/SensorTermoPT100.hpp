@@ -7,6 +7,7 @@
 #include "IAdc.hpp"
 #include "Adc.hpp"
 #include "Sensores.h"
+#include "Memoria/ManejadorMemoria.hpp" 
 
 
 #define STPT_DEF_CONF { \
@@ -117,7 +118,7 @@ class SensorTermoPT100 : public Sensor {
     
     IAdc & adc;
     
-    struct ManejadorMemoria &manejadorMemoria;
+    ManejadorMemoria &manejadorMemoria;
 
     const TConfSensor& configuracion;
 

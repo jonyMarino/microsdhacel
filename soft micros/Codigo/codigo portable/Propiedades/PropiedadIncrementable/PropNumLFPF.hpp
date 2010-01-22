@@ -15,16 +15,16 @@ struct ArgumentosPropNumLFPF{
 
 class PropNumLFPF:public PropNumLF{
   public:
-    PropNumLFPF(void*obj,const struct ArgumentosPropNumLFPF* args);
+    PropNumLFPF(void*obj,const struct ArgumentosPropNumLFPF* args,uchar numObjeto);
     virtual uchar getCantidadDecimales();
 };
 
-struct PropNumLFPFFactory:public PropiedadGetterFactory{
-    virtual PropiedadGetter& getPropiedad(void*obj,const struct ArgumentosPropiedadGetter* args)const;
+struct PropNumLFPFFactory:public PropGetterVisualFactory{
+    virtual PropiedadGetter& getPropiedad(void*obj,const struct ArgumentosPropiedadGetter* args,uchar numObjeto)const;
 };
 
 struct ConstructorPropNumLFPF{
-    const struct PropiedadGetterFactory * factory;
+    const struct PropGetterVisualFactory * factory;
     struct ArgumentosPropNumLFPF args;
 };
 

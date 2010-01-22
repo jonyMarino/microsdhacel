@@ -4,7 +4,7 @@
 #include "SearchLib.h"
 
 
-LinState BinSearchLin(int x,int * y, int * xdat,int* ydat, int r){
+LinState BinSearchLin(int x,int * y,const  int * xdat,const int* ydat, int r){
   
   if (x <= xdat[0]) {			 // VX es menor igual que el valor minimo en la tabla???
     * y = ydat[0];					 // VX =  valor minimo en la tabla

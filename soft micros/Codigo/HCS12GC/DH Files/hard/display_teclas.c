@@ -1,4 +1,5 @@
-#include "IO_Map.h"
+//#include "IO_Map.h"
+#include "mc9s12gc32.h"
 #include "Display1.h"
 #include "bits2ULN.h"
 #include "bits5ULN.h"
@@ -6,9 +7,10 @@
 #include "TimerFlag.h"
 #include "Teclas.h"
 #include "Object.h"
-#include "Mydefines.h"
+//#include "Mydefines.h"
 #include "display_teclas.h"
  
+
 #pragma CONST_SEG DEFAULT
 
 bool led[4];
@@ -388,10 +390,10 @@ void AsciiTo7Seg(char* ptrs, byte Num_display,byte Dot)
       DigTmp=0x00;
 
     /* enciendo punto decimal de acuerdo a Cdt en la pantalla principal */
-    if(Dot==3-Nletras[Num_display])
+    /*if(Dot==3-Nletras[Num_display])
       DigTmp|=0x80;  
     if(Dot==0 && Nletras[Num_display]==3)
-      DigTmp&=0x7F; 
+      DigTmp&=0x7F;  */
 
     
     DigDpy[Num_display][Nletras[Num_display]]=DigTmp;

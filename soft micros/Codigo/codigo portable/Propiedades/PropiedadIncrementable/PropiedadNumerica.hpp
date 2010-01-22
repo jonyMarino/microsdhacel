@@ -10,7 +10,7 @@
 
 class PropiedadNumerica:public PropiedadIncrementable{
   public:
-    PropiedadNumerica(void*obj,const struct ArgumentosPropiedadIncrementable* args);
+    PropiedadNumerica(void*obj,const struct ArgumentosPropiedadIncrementable* args,uchar numObjeto);
     virtual void incrementar();
     virtual void decrementar();
     virtual void print(OutputStream&os);

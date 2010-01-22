@@ -3,7 +3,7 @@
 
 const struct PropNumLFPFFactory propNumLFPFFactory;
 
-PropNumLFPF::PropNumLFPF(void*obj,const struct ArgumentosPropNumLFPF* args):PropNumLF(obj,(const struct ArgumentosPropNumLF*)args){}
+PropNumLFPF::PropNumLFPF(void*obj,const struct ArgumentosPropNumLFPF* args,uchar numObjeto):PropNumLF(obj,(const struct ArgumentosPropNumLF*)args,numObjeto){}
 
 
 uchar PropNumLFPF::getCantidadDecimales(){
@@ -11,6 +11,6 @@ uchar PropNumLFPF::getCantidadDecimales(){
   return arg->decimales;
 }
 
-PropiedadGetter& PropNumLFPFFactory::getPropiedad(void*obj,const struct ArgumentosPropiedadGetter* args)const{
-  return *new PropNumLFPF(obj,(const struct ArgumentosPropNumLFPF*)args);
+PropiedadGetter& PropNumLFPFFactory::getPropiedad(void*obj,const struct ArgumentosPropiedadGetter* args,uchar numObjeto)const{
+  return *new PropNumLFPF(obj,(const struct ArgumentosPropNumLFPF*)args,numObjeto);
 } 
