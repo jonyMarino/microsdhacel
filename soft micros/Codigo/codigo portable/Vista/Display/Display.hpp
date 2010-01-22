@@ -1,6 +1,7 @@
 #ifndef _DISPLAY_HPP
 #define _DISPLAY_HPP
 
+#include <stdtypes.h>
 #include "PE/include/PE_Types.h"
 #include "OOC/ooc/lib_cpp/OutputStream.hpp"
 
