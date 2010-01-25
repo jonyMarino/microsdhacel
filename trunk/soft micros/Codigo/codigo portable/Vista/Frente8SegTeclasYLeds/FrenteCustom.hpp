@@ -23,7 +23,7 @@ class FrenteCustom{
     virtual void seleccionarDigito(byte barrido)=0;
     virtual void encenderLeds(byte leds)=0;
     virtual bool isTeclaPresionada()=0;
-    virtual byte getTeclaPosicion(byte barrido)=0;
+    virtual byte getTeclaPosicion(byte barrido)=0;  //para el barrido pasado, cual es la tecla correspondiente
   private:   
     FlagTimer scrollTimer;
     struct Method mOn1ms;

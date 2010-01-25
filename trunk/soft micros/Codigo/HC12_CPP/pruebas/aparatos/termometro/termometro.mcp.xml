@@ -624,6 +624,36 @@
                         <SETTING><NAME>FrameworkPath</NAME><VALUE>false</VALUE></SETTING>
                         <SETTING><NAME>HostFlags</NAME><VALUE>All</VALUE></SETTING>
                     </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>SearchPath</NAME>
+                            <SETTING><NAME>Path</NAME><VALUE>..\..\..\..\codigo portable\Timer\MethodTimer</VALUE></SETTING>
+                            <SETTING><NAME>PathFormat</NAME><VALUE>Windows</VALUE></SETTING>
+                            <SETTING><NAME>PathRoot</NAME><VALUE>Project</VALUE></SETTING>
+                        </SETTING>
+                        <SETTING><NAME>Recursive</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>FrameworkPath</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>HostFlags</NAME><VALUE>All</VALUE></SETTING>
+                    </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>SearchPath</NAME>
+                            <SETTING><NAME>Path</NAME><VALUE>..\..\..\..\codigo portable\Timer\RlxMTimer</VALUE></SETTING>
+                            <SETTING><NAME>PathFormat</NAME><VALUE>Windows</VALUE></SETTING>
+                            <SETTING><NAME>PathRoot</NAME><VALUE>Project</VALUE></SETTING>
+                        </SETTING>
+                        <SETTING><NAME>Recursive</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>FrameworkPath</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>HostFlags</NAME><VALUE>All</VALUE></SETTING>
+                    </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>SearchPath</NAME>
+                            <SETTING><NAME>Path</NAME><VALUE>..\..\..\..\codigo portable\Timer\FlagTimer</VALUE></SETTING>
+                            <SETTING><NAME>PathFormat</NAME><VALUE>Windows</VALUE></SETTING>
+                            <SETTING><NAME>PathRoot</NAME><VALUE>Project</VALUE></SETTING>
+                        </SETTING>
+                        <SETTING><NAME>Recursive</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>FrameworkPath</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>HostFlags</NAME><VALUE>All</VALUE></SETTING>
+                    </SETTING>
                 </SETTING>
                 <SETTING><NAME>SystemSearchPaths</NAME>
                     <SETTING>
@@ -1195,7 +1225,7 @@
 
                 <!-- Settings for "Panel for Compiler for HC12" panel -->
                 <SETTING><NAME>Panel for Compiler for HC12</NAME>
-                    <SETTING><NAME>Options</NAME><VALUE>-C++f -CPUHCS12 -DCANTIDAD_CANALES=1 -D__NO_FLOAT__ -D_TI -D_ADC -DMAX_MENSAJE=30 -DPAGE_SIZE=512 -Ms</VALUE></SETTING>
+                    <SETTING><NAME>Options</NAME><VALUE>-C++f -CPUHCS12 -DCANTIDAD_CANALES=1 -D__NO_FLOAT__ -D_TI -D_ADC -DMAX_MENSAJE=30 -DPAGE_SIZE=512 -Ms -Qvtpnone</VALUE></SETTING>
                     <SETTING><NAME>UseDecoder</NAME><VALUE>0</VALUE></SETTING>
                     <SETTING><NAME>EchoCommandLine</NAME><VALUE>0</VALUE></SETTING>
                 </SETTING>
@@ -1603,13 +1633,6 @@
                 </FILE>
                 <FILE>
                     <PATHTYPE>Name</PATHTYPE>
-                    <PATH>timers_si.lib</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                    <FILEKIND>Unknown</FILEKIND>
-                    <FILEFLAGS>Debug</FILEFLAGS>
-                </FILE>
-                <FILE>
-                    <PATHTYPE>Name</PATHTYPE>
                     <PATH>FrenteDH.cpp</PATH>
                     <PATHFORMAT>Windows</PATHFORMAT>
                     <FILEKIND>Text</FILEKIND>
@@ -1758,6 +1781,13 @@
                 <FILE>
                     <PATHTYPE>Name</PATHTYPE>
                     <PATH>ooc_hc12_si.lib</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Unknown</FILEKIND>
+                    <FILEFLAGS>Debug</FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>timers_si.lib</PATH>
                     <PATHFORMAT>Windows</PATHFORMAT>
                     <FILEKIND>Unknown</FILEKIND>
                     <FILEFLAGS>Debug</FILEFLAGS>
@@ -2001,11 +2031,6 @@
                 </FILEREF>
                 <FILEREF>
                     <PATHTYPE>Name</PATHTYPE>
-                    <PATH>timers_si.lib</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <PATHTYPE>Name</PATHTYPE>
                     <PATH>FrenteDH.cpp</PATH>
                     <PATHFORMAT>Windows</PATHFORMAT>
                 </FILEREF>
@@ -2112,6 +2137,11 @@
                 <FILEREF>
                     <PATHTYPE>Name</PATHTYPE>
                     <PATH>ooc_hc12_si.lib</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>timers_si.lib</PATH>
                     <PATHFORMAT>Windows</PATHFORMAT>
                 </FILEREF>
             </LINKORDER>
@@ -2533,12 +2563,6 @@
             <FILEREF>
                 <TARGETNAME>Standard</TARGETNAME>
                 <PATHTYPE>Name</PATHTYPE>
-                <PATH>timers_si.lib</PATH>
-                <PATHFORMAT>Windows</PATHFORMAT>
-            </FILEREF>
-            <FILEREF>
-                <TARGETNAME>Standard</TARGETNAME>
-                <PATHTYPE>Name</PATHTYPE>
                 <PATH>frente_dh_si.lib</PATH>
                 <PATHFORMAT>Windows</PATHFORMAT>
             </FILEREF>
@@ -2558,6 +2582,12 @@
                 <TARGETNAME>Standard</TARGETNAME>
                 <PATHTYPE>Name</PATHTYPE>
                 <PATH>ooc_hc12_si.lib</PATH>
+                <PATHFORMAT>Windows</PATHFORMAT>
+            </FILEREF>
+            <FILEREF>
+                <TARGETNAME>Standard</TARGETNAME>
+                <PATHTYPE>Name</PATHTYPE>
+                <PATH>timers_si.lib</PATH>
                 <PATHFORMAT>Windows</PATHFORMAT>
             </FILEREF>
         </GROUP>

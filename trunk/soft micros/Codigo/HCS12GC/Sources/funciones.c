@@ -290,7 +290,7 @@ int derivada3p(int * val_T,
   		return	(val_T[2]- 4*val_T[1] + 3*val_T[0]  ) *kder*100/ DELTAT;
 }
                 
-               /*
+/*
 PROP
 es simplemente P = K (vr - vx)
 uso K=1 para ponerlo despues en otro lado

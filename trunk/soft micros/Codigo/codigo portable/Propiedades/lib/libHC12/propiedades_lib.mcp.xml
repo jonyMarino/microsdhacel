@@ -656,7 +656,7 @@
 
                 <!-- Settings for "Panel for Compiler for HC12" panel -->
                 <SETTING><NAME>Panel for Compiler for HC12</NAME>
-                    <SETTING><NAME>Options</NAME><VALUE>-W2 -Cc -Ms -F2 -NoPath -D__NO_FLOAT__</VALUE></SETTING>
+                    <SETTING><NAME>Options</NAME><VALUE>-Cc -D__NO_FLOAT__ -F2 -Ms -NoPath -Qvtpnone -W2</VALUE></SETTING>
                     <SETTING><NAME>UseDecoder</NAME><VALUE>0</VALUE></SETTING>
                     <SETTING><NAME>EchoCommandLine</NAME><VALUE>0</VALUE></SETTING>
                 </SETTING>

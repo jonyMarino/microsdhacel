@@ -3,10 +3,11 @@
 #include "LedTest.h"
 #include "WDog1.h"
 #include "timer_interrupt.h"
+#include "BaseTimers_1ms_40ms.hpp"
 
 void main (void){
 
-   
+  Timer::setBaseTimerDefault(*BaseTimers_1ms_40ms::getInstance()); 
  /*** Processor Expert internal initialization. DON'T REMOVE THIS CODE!!! ***/
   PE_low_level_init();
  /*** End of Processor Expert internal initialization.                    ***/

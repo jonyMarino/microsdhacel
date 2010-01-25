@@ -59,24 +59,8 @@
 #pragma DATA_SEG PTSL_DATA                                            
 #pragma CODE_SEG PTSL_CODE                     
 #pragma CONST_SEG PTSL_CONST           /* Constant section for this module */
-/*
-** ===================================================================
-**     Method      :  PTSL_GetMsk (bean BitsIO)
-**
-**     Description :
-**         This method is internal. It is used by Processor Expert
-**         only.
-** ===================================================================
-*/
-static const byte PTSL_Table[2] = {    /* Table of mask constants */
-   8, 4
-};
 
-static byte PTSL_GetMsk (byte PinIndex)
-{
-  return PinIndex<2 ? PTSL_Table[PinIndex] : 0; /* Check range and return appropriate bit mask */
-}
-
+byte PTSL_GetMsk (byte PinIndex);
 /*
 ** ===================================================================
 **     Method      :  PTSL_PutBit (bean BitsIO)
@@ -100,6 +84,24 @@ void PTSL_PutBit(byte Bit, bool Val)
   } else { /* !Val */ 
     clrReg8Bits(PTT, Mask);            /* PTT[bit (Bit+2)]=0 */
   } /* !Val */ 
+}
+
+/*
+** ===================================================================
+**     Method      :  PTSL_GetMsk (bean BitsIO)
+**
+**     Description :
+**         This method is internal. It is used by Processor Expert
+**         only.
+** ===================================================================
+*/
+static const byte PTSL_Table[2] = {    /* Table of mask constants */
+   8, 4
+};
+
+static byte PTSL_GetMsk (byte PinIndex)
+{
+  return PinIndex<2 ? PTSL_Table[PinIndex] : 0; /* Check range and return appropriate bit mask */
 }
 
 
