@@ -24,7 +24,6 @@
 #include "VistaSetContrasenia.hpp"
 
 #pragma CONST_SEG PARAMETERS_PAGE
- 
   volatile const SensorTermoPT100::TConfSensor sensor_config[CANTIDAD_CANALES]= {
     STPT_DEF_CONF,
   #if CANTIDAD_CANALES>1 
@@ -68,10 +67,6 @@ Adc  ad1(1);
 SensorTermoPT100 sensor0(ad0,sensor_config[0],flash);
 SensorTermoPT100 sensor1(ad1,sensor_config[1],flash);
 #endif 
-
-
-
-
 
 const struct ConstructorBoxPrincipal cBoxPri={
       &boxPrincipalFactory,							/* funcion que procesa al box*/

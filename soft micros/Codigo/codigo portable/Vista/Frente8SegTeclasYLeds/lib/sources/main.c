@@ -13,7 +13,7 @@ void main (void){
   PE_low_level_init();
  /*** End of Processor Expert internal initialization.                    ***/
   byte leds =0;
-  FrenteDH::getInstancia()->getDisplay(0)->write("-   ");
+  FrenteDH::getInstancia()->getDisplay(0)->write("nico");
   //FrenteDH::getInstancia()->getDisplay(1)->write("t   ");
   //FrenteDH::getInstancia()->setLed(1,0);
   //FrenteDH::getInstancia()->setLed(1,2);

@@ -2,7 +2,7 @@
 #define _ISALIDA_H
 
 #include "../../Librerias/PE/include/PE_Types.h"
-#include "TipoSalida.hpp"
+#include "Salida/TipoSalida.hpp"
 
 class ISalida {
   public:

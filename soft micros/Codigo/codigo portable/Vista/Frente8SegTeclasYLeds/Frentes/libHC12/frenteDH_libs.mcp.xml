@@ -995,7 +995,7 @@
 
                 <!-- Settings for "Panel for Compiler for HC12" panel -->
                 <SETTING><NAME>Panel for Compiler for HC12</NAME>
-                    <SETTING><NAME>Options</NAME><VALUE>-W2 -Cc -Ms -F2 -D__NO_FLOAT__ -DNUM_LEDS=4 -DDIGITOS=4 -DTIME_SCROLL=200 -DCANTIDAD_DISPLAYS=2 -DCANTIDAD_TECLAS=4</VALUE></SETTING>
+                    <SETTING><NAME>Options</NAME><VALUE>-Cc -D__NO_FLOAT__ -DNUM_LEDS=4 -DDIGITOS=4 -DTIME_SCROLL=200 -DCANTIDAD_DISPLAYS=2 -DCANTIDAD_TECLAS=4 -F2 -Ms -Qvtpnone -W2</VALUE></SETTING>
                     <SETTING><NAME>UseDecoder</NAME><VALUE>0</VALUE></SETTING>
                     <SETTING><NAME>EchoCommandLine</NAME><VALUE>0</VALUE></SETTING>
                 </SETTING>
@@ -1829,7 +1829,7 @@
 
                 <!-- Settings for "Panel for Compiler for HC12" panel -->
                 <SETTING><NAME>Panel for Compiler for HC12</NAME>
-                    <SETTING><NAME>Options</NAME><VALUE>-W2 -Cc -Mb -F2 -D__NO_FLOAT__ -DNUM_LEDS=4 -DMAX_MENSAJE=30 -DDIGITOS=4 -DTIME_SCROLL=200 -DCANTIDAD_DISPLAYS=2 -DCANTIDAD_TECLAS=4</VALUE></SETTING>
+                    <SETTING><NAME>Options</NAME><VALUE>-Cc -D__NO_FLOAT__ -DNUM_LEDS=4 -DMAX_MENSAJE=30 -DDIGITOS=4 -DTIME_SCROLL=200 -DCANTIDAD_DISPLAYS=2 -DCANTIDAD_TECLAS=4 -F2 -Mb -Qvtpnone -W2</VALUE></SETTING>
                     <SETTING><NAME>UseDecoder</NAME><VALUE>0</VALUE></SETTING>
                     <SETTING><NAME>EchoCommandLine</NAME><VALUE>0</VALUE></SETTING>
                 </SETTING>

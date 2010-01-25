@@ -2,8 +2,8 @@
 #define _SENSOR_HPP
 
 
-#include "Getter.hpp"
-#include "MethodContainer.hpp"
+#include "Standard/Getter.hpp"
+#include "MethodContainer/MethodContainer.hpp"
 
 class Sensor : public Getter {
   public:

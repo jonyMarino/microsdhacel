@@ -11,6 +11,7 @@ BaseTimers_1ms_40ms* BaseTimers_1ms_40ms::instance=NULL;
 BaseTimers_1ms_40ms::BaseTimers_1ms_40ms(){
   on1ms.pmethod=inc1;
   on1ms.obj=this;
+  add1msListener(&on1ms);
   on40ms.pmethod=inc40;
   on40ms.obj=this;
   add40msListener(&on40ms);
