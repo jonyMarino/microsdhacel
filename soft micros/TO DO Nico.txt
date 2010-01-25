@@ -1,0 +1,3 @@
+* Siempre crear clases hijas al agregar nueva funcionalidad. A menos que se encuentre un bug o un error de diseño(Hablar con Jony del cambio) no modificar codigo de una clase ya hecha
+* Crear un nuevo mcp Control a partir de termometro y crear un diagrama de navegacion con el modulo ControlPID y Salida
+* Siempre al terminar el dia subir al SVN
