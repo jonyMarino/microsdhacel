@@ -20,7 +20,7 @@ diagrams
     592 444 100 4 195 268
 end
 show_stereotypes
-selected classdiagram_ref 135811 // Sensor
+selected class_ref 132098 // ValorControlConf
 open
   classview_ref 128002 // Alarmas
   class_ref 128386 // Sensor
