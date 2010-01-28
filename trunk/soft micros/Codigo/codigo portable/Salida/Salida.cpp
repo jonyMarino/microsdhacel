@@ -1,24 +1,29 @@
 
 #include "Salida.hpp"
 
- 
+Salida::Salida(Salida::confSalida _conf_){
+
+  _confSalida.conectado=_conf_.conectado;
+  _confSalida.potencia=_conf_.potencia;
+  _confSalida.tipoSalida=_conf_.tipoSalida;   
+}
 
 bool Salida::getConectada() {
 
-  return conectado;
+  return _confSalida.conectado;
 }
 
  void Salida::setConectada(unsigned int conectada) {
-  if(conectado && !conectada)
+  if(_confSalida.conectado && !conectada)
     setPotencia(0); 
    
-   conectado=conectada;
+   _confSalida.conectado=conectada;
   
 }
 
 unsigned int Salida::getPotencia() {
 
-  return potencia;
+  return _confSalida.potencia;
 }
 
  
@@ -27,4 +32,12 @@ void Salida::setPotencia(unsigned int _potencia){
     return; //error
     
   setPotencia(_potencia);
+}
+
+void Salida::setTipoSalida(TipoSalida _tipoSalida){
+   _confSalida.tipoSalida=_tipoSalida;
+}
+
+TipoSalida Salida::getTipoSalida(){
+  return _confSalida.tipoSalida;
 }

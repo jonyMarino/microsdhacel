@@ -2,10 +2,10 @@
 #define _TIPOSALIDA_H
 
 
-enum TipoSalida {
+typedef enum {
   SALIDA_ONOFF,
   SALIDA_PROPORCIONAL
-};
+}TipoSalida ;
 
 
 #endif
