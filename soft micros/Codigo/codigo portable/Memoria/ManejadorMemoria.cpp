@@ -1,2 +1,2 @@
-#include "ManejadorMemoria.hpp"
+#include "Memoria/ManejadorMemoria.hpp"
 

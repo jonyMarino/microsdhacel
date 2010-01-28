@@ -2,7 +2,7 @@
 #define _METHOD_TIMER_H
 
 #include "stdtypes.h"
-#include "Timer.h"
+#include "Timer.hpp"
 #include "Object.h"
 #include "Method.h"
 

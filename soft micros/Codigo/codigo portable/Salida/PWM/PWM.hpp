@@ -1,12 +1,12 @@
-#ifndef _PWM_H
-#define _PWM_H
+#ifndef _PWM_HPP
+#define _PWM_HPP
 
 #include "FshTypeSizes.h"
 #include "IPWM.hpp"
 #include "MethodContainer.hpp"
 #include "Method.h"
 #include "pwm_periodos.h"
-#include "ManejadorMemoria.h"
+#include "Memoria/ManejadorMemoria.h" 
 //#include "utils_pwm_timer.hpp"
 
 #include "TConfPWM.hpp"

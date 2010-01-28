@@ -1,5 +1,5 @@
-#ifndef _ISALIDA_H
-#define _ISALIDA_H
+#ifndef _ISALIDA_HPP
+#define _ISALIDA_HPP
 
 #include "../../Librerias/PE/include/PE_Types.h"
 #include "Salida/TipoSalida.hpp"
