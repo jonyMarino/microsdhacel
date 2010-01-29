@@ -4,7 +4,7 @@
 
 #include "PWM.hpp"
 #include "TipoSalida.hpp"
-#include "MethodTimer.h"
+#include "Timer/MethodTimer/MethodTimer.hpp"
 
 class PWMSoft : public PWM {
   public:
@@ -23,7 +23,7 @@ class PWMSoft : public PWM {
     
     MethodTimer timer;
 
-    byte * salida;
+    unsigned char * salida;
 
     unsigned char mascara;
 

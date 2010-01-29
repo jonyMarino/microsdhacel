@@ -4,9 +4,9 @@
 #include "FshTypeSizes.h"
 #include "IPWM.hpp"
 #include "MethodContainer.hpp"
-#include "Method.h"
+#include "Method.hpp"
 #include "pwm_periodos.h"
-#include "Memoria/ManejadorMemoria.h" 
+#include "Memoria/ManejadorMemoria.hpp" 
 //#include "utils_pwm_timer.hpp"
 
 #include "TConfPWM.hpp"
@@ -55,7 +55,7 @@ class PWM : public IPWM {
     
     MethodContainer listeners;
     
-    struct ManejadorMemoria &manejadorMemoria;
+    ManejadorMemoria &manejadorMemoria;
     
     
   
