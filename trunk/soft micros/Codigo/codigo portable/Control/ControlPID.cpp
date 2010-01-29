@@ -15,7 +15,7 @@
 
 #include "ControlPID.hpp"
 #include "controlmath.h"
-#include "funciones.h"
+//#include "funciones.h"
 
 #pragma DATA_SEG ControlPID_DATA                                            
 #pragma CODE_SEG ControlPID_CODE

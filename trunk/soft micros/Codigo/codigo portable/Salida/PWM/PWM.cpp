@@ -5,11 +5,11 @@
 
 unsigned char PWM::setPeriodoConfiguracion(TPeriod period) {
   
- return _MANEJADOR_MEMORIA_SET_BYTE(&manejadorMemoria,&(conf.periodo),period);
+ return manejadorMemoria.setByte(&(conf.periodo),period);
 }
 
 TPeriod PWM::getPeriodoConfiguracion() {
-  return _MANEJADOR_MEMORIA_GET_BYTE(&manejadorMemoria,&(conf.periodo));
+  return manejadorMemoria.getByte(&(conf.periodo));
 }
 
 fbyte PWM::getLimSupPeriodo() {

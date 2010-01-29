@@ -6,7 +6,7 @@
 #include "PWMHard.hpp"
 #include "TipoSalida.hpp"
 #include "Salida.hpp"
-#include "ManejadorMemoria.h"
+#include "Memoria/ManejadorMemoria.hpp" 
 #include "TConfPWM.hpp"
 
 static const int periodos[]={   

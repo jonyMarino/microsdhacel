@@ -30,8 +30,8 @@
   1700,														\
   0,															\
   0,														  \
-  CNTR_ONOFF,											\
-	_CAL,														\
+  /*CNTR_ONOFF*/0,											\
+	/*_CAL*/0,														\
 	0,															\
 	0,															\
 	0,															\
@@ -39,23 +39,10 @@
 	0 															\
 }																	\
 
-    /*struct ControlConf{
-      int iSP;
-      int iLimInfSP;
-      int iLimSupSP;
-      int iReset;
-      int iHisteresis;
-      fbyte eTipoControl;
-      fbyte eSalidaControl;
-      int iIntegral;
-      int iDerivada;
-      int iPotenciaInf;
-      int iPotenciaSup;
-      int iPotenciaManual;
-    };*/
+    
     
     class ConfiguracionControl{
-      protected:
+      public:
         virtual int getSetPoint()=0;
         virtual void setSetPoint(int)=0;
         virtual int getLimiteInferiorSetPoint()=0;
