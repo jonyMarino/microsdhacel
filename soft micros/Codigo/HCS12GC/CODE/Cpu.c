@@ -326,12 +326,12 @@ void PE_low_level_init(void)
   PTS |= 2;
   DDRS |= 2;
   
-  #if _ADC
+  #ifdef _ADC
   /* ### Init_ADC "ADC1" init code ... */
   ADC1_Init();
   #endif
   
-  #if _FLASH
+  #ifdef _FLASH
   /* ### Init_FLASH "FLASH1" init code ... */
   FLASH1_Init();
   #endif

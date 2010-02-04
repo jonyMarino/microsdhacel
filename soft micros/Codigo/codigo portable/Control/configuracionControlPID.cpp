@@ -1,14 +1,14 @@
 #include "configuracionControlPID.hpp"
-
-ConfiguracionControlPID::ConfiguracionControlPID(const ControlConf &_conf_, struct ManejadorMemoria & _manejadorMemoria):configuracion(_conf_),manejadorMemoria(_manejadorMemoria){
+ 
+ConfiguracionControlPID::ConfiguracionControlPID( ControlConf &_conf_, struct ManejadorMemoria & _manejadorMemoria):configuracion(_conf_),manejadorMemoria(_manejadorMemoria){
 }
-
+    
 int ConfiguracionControlPID::getSetPoint(){
     return configuracion.iSP;
 }
 
 void ConfiguracionControlPID::setSetPoint(int val){
-    manejadorMemoria.setByte((unsigned int * const)&configuracion.iSP,val);
+    manejadorMemoria.setWord((unsigned int * const)&configuracion.iSP,val);
 }
 
 int ConfiguracionControlPID::getLimiteInferiorSetPoint(){
@@ -16,7 +16,7 @@ int ConfiguracionControlPID::getLimiteInferiorSetPoint(){
 }
 
 void ConfiguracionControlPID::setLimiteInferiorSetPoint(int val){
-     manejadorMemoria.setByte((unsigned int * const)&configuracion.iLimInfSP,val);
+     manejadorMemoria.setWord((unsigned int * const)&configuracion.iLimInfSP,val);
 }
 
 int ConfiguracionControlPID::getLimiteSuperiorSetPoint(){
@@ -24,7 +24,7 @@ int ConfiguracionControlPID::getLimiteSuperiorSetPoint(){
 }
 
 void ConfiguracionControlPID::setLimiteSuperiorSetPoint(int val){
-     manejadorMemoria.setByte((unsigned int * const)&configuracion.iLimSupSP,val); 
+     manejadorMemoria.setWord((unsigned int * const)&configuracion.iLimSupSP,val); 
 }
 
 int ConfiguracionControlPID::getReset(){
@@ -32,7 +32,7 @@ int ConfiguracionControlPID::getReset(){
 }
 
 void ConfiguracionControlPID::setReset(int val){
-     manejadorMemoria.setByte((unsigned int * const)&configuracion.iReset,val);
+     manejadorMemoria.setWord((unsigned int * const)&configuracion.iReset,val);
 }
 
 int ConfiguracionControlPID::getTipoControl(){
@@ -56,7 +56,7 @@ int ConfiguracionControlPID::getHisteresis(){
 }
 
 void ConfiguracionControlPID::setHisteresis(int val){
-     manejadorMemoria.setByte((unsigned int * const)&configuracion.iHisteresis,val);
+     manejadorMemoria.setWord((unsigned int * const)&configuracion.iHisteresis,val);
 }
 
 int ConfiguracionControlPID::getIntegral(){
@@ -64,7 +64,7 @@ int ConfiguracionControlPID::getIntegral(){
 }
 
 void ConfiguracionControlPID::setIntegral(int val){
-    manejadorMemoria.setByte((unsigned int * const)&configuracion.iIntegral,val);
+    manejadorMemoria.setWord((unsigned int * const)&configuracion.iIntegral,val);
 }
 
 int ConfiguracionControlPID::getDerivada(){
@@ -72,7 +72,7 @@ int ConfiguracionControlPID::getDerivada(){
 }
 
 void ConfiguracionControlPID::setDerivada(int val){
-    manejadorMemoria.setByte((unsigned int * const)&configuracion.iDerivada,val);
+    manejadorMemoria.setWord((unsigned int * const)&configuracion.iDerivada,val);
 }
 
 int ConfiguracionControlPID::getLimiteInferiorPotencia(){
@@ -80,7 +80,7 @@ int ConfiguracionControlPID::getLimiteInferiorPotencia(){
 }
 
 void ConfiguracionControlPID::setLimiteInferiorPotencia(int val){
-    manejadorMemoria.setByte((unsigned int * const)&configuracion.iPotenciaInf,val);
+    manejadorMemoria.setWord((unsigned int * const)&configuracion.iPotenciaInf,val);
 }
 
 int ConfiguracionControlPID::getLimiteSuperiorPotencia(){
@@ -88,7 +88,7 @@ int ConfiguracionControlPID::getLimiteSuperiorPotencia(){
 }
 
 void ConfiguracionControlPID::setLimiteSuperiorPotencia(int val){
-    manejadorMemoria.setByte((unsigned int * const)&configuracion.iPotenciaSup,val);
+    manejadorMemoria.setWord((unsigned int * const)&configuracion.iPotenciaSup,val);
 }
 
 int ConfiguracionControlPID::getPotenciaManual(){

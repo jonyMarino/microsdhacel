@@ -24,7 +24,7 @@ class PWMHard : public PWM {
       RefPWM45
     };
     
-  void PWMHard(struct ManejadorMemoria &_manejadorMemoria,TConfPWM &_conf):PWM(_manejadorMemoria,_conf){}
+  void PWMHard(struct ManejadorMemoria &_manejadorMemoria,const TConfPWM &_conf):PWM(_manejadorMemoria,_conf){}
   
   static void setDuty(ReferenciaPWM pwm, int duty);
 

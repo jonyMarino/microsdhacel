@@ -28,7 +28,7 @@
 **     Description :  Constructor del control PID
 ** ===================================================================
 */
-ControlPID::ControlPID(Sensor& _sensor,ISalida& _salida,ConfiguracionControl& _configuracion):sensor(_sensor),salida(_salida),configuracion(_configuracion){
+ControlPID::ControlPID(Sensor& _sensor,ISalida& _salida,const ConfiguracionControl& _configuracion):sensor(_sensor),salida(_salida),configuracion(_configuracion){
 
   sumatoriaIntegral=0;
   bufferDerivada=0;
@@ -36,7 +36,7 @@ ControlPID::ControlPID(Sensor& _sensor,ISalida& _salida,ConfiguracionControl& _c
   
   metodoOnNuevaMedicion.pmethod=onNuevoValorSensor;
   metodoOnNuevaMedicion.obj = this ;
-  sensor.addOnNuevoValorListener(&metodoOnNuevaMedicion);
+  sensor.addOnNuevoValorListener((const struct Method*)&metodoOnNuevaMedicion);
   //MedidorFunciones_setDeltaTiempo(_Sensor_getMeasurePeriod(sensor)); 
   
  /* if(time_desc!=0){    
@@ -103,7 +103,7 @@ bool ControlPID::isConectado(){
 ** ===================================================================
 */
 bool ControlPID::isPID(){
-  return tipoControl==CNTR_PID;  
+  return getTipoControl()==CNTR_PID;  
 }
 
 /*
@@ -245,11 +245,11 @@ Sensor& ControlPID::getSensor(){
 */
 
 ControlPID::TTipoControl ControlPID::getTipoControl(){ 
-  return tipoControl; 
+  return configuracion.getTipoControl(); 
 }
 
-void ControlPID::setTipoControl(ControlPID::TTipoControl _tipoControl){
-    tipoControl=_tipoControl;
+void ControlPID::setTipoControl(ControlPID::TTipoControl tipoControl){
+    configuracion.setTipoControl(tipoControl);
     if(tipoControl==CNTR_PID){
       salida.setTipoSalida(SALIDA_PROPORCIONAL);
     }else{
@@ -433,6 +433,7 @@ void ControlPID::setHisteresis(int val){
     setTipoControl(CNTR_ONOFF);  
   else
     setTipoControl(CNTR_PID);
+
 }
 
 /*

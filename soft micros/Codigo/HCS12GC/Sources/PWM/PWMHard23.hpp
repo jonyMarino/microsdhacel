@@ -26,7 +26,7 @@ static const int periodos[]={
 class PWMHard23 : public PWMHard {
   public:
   
-  void PWMHard23(struct ManejadorMemoria &_manejadorMemoria,TConfPWM &_conf);
+  void PWMHard23(struct ManejadorMemoria &_manejadorMemoria,const TConfPWM &_conf);
   
   virtual void setPotencia(unsigned int potencia);
 

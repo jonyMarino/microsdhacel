@@ -2,7 +2,7 @@ format 69
 
 classcanvas 128002 class_ref 128002 // Alarma
   draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
-  xyz 176.04 195.36 2000
+  xyz 194.04 178.36 2000
 end
 classcanvas 128130 class_ref 128130 // AlarmaConf
   draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity yes show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties yes
@@ -139,8 +139,8 @@ relationcanvas 146946 relation_ref 148098 // <dependency>
 end
 relationcanvas 148482 relation_ref 153986 // <directional aggregation>
   from ref 128002 z 1999 to ref 128130
-  role_a_pos 482 145 3000 no_role_b
-  multiplicity_a_pos 542 170 3000 multiplicity_b_pos 312 238 3000
+  role_a_pos 482 143 3000 no_role_b
+  multiplicity_a_pos 542 168 3000 multiplicity_b_pos 330 223 3000
 end
 relationcanvas 148738 relation_ref 154114 // <directional composition>
   from ref 148610 z 2009 to ref 148098

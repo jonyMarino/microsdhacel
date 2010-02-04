@@ -2,7 +2,7 @@
 #define _SENSORTERMOPT100_HPP
 
 
-#include "Sensor.hpp"
+#include "Sensor/Sensor.hpp"
 #include "FshTypeSizes.h"
 #include "IAdc.hpp"
 #include "Adc.hpp"
@@ -13,7 +13,7 @@
 #define STPT_DEF_CONF { \
   SENSOR_MV,						\
   2,										\
-  5,										\
+  0,										\
   0,										\
   1000,									\
   0,										\
@@ -29,7 +29,7 @@ class SensorTermoPT100 : public Sensor {
     typedef struct {
         fbyte sensor;
 
-         fbyte decimales;
+        fbyte decimales;
         
         fbyte filtro;
 
@@ -111,8 +111,9 @@ class SensorTermoPT100 : public Sensor {
   void setAjusteTemperaturaAmbiente(int);
 
   int getTiempoMuestreo();
-
-
+  
+  void addOnNuevoValorListener(const struct Method* metodo);
+  
   private:
     Adc & _adc;
     

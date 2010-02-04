@@ -5,20 +5,11 @@
 #include "ISalida.hpp"
 #include "TipoSalida.hpp"
 
-class Salida : public ISalida {
- 
-  
-  public:
-  
-   typedef struct { 
-      unsigned int potencia;
-      bool conectado;
-      TipoSalida tipoSalida;
-   }confSalida;
 
 
-  
-   Salida(confSalida _conf_);
+class Salida : public ISalida {  
+  public: 
+   Salida();
    
    bool getConectada();
 
@@ -29,14 +20,12 @@ class Salida : public ISalida {
    virtual TipoSalida getTipoSalida();
    
    virtual void setTipoSalida(TipoSalida _tipoSalida);
-
-
   protected:
-  virtual void setPotencia(unsigned int _potencia);
-
-   private:
-   
-    confSalida _confSalida;
+    virtual void setPotencia(unsigned int _potencia);
+  private:
+    unsigned int potencia;
+    bool conectado;
+    TipoSalida tipoSalida;
 
 };
 #endif

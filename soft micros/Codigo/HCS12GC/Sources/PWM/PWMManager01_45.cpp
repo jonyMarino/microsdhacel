@@ -89,7 +89,7 @@ void PWMManager01_45::PWMHard01::PWMHard01(struct ManejadorMemoria &_manejadorMe
   CONTROLADOR_PWM_INIT(0,1);
   													 
   
-  #ifndef _NMODRR
+  #ifdef __MODRR
     setReg8Bits(MODRR, 2);  //cablear al puerto T
     setReg8Bits(DDRT, 2); 
   #endif
@@ -311,13 +311,13 @@ static void PWMManager01_45::PWM01_actualizarPotencia(uint duty){
   }
   else{
     if(duty==0)
-      #ifndef _NMODRR 
+      #ifdef __MODRR 
       clrReg8Bits(PTT, 2);               /* PTT1=0 */
       #else
       clrReg8Bits(PTP, 2);               /* PTP1=0 */
       #endif
     else
-      #ifndef _NMODRR 
+      #ifdef __MODRR 
       setReg8Bits(PTT, 2);               /* PTT1=1 */ 
       #else
       setReg8Bits(PTP, 2);               /* PTP1=1 */ 

@@ -1,9 +1,9 @@
-#ifndef _ADAPTADORSALIDA_H
-#define _ADAPTADORSALIDA_H
+#ifndef _ADAPTADORSALIDA_HPP
+#define _ADAPTADORSALIDA_HPP
 
 
 #include "AdaptadorSalidaConfiguracion.hpp"
-#include "../Salida/ISalida.hpp"
+#include "Salida/ISalida.hpp"
 
 /**
  * Transforma de un valor de control a un valor de potencia para la salida
