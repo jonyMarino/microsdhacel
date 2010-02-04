@@ -2,7 +2,7 @@
 #define _THREAD_ATACHABLE_HPP
 
 #include "MethodContainer.hpp"
-#include "Method.hpp"
+#include "OOC/lang/reflect/lib_cpp/Method.hpp"
 
 class ThreadAttachable:public MethodContainer{
   public:

@@ -4,6 +4,7 @@
 
 #include "Standard/Getter.hpp"
 #include "MethodContainer/MethodContainer.hpp"
+#include "OOC/lang/reflect/lib_cpp/Method.hpp"
 
 class Sensor : public Getter {
   public:

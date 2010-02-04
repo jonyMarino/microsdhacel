@@ -101,7 +101,7 @@ uchar getDecimalesMostrados(void*sensor){
   ADAPTAR_FUNCION_GET(getGananciaTermopar,getGananciaTermopar)
   ADAPTAR_FUNCION_SET(setGananciaTermopar,setGananciaTermopar) 
   const struct ConstructorPropNumLFPF cPropiedadAjGanT={
-    &propNumLFPFFactory,getGananciaTermopar,"Ag",setGananciaTermopar,-1999,9999,1
+    &propNumLFPFFactory,getGananciaTermopar,"Ag ",setGananciaTermopar,-1999,9999,1
   };
 
   //Ajuste Cero PT100
@@ -122,7 +122,7 @@ uchar getDecimalesMostrados(void*sensor){
   ADAPTAR_FUNCION_GET(getAjusteTemperaturaAmbiente,getAjusteTemperaturaAmbiente)
   ADAPTAR_FUNCION_SET(setAjusteTemperaturaAmbiente,setAjusteTemperaturaAmbiente)
   const struct ConstructorPropNumLFPF cPropiedadAjTempAmb={
-    &propNumLFPFFactory,getAjusteTemperaturaAmbiente,"AtA ",setAjusteTemperaturaAmbiente,-1999,9999,1
+    &propNumLFPFFactory,getAjusteTemperaturaAmbiente,"AtA",setAjusteTemperaturaAmbiente,-1999,9999,1
   };
 /*  //Estado del Sensor
   int getEstadoSensorVista(void *sensor){

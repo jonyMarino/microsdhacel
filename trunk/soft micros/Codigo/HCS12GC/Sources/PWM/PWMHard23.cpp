@@ -6,14 +6,14 @@
 volatile const TConfPWM pwmconf23={0};
 #pragma CONST_SEG DEFAULT
 
-void PWMHard23::PWMHard23(struct ManejadorMemoria &_manejadorMemoria,TConfPWM &_conf):PWMHard(_manejadorMemoria,_conf){
+void PWMHard23::PWMHard23(struct ManejadorMemoria &_manejadorMemoria,const TConfPWM &_conf):PWMHard(_manejadorMemoria,_conf){
   CONTROLADOR_PWM_INIT(2,3);
   													 
   PWMPRCLK_PCKB = 6; 		// dividido 64
    
-  setReg8Bits(DDRT, 8);
+ // setReg8Bits(DDRT, 8);
   
-  #ifndef _NMODRR
+  #ifdef __MODRR
   setReg8Bits(MODRR, 8);  //cablear al puerto T 
   setReg8Bits(DDRT, 8);
   #else

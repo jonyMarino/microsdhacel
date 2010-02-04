@@ -3,6 +3,7 @@
 
 #include "PE/include/PE_Types.h"
 
+#include "OOC/lang/reflect/lib_cpp/Method.hpp"
 #include "Salida/ISalida.hpp"
 #include "Sensor/Sensor.hpp"
 #include "Timer/MethodTimer/MethodTimer.hpp"
@@ -41,34 +42,34 @@
 
     
     
-    class ConfiguracionControl{
-      public:
-        virtual int getSetPoint()=0;
-        virtual void setSetPoint(int)=0;
-        virtual int getLimiteInferiorSetPoint()=0;
-        virtual void setLimiteInferiorSetPoint(int val)=0;
-        virtual int getLimiteSuperiorSetPoint()=0;
-        virtual void setLimiteSuperiorSetPoint(int val)=0;
-        virtual int getReset()=0;
-        virtual void setReset(int val)=0;
-        virtual int  getTipoControl()=0;
-        virtual void setTipoControl(int tc)=0;
-        virtual int getTipoSalida()=0;
-        virtual void setTipoSalida(int val)=0;
-        virtual int getHisteresis()=0;
-        virtual void setHisteresis(int val)=0;
-        virtual int getIntegral()=0;
-        virtual void setIntegral(int val)=0;
-        virtual int getDerivada()=0;
-        virtual void setDerivada(int val)=0;
-        virtual int getLimiteInferiorPotencia()=0;
-        virtual void setLimiteInferiorPotencia(int val)=0;
-        virtual int getLimiteSuperiorPotencia()=0;
-        virtual void setLimiteSuperiorPotencia(int val)=0;
-        virtual int getPotenciaManual()=0;
-        virtual void setPotenciaManual(int val)=0;
-        friend class ControlPID;
-    };    
+class ConfiguracionControl{
+  public:
+    virtual int getSetPoint()=0;
+    virtual void setSetPoint(int)=0;
+    virtual int getLimiteInferiorSetPoint()=0;
+    virtual void setLimiteInferiorSetPoint(int val)=0;
+    virtual int getLimiteSuperiorSetPoint()=0;
+    virtual void setLimiteSuperiorSetPoint(int val)=0;
+    virtual int getReset()=0;
+    virtual void setReset(int val)=0;
+    virtual int  getTipoControl()=0;
+    virtual void setTipoControl(int tc)=0;
+    virtual int getTipoSalida()=0;
+    virtual void setTipoSalida(int val)=0;
+    virtual int getHisteresis()=0;
+    virtual void setHisteresis(int val)=0;
+    virtual int getIntegral()=0;
+    virtual void setIntegral(int val)=0;
+    virtual int getDerivada()=0;
+    virtual void setDerivada(int val)=0;
+    virtual int getLimiteInferiorPotencia()=0;
+    virtual void setLimiteInferiorPotencia(int val)=0;
+    virtual int getLimiteSuperiorPotencia()=0;
+    virtual void setLimiteSuperiorPotencia(int val)=0;
+    virtual int getPotenciaManual()=0;
+    virtual void setPotenciaManual(int val)=0;
+    friend class ControlPID;
+};    
 
 class ControlPID{
   public:
@@ -86,7 +87,7 @@ class ControlPID{
     
 
      
-    ControlPID(Sensor& sensor,ISalida& salida,ConfiguracionControl& configuracion);
+    ControlPID(Sensor& sensor,ISalida& salida,const ConfiguracionControl& configuracion);
     
     void addOnTipoSalidaListener(struct Method& metodo);
     /*
@@ -334,10 +335,10 @@ class ControlPID{
 
   
   private:
-    ConfiguracionControl& configuracion;
+    const ConfiguracionControl& configuracion;
     Sensor& sensor;
     ISalida& salida;
-    TTipoControl tipoControl;
+    //TTipoControl tipoControl;
     int valorControl;
     TSalida modoSalida;
     int valorAnterior;

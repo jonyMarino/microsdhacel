@@ -247,3 +247,6 @@ int SensorTermoPT100::getTiempoMuestreo() {
   return _TIEMPO_AD_EN_MILISEGUNDOS;
 }
 
+void SensorTermoPT100::addOnNuevoValorListener(const struct Method* metodo){
+  Sensor::addOnNuevoValorListener(metodo);
+}

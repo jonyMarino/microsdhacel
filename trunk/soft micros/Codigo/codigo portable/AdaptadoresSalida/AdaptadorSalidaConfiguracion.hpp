@@ -2,7 +2,7 @@
 #define _ADAPTSALIDACONF_H
 
 
-#include "TipoSalida.hpp"
+#include "Salida/TipoSalida.hpp"
 
 class AdaptadorSalidaConfiguracion {
   public:

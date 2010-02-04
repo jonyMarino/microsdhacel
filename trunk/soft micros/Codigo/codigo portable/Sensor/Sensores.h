@@ -2,7 +2,7 @@
 #define _SENSORES_H 
 
 #include "PE_Types.h"
-#include "Sensor.hpp"
+#include "Sensor/Sensor.hpp"
 
 #define _APARATO_VIEJO
 
