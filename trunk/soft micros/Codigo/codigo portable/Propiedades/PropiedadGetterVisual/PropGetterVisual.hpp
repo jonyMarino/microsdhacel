@@ -19,8 +19,9 @@ class PropGetterVisual:public PropiedadGetter{
     PropGetterVisual(void*obj,const struct ArgumentosPropGetterVisual* args,uchar numObjeto);
     void printDescripcion(OutputStream&os);
     inline uchar getNumObjeto(){ return numObjeto;}
+  protected:
+    virtual const char * getDescripcion();
   private:
-    const char * getDescripcion();
     uchar numObjeto;  
 };
 

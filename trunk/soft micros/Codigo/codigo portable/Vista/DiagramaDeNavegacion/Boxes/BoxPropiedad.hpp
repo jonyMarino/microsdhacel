@@ -40,6 +40,7 @@ class BoxPropiedad:public Box{
     bool isIncrementable;
     bool save;
     friend struct BoxPropiedadFactory;
+    friend struct BoxPropGetterFactory;
 };
 
 struct ConstructorBoxPropiedad{
@@ -58,6 +59,14 @@ struct BoxPropiedadFactory:public BoxFactory{
 
 extern const struct BoxPropiedadFactory boxPropiedadFactory;
 
+struct BoxPropGetterFactory:public BoxFactory{
+  virtual Box& getBox(const void*args,void*obj,uchar numObjeto)const{
+    BoxPropiedad&b = *new BoxPropiedad();
+    struct ConstructorBoxPropiedad * c = (struct ConstructorBoxPropiedad *)args;
+    b.setPropiedad(*(PropGetterVisual*)&c->propiedad->getPropiedad(obj,numObjeto),FALSE);
+    return b;
+  }
+};
  
-    
+extern const struct BoxPropGetterFactory boxPropGetterFactory;    
 #endif
