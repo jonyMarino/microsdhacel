@@ -4,6 +4,7 @@
 #include "PropiedadIncrementable.hpp"
 
 const struct BoxPropiedadFactory boxPropiedadFactory;;
+const struct BoxPropGetterFactory boxPropGetterFactory;
 
 BoxPropiedad::BoxPropiedad():propiedad(NULL),save(FALSE){}
 
@@ -46,6 +47,7 @@ Box * BoxPropiedad::procesarTecla(uchar tecla,TEstadoBox& estado){
 			    p->decrementar();			  
 			  save=TRUE;							            // Grabar parametros
 			  propiedad->print(getDisplay(0));
+			  propiedad->printDescripcion(getDisplay(1));
 			  estado = STAY_BOX;
 			  return NULL;
   } else if (tecla=='r'){

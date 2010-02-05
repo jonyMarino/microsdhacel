@@ -2,6 +2,9 @@
 #include "PE/include/PE_Types.h"
 #include "OOC/lang/CharPointer.hpp"
 
+const struct PropGetterNumericoFactory propGetterNumericoFactory;
+
+
 PropGetterNumerico::PropGetterNumerico(void*obj,const struct ArgumentosPropGetterNumerico* args,uchar numObjeto):PropGetterVisual(obj,(const struct ArgumentosPropGetterVisual*)args,numObjeto){}
 /*
 ** ===================================================================

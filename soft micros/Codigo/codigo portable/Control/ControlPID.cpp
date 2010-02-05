@@ -428,7 +428,7 @@ int ControlPID::getHisteresis(){
 }
 
 void ControlPID::setHisteresis(int val){
-  configuracion.setHisteresis(val);
+  configuracion.setHisteresis(abs(val));
   if(val<0)
     setTipoControl(CNTR_ONOFF);  
   else

@@ -27,7 +27,7 @@ struct ConstructorPropGetterNumerico{
     const struct PropGetterVisualFactory * factory;
     struct ArgumentosPropGetterNumerico args;
 };
-
+ extern const struct PropGetterNumericoFactory propGetterNumericoFactory;
 
 #pragma DATA_SEG DEFAULT                                            
 #pragma CODE_SEG DEFAULT 
