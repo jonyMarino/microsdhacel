@@ -12,3 +12,7 @@ int ValorControl::getValorControlador(){
 void ValorControl::setValorControlador(int valor){
   configuracion.setValorControlador(valor);  
 }
+
+Sensor& ValorControl::getSensor(){
+  return sensor;
+}

@@ -12,10 +12,11 @@ class Lazo{
   protected:
     Sensor& getSensor();
     virtual ISalida& getSalida()=0;
+    virtual void onNuevoValorSensor()=0;
   private:
     Sensor& sensor;
     struct Method mOnNuevoValorSensor;
-    static void onNuevoValorSensor(void*);    
+    static void onNuevoValorSensorStatic(void*);    
 };
 
 #endif 

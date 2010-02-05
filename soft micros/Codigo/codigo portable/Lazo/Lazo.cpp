@@ -14,3 +14,8 @@ Sensor& Lazo::getSensor(){
 Lazo::~Lazo(){
   sensor.deleteOnNuevoValorListener(&mOnNuevoValorSensor);
 }
+
+void Lazo::onNuevoValorSensorStatic(void* _self){
+  Lazo * self = (Lazo*)_self;
+  self->onNuevoValorSensor();
+}
