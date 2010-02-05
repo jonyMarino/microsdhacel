@@ -17,7 +17,6 @@ class AdaptadorSalida {
     int getTipoSalida();
     void setTipoSalida(TipoSalida tipoSalida);
     ISalida& getSalida();
-
   protected:
     virtual int calcularPotencia(int valorControl)=0;
 

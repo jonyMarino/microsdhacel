@@ -15,7 +15,6 @@ class ValorControl{
     virtual int getValorControl()=0;
     int getValorControlador();
     void setValorControlador(int);
-  protected:
     Sensor& getSensor();
   private:
     ConfiguracionValorControl& configuracion;
