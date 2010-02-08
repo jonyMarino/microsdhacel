@@ -8,6 +8,7 @@
 class LazoControl: public Lazo{
   public:
     LazoControl(ValorControl& valorControl,AdaptadorSalida& adaptadorSalida);
+    LazoControl(Sensor&sensor);
     AdaptadorSalida& getAdaptadorSalida();
   protected:
     virtual void onNuevoValorSensor();

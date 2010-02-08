@@ -1,7 +1,10 @@
 #include "LazoControl.hpp"
 
-void LazoControl::LazoControl(ValorControl& _valorControl,AdaptadorSalida& _adaptadorSalida):Lazo(_valorControl.getSensor()),valorControl(&_valorControl),adaptadorSalida(&_adaptadorSalida)
+LazoControl::LazoControl(ValorControl& _valorControl,AdaptadorSalida& _adaptadorSalida):Lazo(_valorControl.getSensor()),valorControl(&_valorControl),adaptadorSalida(&_adaptadorSalida)
 {}
+
+LazoControl::LazoControl(Sensor&sensor):Lazo(sensor),valorControl(NULL),adaptadorSalida(NULL){
+}
 
 void LazoControl::onNuevoValorSensor(){
   if( getSalida().getConectada() ){
