@@ -9,9 +9,9 @@ class Lazo{
   public:
     Lazo(Sensor& sensor);
     ~Lazo();
-  protected:
     Sensor& getSensor();
     virtual ISalida& getSalida()=0;
+  protected:
     virtual void onNuevoValorSensor()=0;
   private:
     Sensor& sensor;
