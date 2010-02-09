@@ -7,11 +7,6 @@
 
 #include "BoxLineal.hpp"
 #include "BoxSaltoCondicional.hpp"
-//#include "BoxProp.h"
-//#include "DataBox.h"
-
-//#include "com_events.h"
-
 #include "Sensores.h"
 #include "SensorTermoPT100.hpp"
 

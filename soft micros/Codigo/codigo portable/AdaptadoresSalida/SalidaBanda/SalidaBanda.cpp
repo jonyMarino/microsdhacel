@@ -1,6 +1,8 @@
 #include "SalidaBanda.hpp"
 #include "../Control/controlmath.h"
 
+SalidaBanda::SalidaBanda(ISalida& salida,AdaptadorSalidaConfiguracion& configuracion):AdaptadorSalida(salida,configuracion){
+}
 
 int SalidaBanda::calcularPotencia(int valorControl){
       struct ISalida& salida = getSalida();

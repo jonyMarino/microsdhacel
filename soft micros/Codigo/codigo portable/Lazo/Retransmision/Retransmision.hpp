@@ -2,6 +2,7 @@
 #define _RETRANSMISION_HPP
 
 #include "Lazo/Lazo.hpp"
+#include "IPWM.hpp"
 
 #pragma DATA_SEG Retransmision_DATA                                            
 #pragma CODE_SEG Retransmision_CODE 
@@ -15,13 +16,13 @@ class ConfiguracionRetransmision{
 
 class Retransmision:public Lazo{
   public:
-    Retransmision(Sensor&sensor,ISalida&salida,ConfiguracionRetransmision& configuracion);
+    Retransmision(Sensor&sensor,IPWM&pwm,ConfiguracionRetransmision& configuracion);
   protected:
     virtual ISalida& getSalida();
     virtual void onNuevoValorSensor();
   private: 
     ConfiguracionRetransmision& configuracion;
-    ISalida& salida;
+    IPWM& pwm;
 };
 
 

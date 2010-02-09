@@ -15,11 +15,9 @@ class SalidaRetenida : public AdaptadorSalida {
 
   protected:  
     int calcularPotencia(int valorControl);
-
+    void setRetenida(bool value);
   private:
     bool retenida;
-    void setRetenida(bool value);
-
 };
 
 inline const bool SalidaRetenida::getRetenida() const {

@@ -8,7 +8,8 @@
 struct ConstructorBoxLineal{
   struct ConstructorBox super;
   const struct ConstructorPropGetterVisual *const* propiedades;
-  const struct ConstructorBox * proximoBox;    
+  const struct ConstructorBox * proximoBox;
+      
 };
 
 class BoxLineal:public BoxPropiedad{
@@ -16,10 +17,19 @@ class BoxLineal:public BoxPropiedad{
     BoxLineal(struct ConstructorBoxLineal * constructor,void*obj,uchar numObjeto);  
     ~BoxLineal();
     virtual Box * procesarTecla(uchar tecla,TEstadoBox& estado);
+  
+  protected:
+    BoxLineal(struct ConstructorBoxLineal * constructor);  
+    void mostrarPropiedad(void * obj,int numObjeto); 
+     struct ConstructorBoxLineal * getConstructor ();
+     uchar getNumProp ();
+     void setNumProp (uchar n);
+  
   private:
+    void initBoxLineal (struct ConstructorBoxLineal * _constructor);
     struct ConstructorBoxLineal * constructor;
     uchar numProp;
-    void mostrarPropiedad(void * obj,int numObjeto);
+  
 };
 
 

@@ -3,19 +3,16 @@
 #include "PropiedadNumerica.hpp"
 #include "PropNumLFPV.hpp"
 #include "PropNumLFPF.hpp"
+#include "PropNumLVPF.hpp"
 #include "PropiedadTextual.hpp"
-
+#include "PropGetterNumerico.hpp"
 #include "BoxLineal.hpp"
 #include "BoxSaltoCondicional.hpp"
+#include "BoxPropiedadEntradaCondicional.hpp"
+#include "BoxLinealCondicional.hpp"
 #include "PropDescripcionVariable.hpp"
-//#include "BoxProp.h"
-//#include "DataBox.h"
-
-//#include "com_events.h"
-
-//#include "Sensores.h"
 #include "ControlPID.hpp"
-
+#include "VistaPWM.hpp"
 #include "VistaControl.hpp"
 
 #pragma MESSAGE DISABLE C1825          /* Disable warning C5703 "Parameter is not referenced" */
@@ -29,6 +26,39 @@
   void NOMBRE(void*conf,int valor){           \
     ((ControlPID*)conf)->METODO(valor); \
   }   
+
+
+uchar getDecimalesSP(void*control){           
+  return ((ControlPID*)control)->getDecimales();
+}
+
+int getLimiteInfPotManual(void*control){           
+  return ((ControlPID*)control)->getLimiteInferiorPotenciaManual();
+}
+
+int getLimiteSupPotManual(void*control){           
+  return ((ControlPID*)control)->getLimiteSuperiorPotenciaManual();
+}
+
+ int getPotencia (void * control){
+   return ((ControlPID*)control)->getSalida().getPotencia();
+}
+
+bool getCondicionEntrada (void* control){
+  if(((ControlPID*)control)->getModoSalida() != ControlPID::_MAN)
+    return TRUE;
+  else
+    return FALSE;  
+}
+
+
+uchar nextSetProp (void * obj){
+  
+  if(((ControlPID*)obj)->getModoSalida() != ControlPID::_MAN)
+    return 0;  // posicion de cPropiedadGetPotencia en el la tabla propsPot
+  else
+    return 2;  
+}
 
 
 /*****************************/
@@ -73,6 +103,49 @@
   const struct ConstructorPropNumLFPF cPropiedadDerivada={
     &propNumLFPFFactory,getDerivada,"dr",setDerivada,0,9999,1
   };
+  
+  //SetPoint                              
+  ADAPTAR_FUNCION_GET(getConfiguracionSetPoint,getConfiguracionSetPoint)
+  ADAPTAR_FUNCION_SET(setConfiguracionSetPoint,setConfiguracionSetPoint)
+  //ADAPTAR_FUNCION_GET(getDecimales,getDecimales)
+  
+  const struct ConstructorPropNumLFPV cPropiedadSetPoint={
+    &propNumLFPVFactory,getConfiguracionSetPoint,"SP",setConfiguracionSetPoint,-9999,9999,getDecimalesSP 
+  };
+  
+  //ModoSalida
+  
+  const char * const modos[3]={
+      "cAL",
+      "rEF",
+      "mAn",											
+  };
+
+
+  const char * ms_getText(byte modo){
+    return modos[modo];
+  }   
+
+ 
+  ADAPTAR_FUNCION_GET(getModoSalida,getModoSalida)
+  ADAPTAR_FUNCION_SET(setModoSalida,setModoSalida)
+
+  const struct ConstructorPropiedadTextual cPropiedadModoSalida={
+    &propiedadTextualFactory,getModoSalida,"C",setModoSalida,ms_getText,3
+  };
+    
+  //PotenciaManual
+  ADAPTAR_FUNCION_GET(getPotenciaManual,getPotenciaManual)
+  ADAPTAR_FUNCION_SET(setPotenciaManual,setPotenciaManual)
+  const struct ConstructorPropNumLVPF cPropiedadPotManual={
+    &propNumLVPFFactory,getPotenciaManual,"Pot",setPotenciaManual,getLimiteInfPotManual,getLimiteSupPotManual,1
+  };
+  
+  //Potencia
+    
+    const struct ConstructorPropGetterNumerico cPropiedadGetPotencia={
+    &propGetterNumericoFactory,getPotencia,"Pot",1
+  };
 
  /***********************/
  /****** BOXES  *********/
@@ -97,4 +170,39 @@ const struct ConstructorBoxLineal cBoxesSintonia={
 const struct ConstructorBoxPropiedad cBoxesReset={
       &boxPropiedadFactory,	
 			(const struct ConstructorPropGetterVisual*)&cPropiedadReset
-}; 
+};
+
+
+const struct ConstructorBoxPropiedad cBoxesSetPoint={
+      &boxPropiedadFactory,	
+			(const struct ConstructorPropGetterVisual*)&cPropiedadSetPoint
+};  
+
+const struct ConstructorBoxPropiedad cBoxModoSalida={
+      &boxPropiedadFactory,	
+			(const struct ConstructorPropGetterVisual*)&cPropiedadModoSalida
+};
+
+
+const struct ConstructorBoxPropiedadEntradaCondicional cBoxPotInst ={
+   &boxPropiedadEntradaCondicionalFactory,
+   (const struct ConstructorPropGetterVisual*)&cPropiedadGetPotencia,
+   getCondicionEntrada
+};
+ 
+ 
+
+const struct ConstructorPropGetterVisual*const propsPot[]=	{
+			  (const struct ConstructorPropGetterVisual*)&cPropiedadSetPoint,
+			  NULL,
+			  (const struct ConstructorPropGetterVisual*)&cPropiedadPotManual,
+			  NULL
+};
+const struct ConstructorBoxLinealCondicional cBoxPotMan={
+      &boxLinealCondicionalFactory,								
+			propsPot,
+			NULL,
+			nextSetProp
+};	 
+ 
+ 

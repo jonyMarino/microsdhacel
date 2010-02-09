@@ -1,9 +1,10 @@
 #include "PropGetterNumerico.hpp"
 #include "PE/include/PE_Types.h"
-#include "OOC/lang/CharPointer.hpp"
 
 const struct PropGetterNumericoFactory propGetterNumericoFactory;
 
+PropGetterNumericoFactory::PropGetterNumericoFactory(){
+}
 
 PropGetterNumerico::PropGetterNumerico(void*obj,const struct ArgumentosPropGetterNumerico* args,uchar numObjeto):PropGetterVisual(obj,(const struct ArgumentosPropGetterVisual*)args,numObjeto){}
 /*
@@ -15,10 +16,8 @@ PropGetterNumerico::PropGetterNumerico(void*obj,const struct ArgumentosPropGette
 */
 
 void PropGetterNumerico::print(OutputStream&os){
-  char str[7];
   byte puntoDecimal = ((struct ArgumentosPropGetterNumerico*) getArgumentos())->puntoDecimal;
-  CharPointer::printFloat(str,getVal(),puntoDecimal);
-  os.write(str);  
+  os.writeAsFloat(getVal(),puntoDecimal);  
 }
 
 PropiedadGetter& PropGetterNumericoFactory::getPropiedad(void*obj,const struct ArgumentosPropiedadGetter* args,uchar numObjeto)const{

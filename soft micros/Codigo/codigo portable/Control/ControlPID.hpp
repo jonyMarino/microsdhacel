@@ -141,14 +141,14 @@ class ControlPID{
     **     Description :  Obtiene un puntero a la salida
     ** ===================================================================
     */
-    struct ISalida* getSalida();
+    ISalida& getSalida();
     /*
     ** ===================================================================
     **     Method      :  getSensor 
     **     Description :  Obtiene el sensor utilizado por el control
     ** ===================================================================
     */
-    struct Sensor *getSensor();
+    Sensor& getSensor();
     /*
     ** ===================================================================
     **     Method      :  setTipoControl 

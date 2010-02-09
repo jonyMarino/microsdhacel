@@ -6,11 +6,12 @@
 #pragma CONST_SEG DEFAULT
 
 
-Retransmision::Retransmision( Sensor&sensor,ISalida&_salida,ConfiguracionRetransmision& _configuracion):Lazo(sensor),salida(_salida),configuracion(_configuracion){
+Retransmision::Retransmision( Sensor&sensor,IPWM&_pwm,ConfiguracionRetransmision& _configuracion):Lazo(sensor),pwm(_pwm),configuracion(_configuracion){
+  pwm.setPeriodo(PWM_Anl);
 }
 
 ISalida& Retransmision::getSalida(){
-  return salida;           
+  return pwm;           
 }
 
 void Retransmision::onNuevoValorSensor(){
@@ -28,5 +29,5 @@ void Retransmision::onNuevoValorSensor(){
    else
     duty=(int)dutyTmp; 
    
-   salida.setPotencia(duty);
+   pwm.setPotencia(duty);
 }

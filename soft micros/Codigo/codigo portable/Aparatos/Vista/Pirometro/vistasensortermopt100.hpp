@@ -4,5 +4,6 @@
 #include "BoxLineal.hpp"
 
 extern const struct ConstructorBoxLineal cBoxesSensor;
+uchar getDecimalesMostrados(void*sensor);
 
 #endif

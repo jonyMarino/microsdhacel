@@ -23,8 +23,6 @@ void RetransmisionPWM_constructor(void * _self,
                                   struct Sensor* sensor
 ){
   Retransmision_constructor(_self,configuracion,(struct ISalida*)salida,sensor); 
-  
-  //cambiar a lo que esta comentado:
   if( instanceOf(salida, (const struct Class * const)&IPWM) )
     setPeriodo( (struct PWM*)salida,PWM_Anl); 
 }

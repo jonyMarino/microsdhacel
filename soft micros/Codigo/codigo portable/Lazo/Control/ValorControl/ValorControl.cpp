@@ -9,10 +9,10 @@ int ValorControl::getValorControlador(){
   return configuracion.getValorControlador();
 }
 
-void ValorControl::setValorControlador(int valor){
-  configuracion.setValorControlador(valor);  
-}
-
 Sensor& ValorControl::getSensor(){
   return sensor;
+}
+
+ConfiguracionValorControl& ValorControl::getConfiguracion(){
+  return configuracion;
 }

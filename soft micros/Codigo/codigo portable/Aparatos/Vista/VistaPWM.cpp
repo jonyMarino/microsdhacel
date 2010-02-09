@@ -7,14 +7,10 @@
 #include "BoxLineal.hpp"
 #include "BoxSaltoCondicional.hpp"
 #include "PropDescripcionVariable.hpp"
-//#include "BoxProp.h"
-//#include "DataBox.h"
-
-//#include "com_events.h"
-
-//#include "Sensores.h"
+#include "BoxLinealCondicional.hpp"
+#include "stddef.h"
+#include "ControlPID.hpp"
 #include "IPWM.hpp"
-
 #include "VistaPWM.hpp"
 
 #pragma MESSAGE DISABLE C1825          /* Disable warning C5703 "Parameter is not referenced" */
@@ -64,12 +60,19 @@
     
   
   //potencia
-  ADAPTAR_FUNCION_GET(getPotencia,getPotencia)
+   
+  ADAPTAR_FUNCION_GET(getPotenciaPWM,getPotencia)
   
-  const struct ConstructorPropGetterNumerico cPropiedadPotencia={
-    &propGetterNumericoFactory,getPotencia,"Pot",1
+  const struct ConstructorPropGetterNumerico cPropiedadGetPotencia={
+    &propGetterNumericoFactory,getPotenciaPWM,"Pot",1
   };
 
+  
+  ADAPTAR_FUNCION_SET(setPotenciaPWM,setPotencia)
+  
+  const struct ConstructorPropNumLFPF cPropiedadPotencia={
+    &propNumLFPFFactory,getPotenciaPWM,"Pot",setPotenciaPWM,0,1000,1
+  };
   
  /***********************/
  /****** BOXES  *********/
@@ -79,10 +82,36 @@ const struct ConstructorBoxPropiedad cBoxPeriodo={
 			(const struct ConstructorPropGetterVisual*)&cPropiedadPeriodo
 }; 
  
- 
- const struct ConstructorBoxPropiedad cBoxPotencia={
+/*
+uchar nextSetProp (void * obj){
+  
+  if(((ControlPID*)obj)->getModoSalida() != ControlPID::_MAN)
+    return 0;  // posicion de cPropiedadGetPotencia en el la tabla propsPot
+  else
+    return 2;  
+}
+
+const struct ConstructorPropGetterVisual*const propsPot[]=	{
+			  (const struct ConstructorPropGetterVisual*)&cPropiedadGetPotencia,
+			  NULL
+};
+const struct ConstructorBoxLinealCondicional cBoxPot={
+      &boxLinealCondicionalFactory,								
+			propsPot,
+			NULL,
+			nextSetProp
+};	
+
+ */
+ const struct ConstructorBoxPropiedad cBoxGetPotencia={
       &boxPropGetterFactory,	
-			(const struct ConstructorPropGetterVisual*)&cPropiedadPotencia
+			(const struct ConstructorPropGetterVisual*)&cPropiedadGetPotencia
 }; 
  
-
+ 
+const struct ConstructorBoxPropiedad cBoxPotencia={
+      &boxPropiedadFactory,	
+			(const struct ConstructorPropGetterVisual*)&cPropiedadPotencia
+};
+ 
+  

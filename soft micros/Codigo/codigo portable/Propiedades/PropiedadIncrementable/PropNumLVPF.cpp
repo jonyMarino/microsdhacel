@@ -1,6 +1,8 @@
 #include "PropNumLVPF.hpp"
 //#include "PE/include/PE_Types.h"
 
+const struct PropNumLVPFFactory propNumLVPFFactory;
+
 PropNumLVPF::PropNumLVPF(void*obj,const struct ArgumentosPropNumLVPF* args,uchar numObjeto):PropiedadNumerica(obj,(const struct ArgumentosPropiedadIncrementable*)args,numObjeto){}
 
 int PropNumLVPF::getLimiteInferior(){

@@ -27,7 +27,7 @@ class OutputStream
   //
   virtual void write(const char * b)=0;
   
-//  virtual void writeByte(unsigned char b)=0;
+  //  virtual void writeByte(unsigned char b)=0;
   //    Writes 
   virtual void write(int i)=0; 
   //    Writes 

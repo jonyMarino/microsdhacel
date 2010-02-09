@@ -13,10 +13,6 @@ void Sensor::deleteOnNuevoValorListener(const struct Method * metodo) {
   listeners.moveOut((void*)metodo);  
 }
 
-unsigned char Sensor::getDecimales() {
-  return 0;
-}
-
 Sensor::TSensorState Sensor::getEstado() {
   return SENSOR_OK;
 }

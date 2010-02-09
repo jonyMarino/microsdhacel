@@ -20,6 +20,7 @@ class PropGetterNumerico:public PropGetterVisual{
 };
 
 struct PropGetterNumericoFactory:public PropGetterVisualFactory{
+    PropGetterNumericoFactory();
     virtual PropiedadGetter& getPropiedad(void*obj,const struct ArgumentosPropiedadGetter* args,uchar numObjeto)const;
 };
 
