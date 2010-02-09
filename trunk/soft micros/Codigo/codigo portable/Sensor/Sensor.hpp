@@ -12,7 +12,7 @@ class Sensor : public Getter {
     void addOnNuevoValorListener(const struct Method* metodo);
     void deleteOnNuevoValorListener(const struct Method * metodo);
 
-    unsigned char getDecimales();
+    virtual unsigned char getDecimales()=0;
 
     
 

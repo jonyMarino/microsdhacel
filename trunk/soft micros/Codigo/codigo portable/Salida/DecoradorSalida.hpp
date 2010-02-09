@@ -9,23 +9,21 @@
  * Llama al metodo homologo del atributo decorado.
  */
 class DecoradorSalida : public ISalida {
-  private:
-    ISalida * decorado;
-
-
   public:
-  
-  virtual unsigned int getPotencia();
+    DecoradorSalida(ISalida& aDecorar);
+     
+    virtual unsigned int getPotencia();
 
-  virtual void setPotencia(unsigned int potencia);
+    virtual void setPotencia(unsigned int potencia);
 
-  virtual TipoSalida getTipoSalida();
+    virtual TipoSalida getTipoSalida();
 
-  virtual void setTipoSalida(TipoSalida tipoSalida);
+    virtual void setTipoSalida(TipoSalida tipoSalida);
 
-  virtual bool getConectada();
+    virtual bool getConectada();
 
-  virtual void setConectada(bool conectada);
-
+    virtual void setConectada(bool conectada);
+  private:
+    ISalida& decorado;
 };
 #endif

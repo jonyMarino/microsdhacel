@@ -1,3 +1,2 @@
-
 #include "AdaptadorSalidaConfiguracion.hpp"
 

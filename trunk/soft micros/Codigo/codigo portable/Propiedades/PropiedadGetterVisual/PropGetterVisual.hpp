@@ -26,6 +26,7 @@ class PropGetterVisual:public PropiedadGetter{
 };
 
 struct PropGetterVisualFactory{
+    PropGetterVisualFactory();
     virtual PropiedadGetter& getPropiedad(void*obj,const struct ArgumentosPropiedadGetter* args,uchar numObjeto)const;/*{
       return *new PropGetterVisual(obj,args);
     }          */

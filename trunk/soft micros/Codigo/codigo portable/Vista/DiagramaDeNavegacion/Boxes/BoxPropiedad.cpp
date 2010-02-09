@@ -35,7 +35,7 @@ void BoxPropiedad::refresh(){
 
 Box * BoxPropiedad::procesarTecla(uchar tecla,TEstadoBox& estado){
     if(!propiedad){
-      estado = STAY_BOX;  
+      estado = EXIT_BOX;  
       return NULL;
     }
       

@@ -33,6 +33,8 @@ struct ConstructorPropNumLVPF{
 };
 
 
+extern const struct PropNumLVPFFactory propNumLVPFFactory;
+
 #pragma DATA_SEG DEFAULT                                            
 #pragma CODE_SEG DEFAULT 
 

@@ -4,17 +4,26 @@
 #include "BoxLineal.hpp"
 
 const struct BoxLinealFactory boxLinealFactory;
+
+void BoxLineal::initBoxLineal (struct ConstructorBoxLineal * _constructor){
+   constructor =  _constructor;
+   numProp=0;
+}
+
+BoxLineal::BoxLineal(struct ConstructorBoxLineal * _constructor) {
+   initBoxLineal(_constructor); 
+}
+
+
 /*
 ** ===================================================================
 **     Method      :  BoxLineal_Constructor 
 **     Description :  Constructor del Box Lineal
 ** ===================================================================
 */
-BoxLineal::BoxLineal(struct ConstructorBoxLineal * _constructor,void*obj,uchar numObjeto):BoxPropiedad(){
-  constructor =  _constructor;
-  numProp=0;
-  mostrarPropiedad(obj,numObjeto); 
-  
+BoxLineal::BoxLineal(struct ConstructorBoxLineal * _constructor,void*obj,uchar numObjeto){
+  initBoxLineal(_constructor);
+  mostrarPropiedad(obj,numObjeto);
 }
 
 /*
@@ -64,3 +73,17 @@ Box * BoxLineal::procesarTecla(uchar tecla,TEstadoBox& estado){
   return NULL;
 }
 
+
+struct ConstructorBoxLineal * BoxLineal::getConstructor (){
+  return constructor;
+}
+
+
+uchar BoxLineal::getNumProp () {
+  return numProp;
+}
+
+
+void BoxLineal::setNumProp (uchar n){
+   numProp = n;
+}

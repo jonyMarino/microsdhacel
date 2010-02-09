@@ -12,14 +12,15 @@ class AdaptadorSalida {
   public:
     AdaptadorSalida(ISalida& _salida,AdaptadorSalidaConfiguracion& _configuracion);
     void setPotenciaSalida(int valorDeControl);
-    int getHisteresis();
-    void setHisteresis(int histeresis);
-    int getTipoSalida();
-    void setTipoSalida(TipoSalida tipoSalida);
+
     ISalida& getSalida();
+    AdaptadorSalidaConfiguracion& getConfiguracion();
   protected:
     virtual int calcularPotencia(int valorControl)=0;
-
+    int getHisteresis();
+    //void setHisteresis(int histeresis);
+    int getTipoSalida();
+    //void setTipoSalida(TipoSalida tipoSalida);
   private:
     ISalida& salida;
     AdaptadorSalidaConfiguracion& configuracion;

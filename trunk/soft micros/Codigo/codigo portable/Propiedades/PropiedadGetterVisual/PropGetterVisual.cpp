@@ -1,6 +1,10 @@
 #include <stdio.h>
 #include "PropGetterVisual.hpp"
 
+
+PropGetterVisualFactory::PropGetterVisualFactory(){
+}
+
 PropGetterVisual::PropGetterVisual(void*obj,const struct ArgumentosPropGetterVisual* args,uchar _numObjeto):PropiedadGetter(obj,(const struct ArgumentosPropiedadGetter*)args),numObjeto(_numObjeto){}
 /*
 ** ===================================================================

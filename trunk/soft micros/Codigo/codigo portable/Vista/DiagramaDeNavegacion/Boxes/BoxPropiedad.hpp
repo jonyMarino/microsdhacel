@@ -6,6 +6,7 @@
 #include "PropGetterVisual.hpp"
 #include "ConstructorPropiedadGetter.hpp"
 #include "PE/include/PE_Types.h"
+//#include "BoxPropiedadEntradaCondicional.hpp"
 
 class BoxPropiedad:public Box{
   public:
@@ -41,6 +42,7 @@ class BoxPropiedad:public Box{
     bool save;
     friend struct BoxPropiedadFactory;
     friend struct BoxPropGetterFactory;
+    friend struct BoxPropiedadEntradaCondicionalFactory;
 };
 
 struct ConstructorBoxPropiedad{
