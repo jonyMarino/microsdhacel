@@ -3,6 +3,7 @@
 
 #include <stdtypes.h>
 #include "PropGetterVisual.hpp"
+#include "PE\include\PE_Types.h"
 
 #pragma DATA_SEG PROP_GETTER_NUMERICO_DATA                                            
 #pragma CODE_SEG PROP_GETTER_NUMERICO_CODE 
@@ -20,11 +21,14 @@ class PropiedadIncrementable:public PropGetterVisual{
     virtual void decrementar()=0;
     void guardar(); //para que los incrementos surjan efecto en el objeto controlado por la propiedad
     virtual int getVal();
+    void refrescar();
+    bool getIsGuardado();
+    void setIsGuardado(bool val);
   protected:
     void setValorTmp(int valor);
   private:
     int valorTmp;
-    
+    bool isGuardado;  //al guardar un parametro nuevo se pone en true, al refrescar se pone en false
 };
 /*
 struct PropiedadIncrementableFactory:public PropGetterVisualFactory{

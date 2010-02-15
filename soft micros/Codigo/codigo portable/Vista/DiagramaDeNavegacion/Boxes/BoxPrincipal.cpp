@@ -12,11 +12,7 @@
 #pragma CONST_SEG DEFAULT       /* Constant section for this module */
 
 
-#define PRI_PAR_SECONDS  5  //El parametro se muestra 5 segundos luego de 'u' o 'd'
 
-#ifndef TIME_BETWEEN_PARS
-  #define TIME_BETWEEN_PARS 2000
-#endif  
 
 const struct BoxPrincipalFactory boxPrincipalFactory;
 /*
