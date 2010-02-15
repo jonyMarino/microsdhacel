@@ -1,10 +1,11 @@
 #include "Teclas.hpp"
 
-#define TRETURN 30000 						 
+#define TRETURN 30000 
+#define TIME_TIMER 4						 
 /*  Definicion de nombre de tecla y su forma de ser invocada*/
 
 /* definiciones del teclado */
-#define KEY_RAMPA_INI	40 /*A los cuantos ingresos(la primera vez) iguales se repite la salida para ese pulsador*/
+#define KEY_RAMPA_INI	60 /*A los cuantos ingresos(la primera vez) iguales se repite la salida para ese pulsador*/
 #define KEY_RAMPA_FIN	0  /*Maxima velociadad de ingresos iguales a los que se repite la salida para ese pulsador*/
 #define KEY_DELTA	1  /*Variacion de velociadad una vez realizada la salida*/
 
@@ -54,23 +55,32 @@ const t_hold_key hold_keys[]={
   0,0,0,0
 };
 
-																
-Teclas::Teclas():timerTimePass(TRETURN),teclas(0),teclaAnterior(0),teclaAnteriorTmp(0),rampa(0),contadorRampa(0){
+
+															
+Teclas::Teclas():contadorTimePass(0),teclas(0),teclaAnterior(0),teclaAnteriorTmp(0),rampa(0),contadorRampa(0){
+  mOnTime.obj = this;
+  mOnTime.pmethod = Teclas::onTimeStatic;
+  timer = new RlxMTimer(TIME_TIMER,mOnTime);
 }
 
 
+void Teclas::onTimeStatic(void * _self){
+  Teclas * self = (Teclas*)_self;
+  self->onTime();
+}
 
-void Teclas::presionar(byte teclas){
-  if (teclaAnterior!=teclas){
-
+void Teclas::onTime(){
+     if(contadorTimePass)
+      contadorTimePass--;
+     if (teclaAnterior!=teclasIngresadas){
   	  for(int i=0;keys[i].nombre!=0;i++){
-  	    if(keys[i].teclas==teclas){
+  	    if(keys[i].teclas==teclasIngresadas){
   	     tecla=keys[i].nombre;
   	     break;
   	    }
-  	  }
+  	 }
 
-  	  if(teclas==KEY_NULL){
+  	  if(teclasIngresadas==KEY_NULL){
   	    for(int i=0;hold_keys[i].nombre!=0;i++){				 // Al soltar para los que tienen otra funcion en toque mantenido
     	    if(hold_keys[i].tecla==teclaAnterior && hold_keys[i].nombre_hold!=teclaAnteriorTmp){
     	     tecla=hold_keys[i].nombre;
@@ -79,9 +89,8 @@ void Teclas::presionar(byte teclas){
   	    }
   	    teclaAnteriorTmp=' ';
   	  }
-  	  timerTimePass.reset();
-  	  timerTimePass.restart();
-  	  teclaAnterior = teclas;
+  	  resetTimePass();
+  	  teclaAnterior = teclasIngresadas;
   	  contadorRampa=0;
   	  rampa=KEY_RAMPA_INI;
   }
@@ -103,9 +112,12 @@ void Teclas::presionar(byte teclas){
   	     break;
   	    }
 		}
-	  timerTimePass.reset();
-	  timerTimePass.restart();
-  }
+	  resetTimePass();
+  }  
+}
+
+void Teclas::presionar(byte teclas){
+  teclasIngresadas = teclas;  
 }
 
 
@@ -116,7 +128,11 @@ byte Teclas::getTecla(void){
   return t;
 }
 
+void Teclas::resetTimePass(){
+  contadorTimePass = TRETURN/TIME_TIMER;  
+}
+
 /*  Avisa si paso el tiempo de espera de tecla */
 bool Teclas::isTimePass(void){
-  return timerTimePass.getFlag();
+  return contadorTimePass==0;
 }

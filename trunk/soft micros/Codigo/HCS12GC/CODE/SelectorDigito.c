@@ -4,7 +4,7 @@
 
 
 void SelectorDigito_putVal(byte val){
+  bits2ULN_PutVal(val);
   bits5ULN_PutVal(val);
-  bits2ULN_PutVal(val);  
 }
 

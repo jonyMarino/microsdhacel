@@ -77,7 +77,7 @@ bool PromBkp::listoParaGrabarOBorrar(){
 */
 bool PromBkp::grabacionOBorradoEnEspera(){
   
-  return ( aGrabar || ! listaDireccionesABorrar.isEmpty()); 
+  return ( aGrabar || !listaDireccionesABorrar.isEmpty()); 
 }
 /*
 ** ===================================================================

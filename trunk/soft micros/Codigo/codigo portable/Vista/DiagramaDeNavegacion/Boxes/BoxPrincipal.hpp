@@ -14,7 +14,12 @@
 #pragma DATA_SEG BoxPrincipal_DATA                                            
 #pragma CODE_SEG BoxPrincipal_CODE                     
 #pragma CONST_SEG DEFAULT       /* Constant section for this module */
-                  
+
+#define PRI_PAR_SECONDS  5000  //El parametro se muestra 5 segundos luego de 'u' o 'd'
+#define REFRESH_SECONDS  2000 
+#ifndef TIME_BETWEEN_PARS
+  #define TIME_BETWEEN_PARS 2000
+#endif                    
 
 struct ConstructorBoxPrincipal{
   struct ConstructorBox super;

@@ -14,6 +14,7 @@
 #include "ControlPID.hpp"
 #include "VistaPWM.hpp"
 #include "VistaControl.hpp"
+#include "BoxPrincipalControl.hpp"
 
 #pragma MESSAGE DISABLE C1825          /* Disable warning C5703 "Parameter is not referenced" */
 
@@ -28,7 +29,7 @@
   }   
 
 
-uchar getDecimalesSP(void*control){           
+uchar getDecimalesControl(void*control){           
   return ((ControlPID*)control)->getDecimales();
 }
 
@@ -110,7 +111,7 @@ uchar nextSetProp (void * obj){
   //ADAPTAR_FUNCION_GET(getDecimales,getDecimales)
   
   const struct ConstructorPropNumLFPV cPropiedadSetPoint={
-    &propNumLFPVFactory,getConfiguracionSetPoint,"SP",setConfiguracionSetPoint,-9999,9999,getDecimalesSP 
+    &propNumLFPVFactory,getConfiguracionSetPoint,"SP",setConfiguracionSetPoint,-9999,9999,getDecimalesControl 
   };
   
   //ModoSalida
@@ -142,11 +143,35 @@ uchar nextSetProp (void * obj){
   };
   
   //Potencia
-    
     const struct ConstructorPropGetterNumerico cPropiedadGetPotencia={
     &propGetterNumericoFactory,getPotencia,"Pot",1
   };
 
+   //Limites
+   ADAPTAR_FUNCION_GET(getLimiteInferiorPotencia,getLimiteInferiorPotencia)
+   ADAPTAR_FUNCION_SET(setLimiteInferiorPotencia,setLimiteInferiorPotencia)
+   const struct ConstructorPropNumLFPV cPropiedadLimInfPot={
+    &propNumLFPVFactory,getLimiteInferiorPotencia,"Pi",setLimiteInferiorPotencia,-9999,9999,getDecimalesControl
+  };
+   
+   ADAPTAR_FUNCION_GET(getLimiteSuperiorPotencia,getLimiteSuperiorPotencia)
+   ADAPTAR_FUNCION_SET(setLimiteSuperiorPotencia,setLimiteSuperiorPotencia)
+   const struct ConstructorPropNumLFPV cPropiedadLimSupPot={
+    &propNumLFPVFactory,getLimiteSuperiorPotencia,"PS",setLimiteSuperiorPotencia,-9999,9999,getDecimalesControl
+  };
+  
+   ADAPTAR_FUNCION_GET(getLimiteInferiorSetPoint,getLimiteInferiorSetPoint)
+   ADAPTAR_FUNCION_SET(setLimiteInferiorSetPoint,setLimiteInferiorSetPoint)
+   const struct ConstructorPropNumLFPV cPropiedadLimInfSp={
+    &propNumLFPVFactory,getLimiteInferiorSetPoint,"Li",setLimiteInferiorSetPoint,-9999,9999,getDecimalesControl
+  };
+  
+   ADAPTAR_FUNCION_GET(getLimiteSuperiorSetPoint,getLimiteSuperiorSetPoint)
+   ADAPTAR_FUNCION_SET(setLimiteSuperiorSetPoint,setLimiteSuperiorSetPoint)
+   const struct ConstructorPropNumLFPV cPropiedadLimSupSp={
+    &propNumLFPVFactory,getLimiteSuperiorSetPoint,"LS",setLimiteSuperiorSetPoint,-9999,9999,getDecimalesControl
+  };
+   
  /***********************/
  /****** BOXES  *********/
  
@@ -205,4 +230,16 @@ const struct ConstructorBoxLinealCondicional cBoxPotMan={
 			nextSetProp
 };	 
  
- 
+const struct ConstructorPropGetterVisual *const propLimites[]=	{
+  			  (const struct ConstructorPropGetterVisual*)&cPropiedadLimInfSp,
+  			  (const struct ConstructorPropGetterVisual*)&cPropiedadLimSupSp,
+  			  (const struct ConstructorPropGetterVisual*)&cPropiedadLimInfPot,
+  			  (const struct ConstructorPropGetterVisual*)&cPropiedadLimSupPot,
+  			  NULL
+};
+
+const struct ConstructorBoxLineal cBoxesLimites={
+        &boxLinealFactory,						       
+  		  propLimites,
+  		  NULL						 //Proximo box	
+}; 
