@@ -73,6 +73,7 @@ volatile const ConfiguracionControlPID::ControlConf control_config={
  #else 
   volatile const int codigo = 0;
  #endif
+  volatile const TConfPWM confPWM01;
 #pragma CONST_SEG DEFAULT
 
 
@@ -100,14 +101,9 @@ SensorTermoPT100 sensor0(ad0,sensor_config[0],flash);
 SensorTermoPT100 sensor1(ad1,sensor_config[1],flash);
 #endif 
 
-TConfPWM confPWM01;
 PWMHard23 pwm(flash,confPWM01);
 const ConfiguracionControlPID configuraControl(*(ConfiguracionControlPID::ControlConf*)&control_config,flash); 
-ControlPID control0(sensor0,pwm,configuraControl);
-
-struct Method timerSalida={
-&conectarSalidas,NULL
-}; 
+ControlPID control0(sensor0,pwm,configuraControl); 
   
 
 //potencia
@@ -221,13 +217,11 @@ const struct Access *const accessArray[]={
 
 const NEW_ARRAY(accessList,accessArray);
 
-void * timer=NULL; 
+RlxMTimer timerConexionSalidas(SALIDA_TIEMPO_DESCONECTADA,Method(conectarSalidas,NULL));
 
 void main(void) {
   
   BoxPrincipalControl::MostrarProp((ConstructorPropGetterVisual *)&cPropiedadSetPoint,&control0);
-  RlxMTimer timerConexionSalidas(SALIDA_TIEMPO_DESCONECTADA,timerSalida);
-  timer=&timerConexionSalidas;
   DiagramaNavegacion d(&opList,&accessList,FrenteDH::getInstancia());
   PE_low_level_init();
   
@@ -256,10 +250,9 @@ void main(void) {
  
 void conectarSalidas(void * a){
   byte i;
-  ((RlxMTimer *)timer)->stop();
-  
-  for(i=0;i<CANTIDAD_SAL_ALARMA;i++)
-    pwm.setConectada(TRUE);
+  timerConexionSalidas->stop();
+ 
+  pwm.setConectada(TRUE);
   
    //configurar leds
    //LedsSalida_init(&ledsSalida);
