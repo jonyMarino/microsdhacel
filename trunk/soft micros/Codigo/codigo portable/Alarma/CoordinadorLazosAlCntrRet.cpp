@@ -11,7 +11,7 @@ void CoordinadorLazosAlCntrRet::RetransmisionOptMem::operator delete(void *ptr){
   return;  
 }
 
-CoordinadorLazosAlCntrRet::AlarmaOptMem::AlarmaOptMem(ControlPID& control,ConfiguracionAlarmaControl& configuracion,ConfiguracionValorControl& confValorControl,AdaptadorSalidaConfiguracion& confAdaptadorSalida):AlarmaControl(control,configuracion,confValorControl,confAdaptadorSalida){
+CoordinadorLazosAlCntrRet::AlarmaOptMem::AlarmaOptMem(ConfiguracionAlarmaControl& configuracion,ConfiguracionValorControl& confValorControl,AdaptadorSalidaConfiguracion& confAdaptadorSalida,ControlPID& control,ISalida&salida):AlarmaControl(configuracion,confValorControl,confAdaptadorSalida,control,salida){
 }
 
 void * CoordinadorLazosAlCntrRet::AlarmaOptMem::operator new(size_t size,byte * dir){
@@ -27,20 +27,21 @@ CoordinadorLazosAlCntrRet::CoordinadorLazosAlCntrRet( ConfiguracionCoordinadorLa
                               ConfiguracionValorControl& _confValorControl,
                               AdaptadorSalidaConfiguracion& _confAdaptadorSalida,
                               ConfiguracionRetransmision& _confRetransmision,
-                              ControlPID& _control):configuracion(_configuracion),confAlarma(_confAlarma),confValorControl(_confValorControl),confAdaptadorSalida(_confAdaptadorSalida),confRetransmision(_confRetransmision), control(_control){
+                              ControlPID& _control,
+                              IPWM&pwm):configuracion(_configuracion),confAlarma(_confAlarma),confValorControl(_confValorControl),confAdaptadorSalida(_confAdaptadorSalida),confRetransmision(_confRetransmision), control(_control){
 
-  crearLazo(getLazo());
+  crearLazo(getLazo(),pwm);
 }
 
-void CoordinadorLazosAlCntrRet::crearLazo(TipoLazo tipo){  
+void CoordinadorLazosAlCntrRet::crearLazo(TipoLazo tipo,IPWM&pwm){  
 
   switch(tipo){
     case RETRANSMISION:
-      lazo = new((byte*)&poolLazo) RetransmisionOptMem(control.getSensor(),(IPWM&)control.getSalida(),confRetransmision);        
+      lazo = new((byte*)&poolLazo) RetransmisionOptMem(control.getSensor(),pwm,confRetransmision);        
     break;
     case ALARMA:
     default:
-      lazo = new((byte*)&poolLazo) AlarmaOptMem(control,confAlarma,confValorControl,confAdaptadorSalida);  
+      lazo = new((byte*)&poolLazo) AlarmaOptMem(confAlarma,confValorControl,confAdaptadorSalida,control,pwm);  
     break;
   }
 
@@ -54,8 +55,9 @@ TipoLazo  CoordinadorLazosAlCntrRet::getLazo(){
 
 void CoordinadorLazosAlCntrRet::setLazo(TipoLazo tipo){
   configuracion.setLazo( tipo );
+  IPWM&pwm = (IPWM&)lazo->getSalida();
   delete lazo;
-  crearLazo(tipo); 
+  crearLazo(tipo,pwm); 
 }
 
 TipoAdaptadorSalida  CoordinadorLazosAlCntrRet::getAdaptadorSalida(){

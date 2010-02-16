@@ -6,10 +6,11 @@ void * operator new(size_t size,byte * dir){
 }
 
 
-AlarmaControl::AlarmaControl(ControlPID& _control,
-                          ConfiguracionAlarmaControl& _configuracion,
+AlarmaControl::AlarmaControl(ConfiguracionAlarmaControl& _configuracion,
                            ConfiguracionValorControl&  confValorControl,
-                           AdaptadorSalidaConfiguracion& confAdaptadorSalida):LazoControl(_control.getSensor()),getterSP(_control),configuracion(_configuracion),salidaConPolaridad(_control.getSalida()){
+                           AdaptadorSalidaConfiguracion& confAdaptadorSalida,
+                           ControlPID& _control,
+                           ISalida&salida):LazoControl(_control.getSensor()),getterSP(_control),configuracion(_configuracion),salidaConPolaridad(salida){
   
   crearAdaptadorSalida( getAdaptadorSalida() );
   crearTipoControl( getTipoControl() );

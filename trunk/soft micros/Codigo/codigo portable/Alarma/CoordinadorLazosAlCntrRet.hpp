@@ -23,7 +23,8 @@ class CoordinadorLazosAlCntrRet{
                               ConfiguracionValorControl& confValorControl,
                               AdaptadorSalidaConfiguracion& confAdaptadorSalida,
                               ConfiguracionRetransmision& confRetransmision,
-                              ControlPID& control);
+                              ControlPID& control,
+                              IPWM&pwm);
                               
     TipoAdaptadorSalida getAdaptadorSalida();
     void setAdaptadorSalida(TipoAdaptadorSalida adaptSalida);
@@ -43,7 +44,7 @@ class CoordinadorLazosAlCntrRet{
     
     class AlarmaOptMem:public AlarmaControl{
       public:
-        AlarmaOptMem(ControlPID& control,ConfiguracionAlarmaControl& configuracion,ConfiguracionValorControl& confValorControl,AdaptadorSalidaConfiguracion& confAdaptadorSalida);
+        AlarmaOptMem(ConfiguracionAlarmaControl& configuracion,ConfiguracionValorControl& confValorControl,AdaptadorSalidaConfiguracion& confAdaptadorSalida,ControlPID& control,ISalida&salida);
         void * operator new(size_t size,byte * dir);
 
         void operator delete(void *ptr);
@@ -52,14 +53,14 @@ class CoordinadorLazosAlCntrRet{
       byte retransmision[sizeof(CoordinadorLazosAlCntrRet::RetransmisionOptMem)];
       byte alarma[sizeof(CoordinadorLazosAlCntrRet::AlarmaOptMem)];    
     }poolLazo;
-    Lazo * lazo;
+    LazoControl * lazo;
     ConfiguracionCoordinadorLazosAlCntrRet& configuracion;
     ConfiguracionAlarmaControl& confAlarma;
     ConfiguracionValorControl& confValorControl;
     AdaptadorSalidaConfiguracion& confAdaptadorSalida;
     ConfiguracionRetransmision& confRetransmision;
     ControlPID& control;
-    void crearLazo(TipoLazo tipo);
+    void crearLazo(TipoLazo tipo,IPWM&pwm);
 };
 
 #endif
