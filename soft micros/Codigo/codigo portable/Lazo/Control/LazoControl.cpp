@@ -7,7 +7,8 @@ LazoControl::LazoControl(Sensor&sensor):Lazo(sensor),valorControl(NULL),adaptado
 }
 
 void LazoControl::onNuevoValorSensor(){
-  if( getSalida().getConectada() ){
+  ISalida&salida= getSalida();
+  if( salida.getConectada() ){
     int valControl = valorControl->getValorControl();
     adaptadorSalida->setPotenciaSalida( valControl );
   }

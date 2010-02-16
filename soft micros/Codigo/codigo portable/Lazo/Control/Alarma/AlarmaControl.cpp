@@ -12,35 +12,35 @@ AlarmaControl::AlarmaControl(ConfiguracionAlarmaControl& _configuracion,
                            ControlPID& _control,
                            ISalida&salida):LazoControl(_control.getSensor()),getterSP(_control),configuracion(_configuracion),salidaConPolaridad(salida){
   
-  crearAdaptadorSalida( getAdaptadorSalida() );
-  crearTipoControl( getTipoControl() );
+  crearAdaptadorSalida( getAdaptadorSalida() , confAdaptadorSalida);
+  crearTipoControl( getTipoControl() , confValorControl);
   LazoControl::valorControl = (ValorControl*)&valorControl;
   LazoControl::adaptadorSalida = (AdaptadorSalida*)&adaptadorSalida;  
 }
 
 /**/
-void AlarmaControl::crearAdaptadorSalida(TipoAdaptadorSalida adaptSalida){
+void AlarmaControl::crearAdaptadorSalida(TipoAdaptadorSalida adaptSalida,AdaptadorSalidaConfiguracion& confAdaptadorSalida){
   switch(adaptSalida){
     case SALIDA_RETENIDA:
         salidaConPolaridad.setPolaridad(FALSE);
-        LazoControl::adaptadorSalida =new((byte*)&adaptadorSalida) SalidaRetenida(salidaConPolaridad, ((AdaptadorSalida*)&adaptadorSalida)->getConfiguracion());        
+        LazoControl::adaptadorSalida =new((byte*)&adaptadorSalida) SalidaRetenida(salidaConPolaridad, confAdaptadorSalida);        
         break;
     case SALIDA_DEFECTO_RETENIDA:
         salidaConPolaridad.setPolaridad(TRUE);
-        LazoControl::adaptadorSalida =new((byte*)&adaptadorSalida) SalidaRetenidaBajo(salidaConPolaridad, ((AdaptadorSalida*)&adaptadorSalida)->getConfiguracion()); 
+        LazoControl::adaptadorSalida =new((byte*)&adaptadorSalida) SalidaRetenidaBajo(salidaConPolaridad, confAdaptadorSalida); 
         break;
     case SALIDA_DEFECTO_BLOQUEADA:
         salidaConPolaridad.setPolaridad(FALSE);
-        LazoControl::adaptadorSalida =new((byte*)&adaptadorSalida) SalidaBloqueada(salidaConPolaridad, ((AdaptadorSalida*)&adaptadorSalida)->getConfiguracion()); 
+        LazoControl::adaptadorSalida =new((byte*)&adaptadorSalida) SalidaBloqueada(salidaConPolaridad, confAdaptadorSalida); 
         break;
     case SALIDA_DEFECTO:         
         salidaConPolaridad.setPolaridad(TRUE);       
-        LazoControl::adaptadorSalida =new((byte*)&adaptadorSalida) SalidaBanda(salidaConPolaridad, ((AdaptadorSalida*)&adaptadorSalida)->getConfiguracion()); 
+        LazoControl::adaptadorSalida =new((byte*)&adaptadorSalida) SalidaBanda(salidaConPolaridad, confAdaptadorSalida); 
       break;
     case SALIDA_EXCESO:
     default:  //error
         salidaConPolaridad.setPolaridad(FALSE);
-        LazoControl::adaptadorSalida =new((byte*)&adaptadorSalida) SalidaBanda(salidaConPolaridad, ((AdaptadorSalida*)&adaptadorSalida)->getConfiguracion());
+        LazoControl::adaptadorSalida =new((byte*)&adaptadorSalida) SalidaBanda(salidaConPolaridad, confAdaptadorSalida);
       break;      
   }
 }
@@ -51,20 +51,20 @@ TipoAdaptadorSalida  AlarmaControl::getAdaptadorSalida(){
 
 void AlarmaControl::setAdaptadorSalida(TipoAdaptadorSalida adaptSalida){
   configuracion.setAdaptadorSalida(adaptSalida);
-  crearAdaptadorSalida(adaptSalida);    
+  crearAdaptadorSalida(adaptSalida,((AdaptadorSalida*)&adaptadorSalida)->getConfiguracion());    
 }
 
-void AlarmaControl::crearTipoControl(TipoControl tipoControl){
+void AlarmaControl::crearTipoControl(TipoControl tipoControl,ConfiguracionValorControl&  confValorControl){
   switch(tipoControl){             
     case CONTROL_PROPORCIONAL:               
-        new((byte*)&adaptadorSalida)ValorControlProporcionalInvertido( ((ValorControl*)&tipoControl)->getConfiguracion(),getterSP.control.getSensor());        
+        new((byte*)&valorControl)ValorControlProporcionalInvertido( confValorControl,getterSP.control.getSensor());        
       break;
     case CONTROL_RELATIVO: 
-        new((byte*)&adaptadorSalida)ValorControlRelativo( ((ValorControl*)&tipoControl)->getConfiguracion(),getterSP.control.getSensor(),getterSP);        
+        new((byte*)&valorControl)ValorControlRelativo( confValorControl,getterSP.control.getSensor(),getterSP);        
       break;
     case CONTROL_BANDA: 
     default:  //error 
-        new((byte*)&adaptadorSalida)ValorControlBanda( ((ValorControl*)&tipoControl)->getConfiguracion(),getterSP.control.getSensor(),getterSP);        
+        new((byte*)&valorControl)ValorControlBanda(confValorControl,getterSP.control.getSensor(),getterSP);        
       break;      
   } 
 }
@@ -78,7 +78,7 @@ void AlarmaControl::setTipoControl(TipoControl tipo){
   configuracion.setTipoControl(tipo);
 
   //delete &tipoControl;
-  crearTipoControl(tipo);    
+  crearTipoControl(tipo,((ValorControl*)&tipoControl)->getConfiguracion());    
 }
 //GetterSP
 AlarmaControl::GetterSP::GetterSP(ControlPID& _control):control(_control){

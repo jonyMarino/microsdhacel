@@ -4,7 +4,7 @@
 
 
 SalidaRetenida::SalidaRetenida(ISalida& salida,AdaptadorSalidaConfiguracion& configuracion):AdaptadorSalida(salida,configuracion),retenida(FALSE){
-	setTipoSalida(SALIDA_ONOFF);
+	salida.setTipoSalida(SALIDA_ONOFF);
 }
 
 void SalidaRetenida::setTipoSalida(TipoSalida tipoSalida) {
