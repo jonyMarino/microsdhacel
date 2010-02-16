@@ -10,9 +10,9 @@ class LazoControl: public Lazo{
     LazoControl(ValorControl& valorControl,AdaptadorSalida& adaptadorSalida);
     LazoControl(Sensor&sensor);
     AdaptadorSalida& getAdaptadorSalida();
-  protected:
-    virtual void onNuevoValorSensor();
     virtual ISalida& getSalida(); 
+  protected:
+    virtual void onNuevoValorSensor();  
     ValorControl * valorControl; 
     AdaptadorSalida * adaptadorSalida;
 

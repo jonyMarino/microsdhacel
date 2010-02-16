@@ -37,7 +37,7 @@ class ConfiguracionAlarmaControl{
 
 class AlarmaControl:public LazoControl{
   public:
-    AlarmaControl(ControlPID& control,ConfiguracionAlarmaControl& configuracion,ConfiguracionValorControl& confValorControl,AdaptadorSalidaConfiguracion& confAdaptadorSalida);
+    AlarmaControl(ConfiguracionAlarmaControl& configuracion,ConfiguracionValorControl& confValorControl,AdaptadorSalidaConfiguracion& confAdaptadorSalida,ControlPID& control,ISalida&salida);
     TipoAdaptadorSalida  getAdaptadorSalida();
     void setAdaptadorSalida(TipoAdaptadorSalida adaptSalida);
     TipoControl  getTipoControl();
