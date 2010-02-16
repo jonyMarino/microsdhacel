@@ -1,7 +1,7 @@
 #include "Lazo.hpp"
 
 Lazo::Lazo(Sensor& _sensor):sensor(_sensor){
-  mOnNuevoValorSensor.pmethod = Lazo::onNuevoValorSensor;
+  mOnNuevoValorSensor.pmethod = Lazo::onNuevoValorSensorStatic;
   mOnNuevoValorSensor.obj = this;
 
   sensor.addOnNuevoValorListener(&mOnNuevoValorSensor);

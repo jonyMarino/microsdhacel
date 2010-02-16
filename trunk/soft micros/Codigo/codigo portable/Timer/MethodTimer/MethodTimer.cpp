@@ -21,7 +21,10 @@
 */
 MethodTimer::MethodTimer(ulong tiempo,const struct Method& _metodo):Timer(tiempo),metodo(_metodo){}
 
-
+MethodTimer::MethodTimer(ulong tiempo,Method::pMethod _metodo,void*obj):Timer(tiempo){
+  metodo.pmethod = _metodo;
+  metodo.obj=obj;  
+}
 /*
 ** ===================================================================
 **     Method      :  MethodTimer_setMetodo 

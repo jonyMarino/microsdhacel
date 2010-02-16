@@ -66,8 +66,8 @@ class AlarmaControl:public LazoControl{
     
     SalidaConPolaridad salidaConPolaridad;
     
-    void crearAdaptadorSalida(TipoAdaptadorSalida adaptSalida);
-    void crearTipoControl(TipoControl tipoControl);
+    void crearAdaptadorSalida(TipoAdaptadorSalida adaptSalida,AdaptadorSalidaConfiguracion& confAdaptadorSalida);
+    void crearTipoControl(TipoControl tipoControl,ConfiguracionValorControl&  confValorControl);
 };
 
 

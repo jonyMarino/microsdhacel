@@ -14,7 +14,6 @@
 #include "ControlPID.hpp"
 #include "VistaPWM.hpp"
 #include "VistaControl.hpp"
-#include "BoxPrincipalControl.hpp"
 
 #pragma MESSAGE DISABLE C1825          /* Disable warning C5703 "Parameter is not referenced" */
 

@@ -36,6 +36,19 @@ RlxMTimer::RlxMTimer(ulong tiempo,struct Method& metodo ):MethodTimer(tiempo,met
 
 }
 
+RlxMTimer::RlxMTimer(ulong tiempo,Method::pMethod metodo,void*obj):MethodTimer(tiempo,metodo,obj){
+  void *thread;  
+
+  execute=FALSE;
+  
+  if(!rlxMTCont){    
+    rlxMTCont=new LinkedList();
+    pthread_create(&thread,NULL,RlxMTimer::handler,NULL);
+  }
+  
+  rlxMTCont->add(this);
+}
+
 /*
 ** ===================================================================
 **     Method     : RlxMTimer_DefConstruct

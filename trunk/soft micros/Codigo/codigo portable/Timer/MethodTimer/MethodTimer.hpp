@@ -12,6 +12,7 @@
 class MethodTimer:public Timer{
   public:
     MethodTimer(ulong tiempo,const struct Method& metodo);
+    MethodTimer(ulong tiempo,Method::pMethod metodo,void*obj);
     void setMetodo(struct Method& metodo);
     struct Method&  getMetodo();
   protected:
