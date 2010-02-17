@@ -37,6 +37,7 @@
 
 void conectarSalidas(void * a);
 void OnTipoSalChange(void * b);
+void alternaIndicacion(void * c);
 
 #pragma CONST_SEG PARAMETERS_PAGE
  
@@ -59,6 +60,10 @@ void OnTipoSalChange(void * b);
   #endif
 };
          */
+
+/*Tiempo de cambio en la indicacion del display inferior(caso tipo de salida manual)*/
+#define TIEMPO_DE_ALTERNADO 2000
+
 /*  Tiempo inicial en el que el control permanece desconectado  */
 #ifdef _COLADA_CALIENTE  
   #define SALIDA_TIEMPO_DESCONECTADA 20000 
@@ -134,7 +139,7 @@ const struct FstBoxPointer potMan={
   (const struct ConstructorBox*)&cBoxPotMan,&control0,0  
 };
 
-const struct ConstructorBoxPrincipalControl cBoxPri={
+struct ConstructorBoxPrincipalControl cBoxPri={
       &boxPrincipalControlFactory,							/* funcion que procesa al box*/
       &sensor0,      
       NULL,
@@ -236,7 +241,10 @@ const struct Access *const accessArray[]={
 
 const NEW_ARRAY(accessList,accessArray);
 
-void * timer=NULL; 
+void * timer=NULL;
+void * timerAlterna=NULL;
+bool alternar=TRUE; 
+MessagesOut::Message msj_on_sal_change;  
 
 struct Method timerSalida={
 &conectarSalidas,NULL
@@ -244,7 +252,13 @@ struct Method timerSalida={
 
 struct Method cambioTipoSalida={
 &OnTipoSalChange,NULL
+};                                              
+
+struct Method timerDeAlternado={
+&alternaIndicacion,NULL
 }; 
+
+
 
 //RlxMTimer timerConexionSalidas(SALIDA_TIEMPO_DESCONECTADA,timerSalida);
 
@@ -253,6 +267,9 @@ void main(void) {
   BoxPrincipalControl::MostrarProp((ConstructorPropGetterVisual *)&cPropiedadSetPoint,&control0);
   RlxMTimer timerConexionSalidas(SALIDA_TIEMPO_DESCONECTADA,timerSalida);
   timer=&timerConexionSalidas;
+  RlxMTimer timerDeAlternadoDisplay(TIEMPO_DE_ALTERNADO,timerDeAlternado);
+  timerDeAlternadoDisplay.stop(); //inicia detenido
+  timerAlterna=&timerDeAlternadoDisplay;
   DiagramaNavegacion d(&opList,&accessList,FrenteDH::getInstancia());
   PE_low_level_init();
   control0.addOnTipoSalidaListener(cambioTipoSalida);
@@ -295,16 +312,37 @@ void conectarSalidas(void * a){
 
 void OnTipoSalChange(void * b){
   
-  static MessagesOut::Message msj_on_sal_change;
-  
   if(control0.getModoSalida()==ControlPID::_MAN){
     if(!msj_on_sal_change)
-      msj_on_sal_change = mjsCambioTipoSalida.addMessage("MAn ");    
+      msj_on_sal_change = mjsCambioTipoSalida.addMessage("Pot "); 
+     BoxPrincipalControl::MostrarProp((ConstructorPropGetterVisual *)&cPropiedadGetPotenciaInst,&control0);   
+     ((RlxMTimer *)timerAlterna)->restart();
   }else{
     if(msj_on_sal_change){
+      ((RlxMTimer *)timerAlterna)->stop();
       mjsCambioTipoSalida.deleteMessage(msj_on_sal_change);
-      msj_on_sal_change=NULL;  
+      BoxPrincipalControl::MostrarProp((ConstructorPropGetterVisual *)&cPropiedadSetPoint,&control0);
+      msj_on_sal_change=NULL;
+      cBoxPri.super.msjs=&mjsCambioTipoSalida;  
     }                          
   } 
 }
- 
+
+void alternaIndicacion(void * c){
+  
+  if(alternar){
+    alternar=FALSE;
+    if(msj_on_sal_change){
+      mjsCambioTipoSalida.deleteMessage(msj_on_sal_change);
+      msj_on_sal_change=NULL;
+      cBoxPri.super.msjs=NULL;
+    }
+    BoxPrincipalControl::MostrarProp((ConstructorPropGetterVisual *)&cPropiedadGetPotenciaInst,&control0);
+  }else{
+    alternar=TRUE;
+    if(!msj_on_sal_change){
+      msj_on_sal_change = mjsCambioTipoSalida.addMessage("Pot ");
+      cBoxPri.super.msjs=&mjsCambioTipoSalida;
+    }
+  }
+} 
