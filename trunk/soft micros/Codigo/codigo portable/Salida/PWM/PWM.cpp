@@ -25,17 +25,6 @@ void PWM::callOnToggleListeners(){
   listeners.executeMethods();
 }
 
-void PWM::setPotencia(unsigned int _potencia) {
-  if(getTipoSalida()==SALIDA_PROPORCIONAL) 
-    potencia = _potencia; 
-  else{
-    if(_potencia)
-      potencia = 1000;
-    else
-      potencia = 0;
-  }  
-}
-
 TPeriod PWM::getPeriodo(){
  return getPeriodoConfiguracion();
 }
@@ -58,10 +47,18 @@ bool PWM::getConectada() {
   
 }
 
-void PWM::Salida_setPotencia(unsigned int potencia) {
-  if(!getConectada() || potencia<0 || potencia>1000)  
+void PWM::setPotencia(unsigned int _potencia) {
+  if(!getConectada() || _potencia<0 || _potencia>1000)  
     return; //error
+  if(getTipoSalida()==SALIDA_PROPORCIONAL) 
+    potencia = _potencia; 
+  else{
+    if(_potencia)
+      potencia = 1000;
+    else
+      potencia = 0;
+  }  
     
-setPotencia(potencia);
+  setPotencia();
   
 }

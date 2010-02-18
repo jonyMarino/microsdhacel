@@ -21,17 +21,25 @@ void PWMHard23::PWMHard23(struct ManejadorMemoria &_manejadorMemoria,const TConf
   #endif
 }    
 
-void PWMHard23::setPotencia(unsigned int potencia) {
+void PWMHard23::setPotencia() {
+  unsigned int potencia = getPotencia();
   if(PWME_PWME3){		 /* PWM?*/    
     setDuty(RefPWM23,potencia);
   }
   else{
     if(potencia==0)
+      #ifdef __MODRR
       clrReg8Bits(PTT, 8);               /* PTT3=0 */
+      #else
+      clrReg8Bits(PTP, 8); 
+      #endif
     else
-      setReg8Bits(PTT, 8);               /* PTT3=1 */ 
+      #ifdef __MODRR
+      setReg8Bits(PTT, 8);               /* PTT3=1 */
+      #else
+      setReg8Bits(PTP, 8);
+      #endif 
   }
-  Salida_setPotencia(potencia);
 }
 
 void PWMHard23::setTipoSalida(TipoSalida tipoSalida){
@@ -71,5 +79,9 @@ unsigned char PWMHard23::setPeriodo(TPeriod period){
 }
 
 bool PWMHard23::getEstadoSalida() {
-  return PTT_PTT3;
+  #ifdef __MODRR
+  return PTT_PTT3;               /* PTT3=0 */
+  #else
+  return PTP_PTP3; 
+  #endif
 }

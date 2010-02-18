@@ -14,40 +14,39 @@
 class PWMManager01_45 {
   private:
     class PWMHard01 : public PWMHard {
-      public:
-      
-      void PWMHard01(struct ManejadorMemoria &_manejadorMemoria,TConfPWM &_conf);
-      
-      unsigned char setPeriodo(TPeriod periodo);
+      public:     
+        void PWMHard01(ManejadorMemoria &_manejadorMemoria,TConfPWM &_conf);
+        
+        unsigned char setPeriodo(TPeriod periodo);
 
-      virtual void setPotencia(unsigned int potencia);
+        virtual TipoSalida getTipoSalida();
 
-      virtual TipoSalida getTipoSalida();
-
-      virtual void setTipoSalida(TipoSalida tipoSalida);
-      
-      virtual bool getEstadoSalida ();
-      
-      
+        virtual void setTipoSalida(TipoSalida tipoSalida);
+        
+        virtual bool getEstadoSalida ();
+      protected:
+        virtual void setPotencia();       
     };
     
     class PWMHard45 : public PWMHard {
       public:
      
-      void PWMHard45(struct ManejadorMemoria &_manejadorMemoria,TConfPWM &_conf);
-      
-      unsigned char setPeriodo(TPeriod periodo);
+        void PWMHard45(ManejadorMemoria &_manejadorMemoria,TConfPWM &_conf);
+        
+        unsigned char setPeriodo(TPeriod periodo);
 
-      virtual void setPotencia(unsigned int potencia);
+        virtual TipoSalida getTipoSalida();
 
-      virtual TipoSalida getTipoSalida();
-
-      virtual void setTipoSalida(TipoSalida tipoSalida);
-      
-      virtual bool getEstadoSalida ();
+        virtual void setTipoSalida(TipoSalida tipoSalida);
+        
+        virtual bool getEstadoSalida ();
+      protected:
+        virtual void setPotencia();      
     
     };
-    
+    static PWMHard01* pwmHard01;
+
+    static PWMHard45* pwmHard45;    
 
   public:
     static TError PWMManager01_45_setPeriodo( PWM * self,TPeriod periodo);
@@ -62,14 +61,9 @@ class PWMManager01_45 {
     
     static void PWM01_actualizarPotencia(uint duty);
     
-    PWMHard* get01();
+    static PWMHard* get01(ManejadorMemoria &_manejadorMemoria,TConfPWM &_conf);
 
-    PWMHard* get45();
-
-    static PWMHard01* pwmHard01;
-
-    static PWMHard45* pwmHard45;
-    
+    static PWMHard* get45(ManejadorMemoria &_manejadorMemoria,TConfPWM &_conf); 
 
 };
 

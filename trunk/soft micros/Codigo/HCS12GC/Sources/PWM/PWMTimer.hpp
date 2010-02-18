@@ -10,9 +10,24 @@
 
 
 class PWMTimer : public PWM {
+  public:
+    
+    PWMTimer(struct ManejadorMemoria & _manejadorMemoria,TConfPWM & _conf, uchar pin_out);
+
+    unsigned char setPeriodo(TPeriod period);
+    
+    
+    
+    virtual void setTipoSalida(TipoSalida tipoSalida);
+
+    virtual  TipoSalida getTipoSalida();
+
+    virtual unsigned int getPotencia();
+    
+    bool getEstadoSalida ();
   protected:
     virtual void pwm_setPotencia(unsigned int _potencia);
-  
+    void setPotencia(); 
   private:
     bool estadoSalida;   /*TRUE salida en 1, FALSE salida en 0*/
     
@@ -26,21 +41,7 @@ class PWMTimer : public PWM {
     
     unsigned int potencia;
   
-  public:
-    
-    PWMTimer(struct ManejadorMemoria & _manejadorMemoria,TConfPWM & _conf, uchar pin_out);
 
-    unsigned char setPeriodo(TPeriod period);
-    
-    void setPotencia(unsigned int potencia); 
-    
-    virtual void setTipoSalida(TipoSalida tipoSalida);
-
-    virtual  TipoSalida getTipoSalida();
-
-    virtual unsigned int getPotencia();
-    
-    bool getEstadoSalida ();
 
     friend void pwm_timer_set_periodo( PWMTimer * pwm,ulong periodo);
 
