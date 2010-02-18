@@ -84,6 +84,10 @@ PCKA2 PCKA1 PCKA0 Value of Clock A
 1     1     1     Bus Clock / 128
 */
 
+PWMManager01_45::PWMHard01* PWMManager01_45::pwmHard01=NULL;
+
+PWMManager01_45::PWMHard45* PWMManager01_45::pwmHard45=NULL; 
+
 void PWMManager01_45::PWMHard01::PWMHard01(struct ManejadorMemoria &_manejadorMemoria,TConfPWM &_conf): PWMHard(_manejadorMemoria,_conf){
   
   CONTROLADOR_PWM_INIT(0,1);
@@ -105,7 +109,8 @@ void PWMManager01_45::PWMHard45::PWMHard45(struct ManejadorMemoria &_manejadorMe
   setReg8Bits(DDRP, 32);
 }
 
-void PWMManager01_45::PWMHard01::setPotencia(unsigned int potencia) {
+void PWMManager01_45::PWMHard01::setPotencia() {
+ unsigned int potencia = getPotencia();
  if(PWME_PWME1){		 /* PWM?*/    
     setDuty(RefPWM01,potencia);
   }
@@ -115,11 +120,11 @@ void PWMManager01_45::PWMHard01::setPotencia(unsigned int potencia) {
     else
       setReg8Bits(PTT, 2);               /* PTT1=1 */ 
   }
-  Salida_setPotencia(potencia);
 }
 
 
-void PWMManager01_45::PWMHard45::setPotencia(unsigned int potencia) {
+void PWMManager01_45::PWMHard45::setPotencia() {
+  unsigned int potencia = getPotencia();
   if(PWME_PWME5){		 /* PWM?*/    
     setDuty(RefPWM45,potencia);
   }
@@ -129,7 +134,6 @@ void PWMManager01_45::PWMHard45::setPotencia(unsigned int potencia) {
     else
       setReg8Bits(PTP, 8);               
   }
-  Salida_setPotencia(potencia);
 }
 
 TipoSalida PWMManager01_45::PWMHard01::getTipoSalida() {
@@ -148,13 +152,17 @@ void PWMManager01_45::PWMHard45::setTipoSalida(TipoSalida tipoSalida) {
   PWME_PWME5 = (tipoSalida==SALIDA_ONOFF)?0:1;
 }
 
-PWMHard* PWMManager01_45::get01() {
-  return pwmHard01;
+PWMHard* PWMManager01_45::get01(ManejadorMemoria &_manejadorMemoria,TConfPWM &_conf) {
+  if( !pwmHard01)
+    pwmHard01 = new PWMHard01(_manejadorMemoria,_conf); 
+  return pwmHard01; 
 
 }
 
-PWMHard* PWMManager01_45::get45() {
-  return pwmHard45;
+PWMHard* PWMManager01_45::get45(ManejadorMemoria &_manejadorMemoria,TConfPWM &_conf) {
+  if( !pwmHard45)
+    pwmHard45 = new PWMHard45(_manejadorMemoria,_conf); 
+  return pwmHard45; 
 }
 
 bool PWMManager01_45::PWMHard01:: getEstadoSalida (){

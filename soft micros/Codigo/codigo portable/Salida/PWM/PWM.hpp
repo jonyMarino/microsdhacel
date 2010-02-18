@@ -32,7 +32,7 @@ class PWM : public IPWM {
   
   protected:
   
-   void Salida_setPotencia(unsigned int potencia);
+   virtual void setPotencia()=0;
    
    unsigned char setPeriodoConfiguracion(TPeriod period);
     

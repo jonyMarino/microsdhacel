@@ -12,7 +12,8 @@ void PWMTimer::PWMTimer(struct ManejadorMemoria &_manejadorMemoria,TConfPWM &_co
  PWM_init(this,pin_out);
 }
 
-void PWMTimer::setPotencia(unsigned int potencia) {
+void PWMTimer::setPotencia() {
+  unsigned int potencia = getPotencia();
   if(pwm_timer_isEnable(pinNum)){/* PID?*/
     PWM_SetRatio16(this,potencia);
   }else{
@@ -24,8 +25,6 @@ void PWMTimer::setPotencia(unsigned int potencia) {
       PWM_SetValue(pinNum);  
     }
   }
-  
-  pwm_setPotencia(potencia);
 }
 
 

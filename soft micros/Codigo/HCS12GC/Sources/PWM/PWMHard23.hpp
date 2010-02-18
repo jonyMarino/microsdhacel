@@ -25,19 +25,16 @@ static const int periodos[]={
 
 class PWMHard23 : public PWMHard {
   public:
-  
-  void PWMHard23(struct ManejadorMemoria &_manejadorMemoria,const TConfPWM &_conf);
-  
-  virtual void setPotencia(unsigned int potencia);
+    void PWMHard23(struct ManejadorMemoria &_manejadorMemoria,const TConfPWM &_conf);
+    
+    virtual void setTipoSalida(TipoSalida tipoSalida);
 
-  virtual void setTipoSalida(TipoSalida tipoSalida);
+    virtual TipoSalida getTipoSalida();
 
-  virtual TipoSalida getTipoSalida();
-
-  virtual unsigned char setPeriodo(TPeriod period);
-  
-  virtual bool getEstadoSalida();
-  
-  
+    virtual unsigned char setPeriodo(TPeriod period);
+    
+    virtual bool getEstadoSalida();
+  protected:
+    virtual void setPotencia(); 
 };
 #endif

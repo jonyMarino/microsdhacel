@@ -142,7 +142,7 @@ uchar nextSetProp (void * obj){
   };
   
   //Potencia
-    const struct ConstructorPropGetterNumerico cPropiedadGetPotencia={
+    const struct ConstructorPropGetterNumerico cPropiedadGetPotenciaInst={
     &propGetterNumericoFactory,getPotencia,"Pot",1
   };
 
@@ -210,7 +210,7 @@ const struct ConstructorBoxPropiedad cBoxModoSalida={
 
 const struct ConstructorBoxPropiedadEntradaCondicional cBoxPotInst ={
    &boxPropiedadEntradaCondicionalFactory,
-   (const struct ConstructorPropGetterVisual*)&cPropiedadGetPotencia,
+   (const struct ConstructorPropGetterVisual*)&cPropiedadGetPotenciaInst,
    getCondicionEntrada
 };
  

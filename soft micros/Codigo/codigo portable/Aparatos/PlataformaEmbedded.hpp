@@ -5,11 +5,13 @@
 
 class PlataformaEmbedded{
   public:
-    PlataformaEmbedded(){}
+    PlataformaEmbedded(){threads=&thread;}
     virtual void mainLoop(void);
     friend void main (void);
+    static ThreadAttachable * threads;
   private:
-    static ThreadAttachable threads;
+    ThreadAttachable thread;
+    //static ThreadAttachable * threads;
     friend void pthread_create(void * _self,void * attr,void*(*pf)(void*),void* args);
 };
 
