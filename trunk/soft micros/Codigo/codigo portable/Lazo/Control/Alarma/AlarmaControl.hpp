@@ -1,4 +1,4 @@
-#ifndef _ALARMA_CONREOL_HPP
+#ifndef _ALARMA_CONTROL_HPP
 #define _ALARMA_CONTROL_HPP
 
 

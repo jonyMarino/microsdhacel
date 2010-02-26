@@ -109,7 +109,7 @@ void PWMManager01_45::PWMHard45::PWMHard45(struct ManejadorMemoria &_manejadorMe
   setReg8Bits(DDRP, 32);
 }
 
-void PWMManager01_45::PWMHard01::setPotencia() {
+void PWMManager01_45::PWMHard01::setPotenciaGuardada() {
  unsigned int potencia = getPotencia();
  if(PWME_PWME1){		 /* PWM?*/    
     setDuty(RefPWM01,potencia);
@@ -123,7 +123,7 @@ void PWMManager01_45::PWMHard01::setPotencia() {
 }
 
 
-void PWMManager01_45::PWMHard45::setPotencia() {
+void PWMManager01_45::PWMHard45::setPotenciaGuardada() {
   unsigned int potencia = getPotencia();
   if(PWME_PWME5){		 /* PWM?*/    
     setDuty(RefPWM45,potencia);

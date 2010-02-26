@@ -21,7 +21,7 @@ void PWMHard23::PWMHard23(struct ManejadorMemoria &_manejadorMemoria,const TConf
   #endif
 }    
 
-void PWMHard23::setPotencia() {
+void PWMHard23::setPotenciaGuardada() {
   unsigned int potencia = getPotencia();
   if(PWME_PWME3){		 /* PWM?*/    
     setDuty(RefPWM23,potencia);

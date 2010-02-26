@@ -5,7 +5,7 @@
 #include <stdtypes.h>
 
 #include "Box.hpp"
-#include "ConstructorPropiedadGetter.hpp"
+#include "Propiedades/ConstructorPropiedadGetter.hpp"
 #include "MessagesOut/MessagesOut.hpp"
 #include "Timer/FlagTimer/FlagTimer.hpp"
 #include "PE/include/PE_Types.h"

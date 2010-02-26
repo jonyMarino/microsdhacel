@@ -17,4 +17,4 @@ Command < attributes CACHESIZE 1000
 bckcolor 50331647
 font 'Courier New' 9 BLACK
 AUTOSIZE on
-ACTIVATE Data:2 Command Procedure Data:1 Source Register Assembly Memory
+ACTIVATE Data:2 Command Procedure Data:1 Source Register Assembly Memory 

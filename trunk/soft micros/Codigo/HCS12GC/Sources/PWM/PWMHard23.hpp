@@ -35,6 +35,6 @@ class PWMHard23 : public PWMHard {
     
     virtual bool getEstadoSalida();
   protected:
-    virtual void setPotencia(); 
+    virtual void setPotenciaGuardada(); 
 };
 #endif

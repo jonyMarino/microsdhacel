@@ -2,7 +2,7 @@
 #define _PROP_GETTER_VISUAL_HPP
 
 #include <stdtypes.h>
-#include "../PropiedadGetter.hpp"
+#include "Propiedades/PropiedadGetter.hpp"
 #include "OOC/ooc/lib_cpp/OutputStream.hpp"
 
 #pragma DATA_SEG GETTERS_VISUAL_DATA                                            

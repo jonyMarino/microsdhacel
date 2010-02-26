@@ -3,8 +3,8 @@
 
 
 #include "Box.hpp"
-#include "PropGetterVisual.hpp"
-#include "ConstructorPropiedadGetter.hpp"
+#include "Propiedades/PropiedadGetterVisual/PropGetterVisual.hpp"
+#include "Propiedades/ConstructorPropiedadGetter.hpp"
 #include "PE/include/PE_Types.h"
 //#include "BoxPropiedadEntradaCondicional.hpp"
 

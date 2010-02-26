@@ -5,11 +5,6 @@
 #include "OOC/util/lib_cpp/Array.h"
 #include "Vista/Frente8SegTeclasYLeds/FrenteCustom.hpp"
 
-typedef struct{
-  byte * addr;
-  byte mask;
-  byte ledNum;
-}LedConfig;
 
 class LedsSalida{
   public:
@@ -20,8 +15,8 @@ class LedsSalida{
     }LedConfig;
 
   
-    LedsSalida(const struct Array& ,FrenteCustom &);
-    
+   LedsSalida(const struct Array& ,FrenteCustom &);
+      
   private:
    FrenteCustom & frente;
    const struct Array& array;

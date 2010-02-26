@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "BoxPropiedad.hpp"
 #include "obtenciondisplay.hpp"
-#include "PropiedadIncrementable.hpp"
+#include "Propiedades/PropiedadIncrementable/PropiedadIncrementable.hpp"
 
 const struct BoxPropiedadFactory boxPropiedadFactory;;
 const struct BoxPropGetterFactory boxPropGetterFactory;
