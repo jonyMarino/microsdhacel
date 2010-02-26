@@ -1,10 +1,13 @@
 #include "Cpu.h"
-#include "Timer.hpp"
+#include "Timer/Timer.hpp"
 #include "WDog1.h"
 #include "timer_interrupt.h"
 #include "FrenteDH.hpp"
 #include "BaseTimers_1ms_40ms.hpp"
+#include "PlataformaEmbedded.hpp"
 
+
+PlataformaEmbedded p;
 
 void main (void){
   
@@ -19,6 +22,7 @@ void main (void){
   //FrenteDH::getInstancia()->setLed(1,2);
   for(;;){
     WDog1_Clear();
+    p.mainLoop();
     /*byte tecla = FrenteDH::getInstancia()->getTecla();
     if(tecla){      
       if(tecla=='u')

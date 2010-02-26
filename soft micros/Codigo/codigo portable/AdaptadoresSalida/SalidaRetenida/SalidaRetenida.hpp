@@ -1,5 +1,5 @@
-#ifndef _SALIDARETENIDA_H
-#define _SALIDARETENIDA_H
+#ifndef _SALIDARETENIDA_HPP
+#define _SALIDARETENIDA_HPP
 
 
 #include "AdaptadorSalida.hpp"

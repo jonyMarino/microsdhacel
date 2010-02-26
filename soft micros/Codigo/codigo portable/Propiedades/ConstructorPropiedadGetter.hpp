@@ -2,7 +2,7 @@
 #define _CONSTRUCTOR_PROPIEDAD_GETTER_HPP
 
 #include "../Standard/Getter.hpp"
-#include "PropiedadGetter.hpp"
+#include "Propiedades/PropiedadGetter.hpp"
 //#include "PropGetterVisualFactory.hpp"
 
 /*

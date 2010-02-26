@@ -25,7 +25,7 @@ class PWMManager01_45 {
         
         virtual bool getEstadoSalida ();
       protected:
-        virtual void setPotencia();       
+        virtual void setPotenciaGuardada();       
     };
     
     class PWMHard45 : public PWMHard {
@@ -41,7 +41,7 @@ class PWMManager01_45 {
         
         virtual bool getEstadoSalida ();
       protected:
-        virtual void setPotencia();      
+        virtual void setPotenciaGuardada();      
     
     };
     static PWMHard01* pwmHard01;

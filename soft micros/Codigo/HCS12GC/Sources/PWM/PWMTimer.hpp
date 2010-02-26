@@ -27,7 +27,7 @@ class PWMTimer : public PWM {
     bool getEstadoSalida ();
   protected:
     virtual void pwm_setPotencia(unsigned int _potencia);
-    void setPotencia(); 
+    void setPotenciaGuardada(); 
   private:
     bool estadoSalida;   /*TRUE salida en 1, FALSE salida en 0*/
     

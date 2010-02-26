@@ -1,7 +1,7 @@
 #ifndef _CHAR_POINTER_HPP
 #define _CHAR_POINTER_HPP
 
-#include "./PE/include/PE_Types.h"
+#include "PE/include/PE_Types.h"
 
 class CharPointer{
   public:

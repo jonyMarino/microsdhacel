@@ -59,6 +59,6 @@ void PWM::setPotencia(unsigned int _potencia) {
       potencia = 0;
   }  
     
-  setPotencia();
+  setPotenciaGuardada();
   
 }

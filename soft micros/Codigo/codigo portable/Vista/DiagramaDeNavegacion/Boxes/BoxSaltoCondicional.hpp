@@ -2,8 +2,8 @@
 #define _BOX_SALTO_CONDICIONAL_HPP
 
 #include "BoxPropiedad.hpp"
-#include "PropiedadIncrementable.hpp"
-#include "ConstructorPropiedadGetter.hpp"
+#include "Propiedades/PropiedadIncrementable/PropiedadIncrementable.hpp"
+#include "Propiedades/ConstructorPropiedadGetter.hpp"
 
 struct ConstructorBoxSaltoCondicional{
   struct ConstructorBox super;

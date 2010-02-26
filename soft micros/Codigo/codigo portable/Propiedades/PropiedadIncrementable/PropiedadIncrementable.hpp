@@ -2,8 +2,8 @@
 #define _PROPIEDAD_INCREMENTABLE_HPP
 
 #include <stdtypes.h>
-#include "PropGetterVisual.hpp"
-#include "PE\include\PE_Types.h"
+#include "Propiedades/PropiedadGetterVisual/PropGetterVisual.hpp"
+#include "PE/include/PE_Types.h"
 
 #pragma DATA_SEG PROP_GETTER_NUMERICO_DATA                                            
 #pragma CODE_SEG PROP_GETTER_NUMERICO_CODE 
