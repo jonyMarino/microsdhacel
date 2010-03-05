@@ -42,7 +42,7 @@ void * CapturadorPT2_Instancia=NULL;
 ** ===================================================================
 */
 void CapturadorPT2_Constructor(void*_self){  
-  struct CapturadorPT2 *_cap= _self;
+  struct CapturadorPT2 *_cap= (struct CapturadorPT2 *)_self;
   CapPT2_Init();   
 }
 /*
@@ -76,7 +76,7 @@ void * CapturadorPT2_getInstancia(void){
 ** ===================================================================
 */
 void CapturadorPT2_Procesar(void * _self){
-  struct CapturadorPT2 *_cap= _self;
+  struct CapturadorPT2 *_cap= (struct CapturadorPT2 *)_self;
   CapPT2_GetCapResult(&_cap->ultimoproceso);  
 }
 
@@ -106,7 +106,7 @@ void  CapturadorPT2_Terminar(void * _self){
 ** ===================================================================
 */
 ulong CapturadorPT2_getMicroSegundos(void * _self){
-  struct CapturadorPT2 *_cap= _self;
+  struct CapturadorPT2 *_cap= (struct CapturadorPT2 *)_self;
   return Capture_getMicroSegundos(&_cap->ultimoproceso);
 }
 /*
@@ -116,7 +116,7 @@ ulong CapturadorPT2_getMicroSegundos(void * _self){
 ** ===================================================================
 */
 uint CapturadorPT2_getPulsos(void * _self){
-  struct CapturadorPT2 *_cap= _self;
+  struct CapturadorPT2 *_cap=(struct CapturadorPT2 *) _self;
   return Capture_getPulsos(&_cap->ultimoproceso);
 }
 

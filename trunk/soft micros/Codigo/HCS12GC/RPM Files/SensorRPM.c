@@ -19,9 +19,13 @@
 #include "display.h"
 #include "WDog1.h"
 #include "SensorRPM.h"
-#include "funciones.h"
+//#include "funciones.h"
+#include "Control.h"
 #include "display.h"
 #include "ManejadorMemoria.h"
+#include "RlxMTimer.h"
+//#include "timer_interrupt.h"
+#include "TimerOld.h"
 
 #pragma CONST_SEG DEFAULT
 
@@ -34,7 +38,7 @@ int SenRpm_getValue(struct SensorRpm * self);
 void SenRpm_AddOnNew(struct SensorRpm * self,void(*method)(void*),void*Obj);
 void SenRpm_Print(struct SensorRpm * self,uchar num_display); 
 int SenRpm_AdaptVal(struct SensorRpm * self,int Value);	 
-int SenRpm_getDecimales(const struct SensorRpm * self);
+int SenRpm_getDecimales(void * self); //const struct SensorRpm
 void SenRpm_procesarCaptura(void * _self);
 void SenRpm_procesar(void* _self);
 int SenRpm_getLimSup(void* self);
@@ -42,8 +46,8 @@ int SenRpm_getLimInf(void* self);
 uint SenRpm_getTiempoMuestreo(void* _self);
 int SenRpm_getDifDecView (void *);
 /************************/
-
-const struct SensorDecLimClass SensorRpm={ 
+ long buffer=0;
+const struct SensorDecLimClass _SensorRpm={ 
   
   CLASS_INITIALIZATION(SensorDecLimClass,SensorRpm,Sensor,SenRpm_DefConstruct,Object_dtor,Object_differ,Object_puto),
   SenRpm_getValue,     // get_Val
@@ -65,6 +69,10 @@ extern struct ManejadorMemoria *const pFlash;
 int SenRpm_getDifDecView (void * _self){
   return 0;
 }
+
+SensorRpm::SensorRpm(){
+  
+}
             
 /*
 ** ===================================================================
@@ -73,17 +81,30 @@ int SenRpm_getDifDecView (void * _self){
 ** ===================================================================
 */
 
-void  SenRpm_Construct(struct SensorRpm * self,struct AdjuntadorAHilo*adj,uint tiempoDeMuestreo,struct Capturador * capturador,const SensorRpmConf * conf,const char * desc){
+void  SenRpm_Construct(struct SensorRpm * self,ThreadAttachable* adj,uint tiempoDeMuestreo,struct Capturador * capturador,const SensorRpmConf * conf,const char * desc){
 //  while(!_AD_isnew(adc)) //Espera a q haya una conversión
 //    WDog1_Clear();
+<<<<<<< .mine
+  
   Sensor_constructor(self);
+=======
+  Sensor_constructor(self);
+>>>>>>> .r143
   _SensorVisual_setDescription(self,desc);
+  //tiempoDeMuestreo=5*tiempoDeMuestreo;
   self->conf=conf; 
   self->capturador=capturador;
   self->bufferFiltro=0;
+ // self->buffer=0;
   Capturador_Comenzar(capturador);
+<<<<<<< .mine
+  newAlloced(&self->timerMuestreo,&RlxMTimer,(ulong)tiempoDeMuestreo,SenRpm_procesarCaptura,self);
+  //AdjuntadorAHilo_adjuntar(adj,SenRpm_procesar,self);
+  adj->adjuntar((struct Method *)self);
+=======
   newAlloced(&self->timerMuestreo,&MethodTimer,(ulong)/*tiempoDeMuestreo*/10000,SenRpm_procesarCaptura,self);
   AdjuntadorAHilo_adjuntar(adj,SenRpm_procesar,self);
+>>>>>>> .r143
   self->onNewVal=NULL;
   self->state= SENSOR_OK;
   self->ContadorUf=0;
@@ -99,7 +120,7 @@ void  SenRpm_Construct(struct SensorRpm * self,struct AdjuntadorAHilo*adj,uint t
 */
 
 void  SenRpm_DefConstruct(struct SensorRpm * self,va_list * args){
-  SenRpm_Construct(self,va_arg(*args,void*),va_arg(*args,uint),va_arg(*args,void*),va_arg(*args,void*),va_arg(*args,char*));  
+  SenRpm_Construct(self,va_arg(*args,ThreadAttachable*),va_arg(*args,uint),va_arg(*args,struct Capturador *),va_arg(*args,const SensorRpmConf *),va_arg(*args,char*));  
 }
 
 /*
@@ -111,7 +132,7 @@ void  SenRpm_DefConstruct(struct SensorRpm * self,va_list * args){
 */
 
 void SenRpm_procesarCaptura(void * _self){
-  struct SensorRpm *_s=_self;
+  struct SensorRpm *_s=(struct SensorRpm *)_self;
   
   Capturador_Procesar(_s->capturador);
   _s->procesar=TRUE;
@@ -125,18 +146,18 @@ void SenRpm_procesarCaptura(void * _self){
 ** ===================================================================
 */
 void SenRpm_procesar(void* _self){
-  struct SensorRpm *_s=_self;
-
-    
-  if(_s->procesar==TRUE){
+  struct SensorRpm *_s=(struct SensorRpm *)_self;
+ 
+ // if(_s->procesar==TRUE){
     int filtro = _s->conf->iFiltro;
-    ulong valProv;
-    float val_f;
-    ulong microseg;
-    uint pulsos;
-    uint mult;
+    ulong valProv=0;
+    float val_f=0;
+    ulong microseg=0;
+    uint pulsos=0;
+    uint mult=0;
     uchar err;
-  
+ 
+   if(_s->procesar==TRUE){
     _s->procesar=FALSE;  
     
     microseg=Capturador_getMicroSegundos(_s->capturador);
@@ -165,11 +186,22 @@ void SenRpm_procesar(void* _self){
       valProv=(ulong)pulsos*mult;
       val_f=valProv/(((float)_s->conf->pulsosPorVuelta)*microseg/100000);
       valProv = val_f;
- 
-      if(valProv<65535){      
-        valProv= filtrarL (valProv,filtro,10,200,& _s->bufferFiltro);
+     
+      if(valProv<65535){     
+        valProv= filtrarL (valProv,filtro,10,200,&buffer);
         Cpu_DisableInt();
-        _s->procVal=valProv;
+        
+        /*
+        if(filtro!=0)
+          _s->procVal=(long)(valProv/filtro);
+        else
+          _s->procVal=(long)valProv;
+          */
+        
+         _s->procVal=(long)valProv; 
+         
+         buffer=valProv;
+        _s->bufferFiltro=valProv;
         _s->state=SENSOR_OK;
         _s->ContadorUf=0;
         Cpu_EnableInt();  
@@ -202,7 +234,8 @@ void SenRpm_procesar(void* _self){
     Sensor_notificarListeners(_self);
     //Fin Eventos
 
-  }
+  
+ }
 }
 
 
@@ -311,7 +344,8 @@ byte SenRpm_setDecimales(struct SensorRpm * self, int val){
 **    Description :   Obtiene la cantidad de decimales
 ** ===================================================================
 */
-int SenRpm_getDecimales(const struct SensorRpm * self){
+int SenRpm_getDecimales(void * _self){
+  const struct SensorRpm * self=(const struct SensorRpm *)_self;
   return _MANEJADOR_MEMORIA_GET_BYTE(pFlash,&self->conf->iDecimales);
 }
 
@@ -366,7 +400,7 @@ byte SenRpm_setFiltro(struct SensorRpm * self,int val){
 **    Description :   Lim inf del valor del filtro
 ** ===================================================================
 */
-int SenRpm_getLimInfFiltro(void){
+int SenRpm_getLimInfFiltro(void*){
   return 0;
 }
 
@@ -377,7 +411,7 @@ int SenRpm_getLimInfFiltro(void){
 **    Description :   Lim sup del valor del filtro
 ** ===================================================================
 */
-int SenRpm_getLimSupFiltro(void){
+int SenRpm_getLimSupFiltro(void*){
   return MAX_BYTE;
 }
 
@@ -399,7 +433,7 @@ int SenRpm_getPulsosPorVuelta(const struct SensorRpm * self){
 ** ===================================================================
 */
 byte SenRpm_setPulsosPorVuelta(struct SensorRpm * self,int val){
-  return _MANEJADOR_MEMORIA_SET_WORD(pFlash,&self->conf->pulsosPorVuelta,val);
+  return _MANEJADOR_MEMORIA_SET_WORD(pFlash,(uint*)&self->conf->pulsosPorVuelta,val);
 }
 
 /*
@@ -409,7 +443,7 @@ byte SenRpm_setPulsosPorVuelta(struct SensorRpm * self,int val){
 **    Description :   Lim inf del valor
 ** ===================================================================
 */
-int SenRpm_getLimInfPulsosPorVuelta(void){
+int SenRpm_getLimInfPulsosPorVuelta(void*){
   return 1;
 }
 
@@ -422,7 +456,7 @@ int SenRpm_getLimInfPulsosPorVuelta(void){
 */
 
 int SenRpm_getLimSup(void* _self){
-  struct SensorRpm *_s=_self;
+  struct SensorRpm *_s=(struct SensorRpm *)_self;
   return 9999;
 }
 /*
@@ -433,7 +467,7 @@ int SenRpm_getLimSup(void* _self){
 ** ===================================================================
 */
 int SenRpm_getLimInf(void* _self){
-  struct SensorRpm *_s=_self;
+  struct SensorRpm *_s=(struct SensorRpm *)_self;
   return 0;
 }
 
@@ -444,7 +478,7 @@ int SenRpm_getLimInf(void* _self){
 ** ===================================================================
 */
 uint SenRpm_getTiempoMuestreo(void* _self){
-  struct SensorRpm *_s=_self;
+  struct SensorRpm *_s=(struct SensorRpm *)_self;
   return Timer_getTime(&_s->timerMuestreo);
 }
 
