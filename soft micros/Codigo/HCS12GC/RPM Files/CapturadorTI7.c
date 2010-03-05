@@ -38,7 +38,7 @@ void * CapturadorTI7_Instancia=NULL;
 ** ===================================================================
 */
 void CapturadorTI7_Constructor(void*_self){  
-  struct CapturadorTI7 *_cap= _self;
+  struct CapturadorTI7 *_cap= (struct CapturadorTI7 *)_self;
   Cap1_Init();   
 }
 /*
@@ -72,7 +72,7 @@ void * CapturadorTI7_getInstancia(void){
 ** ===================================================================
 */
 void CapturadorTI7_Procesar(void * _self){
-  struct CapturadorTI7 *_cap= _self;
+  struct CapturadorTI7 *_cap=(struct CapturadorTI7 *) _self;
   Cap1_GetCapResult(&_cap->ultimoproceso);  
 }
 
@@ -102,7 +102,7 @@ void  CapturadorTI7_Terminar(void * _self){
 ** ===================================================================
 */
 ulong CapturadorTI7_getMicroSegundos(void * _self){
-  struct CapturadorTI7 *_cap= _self;
+  struct CapturadorTI7 *_cap= (struct CapturadorTI7 *)_self;
   return Capture_getMicroSegundos(&_cap->ultimoproceso);
 }
 /*
@@ -112,7 +112,7 @@ ulong CapturadorTI7_getMicroSegundos(void * _self){
 ** ===================================================================
 */
 uint CapturadorTI7_getPulsos(void * _self){
-  struct CapturadorTI7 *_cap= _self;
+  struct CapturadorTI7 *_cap= (struct CapturadorTI7 *)_self;
   return Capture_getPulsos(&_cap->ultimoproceso);
 }
 

@@ -39,7 +39,7 @@ void * CapturadorSimulado_Instancia=NULL;
 ** ===================================================================
 */
 void CapturadorSimulado_Constructor(void*_self){  
-  struct CapturadorSimulado *_cap= _self;   
+  struct CapturadorSimulado *_cap= (struct CapturadorSimulado *)_self;   
 }
 /*
 ** ===================================================================
@@ -72,7 +72,7 @@ void * CapturadorSimulado_getInstancia(void){
 ** ===================================================================
 */
 void CapturadorSimulado_Procesar(void * _self){
-  struct CapturadorSimulado *_cap= _self;
+  struct CapturadorSimulado *_cap= (struct CapturadorSimulado *)_self;
  
 }
 
@@ -102,7 +102,7 @@ void  CapturadorSimulado_Terminar(void * _self){
 ** ===================================================================
 */
 ulong CapturadorSimulado_getMicroSegundos(void * _self){
-  struct CapturadorSimulado *_cap= _self;
+  struct CapturadorSimulado *_cap=(struct CapturadorSimulado *) _self;
   return _cap->microsegundos;
 }
 /*
@@ -112,7 +112,7 @@ ulong CapturadorSimulado_getMicroSegundos(void * _self){
 ** ===================================================================
 */
 uint CapturadorSimulado_getPulsos(void * _self){
-  struct CapturadorSimulado *_cap= _self;
+  struct CapturadorSimulado *_cap= (struct CapturadorSimulado *)_self;
   return _cap->pulsos;
 }
 
@@ -123,7 +123,7 @@ uint CapturadorSimulado_getPulsos(void * _self){
 ** ===================================================================
 */
 void CapturadorSimulado_setMicroSegundos(void * _self,ulong val){
-  struct CapturadorSimulado *_cap= _self;
+  struct CapturadorSimulado *_cap= (struct CapturadorSimulado *)_self;
   _cap->microsegundos=val;
 }
 
@@ -134,7 +134,7 @@ void CapturadorSimulado_setMicroSegundos(void * _self,ulong val){
 ** ===================================================================
 */
 void CapturadorSimulado_setPulsos(void * _self,uint val){
-  struct CapturadorSimulado *_cap= _self;
+  struct CapturadorSimulado *_cap= (struct CapturadorSimulado *)_self;
   _cap->pulsos=val;
 }
 

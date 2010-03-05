@@ -6,16 +6,17 @@
 #include "Errores.h"
 #include "Sensor.h" 
 #include "sensores.h"
-#include "MethodContainer.h"
+#include "MethodContainer.hpp"
 #include "Capturador.h"
 #include "MethodTimer.h"
-#include "adjuntador_a_hilo.h"
+//#include "adjuntador_a_hilo.h"
+#include "ThreadAttachable.hpp"
 #include "FshTypeSizes.h"
-
+#include "RlxMTimer.h"
 
 #pragma CONST_SEG DEFAULT
 
-extern const struct SensorDecLimClass SensorRpm;
+extern const struct SensorDecLimClass _SensorRpm;
 
 
 
@@ -26,22 +27,29 @@ typedef struct {
 }SensorRpmConf;
 
 #define DEFAULT_SENSOR_RPM_CONF {	 \
-  2,															 \
-  2,															 \
-  800															 \
+  0,															 \
+  0,															 \
+  1															 \
 }																	 
 
 
 /********Clase*********************/
 struct SensorRpm{
+<<<<<<< .mine
+  SensorRpm();
   const struct SensorVisual base;			// clase base
+=======
+  const struct SensorVisual base;			// clase base
+>>>>>>> .r143
   volatile const SensorRpmConf * conf;		// Variables de configuración en Rom
   uint procVal;  											// Valor Leido y procesado del sensor
   long bufferFiltro;                     // Privado: acumulacion del filtro  
+ // long buffer;
   TSensorState state;									// Estado del sensor
   struct MethodContainer * onNewVal;
   struct Capturador * capturador;
-  struct MethodTimer timerMuestreo; 
+  //struct MethodTimer timerMuestreo;
+  struct RlxMTimer timerMuestreo; 
   bool procesar;
   byte ContadorUf; //contador de errores para saber cuando poner UF
 };

@@ -15,7 +15,7 @@
 
 #include "Capturador.h"
 
-const struct CapturadorClass Capturador;
+//const struct CapturadorClass Capturador;
 /*
 ** ===================================================================
 **     Method      :  Capturador_Procesar
@@ -24,7 +24,7 @@ const struct CapturadorClass Capturador;
 ** ===================================================================
 */
 void Capturador_Procesar(void* _self){
-  struct CapturadorClass ** vTable= _self;
+  struct CapturadorClass ** vTable= (struct CapturadorClass ** )_self;
   
   (**vTable).Procesar(_self);    
 }
@@ -36,7 +36,7 @@ void Capturador_Procesar(void* _self){
 ** ===================================================================
 */
 void Capturador_Comenzar(void* _self){
-  struct CapturadorClass ** vTable= _self;
+  struct CapturadorClass ** vTable=(struct CapturadorClass ** ) _self;
   
   (**vTable).Comenzar(_self);    
 }
@@ -48,7 +48,7 @@ void Capturador_Comenzar(void* _self){
 ** ===================================================================
 */
 void Capturador_Terminar(void* _self){
-  struct CapturadorClass ** vTable= _self;
+  struct CapturadorClass ** vTable=(struct CapturadorClass ** ) _self;
   
   (**vTable).Terminar(_self);    
 }
@@ -60,7 +60,7 @@ void Capturador_Terminar(void* _self){
 ** ===================================================================
 */
 ulong Capturador_getMicroSegundos(void * _self){
-  struct CapturadorClass ** vTable= _self;
+  struct CapturadorClass ** vTable= (struct CapturadorClass ** )_self;
   
   return (**vTable).getMicroSegundos(_self);
   
@@ -73,7 +73,7 @@ ulong Capturador_getMicroSegundos(void * _self){
 ** ===================================================================
 */
 uint Capturador_getPulsos(void * _self){
-  struct CapturadorClass ** vTable= _self;
+  struct CapturadorClass ** vTable= (struct CapturadorClass ** )_self;
   
   return (**vTable).getPulsos(_self);
 }
