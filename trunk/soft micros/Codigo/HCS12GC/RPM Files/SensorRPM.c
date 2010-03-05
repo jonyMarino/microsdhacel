@@ -97,14 +97,10 @@ void  SenRpm_Construct(struct SensorRpm * self,ThreadAttachable* adj,uint tiempo
   self->bufferFiltro=0;
  // self->buffer=0;
   Capturador_Comenzar(capturador);
-<<<<<<< .mine
   newAlloced(&self->timerMuestreo,&RlxMTimer,(ulong)tiempoDeMuestreo,SenRpm_procesarCaptura,self);
   //AdjuntadorAHilo_adjuntar(adj,SenRpm_procesar,self);
-  adj->adjuntar((struct Method *)self);
-=======
-  newAlloced(&self->timerMuestreo,&MethodTimer,(ulong)/*tiempoDeMuestreo*/10000,SenRpm_procesarCaptura,self);
-  AdjuntadorAHilo_adjuntar(adj,SenRpm_procesar,self);
->>>>>>> .r143
+  adj->adjuntar((struct Method *)SenRpm_procesar);
+
   self->onNewVal=NULL;
   self->state= SENSOR_OK;
   self->ContadorUf=0;
