@@ -18,7 +18,7 @@ diagrams
     592 444 100 4 0 0
 end
 show_stereotypes
-selected class_ref 132098 // ValorControlConf
+selected deploymentview_ref 134531 // Sensores
 open
   classview_ref 128002 // Alarmas
   classview_ref 129154 // Salida
@@ -26,5 +26,8 @@ open
   class_ref 128332 // TConfSensor
   deploymentview_ref 131714 // Alarmas
   deploymentview_ref 130434 // Salida
+  deploymentview_ref 132866 // Comunicacion
+  deploymentview_ref 128003 // System
+  deploymentview_ref 134531 // Sensores
 end
 end
