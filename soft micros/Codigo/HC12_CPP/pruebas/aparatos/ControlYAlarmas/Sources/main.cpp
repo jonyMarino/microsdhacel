@@ -259,7 +259,7 @@ class ConfRetransmisionRam:public ConfiguracionRetransmision{
 }confRetransmision;
                               
                               
-CoordinadorLazosAlCntrRet alarma(confCoordinador,confAlarma,confValorControl,confAdaptadorSalida,confRetransmision,control0); 
+//CoordinadorLazosAlCntrRet alarma(confCoordinador,confAlarma,confValorControl,confAdaptadorSalida,confRetransmision,control0); 
 
 void main(void) {
   DiagramaNavegacion d(&opList,&accessList,FrenteDH::getInstancia());
