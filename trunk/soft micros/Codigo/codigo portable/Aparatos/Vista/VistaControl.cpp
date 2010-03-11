@@ -1,4 +1,4 @@
-/*  MODULE: SnsHmi.c (Sensores Human Machine interface)*/
+
 #include "PropGetterVisual.hpp"
 #include "PropiedadNumerica.hpp"
 #include "PropNumLFPV.hpp"
