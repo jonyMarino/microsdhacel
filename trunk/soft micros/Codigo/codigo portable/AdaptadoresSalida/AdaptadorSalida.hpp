@@ -15,12 +15,14 @@ class AdaptadorSalida {
 
     ISalida& getSalida();
     AdaptadorSalidaConfiguracion& getConfiguracion();
+    int getHisteresis();
+    void setHisteresis(int histeresis);
+    int getTipoSalida();
+    void setTipoSalida(TipoSalida tipoSalida);
+  
   protected:
     virtual int calcularPotencia(int valorControl)=0;
-    int getHisteresis();
-    //void setHisteresis(int histeresis);
-    int getTipoSalida();
-    //void setTipoSalida(TipoSalida tipoSalida);
+    
   private:
     ISalida& salida;
     AdaptadorSalidaConfiguracion& configuracion;

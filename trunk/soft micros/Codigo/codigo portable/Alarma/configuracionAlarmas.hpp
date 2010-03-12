@@ -10,9 +10,9 @@ class ConfiguracionAlarmas: public ConfiguracionAlarmaControl{
         typedef struct {
            TipoAdaptadorSalida tipoAdapSal;
            TipoControl tipoCrl;
-          }AlarmaConf;
+          }AlarmConf;
       
-         ConfiguracionAlarma( AlarmaConf &_conf_, struct ManejadorMemoria & _manejadorMemoria);
+         ConfiguracionAlarmas( AlarmConf &_conf_, struct ManejadorMemoria & _manejadorMemoria);
          TipoAdaptadorSalida getAdaptadorSalida();
          void setAdaptadorSalida(TipoAdaptadorSalida);
          TipoControl getTipoControl();
@@ -22,7 +22,7 @@ class ConfiguracionAlarmas: public ConfiguracionAlarmaControl{
        
           ManejadorMemoria &manejadorMemoria;
 
-          AlarmaConf &configuracion;  
+          AlarmConf &configuracion;  
     };    
 
 

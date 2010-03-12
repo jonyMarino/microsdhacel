@@ -31,3 +31,19 @@ void Retransmision::onNuevoValorSensor(){
    
    pwm.setPotencia(duty);
 }
+
+int Retransmision::getLimiteInferior(){
+  return configuracion.getLimiteInferior();
+}
+
+int Retransmision::getLimiteSuperior(){
+   return configuracion.getLimiteSuperior();
+}
+
+void Retransmision::setLimiteInferior(int val){
+    configuracion.setLimiteInferior(val);
+}
+
+void Retransmision::setLimiteSuperior(int val){
+    configuracion.setLimiteSuperior(val);
+}
