@@ -58,6 +58,15 @@
     ((ValorControl*)conf)->METODO(valor); \
   }           
 
+#define ADAPTAR_FUNCION_LAZO_ALARMAS_GET(NOMBRE,METODO)\
+    int NOMBRE(void*conf){           \
+    return ((CoordinadorLazosAlCntrRet*)conf)->METODO(); \
+  }
+  
+#define ADAPTAR_FUNCION_LAZO_ALARMAS_SET(NOMBRE,METODO)      \
+  void NOMBRE(void*conf,int valor){           \
+    ((CoordinadorLazosAlCntrRet*)conf)->METODO(valor); \
+  }         
 
 uchar getDecimalesAlarma(void*alarma){           
   Sensor * s= &((ValorControl*)alarma)->getSensor();
@@ -110,6 +119,26 @@ uchar getDecimalesAlarma(void*alarma){
   const struct ConstructorPropiedadTextual cPropiedadTipoCtrlAlarma={
     &propiedadTextualFactory,getTipoControl,"AL",setTipoControl,ms_getText_b,3
   };
+  
+  //Funcion de alarma
+  const char * const funcAlarma[2]={
+      "ALm",
+      "rEt",											
+  };
+
+
+  const char * ms_getText_f(byte modo){
+    return funcAlarma[modo];
+  }   
+
+ 
+  ADAPTAR_FUNCION_LAZO_ALARMAS_GET(getLazo,getLazo)
+  ADAPTAR_FUNCION_LAZO_ALARMAS_SET(setLazo,setLazo)
+
+  const struct ConstructorPropiedadTextual cPropiedadTipoLazo={
+    &propiedadTextualFactory,getLazo,"FA",setLazo,ms_getText_f,2
+  };
+  
   
   //retransmision
  //limite inferior
@@ -189,6 +218,10 @@ const struct ConstructorBoxLineal cBoxesRetransmision={
   		  NULL						 //Proximo box	
 };
 
+const struct ConstructorBoxPropiedad cBoxesTipoLazo={
+      &boxPropiedadFactory,	
+			(const struct ConstructorPropGetterVisual*)&cPropiedadTipoLazo
+}; 
 
 
 const struct ConstructorBoxPropiedad cBoxesHistAlarma={
