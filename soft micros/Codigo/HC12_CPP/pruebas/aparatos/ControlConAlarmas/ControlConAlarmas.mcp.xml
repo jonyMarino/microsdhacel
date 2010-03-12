@@ -2393,6 +2393,97 @@
                     <FILEKIND>Text</FILEKIND>
                     <FILEFLAGS>Debug</FILEFLAGS>
                 </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>configuracionAlarmas.cpp</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS>Debug</FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>configuracionAlarmas.hpp</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS></FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>ConfiguracionRetransmision.Cpp</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS>Debug</FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>ConfiguracionRetransmision.hpp</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS></FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>ConfiguracionAdapSalida.cpp</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS>Debug</FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>ConfiguracionAdapSalida.hpp</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS></FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>configuracionLazoAlarmas.cpp</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS>Debug</FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>configuracionLazoAlarmas.hpp</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS></FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>configuracionValorControl.hpp</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS></FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>configuracionValorControl.cpp</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS>Debug</FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>VistaAlarmas.hpp</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS></FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>SalidaConPolaridad.cpp</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS>Debug</FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>DecoradorSalida.cpp</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS>Debug</FILEFLAGS>
+                </FILE>
             </FILELIST>
             <LINKORDER>
                 <FILEREF>
@@ -3060,6 +3151,71 @@
                     <PATH>VistaAlarmas.cpp</PATH>
                     <PATHFORMAT>Windows</PATHFORMAT>
                 </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>configuracionAlarmas.cpp</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>configuracionAlarmas.hpp</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>ConfiguracionRetransmision.Cpp</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>ConfiguracionRetransmision.hpp</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>ConfiguracionAdapSalida.cpp</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>ConfiguracionAdapSalida.hpp</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>configuracionLazoAlarmas.cpp</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>configuracionLazoAlarmas.hpp</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>configuracionValorControl.hpp</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>configuracionValorControl.cpp</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>VistaAlarmas.hpp</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>SalidaConPolaridad.cpp</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>DecoradorSalida.cpp</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
             </LINKORDER>
         </TARGET>
     </TARGETLIST>
@@ -3413,6 +3569,30 @@
                     <PATH>CoordinadorLazosAlCntrRet.hpp</PATH>
                     <PATHFORMAT>Windows</PATHFORMAT>
                 </FILEREF>
+                <FILEREF>
+                    <TARGETNAME>Standard</TARGETNAME>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>configuracionAlarmas.cpp</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <TARGETNAME>Standard</TARGETNAME>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>configuracionAlarmas.hpp</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <TARGETNAME>Standard</TARGETNAME>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>configuracionLazoAlarmas.cpp</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <TARGETNAME>Standard</TARGETNAME>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>configuracionLazoAlarmas.hpp</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
             </GROUP>
             <FILEREF>
                 <TARGETNAME>Standard</TARGETNAME>
@@ -3494,6 +3674,18 @@
                         <PATH>Retransmision.hpp</PATH>
                         <PATHFORMAT>Windows</PATHFORMAT>
                     </FILEREF>
+                    <FILEREF>
+                        <TARGETNAME>Standard</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>ConfiguracionRetransmision.Cpp</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                    <FILEREF>
+                        <TARGETNAME>Standard</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>ConfiguracionRetransmision.hpp</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
                 </GROUP>
                 <GROUP><NAME>Control</NAME>
                     <GROUP><NAME>Adaptadores Salida</NAME>
@@ -3569,6 +3761,30 @@
                             <PATH>SalidaRetenidaBajo.cpp</PATH>
                             <PATHFORMAT>Windows</PATHFORMAT>
                         </FILEREF>
+                        <FILEREF>
+                            <TARGETNAME>Standard</TARGETNAME>
+                            <PATHTYPE>Name</PATHTYPE>
+                            <PATH>ConfiguracionAdapSalida.cpp</PATH>
+                            <PATHFORMAT>Windows</PATHFORMAT>
+                        </FILEREF>
+                        <FILEREF>
+                            <TARGETNAME>Standard</TARGETNAME>
+                            <PATHTYPE>Name</PATHTYPE>
+                            <PATH>ConfiguracionAdapSalida.hpp</PATH>
+                            <PATHFORMAT>Windows</PATHFORMAT>
+                        </FILEREF>
+                        <FILEREF>
+                            <TARGETNAME>Standard</TARGETNAME>
+                            <PATHTYPE>Name</PATHTYPE>
+                            <PATH>SalidaConPolaridad.cpp</PATH>
+                            <PATHFORMAT>Windows</PATHFORMAT>
+                        </FILEREF>
+                        <FILEREF>
+                            <TARGETNAME>Standard</TARGETNAME>
+                            <PATHTYPE>Name</PATHTYPE>
+                            <PATH>DecoradorSalida.cpp</PATH>
+                            <PATHFORMAT>Windows</PATHFORMAT>
+                        </FILEREF>
                     </GROUP>
                     <GROUP><NAME>ValorControl</NAME>
                         <FILEREF>
@@ -3629,6 +3845,18 @@
                             <TARGETNAME>Standard</TARGETNAME>
                             <PATHTYPE>Name</PATHTYPE>
                             <PATH>ValorControlProporcionalInvertido.hpp</PATH>
+                            <PATHFORMAT>Windows</PATHFORMAT>
+                        </FILEREF>
+                        <FILEREF>
+                            <TARGETNAME>Standard</TARGETNAME>
+                            <PATHTYPE>Name</PATHTYPE>
+                            <PATH>configuracionValorControl.hpp</PATH>
+                            <PATHFORMAT>Windows</PATHFORMAT>
+                        </FILEREF>
+                        <FILEREF>
+                            <TARGETNAME>Standard</TARGETNAME>
+                            <PATHTYPE>Name</PATHTYPE>
+                            <PATH>configuracionValorControl.cpp</PATH>
                             <PATHFORMAT>Windows</PATHFORMAT>
                         </FILEREF>
                     </GROUP>
@@ -3897,6 +4125,12 @@
                     <TARGETNAME>Standard</TARGETNAME>
                     <PATHTYPE>Name</PATHTYPE>
                     <PATH>VistaAlarmas.cpp</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <TARGETNAME>Standard</TARGETNAME>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>VistaAlarmas.hpp</PATH>
                     <PATHFORMAT>Windows</PATHFORMAT>
                 </FILEREF>
             </GROUP>
