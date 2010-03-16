@@ -1,6 +1,5 @@
 #include "ValorControl.hpp"
 
-
 ValorControl::ValorControl(ConfiguracionValorControl& _configuracion,Sensor&_sensor):configuracion(_configuracion),sensor(_sensor){
 
 }
@@ -10,7 +9,7 @@ int ValorControl::getValorControlador(){
 }
 
 void ValorControl::setValorControlador(int val){
-   configuracion.setValorControlador(val);
+  configuracion.setValorControlador(val);
 }
 
 Sensor& ValorControl::getSensor(){

@@ -24,7 +24,7 @@ class CoordinadorLazosAlCntrRet{
                               AdaptadorSalidaConfiguracion& confAdaptadorSalida,
                               ConfiguracionRetransmision& confRetransmision,
                               ControlPID& control,
-                              IPWM&pwm);
+                              IPWM&_pwm);
                               
     TipoAdaptadorSalida getAdaptadorSalida();
     void setAdaptadorSalida(TipoAdaptadorSalida adaptSalida);
@@ -60,7 +60,7 @@ class CoordinadorLazosAlCntrRet{
     AdaptadorSalidaConfiguracion& confAdaptadorSalida;
     ConfiguracionRetransmision& confRetransmision;
     ControlPID& control;
-    void crearLazo(TipoLazo tipo,IPWM&pwm);
+    void crearLazo(TipoLazo tipo,IPWM&pwm_);
 };
 
 #endif
