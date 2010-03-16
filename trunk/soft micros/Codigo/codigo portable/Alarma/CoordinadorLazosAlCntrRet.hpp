@@ -25,11 +25,8 @@ class CoordinadorLazosAlCntrRet{
                               ConfiguracionRetransmision& confRetransmision,
                               ControlPID& control,
                               IPWM&_pwm);
-                              
-    TipoAdaptadorSalida getAdaptadorSalida();
-    void setAdaptadorSalida(TipoAdaptadorSalida adaptSalida);
-    TipoControl  getTipoControl();
-    void setTipoControl(TipoControl tipoControl); 
+    Retransmision * getRetransmision();  //si no se encuentra en modo RETRANSMISION devuelve NULL
+    AlarmaControl * getAlarmaControl();  //si no se encuentra en modo ALARMA devuelve NULL
     TipoLazo getLazo();
     void setLazo(TipoLazo);
 

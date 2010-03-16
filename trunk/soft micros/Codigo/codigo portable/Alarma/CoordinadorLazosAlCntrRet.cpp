@@ -60,34 +60,15 @@ void CoordinadorLazosAlCntrRet::setLazo(TipoLazo tipo){
   crearLazo(tipo,pwm); 
 }
 
-TipoAdaptadorSalida  CoordinadorLazosAlCntrRet::getAdaptadorSalida(){
-  if( getLazo()==ALARMA)
-    return ((AlarmaControl*)lazo)->getAdaptadorSalida();    
-  else
-    return confAlarma.getAdaptadorSalida();
-  
+Retransmision * CoordinadorLazosAlCntrRet::getRetransmision(){
+  //si no se encuentra en modo RETRANSMISION devuelve NULL
+  if(getLazo()!=RETRANSMISION)
+    return NULL;
+  return (Retransmision *)lazo;
 }
-
-void CoordinadorLazosAlCntrRet::setAdaptadorSalida(TipoAdaptadorSalida adaptSalida){
-  if( getLazo()==ALARMA )
-    ((AlarmaControl*)lazo)->setAdaptadorSalida(adaptSalida);    
-  else
-    confAlarma.setAdaptadorSalida(adaptSalida);
+AlarmaControl * CoordinadorLazosAlCntrRet::getAlarmaControl(){
+  //si no se encuentra en modo ALARMA devuelve NULL
+  if(getLazo()!=ALARMA)
+    return NULL;
+  return (AlarmaControl *)lazo;
 }
-
-TipoControl  CoordinadorLazosAlCntrRet::getTipoControl(){
-  if( getLazo()==ALARMA)
-    return ((AlarmaControl*)lazo)->getTipoControl();    
-  else
-    return confAlarma.getTipoControl();
-}
-
-void CoordinadorLazosAlCntrRet::setTipoControl(TipoControl tipoControl){
-  if( getLazo()==ALARMA )
-    ((AlarmaControl*)lazo)->setTipoControl(tipoControl);    
-  else
-    confAlarma.setTipoControl(tipoControl);
-}
-    
-    
-    
