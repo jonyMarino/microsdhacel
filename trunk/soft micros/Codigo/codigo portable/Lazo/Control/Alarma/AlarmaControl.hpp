@@ -55,14 +55,14 @@ class AlarmaControl:public LazoControl{
       byte  relativo[sizeof(ValorControlRelativo)];  
       byte  propInv[sizeof(ValorControlProporcionalInvertido)]; 
       byte  banda[sizeof(ValorControlBanda)]; 
-    }tipoControl;
+    }valorControlPull;
        
     union{
       byte salidaBloqueada[sizeof(SalidaBloqueada)];
       byte salidaBanda[sizeof(SalidaBanda)];
       byte salidaRetenida[sizeof(SalidaRetenida)];
       byte salidaRetenidaBajo[sizeof(SalidaRetenidaBajo)]; 
-    }adaptadorSalida;
+    }adaptadorSalidaPull;
     
     SalidaConPolaridad salidaConPolaridad;
     

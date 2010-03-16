@@ -28,20 +28,20 @@ CoordinadorLazosAlCntrRet::CoordinadorLazosAlCntrRet( ConfiguracionCoordinadorLa
                               AdaptadorSalidaConfiguracion& _confAdaptadorSalida,
                               ConfiguracionRetransmision& _confRetransmision,
                               ControlPID& _control,
-                              IPWM&pwm):configuracion(_configuracion),confAlarma(_confAlarma),confValorControl(_confValorControl),confAdaptadorSalida(_confAdaptadorSalida),confRetransmision(_confRetransmision), control(_control){
+                              IPWM&_pwm):configuracion(_configuracion),confAlarma(_confAlarma),confValorControl(_confValorControl),confAdaptadorSalida(_confAdaptadorSalida),confRetransmision(_confRetransmision), control(_control){
 
-  crearLazo(getLazo(),pwm);
+  crearLazo(getLazo(),_pwm);
 }
 
-void CoordinadorLazosAlCntrRet::crearLazo(TipoLazo tipo,IPWM&pwm){  
+void CoordinadorLazosAlCntrRet::crearLazo(TipoLazo tipo,IPWM&pwm_){  
 
   switch(tipo){
     case RETRANSMISION:
-      lazo = new((byte*)&poolLazo) RetransmisionOptMem(control.getSensor(),pwm,confRetransmision);        
+      lazo = new((byte*)&poolLazo) RetransmisionOptMem(control.getSensor(),pwm_,confRetransmision);        
     break;
     case ALARMA:
     default:
-      lazo = new((byte*)&poolLazo) AlarmaOptMem(confAlarma,confValorControl,confAdaptadorSalida,control,pwm);  
+      lazo = new((byte*)&poolLazo) AlarmaOptMem(confAlarma,confValorControl,confAdaptadorSalida,control,pwm_);  
     break;
   }
 

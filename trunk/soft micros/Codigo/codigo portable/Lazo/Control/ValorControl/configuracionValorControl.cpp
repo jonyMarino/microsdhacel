@@ -1,11 +1,11 @@
 #include "configuracionValorControl.hpp"
 
-ConfiguracionValorControlado::ConfiguracionValorControlado( ValorControlConf &_conf_, struct ManejadorMemoria & _manejadorMemoria):configuracion(_conf_),manejadorMemoria(_manejadorMemoria){}
+ConfiguracionValorControlado::ConfiguracionValorControlado( ValorControlConf &_conf_, struct ManejadorMemoria & _manejadorMemoria):_configuracion(_conf_),manejadorMemoria(_manejadorMemoria){}
 
 int ConfiguracionValorControlado::getValorControlador(){
-  return configuracion.valAControlar;
+  return _configuracion.valAControlar;
 }
 
 void ConfiguracionValorControlado::setValorControlador(int val){
-  manejadorMemoria.setWord((unsigned int * const)&configuracion.valAControlar,val);
+  manejadorMemoria.setWord((unsigned int * const)&_configuracion.valAControlar,val);
 }
