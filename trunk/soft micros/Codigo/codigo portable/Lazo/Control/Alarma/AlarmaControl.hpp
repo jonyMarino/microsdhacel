@@ -29,8 +29,8 @@ typedef enum{
     
 class ConfiguracionAlarmaControl{
   public:
-    virtual TipoAdaptadorSalida getAdaptadorSalida()=0;
-    virtual void setAdaptadorSalida(TipoAdaptadorSalida)=0;
+    virtual TipoAdaptadorSalida getAdaptadorSalidaAlarm()=0;
+    virtual void setAdaptadorSalidaAlarm(TipoAdaptadorSalida)=0;
     virtual TipoControl getTipoControl()=0;
     virtual void setTipoControl(TipoControl)=0;
 };
@@ -38,8 +38,8 @@ class ConfiguracionAlarmaControl{
 class AlarmaControl:public LazoControl{
   public:
     AlarmaControl(ConfiguracionAlarmaControl& configuracion,ConfiguracionValorControl& confValorControl,AdaptadorSalidaConfiguracion& confAdaptadorSalida,ControlPID& control,ISalida&salida);
-    TipoAdaptadorSalida  getAdaptadorSalida();
-    void setAdaptadorSalida(TipoAdaptadorSalida adaptSalida);
+    TipoAdaptadorSalida  getAdaptadorSalidaAlarm();
+    void setAdaptadorSalidaAlarm(TipoAdaptadorSalida adaptSalida);
     TipoControl  getTipoControl();
     void setTipoControl(TipoControl tipoControl);    
   private:

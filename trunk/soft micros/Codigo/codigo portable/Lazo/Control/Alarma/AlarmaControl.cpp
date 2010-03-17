@@ -12,7 +12,7 @@ AlarmaControl::AlarmaControl(ConfiguracionAlarmaControl& _configuracion,
                            ControlPID& _control,
                            ISalida&salida):LazoControl(_control.getSensor()),getterSP(_control),configuracion(_configuracion),salidaConPolaridad(salida){
   
-  crearAdaptadorSalida( getAdaptadorSalida() , confAdaptadorSalida);
+  crearAdaptadorSalida( getAdaptadorSalidaAlarm() , confAdaptadorSalida);
   crearTipoControl( getTipoControl() , confValorControl);
   LazoControl::valorControl = (ValorControl*)&valorControlPull;
   LazoControl::adaptadorSalida = (AdaptadorSalida*)&adaptadorSalidaPull;  
@@ -45,12 +45,12 @@ void AlarmaControl::crearAdaptadorSalida(TipoAdaptadorSalida adaptSalida,Adaptad
   }
 }
 
-TipoAdaptadorSalida  AlarmaControl::getAdaptadorSalida(){
-  return configuracion.getAdaptadorSalida();
+TipoAdaptadorSalida  AlarmaControl::getAdaptadorSalidaAlarm(){
+  return configuracion.getAdaptadorSalidaAlarm();
 }
 
-void AlarmaControl::setAdaptadorSalida(TipoAdaptadorSalida adaptSalida){
-  configuracion.setAdaptadorSalida(adaptSalida);
+void AlarmaControl::setAdaptadorSalidaAlarm(TipoAdaptadorSalida adaptSalida){
+  configuracion.setAdaptadorSalidaAlarm(adaptSalida);
   crearAdaptadorSalida(adaptSalida,((AdaptadorSalida*)&adaptadorSalidaPull)->getConfiguracion());    
 }
 

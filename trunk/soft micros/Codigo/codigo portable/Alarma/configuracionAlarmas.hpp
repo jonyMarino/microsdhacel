@@ -13,8 +13,8 @@ class ConfiguracionAlarmas: public ConfiguracionAlarmaControl{
           }AlarmConf;
       
          ConfiguracionAlarmas( AlarmConf &_conf_, struct ManejadorMemoria & _manejadorMemoria);
-         TipoAdaptadorSalida getAdaptadorSalida();
-         void setAdaptadorSalida(TipoAdaptadorSalida);
+         TipoAdaptadorSalida getAdaptadorSalidaAlarm();
+         void setAdaptadorSalidaAlarm(TipoAdaptadorSalida);
          TipoControl getTipoControl();
          void setTipoControl(TipoControl); 
        

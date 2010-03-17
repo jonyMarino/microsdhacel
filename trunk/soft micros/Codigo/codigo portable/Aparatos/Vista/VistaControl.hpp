@@ -13,5 +13,6 @@ extern const struct ConstructorBoxPropiedad cBoxModoSalida;
 extern const struct ConstructorBoxPropiedadEntradaCondicional cBoxPotInst;
 extern const struct ConstructorBoxLinealCondicional cBoxPotMan;
 extern const struct ConstructorBoxLineal cBoxesLimites;
+extern const struct ConstructorPropiedadTextual cPropiedadModoSalida;
 
 #endif
