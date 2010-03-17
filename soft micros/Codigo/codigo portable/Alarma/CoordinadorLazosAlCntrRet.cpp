@@ -60,15 +60,15 @@ void CoordinadorLazosAlCntrRet::setLazo(TipoLazo tipo){
   crearLazo(tipo,pwm); 
 }
 
-Retransmision * CoordinadorLazosAlCntrRet::getRetransmision(){
+Retransmision& CoordinadorLazosAlCntrRet::getRetransmision(){
   //si no se encuentra en modo RETRANSMISION devuelve NULL
-  if(getLazo()!=RETRANSMISION)
-    return NULL;
-  return (Retransmision *)lazo;
+ // if(getLazo()!=RETRANSMISION)
+   // return NULL;
+  return *(Retransmision *)&lazo;
 }
-AlarmaControl * CoordinadorLazosAlCntrRet::getAlarmaControl(){
+AlarmaControl& CoordinadorLazosAlCntrRet::getAlarmaControl(){
   //si no se encuentra en modo ALARMA devuelve NULL
-  if(getLazo()!=ALARMA)
-    return NULL;
-  return (AlarmaControl *)lazo;
+  //if(getLazo()!=ALARMA)
+    //return NULL;
+  return *(AlarmaControl *)&lazo;
 }

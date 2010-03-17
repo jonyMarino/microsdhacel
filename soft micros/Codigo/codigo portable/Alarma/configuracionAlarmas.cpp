@@ -2,11 +2,11 @@
 
 ConfiguracionAlarmas::ConfiguracionAlarmas( AlarmConf &_conf_, struct ManejadorMemoria & _manejadorMemoria):configuracion(_conf_),manejadorMemoria(_manejadorMemoria){}
 
-TipoAdaptadorSalida ConfiguracionAlarmas::getAdaptadorSalida(){
+TipoAdaptadorSalida ConfiguracionAlarmas::getAdaptadorSalidaAlarm(){
   return configuracion.tipoAdapSal;
 }
 
-void ConfiguracionAlarmas::setAdaptadorSalida(TipoAdaptadorSalida val){
+void ConfiguracionAlarmas::setAdaptadorSalidaAlarm(TipoAdaptadorSalida val){
   manejadorMemoria.setWord((unsigned int * const)&configuracion.tipoAdapSal,val);
 }
 

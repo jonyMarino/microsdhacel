@@ -15,4 +15,7 @@ class VistaSetContrasenia{
     static void setCodigo(void*self,int codigo); 
 };
 
+
+extern const struct ConstructorPropNumLFPF cPropiedadSetContrasenia;
+
 #endif

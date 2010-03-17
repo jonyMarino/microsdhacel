@@ -21,3 +21,8 @@ ISalida& LazoControl::getSalida(){
 AdaptadorSalida& LazoControl::getAdaptadorSalida(){
   return *adaptadorSalida;
 }
+
+
+ValorControl& LazoControl::getValorControl(){
+ return *valorControl; 
+}

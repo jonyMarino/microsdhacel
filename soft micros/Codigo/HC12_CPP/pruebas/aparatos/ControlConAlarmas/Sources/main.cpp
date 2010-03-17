@@ -194,18 +194,50 @@ SensorTermoPT100 sensor1(ad1,sensor_config[1],flash);
 TConfPWM confPWM01={
 0};
 PWMHard23 pwm(flash,confPWM01);
-const ConfiguracionControlPID configuraControl(*(ConfiguracionControlPID::ControlConf*)&control_config,flash); 
-ControlPID control0(sensor0,pwm,configuraControl);
+const ConfiguracionControlPID configuraControl0(*(ConfiguracionControlPID::ControlConf*)&control_config,flash); 
+ControlPID control0(sensor0,pwm,configuraControl0);
+#if CANTIDAD_CANALES>1 
+const ConfiguracionControlPID configuraControl1(*(ConfiguracionControlPID::ControlConf*)&control_config,flash);
+ControlPID control1(sensor1,pwm,configuraControl1);
+#endif
 MessagesOut mjsCambioTipoSalida;
+
 
 ConfiguracionLazoAlarmas configuracionLazoAlarmas0(*(ConfiguracionLazoAlarmas::LazoAlarmConf*)&lazo_alar_conf[0],flash);
 ConfiguracionAlarmas configuracionAlarma0(*(ConfiguracionAlarmas::AlarmConf*)&alar_conf[0],flash);
 ConfiguracionRetransm configuracionRetrans0(*(ConfiguracionRetransm::RetConf*)&ret_conf[0],flash);
 ConfiguracionAdapSalida configuracionAdapSalida0(*(ConfiguracionAdapSalida::AdapSalConf*)&adapSal_conf[0],flash);
 ConfiguracionValorControlado configuracionValorAlarma0(*(ConfiguracionValorControlado::ValorControlConf*)&alarmaSP_conf[0],flash);
+
+CoordinadorLazosAlCntrRet alarma0(configuracionLazoAlarmas0,configuracionAlarma0,configuracionValorAlarma0,configuracionAdapSalida0,configuracionRetrans0,control0,pwm);
+
+#if CANTIDAD_SAL_ALARMA>1 && CANTIDAD_CANALES==1  
+ConfiguracionLazoAlarmas configuracionLazoAlarmas1(*(ConfiguracionLazoAlarmas::LazoAlarmConf*)&lazo_alar_conf[1],flash);
+ConfiguracionAlarmas configuracionAlarma1(*(ConfiguracionAlarmas::AlarmConf*)&alar_conf[1],flash);
+ConfiguracionRetransm configuracionRetrans1(*(ConfiguracionRetransm::RetConf*)&ret_conf[1],flash);
+ConfiguracionAdapSalida configuracionAdapSalida1(*(ConfiguracionAdapSalida::AdapSalConf*)&adapSal_conf[1],flash);
+ConfiguracionValorControlado configuracionValorAlarma1(*(ConfiguracionValorControlado::ValorControlConf*)&alarmaSP_conf[1],flash);
+
+CoordinadorLazosAlCntrRet alarma1(configuracionLazoAlarmas1,configuracionAlarma1,configuracionValorAlarma1,configuracionAdapSalida1,configuracionRetrans1,control0,pwm);
+#elif CANTIDAD_CANALES>1
+ConfiguracionLazoAlarmas configuracionLazoAlarmas1(*(ConfiguracionLazoAlarmas::LazoAlarmConf*)&lazo_alar_conf[1],flash);
+ConfiguracionAlarmas configuracionAlarma1(*(ConfiguracionAlarmas::AlarmConf*)&alar_conf[1],flash);
+ConfiguracionRetransm configuracionRetrans1(*(ConfiguracionRetransm::RetConf*)&ret_conf[1],flash);
+ConfiguracionAdapSalida configuracionAdapSalida1(*(ConfiguracionAdapSalida::AdapSalConf*)&adapSal_conf[1],flash);
+ConfiguracionValorControlado configuracionValorAlarma1(*(ConfiguracionValorControlado::ValorControlConf*)&alarmaSP_conf[1],flash);
+
+CoordinadorLazosAlCntrRet alarma1(configuracionLazoAlarmas1,configuracionAlarma1,configuracionValorAlarma1,configuracionAdapSalida1,configuracionRetrans1,control1,pwm);
+
+#if CANTIDAD_SAL_ALARMA>2
+ConfiguracionLazoAlarmas configuracionLazoAlarmas2(*(ConfiguracionLazoAlarmas::LazoAlarmConf*)&lazo_alar_conf[2],flash);
+ConfiguracionAlarmas configuracionAlarma2(*(ConfiguracionAlarmas::AlarmConf*)&alar_conf[2],flash);
+ConfiguracionRetransm configuracionRetrans2(*(ConfiguracionRetransm::RetConf*)&ret_conf[2],flash);
+ConfiguracionAdapSalida configuracionAdapSalida2(*(ConfiguracionAdapSalida::AdapSalConf*)&adapSal_conf[2],flash);
+ConfiguracionValorControlado configuracionValorAlarma2(*(ConfiguracionValorControlado::ValorControlConf*)&alarmaSP_conf[2],flash);
  
-AlarmaControl alarma0(configuracionAlarma0,configuracionValorAlarma0,configuracionAdapSalida0,control0,pwm);
-//CoordinadorLazosAlCntrRet alarma0(configuracionLazoAlarmas0,configuracionAlarma0,configuracionValorAlarma0,configuracionAdapSalida0,configuracionRetrans0,control0,pwm);
+CoordinadorLazosAlCntrRet alarma2(configuracionLazoAlarmas2,configuracionAlarma2,configuracionValorAlarma2,configuracionAdapSalida2,configuracionRetrans2,control0,pwm);
+#endif
+#endif
 
  
 //potencia
@@ -218,9 +250,19 @@ const struct FstBoxPointer potMan={
 };
 
 //SP_alarma
-const struct FstBoxPointer SPal={
+const struct FstBoxPointer SPal0={
   (const struct ConstructorBox*)&cBoxesSetPointAlarma,&alarma0,0  
 };
+#if CANTIDAD_SAL_ALARMA>1 || CANTIDAD_CANALES>1 
+const struct FstBoxPointer SPal1={
+  (const struct ConstructorBox*)&cBoxesSetPointAlarma,&alarma1,1  
+};
+#if CANTIDAD_SAL_ALARMA>2
+const struct FstBoxPointer SPal2={
+  (const struct ConstructorBox*)&cBoxesSetPointAlarma,&alarma2,2  
+};
+#endif
+#endif
 
 struct ConstructorBoxPrincipalControl cBoxPri={
       &boxPrincipalControlFactory,							/* funcion que procesa al box*/
@@ -237,8 +279,13 @@ const struct FstBoxPointer *const opArray[]={
   &principal,
   &potInst,
   &potMan,
-  &SPal
-  
+  &SPal0,
+  #if CANTIDAD_SAL_ALARMA>1 || CANTIDAD_CANALES>1 
+  &SPal1,
+  #if CANTIDAD_SAL_ALARMA>2
+  &SPal2
+  #endif
+  #endif
 };
 
 /*const struct BoxList opList ={
@@ -257,13 +304,25 @@ const struct FstBoxPointer aparatoConf={(const struct ConstructorBox*)&cBoxesSin
 
 const struct FstBoxPointer periodo={(const struct ConstructorBox*)&cBoxPeriodo,&pwm,0};
 
-const struct FstBoxPointer histAlarma={(const struct ConstructorBox*)&cBoxesHistAlarma,&alarma0,0};
+const struct FstBoxPointer histAlarma0={(const struct ConstructorBox*)&cBoxesHistAlarma,&alarma0,0};
+#if CANTIDAD_SAL_ALARMA>1 || CANTIDAD_CANALES>1 
+const struct FstBoxPointer histAlarma1={(const struct ConstructorBox*)&cBoxesHistAlarma,&alarma1,1};
+#if CANTIDAD_SAL_ALARMA>2
+const struct FstBoxPointer histAlarma2={(const struct ConstructorBox*)&cBoxesHistAlarma,&alarma2,2};
+#endif
+#endif
 
 static const struct FstBoxPointer *const tunArray[]={
   &reset,
   &periodo,
   &aparatoConf,
-  &histAlarma
+  &histAlarma0,
+  #if CANTIDAD_SAL_ALARMA>1 || CANTIDAD_CANALES>1 
+  &histAlarma1,
+  #if CANTIDAD_SAL_ALARMA>2
+  &histAlarma2
+  #endif
+  #endif
     
 };
 
@@ -273,10 +332,22 @@ static const NEW_BOX_LIST(tun,tunArray,"SintoniA");
 const struct FstBoxPointer sensor1List={(const struct ConstructorBox*)&cBoxesSensor,&sensor0,1};
 
 const struct FstBoxPointer retAlm0List={(const struct ConstructorBox*)&cBoxesRetransmision,&alarma0,0};
+#if CANTIDAD_SAL_ALARMA>1  || CANTIDAD_CANALES>1 
+const struct FstBoxPointer retAlm1List={(const struct ConstructorBox*)&cBoxesRetransmision,&alarma1,1};
+#if CANTIDAD_SAL_ALARMA>2
+const struct FstBoxPointer retAlm2List={(const struct ConstructorBox*)&cBoxesRetransmision,&alarma2,2};
+#endif
+#endif
 
 static const struct FstBoxPointer *const calArray[]={
   &sensor1List,
-  &retAlm0List  
+  &retAlm0List,
+  #if CANTIDAD_SAL_ALARMA>1 || CANTIDAD_CANALES>1 
+  &retAlm1List,
+  #if CANTIDAD_SAL_ALARMA>2
+  &retAlm2List
+  #endif
+  #endif  
 };
 
 static const NEW_BOX_LIST(cal,calArray,"CALibrAcion");
@@ -290,12 +361,23 @@ const struct FstBoxPointer setCList={(const struct ConstructorBox*)&VistaSetCont
 
 const struct FstBoxPointer modosSalida={(const struct ConstructorBox*)&cBoxModoSalida,&control0,0};
 
-const struct FstBoxPointer funcionamientoAlarma={(const struct ConstructorBox*)&cBoxesAlarma,&alarma0,0};
-
+const struct FstBoxPointer funcionamientoAlarma0={(const struct ConstructorBox*)&cBoxesAlarma,&alarma0,0};
+#if CANTIDAD_SAL_ALARMA>1 || CANTIDAD_CANALES>1 
+const struct FstBoxPointer funcionamientoAlarma1={(const struct ConstructorBox*)&cBoxesAlarma,&alarma1,1};
+#if CANTIDAD_SAL_ALARMA>2
+const struct FstBoxPointer funcionamientoAlarma2={(const struct ConstructorBox*)&cBoxesAlarma,&alarma2,2};
+#endif
+#endif
 
 static const struct FstBoxPointer *const setArray[]={
   &modosSalida,
-  &funcionamientoAlarma,
+  &funcionamientoAlarma0,
+  #if CANTIDAD_SAL_ALARMA>1 || CANTIDAD_CANALES>1 
+  &funcionamientoAlarma1,
+  #if CANTIDAD_SAL_ALARMA>2
+  &funcionamientoAlarma2,
+  #endif
+  #endif
   &setCList
     
 };
