@@ -72,3 +72,7 @@ AlarmaControl& CoordinadorLazosAlCntrRet::getAlarmaControl(){
     //return NULL;
   return *(AlarmaControl *)&lazo;
 }
+<<<<<<< .mine
+
+=======
+>>>>>>> .r159
