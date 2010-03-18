@@ -28,15 +28,12 @@
 **     Description :  Constructor del control PID
 ** ===================================================================
 */
-ControlPID::ControlPID(Sensor& _sensor,ISalida& _salida,const ConfiguracionControl& _configuracion):sensor(_sensor),salida(_salida),configuracion(_configuracion){
+ControlPID::ControlPID(Sensor& _sensor,ISalida& _salida,const ConfiguracionControl& _configuracion):Lazo(_sensor),salida(_salida),configuracion(_configuracion){
 
   sumatoriaIntegral=0;
   bufferDerivada=0;
   onTipoSalidaChange=NULL;
   
-  metodoOnNuevaMedicion.pmethod=onNuevoValorSensor;
-  metodoOnNuevaMedicion.obj = this ;
-  sensor.addOnNuevoValorListener((const struct Method*)&metodoOnNuevaMedicion);
   //MedidorFunciones_setDeltaTiempo(_Sensor_getMeasurePeriod(sensor)); 
   
  /* if(time_desc!=0){    
@@ -112,10 +109,9 @@ bool ControlPID::isPID(){
 **     Description :  Funcion de Evento de nuevo valor del sensor
 ** ===================================================================
 */
-void ControlPID::onNuevoValorSensor(void*_self){
-  ControlPID * self = (ControlPID *)_self;
-  self->actualizarValorControl();
-  self->setDutyControl();
+void ControlPID::onNuevoValorSensor(){
+  actualizarValorControl();
+  setDutyControl();
 }
 
 
@@ -127,7 +123,7 @@ void ControlPID::onNuevoValorSensor(void*_self){
 */
 void ControlPID::actualizarValorControl(){
   int sp= getConfiguracionSetPoint();
-  int vp= sensor.getVal();
+  int vp= getSensor().getVal();
   int h= getHisteresis(); 
   int res= getReset(); 
   int In; 
@@ -227,16 +223,6 @@ ISalida& ControlPID::getSalida(){
   return salida;
 }
 
-
-/*
-** ===================================================================
-**     Method      :  ControlPID::getSensor 
-**     Description :  Obtiene el sensor utilizado por el control
-** ===================================================================
-*/
-Sensor& ControlPID::getSensor(){
-  return sensor;  
-}
 /*
 ** ===================================================================
 **     Method      :  ControlPID::setTipoControl 
@@ -309,7 +295,7 @@ int ControlPID::getValorControl(){
 ** ===================================================================
 */
 uchar ControlPID::getDecimales() {
-  return sensor.getDecimales();
+  return getSensor().getDecimales();
 }
 
 /*
@@ -356,11 +342,11 @@ void ControlPID::setLimiteSuperiorSetPoint(int val){
 }
 
 int ControlPID::getLimiteInferiorSensor(){
-  return sensor.getLimiteInferior();
+  return getSensor().getLimiteInferior();
 }
 
 int ControlPID::getLimiteSuperiorSensor(){
-  return sensor.getLimiteSuperior();
+  return getSensor().getLimiteSuperior();
 }
 
 int ControlPID::getLimiteInferiorDelLimiteSuperiorSetPoint(){
@@ -368,7 +354,7 @@ int ControlPID::getLimiteInferiorDelLimiteSuperiorSetPoint(){
 }
 
 int ControlPID::getLimiteSuperiorDelLimiteSuperiorSetPoint(){
-  return sensor.getLimiteSuperior();
+  return getSensor().getLimiteSuperior();
 }
 
 /*

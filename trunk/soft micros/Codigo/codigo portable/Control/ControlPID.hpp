@@ -8,6 +8,7 @@
 #include "Sensor/Sensor.hpp"
 #include "Timer/MethodTimer/MethodTimer.hpp"
 #include "MethodContainer/MethodContainer.hpp"
+#include "Lazo/Lazo.hpp"
 
 #pragma DATA_SEG DATA                                            
 #pragma CODE_SEG CODE
@@ -71,7 +72,7 @@ class ConfiguracionControl{
     friend class ControlPID;
 };    
 
-class ControlPID{
+class ControlPID:public Lazo{
   public:
     typedef enum{
      _CAL, 
@@ -333,10 +334,10 @@ class ControlPID{
     int getLimiteSuperiorPotenciaManual();
        
 
-  
+  protected:
+    virtual void onNuevoValorSensor();
   private:
     const ConfiguracionControl& configuracion;
-    Sensor& sensor;
     ISalida& salida;
     //TTipoControl tipoControl;
     int valorControl;
@@ -344,11 +345,10 @@ class ControlPID{
     int valorAnterior;
     long bufferDerivada;
     long sumatoriaIntegral;
-    struct Method metodoOnNuevaMedicion;
   //  struct MethodTimer * timerDesconexion;
     MethodContainer * onTipoSalidaChange;
     
-    static void onNuevoValorSensor(void*);
+    
     void actualizarValorControl();
 };
 
