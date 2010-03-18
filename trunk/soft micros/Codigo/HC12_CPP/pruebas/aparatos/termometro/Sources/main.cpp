@@ -34,35 +34,35 @@
 #include "VistaPWM.hpp"
 #include "BoxPrincipalControl.hpp"
 #include "MessagesOut.hpp"
+#include "LedSalida.hpp"
+#include "configuracionAlarmas.hpp"
+#include "configuracionLazoAlarmas.hpp"
+#include "ConfiguracionRetransmision.hpp"
+#include "ConfiguracionAdapSalida.hpp"
+#include "configuracionValorControl.hpp"
+#include "VistaAlarmas.hpp"
+#include "AlarmaControl.hpp"
 
 void conectarSalidas(void * a);
 void OnTipoSalChange(void * b);
-void alternaIndicacion(void * c);
+
 
 #pragma CONST_SEG PARAMETERS_PAGE
  
-  /*volatile const Salida::confSalida salida_config={
-    0,            //potencia inicial
-    FALSE,        //inicia desconectada 
-    SALIDA_ONOFF  //tipo de salida inicial
-  };*/
-  
-/*volatile const TConfPWM confPWM01[CANTIDAD_SAL_ALARMA]={
-  0,
-  #if CANTIDAD_SAL_ALARMA>1 
-    0,
-      #if CANTIDAD_SAL_ALARMA>2
-        0,
-        #if CANTIDAD_SAL_ALARMA>3
-          0
-        #endif
-      #endif
-  #endif
-};
-         */
 
-/*Tiempo de cambio en la indicacion del display inferior(caso tipo de salida manual)*/
-#define TIEMPO_DE_ALTERNADO 2000
+const LedsSalida::LedConfig configuracionLedsSalida[]= {
+  &PTIP,1<<1,0,
+  &PTIP,1<<3,1, 
+  &PTIP,1<<5,2,
+  &PTIP,1<<7,3
+};
+const LedsSalida::LedConfig* pConfiguracionLedsSalida[]={
+  &configuracionLedsSalida[0],
+  &configuracionLedsSalida[1],
+  &configuracionLedsSalida[2],
+  &configuracionLedsSalida[3]
+};
+
 
 /*  Tiempo inicial en el que el control permanece desconectado  */
 #ifdef _COLADA_CALIENTE  
@@ -71,9 +71,77 @@ void alternaIndicacion(void * c);
   #define SALIDA_TIEMPO_DESCONECTADA 3000   //tiene que alcanzar para hacer 2 mediciones
 #endif
 
+
 volatile const ConfiguracionControlPID::ControlConf control_config={
    ControlDefaultConf,
 };
+  
+volatile const ConfiguracionAlarmas::AlarmConf alar_conf[CANTIDAD_SAL_ALARMA]={
+  0,1,
+  #if CANTIDAD_SAL_ALARMA>1 
+    0,1,
+      #if CANTIDAD_SAL_ALARMA>2
+        0,1,
+        #if CANTIDAD_SAL_ALARMA>3
+          0,1,
+        #endif
+      #endif
+  #endif
+};
+  
+volatile const ConfiguracionLazoAlarmas::LazoAlarmConf lazo_alar_conf[CANTIDAD_SAL_ALARMA]={
+  0,
+  #if CANTIDAD_SAL_ALARMA>1 
+    0,
+      #if CANTIDAD_SAL_ALARMA>2
+        0,
+        #if CANTIDAD_SAL_ALARMA>3
+          0,
+        #endif
+      #endif
+  #endif
+};
+  
+  
+volatile const ConfiguracionRetransm::RetConf ret_conf[CANTIDAD_SAL_ALARMA]={
+  0,100,
+  #if CANTIDAD_SAL_ALARMA>1 
+    0,100,
+      #if CANTIDAD_SAL_ALARMA>2
+        0,100,
+        #if CANTIDAD_SAL_ALARMA>3
+          0,100,
+        #endif
+      #endif
+  #endif
+};  
+  
+volatile const ConfiguracionAdapSalida::AdapSalConf adapSal_conf[CANTIDAD_SAL_ALARMA]={
+  -2,0,
+  #if CANTIDAD_SAL_ALARMA>1 
+    -2,0,
+      #if CANTIDAD_SAL_ALARMA>2
+        -2,0,
+        #if CANTIDAD_SAL_ALARMA>3
+          -2,0,
+        #endif
+      #endif
+  #endif
+};  
+    
+
+volatile const ConfiguracionValorControlado::ValorControlConf alarmaSP_conf[CANTIDAD_SAL_ALARMA]={
+  10,
+  #if CANTIDAD_SAL_ALARMA>1 
+    10,
+      #if CANTIDAD_SAL_ALARMA>2
+        10,
+        #if CANTIDAD_SAL_ALARMA>3
+          10,
+        #endif
+      #endif
+  #endif
+};  
   
   volatile const SensorTermoPT100::TConfSensor sensor_config[CANTIDAD_CANALES]= {
     STPT_DEF_CONF,
@@ -126,10 +194,52 @@ SensorTermoPT100 sensor1(ad1,sensor_config[1],flash);
 TConfPWM confPWM01={
 0};
 PWMHard23 pwm(flash,confPWM01);
-const ConfiguracionControlPID configuraControl(*(ConfiguracionControlPID::ControlConf*)&control_config,flash); 
-ControlPID control0(sensor0,pwm,configuraControl);
+const ConfiguracionControlPID configuraControl0(*(ConfiguracionControlPID::ControlConf*)&control_config,flash); 
+ControlPID control0(sensor0,pwm,configuraControl0);
+#if CANTIDAD_CANALES>1 
+const ConfiguracionControlPID configuraControl1(*(ConfiguracionControlPID::ControlConf*)&control_config,flash);
+ControlPID control1(sensor1,pwm,configuraControl1);
+#endif
 MessagesOut mjsCambioTipoSalida;
 
+
+ConfiguracionLazoAlarmas configuracionLazoAlarmas0(*(ConfiguracionLazoAlarmas::LazoAlarmConf*)&lazo_alar_conf[0],flash);
+ConfiguracionAlarmas configuracionAlarma0(*(ConfiguracionAlarmas::AlarmConf*)&alar_conf[0],flash);
+ConfiguracionRetransm configuracionRetrans0(*(ConfiguracionRetransm::RetConf*)&ret_conf[0],flash);
+ConfiguracionAdapSalida configuracionAdapSalida0(*(ConfiguracionAdapSalida::AdapSalConf*)&adapSal_conf[0],flash);
+ConfiguracionValorControlado configuracionValorAlarma0(*(ConfiguracionValorControlado::ValorControlConf*)&alarmaSP_conf[0],flash);
+
+CoordinadorLazosAlCntrRet alarma0(configuracionLazoAlarmas0,configuracionAlarma0,configuracionValorAlarma0,configuracionAdapSalida0,configuracionRetrans0,control0,pwm);
+
+#if CANTIDAD_SAL_ALARMA>1 && CANTIDAD_CANALES==1  
+ConfiguracionLazoAlarmas configuracionLazoAlarmas1(*(ConfiguracionLazoAlarmas::LazoAlarmConf*)&lazo_alar_conf[1],flash);
+ConfiguracionAlarmas configuracionAlarma1(*(ConfiguracionAlarmas::AlarmConf*)&alar_conf[1],flash);
+ConfiguracionRetransm configuracionRetrans1(*(ConfiguracionRetransm::RetConf*)&ret_conf[1],flash);
+ConfiguracionAdapSalida configuracionAdapSalida1(*(ConfiguracionAdapSalida::AdapSalConf*)&adapSal_conf[1],flash);
+ConfiguracionValorControlado configuracionValorAlarma1(*(ConfiguracionValorControlado::ValorControlConf*)&alarmaSP_conf[1],flash);
+
+CoordinadorLazosAlCntrRet alarma1(configuracionLazoAlarmas1,configuracionAlarma1,configuracionValorAlarma1,configuracionAdapSalida1,configuracionRetrans1,control0,pwm);
+#elif CANTIDAD_CANALES>1
+ConfiguracionLazoAlarmas configuracionLazoAlarmas1(*(ConfiguracionLazoAlarmas::LazoAlarmConf*)&lazo_alar_conf[1],flash);
+ConfiguracionAlarmas configuracionAlarma1(*(ConfiguracionAlarmas::AlarmConf*)&alar_conf[1],flash);
+ConfiguracionRetransm configuracionRetrans1(*(ConfiguracionRetransm::RetConf*)&ret_conf[1],flash);
+ConfiguracionAdapSalida configuracionAdapSalida1(*(ConfiguracionAdapSalida::AdapSalConf*)&adapSal_conf[1],flash);
+ConfiguracionValorControlado configuracionValorAlarma1(*(ConfiguracionValorControlado::ValorControlConf*)&alarmaSP_conf[1],flash);
+
+CoordinadorLazosAlCntrRet alarma1(configuracionLazoAlarmas1,configuracionAlarma1,configuracionValorAlarma1,configuracionAdapSalida1,configuracionRetrans1,control1,pwm);
+
+#if CANTIDAD_SAL_ALARMA>2
+ConfiguracionLazoAlarmas configuracionLazoAlarmas2(*(ConfiguracionLazoAlarmas::LazoAlarmConf*)&lazo_alar_conf[2],flash);
+ConfiguracionAlarmas configuracionAlarma2(*(ConfiguracionAlarmas::AlarmConf*)&alar_conf[2],flash);
+ConfiguracionRetransm configuracionRetrans2(*(ConfiguracionRetransm::RetConf*)&ret_conf[2],flash);
+ConfiguracionAdapSalida configuracionAdapSalida2(*(ConfiguracionAdapSalida::AdapSalConf*)&adapSal_conf[2],flash);
+ConfiguracionValorControlado configuracionValorAlarma2(*(ConfiguracionValorControlado::ValorControlConf*)&alarmaSP_conf[2],flash);
+ 
+CoordinadorLazosAlCntrRet alarma2(configuracionLazoAlarmas2,configuracionAlarma2,configuracionValorAlarma2,configuracionAdapSalida2,configuracionRetrans2,control0,pwm);
+#endif
+#endif
+
+ 
 //potencia
 const struct FstBoxPointer potInst={
   (const struct ConstructorBox*)&cBoxPotInst,&control0,0  
@@ -139,10 +249,25 @@ const struct FstBoxPointer potMan={
   (const struct ConstructorBox*)&cBoxPotMan,&control0,0  
 };
 
+//SP_alarma
+const struct FstBoxPointer SPal0={
+  (const struct ConstructorBox*)&cBoxesSetPointAlarma,&alarma0,0  
+};
+#if CANTIDAD_SAL_ALARMA>1 || CANTIDAD_CANALES>1 
+const struct FstBoxPointer SPal1={
+  (const struct ConstructorBox*)&cBoxesSetPointAlarma,&alarma1,1  
+};
+#if CANTIDAD_SAL_ALARMA>2
+const struct FstBoxPointer SPal2={
+  (const struct ConstructorBox*)&cBoxesSetPointAlarma,&alarma2,2  
+};
+#endif
+#endif
+
 struct ConstructorBoxPrincipalControl cBoxPri={
       &boxPrincipalControlFactory,							/* funcion que procesa al box*/
       &sensor0,      
-      NULL,
+      &mjsCambioTipoSalida,
       &flash						
 };
 
@@ -153,9 +278,14 @@ const struct FstBoxPointer principal={
 const struct FstBoxPointer *const opArray[]={
   &principal,
   &potInst,
-  &potMan
-  
-  
+  &potMan,
+  &SPal0,
+  #if CANTIDAD_SAL_ALARMA>1 || CANTIDAD_CANALES>1 
+  &SPal1,
+  #if CANTIDAD_SAL_ALARMA>2
+  &SPal2
+  #endif
+  #endif
 };
 
 /*const struct BoxList opList ={
@@ -174,11 +304,25 @@ const struct FstBoxPointer aparatoConf={(const struct ConstructorBox*)&cBoxesSin
 
 const struct FstBoxPointer periodo={(const struct ConstructorBox*)&cBoxPeriodo,&pwm,0};
 
+const struct FstBoxPointer histAlarma0={(const struct ConstructorBox*)&cBoxesHistAlarma,&alarma0,0};
+#if CANTIDAD_SAL_ALARMA>1 || CANTIDAD_CANALES>1 
+const struct FstBoxPointer histAlarma1={(const struct ConstructorBox*)&cBoxesHistAlarma,&alarma1,1};
+#if CANTIDAD_SAL_ALARMA>2
+const struct FstBoxPointer histAlarma2={(const struct ConstructorBox*)&cBoxesHistAlarma,&alarma2,2};
+#endif
+#endif
 
 static const struct FstBoxPointer *const tunArray[]={
   &reset,
   &periodo,
-  &aparatoConf
+  &aparatoConf,
+  &histAlarma0,
+  #if CANTIDAD_SAL_ALARMA>1 || CANTIDAD_CANALES>1 
+  &histAlarma1,
+  #if CANTIDAD_SAL_ALARMA>2
+  &histAlarma2
+  #endif
+  #endif
     
 };
 
@@ -187,8 +331,23 @@ static const NEW_BOX_LIST(tun,tunArray,"SintoniA");
 //CAL
 const struct FstBoxPointer sensor1List={(const struct ConstructorBox*)&cBoxesSensor,&sensor0,1};
 
+const struct FstBoxPointer retAlm0List={(const struct ConstructorBox*)&cBoxesRetransmision,&alarma0,0};
+#if CANTIDAD_SAL_ALARMA>1  || CANTIDAD_CANALES>1 
+const struct FstBoxPointer retAlm1List={(const struct ConstructorBox*)&cBoxesRetransmision,&alarma1,1};
+#if CANTIDAD_SAL_ALARMA>2
+const struct FstBoxPointer retAlm2List={(const struct ConstructorBox*)&cBoxesRetransmision,&alarma2,2};
+#endif
+#endif
+
 static const struct FstBoxPointer *const calArray[]={
-  &sensor1List  
+  &sensor1List,
+  &retAlm0List,
+  #if CANTIDAD_SAL_ALARMA>1 || CANTIDAD_CANALES>1 
+  &retAlm1List,
+  #if CANTIDAD_SAL_ALARMA>2
+  &retAlm2List
+  #endif
+  #endif  
 };
 
 static const NEW_BOX_LIST(cal,calArray,"CALibrAcion");
@@ -202,8 +361,23 @@ const struct FstBoxPointer setCList={(const struct ConstructorBox*)&VistaSetCont
 
 const struct FstBoxPointer modosSalida={(const struct ConstructorBox*)&cBoxModoSalida,&control0,0};
 
+const struct FstBoxPointer funcionamientoAlarma0={(const struct ConstructorBox*)&cBoxesAlarma,&alarma0,0};
+#if CANTIDAD_SAL_ALARMA>1 || CANTIDAD_CANALES>1 
+const struct FstBoxPointer funcionamientoAlarma1={(const struct ConstructorBox*)&cBoxesAlarma,&alarma1,1};
+#if CANTIDAD_SAL_ALARMA>2
+const struct FstBoxPointer funcionamientoAlarma2={(const struct ConstructorBox*)&cBoxesAlarma,&alarma2,2};
+#endif
+#endif
+
 static const struct FstBoxPointer *const setArray[]={
   &modosSalida,
+  &funcionamientoAlarma0,
+  #if CANTIDAD_SAL_ALARMA>1 || CANTIDAD_CANALES>1 
+  &funcionamientoAlarma1,
+  #if CANTIDAD_SAL_ALARMA>2
+  &funcionamientoAlarma2,
+  #endif
+  #endif
   &setCList
     
 };
@@ -241,10 +415,12 @@ const struct Access *const accessArray[]={
 
 const NEW_ARRAY(accessList,accessArray);
 
+
+NEW_ARRAY(arrayLedConfig,pConfiguracionLedsSalida);
+
+const LedsSalida leds (arrayLedConfig,*(FrenteDH::getInstancia()));
+
 void * timer=NULL;
-void * timerAlterna=NULL;
-bool alternar=TRUE; 
-MessagesOut::Message msj_on_sal_change;  
 
 struct Method timerSalida={
 &conectarSalidas,NULL
@@ -254,22 +430,12 @@ struct Method cambioTipoSalida={
 &OnTipoSalChange,NULL
 };                                              
 
-struct Method timerDeAlternado={
-&alternaIndicacion,NULL
-}; 
-
-
-
-//RlxMTimer timerConexionSalidas(SALIDA_TIEMPO_DESCONECTADA,timerSalida);
 
 void main(void) {
   
   BoxPrincipalControl::MostrarProp((ConstructorPropGetterVisual *)&cPropiedadSetPoint,&control0);
-  RlxMTimer timerConexionSalidas(SALIDA_TIEMPO_DESCONECTADA,timerSalida);
-  timer=&timerConexionSalidas;
-  RlxMTimer timerDeAlternadoDisplay(TIEMPO_DE_ALTERNADO,timerDeAlternado);
-  timerDeAlternadoDisplay.stop(); //inicia detenido
-  timerAlterna=&timerDeAlternadoDisplay;
+ // RlxMTimer timerConexionSalidas(SALIDA_TIEMPO_DESCONECTADA,timerSalida);
+ // timer=&timerConexionSalidas;
   DiagramaNavegacion d(&opList,&accessList,FrenteDH::getInstancia());
   PE_low_level_init();
   control0.addOnTipoSalidaListener(cambioTipoSalida);
@@ -301,7 +467,7 @@ void conectarSalidas(void * a){
   //for(i=0;i<CANTIDAD_SAL_ALARMA;i++)
    // pwm.setConectada(TRUE);
   
-  // pwm.setConectada(TRUE);
+   pwm.setConectada(TRUE);
    
    //configurar leds
    //LedsSalida_init(&ledsSalida);
@@ -311,38 +477,18 @@ void conectarSalidas(void * a){
 
 
 void OnTipoSalChange(void * b){
-  
+  static MessagesOut::Message msj_on_sal_change;  
   if(control0.getModoSalida()==ControlPID::_MAN){
     if(!msj_on_sal_change)
       msj_on_sal_change = mjsCambioTipoSalida.addMessage("Pot "); 
-     BoxPrincipalControl::MostrarProp((ConstructorPropGetterVisual *)&cPropiedadGetPotenciaInst,&control0);   
-     ((RlxMTimer *)timerAlterna)->restart();
+     BoxPrincipalControl::MostrarProp((ConstructorPropGetterVisual *)&cPropiedadPotManual,&control0);   
   }else{
     if(msj_on_sal_change){
-      ((RlxMTimer *)timerAlterna)->stop();
+
       mjsCambioTipoSalida.deleteMessage(msj_on_sal_change);
       BoxPrincipalControl::MostrarProp((ConstructorPropGetterVisual *)&cPropiedadSetPoint,&control0);
-      msj_on_sal_change=NULL;
-      cBoxPri.super.msjs=&mjsCambioTipoSalida;  
+      msj_on_sal_change=NULL; 
     }                          
   } 
 }
 
-void alternaIndicacion(void * c){
-  
-  if(alternar){
-    alternar=FALSE;
-    if(msj_on_sal_change){
-      mjsCambioTipoSalida.deleteMessage(msj_on_sal_change);
-      msj_on_sal_change=NULL;
-      cBoxPri.super.msjs=NULL;
-    }
-    BoxPrincipalControl::MostrarProp((ConstructorPropGetterVisual *)&cPropiedadGetPotenciaInst,&control0);
-  }else{
-    alternar=TRUE;
-    if(!msj_on_sal_change){
-      msj_on_sal_change = mjsCambioTipoSalida.addMessage("Pot ");
-      cBoxPri.super.msjs=&mjsCambioTipoSalida;
-    }
-  }
-} 
