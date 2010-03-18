@@ -6,7 +6,6 @@
 class ConfiguracionValorControl{
   public:
     virtual int getValorControlador()=0;
-    virtual void setValorControlador(int)=0;
 };
 
 class ValorControl{
@@ -14,7 +13,7 @@ class ValorControl{
     ValorControl(ConfiguracionValorControl& configuracion,Sensor&sensor);
     virtual int getValorControl()=0;
     int getValorControlador();
-    void setValorControlador(int);
+    //void setValorControlador(int); //pedir la configuracion para hacer un set
     Sensor& getSensor();
     ConfiguracionValorControl& getConfiguracion();
   private:
