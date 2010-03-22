@@ -10,7 +10,7 @@ AlarmaControl::AlarmaControl(ConfiguracionAlarmaControl& _configuracion,
                            ConfiguracionValorControl&  confValorControl,
                            AdaptadorSalidaConfiguracion& confAdaptadorSalida,
                            ControlPID& _control,
-                           ISalida&salida):LazoControl(_control.getSensor()),getterSP(_control),configuracion(_configuracion),salidaConPolaridad(salida){
+                           ISalida&salida):LazoControl(_control.getSensor()),getterSP(_control),configuracion(_configuracion),salidaConPolaridad(salida),_salida(salida){
   
   crearAdaptadorSalida( getAdaptadorSalidaAlarm() , confAdaptadorSalida);
   crearTipoControl( getTipoControl() , confValorControl);
@@ -92,4 +92,10 @@ int AlarmaControl::GetterSP::getVal(){
 
 void AlarmaControl::GetterSP::print(OutputStream&os){
 }
+
+ISalida& AlarmaControl::getSalida(){
+  return _salida;
+ //return salidaConPolaridad;
+}
+
 

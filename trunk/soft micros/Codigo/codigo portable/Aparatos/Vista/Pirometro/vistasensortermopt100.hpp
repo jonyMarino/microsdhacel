@@ -5,5 +5,6 @@
 
 extern const struct ConstructorBoxLineal cBoxesSensor;
 uchar getDecimalesMostrados(void*sensor);
+extern const struct ConstructorPropNumLFPF cPropiedadFiltro;
 
 #endif

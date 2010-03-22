@@ -1,5 +1,5 @@
-#ifndef _PWMMANAGER01_45_H
-#define _PWMMANAGER01_45_H
+#ifndef _PWMMANAGER01_45_HPP
+#define _PWMMANAGER01_45_HPP
 
 #include "pwm_periodos.h"
 #include "PWMHard.hpp"
@@ -15,7 +15,7 @@ class PWMManager01_45 {
   private:
     class PWMHard01 : public PWMHard {
       public:     
-        void PWMHard01(ManejadorMemoria &_manejadorMemoria,TConfPWM &_conf);
+        void PWMHard01(ManejadorMemoria &_manejadorMemoria,const TConfPWM &_conf);
         
         unsigned char setPeriodo(TPeriod periodo);
 
@@ -31,7 +31,7 @@ class PWMManager01_45 {
     class PWMHard45 : public PWMHard {
       public:
      
-        void PWMHard45(ManejadorMemoria &_manejadorMemoria,TConfPWM &_conf);
+        void PWMHard45(ManejadorMemoria &_manejadorMemoria,const TConfPWM &_conf);
         
         unsigned char setPeriodo(TPeriod periodo);
 

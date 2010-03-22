@@ -69,3 +69,7 @@ TipoSalida PWMTimer::getTipoSalida() {
 bool PWMTimer:: getEstadoSalida(){
   return estadoSalida;
 }
+
+unsigned int PWMTimer::getPotencia(){
+  return potencia;
+}

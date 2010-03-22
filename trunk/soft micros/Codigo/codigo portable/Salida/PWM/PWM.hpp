@@ -30,6 +30,11 @@ class PWM : public IPWM {
   
   virtual void setPotencia(unsigned int potencia);
   
+  bool getConectada();
+
+   void setConectada(bool conectada);
+
+  
   protected:
   
    virtual void setPotenciaGuardada()=0;
@@ -40,10 +45,7 @@ class PWM : public IPWM {
    
    void callOnToggleListeners();
    
-   bool getConectada();
-
-   void setConectada(bool conectada);
-
+   
 
   private:
   

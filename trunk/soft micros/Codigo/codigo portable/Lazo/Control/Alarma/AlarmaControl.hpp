@@ -41,7 +41,9 @@ class AlarmaControl:public LazoControl{
     TipoAdaptadorSalida  getAdaptadorSalidaAlarm();
     void setAdaptadorSalidaAlarm(TipoAdaptadorSalida adaptSalida);
     TipoControl  getTipoControl();
-    void setTipoControl(TipoControl tipoControl);    
+    void setTipoControl(TipoControl tipoControl);
+    virtual ISalida& getSalida();
+       
   private:
     class GetterSP:public Getter{
       public:
@@ -65,6 +67,7 @@ class AlarmaControl:public LazoControl{
     }adaptadorSalidaPull;
     
     SalidaConPolaridad salidaConPolaridad;
+    ISalida& _salida;
     
     void crearAdaptadorSalida(TipoAdaptadorSalida adaptSalida,AdaptadorSalidaConfiguracion& confAdaptadorSalida);
     void crearTipoControl(TipoControl tipoControl,ConfiguracionValorControl&  confValorControl);

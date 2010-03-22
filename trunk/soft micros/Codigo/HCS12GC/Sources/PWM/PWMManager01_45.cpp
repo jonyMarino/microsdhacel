@@ -88,7 +88,7 @@ PWMManager01_45::PWMHard01* PWMManager01_45::pwmHard01=NULL;
 
 PWMManager01_45::PWMHard45* PWMManager01_45::pwmHard45=NULL; 
 
-void PWMManager01_45::PWMHard01::PWMHard01(struct ManejadorMemoria &_manejadorMemoria,TConfPWM &_conf): PWMHard(_manejadorMemoria,_conf){
+void PWMManager01_45::PWMHard01::PWMHard01(struct ManejadorMemoria &_manejadorMemoria,const TConfPWM &_conf): PWMHard(_manejadorMemoria,_conf){
   
   CONTROLADOR_PWM_INIT(0,1);
   													 
@@ -101,7 +101,7 @@ void PWMManager01_45::PWMHard01::PWMHard01(struct ManejadorMemoria &_manejadorMe
   setReg8Bits(DDRP, 2);
 }
 
-void PWMManager01_45::PWMHard45::PWMHard45(struct ManejadorMemoria &_manejadorMemoria,TConfPWM &_conf):PWMHard(_manejadorMemoria,_conf){
+void PWMManager01_45::PWMHard45::PWMHard45(struct ManejadorMemoria &_manejadorMemoria,const TConfPWM &_conf):PWMHard(_manejadorMemoria,_conf){
  
  
  CONTROLADOR_PWM_INIT(4,5);
