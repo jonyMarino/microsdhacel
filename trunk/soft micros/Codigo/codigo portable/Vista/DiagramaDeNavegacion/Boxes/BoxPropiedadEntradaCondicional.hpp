@@ -8,7 +8,7 @@ struct ConstructorBoxPropiedadEntradaCondicional{
   bool (*getEvaluacionEntrada)(void * obj);   
 };
 
-struct BoxPropiedadEntradaCondicionalFactory:public BoxFactory{
+struct BoxPropGetterEntradaCondicionalFactory:public BoxFactory{
   virtual Box& getBox(const void*args,void*obj,uchar numObjeto)const{
     BoxPropiedad&b = *new BoxPropiedad();
     struct ConstructorBoxPropiedadEntradaCondicional * c = (struct ConstructorBoxPropiedadEntradaCondicional *)args;
@@ -18,6 +18,20 @@ struct BoxPropiedadEntradaCondicionalFactory:public BoxFactory{
   }
 };
 
+extern const struct BoxPropGetterEntradaCondicionalFactory boxPropGetterEntradaCondicionalFactory;
+
+struct BoxPropiedadEntradaCondicionalFactory:public BoxFactory{
+  virtual Box& getBox(const void*args,void*obj,uchar numObjeto)const{
+    BoxPropiedad&b = *new BoxPropiedad();
+    struct ConstructorBoxPropiedadEntradaCondicional * c = (struct ConstructorBoxPropiedadEntradaCondicional *)args;
+    if(c->getEvaluacionEntrada(obj))
+      b.setPropiedad(*(PropGetterVisual*)&c->super.propiedad->getPropiedad(obj,numObjeto),TRUE);
+    return b;
+  }
+};
+
 extern const struct BoxPropiedadEntradaCondicionalFactory boxPropiedadEntradaCondicionalFactory;
+
+
 
 #endif

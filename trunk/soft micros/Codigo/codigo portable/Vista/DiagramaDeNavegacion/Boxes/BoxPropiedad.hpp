@@ -43,6 +43,7 @@ class BoxPropiedad:public Box{
     friend struct BoxPropiedadFactory;
     friend struct BoxPropGetterFactory;
     friend struct BoxPropiedadEntradaCondicionalFactory;
+    friend struct BoxPropGetterEntradaCondicionalFactory;
 };
 
 struct ConstructorBoxPropiedad{

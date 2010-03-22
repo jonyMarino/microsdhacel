@@ -195,8 +195,6 @@ SensorTermoPT100 sensor1(ad1,sensor_config[1],flash);
 TConfPWM confPWM01={
 0};
 PWMHard23 pwm(flash,confPWM01);
-PWMManager01_45::PWMHard45 pwm1(flash,confPWM01);
-//PWMTimer pwm1(flash,confPWM01,1);
 const ConfiguracionControlPID configuraControl0(*(ConfiguracionControlPID::ControlConf*)&control_config,flash); 
 ControlPID control0(sensor0,pwm,configuraControl0);
 #if CANTIDAD_CANALES>1 
@@ -212,7 +210,7 @@ ConfiguracionRetransm configuracionRetrans0(*(ConfiguracionRetransm::RetConf*)&r
 ConfiguracionAdapSalida configuracionAdapSalida0(*(ConfiguracionAdapSalida::AdapSalConf*)&adapSal_conf[0],flash);
 ConfiguracionValorControlado configuracionValorAlarma0(*(ConfiguracionValorControlado::ValorControlConf*)&alarmaSP_conf[0],flash);
 
-CoordinadorLazosAlCntrRet alarma0(configuracionLazoAlarmas0,configuracionAlarma0,configuracionValorAlarma0,configuracionAdapSalida0,configuracionRetrans0,control0,pwm1);
+CoordinadorLazosAlCntrRet alarma0(configuracionLazoAlarmas0,configuracionAlarma0,configuracionValorAlarma0,configuracionAdapSalida0,configuracionRetrans0,control0,*PWMManager01_45::get45(flash,confPWM01));
 
 #if CANTIDAD_SAL_ALARMA>1 && CANTIDAD_CANALES==1  
 ConfiguracionLazoAlarmas configuracionLazoAlarmas1(*(ConfiguracionLazoAlarmas::LazoAlarmConf*)&lazo_alar_conf[1],flash);
@@ -482,7 +480,7 @@ void conectarSalidas(void * a){
  byte i;
   ((RlxMTimer *)timer)->stop();
    pwm.setConectada(TRUE);
-   pwm1.setConectada(TRUE);
+   PWMManager01_45::get45(flash,confPWM01)->setConectada(TRUE);
     
 }
 

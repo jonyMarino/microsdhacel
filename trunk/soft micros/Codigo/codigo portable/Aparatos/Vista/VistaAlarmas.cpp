@@ -17,6 +17,7 @@
 #include "VistaAlarmas.hpp"
 #include "VistaSetContrasenia.hpp"
 #include "VistaControl.hpp"
+#include "configuracionValorControl.hpp"
 
 #pragma MESSAGE DISABLE C1825          /* Disable warning C5703 "Parameter is not referenced" */
 
@@ -71,10 +72,14 @@
   
 #define ADAPTAR_FUNCION_VAL_CONTROL_SET(NOMBRE,METODO)      \
   void NOMBRE(void*conf,int valor){           \
-    (*(ValorControl*)&(*(LazoControl*)&(((CoordinadorLazosAlCntrRet*)conf)->getAlarmaControl())).getValorControl()).METODO(valor); \
+   (*(ConfiguracionValorControlado*)&((*(ValorControl*)&(*(LazoControl*)&(((CoordinadorLazosAlCntrRet*)conf)->getAlarmaControl()))))).METODO(valor); \
   }           
   
-
+/*void setValorControladorAl(void * alarma,int valor){
+  
+  ValorControl * v= &(*(ValorControl*)&(*(LazoControl*)&(((CoordinadorLazosAlCntrRet*)alarma)->getAlarmaControl())));  
+  (*(ConfiguracionValorControlado*)&(v->getConfiguracion())).setValorControlador(valor);.
+} */
 
 uchar getDecimalesAlarma(void*alarma){           
   Sensor * s= &(*(ValorControl*)&(*(LazoControl*)&(((CoordinadorLazosAlCntrRet*)alarma)->getAlarmaControl())).getValorControl()).getSensor();
