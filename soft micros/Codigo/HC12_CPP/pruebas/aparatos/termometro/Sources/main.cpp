@@ -29,6 +29,7 @@
 #include "PWMHard.hpp"
 #include "PWMHard23.hpp"
 #include "PWMManager01_45.hpp"
+#include "PWMTimer.hpp"
 #include "configuracionControlPID.hpp"
 #include "SensorTermoPT100.hpp"
 #include "VistaPWM.hpp"
@@ -194,6 +195,8 @@ SensorTermoPT100 sensor1(ad1,sensor_config[1],flash);
 TConfPWM confPWM01={
 0};
 PWMHard23 pwm(flash,confPWM01);
+PWMManager01_45::PWMHard45 pwm1(flash,confPWM01);
+//PWMTimer pwm1(flash,confPWM01,1);
 const ConfiguracionControlPID configuraControl0(*(ConfiguracionControlPID::ControlConf*)&control_config,flash); 
 ControlPID control0(sensor0,pwm,configuraControl0);
 #if CANTIDAD_CANALES>1 
@@ -209,7 +212,7 @@ ConfiguracionRetransm configuracionRetrans0(*(ConfiguracionRetransm::RetConf*)&r
 ConfiguracionAdapSalida configuracionAdapSalida0(*(ConfiguracionAdapSalida::AdapSalConf*)&adapSal_conf[0],flash);
 ConfiguracionValorControlado configuracionValorAlarma0(*(ConfiguracionValorControlado::ValorControlConf*)&alarmaSP_conf[0],flash);
 
-CoordinadorLazosAlCntrRet alarma0(configuracionLazoAlarmas0,configuracionAlarma0,configuracionValorAlarma0,configuracionAdapSalida0,configuracionRetrans0,control0,pwm);
+CoordinadorLazosAlCntrRet alarma0(configuracionLazoAlarmas0,configuracionAlarma0,configuracionValorAlarma0,configuracionAdapSalida0,configuracionRetrans0,control0,pwm1);
 
 #if CANTIDAD_SAL_ALARMA>1 && CANTIDAD_CANALES==1  
 ConfiguracionLazoAlarmas configuracionLazoAlarmas1(*(ConfiguracionLazoAlarmas::LazoAlarmConf*)&lazo_alar_conf[1],flash);
@@ -331,21 +334,27 @@ static const NEW_BOX_LIST(tun,tunArray,"SintoniA");
 //CAL
 const struct FstBoxPointer sensor1List={(const struct ConstructorBox*)&cBoxesSensor,&sensor0,1};
 
-const struct FstBoxPointer retAlm0List={(const struct ConstructorBox*)&cBoxesRetransmision,&alarma0,0};
+const struct FstBoxPointer retAlmLimInf0={(const struct ConstructorBox*)&cBoxesRetLimInf,&alarma0,0};
+const struct FstBoxPointer retAlmLimSup0={(const struct ConstructorBox*)&cBoxesRetLimSup,&alarma0,0};
 #if CANTIDAD_SAL_ALARMA>1  || CANTIDAD_CANALES>1 
-const struct FstBoxPointer retAlm1List={(const struct ConstructorBox*)&cBoxesRetransmision,&alarma1,1};
+const struct FstBoxPointer retAlmLimInf1={(const struct ConstructorBox*)&cBoxesRetLimInf,&alarma1,1};
+const struct FstBoxPointer retAlmLimSup1={(const struct ConstructorBox*)&cBoxesRetLimSup,&alarma1,1};
 #if CANTIDAD_SAL_ALARMA>2
-const struct FstBoxPointer retAlm2List={(const struct ConstructorBox*)&cBoxesRetransmision,&alarma2,2};
+const struct FstBoxPointer retAlmLimInf2={(const struct ConstructorBox*)&cBoxesRetLimInf,&alarma2,2};
+const struct FstBoxPointer retAlmLimSup2={(const struct ConstructorBox*)&cBoxesRetLimSup,&alarma2,2};
 #endif
 #endif
 
 static const struct FstBoxPointer *const calArray[]={
   &sensor1List,
-  &retAlm0List,
+  &retAlmLimInf0,
+  &retAlmLimSup0
   #if CANTIDAD_SAL_ALARMA>1 || CANTIDAD_CANALES>1 
-  &retAlm1List,
+  &retAlmLimInf1,
+  &retAlmLimSup1,
   #if CANTIDAD_SAL_ALARMA>2
-  &retAlm2List
+  &retAlmLimInf2,
+  &retAlmLimSup2
   #endif
   #endif  
 };
@@ -359,23 +368,32 @@ const VistaSetContrasenia vistaSetContrasenia={
 };
 const struct FstBoxPointer setCList={(const struct ConstructorBox*)&VistaSetContrasenia::cBoxSetContrasenia,(void*)&vistaSetContrasenia,0};
 
-const struct FstBoxPointer modosSalida={(const struct ConstructorBox*)&cBoxModoSalida,&control0,0};
+const struct FstBoxPointer modosSalida={(const struct ConstructorBox*)&cBoxModoSalida,&control0,0};    
 
-const struct FstBoxPointer funcionamientoAlarma0={(const struct ConstructorBox*)&cBoxesAlarma,&alarma0,0};
+const struct FstBoxPointer tipoLazoAlarma={(const struct ConstructorBox*)&cBoxesTipoLazo,&alarma0,0};
+
+const struct FstBoxPointer modosAlarma0={(const struct ConstructorBox*)&cBoxesAlarma,&alarma0,0};
+const struct FstBoxPointer ctrlAlarma0={(const struct ConstructorBox*)&cBoxesAlarmaCtrl,&alarma0,0};
 #if CANTIDAD_SAL_ALARMA>1 || CANTIDAD_CANALES>1 
-const struct FstBoxPointer funcionamientoAlarma1={(const struct ConstructorBox*)&cBoxesAlarma,&alarma1,1};
+const struct FstBoxPointer modosAlarma1={(const struct ConstructorBox*)&cBoxesAlarma,&alarma1,1};
+const struct FstBoxPointer ctrlAlarma1={(const struct ConstructorBox*)&cBoxesAlarmaCtrl,&alarma1,1};
 #if CANTIDAD_SAL_ALARMA>2
-const struct FstBoxPointer funcionamientoAlarma2={(const struct ConstructorBox*)&cBoxesAlarma,&alarma2,2};
+const struct FstBoxPointer modosAlarma2={(const struct ConstructorBox*)&cBoxesAlarma,&alarma2,2};
+const struct FstBoxPointer ctrlAlarma2={(const struct ConstructorBox*)&cBoxesAlarmaCtrl,&alarma2,2};
 #endif
 #endif
 
 static const struct FstBoxPointer *const setArray[]={
   &modosSalida,
-  &funcionamientoAlarma0,
+  &tipoLazoAlarma,
+  &modosAlarma0,
+  &ctrlAlarma0,
   #if CANTIDAD_SAL_ALARMA>1 || CANTIDAD_CANALES>1 
-  &funcionamientoAlarma1,
+  &modosAlarma1,
+  &ctrlAlarma1,
   #if CANTIDAD_SAL_ALARMA>2
-  &funcionamientoAlarma2,
+  &modosAlarma2,
+  &ctrlAlarma2,
   #endif
   #endif
   &setCList
@@ -434,8 +452,8 @@ struct Method cambioTipoSalida={
 void main(void) {
   
   BoxPrincipalControl::MostrarProp((ConstructorPropGetterVisual *)&cPropiedadSetPoint,&control0);
- // RlxMTimer timerConexionSalidas(SALIDA_TIEMPO_DESCONECTADA,timerSalida);
- // timer=&timerConexionSalidas;
+  RlxMTimer timerConexionSalidas(SALIDA_TIEMPO_DESCONECTADA,timerSalida);
+  timer=&timerConexionSalidas;
   DiagramaNavegacion d(&opList,&accessList,FrenteDH::getInstancia());
   PE_low_level_init();
   control0.addOnTipoSalidaListener(cambioTipoSalida);
@@ -463,15 +481,9 @@ void main(void) {
 void conectarSalidas(void * a){
  byte i;
   ((RlxMTimer *)timer)->stop();
-  
-  //for(i=0;i<CANTIDAD_SAL_ALARMA;i++)
-   // pwm.setConectada(TRUE);
-  
    pwm.setConectada(TRUE);
-   
-   //configurar leds
-   //LedsSalida_init(&ledsSalida);
-   
+   pwm1.setConectada(TRUE);
+    
 }
 
 

@@ -55,7 +55,9 @@ TipoLazo  CoordinadorLazosAlCntrRet::getLazo(){
 
 void CoordinadorLazosAlCntrRet::setLazo(TipoLazo tipo){
   configuracion.setLazo( tipo );
-  IPWM&pwm = (IPWM&)lazo->getSalida();
+  
+    IPWM&pwm = (IPWM&)lazo->getSalida();
+  
   delete lazo;
   crearLazo(tipo,pwm); 
 }
@@ -64,15 +66,12 @@ Retransmision& CoordinadorLazosAlCntrRet::getRetransmision(){
   //si no se encuentra en modo RETRANSMISION devuelve NULL
  // if(getLazo()!=RETRANSMISION)
    // return NULL;
-  return *(Retransmision *)&lazo;
+  return *(Retransmision *)lazo;
 }
 AlarmaControl& CoordinadorLazosAlCntrRet::getAlarmaControl(){
   //si no se encuentra en modo ALARMA devuelve NULL
   //if(getLazo()!=ALARMA)
     //return NULL;
-  return *(AlarmaControl *)&lazo;
+  return *(AlarmaControl *)lazo;
 }
-<<<<<<< .mine
 
-=======
->>>>>>> .r159

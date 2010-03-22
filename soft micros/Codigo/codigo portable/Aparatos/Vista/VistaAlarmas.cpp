@@ -144,7 +144,7 @@ uchar getDecimalesAlarma(void*alarma){
   ADAPTAR_FUNCION_LAZO_ALARMAS_SET(setLazo,setLazo)
 
   const struct ConstructorPropiedadTextual cPropiedadTipoLazo={
-    &propiedadTextualFactory,getLazo,"FA",setLazo,ms_getText_f,2
+    &propiedadTextualFactory,getLazo,"LA",setLazo,ms_getText_f,2
   };
   
  
@@ -198,77 +198,107 @@ uchar getDecimalesAlarma(void*alarma){
   
  /***********************/
  /****** BOXES  *********/
-uchar nextSetPropA (void * obj){
-  
-  if(((CoordinadorLazosAlCntrRet*)obj)->getLazo() != RETRANSMISION)
-    return 0;  // posicion de cPropiedadGetPotencia en el la tabla propsPot
+
+bool getCondicionEntradaAl (void* alarma){
+  if(((CoordinadorLazosAlCntrRet*)alarma)->getLazo() != RETRANSMISION)
+    return TRUE;
   else
-    return 3;  
+    return FALSE;  
 }
- 
+
+bool getCondicionEntradaAlret (void* alarma){
+  if(((CoordinadorLazosAlCntrRet*)alarma)->getLazo() == RETRANSMISION)
+    return TRUE;
+  else
+    return FALSE;  
+}
+
+const struct ConstructorBoxPropiedadEntradaCondicional cBoxesAlarma ={
+   &boxPropiedadEntradaCondicionalFactory,
+   (const struct ConstructorPropGetterVisual*)&cPropiedadModoAlarma,
+   getCondicionEntradaAl
+};
+
+const struct ConstructorBoxPropiedadEntradaCondicional cBoxesAlarmaCtrl ={
+   &boxPropiedadEntradaCondicionalFactory,
+   (const struct ConstructorPropGetterVisual*)&cPropiedadTipoCtrlAlarma,
+   getCondicionEntradaAl
+}; 
 
 
-const struct ConstructorPropGetterVisual*const propsConfiguracion[]=	{
+/*const struct ConstructorPropGetterVisual*const propsConfiguracion[]=	{
 			  (const struct ConstructorPropGetterVisual*)&cPropiedadModoAlarma,
   			(const struct ConstructorPropGetterVisual*)&cPropiedadTipoCtrlAlarma,
-			  NULL,
 			  NULL
+			  
 };
 
-const struct ConstructorBoxLinealCondicional cBoxesAlarma={
-        &boxLinealCondicionalFactory,						       
+const struct ConstructorBoxLineal cBoxesAlarma={
+        &boxLinealFactory,						       
   		  propsConfiguracion,
   		  NULL,						 //Proximo box	
-        nextSetPropA
 };
+  */
 
-
-const struct ConstructorPropGetterVisual *const propRet[]=	{
-  			  NULL,
-  			  NULL,
-  			  NULL,
-  			  (const struct ConstructorPropGetterVisual*)&cPropiedadRetLimInf,
-  			  (const struct ConstructorPropGetterVisual*)&cPropiedadRetLimSup,
-  			  NULL
-};
-
-const struct ConstructorBoxLinealCondicional cBoxesRetransmision={
-        &boxLinealCondicionalFactory,						       
-  		  propRet,
-  		  NULL,						 //Proximo box
-  		  nextSetPropA	
-};
-
-
-const struct ConstructorPropGetterVisual *const propHis[]=	{
-  			  (const struct ConstructorPropGetterVisual*)&cPropiedadHistAlarma,
-  			  NULL,
-  			  NULL,
-  			  NULL,
-};
-const struct ConstructorBoxLinealCondicional cBoxesHistAlarma={
-      &boxLinealCondicionalFactory,						       
-  		  propHis,
-  		  NULL,						 //Proximo box
-  		  nextSetPropA	
+const struct ConstructorBoxPropiedadEntradaCondicional cBoxesRetLimInf ={
+   &boxPropiedadEntradaCondicionalFactory,
+   (const struct ConstructorPropGetterVisual*)&cPropiedadRetLimInf,
+   getCondicionEntradaAlret
 }; 
+
+const struct ConstructorBoxPropiedadEntradaCondicional cBoxesRetLimSup ={
+   &boxPropiedadEntradaCondicionalFactory,
+   (const struct ConstructorPropGetterVisual*)&cPropiedadRetLimSup,
+   getCondicionEntradaAlret
+}; 
+
+/*const struct ConstructorPropGetterVisual*const propsRet[]=	{
+			  (const struct ConstructorPropGetterVisual*)&cPropiedadRetLimInf,
+			  (const struct ConstructorPropGetterVisual*)&cPropiedadRetLimSup,
+			  
+};
+const struct ConstructorBoxLineal cBoxesRetransmision={
+      &boxLinealFactory,								
+			propsRet,
+			NULL,
+			
+};*/	 
+
+const struct ConstructorBoxPropiedadEntradaCondicional cBoxesHistAlarma ={
+   &boxPropiedadEntradaCondicionalFactory,
+   (const struct ConstructorPropGetterVisual*)&cPropiedadHistAlarma,
+   getCondicionEntradaAl
+}; 
+
+/*const struct ConstructorBoxPropiedad cBoxesHistAlarma={
+       &boxPropiedadFactory,						       
+  		 (const struct ConstructorPropGetterVisual*)&cPropiedadHistAlarma,
+  		  
+};*/ 
   
 const struct ConstructorBoxPropiedad cBoxesTipoSalAlarma={
       &boxPropiedadFactory,	
 			(const struct ConstructorPropGetterVisual*)&cPropiedadTipoSalida
 };
 
+const struct ConstructorBoxPropiedad cBoxesTipoLazo={
+      &boxPropiedadFactory,	
+			(const struct ConstructorPropGetterVisual*)&cPropiedadTipoLazo
+};
 
-const struct ConstructorPropGetterVisual *const propSp[]=	{
-  			  (const struct ConstructorPropGetterVisual*)&cPropiedadSetPointAlarma,
-  			  NULL,
-  			  NULL,
-  			  NULL
-};
   
-const struct ConstructorBoxLinealCondicional cBoxesSetPointAlarma={
-      &boxLinealCondicionalFactory,						       
-  		  propSp,
-  		  NULL,						 //Proximo box
-  		  nextSetPropA
+const struct ConstructorBoxPropiedadEntradaCondicional cBoxesSetPointAlarma ={
+   &boxPropiedadEntradaCondicionalFactory,
+   (const struct ConstructorPropGetterVisual*)&cPropiedadSetPointAlarma,
+   getCondicionEntradaAl
 };
+
+
+/*const struct ConstructorBoxPropiedad cBoxesSetPointAlarma={
+        &boxPropiedadFactory,						       
+  		  (const struct ConstructorPropGetterVisual*)&cPropiedadSetPointAlarma,
+  		  
+};
+  */
+
+

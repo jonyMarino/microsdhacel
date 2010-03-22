@@ -1,5 +1,5 @@
-#ifndef _DECORADORSALIDA_H
-#define _DECORADORSALIDA_H
+#ifndef _DECORADORSALIDA_HPP
+#define _DECORADORSALIDA_HPP
 
 
 #include "ISalida.hpp"
@@ -23,6 +23,7 @@ class DecoradorSalida : public ISalida {
     virtual bool getConectada();
 
     virtual void setConectada(bool conectada);
+ 
   private:
     ISalida& decorado;
 };
