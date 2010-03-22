@@ -209,7 +209,7 @@ const struct ConstructorBoxPropiedad cBoxModoSalida={
 
 
 const struct ConstructorBoxPropiedadEntradaCondicional cBoxPotInst ={
-   &boxPropiedadEntradaCondicionalFactory,
+   &boxPropGetterEntradaCondicionalFactory,
    (const struct ConstructorPropGetterVisual*)&cPropiedadGetPotenciaInst,
    getCondicionEntrada
 };

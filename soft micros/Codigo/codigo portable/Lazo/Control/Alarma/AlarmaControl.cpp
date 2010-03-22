@@ -22,24 +22,24 @@ AlarmaControl::AlarmaControl(ConfiguracionAlarmaControl& _configuracion,
 void AlarmaControl::crearAdaptadorSalida(TipoAdaptadorSalida adaptSalida,AdaptadorSalidaConfiguracion& confAdaptadorSalida){
   switch(adaptSalida){
     case SALIDA_RETENIDA:
-        salidaConPolaridad.setPolaridad(FALSE);
+        salidaConPolaridad.setPolaridad(TRUE);
         LazoControl::adaptadorSalida =new((byte*)&adaptadorSalidaPull) SalidaRetenida(salidaConPolaridad, confAdaptadorSalida);        
         break;
     case SALIDA_DEFECTO_RETENIDA:
-        salidaConPolaridad.setPolaridad(TRUE);
+        salidaConPolaridad.setPolaridad(FALSE);
         LazoControl::adaptadorSalida =new((byte*)&adaptadorSalidaPull) SalidaRetenidaBajo(salidaConPolaridad, confAdaptadorSalida); 
         break;
     case SALIDA_DEFECTO_BLOQUEADA:
-        salidaConPolaridad.setPolaridad(FALSE);
+        salidaConPolaridad.setPolaridad(TRUE);
         LazoControl::adaptadorSalida =new((byte*)&adaptadorSalidaPull) SalidaBloqueada(salidaConPolaridad, confAdaptadorSalida); 
         break;
     case SALIDA_DEFECTO:         
-        salidaConPolaridad.setPolaridad(TRUE);       
+        salidaConPolaridad.setPolaridad(FALSE);       
         LazoControl::adaptadorSalida =new((byte*)&adaptadorSalidaPull) SalidaBanda(salidaConPolaridad, confAdaptadorSalida); 
       break;
     case SALIDA_EXCESO:
     default:  //error
-        salidaConPolaridad.setPolaridad(FALSE);
+        salidaConPolaridad.setPolaridad(TRUE);
         LazoControl::adaptadorSalida =new((byte*)&adaptadorSalidaPull) SalidaBanda(salidaConPolaridad, confAdaptadorSalida);
       break;      
   }
