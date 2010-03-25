@@ -94,11 +94,11 @@ void PWMManager01_45::PWMHard01::PWMHard01(struct ManejadorMemoria &_manejadorMe
   													 
   
   #ifdef __MODRR
-    setReg8Bits(MODRR, 2);  //cablear al puerto T
-    setReg8Bits(DDRT, 2); 
+    setReg8Bits(MODRR, 8);//2  //cablear al puerto T
+    setReg8Bits(DDRT, 8);//2 
   #endif
   
-  setReg8Bits(DDRP, 2);
+  setReg8Bits(DDRP, 8); //2
 }
 
 void PWMManager01_45::PWMHard45::PWMHard45(struct ManejadorMemoria &_manejadorMemoria,const TConfPWM &_conf):PWMHard(_manejadorMemoria,_conf){
@@ -116,9 +116,17 @@ void PWMManager01_45::PWMHard01::setPotenciaGuardada() {
   }
   else{
     if(potencia==0)
-      clrReg8Bits(PTT, 2);               /* PTT1=0 */
+      #ifdef __MODRR
+      clrReg8Bits(PTT, 8);//2              /* PTT3=0 */
+      #else
+      clrReg8Bits(PTP, 8);//2 
+      #endif
     else
-      setReg8Bits(PTT, 2);               /* PTT1=1 */ 
+      #ifdef __MODRR
+      setReg8Bits(PTT, 8);//2            /* PTT3=1 */
+      #else
+      setReg8Bits(PTP, 8);//2
+      #endif 
   }
 }
 
@@ -130,9 +138,9 @@ void PWMManager01_45::PWMHard45::setPotenciaGuardada() {
   }
   else{
     if(potencia==0)
-      clrReg8Bits(PTP, 8);               
+      clrReg8Bits(PTP, 32);               
     else
-      setReg8Bits(PTP, 8);               
+      setReg8Bits(PTP, 32);               
   }
 }
 

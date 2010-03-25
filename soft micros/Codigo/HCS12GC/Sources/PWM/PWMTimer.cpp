@@ -8,8 +8,10 @@
 void PWMTimer::PWMTimer(struct ManejadorMemoria &_manejadorMemoria,TConfPWM &_conf, uchar pin_out):PWM(_manejadorMemoria,_conf){
  //PWM(_manejadorMemoria,_conf);
  pinNum=pin_out;
- setPWM_period(this,_conf.periodo);
  PWM_init(this,pin_out);
+ PWM_Enable(pin_out);
+ setPWM_period(this,_conf.periodo);
+ //PWM_init(this,pin_out);
 }
 
 void PWMTimer::setPotenciaGuardada() {
@@ -40,9 +42,9 @@ unsigned char PWMTimer::setPeriodo(TPeriod period) {
 
 
 void PWMTimer::setTipoSalida(TipoSalida tipoSalida) {
-  if(tipoSalida==SALIDA_ONOFF)
+ /* if(tipoSalida==SALIDA_ONOFF)
     PWM_Disable(pinNum); 
-  else
+  else */           
     PWM_Enable(pinNum);
 }
 
@@ -51,7 +53,7 @@ TipoSalida PWMTimer::getTipoSalida() {
 }
 
 
- void PWMTimer::pwm_setPotencia(unsigned int _potencia) {
+ void PWMTimer::pwn_setPotencia(unsigned int _potencia) {
   
   if(!getConectada() || _potencia<0 || _potencia>1000)  
     return; //error

@@ -38,7 +38,7 @@
 #include "FLASH1.h"
 #include "TI1.h"
 #ifdef _PWM
-  #include "utils_pwm_timer.h"
+  #include "utils_pwm_timer.hpp"
 #endif
 #include "O2.h"
 #include "O4.h"

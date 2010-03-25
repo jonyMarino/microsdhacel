@@ -149,7 +149,7 @@ class ControlPID:public Lazo{
     **     Description :  Obtiene el sensor utilizado por el control
     ** ===================================================================
     */
-    Sensor& getSensor();
+   // Sensor& getSensor();
     /*
     ** ===================================================================
     **     Method      :  setTipoControl 

@@ -471,6 +471,7 @@ ISR(PWM1_Interrupt)
   
   if (Internal_Value!=Previous_Value){  /* Hubo un cambio de estado en esta interrupcion???*/
  		  Previous_Value=Internal_Value;
+ 		 
  		 llama_callOnToggleListeners(1);
   }
   
@@ -493,7 +494,38 @@ PWM_INTERRUPT(3)
 PWM_INTERRUPT(4)
 PWM_INTERRUPT(5)
 PWM_INTERRUPT(6)
-PWM_INTERRUPT(7)
+//PWM_INTERRUPT(7)
+
+ISR(PWM7_Interrupt)
+{  
+  static long Ciclo=65535;
+  static bool Internal_Value=0,Previous_Value=1;
+  
+  if (Ciclo>65535){
+    TC7 += 65500;
+ 		Ciclo-=65500;
+  }else{
+    TC7 += Ciclo;
+    Ciclo=0;
+  }
+  
+  if (Internal_Value!=Previous_Value){  /* Hubo un cambio de estado en esta interrupcion???*/
+ 		  Previous_Value=Internal_Value;
+ 		 
+ 		 if(getReg8(PTT)&128)    //bit 7 del puerto T es 1?
+ 		  setReg8Bits(PTP,64);   //seteo el bit 6 del puerto P
+ 		 else
+ 		  clrReg8Bits(PTP,64);   //reseteo el bit 6 del puerto P
+ 		 
+ 		 llama_callOnToggleListeners(7);
+  }
+  
+  if(Ciclo==0)
+    Ciclo=Conf_Toggle(pwms[7],&Internal_Value);  
+  
+  TFLG1 = 1<<7;          /* Reset interrupt request flag */
+}
+
 
 #pragma CODE_SEG PWM_CODE                     
 
