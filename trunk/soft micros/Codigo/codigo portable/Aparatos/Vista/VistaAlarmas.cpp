@@ -75,11 +75,11 @@
    (*(ConfiguracionValorControlado*)&((*(ValorControl*)&(*(LazoControl*)&(((CoordinadorLazosAlCntrRet*)conf)->getAlarmaControl()))))).METODO(valor); \
   }           
   
-/*void setValorControladorAl(void * alarma,int valor){
+void setValorControladorAl(void * alarma,int valor){
   
   ValorControl * v= &(*(ValorControl*)&(*(LazoControl*)&(((CoordinadorLazosAlCntrRet*)alarma)->getAlarmaControl())));  
-  (*(ConfiguracionValorControlado*)&(v->getConfiguracion())).setValorControlador(valor);.
-} */
+  (*(ConfiguracionValorControlado*)&(v->getConfiguracion())).setValorControlador(valor);
+} 
 
 uchar getDecimalesAlarma(void*alarma){           
   Sensor * s= &(*(ValorControl*)&(*(LazoControl*)&(((CoordinadorLazosAlCntrRet*)alarma)->getAlarmaControl())).getValorControl()).getSensor();

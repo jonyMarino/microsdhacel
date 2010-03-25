@@ -14,8 +14,12 @@
 #include "ControlPID.hpp"
 #include "VistaPWM.hpp"
 #include "VistaControl.hpp"
+#include "SensorTermoPT100.hpp"
+#include "PropGetterNumericoPV.hpp"
 
 #pragma MESSAGE DISABLE C1825          /* Disable warning C5703 "Parameter is not referenced" */
+
+
 
 #define ADAPTAR_FUNCION_GET(NOMBRE,METODO)\
     int NOMBRE(void*conf){           \
@@ -58,6 +62,11 @@ uchar nextSetProp (void * obj){
     return 0;  // posicion de cPropiedadGetPotencia en el la tabla propsPot
   else
     return 2;  
+}
+
+int getVal_ (void * control){
+  
+  return(((ControlPID*)control)->getSensor()).getVal();
 }
 
 
@@ -170,6 +179,12 @@ uchar nextSetProp (void * obj){
    const struct ConstructorPropNumLFPV cPropiedadLimSupSp={
     &propNumLFPVFactory,getLimiteSuperiorSetPoint,"LS",setLimiteSuperiorSetPoint,-9999,9999,getDecimalesControl
   };
+  
+  //valor del sensor2
+ const struct ConstructorPropGetterNumericoPV cPropiedadGetSensor1={
+    &propGetterNumericoPVFactory,getVal_,"S2",getDecimalesControl
+  };
+
    
  /***********************/
  /****** BOXES  *********/

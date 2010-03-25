@@ -29,15 +29,15 @@ void PWMHard23::setPotenciaGuardada() {
   else{
     if(potencia==0)
       #ifdef __MODRR
-      clrReg8Bits(PTT, 8);               /* PTT3=0 */
+      clrReg8Bits(PTT, 2);//8              /* PTT3=0 */
       #else
-      clrReg8Bits(PTP, 8); 
+      clrReg8Bits(PTP, 2);//8 
       #endif
     else
       #ifdef __MODRR
-      setReg8Bits(PTT, 8);               /* PTT3=1 */
+      setReg8Bits(PTT, 2);//8            /* PTT3=1 */
       #else
-      setReg8Bits(PTP, 8);
+      setReg8Bits(PTP, 2);//8
       #endif 
   }
 }

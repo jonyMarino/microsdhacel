@@ -4,7 +4,6 @@
 #include "ADC1.h"
 #include "ADC.h"
 #include "TI1.h"
-
 #include "Object.h"
 
 #define _TIEMPO_AD_EN_MILISEGUNDOS 1000
