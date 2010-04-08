@@ -52,8 +52,8 @@ void OnTipoSalChange(void * b);
  
 
 const LedsSalida::LedConfig configuracionLedsSalida[]= {
-  &PTIP,1<<1,0,
-  &PTIP,1<<3,1, 
+  &PTIP,1<<3,0,
+  &PTIP,1<<1,1, 
   &PTIP,1<<5,2,
   &PTIP,1<<7,3
 };
