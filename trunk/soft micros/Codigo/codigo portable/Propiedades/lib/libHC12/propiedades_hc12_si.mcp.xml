@@ -656,7 +656,7 @@
 
                 <!-- Settings for "Panel for Compiler for HC12" panel -->
                 <SETTING><NAME>Panel for Compiler for HC12</NAME>
-                    <SETTING><NAME>Options</NAME><VALUE>-Cc -D__NO_FLOAT__ -F2 -Ms -NoPath -Qvtpnone -W2</VALUE></SETTING>
+                    <SETTING><NAME>Options</NAME><VALUE>-Cc -D__NO_FLOAT__ -F2 -Ms -Qvtpnone -W2</VALUE></SETTING>
                     <SETTING><NAME>UseDecoder</NAME><VALUE>0</VALUE></SETTING>
                     <SETTING><NAME>EchoCommandLine</NAME><VALUE>0</VALUE></SETTING>
                 </SETTING>
@@ -904,6 +904,24 @@
                     <FILEKIND>Text</FILEKIND>
                     <FILEFLAGS>Debug</FILEFLAGS>
                 </FILE>
+                <FILE>
+                    <PATHTYPE>PathRelative</PATHTYPE>
+                    <PATHROOT>Project</PATHROOT>
+                    <ACCESSPATH>..\..\PropiedadGetterVisual</ACCESSPATH>
+                    <PATH>PropGetterNumericoPV.hpp</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS></FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>PathRelative</PATHTYPE>
+                    <PATHROOT>Project</PATHROOT>
+                    <ACCESSPATH>..\..\PropiedadGetterVisual</ACCESSPATH>
+                    <PATH>PropGetterNumericoPV.cpp</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS>Debug</FILEFLAGS>
+                </FILE>
             </FILELIST>
             <LINKORDER>
                 <FILEREF>
@@ -1037,6 +1055,20 @@
                     <PATHROOT>Project</PATHROOT>
                     <ACCESSPATH>..\..\PropiedadGetterVisual</ACCESSPATH>
                     <PATH>PropDescripcionVariable.cpp</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>PathRelative</PATHTYPE>
+                    <PATHROOT>Project</PATHROOT>
+                    <ACCESSPATH>..\..\PropiedadGetterVisual</ACCESSPATH>
+                    <PATH>PropGetterNumericoPV.hpp</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>PathRelative</PATHTYPE>
+                    <PATHROOT>Project</PATHROOT>
+                    <ACCESSPATH>..\..\PropiedadGetterVisual</ACCESSPATH>
+                    <PATH>PropGetterNumericoPV.cpp</PATH>
                     <PATHFORMAT>Windows</PATHFORMAT>
                 </FILEREF>
             </LINKORDER>
@@ -1201,6 +1233,22 @@
                 <PATHROOT>Project</PATHROOT>
                 <ACCESSPATH>..\..\PropiedadGetterVisual</ACCESSPATH>
                 <PATH>PropDescripcionVariable.cpp</PATH>
+                <PATHFORMAT>Windows</PATHFORMAT>
+            </FILEREF>
+            <FILEREF>
+                <TARGETNAME>C++ Ms no float</TARGETNAME>
+                <PATHTYPE>PathRelative</PATHTYPE>
+                <PATHROOT>Project</PATHROOT>
+                <ACCESSPATH>..\..\PropiedadGetterVisual</ACCESSPATH>
+                <PATH>PropGetterNumericoPV.hpp</PATH>
+                <PATHFORMAT>Windows</PATHFORMAT>
+            </FILEREF>
+            <FILEREF>
+                <TARGETNAME>C++ Ms no float</TARGETNAME>
+                <PATHTYPE>PathRelative</PATHTYPE>
+                <PATHROOT>Project</PATHROOT>
+                <ACCESSPATH>..\..\PropiedadGetterVisual</ACCESSPATH>
+                <PATH>PropGetterNumericoPV.cpp</PATH>
                 <PATHFORMAT>Windows</PATHFORMAT>
             </FILEREF>
         </GROUP>
