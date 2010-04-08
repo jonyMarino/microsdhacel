@@ -52,26 +52,6 @@ TipoSalida PWMTimer::getTipoSalida() {
   return (pwm_timer_isEnable(pinNum))?SALIDA_PROPORCIONAL:SALIDA_ONOFF;
 }
 
-
- void PWMTimer::pwn_setPotencia(unsigned int _potencia) {
-  
-  if(!getConectada() || _potencia<0 || _potencia>1000)  
-    return; //error
-  
-  if(getTipoSalida()==SALIDA_PROPORCIONAL) 
-    potencia = _potencia; 
-  else{
-    if(_potencia)
-      potencia = 1000;
-    else
-      potencia = 0;
-  }  
-}
-
 bool PWMTimer:: getEstadoSalida(){
   return estadoSalida;
-}
-
-unsigned int PWMTimer::getPotencia(){
-  return potencia;
 }
