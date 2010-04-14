@@ -9,18 +9,9 @@
 #include "Memoria/ManejadorMemoria.hpp" 
 #include "TConfPWM.hpp"
 
-static const int periodos[]={   
-  25000,											//100 ms
-  50000,											//200 ms
-  1250 ,											//500 ms
-  2500 ,											//1s
-  5000 ,											//2s
-  12500,											//5s
-  25000, 											//10s
-  50000,											//20s
-  31250,											//50s
-  1250   											//5ms
-};
+#pragma DATA_SEG PWM_HARD_23_DATA                                            
+#pragma CODE_SEG PWM_HARD_23_CODE                     
+#pragma CONST_SEG PWM_HARD_23_CONST   
 
 
 class PWMHard23 : public PWMHard {
@@ -38,3 +29,7 @@ class PWMHard23 : public PWMHard {
     virtual void setPotenciaGuardada(); 
 };
 #endif
+
+#pragma DATA_SEG DEFAULT                                            
+#pragma CODE_SEG DEFAULT                     
+#pragma CONST_SEG DEFAULT  

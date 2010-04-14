@@ -9,8 +9,11 @@ void PWMTimer::PWMTimer(struct ManejadorMemoria &_manejadorMemoria,TConfPWM &_co
  //PWM(_manejadorMemoria,_conf);
  pinNum=pin_out;
  PWM_init(this,pin_out);
- PWM_Enable(pin_out);
  setPWM_period(this,_conf.periodo);
+ PWM_Enable(pin_out);
+ #ifdef SALIDA7_PUERTO_P
+ setReg8Bits(DDRP,128); 
+ #endif
  //PWM_init(this,pin_out);
 }
 
