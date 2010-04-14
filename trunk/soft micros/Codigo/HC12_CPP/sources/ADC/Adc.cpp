@@ -4,7 +4,7 @@
 #include "ADC1.h"
 #include "ADC.h"
 #include "TI1.h"
-#include "Object.h"
+#include "OOC/ooc/lib_cpp/OutputStream.hpp"
 
 #define _TIEMPO_AD_EN_MILISEGUNDOS 1000
 const int AD_CONVERTING_TIME =_TIEMPO_AD_EN_MILISEGUNDOS-TIEMPO_GRABACION; 
@@ -49,7 +49,7 @@ int Adc::getVal() {
 }
 
 void Adc::print(OutputStream& os){
-  os.write(getVal());
+ // os.write(getVal());
 }
 
 int Adc::getTemperaturaAmbiente(){

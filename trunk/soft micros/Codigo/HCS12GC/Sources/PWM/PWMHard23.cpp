@@ -2,9 +2,23 @@
 #include "PWMHard23.hpp"
 #include "PWMHard.hpp"
 
-#pragma CONST_SEG PARAMETERS_PAGE
-volatile const TConfPWM pwmconf23={0};
-#pragma CONST_SEG DEFAULT
+
+#pragma DATA_SEG PWM_HARD_23_DATA                                            
+#pragma CODE_SEG PWM_HARD_23_CODE                     
+#pragma CONST_SEG PWM_HARD_23_CONST   
+
+static const int periodos[]={   
+  25000,											//100 ms
+  50000,											//200 ms
+  1250 ,											//500 ms
+  2500 ,											//1s
+  5000 ,											//2s
+  12500,											//5s
+  25000, 											//10s
+  50000,											//20s
+  31250,											//50s
+  1250   											//5ms
+};
 
 void PWMHard23::PWMHard23(struct ManejadorMemoria &_manejadorMemoria,const TConfPWM &_conf):PWMHard(_manejadorMemoria,_conf){
   CONTROLADOR_PWM_INIT(2,3);

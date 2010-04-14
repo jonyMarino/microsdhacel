@@ -36,4 +36,4 @@ void PWMHard::setConectada(bool conectada){
     setPotencia(0); 
    
    conectado=conectada;
-}
+} 

@@ -75,9 +75,9 @@ const LedsSalida::LedConfig* pConfiguracionLedsSalida[]={
 
 volatile const ConfiguracionControlPID::ControlConf control_config[CANTIDAD_CANALES]={
    ControlDefaultConf,
-   #ifdef CANTIDAD_CANALES>1
-   ControlDefaultConf,
-   #endif
+  // #ifdef CANTIDAD_CANALES>1
+   //ControlDefaultConf,
+   //#endif
 };
   
 volatile const ConfiguracionAlarmas::AlarmConf alar_conf[CANTIDAD_SAL_ALARMA]={
@@ -205,6 +205,7 @@ TConfPWM confPWM[CANTIDAD_CANALES+CANTIDAD_SAL_ALARMA]={
 0,
 #endif
 #endif
+
 };
 PWMHard23 pwm23(flash,confPWM[0]);
 PWMTimer pwm4(flash,confPWM[3],7);
@@ -286,10 +287,28 @@ const struct FstBoxPointer potMan1={
 #endif
 
 #if CANTIDAD_CANALES==1 
+
+
+  #if CANTIDAD_SAL_ALARMA>1
 //SP_alarma
-const struct FstBoxPointer SPal0={
-  (const struct ConstructorBox*)&cBoxesSetPointAlarma,&alarma0,0  
-};
+    const struct FstBoxPointer SPal0={
+      (const struct ConstructorBox*)&cBoxesSetPointAlarma,&alarma0,1  
+    };
+
+    const struct FstBoxPointer SPal1={
+      (const struct ConstructorBox*)&cBoxesSetPointAlarma,&alarma1,2  
+    };
+  #else
+     const struct FstBoxPointer SPal0={
+      (const struct ConstructorBox*)&cBoxesSetPointAlarma,&alarma0,0  
+    };
+  #endif
+   
+  #if CANTIDAD_SAL_ALARMA>2
+     const struct FstBoxPointer SPal2={
+      (const struct ConstructorBox*)&cBoxesSetPointAlarma,&alarma2,3  
+    };
+  #endif
 
 #else
 const struct FstBoxPointer SPal0={
@@ -323,10 +342,12 @@ const struct FstBoxPointer *const opArray[]={
   &potMan1,
   #endif
   &SPal0,
-  #if CANTIDAD_CANALES>1 
-  &SPal1
+  #if CANTIDAD_CANALES>1 || CANTIDAD_SAL_ALARMA>1
+  &SPal1,
   #endif
- 
+  #if CANTIDAD_SAL_ALARMA>2
+  &SPal2,
+  #endif
 };
 
 /*const struct BoxList opList ={
@@ -350,7 +371,7 @@ const struct FstBoxPointer histAlarma0={(const struct ConstructorBox*)&cBoxesHis
 const struct FstBoxPointer periodo0={(const struct ConstructorBox*)&cBoxPeriodo,&pwm23,1};
 //const struct FstBoxPointer periodo1={(const struct ConstructorBox*)&cBoxPeriodo,(PWMManager01_45::get45(flash,confPWM[2])),1};
 #endif
-#if CANTIDAD_SAL_ALARMA>1 || CANTIDAD_CANALES>1 
+#if CANTIDAD_SAL_ALARMA>1 && CANTIDAD_CANALES>1 
 const struct FstBoxPointer histAlarma0={(const struct ConstructorBox*)&cBoxesHistAlarma,&alarma0,1};
 const struct FstBoxPointer histAlarma1={(const struct ConstructorBox*)&cBoxesHistAlarma,&alarma1,2};
 #if CANTIDAD_SAL_ALARMA>2
@@ -366,7 +387,7 @@ static const struct FstBoxPointer *const tunArray[]={
   //#endif
   &aparatoConf,
   &histAlarma0,
-  #if CANTIDAD_SAL_ALARMA>1 || CANTIDAD_CANALES>1 
+  #if CANTIDAD_SAL_ALARMA>1 && CANTIDAD_CANALES>1 
   &histAlarma1,
   #if CANTIDAD_SAL_ALARMA>2
   &histAlarma2
@@ -385,10 +406,10 @@ const struct FstBoxPointer retAlmLimSup0={(const struct ConstructorBox*)&cBoxesR
 #else
 const struct FstBoxPointer sensor1List0={(const struct ConstructorBox*)&cBoxesSensor,&sensor0,1};
 const struct FstBoxPointer sensor1List1={(const struct ConstructorBox*)&cBoxesSensor,&sensor1,2};
-#endif
-#if CANTIDAD_SAL_ALARMA>1  || CANTIDAD_CANALES>1 
 const struct FstBoxPointer retAlmLimInf0={(const struct ConstructorBox*)&cBoxesRetLimInf,&alarma0,0};
 const struct FstBoxPointer retAlmLimSup0={(const struct ConstructorBox*)&cBoxesRetLimSup,&alarma0,0};
+#endif
+#if CANTIDAD_SAL_ALARMA>1  || CANTIDAD_CANALES>1 
 const struct FstBoxPointer retAlmLimInf1={(const struct ConstructorBox*)&cBoxesRetLimInf,&alarma1,2};
 const struct FstBoxPointer retAlmLimSup1={(const struct ConstructorBox*)&cBoxesRetLimSup,&alarma1,2};
 #if CANTIDAD_SAL_ALARMA>2
@@ -468,7 +489,7 @@ static const NEW_BOX_LIST(set,setArray,"ConFigurAcion");
 
 //LIMITES        
 #if CANTIDAD_CANALES==1 
-const struct FstBoxPointer limites={(const struct ConstructorBox*)&cBoxesLimites,&control0,0};
+const struct FstBoxPointer limites0={(const struct ConstructorBox*)&cBoxesLimites,&control0,0};
 #else
 const struct FstBoxPointer limites0={(const struct ConstructorBox*)&cBoxesLimites,&control0,1};
 const struct FstBoxPointer limites1={(const struct ConstructorBox*)&cBoxesLimites,&control1,2};
@@ -533,6 +554,11 @@ void main(void) {
   PE_low_level_init();
   control0.addOnTipoSalidaListener(cambioTipoSalida);
   
+  //pwm4.setPeriodo(PWM_1sec);
+  //pwm4.setConectada(TRUE);
+ // pwm4.setTipoSalida(SALIDA_PROPORCIONAL);
+  //pwm4.setPotencia(500);
+    
   for(;;){
     
     byte tecla = FrenteDH::getInstancia()->getTecla();
@@ -563,7 +589,7 @@ void conectarSalidas(void * a){
    #endif 
    #if CANTIDAD_SAL_ALARMA>2 || CANTIDAD_CANALES>1
     pwm4.setConectada(TRUE);
-   
+    pwm4.setTipoSalida(SALIDA_ONOFF);
    #endif 
 }
 
