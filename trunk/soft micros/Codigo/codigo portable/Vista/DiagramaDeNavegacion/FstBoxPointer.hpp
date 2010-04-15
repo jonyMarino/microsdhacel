@@ -4,11 +4,22 @@
 #include <stdtypes.h>
 #include "Box.hpp"
 
-struct FstBoxPointer{	
+/*struct FstBoxPointer{	
   const struct ConstructorBox * constructor;
   void* objeto;
   uchar numObjeto;
   Box& getNextBox()const;
+};*/
+
+struct FstBoxPointer{	
+  FstBoxPointer(const struct ConstructorBox * ctr,void* obj,uchar numObj);
+  Box& getNextBox()const;
+  
+  private:
+    const struct ConstructorBox * constructor;
+    void* objeto;
+    uchar numObjeto;
+   
 };
 
 
