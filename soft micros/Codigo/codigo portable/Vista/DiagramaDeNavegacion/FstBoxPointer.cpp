@@ -1,5 +1,17 @@
 #include "FstBoxPointer.hpp"
 
+
+FstBoxPointer::FstBoxPointer(const struct ConstructorBox * ctr,void* obj,uchar numObj){
+  constructor=ctr;
+  objeto=obj;
+  numObjeto=numObj;
+
+}
+
+
+
+
+
 /*
 ** =====================================================================
 **    Method      :  FBP_getNextBox 
