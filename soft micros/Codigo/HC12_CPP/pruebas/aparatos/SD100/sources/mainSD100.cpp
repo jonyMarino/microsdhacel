@@ -9,7 +9,7 @@
 #include "WDog1.h"
 //#include "object_r.h"
 //#include "Object.h"
-#include "FrenteDH.hpp"
+#include "FrenteSD.hpp"
 #include "Timer/Timer.hpp"
 #include "Timer/interrup_1ms_40ms/BaseTimers_1ms_40ms.hpp"
 #include "Memoria/Prom/Flash/FlashBkpMitad/FlashBkpMitad.hpp"
@@ -33,7 +33,7 @@
 #include "configuracionControlPID.hpp"
 #include "SensorTermoPT100.hpp"
 #include "VistaPWM.hpp"
-#include "BoxPrincipalControl.hpp"
+#include "BoxPrincipalControlSD.hpp"
 #include "MessagesOut.hpp"
 #include "LedSalida.hpp"
 #include "configuracionAlarmas.hpp"
@@ -52,10 +52,14 @@ void OnTipoSalChange(void * b);
  
 
 const LedsSalida::LedConfig configuracionLedsSalida[]= {
-  &PTIP,1<<3,0,
-  &PTIP,1<<1,1, 
-  &PTIP,1<<5,2,
-  &PTIP,1<<7,3
+  &PTT+1,1,5,
+  &PTT+1,1<<1,2, //Hard
+  &PTT+1,1<<2,6,
+  &PTT+1,1<<3,4, //Hard
+  &PTT+1,1<<4,3,
+  &PTT+1,1<<5,0,
+  &PTT+1,1<<6,1,
+  &PTT+1,1<<7,7
 };
 const LedsSalida::LedConfig* pConfiguracionLedsSalida[]={
   &configuracionLedsSalida[0],
@@ -160,6 +164,12 @@ SensorTermoPT100 sensor1(ad1,sensor_config[1],flash);
 SensorTermoPT100 sensor2(ad2,sensor_config[2],flash);
 SensorTermoPT100 sensor3(ad3,sensor_config[3],flash);
 
+const Getter * gettersAMostrar[]={
+  &sensor0,
+  &sensor1,
+  &sensor2,
+  &sensor3
+};					
 
 
 TConfPWM confPWM[CANTIDAD_CANALES+CANTIDAD_SAL_ALARMA]={
@@ -185,7 +195,7 @@ const ConfiguracionControlPID configuraControl0(*(ConfiguracionControlPID::Contr
 ControlPID control0(sensor0,pwm23,configuraControl0);
 
 const ConfiguracionControlPID configuraControl1(*(ConfiguracionControlPID::ControlConf*)&control_config[1],flash);
-ControlPID control1(sensor1,*PWMManager01_45::get01(flash,confPWM[1],configuraControl1);
+ControlPID control1(sensor1,*PWMManager01_45::get01(flash,confPWM[1]),configuraControl1);
 
 const ConfiguracionControlPID configuraControl2(*(ConfiguracionControlPID::ControlConf*)&control_config[2],flash); 
 ControlPID control2(sensor2,*PWMManager01_45::get45(flash,confPWM[2]),configuraControl2);
@@ -263,9 +273,9 @@ const struct FstBoxPointer potMan3 ((const struct ConstructorBox*)&cBoxPotMan,&c
    
  
 
-struct ConstructorBoxPrincipalControl cBoxPri={
-      &boxPrincipalControlFactory,							/* funcion que procesa al box*/
-      &sensor0,      
+struct ConstructorBoxPrincipalControlSD cBoxPri={
+      &boxPrincipalControlSDFactory,							/* funcion que procesa al box*/
+      gettersAMostrar,      
       &mjsCambioTipoSalida,
       &flash						
 };
@@ -310,7 +320,7 @@ const struct FstBoxPointer aparatoConf3((const struct ConstructorBox*)&cBoxesSin
 const struct FstBoxPointer periodo0((const struct ConstructorBox*)&cBoxPeriodo,&pwm23,1);
 const struct FstBoxPointer periodo1((const struct ConstructorBox*)&cBoxPeriodo,(PWMManager01_45::get01(flash,confPWM[1])),2);
 const struct FstBoxPointer periodo2((const struct ConstructorBox*)&cBoxPeriodo,(PWMManager01_45::get45(flash,confPWM[2])),3);
-const struct FstBoxPointer periodo3((const struct ConstructorBox*)&cBoxPeriodo,pwm4,4);
+const struct FstBoxPointer periodo3((const struct ConstructorBox*)&cBoxPeriodo,&pwm4,4);
 
 const struct FstBoxPointer histAlarma0((const struct ConstructorBox*)&cBoxesHistAlarma,&alarma0,1);
 const struct FstBoxPointer histAlarma1((const struct ConstructorBox*)&cBoxesHistAlarma,&alarma1,2);
@@ -378,7 +388,7 @@ const VistaSetContrasenia vistaSetContrasenia={
   &flash
 };
 
-const struct FstBoxPointer setCList((const struct ConstructorBox*)&VistaSetContrasenia::cBoxSetContrasenia,(void*)&vistaSetContrasenia,0);
+const struct FstBoxPointer setCList(((const struct ConstructorBox*)&VistaSetContrasenia::cBoxSetContrasenia),(void*)&vistaSetContrasenia,0);
 
 const struct FstBoxPointer modosSalida0((const struct ConstructorBox*)&cBoxModoSalida,&control0,1);
 const struct FstBoxPointer modosSalida1((const struct ConstructorBox*)&cBoxModoSalida,&control1,2);
@@ -466,7 +476,7 @@ const NEW_ARRAY(accessList,accessArray);
 
 NEW_ARRAY(arrayLedConfig,pConfiguracionLedsSalida);
 
-const LedsSalida leds (arrayLedConfig,*(FrenteDH::getInstancia()));
+const LedsSalida leds (arrayLedConfig,*(FrenteSD::getInstancia()));
 
 void * timer=NULL;
 
@@ -481,20 +491,16 @@ struct Method cambioTipoSalida={
 
 void main(void) {
   
-  #if CANTIDAD_CANALES>1  
-  BoxPrincipalControl::MostrarGetter((ConstructorPropGetterVisual *)&cPropiedadGetSensor1,&control1); 
-  #else
-  BoxPrincipalControl::MostrarProp((ConstructorPropGetterVisual *)&cPropiedadSetPoint,&control0);
-  #endif
+ 
   RlxMTimer timerConexionSalidas(SALIDA_TIEMPO_DESCONECTADA,timerSalida);
   timer=&timerConexionSalidas;
-  DiagramaNavegacion d(&opList,&accessList,FrenteDH::getInstancia());
+  DiagramaNavegacion d(&opList,&accessList,FrenteSD::getInstancia());
   PE_low_level_init();
   control0.addOnTipoSalidaListener(cambioTipoSalida);
   
   for(;;){
     
-    byte tecla = FrenteDH::getInstancia()->getTecla();
+    byte tecla = FrenteSD::getInstancia()->getTecla();
     termometro.mainLoop();
     d.procesar(tecla);
     sensor0.checkADC();
@@ -534,12 +540,12 @@ void OnTipoSalChange(void * b){
   if(control0.getModoSalida()==ControlPID::_MAN){
     if(!msj_on_sal_change)
       msj_on_sal_change = mjsCambioTipoSalida.addMessage("Pot "); 
-     BoxPrincipalControl::MostrarProp((ConstructorPropGetterVisual *)&cPropiedadPotManual,&control0);   
+     BoxPrincipalControlSD::MostrarProp((ConstructorPropGetterVisual *)&cPropiedadPotManual,&control0);   
   }else{
     if(msj_on_sal_change){
 
       mjsCambioTipoSalida.deleteMessage(msj_on_sal_change);
-      BoxPrincipalControl::MostrarProp((ConstructorPropGetterVisual *)&cPropiedadSetPoint,&control0);
+      BoxPrincipalControlSD::MostrarProp((ConstructorPropGetterVisual *)&cPropiedadSetPoint,&control0);
       msj_on_sal_change=NULL; 
     }                          
   } 

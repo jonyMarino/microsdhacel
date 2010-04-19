@@ -60,6 +60,9 @@
 #include "Cpu.h"
 
 #pragma CODE_SEG Display2_CODE                     
+
+#define P_DISPLAY2 PORTB
+
 /*
 ** ===================================================================
 **     Method      :  Display2_PutVal (bean ByteIO)
@@ -72,6 +75,7 @@
 **     Returns     : Nothing
 ** ===================================================================
 */
+
 #define Display2_PutVal(Val) ( \
     (void)setReg8(PORTB, Val)          /* BIT0-BIT7=Val[bits 0-7] */ \
   )

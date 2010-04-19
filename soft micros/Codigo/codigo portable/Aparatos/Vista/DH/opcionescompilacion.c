@@ -38,7 +38,11 @@
   //                   | _DSP << 11 /* 1 bit */| _ADQ<<12/*1 bit*/
 
 const char * getModelo(void){
+  #ifdef SD
+  return "sd101";
+  #else
   return "d101";
+  #endif
 }
 const char * getVersion(void){
   return "V8.0";
