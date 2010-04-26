@@ -1,5 +1,6 @@
 #include "FstBoxPointer.hpp"
 
+#ifndef SD100
 
 FstBoxPointer::FstBoxPointer(const struct ConstructorBox * ctr,void* obj,uchar numObj){
   constructor=ctr;
@@ -8,9 +9,7 @@ FstBoxPointer::FstBoxPointer(const struct ConstructorBox * ctr,void* obj,uchar n
 
 }
 
-
-
-
+#endif
 
 /*
 ** =====================================================================

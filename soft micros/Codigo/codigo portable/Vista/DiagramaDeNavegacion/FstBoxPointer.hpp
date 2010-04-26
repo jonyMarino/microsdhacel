@@ -4,12 +4,18 @@
 #include <stdtypes.h>
 #include "Box.hpp"
 
-/*struct FstBoxPointer{	
+#define SD100
+
+#ifdef SD100
+
+struct FstBoxPointer{	
   const struct ConstructorBox * constructor;
   void* objeto;
   uchar numObjeto;
   Box& getNextBox()const;
-};*/
+};
+
+#else
 
 struct FstBoxPointer{	
   FstBoxPointer(const struct ConstructorBox * ctr,void* obj,uchar numObj);
@@ -22,5 +28,6 @@ struct FstBoxPointer{
    
 };
 
+#endif
 
 #endif
