@@ -184,21 +184,24 @@ TConfPWM confPWM[CANTIDAD_CANALES+CANTIDAD_SAL_ALARMA]={
 
 };
 
-PWMHard23 pwm23(flash,confPWM[0]);
-PWMTimer pwm4(flash,confPWM[3],7);
-PWMTimer pwm5(flash,confPWM[4],6);
+//PWMHard23 pwm23(flash,confPWM[0]);
+PWMTimer pwm1(flash,confPWM[0],0);
+PWMTimer pwm2(flash,confPWM[1],1);
+PWMTimer pwm3(flash,confPWM[2],2);
+PWMTimer pwm4(flash,confPWM[3],3);
+PWMTimer pwm5(flash,confPWM[4],4);
 PWMTimer pwm6(flash,confPWM[5],5);
-PWMTimer pwm7(flash,confPWM[6],4);
-PWMTimer pwm8(flash,confPWM[7],3);
+PWMTimer pwm7(flash,confPWM[6],6);
+PWMTimer pwm8(flash,confPWM[7],7);
 
 const ConfiguracionControlPID configuraControl0(*(ConfiguracionControlPID::ControlConf*)&control_config[0],flash); 
-ControlPID control0(sensor0,pwm23,configuraControl0);
+ControlPID control0(sensor0,pwm1,configuraControl0);
 
 const ConfiguracionControlPID configuraControl1(*(ConfiguracionControlPID::ControlConf*)&control_config[1],flash);
-ControlPID control1(sensor1,*PWMManager01_45::get01(flash,confPWM[1]),configuraControl1);
+ControlPID control1(sensor1,pwm2,configuraControl1);
 
 const ConfiguracionControlPID configuraControl2(*(ConfiguracionControlPID::ControlConf*)&control_config[2],flash); 
-ControlPID control2(sensor2,*PWMManager01_45::get45(flash,confPWM[2]),configuraControl2);
+ControlPID control2(sensor2,pwm3,configuraControl2);
 
 const ConfiguracionControlPID configuraControl3(*(ConfiguracionControlPID::ControlConf*)&control_config[3],flash);
 ControlPID control3(sensor3,pwm4,configuraControl3);
@@ -243,44 +246,69 @@ CoordinadorLazosAlCntrRet alarma3(configuracionLazoAlarmas3,configuracionAlarma3
 
 
 
+const struct FstBoxPointer potInst0={
+  (const struct ConstructorBox*)&cBoxPotInst,&control0,1
+};  
 
-const struct FstBoxPointer potInst0 ((const struct ConstructorBox*)&cBoxPotInst,&control0,1);  
+const struct FstBoxPointer potMan0={
+  (const struct ConstructorBox*)&cBoxPotMan,&control0,1
+};
 
-const struct FstBoxPointer potMan0 ((const struct ConstructorBox*)&cBoxPotMan,&control0,1);
+const struct FstBoxPointer potInst1={
+  (const struct ConstructorBox*)&cBoxPotInst,&control1,2
+};  
 
-const struct FstBoxPointer potInst1 ((const struct ConstructorBox*)&cBoxPotInst,&control1,2);  
+const struct FstBoxPointer potMan1={
+  (const struct ConstructorBox*)&cBoxPotMan,&control1,2
+}; 
 
-const struct FstBoxPointer potMan1 ((const struct ConstructorBox*)&cBoxPotMan,&control1,2); 
+const struct FstBoxPointer potInst2={
+  (const struct ConstructorBox*)&cBoxPotInst,&control2,3
+};  
 
-const struct FstBoxPointer potInst2 ((const struct ConstructorBox*)&cBoxPotInst,&control2,3);  
+const struct FstBoxPointer potMan2={
+  (const struct ConstructorBox*)&cBoxPotMan,&control2,3
+};
 
-const struct FstBoxPointer potMan2 ((const struct ConstructorBox*)&cBoxPotMan,&control2,3);
+const struct FstBoxPointer potInst3={
+  (const struct ConstructorBox*)&cBoxPotInst,&control3,4
+};  
 
-const struct FstBoxPointer potInst3 ((const struct ConstructorBox*)&cBoxPotInst,&control3,4);  
-
-const struct FstBoxPointer potMan3 ((const struct ConstructorBox*)&cBoxPotMan,&control3,4);  
+const struct FstBoxPointer potMan3={
+  (const struct ConstructorBox*)&cBoxPotMan,&control3,4
+};  
   
  
 
 //SP_alarma
-    const struct FstBoxPointer SPal0 ((const struct ConstructorBox*)&cBoxesSetPointAlarma,&alarma0,1);  
+    const struct FstBoxPointer SPal0={
+      (const struct ConstructorBox*)&cBoxesSetPointAlarma,&alarma0,1
+    };  
     
-    const struct FstBoxPointer SPal1 ((const struct ConstructorBox*)&cBoxesSetPointAlarma,&alarma1,2);  
+    const struct FstBoxPointer SPal1={
+      (const struct ConstructorBox*)&cBoxesSetPointAlarma,&alarma1,2
+    };  
    
-    const struct FstBoxPointer SPal2 ((const struct ConstructorBox*)&cBoxesSetPointAlarma,&alarma2,3);
+    const struct FstBoxPointer SPal2={
+      (const struct ConstructorBox*)&cBoxesSetPointAlarma,&alarma2,3
+    };
     
-    const struct FstBoxPointer SPal3 ((const struct ConstructorBox*)&cBoxesSetPointAlarma,&alarma3,4);  
+    const struct FstBoxPointer SPal3={
+      (const struct ConstructorBox*)&cBoxesSetPointAlarma,&alarma3,4
+    };  
    
  
 
 struct ConstructorBoxPrincipalControlSD cBoxPri={
-      &boxPrincipalControlSDFactory,							/* funcion que procesa al box*/
+      &boxPrincipalControlSDFactory,							// funcion que procesa al box
       gettersAMostrar,      
       &mjsCambioTipoSalida,
       &flash						
 };
 
-const struct FstBoxPointer principal ((const ConstructorBox*)&cBoxPri,NULL,0);  
+const struct FstBoxPointer principal={
+  (const ConstructorBox*)&cBoxPri,NULL,0
+};  
 
 
 const struct FstBoxPointer *const opArray[]={
@@ -305,27 +333,61 @@ const struct FstBoxPointer *const opArray[]={
   FALSE,
   ""  
 };*/
+
+
 const NEW_BOX_LIST(opList,opArray,"");
 
 //TUN        
-const struct FstBoxPointer reset0((const struct ConstructorBox*)&cBoxesReset,&control0,1);
-const struct FstBoxPointer aparatoConf0((const struct ConstructorBox*)&cBoxesSintonia,&control0,1);
-const struct FstBoxPointer reset1((const struct ConstructorBox*)&cBoxesReset,&control1,2);
-const struct FstBoxPointer aparatoConf1((const struct ConstructorBox*)&cBoxesSintonia,&control1,2);
-const struct FstBoxPointer reset2((const struct ConstructorBox*)&cBoxesReset,&control2,3);
-const struct FstBoxPointer aparatoConf2((const struct ConstructorBox*)&cBoxesSintonia,&control2,3);
-const struct FstBoxPointer reset3((const struct ConstructorBox*)&cBoxesReset,&control3,4);
-const struct FstBoxPointer aparatoConf3((const struct ConstructorBox*)&cBoxesSintonia,&control3,4);
+const struct FstBoxPointer reset0={
+  (const struct ConstructorBox*)&cBoxesReset,&control0,1
+};
+const struct FstBoxPointer aparatoConf0={
+  (const struct ConstructorBox*)&cBoxesSintonia,&control0,1
+};
+const struct FstBoxPointer reset1={
+  (const struct ConstructorBox*)&cBoxesReset,&control1,2
+};
+const struct FstBoxPointer aparatoConf1={
+  (const struct ConstructorBox*)&cBoxesSintonia,&control1,2
+};
+const struct FstBoxPointer reset2={
+  (const struct ConstructorBox*)&cBoxesReset,&control2,3
+};
+const struct FstBoxPointer aparatoConf2={
+  (const struct ConstructorBox*)&cBoxesSintonia,&control2,3
+};
+const struct FstBoxPointer reset3={
+  (const struct ConstructorBox*)&cBoxesReset,&control3,4
+};
+const struct FstBoxPointer aparatoConf3={
+  (const struct ConstructorBox*)&cBoxesSintonia,&control3,4
+};
 
-const struct FstBoxPointer periodo0((const struct ConstructorBox*)&cBoxPeriodo,&pwm23,1);
-const struct FstBoxPointer periodo1((const struct ConstructorBox*)&cBoxPeriodo,(PWMManager01_45::get01(flash,confPWM[1])),2);
-const struct FstBoxPointer periodo2((const struct ConstructorBox*)&cBoxPeriodo,(PWMManager01_45::get45(flash,confPWM[2])),3);
-const struct FstBoxPointer periodo3((const struct ConstructorBox*)&cBoxPeriodo,&pwm4,4);
+const struct FstBoxPointer periodo0={
+  (const struct ConstructorBox*)&cBoxPeriodo,&pwm1,1
+};
+const struct FstBoxPointer periodo1={
+  (const struct ConstructorBox*)&cBoxPeriodo,&pwm2,2
+};
+const struct FstBoxPointer periodo2={
+  (const struct ConstructorBox*)&cBoxPeriodo,&pwm3,3
+};
+const struct FstBoxPointer periodo3={
+  (const struct ConstructorBox*)&cBoxPeriodo,&pwm4,4
+};
 
-const struct FstBoxPointer histAlarma0((const struct ConstructorBox*)&cBoxesHistAlarma,&alarma0,1);
-const struct FstBoxPointer histAlarma1((const struct ConstructorBox*)&cBoxesHistAlarma,&alarma1,2);
-const struct FstBoxPointer histAlarma2((const struct ConstructorBox*)&cBoxesHistAlarma,&alarma2,3);
-const struct FstBoxPointer histAlarma3((const struct ConstructorBox*)&cBoxesHistAlarma,&alarma3,4);
+const struct FstBoxPointer histAlarma0={
+  (const struct ConstructorBox*)&cBoxesHistAlarma,&alarma0,1
+};
+const struct FstBoxPointer histAlarma1={
+  (const struct ConstructorBox*)&cBoxesHistAlarma,&alarma1,2
+};
+const struct FstBoxPointer histAlarma2={
+  (const struct ConstructorBox*)&cBoxesHistAlarma,&alarma2,3
+};
+const struct FstBoxPointer histAlarma3={
+  (const struct ConstructorBox*)&cBoxesHistAlarma,&alarma3,4
+};
 
 static const struct FstBoxPointer *const tunArray[]={
   &reset0,
@@ -351,18 +413,42 @@ static const NEW_BOX_LIST(tun,tunArray,"SintoniA");
  
 //CAL
 
-const struct FstBoxPointer sensor1List0((const struct ConstructorBox*)&cBoxesSensor,&sensor0,1);
-const struct FstBoxPointer sensor1List1((const struct ConstructorBox*)&cBoxesSensor,&sensor1,2);
-const struct FstBoxPointer sensor1List2((const struct ConstructorBox*)&cBoxesSensor,&sensor2,3);
-const struct FstBoxPointer sensor1List3((const struct ConstructorBox*)&cBoxesSensor,&sensor3,4);
-const struct FstBoxPointer retAlmLimInf0((const struct ConstructorBox*)&cBoxesRetLimInf,&alarma0,0);
-const struct FstBoxPointer retAlmLimSup0((const struct ConstructorBox*)&cBoxesRetLimSup,&alarma0,0);
-const struct FstBoxPointer retAlmLimInf1((const struct ConstructorBox*)&cBoxesRetLimInf,&alarma1,2);
-const struct FstBoxPointer retAlmLimSup1((const struct ConstructorBox*)&cBoxesRetLimSup,&alarma1,2);
-const struct FstBoxPointer retAlmLimInf2((const struct ConstructorBox*)&cBoxesRetLimInf,&alarma2,3);
-const struct FstBoxPointer retAlmLimSup2((const struct ConstructorBox*)&cBoxesRetLimSup,&alarma2,3);
-const struct FstBoxPointer retAlmLimInf3((const struct ConstructorBox*)&cBoxesRetLimInf,&alarma3,4);
-const struct FstBoxPointer retAlmLimSup3((const struct ConstructorBox*)&cBoxesRetLimSup,&alarma3,4);
+const struct FstBoxPointer sensor1List0={
+  (const struct ConstructorBox*)&cBoxesSensor,&sensor0,1
+};
+const struct FstBoxPointer sensor1List1={
+  (const struct ConstructorBox*)&cBoxesSensor,&sensor1,2
+};
+const struct FstBoxPointer sensor1List2={
+  (const struct ConstructorBox*)&cBoxesSensor,&sensor2,3
+};
+const struct FstBoxPointer sensor1List3={
+  (const struct ConstructorBox*)&cBoxesSensor,&sensor3,4
+};
+const struct FstBoxPointer retAlmLimInf0={
+  (const struct ConstructorBox*)&cBoxesRetLimInf,&alarma0,0
+};
+const struct FstBoxPointer retAlmLimSup0={
+  (const struct ConstructorBox*)&cBoxesRetLimSup,&alarma0,0
+};
+const struct FstBoxPointer retAlmLimInf1={
+  (const struct ConstructorBox*)&cBoxesRetLimInf,&alarma1,2
+};
+const struct FstBoxPointer retAlmLimSup1={
+  (const struct ConstructorBox*)&cBoxesRetLimSup,&alarma1,2
+};
+const struct FstBoxPointer retAlmLimInf2={
+  (const struct ConstructorBox*)&cBoxesRetLimInf,&alarma2,3
+};
+const struct FstBoxPointer retAlmLimSup2={
+  (const struct ConstructorBox*)&cBoxesRetLimSup,&alarma2,3
+};
+const struct FstBoxPointer retAlmLimInf3={
+  (const struct ConstructorBox*)&cBoxesRetLimInf,&alarma3,4
+};
+const struct FstBoxPointer retAlmLimSup3={
+  (const struct ConstructorBox*)&cBoxesRetLimSup,&alarma3,4
+};
 
 
 static const struct FstBoxPointer *const calArray[]={
@@ -388,28 +474,62 @@ const VistaSetContrasenia vistaSetContrasenia={
   &flash
 };
 
-const struct FstBoxPointer setCList(((const struct ConstructorBox*)&VistaSetContrasenia::cBoxSetContrasenia),(void*)&vistaSetContrasenia,0);
+const struct FstBoxPointer setCList={
+  ((const struct ConstructorBox*)&VistaSetContrasenia::cBoxSetContrasenia),(void*)&vistaSetContrasenia,0
+};
 
-const struct FstBoxPointer modosSalida0((const struct ConstructorBox*)&cBoxModoSalida,&control0,1);
-const struct FstBoxPointer modosSalida1((const struct ConstructorBox*)&cBoxModoSalida,&control1,2);
-const struct FstBoxPointer modosSalida2((const struct ConstructorBox*)&cBoxModoSalida,&control2,3);
-const struct FstBoxPointer modosSalida3((const struct ConstructorBox*)&cBoxModoSalida,&control3,4);    
+const struct FstBoxPointer modosSalida0={
+  (const struct ConstructorBox*)&cBoxModoSalida,&control0,1
+};
+const struct FstBoxPointer modosSalida1={
+  (const struct ConstructorBox*)&cBoxModoSalida,&control1,2
+};
+const struct FstBoxPointer modosSalida2={
+  (const struct ConstructorBox*)&cBoxModoSalida,&control2,3
+};
+const struct FstBoxPointer modosSalida3={
+  (const struct ConstructorBox*)&cBoxModoSalida,&control3,4
+};    
     
-const struct FstBoxPointer tipoLazoAlarma0((const struct ConstructorBox*)&cBoxesTipoLazo,&alarma0,1);
-const struct FstBoxPointer modosAlarma0((const struct ConstructorBox*)&cBoxesAlarma,&alarma0,1);
-const struct FstBoxPointer ctrlAlarma0((const struct ConstructorBox*)&cBoxesAlarmaCtrl,&alarma0,1);
+const struct FstBoxPointer tipoLazoAlarma0={
+  (const struct ConstructorBox*)&cBoxesTipoLazo,&alarma0,1
+};
+const struct FstBoxPointer modosAlarma0={
+  (const struct ConstructorBox*)&cBoxesAlarma,&alarma0,1
+};
+const struct FstBoxPointer ctrlAlarma0={
+  (const struct ConstructorBox*)&cBoxesAlarmaCtrl,&alarma0,1
+};
 
-const struct FstBoxPointer tipoLazoAlarma1((const struct ConstructorBox*)&cBoxesTipoLazo,&alarma1,2); 
-const struct FstBoxPointer modosAlarma1((const struct ConstructorBox*)&cBoxesAlarma,&alarma1,2);
-const struct FstBoxPointer ctrlAlarma1((const struct ConstructorBox*)&cBoxesAlarmaCtrl,&alarma1,2);
+const struct FstBoxPointer tipoLazoAlarma1={
+  (const struct ConstructorBox*)&cBoxesTipoLazo,&alarma1,2
+}; 
+const struct FstBoxPointer modosAlarma1={
+  (const struct ConstructorBox*)&cBoxesAlarma,&alarma1,2
+};
+const struct FstBoxPointer ctrlAlarma1={
+  (const struct ConstructorBox*)&cBoxesAlarmaCtrl,&alarma1,2
+};
 
-const struct FstBoxPointer tipoLazoAlarma2((const struct ConstructorBox*)&cBoxesTipoLazo,&alarma2,3);
-const struct FstBoxPointer modosAlarma2((const struct ConstructorBox*)&cBoxesAlarma,&alarma2,3);
-const struct FstBoxPointer ctrlAlarma2((const struct ConstructorBox*)&cBoxesAlarmaCtrl,&alarma2,3);
+const struct FstBoxPointer tipoLazoAlarma2={
+  (const struct ConstructorBox*)&cBoxesTipoLazo,&alarma2,3
+};
+const struct FstBoxPointer modosAlarma2={
+  (const struct ConstructorBox*)&cBoxesAlarma,&alarma2,3
+};
+const struct FstBoxPointer ctrlAlarma2={
+  (const struct ConstructorBox*)&cBoxesAlarmaCtrl,&alarma2,3
+};
 
-const struct FstBoxPointer tipoLazoAlarma3((const struct ConstructorBox*)&cBoxesTipoLazo,&alarma3,4);
-const struct FstBoxPointer modosAlarma3((const struct ConstructorBox*)&cBoxesAlarma,&alarma3,4);
-const struct FstBoxPointer ctrlAlarma3((const struct ConstructorBox*)&cBoxesAlarmaCtrl,&alarma3,4);
+const struct FstBoxPointer tipoLazoAlarma3={
+  (const struct ConstructorBox*)&cBoxesTipoLazo,&alarma3,4
+};
+const struct FstBoxPointer modosAlarma3={
+  (const struct ConstructorBox*)&cBoxesAlarma,&alarma3,4
+};
+const struct FstBoxPointer ctrlAlarma3={
+  (const struct ConstructorBox*)&cBoxesAlarmaCtrl,&alarma3,4
+};
 
 
 
@@ -438,10 +558,18 @@ static const NEW_BOX_LIST(set,setArray,"ConFigurAcion");
 
 //LIMITES        
 
-const struct FstBoxPointer limites0((const struct ConstructorBox*)&cBoxesLimites,&control0,1);
-const struct FstBoxPointer limites1((const struct ConstructorBox*)&cBoxesLimites,&control1,2);
-const struct FstBoxPointer limites2((const struct ConstructorBox*)&cBoxesLimites,&control2,3);
-const struct FstBoxPointer limites3((const struct ConstructorBox*)&cBoxesLimites,&control3,4);
+const struct FstBoxPointer limites0={
+  (const struct ConstructorBox*)&cBoxesLimites,&control0,1
+};
+const struct FstBoxPointer limites1={
+  (const struct ConstructorBox*)&cBoxesLimites,&control1,2
+};
+const struct FstBoxPointer limites2={
+  (const struct ConstructorBox*)&cBoxesLimites,&control2,3
+};
+const struct FstBoxPointer limites3={
+  (const struct ConstructorBox*)&cBoxesLimites,&control3,4
+};
 
 static const struct FstBoxPointer *const limArray[]={
   &limites0,
@@ -454,7 +582,7 @@ static const struct FstBoxPointer *const limArray[]={
 
 static const NEW_BOX_LIST(lim,limArray,"LimitES");
  
-
+  
 
   
 // Acceso comun
@@ -518,9 +646,12 @@ void main(void) {
 void conectarSalidas(void * a){
  
   ((RlxMTimer *)timer)->stop();
-   pwm23.setConectada(TRUE);
-   PWMManager01_45::get01(flash,confPWM[1])->setConectada(TRUE);
-   PWMManager01_45::get45(flash,confPWM[2])->setConectada(TRUE);
+   pwm1.setConectada(TRUE);
+   pwm1.setTipoSalida(SALIDA_ONOFF);
+   pwm2.setConectada(TRUE);
+   pwm2.setTipoSalida(SALIDA_ONOFF);
+   pwm3.setConectada(TRUE);
+   pwm3.setTipoSalida(SALIDA_ONOFF);
    pwm4.setConectada(TRUE);
    pwm4.setTipoSalida(SALIDA_ONOFF);
    pwm5.setConectada(TRUE);
