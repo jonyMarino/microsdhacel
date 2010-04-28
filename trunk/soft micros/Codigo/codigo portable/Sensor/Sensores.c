@@ -17,8 +17,8 @@ static const int   K_Y[8]   = { -1100,  -200,   0,  2900,  4800,   7200,  9600, 
 static const int   s_X[10]  = { -155,     0,  59,   299,   619,    939,  1260,   1500,   1740,  1819};
 static const int   s_Y[10]  = { -310,     0, 930,  3720,  6920,   9830, 12540,  14520,  16530, 17220};
 
-static const int   r_X[11]  = { -150,    0,  59,   299,   619,    940,  1260,   1499,   1739,  1900,  2059};
-static const int   r_Y[11]  = { -310,    0, 930,  3600,  6530,   9150, 11550,  13260,  14960, 16110, 17280};
+static const int   b_X[11]  = {  -2,     0,  2,    63,   211,    408,  632,     812,   1004,  1138,  1275};
+static const int   b_Y[11]  = { -930,     0, 930,  3600,  6530,   9150, 11550,  13260,  14960, 16110, 17280};
 
 static const int  t_X[9]  = {  -417,  -147,   0,   427,   875,   1036,  1313,  1842,  2086};
 static const int  t_Y[9]  = { -1300,  -400,   0,  1000,  1900,   2200,  2700,  3600,  4000};
@@ -43,7 +43,7 @@ const T_Sensor sensorConf[NUM_SENSORES]={
   K_X,K_Y,7,1,1,
   K_X,K_Y,7,1,0,
   s_X,s_Y,9,1,0,
-  r_X,r_Y,10,1,0,
+  b_X,b_Y,10,1,0,
   t_X,t_Y,8,1,0,
   Pt_X,Pt_Y,11,1,1,
   #ifdef pirani
@@ -63,7 +63,7 @@ T_Sensor Sensor[NUM_SENSORES]={
   n_X,n_Y,8,1,
   K_X,K_Y,7,1,
   s_X,s_Y,9,1,
-  r_X,r_Y,10,1,
+  b_X,b_Y,10,1,
   t_X,t_Y,8,1,
   Pt_X,Pt_Y,11,1,
   #ifdef pirani
@@ -182,7 +182,7 @@ bool SENSOR_is_Lineal(t_sensor sensor){
     			"kb  ",
     			"kA  ",
     			"S   ",
-    			"r   ",		/*K S r t Pt Lin1234*/
+    			"b   ",		/*K S r t Pt Lin1234*/
     			"t   ",
     			"Pt  ",
     			#ifdef pirani

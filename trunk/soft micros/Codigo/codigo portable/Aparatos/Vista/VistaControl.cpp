@@ -158,14 +158,14 @@ int getVal_ (void * control){
    //Limites
    ADAPTAR_FUNCION_GET(getLimiteInferiorPotencia,getLimiteInferiorPotencia)
    ADAPTAR_FUNCION_SET(setLimiteInferiorPotencia,setLimiteInferiorPotencia)
-   const struct ConstructorPropNumLFPV cPropiedadLimInfPot={
-    &propNumLFPVFactory,getLimiteInferiorPotencia,"Pi",setLimiteInferiorPotencia,-9999,9999,getDecimalesControl
+   const struct ConstructorPropNumLFPF cPropiedadLimInfPot={
+    &propNumLFPFFactory,getLimiteInferiorPotencia,"Pi",setLimiteInferiorPotencia,-9999,9999,1
   };
    
    ADAPTAR_FUNCION_GET(getLimiteSuperiorPotencia,getLimiteSuperiorPotencia)
    ADAPTAR_FUNCION_SET(setLimiteSuperiorPotencia,setLimiteSuperiorPotencia)
-   const struct ConstructorPropNumLFPV cPropiedadLimSupPot={
-    &propNumLFPVFactory,getLimiteSuperiorPotencia,"PS",setLimiteSuperiorPotencia,-9999,9999,getDecimalesControl
+   const struct ConstructorPropNumLFPF cPropiedadLimSupPot={
+    &propNumLFPFFactory,getLimiteSuperiorPotencia,"PS",setLimiteSuperiorPotencia,-9999,9999,1
   };
   
    ADAPTAR_FUNCION_GET(getLimiteInferiorSetPoint,getLimiteInferiorSetPoint)

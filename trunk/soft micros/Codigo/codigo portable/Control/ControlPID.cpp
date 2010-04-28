@@ -174,7 +174,7 @@ void ControlPID::setDutyControl(){
   if(!isConectado())
     return;  
   
-  if (configuracion.getTipoSalida() == _MAN){
+  if (/*configuracion.getTipoSalida()*/modoSalida == _MAN){
      dutytmp= configuracion.getPotenciaManual(); 
   } else{ 
         if (isPID())               //Estoy en PID
@@ -184,19 +184,15 @@ void ControlPID::setDutyControl(){
 															configuracion.getLimiteSuperiorPotencia()
                               );
         else{
-//            if (_cont->_conf->eSalidaControl == _REF)
-//		          dutytmp = 1000-duty;
-//            else  
-//              dutytmp = duty;
-            dutytmp = duty_onoff(valorControl, 
-                            h 
-                           );
+
+            dutytmp = duty_onoff(valorControl,h );
+            
             if(dutytmp<0)		 // No actualizar
               return;               
         }
   }
 
-  if (configuracion.getTipoSalida() == _REF)
+  if (/*configuracion.getTipoSalida()*/ modoSalida == _REF)
     dutytmp = 1000-dutytmp;
 
   salida.setPotencia(dutytmp);			//seteo el duty de salida     

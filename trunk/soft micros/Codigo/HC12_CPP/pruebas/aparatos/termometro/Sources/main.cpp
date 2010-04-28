@@ -75,9 +75,9 @@ const LedsSalida::LedConfig* pConfiguracionLedsSalida[]={
 
 volatile const ConfiguracionControlPID::ControlConf control_config[CANTIDAD_CANALES]={
    ControlDefaultConf,
-  // #ifdef CANTIDAD_CANALES>1
-   //ControlDefaultConf,
-   //#endif
+   #if CANTIDAD_CANALES>1
+   ControlDefaultConf
+   #endif
 };
   
 volatile const ConfiguracionAlarmas::AlarmConf alar_conf[CANTIDAD_SAL_ALARMA]={
@@ -159,6 +159,19 @@ volatile const ConfiguracionValorControlado::ValorControlConf alarmaSP_conf[CANT
       #endif
   #endif
  };
+ 
+volatile const TConfPWM confPWM[CANTIDAD_CANALES+CANTIDAD_SAL_ALARMA]={
+0,
+0,
+#if CANTIDAD_CANALES>1 || CANTIDAD_SAL_ALARMA>1
+0,
+#if CANTIDAD_CANALES>1 || CANTIDAD_SAL_ALARMA>2
+0,
+#endif
+#endif
+
+};
+ 
  int ta=0;
  #ifdef NDEBUG
   volatile const int codigo = 1234;
@@ -196,17 +209,6 @@ SensorTermoPT100 sensor1(ad1,sensor_config[1],flash);
 
 #endif 
 
-TConfPWM confPWM[CANTIDAD_CANALES+CANTIDAD_SAL_ALARMA]={
-0,
-0,
-#ifdef CANTIDAD_CANALES>1 || CANTIDAD_SAL_ALARMA>1
-0,
-#ifdef CANTIDAD_CANALES>1 || CANTIDAD_SAL_ALARMA>2
-0,
-#endif
-#endif
-
-};
 PWMHard23 pwm23(flash,confPWM[0]);
 PWMTimer pwm4(flash,confPWM[3],7);
 
@@ -319,11 +321,9 @@ const struct FstBoxPointer principal ((const ConstructorBox*)&cBoxPri,NULL,0);
 const struct FstBoxPointer *const opArray[]={
   &principal,
   &potInst0,
-  #if CANTIDAD_CANALES>1
-  &potInst1,
-  #endif
   &potMan0,
-  #if CANTIDAD_CANALES>1 
+  #if CANTIDAD_CANALES>1
+  &potInst1, 
   &potMan1,
   #endif
   &SPal0,
@@ -544,7 +544,9 @@ void main(void) {
   timer=&timerConexionSalidas;
   DiagramaNavegacion d(&opList,&accessList,FrenteDH::getInstancia());
   PE_low_level_init();
+  #if CANTIDAD_CANALES==1
   control0.addOnTipoSalidaListener(cambioTipoSalida);
+  #endif
   
   for(;;){
     
@@ -595,6 +597,7 @@ void OnTipoSalChange(void * b){
       BoxPrincipalControl::MostrarProp((ConstructorPropGetterVisual *)&cPropiedadSetPoint,&control0);
       msj_on_sal_change=NULL; 
     }                          
-  } 
+  }
+  
 }
 
