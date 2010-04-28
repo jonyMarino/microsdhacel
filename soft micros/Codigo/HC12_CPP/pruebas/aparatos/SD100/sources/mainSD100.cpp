@@ -128,6 +128,20 @@ volatile const ConfiguracionValorControlado::ValorControlConf alarmaSP_conf[CANT
     STPT_DEF_CONF,
     STPT_DEF_CONF,
  };
+ 
+volatile const TConfPWM confPWM[CANTIDAD_CANALES+CANTIDAD_SAL_ALARMA]={
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+0,
+
+}; 
+ 
+ 
  int ta=0;
  #ifdef NDEBUG
   volatile const int codigo = 1234;
@@ -171,18 +185,6 @@ const Getter * gettersAMostrar[]={
   &sensor3
 };					
 
-
-TConfPWM confPWM[CANTIDAD_CANALES+CANTIDAD_SAL_ALARMA]={
-0,
-0,
-0,
-0,
-0,
-0,
-0,
-0,
-
-};
 
 //PWMHard23 pwm23(flash,confPWM[0]);
 PWMTimer pwm1(flash,confPWM[0],0);
