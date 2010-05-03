@@ -183,18 +183,19 @@ volatile const TConfPWM confPWM[CANTIDAD_CANALES+CANTIDAD_SAL_ALARMA]={
 
 #pragma CONST_SEG DEFAULT
 
-
+FlashBkpMitad flash((void*)0x4200);
 
 class Init{
   public:
   Init(){
+    
     Timer::setBaseTimerDefault(*BaseTimers_1ms_40ms::getInstance());
     SensorTermoPT100::setConfiguracionTemperaturaAmbiente(&ta);
-
+    PWMManager01_45::get01(flash,confPWM[1]);
+    PWMManager01_45::get45(flash,confPWM[2]);
   }
 }ini;
 
-FlashBkpMitad flash((void*)0x4200);
  
 Termometro termometro(flash); 
 
@@ -210,7 +211,7 @@ SensorTermoPT100 sensor1(ad1,sensor_config[1],flash);
 #endif 
 
 PWMHard23 pwm23(flash,confPWM[0]);                      // pwm control 0
-PWMManager01_45 pwm2and3(flash,confPWM[1],confPWM[2]);  // pwm alarma 1 y 2 o si es de 2 canales pwm control 1 y alarma 1(canal 1)
+//PWMManager01_45 pwm2and3(flash,confPWM[1],confPWM[2]);  // pwm alarma 1 y 2 o si es de 2 canales pwm control 1 y alarma 1(canal 1)
 PWMTimer pwm4(flash,confPWM[3],7);                      // pwm alarma 3 o si es de 2 canales alarma 1(canal 2)
 
 
@@ -219,7 +220,7 @@ ControlPID control0(sensor0,pwm23,configuraControl0);
 
 #if CANTIDAD_CANALES>1 
 const ConfiguracionControlPID configuraControl1(*(ConfiguracionControlPID::ControlConf*)&control_config[1],flash);
-ControlPID control1(sensor1,*(pwm2and3.pwm45),configuraControl1);
+ControlPID control1(sensor1,&(PWMManager01_45::poolPwm45),configuraControl1);
 #endif
 MessagesOut mjsCambioTipoSalida;
 
@@ -230,7 +231,7 @@ ConfiguracionRetransm configuracionRetrans0(*(ConfiguracionRetransm::RetConf*)&r
 ConfiguracionAdapSalida configuracionAdapSalida0(*(ConfiguracionAdapSalida::AdapSalConf*)&adapSal_conf[0],flash);
 ConfiguracionValorControlado configuracionValorAlarma0(*(ConfiguracionValorControlado::ValorControlConf*)&alarmaSP_conf[0],flash);
 
-CoordinadorLazosAlCntrRet alarma0(configuracionLazoAlarmas0,configuracionAlarma0,configuracionValorAlarma0,configuracionAdapSalida0,configuracionRetrans0,control0,*(pwm2and3.pwm01));
+CoordinadorLazosAlCntrRet alarma0(configuracionLazoAlarmas0,configuracionAlarma0,configuracionValorAlarma0,configuracionAdapSalida0,configuracionRetrans0,control0,(PWMManager01_45::.poolPwm01));
 
 #if CANTIDAD_SAL_ALARMA>1 && CANTIDAD_CANALES==1  
 ConfiguracionLazoAlarmas configuracionLazoAlarmas1(*(ConfiguracionLazoAlarmas::LazoAlarmConf*)&lazo_alar_conf[1],flash);
@@ -239,7 +240,7 @@ ConfiguracionRetransm configuracionRetrans1(*(ConfiguracionRetransm::RetConf*)&r
 ConfiguracionAdapSalida configuracionAdapSalida1(*(ConfiguracionAdapSalida::AdapSalConf*)&adapSal_conf[1],flash);
 ConfiguracionValorControlado configuracionValorAlarma1(*(ConfiguracionValorControlado::ValorControlConf*)&alarmaSP_conf[1],flash);
 
-CoordinadorLazosAlCntrRet alarma1(configuracionLazoAlarmas1,configuracionAlarma1,configuracionValorAlarma1,configuracionAdapSalida1,configuracionRetrans1,control0,*(pwm2and3.pwm45));
+CoordinadorLazosAlCntrRet alarma1(configuracionLazoAlarmas1,configuracionAlarma1,configuracionValorAlarma1,configuracionAdapSalida1,configuracionRetrans1,control0,(PWMManager01_45::.poolPwm45));
 #elif CANTIDAD_CANALES>1
 ConfiguracionLazoAlarmas configuracionLazoAlarmas1(*(ConfiguracionLazoAlarmas::LazoAlarmConf*)&lazo_alar_conf[1],flash);
 ConfiguracionAlarmas configuracionAlarma1(*(ConfiguracionAlarmas::AlarmConf*)&alar_conf[1],flash);
@@ -392,7 +393,7 @@ const struct FstBoxPointer periodo0={
   (const struct ConstructorBox*)&cBoxPeriodo,&pwm23,1
 };
 const struct FstBoxPointer periodo1={
-  (const struct ConstructorBox*)&cBoxPeriodo,(pwm2and3.pwm45),2
+  (const struct ConstructorBox*)&cBoxPeriodo,&(PWMManager01_45::.poolPwm45),2
   };
 #endif
 #if CANTIDAD_SAL_ALARMA>1 && CANTIDAD_CANALES>1 
@@ -668,9 +669,9 @@ void conectarSalidas(void * a){
  
   ((RlxMTimer *)timer)->stop();
    pwm23.setConectada(TRUE);
-   (pwm2and3.pwm01)->setConectada(TRUE);
+   (PWMManager01_45::.poolPwm01).setConectada(TRUE);
    #if CANTIDAD_SAL_ALARMA>1 || CANTIDAD_CANALES>1 
-    (pwm2and3.pwm45)->setConectada(TRUE);
+    (PWMManager01_45::.poolPwm45).setConectada(TRUE);
    #endif 
    #if CANTIDAD_SAL_ALARMA>2 || CANTIDAD_CANALES>1
     pwm4.setConectada(TRUE);

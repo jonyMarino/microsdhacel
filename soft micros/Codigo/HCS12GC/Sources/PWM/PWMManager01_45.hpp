@@ -25,6 +25,10 @@ class PWMManager01_45 {
         virtual void setTipoSalida(TipoSalida tipoSalida);
         
         virtual bool getEstadoSalida ();
+        
+        void * operator new(size_t size,byte * dir){
+        return dir;};
+        
       protected:
         virtual void setPotenciaGuardada();       
     };
@@ -41,13 +45,17 @@ class PWMManager01_45 {
         virtual void setTipoSalida(TipoSalida tipoSalida);
         
         virtual bool getEstadoSalida ();
+        
+        void * operator new(size_t size,byte * dir){
+        return dir;};
+        
       protected:
         virtual void setPotenciaGuardada();      
     
     };
      
   public:
-    PWMManager01_45 (ManejadorMemoria &_manejadorMemoria,const TConfPWM &_conf01,const TConfPWM &_conf45);
+    //PWMManager01_45 (ManejadorMemoria &_manejadorMemoria,const TConfPWM &_conf01,const TConfPWM &_conf45);
     
     static TError PWMManager01_45_setPeriodo( PWM * self,TPeriod periodo);
   
@@ -61,10 +69,17 @@ class PWMManager01_45 {
     
     static void PWM01_actualizarPotencia(uint duty);
     
-     static PWMHard01* pwm01;
-    
-     static PWMHard45* pwm45;
+    static PWMHard* get01(ManejadorMemoria &_manejadorMemoria,TConfPWM &_conf);
 
+    static PWMHard* get45(ManejadorMemoria &_manejadorMemoria,TConfPWM &_conf); 
+    
+    static PWMHard01* pwmHard01;
+
+    static PWMHard45* pwmHard45;    
+ 
+    static byte poolPwm01[sizeof(PWMHard01)];
+     
+    static byte poolPwm45[sizeof(PWMHard45)];
 };
 
 
