@@ -11,11 +11,12 @@
 #include "PWMHard.hpp"
 #include "errores.h"
 
+
 class PWMManager01_45 {
   private:
     class PWMHard01 : public PWMHard {
       public:     
-        void PWMHard01(ManejadorMemoria &_manejadorMemoria,const TConfPWM &_conf);
+        PWMHard01(ManejadorMemoria &_manejadorMemoria,const TConfPWM &_conf);
         
         unsigned char setPeriodo(TPeriod periodo);
 
@@ -31,7 +32,7 @@ class PWMManager01_45 {
     class PWMHard45 : public PWMHard {
       public:
      
-        void PWMHard45(ManejadorMemoria &_manejadorMemoria,const TConfPWM &_conf);
+        PWMHard45(ManejadorMemoria &_manejadorMemoria,const TConfPWM &_conf);
         
         unsigned char setPeriodo(TPeriod periodo);
 
@@ -44,11 +45,10 @@ class PWMManager01_45 {
         virtual void setPotenciaGuardada();      
     
     };
-    static PWMHard01* pwmHard01;
-
-    static PWMHard45* pwmHard45;    
-
+     
   public:
+    PWMManager01_45 (ManejadorMemoria &_manejadorMemoria,const TConfPWM &_conf01,const TConfPWM &_conf45);
+    
     static TError PWMManager01_45_setPeriodo( PWM * self,TPeriod periodo);
   
     static void PWMManager01_45_configCaso1(PWMHard::ReferenciaPWM pwmPeriodo50,PWMHard::ReferenciaPWM pwmPeriodo05);
@@ -61,9 +61,9 @@ class PWMManager01_45 {
     
     static void PWM01_actualizarPotencia(uint duty);
     
-    static PWMHard* get01(ManejadorMemoria &_manejadorMemoria,TConfPWM &_conf);
-
-    static PWMHard* get45(ManejadorMemoria &_manejadorMemoria,TConfPWM &_conf); 
+     static PWMHard01* pwm01;
+    
+     static PWMHard45* pwm45;
 
 };
 

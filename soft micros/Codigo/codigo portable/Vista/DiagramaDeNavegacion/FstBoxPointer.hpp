@@ -4,7 +4,7 @@
 #include <stdtypes.h>
 #include "Box.hpp"
 
-//#define SD100
+#define SD100
 
 #ifdef SD100
 
