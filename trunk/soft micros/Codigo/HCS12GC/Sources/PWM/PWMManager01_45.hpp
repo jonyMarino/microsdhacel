@@ -77,9 +77,9 @@ class PWMManager01_45 {
 
     static PWMHard45* pwmHard45;    
  
-    static byte poolPwm01[sizeof(PWMHard01)];
+    static PWMHard01 poolPwm01[sizeof(PWMHard01)];
      
-    static byte poolPwm45[sizeof(PWMHard45)];
+    static PWMHard45 poolPwm45[sizeof(PWMHard45)];
 };
 
 
