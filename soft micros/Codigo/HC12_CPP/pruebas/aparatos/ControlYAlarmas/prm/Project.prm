@@ -4,7 +4,7 @@ END
 
 SECTIONS
       /* List of all sections specified on the "Build options" tab */
-      RAM_1000  =  READ_WRITE           0x00001000 TO 0x000017FF;
+      RAM_1000  =  READ_WRITE           0x00001000 TO 0x00001FFF;
       ROM_4000  =  READ_ONLY            0x00004000 TO 0x000041FF;
       ROM_4600  =  READ_ONLY 						0x00004800 TO 0x00007FFF;
       ROM_C000  =  READ_ONLY            0x0000C000 TO 0x0000FEFF;
@@ -23,5 +23,7 @@ END
 
 INIT _EntryPoint                       /* The entry point of the application. This function is generated into the CPU module. */
 
-STACKSIZE 0x100                       /* Size of the system stack. Value can be changed on the "Build options" tab */
-
+STACKSIZE 0x150                       /* Size of the system stack. Value can be changed on the "Build options" tab */
+<<<<<<< .mineSTACKSIZE 0x80                       /* Size of the system stack. Value can be changed on the "Build options" tab */
+=======STACKSIZE 0x100                       /* Size of the system stack. Value can be changed on the "Build options" tab */
+>>>>>>> .theirs
