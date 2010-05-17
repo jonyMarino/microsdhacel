@@ -22,9 +22,9 @@ class PWMTimer : public PWM {
     
     bool getEstadoSalida ();
     
-  protected:
-
     void setPotenciaGuardada(); 
+
+    
   private:
     bool estadoSalida;   /*TRUE salida en 1, FALSE salida en 0*/
     

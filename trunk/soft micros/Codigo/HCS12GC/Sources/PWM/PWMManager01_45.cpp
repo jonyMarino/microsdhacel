@@ -2,10 +2,10 @@
 #include "PWMManager01_45.hpp"
 #include "PWMHard.hpp"
 
-#pragma CONST_SEG PARAMETERS_PAGE
+/*#pragma CONST_SEG PARAMETERS_PAGE
 volatile const TConfPWM pwmconf01={0};
 volatile const TConfPWM pwmconf45={0};
-#pragma CONST_SEG DEFAULT
+#pragma CONST_SEG DEFAULT */
 /*
   CASOS DE COMBINACION DE PERIODOS ENTRE 01 y 45
 */
@@ -90,7 +90,7 @@ PWMManager01_45::PWMHard45* PWMManager01_45::pwmHard45=NULL;
 
 
 
- PWMManager01_45::PWMHard01::PWMHard01(ManejadorMemoria &_manejadorMemoria,const TConfPWM &_conf): PWMHard(_manejadorMemoria,_conf){
+ void PWMManager01_45::PWMHard01::PWMHard01(struct ManejadorMemoria &_manejadorMemoria,const TConfPWM &_conf): PWMHard(_manejadorMemoria,_conf){
   
   CONTROLADOR_PWM_INIT(0,1);
   													 
@@ -103,7 +103,7 @@ PWMManager01_45::PWMHard45* PWMManager01_45::pwmHard45=NULL;
   setReg8Bits(DDRP, 2); //2
 }
 
- PWMManager01_45::PWMHard45::PWMHard45( ManejadorMemoria &_manejadorMemoria,const TConfPWM &_conf):PWMHard(_manejadorMemoria,_conf){
+void PWMManager01_45::PWMHard45::PWMHard45(struct ManejadorMemoria &_manejadorMemoria,const TConfPWM &_conf):PWMHard(_manejadorMemoria,_conf){
  
  
  CONTROLADOR_PWM_INIT(4,5);
@@ -181,14 +181,16 @@ void PWMManager01_45::PWMHard45::setTipoSalida(TipoSalida tipoSalida) {
 
 PWMHard* PWMManager01_45::get01(ManejadorMemoria &_manejadorMemoria,TConfPWM &_conf) {
   if( !pwmHard01)
-    pwmHard01 = new(&poolPwm01) PWMHard01(_manejadorMemoria,_conf); 
+   // pwmHard01 = new(&poolPwm01) PWMHard01(_manejadorMemoria,_conf); 
+      pwmHard01 = new PWMHard01(_manejadorMemoria,_conf);
   return pwmHard01; 
 
 }
 
 PWMHard* PWMManager01_45::get45(ManejadorMemoria &_manejadorMemoria,TConfPWM &_conf) {
   if( !pwmHard45)
-    pwmHard45 = new(&poolPwm45) PWMHard45(_manejadorMemoria,_conf); 
+    //pwmHard45 = new(&poolPwm45) PWMHard45(_manejadorMemoria,_conf); 
+   pwmHard45 =  new PWMHard45(_manejadorMemoria,_conf); 
   return pwmHard45; 
 } 
 
@@ -234,12 +236,12 @@ TError PWMManager01_45::PWMManager01_45_setPeriodo( PWM * self,TPeriod periodo){
   if(self == pwmHard01){
     pwmDependiente = PWMHard::RefPWM45;
     pwmPeriodoCambiando = PWMHard::RefPWM01; 
-    pwmDependienteObj=self;//pwm45;
+    pwmDependienteObj=self;//pwmHard45;
     
   }else{																			
     pwmDependiente = PWMHard::RefPWM01;
     pwmPeriodoCambiando = PWMHard::RefPWM45;
-    pwmDependienteObj=self;//pwm01;
+    pwmDependienteObj=self;//pwmHard01;
   }
   
   periodoDependiente = pwmDependienteObj->getPeriodo();

@@ -18,6 +18,7 @@
 #include "VistaSetContrasenia.hpp"
 #include "VistaControl.hpp"
 #include "configuracionValorControl.hpp"
+#include "configuracionAlarmas.hpp"
 
 #pragma MESSAGE DISABLE C1825          /* Disable warning C5703 "Parameter is not referenced" */
 
@@ -72,12 +73,12 @@
   
 #define ADAPTAR_FUNCION_VAL_CONTROL_SET(NOMBRE,METODO)      \
   void NOMBRE(void*conf,int valor){           \
-   (*(ConfiguracionValorControlado*)&((*(ValorControl*)&(*(LazoControl*)&(((CoordinadorLazosAlCntrRet*)conf)->getAlarmaControl()))))).METODO(valor); \
+   (*(ConfiguracionValorControlado*)&((*(ValorControl*)&(*(LazoControl*)&(((CoordinadorLazosAlCntrRet*)conf)->getAlarmaControl()))).getConfiguracion())).METODO(valor); \
   }           
   
 void setValorControladorAl(void * alarma,int valor){
   
-  ValorControl * v= &(*(ValorControl*)&(*(LazoControl*)&(((CoordinadorLazosAlCntrRet*)alarma)->getAlarmaControl())));  
+  ValorControl * v= &(*(ValorControl*)&(*(LazoControl*)&(((CoordinadorLazosAlCntrRet*)alarma)->getAlarmaControl())).getValorControl());    
   (*(ConfiguracionValorControlado*)&(v->getConfiguracion())).setValorControlador(valor);
 } 
 
@@ -195,9 +196,9 @@ uchar getDecimalesAlarma(void*alarma){
    
   //SetPoint de Alarma
   ADAPTAR_FUNCION_VAL_CONTROL_GET(getValorControlador,getValorControlador)
-  ADAPTAR_FUNCION_VAL_CONTROL_SET(setValorControlador,setValorControlador)
+  //ADAPTAR_FUNCION_VAL_CONTROL_SET(setValorControlador,setValorControlador)
    const struct ConstructorPropNumLFPV cPropiedadSetPointAlarma={
-    &propNumLFPVFactory,getValorControlador,"A",setValorControlador,-9999,9999,getDecimalesAlarma 
+    &propNumLFPVFactory,getValorControlador,"A",setValorControladorAl,-9999,9999,getDecimalesAlarma 
   };
   
   

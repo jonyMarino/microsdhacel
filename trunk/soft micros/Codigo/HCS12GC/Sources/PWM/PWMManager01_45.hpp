@@ -26,8 +26,8 @@ class PWMManager01_45 {
         
         virtual bool getEstadoSalida ();
         
-        void * operator new(size_t size,byte * dir){
-        return dir;};
+        //void * operator new(size_t size,byte * dir){
+        //return dir;};
         
       protected:
         virtual void setPotenciaGuardada();       
@@ -46,14 +46,17 @@ class PWMManager01_45 {
         
         virtual bool getEstadoSalida ();
         
-        void * operator new(size_t size,byte * dir){
-        return dir;};
+        //void * operator new(size_t size,byte * dir){
+        //return dir;};
         
       protected:
         virtual void setPotenciaGuardada();      
     
     };
-     
+    static PWMHard01* pwmHard01;
+
+    static PWMHard45* pwmHard45;    
+  
   public:
     //PWMManager01_45 (ManejadorMemoria &_manejadorMemoria,const TConfPWM &_conf01,const TConfPWM &_conf45);
     
@@ -73,13 +76,9 @@ class PWMManager01_45 {
 
     static PWMHard* get45(ManejadorMemoria &_manejadorMemoria,TConfPWM &_conf); 
     
-    static PWMHard01* pwmHard01;
-
-    static PWMHard45* pwmHard45;    
- 
-    static PWMHard01 poolPwm01[sizeof(PWMHard01)];
+    //static byte poolPwm01[sizeof(PWMHard01)];
      
-    static PWMHard45 poolPwm45[sizeof(PWMHard45)];
+    //static byte poolPwm45[sizeof(PWMHard45)];
 };
 
 

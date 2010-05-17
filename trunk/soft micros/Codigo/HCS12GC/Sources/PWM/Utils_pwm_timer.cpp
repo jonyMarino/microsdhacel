@@ -456,6 +456,8 @@ ISR(PWM##n##_Interrupt){\
 
 PWM_INTERRUPT(0)
 //PWM_INTERRUPT(1)
+
+
 ISR(PWM1_Interrupt)
 {  
   static long Ciclo=65535;
@@ -471,6 +473,11 @@ ISR(PWM1_Interrupt)
   
   if (Internal_Value!=Previous_Value){  /* Hubo un cambio de estado en esta interrupcion???*/
  		  Previous_Value=Internal_Value;
+ 		   
+ 		 if(getReg8(PTIT)&2)    //bit 1 del puerto T es 1?
+ 		  setReg8Bits(PTP,32);   //seteo el bit 5 del puerto P
+ 		 else
+ 		  clrReg8Bits(PTP,32);   //reseteo el bit 5 del puerto P
  		 
  		 llama_callOnToggleListeners(1);
   }
@@ -491,8 +498,41 @@ void llama_callOnToggleListeners(char n){
 
 PWM_INTERRUPT(2)
 PWM_INTERRUPT(3)
-PWM_INTERRUPT(4)
+
+//PWM_INTERRUPT(4)
+ISR(PWM4_Interrupt)
+{  
+  static long Ciclo=65535;
+  static bool Internal_Value=0,Previous_Value=1;
+  
+  if (Ciclo>65535){
+    TC4 += 65500;
+ 		Ciclo-=65500;
+  }else{
+    TC4 += Ciclo;
+    Ciclo=0;
+  }
+  
+  if (Internal_Value!=Previous_Value){  /* Hubo un cambio de estado en esta interrupcion???*/
+ 		  Previous_Value=Internal_Value;
+ 		 
+ 		 if(getReg8(PTIT)&16)    //bit 4 del puerto T es 1?
+ 		  setReg8Bits(PTP,2);   //seteo el bit 1 del puerto P
+ 		 else
+ 		  clrReg8Bits(PTP,2);   //reseteo el bit 1 del puerto P
+ 		 
+ 		 llama_callOnToggleListeners(4);
+  }
+  
+  if(Ciclo==0)
+    Ciclo=Conf_Toggle(pwms[4],&Internal_Value);  
+  
+  TFLG1 = 1<<4;          /* Reset interrupt request flag */
+}
+
+
 PWM_INTERRUPT(5)
+
 PWM_INTERRUPT(6)
 
 
@@ -516,9 +556,9 @@ ISR(PWM7_Interrupt)
  		  Previous_Value=Internal_Value;
  		 
  		 if(getReg8(PTIT)&128)    //bit 7 del puerto T es 1?
- 		  setReg8Bits(PTP,128);   //seteo el bit 6 del puerto P
+ 		  setReg8Bits(PTP,128);   //seteo el bit 7 del puerto P
  		 else
- 		  clrReg8Bits(PTP,128);   //reseteo el bit 6 del puerto P
+ 		  clrReg8Bits(PTP,128);   //reseteo el bit 7 del puerto P
  		 
  		 llama_callOnToggleListeners(7);
   }
