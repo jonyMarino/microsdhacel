@@ -30,6 +30,24 @@ void Display::write(const char* str){
     else
       digitoTmp=0x00;
 
+   //Transformacion para el SD		( el puerto A tiene los segmentos cambiados respecto del B)
+    
+      uchar c=digitoTmp;
+      uchar bit1=(c&2)>>1;
+      uchar bit2=(c&1)<<1;
+      uchar bit3=(c&8)>>1;
+      uchar bit4=(c&4)<<1;
+      c&=0xfe;
+      c|=bit1;
+      c&=0xfd;
+      c|=bit2;
+      c&=0xfb;
+      c|=bit3;
+      c&=0xf7;
+      c|=bit4;
+      digitoTmp=c;
+    
+   
     mensaje[nLetras]=digitoTmp;
     nLetras++;  
     str++;
