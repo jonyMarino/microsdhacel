@@ -12,19 +12,14 @@ void PWMTimer::PWMTimer(struct ManejadorMemoria &_manejadorMemoria,TConfPWM &_co
  setPWM_period(this,_conf.periodo);
  //setPotenciaGuardada();
  PWM_Enable(pin_out);
- #ifdef SALIDA7_PUERTO_P
- setReg8Bits(DDRP,128); 
- #endif
- setReg8Bits(DDRP,2);
- setReg8Bits(DDRP,32); 
- //PWM_init(this,pin_out);
+  
 }
 
 void PWMTimer::setPotenciaGuardada() {
   unsigned int potencia = getPotencia();
   if(pwm_timer_isEnable(pinNum)){/* PID?*/
     PWM_SetRatio16(this,potencia);
-  }/*else{
+  }else{
     if(potencia==0){
       estadoSalida=FALSE;
       PWM_ClrValue(pinNum);
@@ -34,7 +29,7 @@ void PWMTimer::setPotenciaGuardada() {
       PWM_SetValue(pinNum);
       
     }
-  } */ 
+  }  
 }
 
 
@@ -50,9 +45,9 @@ unsigned char PWMTimer::setPeriodo(TPeriod period) {
 
 
 void PWMTimer::setTipoSalida(TipoSalida tipoSalida) {
- // if(tipoSalida==SALIDA_ONOFF)
-   // PWM_Disable(pinNum); 
-  //else            
+  if(tipoSalida==SALIDA_ONOFF)
+    PWM_Disable(pinNum); 
+  else            
     PWM_Enable(pinNum);
 }
 

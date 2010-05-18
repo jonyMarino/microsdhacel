@@ -44,6 +44,7 @@
 #include "VistaAlarmas.hpp"
 #include "AlarmaControl.hpp"
 
+
 void conectarSalidas(void * a);
 void OnTipoSalChange(void * b);
 
@@ -262,26 +263,26 @@ CoordinadorLazosAlCntrRet alarma2(configuracionLazoAlarmas2,configuracionAlarma2
 
 #if CANTIDAD_CANALES==1  
 //potencia
-const struct FstBoxPointer potInst0 (
+const struct FstBoxPointer potInst0={
   (const struct ConstructorBox*)&cBoxPotInst,&control0,0
-);  
-const struct FstBoxPointer potMan0(
+};  
+const struct FstBoxPointer potMan0={
   (const struct ConstructorBox*)&cBoxPotMan,&control0,0
-);  
+};  
 
 #else
-const struct FstBoxPointer potInst0(
+const struct FstBoxPointer potInst0={
   (const struct ConstructorBox*)&cBoxPotInst,&control0,1
-);  
-const struct FstBoxPointer potMan0(
+};  
+const struct FstBoxPointer potMan0={
   (const struct ConstructorBox*)&cBoxPotMan,&control0,1
-);
-const struct FstBoxPointer potInst1(
+};
+const struct FstBoxPointer potInst1={
   (const struct ConstructorBox*)&cBoxPotInst,&control1,2
-);  
-const struct FstBoxPointer potMan1(
+};  
+const struct FstBoxPointer potMan1={
   (const struct ConstructorBox*)&cBoxPotMan,&control1,2
-);  
+};  
 
 #endif
 
@@ -290,35 +291,35 @@ const struct FstBoxPointer potMan1(
 
   #if CANTIDAD_SAL_ALARMA>1
 //SP_alarma
-    const struct FstBoxPointer SPal0(
+    const struct FstBoxPointer SPal0={
       (const struct ConstructorBox*)&cBoxesSetPointAlarma,&alarma0,1
-    );  
-    const struct FstBoxPointer SPal1(
+    };  
+    const struct FstBoxPointer SPal1={
       (const struct ConstructorBox*)&cBoxesSetPointAlarma,&alarma1,2
-    );  
+    };  
    
   #else
     
-     const struct FstBoxPointer SPal0(
+     const struct FstBoxPointer SPal0={
       (const struct ConstructorBox*)&cBoxesSetPointAlarma,&alarma0,0
-     );  
+     };  
     
   #endif
    
   #if CANTIDAD_SAL_ALARMA>2
-     const struct FstBoxPointer SPal2(
+     const struct FstBoxPointer SPal2={
       (const struct ConstructorBox*)&cBoxesSetPointAlarma,&alarma2,3
-     );  
+     };  
    
   #endif
 
 #else
-    const struct FstBoxPointer SPal0(
+    const struct FstBoxPointer SPal0={
       (const struct ConstructorBox*)&cBoxesSetPointAlarma,&alarma0,1
-    );  
-    const struct FstBoxPointer SPal1(
+    };  
+    const struct FstBoxPointer SPal1={
       (const struct ConstructorBox*)&cBoxesSetPointAlarma,&alarma1,2
-    );  
+    };  
 
 #endif
 
@@ -329,9 +330,9 @@ struct ConstructorBoxPrincipalControl cBoxPri={
       &flash						
 };
 
-const struct FstBoxPointer principal(
+const struct FstBoxPointer principal={
   (const ConstructorBox*)&cBoxPri,NULL,0
-);  
+};  
 const struct FstBoxPointer *const opArray[]={
   &principal,
   &potInst0,
@@ -361,49 +362,49 @@ const NEW_BOX_LIST(opList,opArray,"");
 
 
 #if CANTIDAD_CANALES==1 
-const struct FstBoxPointer reset0(
+const struct FstBoxPointer reset0={
   (const struct ConstructorBox*)&cBoxesReset,&control0,0
-);
-const struct FstBoxPointer aparatoConf0(
+};
+const struct FstBoxPointer aparatoConf0={
   (const struct ConstructorBox*)&cBoxesSintonia,&control0,0
-);
-const struct FstBoxPointer periodo0(
+};
+const struct FstBoxPointer periodo0={
   (const struct ConstructorBox*)&cBoxPeriodo,&pwm23,0
-);
-const struct FstBoxPointer histAlarma0(
+};
+const struct FstBoxPointer histAlarma0={
   (const struct ConstructorBox*)&cBoxesHistAlarma,&alarma0,0
-);
+};
 #else
-const struct FstBoxPointer reset0(
+const struct FstBoxPointer reset0={
   (const struct ConstructorBox*)&cBoxesReset,&control0,1
-);
-const struct FstBoxPointer aparatoConf0(
+};
+const struct FstBoxPointer aparatoConf0={
   (const struct ConstructorBox*)&cBoxesSintonia,&control0,1
-);
-const struct FstBoxPointer reset1(
+};
+const struct FstBoxPointer reset1={
   (const struct ConstructorBox*)&cBoxesReset,&control1,2
-);
-const struct FstBoxPointer aparatoConf1(
+};
+const struct FstBoxPointer aparatoConf1={
   (const struct ConstructorBox*)&cBoxesSintonia,&control1,2
-);
-const struct FstBoxPointer periodo0(
+};
+const struct FstBoxPointer periodo0={
   (const struct ConstructorBox*)&cBoxPeriodo,&pwm23,1
-);
-const struct FstBoxPointer periodo1(
+};
+const struct FstBoxPointer periodo1={
   (const struct ConstructorBox*)&cBoxPeriodo,&pwm2,2
-);
+};
 #endif
 #if CANTIDAD_SAL_ALARMA>1 && CANTIDAD_CANALES>1 
-const struct FstBoxPointer histAlarma0(
+const struct FstBoxPointer histAlarma0={
   (const struct ConstructorBox*)&cBoxesHistAlarma,&alarma0,1
-);
-const struct FstBoxPointer histAlarma1(
+};
+const struct FstBoxPointer histAlarma1={
   (const struct ConstructorBox*)&cBoxesHistAlarma,&alarma1,2
-);
+};
 #if CANTIDAD_SAL_ALARMA>2
-const struct FstBoxPointer histAlarma2(
+const struct FstBoxPointer histAlarma2={
   (const struct ConstructorBox*)&cBoxesHistAlarma,&alarma2,3
-);
+};
 #endif
 #endif
 
@@ -432,43 +433,43 @@ static const NEW_BOX_LIST(tun,tunArray,"SintoniA");
  
 //CAL
 #if CANTIDAD_CANALES==1 
-const struct FstBoxPointer sensor1List0(
+const struct FstBoxPointer sensor1List0={
   (const struct ConstructorBox*)&cBoxesSensor,&sensor0,0
-);
-const struct FstBoxPointer retAlmLimInf0(
+};
+const struct FstBoxPointer retAlmLimInf0={
   (const struct ConstructorBox*)&cBoxesRetLimInf,&alarma0,0
-);
-const struct FstBoxPointer retAlmLimSup0(
+};
+const struct FstBoxPointer retAlmLimSup0={
   (const struct ConstructorBox*)&cBoxesRetLimSup,&alarma0,0
-);
+};
 #else
-const struct FstBoxPointer sensor1List0(
+const struct FstBoxPointer sensor1List0={
   (const struct ConstructorBox*)&cBoxesSensor,&sensor0,1
-);
-const struct FstBoxPointer sensor1List1(
+};
+const struct FstBoxPointer sensor1List1={
   (const struct ConstructorBox*)&cBoxesSensor,&sensor1,2
-);
-const struct FstBoxPointer retAlmLimInf0(
+};
+const struct FstBoxPointer retAlmLimInf0={
   (const struct ConstructorBox*)&cBoxesRetLimInf,&alarma0,0
-);
-const struct FstBoxPointer retAlmLimSup0(
+};
+const struct FstBoxPointer retAlmLimSup0={
   (const struct ConstructorBox*)&cBoxesRetLimSup,&alarma0,0
-);
+};
 #endif
 #if CANTIDAD_SAL_ALARMA>1  || CANTIDAD_CANALES>1 
-const struct FstBoxPointer retAlmLimInf1(
+const struct FstBoxPointer retAlmLimInf1={
   (const struct ConstructorBox*)&cBoxesRetLimInf,&alarma1,2
-);
-const struct FstBoxPointer retAlmLimSup1(
+};
+const struct FstBoxPointer retAlmLimSup1={
   (const struct ConstructorBox*)&cBoxesRetLimSup,&alarma1,2
-);
+};
 #if CANTIDAD_SAL_ALARMA>2
-const struct FstBoxPointer retAlmLimInf2(
+const struct FstBoxPointer retAlmLimInf2={
   (const struct ConstructorBox*)&cBoxesRetLimInf,&alarma2,3
-);
-const struct FstBoxPointer retAlmLimSup2(
+};
+const struct FstBoxPointer retAlmLimSup2={
   (const struct ConstructorBox*)&cBoxesRetLimSup,&alarma2,3
-);
+};
 #endif
 #endif
 
@@ -496,50 +497,50 @@ const VistaSetContrasenia vistaSetContrasenia={
   (const int *)&codigo,
   &flash
 };
-const struct FstBoxPointer setCList(
-  (const struct ConstructorBox*)&(VistaSetContrasenia::cBoxSetContrasenia),(void *)&vistaSetContrasenia,0
-  );
+const struct FstBoxPointer setCList={
+  (const struct ConstructorBox*)&(VistaSetContrasenia::cBoxSetContrasenia),(void *)&vistaSetContrasenia,0 
+  };
 #if CANTIDAD_CANALES==1
-const struct FstBoxPointer modosSalida0(
+const struct FstBoxPointer modosSalida0={
   (const struct ConstructorBox*)&cBoxModoSalida,&control0,0
-);
+};
 #else
-const struct FstBoxPointer modosSalida0(
+const struct FstBoxPointer modosSalida0={
   (const struct ConstructorBox*)&cBoxModoSalida,&control0,1
-);
-const struct FstBoxPointer modosSalida1(
+};
+const struct FstBoxPointer modosSalida1={
   (const struct ConstructorBox*)&cBoxModoSalida,&control1,2
-);    
+};    
 #endif
-const struct FstBoxPointer tipoLazoAlarma0(
+const struct FstBoxPointer tipoLazoAlarma0={
   (const struct ConstructorBox*)&cBoxesTipoLazo,&alarma0,1
-);
-const struct FstBoxPointer modosAlarma0(
+};
+const struct FstBoxPointer modosAlarma0={
   (const struct ConstructorBox*)&cBoxesAlarma,&alarma0,1
-);
-const struct FstBoxPointer ctrlAlarma0(
+};
+const struct FstBoxPointer ctrlAlarma0={
   (const struct ConstructorBox*)&cBoxesAlarmaCtrl,&alarma0,1
-);
+};
 #if CANTIDAD_SAL_ALARMA>1 || CANTIDAD_CANALES>1
-const struct FstBoxPointer tipoLazoAlarma1(
+const struct FstBoxPointer tipoLazoAlarma1={
   (const struct ConstructorBox*)&cBoxesTipoLazo,&alarma1,2
-); 
-const struct FstBoxPointer modosAlarma1(
+}; 
+const struct FstBoxPointer modosAlarma1={
   (const struct ConstructorBox*)&cBoxesAlarma,&alarma1,2
-);
-const struct FstBoxPointer ctrlAlarma1(
+};
+const struct FstBoxPointer ctrlAlarma1={
   (const struct ConstructorBox*)&cBoxesAlarmaCtrl,&alarma1,2
-);
+};
 #if CANTIDAD_SAL_ALARMA>2
-const struct FstBoxPointer tipoLazoAlarma2(
+const struct FstBoxPointer tipoLazoAlarma2={
   (const struct ConstructorBox*)&cBoxesTipoLazo,&alarma2,3
-);
-const struct FstBoxPointer modosAlarma2(
+};
+const struct FstBoxPointer modosAlarma2={
   (const struct ConstructorBox*)&cBoxesAlarma,&alarma2,3
-);
-const struct FstBoxPointer ctrlAlarma2(
+};
+const struct FstBoxPointer ctrlAlarma2={
   (const struct ConstructorBox*)&cBoxesAlarmaCtrl,&alarma2,3
-);
+};
 #endif
 #endif
 
@@ -569,16 +570,16 @@ static const NEW_BOX_LIST(set,setArray,"ConFigurAcion");
 
 //LIMITES        
 #if CANTIDAD_CANALES==1 
-const struct FstBoxPointer limites0(
+const struct FstBoxPointer limites0={
   (const struct ConstructorBox*)&cBoxesLimites,&control0,0
-);
+};
 #else
-const struct FstBoxPointer limites0(
+const struct FstBoxPointer limites0={
   (const struct ConstructorBox*)&cBoxesLimites,&control0,1
-);
-const struct FstBoxPointer limites1(
+};
+const struct FstBoxPointer limites1={
   (const struct ConstructorBox*)&cBoxesLimites,&control1,2
-);
+};
 #endif
 
 static const struct FstBoxPointer *const limArray[]={
@@ -702,7 +703,7 @@ void OnTipoSalChange(void * b){
   }
   #elif CANTIDAD_CANALES == 2 
   if(control1.getModoSalida()==ControlPID::_MAN){
-     pwm2.setTipoSalida(SALIDA_PROPORCIONAL);
+    pwm2.setTipoSalida(SALIDA_PROPORCIONAL);   
      
   }else{
     pwm2.setTipoSalida(SALIDA_ONOFF);

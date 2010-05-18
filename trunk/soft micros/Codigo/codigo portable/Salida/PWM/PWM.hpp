@@ -16,7 +16,7 @@ class PWM : public IPWM {
  public:
   
   
-  PWM(struct ManejadorMemoria &_manejadorMemoria, TConfPWM &_conf):listeners(),manejadorMemoria(_manejadorMemoria),conf(_conf){}
+  PWM(struct ManejadorMemoria &_manejadorMemoria, TConfPWM &_conf);  
   
   fbyte getLimSupPeriodo();
   

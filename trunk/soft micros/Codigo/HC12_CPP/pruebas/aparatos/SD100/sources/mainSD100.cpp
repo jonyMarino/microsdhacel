@@ -187,7 +187,7 @@ const Getter * gettersAMostrar[]={
 
 
 //PWMHard23 pwm23(flash,confPWM[0]);
-PWMTimer pwm1(flash,confPWM[0],0);
+PWMHard23 pwm1(flash,confPWM[0]);
 PWMTimer pwm2(flash,confPWM[1],1);
 PWMTimer pwm3(flash,confPWM[2],2);
 PWMTimer pwm4(flash,confPWM[3],3);
@@ -637,7 +637,7 @@ void main(void) {
     sensor1.checkADC();
     sensor2.checkADC();
     sensor3.checkADC();
-    
+      
   }
     
   
@@ -649,7 +649,6 @@ void conectarSalidas(void * a){
  
   ((RlxMTimer *)timer)->stop();
    pwm1.setConectada(TRUE);
-   pwm1.setTipoSalida(SALIDA_ONOFF);
    pwm2.setConectada(TRUE);
    pwm2.setTipoSalida(SALIDA_ONOFF);
    pwm3.setConectada(TRUE);

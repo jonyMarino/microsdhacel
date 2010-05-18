@@ -3,6 +3,13 @@
 #include "pwm_periodos.h"
 
 
+
+PWM::PWM(struct ManejadorMemoria &_manejadorMemoria, TConfPWM &_conf):listeners(),manejadorMemoria(_manejadorMemoria),conf(_conf){
+     potencia = 0;
+     //setPotenciaGuardada();
+  }
+
+
 unsigned char PWM::setPeriodoConfiguracion(TPeriod period) {
   
  return manejadorMemoria.setByte(&(conf.periodo),period);
