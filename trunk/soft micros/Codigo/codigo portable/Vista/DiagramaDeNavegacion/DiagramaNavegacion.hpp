@@ -14,7 +14,7 @@
 #pragma CODE_SEG DIAGRAMA_NAVEGACION_CODE
 #pragma CONST_SEG DEFAULT
 
-#define _VERSION_TIME 1000
+#define _VERSION_TIME 2000
 
 class DiagramaNavegacion{
   public:

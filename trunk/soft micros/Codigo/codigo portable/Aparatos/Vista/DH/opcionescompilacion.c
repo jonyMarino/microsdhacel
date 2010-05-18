@@ -39,7 +39,7 @@
 
 const char * getModelo(void){
   #ifdef SD
-  return "sd101";
+  return "Sd101";
   #else
   return "d101";
   #endif
