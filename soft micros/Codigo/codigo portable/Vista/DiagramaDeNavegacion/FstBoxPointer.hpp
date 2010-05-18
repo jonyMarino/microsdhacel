@@ -6,7 +6,7 @@
 
 //#define SD100
 
-#ifdef SD100
+//#ifdef SD100
 
 struct FstBoxPointer{	
   const struct ConstructorBox * constructor;
@@ -15,8 +15,8 @@ struct FstBoxPointer{
   Box& getNextBox()const;
 };
 
-#else
-
+//#else
+/*
 struct FstBoxPointer{	
   FstBoxPointer(const struct ConstructorBox * ctr,void* obj,uchar numObj);
   Box& getNextBox()const;
@@ -27,7 +27,7 @@ struct FstBoxPointer{
     uchar numObjeto;
    
 };
-
-#endif
+  */
+//#endif
 
 #endif

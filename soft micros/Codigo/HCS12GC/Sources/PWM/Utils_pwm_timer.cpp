@@ -126,6 +126,17 @@ static  PWMTimer * pwms[8];
 void PWM_init( PWMTimer * pwm,byte pin){
   pwms[pin]=pwm;
   TIOS |= 1<<pin;
+  
+  #ifdef SALIDA_PUERTO_P
+   
+   switch (pin){
+    case 1 : setReg8Bits(DDRP,32);break;   
+    case 4 : setReg8Bits(DDRP,2);break;    
+    case 7 : setReg8Bits(DDRP,128);break;  
+   }
+    
+  #endif  
+  
   TTOV &= ~(1<<pin);
 }
 
@@ -352,6 +363,16 @@ void PWM_SetValue(byte num_salida)
 {
   
   PTT |= 1<<num_salida;                        /* Set output signal level to high */
+  
+  #ifdef SALIDA_PUERTO_P
+   
+   switch (num_salida){
+    case 1 : setReg8Bits(PTP,32);break;   //seteo el bit 5 del puerto P
+    case 4 : setReg8Bits(PTP,2);break;    //seteo el bit 1 del puerto P
+    case 7 : setReg8Bits(PTP,128);break;  //seteo el bit 7 del puerto P
+   }
+    
+  #endif 
 }
 
 
@@ -372,6 +393,16 @@ void PWM_SetValue(byte num_salida)
 void PWM_ClrValue(byte num_salida)
 {
   PTT &= ~(1<<num_salida);                        /* Set output signal level to high */
+  
+  #ifdef SALIDA_PUERTO_P
+   
+   switch (num_salida){
+    case 1 : clrReg8Bits(PTP,32);break;   //reseteo el bit 5 del puerto P
+    case 4 : clrReg8Bits(PTP,2);break;    //reseteo el bit 1 del puerto P
+    case 7 : clrReg8Bits(PTP,128);break;  //reseteo el bit 7 del puerto P
+   }
+    
+  #endif 
 }
 
 /*
@@ -455,9 +486,9 @@ ISR(PWM##n##_Interrupt){\
 #pragma CODE_SEG __NEAR_SEG NON_BANKED   
 
 PWM_INTERRUPT(0)
-//PWM_INTERRUPT(1)
-
-
+#ifndef SALIDA_PUERTO_P
+PWM_INTERRUPT(1)
+#else
 ISR(PWM1_Interrupt)
 {  
   static long Ciclo=65535;
@@ -470,7 +501,7 @@ ISR(PWM1_Interrupt)
     TC1 += Ciclo;
     Ciclo=0;
   }
-  
+
   if (Internal_Value!=Previous_Value){  /* Hubo un cambio de estado en esta interrupcion???*/
  		  Previous_Value=Internal_Value;
  		   
@@ -487,7 +518,7 @@ ISR(PWM1_Interrupt)
   
   TFLG1 = 2;          /* Reset interrupt request flag */
 }
-
+#endif
 
 #pragma INLINE
 
@@ -495,11 +526,12 @@ void llama_callOnToggleListeners(char n){
    pwms[n]->callOnToggleListeners();
 }
 
-
 PWM_INTERRUPT(2)
 PWM_INTERRUPT(3)
 
-//PWM_INTERRUPT(4)
+#ifndef SALIDA_PUERTO_P
+PWM_INTERRUPT(4)
+#else
 ISR(PWM4_Interrupt)
 {  
   static long Ciclo=65535;
@@ -529,14 +561,14 @@ ISR(PWM4_Interrupt)
   
   TFLG1 = 1<<4;          /* Reset interrupt request flag */
 }
-
+#endif
 
 PWM_INTERRUPT(5)
 
 PWM_INTERRUPT(6)
 
 
-#ifndef SALIDA7_PUERTO_P
+#ifndef SALIDA_PUERTO_P
 PWM_INTERRUPT(7)
 #else
 ISR(PWM7_Interrupt)

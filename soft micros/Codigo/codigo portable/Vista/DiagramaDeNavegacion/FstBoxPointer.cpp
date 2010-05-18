@@ -1,15 +1,15 @@
 #include "FstBoxPointer.hpp"
 
-#ifndef SD100
+//#ifndef SD100
 
-FstBoxPointer::FstBoxPointer(const struct ConstructorBox * ctr,void* obj,uchar numObj){
+/*FstBoxPointer::FstBoxPointer(const struct ConstructorBox * ctr,void* obj,uchar numObj){
   constructor=ctr;
   objeto=obj;
   numObjeto=numObj;
 
 }
-
-#endif
+*/
+//#endif
 
 /*
 ** =====================================================================
