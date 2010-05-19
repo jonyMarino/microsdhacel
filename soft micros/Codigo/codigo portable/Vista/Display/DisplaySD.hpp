@@ -1,5 +1,5 @@
-#ifndef _DISPLAY_HPP
-#define _DISPLAY_HPP
+#ifndef _DISPLAY_SD_HPP
+#define _DISPLAY_SD_HPP
 
 #include <stdtypes.h>
 #include "PE/include/PE_Types.h"
@@ -7,9 +7,9 @@
 
 #define  MAX_MENSAJE 30
 /*maneja un display y lo imprime por el puerto dado*/
-class Display:public OutputStream{
+class DisplaySD:public OutputStream{
   public:
-    Display(byte*puerto);
+    DisplaySD(byte*puerto,char _nroDys);
     void write(const char* str);
     //void writeByte(unsigned char b);
     void write(int i);
@@ -23,12 +23,12 @@ class Display:public OutputStream{
     byte nLetras;
     byte * puerto;
     char mensaje[MAX_MENSAJE]; //esta guardado en 8 segmentos
-    
+    char nroDys;
     
     void resetearCorrimiento();
     void incrementarCorrimiento();
     void imprimirDigito(byte numDigito);
-    friend class FrenteCustom;   
+    friend class FrenteCustomSD;   
 };
 
 #endif

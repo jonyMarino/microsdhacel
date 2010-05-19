@@ -20,7 +20,7 @@
 #include "FstBoxPointer.hpp"
 #include "BoxList.hpp"
 #include "Access.hpp"
-#include "DiagramaNavegacion.hpp"
+#include "DiagramaNavegacionSD.hpp"
 #include "VistaSetContrasenia.hpp"
 #include "VistaControl.hpp"
 #include "Salida.hpp"
@@ -35,7 +35,7 @@
 #include "VistaPWM.hpp"
 #include "BoxPrincipalControlSD.hpp"
 #include "MessagesOut.hpp"
-#include "LedSalida.hpp"
+#include "LedSalidaSD.hpp"
 #include "configuracionAlarmas.hpp"
 #include "configuracionLazoAlarmas.hpp"
 #include "ConfiguracionRetransmision.hpp"
@@ -51,7 +51,7 @@ void OnTipoSalChange(void * b);
 #pragma CONST_SEG PARAMETERS_PAGE
  
 
-const LedsSalida::LedConfig configuracionLedsSalida[]= {
+const LedsSalidaSD::LedConfig configuracionLedsSalida[]= {
   &PTT+1,1,5,
   &PTT+1,1<<1,2, //Hard
   &PTT+1,1<<2,6,
@@ -61,7 +61,7 @@ const LedsSalida::LedConfig configuracionLedsSalida[]= {
   &PTT+1,1<<6,1,
   &PTT+1,1<<7,7
 };
-const LedsSalida::LedConfig* pConfiguracionLedsSalida[]={
+const LedsSalidaSD::LedConfig* pConfiguracionLedsSalida[]={
   &configuracionLedsSalida[0],
   &configuracionLedsSalida[1],
   &configuracionLedsSalida[2],
@@ -606,7 +606,7 @@ const NEW_ARRAY(accessList,accessArray);
 
 NEW_ARRAY(arrayLedConfig,pConfiguracionLedsSalida);
 
-const LedsSalida leds (arrayLedConfig,*(FrenteSD::getInstancia()));
+const LedsSalidaSD leds (arrayLedConfig,*(FrenteSD::getInstancia()));
 
 void * timer=NULL;
 
@@ -624,7 +624,7 @@ void main(void) {
  
   RlxMTimer timerConexionSalidas(SALIDA_TIEMPO_DESCONECTADA,timerSalida);
   timer=&timerConexionSalidas;
-  DiagramaNavegacion d(&opList,&accessList,FrenteSD::getInstancia());
+  DiagramaNavegacionSD d(&opList,&accessList,FrenteSD::getInstancia());
   PE_low_level_init();
   control0.addOnTipoSalidaListener(cambioTipoSalida);
   
