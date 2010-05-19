@@ -6,7 +6,7 @@
 #include "com_events.h"
 #include "timer_interrupt.h"
 #include "SnsHmi.h"
-#include "teclas.h"
+//#include "Teclas.hpp"
 #include "SensorTermoPT100.hpp"
 
 

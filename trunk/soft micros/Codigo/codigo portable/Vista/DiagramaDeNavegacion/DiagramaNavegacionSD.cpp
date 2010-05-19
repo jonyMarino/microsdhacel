@@ -7,7 +7,7 @@
 
 //#include "Teclas.hpp"
 //#include "Object.h"
-#include "DiagramaNavegacion.hpp"
+#include "DiagramaNavegacionSD.hpp"
 #include "opcionescompilacion.h"
 //#include "obtenciondisplay.hpp"
 //#include "Array.h"
@@ -39,7 +39,7 @@
 **                    y accesos  ya inicializados y constanter
 ** =====================================================================
 */
-DiagramaNavegacion::DiagramaNavegacion(const struct BoxList * _boxesOp,const struct Array *_accesos,FrenteCustom * _frente){
+DiagramaNavegacionSD::DiagramaNavegacionSD(const struct BoxList * _boxesOp,const struct Array *_accesos,FrenteCustomSD * _frente){
   //Mostrar: Dhacel version,y compilacion
   frente = _frente;
   metodoParaTimer.pmethod=showCompilacion;
@@ -64,8 +64,8 @@ DiagramaNavegacion::DiagramaNavegacion(const struct BoxList * _boxesOp,const str
 **    Description :    Muestra las opciones de compilacion
 ** =====================================================================
 */
-void DiagramaNavegacion::showCompilacion(void*self){
-  DiagramaNavegacion * dn = (DiagramaNavegacion *)self;
+void DiagramaNavegacionSD::showCompilacion(void*self){
+  DiagramaNavegacionSD * dn = (DiagramaNavegacionSD *)self;
   const long comp_options = getOpcionesCompilacion();
   char str[5];
   sprintf(str,"%x",comp_options / 0x10000);
@@ -82,7 +82,7 @@ void DiagramaNavegacion::showCompilacion(void*self){
 **    Description :    Vuelve al Box Principal
 ** =====================================================================
 */
-void DiagramaNavegacion::goPrincipal(){
+void DiagramaNavegacionSD::goPrincipal(){
   struct FstBoxPointer * fb;
   listCount=0;
   boxListCount=1;
@@ -98,8 +98,8 @@ void DiagramaNavegacion::goPrincipal(){
 **    Description :    Salta al Operador
 ** =====================================================================
 */
-void DiagramaNavegacion::jumpToOperador(void*self){
-  DiagramaNavegacion * dn = (DiagramaNavegacion *)self;
+void DiagramaNavegacionSD::jumpToOperador(void*self){
+  DiagramaNavegacionSD * dn = (DiagramaNavegacionSD *)self;
   delete dn->timer;
   dn->goPrincipal();
 }
@@ -110,7 +110,7 @@ void DiagramaNavegacion::jumpToOperador(void*self){
 **    Description :    Refresca los valores del Box Actual
 ** =====================================================================
 */
-void DiagramaNavegacion::refresh(void){
+void DiagramaNavegacionSD::refresh(void){
   boxActual->refresh();  
 }
 /*
@@ -119,7 +119,7 @@ void DiagramaNavegacion::refresh(void){
 **    Description :    Obtiene el objeto que esta tratando el box
 ** =====================================================================
 */
-struct FstBoxPointer* DiagramaNavegacion::opgetFstBoxP(){
+struct FstBoxPointer* DiagramaNavegacionSD::opgetFstBoxP(){
   return (struct FstBoxPointer*)Array_get((void*)boxesOp,boxListCount-1);  
 }
 /*
@@ -128,7 +128,7 @@ struct FstBoxPointer* DiagramaNavegacion::opgetFstBoxP(){
 **    Description :    Obtiene el objeto que esta tratando el box
 ** =====================================================================
 */
-struct FstBoxPointer* DiagramaNavegacion::getActualFstBoxP(void){
+struct FstBoxPointer* DiagramaNavegacionSD::getActualFstBoxP(void){
   struct Access* access;
   struct BoxList* boxList;
 
@@ -150,7 +150,7 @@ struct FstBoxPointer* DiagramaNavegacion::getActualFstBoxP(void){
 **    Description :    Procesa el Box Actual y le pasa el valor de la tecla
 ** =====================================================================
 */
-void DiagramaNavegacion::procesar(uchar tecla){
+void DiagramaNavegacionSD::procesar(uchar tecla){
   struct ConstructorBox * Cbox;
   Box::TEstadoBox state;
   Box * pbox_next;
@@ -236,4 +236,3 @@ void DiagramaNavegacion::procesar(uchar tecla){
 
 
 #pragma CODE_SEG DIAGRAMA_NAVEGACION_CODE
-
