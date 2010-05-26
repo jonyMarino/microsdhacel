@@ -7,16 +7,20 @@
 
 
 const byte FrenteSD::codigoSelectorDigito[]={
-  0x10,0x20,0x40,0x80,  //display superior
-  0x01,0x02,0x04,0x08,   //display inferior
-  
-    
+  0x10,0x20,0x40,0x80,  
+  0x01,0x02,0x04,0x08,  
+  0x01,0x02,0x04,0x08,
+  0x10,0x20,0x40,0x80,  
+       
 }; 
 
 const byte FrenteSD::codigoTecla[]={
-  
-  0x01,0x02,0x04,0x08,  //display inferior
-  0x10,0x20,0x40,0x80,  //display superior
+   
+  0x10,0,0,0,
+  0,0x02,0x04,0x08, 
+  0,0x02,0x04,0x08,
+  0x10,0,0,0,
+    
 };
 
 FrenteSD * FrenteSD::instancia=NULL;
@@ -41,9 +45,10 @@ DisplaySD* FrenteSD::getDisplay(byte numDisplay){
 
 
 void FrenteSD::seleccionarDigito(byte barrido){                                                  
-  assert(barrido<8);
-
-  SelectorDigito_putVal(codigoSelectorDigito[barrido]);
+  assert(barrido<16);
+  
+    SelectorDigito_putVal(codigoSelectorDigito[barrido]);
+  
 }
 
 void FrenteSD::encenderLeds(byte leds){

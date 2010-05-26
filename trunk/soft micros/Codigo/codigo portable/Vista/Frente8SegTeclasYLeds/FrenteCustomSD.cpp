@@ -47,8 +47,9 @@ void FrenteCustomSD::on1ms(){
     return;
   }
   
-  DisplaySD * display = getDisplay(barrido/DIGITOS);
+  DisplaySD * display1 = getDisplay(barrido/DIGITOS);
   
+    
   /* Tengo que encender un digito o checkear una tecla*/
   /*Corrimiento por scrolling*/
   if (scrollTimer.getFlag()){
@@ -70,9 +71,11 @@ void FrenteCustomSD::on1ms(){
   /* el escaneo del teclado se hace luego del envio de la señal de ON
    del digito para que el pin PULL se encuentre estable */  
   actualizarTeclas();
-  display->apagar();
+  display1->apagar();
+  
   seleccionarDigito(barrido);
-  display->imprimirDigito(barrido%DIGITOS);
+  display1->imprimirDigito(barrido%DIGITOS);
+  
   ++barrido;  //actualizo el paso de barrido
 }
 

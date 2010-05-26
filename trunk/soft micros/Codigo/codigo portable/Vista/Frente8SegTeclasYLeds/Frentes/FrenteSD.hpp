@@ -20,8 +20,8 @@ class FrenteSD:public FrenteCustomSD{
     DisplaySD display2;
     DisplaySD display3;
     DisplaySD display4;
-    static const byte codigoSelectorDigito[8];
-    static const byte codigoTecla[8];
+    static const byte codigoSelectorDigito[16];
+    static const byte codigoTecla[16];
     static FrenteSD * instancia;
     
 };
