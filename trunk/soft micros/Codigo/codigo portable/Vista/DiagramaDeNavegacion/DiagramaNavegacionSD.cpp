@@ -47,8 +47,8 @@ DiagramaNavegacionSD::DiagramaNavegacionSD(const struct BoxList * _boxesOp,const
   
   timer= new RlxMTimer(_VERSION_TIME,metodoParaTimer);
   
-  frente->getDisplay(0)->write(getModelo());
-  frente->getDisplay(1)->write(getVersion());
+  frente->getDisplaySD(0)->write(getModelo());
+  frente->getDisplaySD(1)->write(getVersion());
   
   accesos = _accesos;
   boxesOp = _boxesOp;
@@ -69,9 +69,9 @@ void DiagramaNavegacionSD::showCompilacion(void*self){
   const long comp_options = getOpcionesCompilacion();
   char str[5];
   sprintf(str,"%x",comp_options / 0x10000);
-  dn->frente->getDisplay(0)->write(str);
+  dn->frente->getDisplaySD(0)->write(str);
   sprintf(str,"%x",comp_options % 0x10000);
-  dn->frente->getDisplay(1)->write(str);
+  dn->frente->getDisplaySD(1)->write(str);
   dn->metodoParaTimer.pmethod = jumpToOperador;
   dn->timer->setMetodo(dn->metodoParaTimer);
   dn->timer->setTime(_VERSION_TIME);

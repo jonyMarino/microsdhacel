@@ -4,30 +4,16 @@
 #include <stdtypes.h>
 #include "PE/include/PE_Types.h"
 #include "OOC/ooc/lib_cpp/OutputStream.hpp"
+#include "Vista/Display/Display.hpp"
 
-#define  MAX_MENSAJE 30
-/*maneja un display y lo imprime por el puerto dado*/
-class DisplaySD:public OutputStream{
+class DisplaySD:public Display{
   public:
-    DisplaySD(byte*puerto,char _nroDys);
+    DisplaySD(byte*_puerto);
     void write(const char* str);
-    //void writeByte(unsigned char b);
     void write(int i);
-    void writeAsFloat(int i,uchar decimales);
-    void borrar();
-    bool isScrolling();
-    void apagar();
     
   private:
-    byte corrimiento;
-    byte nLetras;
-    byte * puerto;
-    char mensaje[MAX_MENSAJE]; //esta guardado en 8 segmentos
-    char nroDys;
     
-    void resetearCorrimiento();
-    void incrementarCorrimiento();
-    void imprimirDigito(byte numDigito);
     friend class FrenteCustomSD;   
 };
 

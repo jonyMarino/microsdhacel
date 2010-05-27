@@ -8,7 +8,8 @@
 class FrenteSD:public FrenteCustomSD{
   public:
     static FrenteSD* getInstancia();
-    virtual DisplaySD* getDisplay(byte numDisplay);
+    virtual Display* getDisplay(byte numDisplay);
+    virtual DisplaySD* getDisplaySD(byte numDisplay);
   protected:
     FrenteSD();
     virtual void seleccionarDigito(byte barrido);
@@ -18,10 +19,10 @@ class FrenteSD:public FrenteCustomSD{
   private:
     DisplaySD display1;
     DisplaySD display2;
-    DisplaySD display3;
-    DisplaySD display4;
-    static const byte codigoSelectorDigito[16];
-    static const byte codigoTecla[16];
+    Display display3;
+    Display display4;
+    static const byte codigoSelectorDigito[8];
+    static const byte codigoTecla[8];
     static FrenteSD * instancia;
     
 };

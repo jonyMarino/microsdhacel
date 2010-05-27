@@ -17,6 +17,13 @@ class FrenteCustom{
     void borrar(void); 
     byte getTecla(); 
     Teclas& getTeclas();
+    
+    void actualizarTeclas();
+    void resetScroll();
+   
+    FlagTimer scrollTimer;
+    byte barrido;           // contador de la etapa de barrido actual (0-DIGITOS*DISPLAYS)
+    byte leds;              // indica los leds que fueron presionados
   protected:
     virtual void on1ms();
     FrenteCustom();
@@ -25,17 +32,16 @@ class FrenteCustom{
     virtual bool isTeclaPresionada()=0;
     virtual byte getTeclaPosicion(byte barrido)=0;  //para el barrido pasado, cual es la tecla correspondiente
   private:   
-    FlagTimer scrollTimer;
+    
     struct Method mOn1ms;
     Teclas teclas;
-    byte leds;              // indica los leds que fueron presionados
-    byte barrido;           // contador de la etapa de barrido actual (0-DIGITOS*DISPLAYS)
+    
+    
     byte barridoTeclas;     // contador del barrido de teclas (0-CANTIDAD_TECLAS-1)
     byte teclasPresionadas; // registro donde se van guardando las teclas presionadas en un barrido
     byte posiblesTeclas;      // conjunto de teclas presionadas en un barrido posiblemente validas
     byte debounce;          // contador del numero de entradas iguales hasta aceptar la tecla
-    void actualizarTeclas();
-    void resetScroll();
+    
     static void on1msStatic(void*self);  
 };
 
