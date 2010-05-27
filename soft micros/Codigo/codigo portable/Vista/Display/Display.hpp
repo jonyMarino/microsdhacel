@@ -18,16 +18,17 @@ class Display:public OutputStream{
     bool isScrolling();
     void apagar();
     
+    void resetearCorrimiento();
+    void incrementarCorrimiento();
+    void imprimirDigito(byte numDigito);
+  
+    char mensaje[MAX_MENSAJE]; //esta guardado en 8 segmentos
   private:
     byte corrimiento;
     byte nLetras;
     byte * puerto;
-    char mensaje[MAX_MENSAJE]; //esta guardado en 8 segmentos
     
     
-    void resetearCorrimiento();
-    void incrementarCorrimiento();
-    void imprimirDigito(byte numDigito);
     friend class FrenteCustom;   
 };
 

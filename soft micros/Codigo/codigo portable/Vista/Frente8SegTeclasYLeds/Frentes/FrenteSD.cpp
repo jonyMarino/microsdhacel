@@ -9,8 +9,7 @@
 const byte FrenteSD::codigoSelectorDigito[]={
   0x10,0x20,0x40,0x80,  
   0x01,0x02,0x04,0x08,  
-  0x01,0x02,0x04,0x08,
-  0x10,0x20,0x40,0x80,  
+  
        
 }; 
 
@@ -18,14 +17,13 @@ const byte FrenteSD::codigoTecla[]={
    
   0x10,0,0,0,
   0,0x02,0x04,0x08, 
-  0,0x02,0x04,0x08,
-  0x10,0,0,0,
+  
     
 };
 
 FrenteSD * FrenteSD::instancia=NULL;
 
-FrenteSD::FrenteSD():display1(&P_DISPLAY1,1),display2(&P_DISPLAY1,2),display3(&P_DISPLAY2,3),display4(&P_DISPLAY2,4){
+FrenteSD::FrenteSD():display1(&P_DISPLAY1),display2(&P_DISPLAY1),display3(&P_DISPLAY2),display4(&P_DISPLAY2){
 }
 
 FrenteSD* FrenteSD::getInstancia(){
@@ -34,18 +32,25 @@ FrenteSD* FrenteSD::getInstancia(){
   return instancia;
 }
 
-DisplaySD* FrenteSD::getDisplay(byte numDisplay){
+Display* FrenteSD::getDisplay(byte numDisplay){
+  switch (numDisplay){
+    case 0:return &display3;break;
+    case 1:return &display4;break;
+    
+  }
+}
+
+DisplaySD* FrenteSD::getDisplaySD(byte numDisplay){
   switch (numDisplay){
     case 0:return &display1;break;
     case 1:return &display2;break;
-    case 2:return &display3;break;
-    case 3:return &display4;break;
+    
   }
 }
 
 
 void FrenteSD::seleccionarDigito(byte barrido){                                                  
-  assert(barrido<16);
+  assert(barrido<8);
   
     SelectorDigito_putVal(codigoSelectorDigito[barrido]);
   

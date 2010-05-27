@@ -1,41 +1,11 @@
 #include "FrenteCustomSD.hpp"
 #include "TimerHard/int1ms_40ms_handler/timer_interrupt.h"
 
-/*FrenteCustom()*/
-FrenteCustomSD::FrenteCustomSD():scrollTimer(TIME_SCROLL),leds(0),barrido(0),barridoTeclas(0),teclasPresionadas(0),posiblesTeclas(0),debounce(0){      
-  mOn1ms.pmethod = on1msStatic;
-  mOn1ms.obj = this;
-  add1msListener(&mOn1ms);
+
+FrenteCustomSD::FrenteCustomSD(){      
+  //FrenteCustom();
 }
 
-void FrenteCustomSD::on1msStatic(void*_self){
-  FrenteCustomSD * self = (FrenteCustomSD *)_self;
-  self->on1ms();    
-}
-
-/*setLed()*/
-void FrenteCustomSD::setLed(bool val,byte num){
- if(val)
-  leds|= 1<<num;
- else
-  leds&=~(1<<num);
-}
-
-/*resetScroll()*/
-void FrenteCustomSD::resetScroll(void){
-  int i;
-  for(i=0;i<CANTIDAD_DISPLAYS;i++)
-    getDisplay(i)->resetearCorrimiento();	//resetear variables de SCROLL
-	scrollTimer.setTime(TIME_SCROLL*2);
-	scrollTimer.reset();
-}
-/*borrar()*/
-void FrenteCustomSD::borrar(void){
-  int i;
-  resetScroll();
-  for(i=0;i<CANTIDAD_DISPLAYS;i++)
-    getDisplay(i)->borrar();  
-}
 /*on1ms()*/
 void FrenteCustomSD::on1ms(){
   /* refresco todo el frente cada 1 msg*barridos */
@@ -48,14 +18,21 @@ void FrenteCustomSD::on1ms(){
   }
   
   DisplaySD * display1 = getDisplay(barrido/DIGITOS);
-  
+  Display * display2 = getDisplay(barrido/DIGITOS+2);
     
   /* Tengo que encender un digito o checkear una tecla*/
   /*Corrimiento por scrolling*/
   if (scrollTimer.getFlag()){
     bool scrolling=FALSE;
-    for(int i=0;i<CANTIDAD_DISPLAYS;i++){
-      DisplaySD * d = getDisplay(i);
+    for(int i=0;i<CANTIDAD_DISPLAYS/2;i++){
+      DisplaySD * sd = getDisplaySD(i);
+      Display * d = getDisplay(i);
+      if (sd->isScrolling())
+      {
+    	    sd->incrementarCorrimiento();
+          scrolling=TRUE;  		    
+      }
+      
       if (d->isScrolling())
       {
     	    d->incrementarCorrimiento();
@@ -72,46 +49,11 @@ void FrenteCustomSD::on1ms(){
    del digito para que el pin PULL se encuentre estable */  
   actualizarTeclas();
   display1->apagar();
+  display2->apagar();
   
   seleccionarDigito(barrido);
   display1->imprimirDigito(barrido%DIGITOS);
-  
+  display2->imprimirDigito(barrido%DIGITOS+2);
   ++barrido;  //actualizo el paso de barrido
 }
 
-/* se fija si se encuentra el barrido en la posicion para leer una tecla, el barrido se encuentra en la posicion anterior para mayor estabilidad*/
-void FrenteCustomSD::actualizarTeclas(){
-  byte tecla = getTeclaPosicion(barrido);
-  if(!tecla) return;  //no es la posicion del barrido que corresponde a la lectura de una letra
-  
-  if(isTeclaPresionada()) teclasPresionadas|=tecla;
-                     
-	barridoTeclas++;
-	if(barridoTeclas!=CANTIDAD_TECLAS)
-	  return;	  
-  barridoTeclas=0;				// reinicia
-	
-  if(teclasPresionadas!=posiblesTeclas) // proceso del debounce
-  {
-	  debounce=CANTIDAD_VALIDACIONES;
-	  posiblesTeclas=teclasPresionadas;
-  }
-  teclasPresionadas=0;
-  
-
-  if(debounce!=0) {
-  	--debounce;
-  	return;		
-  }
-  //la posible tecla realmente fue presionada y se debe procesar
-  teclas.presionar(posiblesTeclas);
-  
-}
-
-byte FrenteCustomSD::getTecla(){
-  return teclas.getTecla();
-}
-
-Teclas& FrenteCustomSD::getTeclas(){
-  return teclas;
-}
