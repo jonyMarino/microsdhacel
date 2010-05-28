@@ -44,7 +44,7 @@ const char * getModelo(void){
   return "d101";
   #endif
 }
-const char * getVersion(void){
+ const char * getVersion(void){
   return "V8.0";
 }
 long getOpcionesCompilacion(void){

@@ -17,8 +17,8 @@ void FrenteCustomSD::on1ms(){
     return;
   }
   
-  DisplaySD * display1 = getDisplay(barrido/DIGITOS);
-  Display * display2 = getDisplay(barrido/DIGITOS+2);
+  DisplaySD * display1 = getDisplaySD(barrido/DIGITOS);
+  Display * display2 = getDisplay(barrido/DIGITOS);
     
   /* Tengo que encender un digito o checkear una tecla*/
   /*Corrimiento por scrolling*/
@@ -53,7 +53,7 @@ void FrenteCustomSD::on1ms(){
   
   seleccionarDigito(barrido);
   display1->imprimirDigito(barrido%DIGITOS);
-  display2->imprimirDigito(barrido%DIGITOS+2);
+  display2->imprimirDigito(barrido%DIGITOS);
   ++barrido;  //actualizo el paso de barrido
 }
 

@@ -59,9 +59,11 @@ Box * BoxPrincipalControlSD::procesarTecla(uchar tecla,TEstadoBox& estado){
            msj_index=0;
         }
      }
-     for(i=0;i<CANTIDAD_CANALES;i++)
-      constructor->snsrs[i]->print(getDisplay(i));
-  		
+     for(i=0;i<CANTIDAD_CANALES;i++){
+      
+        constructor->snsrs[i]->print(getDisplay(i));
+      
+     }
   		timerPri.reset();
   	}
   

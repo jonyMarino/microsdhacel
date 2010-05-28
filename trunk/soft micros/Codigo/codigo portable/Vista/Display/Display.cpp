@@ -100,3 +100,19 @@ void Display::imprimirDigito(byte numDigito){
   else
     *puerto = 0;
 }
+
+char* Display::getMensaje(){
+  char i;
+  char * _msj;
+  
+  for(i=0;i<MAX_MENSAJE;i++)
+   *(_msj+i)= mensaje[i];
+  
+  return _msj;
+}
+
+void Display::setMensaje(char* msj){
+  char i;
+  for(i=0;i<MAX_MENSAJE;i++,msj++)
+    mensaje[i]=(*msj);
+}

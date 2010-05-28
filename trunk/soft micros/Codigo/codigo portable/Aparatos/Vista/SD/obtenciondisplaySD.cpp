@@ -2,5 +2,8 @@
 #include "FrenteSD.hpp"
 
 OutputStream& getDisplay(uchar numDisplay){
-  return *FrenteSD::getInstancia()->getDisplay(numDisplay);
+  if(numDisplay<=1)
+    return *FrenteSD::getInstancia()->getDisplaySD(numDisplay);
+  else
+    return *FrenteSD::getInstancia()->getDisplay(numDisplay/3);
 }
