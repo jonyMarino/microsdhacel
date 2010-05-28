@@ -17,15 +17,17 @@ class Display:public OutputStream{
     void borrar();
     bool isScrolling();
     void apagar();
-    
+    char* getMensaje();
+    void setMensaje(char* msj);
     void resetearCorrimiento();
     void incrementarCorrimiento();
     void imprimirDigito(byte numDigito);
-  
     char mensaje[MAX_MENSAJE]; //esta guardado en 8 segmentos
-  private:
-    byte corrimiento;
     byte nLetras;
+  private:
+    
+    byte corrimiento;
+    
     byte * puerto;
     
     

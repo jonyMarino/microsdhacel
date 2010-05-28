@@ -11,9 +11,8 @@ class DisplaySD:public Display{
     DisplaySD(byte*_puerto);
     void write(const char* str);
     void write(int i);
-    
+    void writeAsFloat(int i,uchar decimales);
   private:
-    
     friend class FrenteCustomSD;   
 };
 
