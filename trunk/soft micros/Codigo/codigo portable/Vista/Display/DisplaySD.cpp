@@ -52,16 +52,17 @@ void DisplaySD::write(const char* str){
     nLetras++;  
     str++;
   }
-}
+} 
+/*
   
-  /*static char i=0;
+  static char i=0;
   char* msj=NULL; 
  
   Display::write(str);
   msj = Display::getMensaje();
   
   //Transformacion para el SD		( el puerto A tiene los segmentos cambiados respecto del B)
-   while((*(msj+i))!='\0'){
+   while((*(str+i))!='\0'){
     
       uchar c=(*(msj+i));
       uchar bit1=(c&2)>>1;

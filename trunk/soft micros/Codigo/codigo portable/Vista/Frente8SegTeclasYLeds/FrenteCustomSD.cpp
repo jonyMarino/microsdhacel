@@ -11,7 +11,7 @@ void FrenteCustomSD::on1ms(){
   /* refresco todo el frente cada 1 msg*barridos */
   
   
-  if(barrido==DIGITOS*CANTIDAD_DISPLAYS){    //llegue al final?
+  if(barrido==DIGITOS*CANTIDAD_DISPLAYS/2){    //llegue al final?
     encenderLeds(leds);
     barrido=0;
     return;

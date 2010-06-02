@@ -63,7 +63,6 @@
 #include "PE_Types.h"
 #include "PE_Error.h"
 #include "PE_Const.h"
-//#include "mc9s12gc32.h"
 #include "mc9s12gc32.h"
 #include "Cpu.h"
 //#include "Mydefines.h"
