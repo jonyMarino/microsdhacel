@@ -13,12 +13,10 @@ const byte FrenteSD::codigoSelectorDigito[]={
        
 }; 
 
-const byte FrenteSD::codigoTecla[]={
-   
-  0x10,0,0,0,
-  0,0x02,0x04,0x08, 
-  
-    
+const byte FrenteSD::codigoTecla[]={ 
+   0x10,0,0,0,
+   0x00,0x02,0x04,0x08,    
+     
 };
 
 FrenteSD * FrenteSD::instancia=NULL;

@@ -113,6 +113,6 @@ char* Display::getMensaje(){
 
 void Display::setMensaje(char* msj){
   char i;
-  for(i=0;i<MAX_MENSAJE;i++,msj++)
-    mensaje[i]=(*msj);
+  for(i=0;i<MAX_MENSAJE;i++)
+    mensaje[i]=(*(msj+i));
 }

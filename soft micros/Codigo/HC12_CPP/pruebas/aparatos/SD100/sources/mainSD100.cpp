@@ -1,4 +1,4 @@
-           #include <hidef.h>      /* common defines and macros */
+#include <hidef.h>      /* common defines and macros */
 #include "derivative.h"      /* derivative-specific definitions */
 #include "timer_interrupt.h"
 #include "Adc.hpp"
@@ -53,9 +53,9 @@ void OnTipoSalChange(void * b);
 
 const LedsSalidaSD::LedConfig configuracionLedsSalida[]= {
   &PTT+1,1,5,
-  &PTT+1,1<<1,2, //Hard
+  &PTT+1,1<<1,2, 
   &PTT+1,1<<2,6,
-  &PTT+1,1<<3,4, //Hard
+  &PTT+1,1<<3,4, 
   &PTT+1,1<<4,3,
   &PTT+1,1<<5,0,
   &PTT+1,1<<6,1,
@@ -186,7 +186,6 @@ const Getter * gettersAMostrar[]={
 };					
 
 
-//PWMHard23 pwm23(flash,confPWM[0]);
 PWMHard23 pwm1(flash,confPWM[0]);
 PWMTimer pwm2(flash,confPWM[1],1);
 PWMTimer pwm3(flash,confPWM[2],2);
