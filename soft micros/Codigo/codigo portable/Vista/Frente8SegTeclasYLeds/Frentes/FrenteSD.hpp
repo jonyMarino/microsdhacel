@@ -14,6 +14,7 @@ class FrenteSD:public FrenteCustomSD{
     FrenteSD();
     virtual void seleccionarDigito(byte barrido);
     virtual void encenderLeds(byte leds);
+    virtual void apagarLeds();
     virtual bool isTeclaPresionada();
     virtual byte getTeclaPosicion(byte barrido);
   private:

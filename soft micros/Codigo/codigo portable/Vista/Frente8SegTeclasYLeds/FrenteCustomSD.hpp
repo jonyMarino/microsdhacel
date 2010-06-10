@@ -13,6 +13,7 @@
 class FrenteCustomSD:public FrenteCustom {
   public:
     virtual DisplaySD* getDisplaySD(byte numDisplay)=0;
+    virtual void apagarLeds()=0;
   protected:
     virtual void on1ms();
     FrenteCustomSD();

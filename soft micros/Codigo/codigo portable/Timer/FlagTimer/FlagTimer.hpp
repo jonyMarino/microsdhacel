@@ -13,6 +13,7 @@ class FlagTimer:public Timer{
     FlagTimer(ulong time);
     void reset();
     inline bool getFlag()const{return flag;};
+    inline void setFlag(){flag=TRUE;};
   protected:
     virtual void onTime();
   private:

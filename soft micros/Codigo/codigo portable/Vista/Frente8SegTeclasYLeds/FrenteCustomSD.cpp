@@ -17,6 +17,8 @@ void FrenteCustomSD::on1ms(){
     return;
   }
   
+  apagarLeds();
+  
   DisplaySD * display1 = getDisplaySD(barrido/DIGITOS);
   Display * display2 = getDisplay(barrido/DIGITOS);
     
@@ -47,13 +49,14 @@ void FrenteCustomSD::on1ms(){
   
   /* el escaneo del teclado se hace luego del envio de la señal de ON
    del digito para que el pin PULL se encuentre estable */  
+  
+  seleccionarDigito(barrido);
   actualizarTeclas();
   display1->apagar();
   display2->apagar();
   
-  seleccionarDigito(barrido);
   display1->imprimirDigito(barrido%DIGITOS);
   display2->imprimirDigito(barrido%DIGITOS);
-  ++barrido;  //actualizo el paso de barrido
+  barrido++;  //actualizo el paso de barrido
 }
 

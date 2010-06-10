@@ -18,7 +18,7 @@ BoxPrincipalControlSD::BoxPrincipalControlSD(struct ConstructorBoxPrincipalContr
   par_seconds=0;
   propCambio=FALSE;
   propRefres=TRUE;
-   
+  timerPri.setFlag();   // Seteo el flag de manera tal que la primera vez no espere que pase  TIME_BETWEEN_PARS para actulizar el box
   constructor=_constructor;
   
   if(parametroAMostrar){

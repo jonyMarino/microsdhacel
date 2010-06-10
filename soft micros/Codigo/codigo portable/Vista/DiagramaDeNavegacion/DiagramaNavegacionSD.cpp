@@ -27,11 +27,6 @@
 #pragma CONST_SEG DEFAULT
 
 
-
-
-
-
-
 /*
 ** =====================================================================
 **    Function      :  DN_StaticInit 
@@ -169,25 +164,23 @@ void DiagramaNavegacionSD::procesar(uchar tecla){
   if(state==Box::STAY_BOX)
     return;
   
- 
-
   //pbox_next=vBox_getNextBlockConstr(DN.BoxActual,tecla);
   
   delete boxActual;
- // frente->borrar(); // borro la pantalla para que quede limpia para el siguiente box
+  frente->borrar(); // borro la pantalla para que quede limpia para el siguiente box
   
   if(pbox_next){							 // Me mantengo en el mismo objeto??
-    /*struct FstBoxPointer* fbp;
+    struct FstBoxPointer* fbp;
     void *Obj;
     uchar num_obj;
     
     if(accessCount==0)				 //Estoy en op
       fbp=(struct FstBoxPointer*) Array_get(boxesOp,boxListCount-1);
     else{
-      struct Access* access= Array_get(accesos,accessCount-1);      
-      struct BoxList boxList=Array_get(access,listCount-1);
+      struct Access* access= (struct Access *)Array_get(accesos,accessCount-1);      
+      struct BoxList* boxList=(struct BoxList *)Array_get(access,listCount-1);
       fbp=(struct FstBoxPointer*)Array_get(boxList,boxListCount-1);
-    } */
+    } 
     boxActual= pbox_next;  
   } else if(accessCount==0){			//Estoy en op
     if(tecla=='f'){
