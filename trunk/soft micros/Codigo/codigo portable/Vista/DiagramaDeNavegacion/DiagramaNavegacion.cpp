@@ -174,7 +174,7 @@ void DiagramaNavegacion::procesar(uchar tecla){
   //pbox_next=vBox_getNextBlockConstr(DN.BoxActual,tecla);
   
   delete boxActual;
- // frente->borrar(); // borro la pantalla para que quede limpia para el siguiente box
+  //frente->borrar(); // borro la pantalla para que quede limpia para el siguiente box
   
   if(pbox_next){							 // Me mantengo en el mismo objeto??
     /*struct FstBoxPointer* fbp;

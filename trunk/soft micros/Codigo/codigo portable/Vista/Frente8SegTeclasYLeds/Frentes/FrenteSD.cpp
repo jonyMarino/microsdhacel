@@ -4,6 +4,7 @@
 #include "Display2.h"
 #include "SelectorDigito.h"
 #include "PUL.h"
+#include "PE_Types.h"
 
 
 const byte FrenteSD::codigoSelectorDigito[]={
@@ -14,9 +15,10 @@ const byte FrenteSD::codigoSelectorDigito[]={
 }; 
 
 const byte FrenteSD::codigoTecla[]={ 
-   0x10,0,0,0,
-   0x00,0x02,0x04,0x08,    
-     
+  //0x00,0x00,0x00,0x00,
+  //0x01,0x02,0x04,0x08,    
+  0x00,0x00,0x00,0x00,
+  0x02,0x04,0x08,0x01,      
 };
 
 FrenteSD * FrenteSD::instancia=NULL;
@@ -34,6 +36,8 @@ Display* FrenteSD::getDisplay(byte numDisplay){
   switch (numDisplay){
     case 0:return &display3;break;
     case 1:return &display4;break;
+    case 2:return &display1;break;
+    case 3:return &display2;break;
     
   }
 }
@@ -56,9 +60,16 @@ void FrenteSD::seleccionarDigito(byte barrido){
 
 void FrenteSD::encenderLeds(byte leds){
   P_DISPLAY1 = 0;
-  P_DISPLAY2 = 0;
-  SelectorDigito_putVal(leds|0x80);
+  P_DISPLAY2 = 139;//leds;
+  SelectorDigito_putVal(0);
+  setReg8(PTP,getReg8(PTP)&(~16));
 }
+
+
+void FrenteSD::apagarLeds(){
+  setReg8(PTP,getReg8(PTP)|16);
+}
+
 
 bool FrenteSD::isTeclaPresionada(){
   return !PUL_GetVal();

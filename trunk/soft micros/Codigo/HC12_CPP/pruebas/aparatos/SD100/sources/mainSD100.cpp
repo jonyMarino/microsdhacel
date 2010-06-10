@@ -164,7 +164,7 @@ class Init{
   }
 }ini;
 
-FlashBkpMitad flash((void*)0x4200);
+FlashBkpMitad flash((void*)0x4400);
  
 Termometro termometro(flash); 
 
