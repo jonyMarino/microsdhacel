@@ -6,6 +6,15 @@ FrenteCustomSD::FrenteCustomSD(){
   //FrenteCustom();
 }
 
+/*borrar()*/
+// solo borra los display inferiores
+void FrenteCustomSD::borrar(void){
+  int i;
+  resetScroll();
+  for(i=0;i<CANTIDAD_DISPLAYS/2;i++)
+    getDisplay(i)->borrar();  
+}
+
 /*on1ms()*/
 void FrenteCustomSD::on1ms(){
   /* refresco todo el frente cada 1 msg*barridos */

@@ -31,7 +31,6 @@
 #include "mc9s12gc32.h"
 
 
-
 /* * * * *  8-BIT REGISTERS  * * * * * * * * * * * * * * * */
 volatile PORTESTR _PORTE;                                  /* Port E Register; 0x00000008 */
 volatile DDRESTR _DDRE;                                    /* Port E Data Direction Register; 0x00000009 */

@@ -88,13 +88,10 @@ void DisplaySD::write(const char* str){
 
 void DisplaySD::write(int i){
   char str[5];
-  char* msj;
   sprintf(str,"%*i",DIGITOS,abs(i));
   write(str);
-  msj=Display::getMensaje();
   if(i<0){
-    (*msj)|= Car_Ini[0];
-    Display::setMensaje(msj); 
+    (*mensaje)|= 1; //valor para poner el signo "-" en display sd
   }
 }
 
@@ -104,18 +101,15 @@ void DisplaySD::writeAsFloat(int i,uchar decimales){
     return;
   }
   char str[6];
-  char* msj;
   int a;
   a=sprintf(str,"%*i.",DIGITOS-decimales,abs(i)/ Math::pow10(decimales));
   //str+=a;
   sprintf(str+a,"%0*i",decimales,abs(i)% Math::pow10(decimales));
 
   write(str);
-  msj=Display::getMensaje();
   if(i<0)
     {
-    (*msj)|= Car_Ini[0];
-    Display::setMensaje(msj); 
+    (*mensaje)|= 1; //valor para poner el signo "-" en display sd
   }
 
   
