@@ -14,9 +14,11 @@ class FrenteCustomSD:public FrenteCustom {
   public:
     virtual DisplaySD* getDisplaySD(byte numDisplay)=0;
     virtual void apagarLeds()=0;
+    virtual void borrar();
   protected:
     virtual void on1ms();
     FrenteCustomSD();
+    
   
 };
 

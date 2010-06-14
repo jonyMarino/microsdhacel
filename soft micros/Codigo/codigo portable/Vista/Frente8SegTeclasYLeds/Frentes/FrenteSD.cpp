@@ -60,7 +60,7 @@ void FrenteSD::seleccionarDigito(byte barrido){
 
 void FrenteSD::encenderLeds(byte leds){
   P_DISPLAY1 = 0;
-  P_DISPLAY2 = 139;//leds;
+  P_DISPLAY2 = leds;//139;
   SelectorDigito_putVal(0);
   setReg8(PTP,getReg8(PTP)&(~16));
 }

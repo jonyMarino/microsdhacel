@@ -1,5 +1,4 @@
 #include <hidef.h>      /* common defines and macros */
-#include "derivative.h"      /* derivative-specific definitions */
 #include "timer_interrupt.h"
 #include "Adc.hpp"
 #include "IAdc.hpp"
@@ -52,20 +51,24 @@ void OnTipoSalChange(void * b);
  
 
 const LedsSalidaSD::LedConfig configuracionLedsSalida[]= {
-  &PTT+1,1,5,
-  &PTT+1,1<<1,2, 
-  &PTT+1,1<<2,6,
-  &PTT+1,1<<3,4, 
-  &PTT+1,1<<4,3,
-  &PTT+1,1<<5,0,
-  &PTT+1,1<<6,1,
-  &PTT+1,1<<7,7
+  &PTT+1,1,0,//5,
+  &PTT+1,1<<1,2,//2, 
+  &PTT+1,1<<2,6,//6,
+  &PTT+1,1<<3,1,//4, 
+  &PTT+1,1<<4,4,//3,
+  &PTT+1,1<<5,3,//0,
+  &PTT+1,1<<6,5,//1,
+  &PTT+1,1<<7,7,//7
 };
 const LedsSalidaSD::LedConfig* pConfiguracionLedsSalida[]={
   &configuracionLedsSalida[0],
   &configuracionLedsSalida[1],
   &configuracionLedsSalida[2],
-  &configuracionLedsSalida[3]
+  &configuracionLedsSalida[3],
+  &configuracionLedsSalida[4],
+  &configuracionLedsSalida[5],
+  &configuracionLedsSalida[6],
+  &configuracionLedsSalida[7]
 };
 
 
@@ -85,10 +88,10 @@ volatile const ConfiguracionControlPID::ControlConf control_config[CANTIDAD_CANA
 };
   
 volatile const ConfiguracionAlarmas::AlarmConf alar_conf[CANTIDAD_SAL_ALARMA]={
-  0,1,
-  0,1,
-  0,1,
-  0,1,
+  4,1,
+  4,1,
+  4,1,
+  4,1,
       
 };
   
@@ -237,11 +240,11 @@ ConfiguracionValorControlado configuracionValorAlarma2(*(ConfiguracionValorContr
  
 CoordinadorLazosAlCntrRet alarma2(configuracionLazoAlarmas2,configuracionAlarma2,configuracionValorAlarma2,configuracionAdapSalida2,configuracionRetrans2,control2,pwm7);
 
-ConfiguracionLazoAlarmas configuracionLazoAlarmas3(*(ConfiguracionLazoAlarmas::LazoAlarmConf*)&lazo_alar_conf[2],flash);
-ConfiguracionAlarmas configuracionAlarma3(*(ConfiguracionAlarmas::AlarmConf*)&alar_conf[2],flash);
-ConfiguracionRetransm configuracionRetrans3(*(ConfiguracionRetransm::RetConf*)&ret_conf[2],flash);
-ConfiguracionAdapSalida configuracionAdapSalida3(*(ConfiguracionAdapSalida::AdapSalConf*)&adapSal_conf[2],flash);
-ConfiguracionValorControlado configuracionValorAlarma3(*(ConfiguracionValorControlado::ValorControlConf*)&alarmaSP_conf[2],flash);
+ConfiguracionLazoAlarmas configuracionLazoAlarmas3(*(ConfiguracionLazoAlarmas::LazoAlarmConf*)&lazo_alar_conf[3],flash);
+ConfiguracionAlarmas configuracionAlarma3(*(ConfiguracionAlarmas::AlarmConf*)&alar_conf[3],flash);
+ConfiguracionRetransm configuracionRetrans3(*(ConfiguracionRetransm::RetConf*)&ret_conf[3],flash);
+ConfiguracionAdapSalida configuracionAdapSalida3(*(ConfiguracionAdapSalida::AdapSalConf*)&adapSal_conf[3],flash);
+ConfiguracionValorControlado configuracionValorAlarma3(*(ConfiguracionValorControlado::ValorControlConf*)&alarmaSP_conf[3],flash);
  
 CoordinadorLazosAlCntrRet alarma3(configuracionLazoAlarmas3,configuracionAlarma3,configuracionValorAlarma3,configuracionAdapSalida3,configuracionRetrans3,control3,pwm8);
 
@@ -315,12 +318,12 @@ const struct FstBoxPointer principal={
 const struct FstBoxPointer *const opArray[]={
   &principal,
   &potInst0,
-  &potInst1,
-  &potInst2,
-  &potInst3,
   &potMan0,
+  &potInst1,
   &potMan1,
+  &potInst2,
   &potMan2,
+  &potInst3,
   &potMan3,
   &SPal0,
   &SPal1,
@@ -427,10 +430,10 @@ const struct FstBoxPointer sensor1List3={
   (const struct ConstructorBox*)&cBoxesSensor,&sensor3,4
 };
 const struct FstBoxPointer retAlmLimInf0={
-  (const struct ConstructorBox*)&cBoxesRetLimInf,&alarma0,0
+  (const struct ConstructorBox*)&cBoxesRetLimInf,&alarma0,1
 };
 const struct FstBoxPointer retAlmLimSup0={
-  (const struct ConstructorBox*)&cBoxesRetLimSup,&alarma0,0
+  (const struct ConstructorBox*)&cBoxesRetLimSup,&alarma0,1
 };
 const struct FstBoxPointer retAlmLimInf1={
   (const struct ConstructorBox*)&cBoxesRetLimInf,&alarma1,2
@@ -605,7 +608,7 @@ const NEW_ARRAY(accessList,accessArray);
 
 NEW_ARRAY(arrayLedConfig,pConfiguracionLedsSalida);
 
-const LedsSalidaSD leds (arrayLedConfig,*(FrenteSD::getInstancia()));
+const LedsSalidaSD Leds (arrayLedConfig,*(FrenteSD::getInstancia()));
 
 void * timer=NULL;
 
@@ -625,7 +628,7 @@ void main(void) {
   timer=&timerConexionSalidas;
   DiagramaNavegacionSD d(&opList,&accessList,FrenteSD::getInstancia());
   PE_low_level_init();
-  control0.addOnTipoSalidaListener(cambioTipoSalida);
+  //control0.addOnTipoSalidaListener(cambioTipoSalida);
   
   for(;;){
     
