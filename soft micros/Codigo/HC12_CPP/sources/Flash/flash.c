@@ -72,25 +72,27 @@ void Flash_init(void){
   /* FCNFG: CBEIE=0,CCIE=0,KEYACC=0,??=0,??=0,??=0,??=0,??=0 */
   setReg8(FCNFG, 0);                    
   /* FPROT: FPOPEN=1,NV6=1,FPHDIS=0,FPHS1=1,FPHS0=1,FPLDIS=1,FPLS1=1,FPLS0=1 */
-  setReg8(FPROT, 223);                  
+  setReg8(FPROT, 255);//223                  
   /* FCNFG: CBEIE=0,CCIE=0,KEYACC=0,??=0,??=0,??=0,??=0,??=1 */
   setReg8(FCNFG, 1);                    
   /* FPROT: FPOPEN=1,NV6=1,FPHDIS=0,FPHS1=1,FPHS0=1,FPLDIS=1,FPLS1=1,FPLS0=1 */
-  setReg8(FPROT, 223);                  
+  setReg8(FPROT, 255);                  
   /* FCNFG: CBEIE=0,CCIE=0,KEYACC=0,??=0,??=0,??=0,??=1,??=0 */
   setReg8(FCNFG, 2);                    
   /* FPROT: FPOPEN=1,NV6=1,FPHDIS=0,FPHS1=1,FPHS0=1,FPLDIS=1,FPLS1=1,FPLS0=1 */
-  setReg8(FPROT, 223);                  
+  setReg8(FPROT, 255);                  
   /* FCNFG: CBEIE=0,CCIE=0,KEYACC=0,??=0,??=0,??=0,??=1,??=1 */
   setReg8(FCNFG, 3);                    
   /* FPROT: FPOPEN=1,NV6=1,FPHDIS=0,FPHS1=1,FPHS0=1,FPLDIS=1,FPLS1=1,FPLS0=1 */
-  setReg8(FPROT, 223);                  
+  setReg8(FPROT, 255);                  
   /* FCLKDIV: FDIVLD=0,PRDIV8=0,FDIV5=1,FDIV4=0,FDIV3=1,FDIV2=0,FDIV1=0,FDIV0=0 */
   setReg8(FCLKDIV, 40);                 
   /* FCNFG: CBEIE=0,CCIE=0,KEYACC=1,??=0,??=0,??=0,??=0,??=0 */
-  setReg8(FCNFG, 32);                   
+  setReg8(FCNFG, 32);
+  
+  //setReg8(FSEC,190);                   
 }
-
+       
 /*
 ** ===================================================================
 **     Method      :  WriteWord (bean IntFLASH)

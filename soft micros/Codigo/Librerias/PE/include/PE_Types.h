@@ -156,8 +156,9 @@ typedef unsigned long int   VUINT32;
 /* obsolete definition for backward compatibility */
 #define SaveStatusReg()     EnterCritical()
 #define RestoreStatusReg()  ExitCritical()
+#pragma CODE_SEG __NEAR_SEG NON_BANKED 
 #define ISR(x) __interrupt void x(void)
-
+#pragma CODE_SEG DEFAULT 
 
 typedef struct {          /* Black&White Image  */
   word width;             /* Image width  */

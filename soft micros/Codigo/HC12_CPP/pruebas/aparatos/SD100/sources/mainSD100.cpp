@@ -51,13 +51,13 @@ void OnTipoSalChange(void * b);
  
 
 const LedsSalidaSD::LedConfig configuracionLedsSalida[]= {
-  &PTT+1,1,0,//5,
+  &PTT+1,1,4,//5,
   &PTT+1,1<<1,2,//2, 
   &PTT+1,1<<2,6,//6,
-  &PTT+1,1<<3,1,//4, 
-  &PTT+1,1<<4,4,//3,
-  &PTT+1,1<<5,3,//0,
-  &PTT+1,1<<6,5,//1,
+  &PTT+1,1<<3,5,//4, 
+  &PTT+1,1<<4,3,//3,
+  &PTT+1,1<<5,0,//0,
+  &PTT+1,1<<6,1,//1,
   &PTT+1,1<<7,7,//7
 };
 const LedsSalidaSD::LedConfig* pConfiguracionLedsSalida[]={
@@ -145,7 +145,8 @@ volatile const TConfPWM confPWM[CANTIDAD_CANALES+CANTIDAD_SAL_ALARMA]={
 }; 
  
  
- int ta=0;
+ volatile const int ta=0;
+ 
  #ifdef NDEBUG
   volatile const int codigo = 1234;
  #else 
@@ -162,8 +163,8 @@ class Init{
   public:
   Init(){
     Timer::setBaseTimerDefault(*BaseTimers_1ms_40ms::getInstance());
-    SensorTermoPT100::setConfiguracionTemperaturaAmbiente(&ta);
-
+    SensorTermoPT100::setConfiguracionTemperaturaAmbiente((int*)&ta);
+    PE_low_level_init();
   }
 }ini;
 
@@ -192,7 +193,7 @@ const Getter * gettersAMostrar[]={
 PWMHard23 pwm1(flash,confPWM[0]);
 PWMTimer pwm2(flash,confPWM[1],1);
 PWMTimer pwm3(flash,confPWM[2],2);
-PWMTimer pwm4(flash,confPWM[3],3);
+PWMTimer pwm4(flash,confPWM[3],0);
 PWMTimer pwm5(flash,confPWM[4],4);
 PWMTimer pwm6(flash,confPWM[5],5);
 PWMTimer pwm7(flash,confPWM[6],6);
@@ -306,7 +307,7 @@ const struct FstBoxPointer potMan3={
 struct ConstructorBoxPrincipalControlSD cBoxPri={
       &boxPrincipalControlSDFactory,							// funcion que procesa al box
       gettersAMostrar,      
-      &mjsCambioTipoSalida,
+      NULL,//&mjsCambioTipoSalida,
       &flash						
 };
 
@@ -627,7 +628,7 @@ void main(void) {
   RlxMTimer timerConexionSalidas(SALIDA_TIEMPO_DESCONECTADA,timerSalida);
   timer=&timerConexionSalidas;
   DiagramaNavegacionSD d(&opList,&accessList,FrenteSD::getInstancia());
-  PE_low_level_init();
+ // PE_low_level_init();
   //control0.addOnTipoSalidaListener(cambioTipoSalida);
   
   for(;;){
@@ -651,20 +652,21 @@ void conectarSalidas(void * a){
  
   ((RlxMTimer *)timer)->stop();
    pwm1.setConectada(TRUE);
+   pwm1.setPeriodo(PWM_100ms);   // seteo el periodo inicial
    pwm2.setConectada(TRUE);
-   pwm2.setTipoSalida(SALIDA_ONOFF);
+   pwm2.setPeriodo(PWM_100ms);   // seteo el periodo inicial
    pwm3.setConectada(TRUE);
-   pwm3.setTipoSalida(SALIDA_ONOFF);
+   pwm3.setPeriodo(PWM_100ms);   // seteo el periodo inicial
    pwm4.setConectada(TRUE);
-   pwm4.setTipoSalida(SALIDA_ONOFF);
+   pwm4.setPeriodo(PWM_100ms);   // seteo el periodo inicial
    pwm5.setConectada(TRUE);
-   pwm5.setTipoSalida(SALIDA_ONOFF);
+   pwm5.setPeriodo(PWM_100ms);   // seteo el periodo inicial
    pwm6.setConectada(TRUE);
-   pwm6.setTipoSalida(SALIDA_ONOFF);
+   pwm6.setPeriodo(PWM_100ms);   // seteo el periodo inicial
    pwm7.setConectada(TRUE);
-   pwm7.setTipoSalida(SALIDA_ONOFF);
+   pwm7.setPeriodo(PWM_100ms);   // seteo el periodo inicial
    pwm8.setConectada(TRUE);
-   pwm8.setTipoSalida(SALIDA_ONOFF);
+   pwm8.setPeriodo(PWM_100ms);   // seteo el periodo inicial
 }
 
 

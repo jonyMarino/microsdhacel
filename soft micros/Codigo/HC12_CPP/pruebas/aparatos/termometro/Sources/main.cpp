@@ -669,6 +669,7 @@ void conectarSalidas(void * a){
  
   ((RlxMTimer *)timer)->stop();
    pwm23.setConectada(TRUE);
+   pwm23.setPeriodo(PWM_100ms);        // seteo el periodo inicial
    pwm2.setConectada(TRUE);
    pwm2.setTipoSalida(SALIDA_ONOFF);
    

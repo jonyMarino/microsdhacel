@@ -45,15 +45,17 @@ unsigned char PWMTimer::setPeriodo(TPeriod period) {
 
 
 void PWMTimer::setTipoSalida(TipoSalida tipoSalida) {
-  if(tipoSalida==SALIDA_ONOFF)
+  if(tipoSalida==SALIDA_ONOFF){
     PWM_Disable(pinNum); 
-  else            
+  }else{
     PWM_Enable(pinNum);
+  }
 }
 
 TipoSalida PWMTimer::getTipoSalida() {
   return (pwm_timer_isEnable(pinNum))?SALIDA_PROPORCIONAL:SALIDA_ONOFF;
-}
+
+} 
 
 bool PWMTimer:: getEstadoSalida(){
   return estadoSalida;

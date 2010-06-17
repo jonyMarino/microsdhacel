@@ -11,7 +11,7 @@
 #include "ADC.h"
 #include "Math.hpp"
 #include "CharPointer.hpp"
-
+extern int ta;
 int * SensorTermoPT100::compensacionTempAmb=NULL;
 
 SensorTermoPT100::SensorTermoPT100(Adc & _adc_, const SensorTermoPT100::TConfSensor & _conf, ManejadorMemoria & _manejadorMemoria):_adc(_adc_),configuracion(_conf),manejadorMemoria(_manejadorMemoria) {
