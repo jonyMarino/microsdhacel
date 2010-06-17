@@ -246,7 +246,8 @@ void ControlPID::setTipoControl(ControlPID::TTipoControl tipoControl){
 ** ===================================================================
 */
 ControlPID::TSalida ControlPID::getModoSalida(){
-  return modoSalida; 
+  //return modoSalida;
+  return configuracion.getTipoSalida();  
 }
 
 /*
@@ -257,6 +258,7 @@ ControlPID::TSalida ControlPID::getModoSalida(){
 */
 void ControlPID::setModoSalida(TSalida val){ 
   modoSalida = val;    
+  configuracion.setTipoSalida((int)val);
   if(modoSalida==_MAN){
       setTipoControl(CNTR_PID);
   }else{

@@ -40,7 +40,7 @@ int ConfiguracionControlPID::getTipoControl(){
 }
 
 void ConfiguracionControlPID::setTipoControl(int val){
-     manejadorMemoria.setByte((unsigned int * const)&configuracion.eTipoControl,val);
+     manejadorMemoria.setWord((unsigned int * const)&configuracion.eTipoControl,val);
 }
 
 int ConfiguracionControlPID::getTipoSalida(){
@@ -48,7 +48,7 @@ int ConfiguracionControlPID::getTipoSalida(){
 }
 
 void ConfiguracionControlPID::setTipoSalida(int val){
-    manejadorMemoria.setByte((unsigned int * const)&configuracion.eSalidaControl,val);
+    manejadorMemoria.setWord((unsigned int * const)&configuracion.eSalidaControl,val);
 }
 
 int ConfiguracionControlPID::getHisteresis(){
@@ -96,5 +96,5 @@ int ConfiguracionControlPID::getPotenciaManual(){
 }
 
 void ConfiguracionControlPID::setPotenciaManual(int val){
-    manejadorMemoria.setByte((unsigned int * const)&configuracion.iPotenciaManual,val);
+    manejadorMemoria.setWord((unsigned int * const)&configuracion.iPotenciaManual,val);
 }

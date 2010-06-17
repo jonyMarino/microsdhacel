@@ -462,6 +462,8 @@ if ((* next_Value &&  pwm->ticksDuty!=pwm->ticksPeriodo) || pwm->ticksDuty==0){
 **         only.
 ** ===================================================================
 */
+#pragma CODE_SEG __NEAR_SEG NON_BANKED 
+
 #define PWM_INTERRUPT(n)    \
 ISR(PWM##n##_Interrupt){\
   static long ciclo=65535;   \
@@ -481,9 +483,7 @@ ISR(PWM##n##_Interrupt){\
     ciclo=Conf_Toggle(pwms[n],&internalValue); \
   TFLG1 = 1<<n;             \
 }
-
-
-#pragma CODE_SEG __NEAR_SEG NON_BANKED   
+  
 
 PWM_INTERRUPT(0)
 #ifndef SALIDA_PUERTO_P

@@ -14,8 +14,8 @@ class ConfiguracionControlPID: public ConfiguracionControl{
           int iLimSupSP;
           int iReset;
           int iHisteresis;
-          fbyte eTipoControl;
-          fbyte eSalidaControl;
+          int eTipoControl;
+          int eSalidaControl;
           int iIntegral;
           int iDerivada;
           int iPotenciaInf;

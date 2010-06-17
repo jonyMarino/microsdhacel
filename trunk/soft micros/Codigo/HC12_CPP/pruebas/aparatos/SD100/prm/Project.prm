@@ -7,7 +7,7 @@ SECTIONS
       /* List of all sections specified on the "Build options" tab */
       RAM_1000  =  READ_WRITE           0x00001000 TO 0x00001FFF;
       ROM_4000  =  READ_ONLY            0x00004000 TO 0x000041FF;
-      ROM_4600  =  READ_ONLY 						0x00004600 TO 0x00007FFF;
+      ROM_4600  =  READ_ONLY 						0x00004800 TO 0x00007FFF;
       ROM_C000  =  READ_ONLY            0x0000C000 TO 0x0000FEFF;
       ROM_FF10  =  READ_ONLY            0x0000FF10 TO 0x0000FF7F;
 //      RAM_1000  =  READ_WRITE           0x00001000 TO 0x000010FF;
@@ -30,8 +30,10 @@ PLACEMENT
       _PRESTART, STARTUP,
       VIRTUAL_TABLE_SEGMENT,  /* C++ virtual table segment */
       ROM_VAR, STRINGS,
-      NON_BANKED, DEFAULT_ROM, COPY    INTO ROM_4600,ROM_C000, ROM_FF10;
+      NON_BANKED,COPY    INTO ROM_4600,ROM_C000,ROM_FF10;
     
+        DEFAULT_ROM              INTO PAGE_3C,PAGE_3D;
+
 END
 
 ENTRIES /* keep the following unreferenced variables */

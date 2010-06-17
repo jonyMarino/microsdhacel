@@ -35,7 +35,6 @@ class PWMTimer : public PWM {
     unsigned long ticksDuty;
 
     unsigned long ticksDutyFree;
- 
 
     friend void pwm_timer_set_periodo( PWMTimer * pwm,ulong periodo);
 

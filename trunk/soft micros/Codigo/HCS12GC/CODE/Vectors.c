@@ -48,6 +48,7 @@
 #include "In2.h"
 #include "In1.h"
 
+#pragma CODE_SEG __NEAR_SEG NON_BANKED
 #define dummyInterrupt(n) \
 __interrupt void Cpu_Interrupt##n(void) \
 {                     \
@@ -85,7 +86,8 @@ dummyInterrupt(54)
 dummyInterrupt(55)
 dummyInterrupt(56)
 
-
+#pragma CODE_SEG DEFAULT
+ 
 #ifdef _TI2ms
   #include "timer_interrupt_2ms.h"
 #endif
