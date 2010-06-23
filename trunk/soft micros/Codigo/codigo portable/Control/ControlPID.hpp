@@ -333,7 +333,7 @@ class ControlPID:public Lazo{
     int getLimiteInferiorPotenciaManual();
     int getLimiteSuperiorPotenciaManual();
        
-
+    inline const ConfiguracionControl& getConfiguracion(){return configuracion;}
   protected:
     virtual void onNuevoValorSensor();
   private:
