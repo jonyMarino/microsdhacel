@@ -9,6 +9,8 @@ class Lazo{
   public:
     Lazo(Sensor& sensor);
     ~Lazo();
+    void desconectar();
+    void conectar();
     Sensor& getSensor();
     virtual ISalida& getSalida()=0;
   protected:
