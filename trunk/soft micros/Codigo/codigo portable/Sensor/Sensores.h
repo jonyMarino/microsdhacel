@@ -40,10 +40,10 @@ typedef struct{
     SENSOR_JB,
     SENSOR_JA,
     SENSOR_N,
-    SENSOR_KA,
     SENSOR_KB,
+    SENSOR_KA,
     SENSOR_S,   
-   SENSOR_R,
+   SENSOR_B,
    SENSOR_T,
    SENSOR_PT,  
    #ifdef pirani

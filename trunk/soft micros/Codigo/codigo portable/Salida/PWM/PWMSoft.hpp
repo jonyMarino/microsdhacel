@@ -8,24 +8,35 @@
 
 class PWMSoft : public PWM {
   public:
+  
+  PWMSoft(struct ManejadorMemoria &_manejadorMemoria,byte * _salida,TConfPWM &_conf, uchar pin_out);
+  
   virtual void setPotencia(unsigned int potencia);
 
-  virtual unsigned char setPeriodo(int period);
+  virtual unsigned char setPeriodo(TPeriod period);
 
   virtual void setTipoSalida(TipoSalida tipoSalida);
 
   virtual TipoSalida getTipoSalida();
+  
+  bool getEstadoSalida ();
    
-  friend void Salida_setPotencia(unsigned int potencia);
+  void setPotenciaGuardada();
+  
+  unsigned char * salida;
 
+  unsigned char mascara;
+
+  static MethodTimer * time;
+  
+  static PWMSoft* pwmSoft_;
+  
   private:
+    
     TipoSalida tipoSalida; 
     
-    MethodTimer timer;
+    static const struct Method onChg;
 
-    unsigned char * salida;
-
-    unsigned char mascara;
-
+    
 };
 #endif

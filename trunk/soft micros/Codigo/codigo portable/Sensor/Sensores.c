@@ -43,7 +43,7 @@ const T_Sensor sensorConf[NUM_SENSORES]={
   K_X,K_Y,7,1,1,
   K_X,K_Y,7,1,0,
   s_X,s_Y,9,1,0,
-  b_X,b_Y,10,1,0,
+  b_X,b_Y,11,1,0,
   t_X,t_Y,8,1,0,
   Pt_X,Pt_Y,11,1,1,
   #ifdef pirani
@@ -53,8 +53,6 @@ const T_Sensor sensorConf[NUM_SENSORES]={
   Lin_X,Lin_Y,2,1,1,
   Lin_X,Lin_Y,2,2,2,
   Lin_X,Lin_Y,2,3,3,
-  
-  
   milv_X,milv_Y,2,2,2
 };
 #else

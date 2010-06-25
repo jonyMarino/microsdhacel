@@ -172,8 +172,8 @@ uchar getDecimalesAlarma(void*alarma){
   //Histeresis de Alarma
   ADAPTAR_FUNCION_ADAP_SAL_GET(getHisteresisAlarma,getHisteresis)
   ADAPTAR_FUNCION_ADAP_SAL_SET(setHisteresisAlarma,setHisteresis)
-  const struct ConstructorPropNumLFPF cPropiedadHistAlarma={
-    &propNumLFPFFactory,getHisteresisAlarma,"HA",setHisteresisAlarma,-9999,9999,0
+  const struct ConstructorPropNumLFPV cPropiedadHistAlarma={
+    &propNumLFPVFactory,getHisteresisAlarma,"HA",setHisteresisAlarma,-9999,9999,getDecimalesAlarma
   };
   
   //tipo salida

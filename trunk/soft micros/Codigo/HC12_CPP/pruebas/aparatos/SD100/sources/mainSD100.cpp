@@ -29,6 +29,7 @@
 #include "PWMHard23.hpp"
 #include "PWMManager01_45.hpp"
 #include "PWMTimer.hpp"
+#include "PWMSoft.hpp"
 #include "configuracionControlPID.hpp"
 #include "SensorTermoPT100.hpp"
 #include "VistaPWM.hpp"
@@ -190,7 +191,8 @@ const Getter * gettersAMostrar[]={
 };					
 
 
-PWMHard23 pwm1(flash,confPWM[0]);
+//PWMHard23 pwm1(flash,confPWM[0]);
+PWMSoft pwm1(flash,&PTT,confPWM[0],3);
 PWMTimer pwm2(flash,confPWM[1],1);
 PWMTimer pwm3(flash,confPWM[2],2);
 PWMTimer pwm4(flash,confPWM[3],0);
@@ -396,20 +398,20 @@ const struct FstBoxPointer histAlarma3={
 
 static const struct FstBoxPointer *const tunArray[]={
   &reset0,
-  &reset1,
-  &reset2,
-  &reset3,
   &periodo0,
-  &periodo1,
-  &periodo2,
-  &periodo3,
   &aparatoConf0,
-  &aparatoConf1,
-  &aparatoConf2,
-  &aparatoConf3,
   &histAlarma0,
+  &reset1,
+  &periodo1,
+  &aparatoConf1,
   &histAlarma1,
+  &reset2,
+  &periodo2,
+  &aparatoConf2,
   &histAlarma2,
+  &reset3,
+  &periodo3,
+  &aparatoConf3,
   &histAlarma3,
     
 };
@@ -458,15 +460,15 @@ const struct FstBoxPointer retAlmLimSup3={
 
 static const struct FstBoxPointer *const calArray[]={
   &sensor1List0,
-  &sensor1List1,
-  &sensor1List2,
-  &sensor1List3,
   &retAlmLimInf0,
   &retAlmLimSup0,
+  &sensor1List1,
   &retAlmLimInf1,
   &retAlmLimSup1,
+  &sensor1List2,
   &retAlmLimInf2,
   &retAlmLimSup2,
+  &sensor1List3,
   &retAlmLimInf3,
   &retAlmLimSup3, 
 };
@@ -540,18 +542,18 @@ const struct FstBoxPointer ctrlAlarma3={
 
 static const struct FstBoxPointer *const setArray[]={
   &modosSalida0,
-  &modosSalida1,
-  &modosSalida2,
-  &modosSalida3,
   &tipoLazoAlarma0,
   &modosAlarma0,
   &ctrlAlarma0,
+  &modosSalida1,
   &tipoLazoAlarma1,
   &modosAlarma1,
   &ctrlAlarma1,
+  &modosSalida2,
   &tipoLazoAlarma2,
   &modosAlarma2,
   &ctrlAlarma2,
+  &modosSalida3,
   &tipoLazoAlarma3,
   &modosAlarma3,
   &ctrlAlarma3,

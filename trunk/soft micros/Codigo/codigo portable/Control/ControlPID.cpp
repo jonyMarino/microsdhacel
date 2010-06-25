@@ -12,7 +12,7 @@
 #include <stdarg.h>
 #include <stddef.h>		
 #include <stdlib.h>
-
+#include "Sensores.h"
 #include "ControlPID.hpp"
 #include "controlmath.h"
 //#include "funciones.h"
