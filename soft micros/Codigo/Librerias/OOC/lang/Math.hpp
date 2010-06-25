@@ -5,9 +5,9 @@
 
 class Math{
   public:
-    static VUINT16 pow10(byte exponente); /*exponente esta entre 0 y 4*/
+    static unsigned int pow10(byte exponente); /*exponente esta entre 0 y 4*/
   private:
-    static VUINT16 div_dec[5];
+    static unsigned int div_dec[5];
 };
 
 

@@ -24,7 +24,7 @@ class PWM : public IPWM {
 
   friend void llama_callOnToggleListeners(char n);
  
-  TPeriod getPeriodo();
+  virtual TPeriod getPeriodo();
    
   virtual unsigned int getPotencia();
   

@@ -336,9 +336,17 @@ static void PWMManager01_45::PWM45_actualizarPotencia(uint duty){
   }
   else{
     if(duty==0)
+      #ifdef __MODRR 
+      clrReg8Bits(PTT, 8);               
+      #else
       clrReg8Bits(PTP, 8);               
+      #endif
     else
-      setReg8Bits(PTP, 8);                
+      #ifdef __MODRR 
+      setReg8Bits(PTT, 8);                
+      #else
+      setReg8Bits(PTP, 8);               
+      #endif              
   }
 }
 

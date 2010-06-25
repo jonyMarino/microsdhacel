@@ -11,8 +11,8 @@
 
 
 #define STPT_DEF_CONF { \
-  SENSOR_MV,						\
-  2,										\
+  SENSOR_JA,						\
+  0,										\
   0,										\
   0,										\
   1000,									\
@@ -27,11 +27,11 @@
 class SensorTermoPT100 : public Sensor {
   public:
     typedef struct {
-        fbyte sensor;
+        unsigned int sensor;
 
-        fbyte decimales;
+        unsigned int decimales;
         
-        fbyte filtro;
+        unsigned int filtro;
 
         int offset;
 
@@ -72,9 +72,9 @@ class SensorTermoPT100 : public Sensor {
 
   void print(OutputStream& os);
 
-  fbyte getSensor();
+  unsigned int getSensor();
 
-  void setSensor(fbyte);
+  void setSensor(unsigned int);
 
   fbyte getLimSupSensor();
 

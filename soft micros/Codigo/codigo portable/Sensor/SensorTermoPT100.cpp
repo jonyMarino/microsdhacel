@@ -11,7 +11,7 @@
 #include "ADC.h"
 #include "Math.hpp"
 #include "CharPointer.hpp"
-extern int ta;
+
 int * SensorTermoPT100::compensacionTempAmb=NULL;
 
 SensorTermoPT100::SensorTermoPT100(Adc & _adc_, const SensorTermoPT100::TConfSensor & _conf, ManejadorMemoria & _manejadorMemoria):_adc(_adc_),configuracion(_conf),manejadorMemoria(_manejadorMemoria) {
@@ -56,7 +56,9 @@ int SensorTermoPT100::getLimiteSuperior() {
 }
 
 int SensorTermoPT100::getVal() {
-  return valor;
+  byte sensor = getSensor();
+  uchar decimales= SENSOR_Decimales_Mostrar(sensor);
+  return valor/Math::pow10(SENSOR_Decimales(sensor)-decimales);
 }
 
 /**
@@ -87,21 +89,21 @@ void SensorTermoPT100::procesar() {
   int CompTempAmb=0;
   
   if (sensor<SENSOR_PT){  
-    int Ta_Temp= _adc.getTemperaturaAmbiente()  + *compensacionTempAmb*10/Math::pow10(SENSOR_Decimales(sensor));  //El menos inicial es porque el diodo esta conectado alreves 
+    int Ta_Temp= _adc.getTemperaturaAmbiente()  + (long) *compensacionTempAmb*10/Math::pow10(SENSOR_Decimales(sensor));  //El menos inicial es porque el diodo esta conectado alreves 
     Sens_getColdComp(Ta_Temp,&CompTempAmb,sensor);
   }
   vx=(vx+ceroTP)*(1000+ganTP)/1000;
   vx = vx*MAXMV/MAXAD;//Convierte de lineal a microvolts para los sensores correspondientes 
   err = Linealizar(vx+CompTempAmb,sensor,&ValLin);
-  ValProv=ValLin;  
+  ValProv=(long)ValLin;  
 	if(sensor==SENSOR_PT)
-    ValProv = ((ValProv+ceroPT)*(1000+ganPT)/1000);  
+    ValProv = ((long)(ValProv+ceroPT)*(1000+ganPT)/1000);  
 	 
-	ValProv=(ValProv+offset)*ganancia/1000;         //preciso para pasar a long
+	ValProv=(long)(ValProv+offset)*ganancia/1000;         //preciso para pasar a long
   ValProv= filtrar ((int)ValProv,filtro,10,200,&bufferFiltro);
   
   Cpu_DisableInt();
-  valor=ValProv;
+  valor=(long)ValProv;
   estado=err;
   Cpu_EnableInt();         
   
@@ -111,13 +113,15 @@ void SensorTermoPT100::procesar() {
 }
 
 void SensorTermoPT100::print(OutputStream& os) {
-   
+  
   switch (estado){
     case SENSOR_OK:
         byte sensor = getSensor();
         uchar decimales= SENSOR_Decimales_Mostrar(sensor);
-        int val=valor;      											 
-        val/= Math::pow10(SENSOR_Decimales(sensor)-decimales);  			//Ajusto el valor a mostrar por la cantidad de decimales del sensor
+        int divisor=Math::pow10(SENSOR_Decimales(sensor)-decimales);
+       // int divisor=Math::pow10(decimales);
+        int val=valor;       											 
+        val=(long)val/divisor;  			//Ajusto el valor a mostrar por la cantidad de decimales del sensor
         os.writeAsFloat(val,decimales);
     break;
 
@@ -137,14 +141,14 @@ static void SensorTermoPT100::setConfiguracionTemperaturaAmbiente(int * ta){
 }
 
 
-fbyte SensorTermoPT100::getSensor() {
+unsigned int SensorTermoPT100::getSensor() {
   return configuracion.sensor;
 }
 
-void SensorTermoPT100::setSensor(fbyte _sensor) {
+void SensorTermoPT100::setSensor(unsigned int _sensor) {
   char err;
   
-  err=manejadorMemoria.setByte((unsigned int * const)&configuracion.sensor , (fbyte)_sensor );
+  err=manejadorMemoria.setWord((unsigned int * const)&configuracion.sensor , (unsigned int)_sensor );
   if(!err){
     err= onSensorChange(_sensor);
   }

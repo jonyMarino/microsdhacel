@@ -11,6 +11,7 @@
 #include "BoxPropiedadEntradaCondicional.hpp"
 #include "BoxLinealCondicional.hpp"
 #include "PropDescripcionVariable.hpp"
+#include "PropDescripcionVariablePV.hpp"
 #include "ControlPID.hpp"
 #include "VistaPWM.hpp"
 #include "VistaControl.hpp"
@@ -78,8 +79,8 @@ int getVal_ (void * control){
   //Reset
   ADAPTAR_FUNCION_GET(getReset,getReset)
   ADAPTAR_FUNCION_SET(setReset,setReset)
-  const struct ConstructorPropNumLFPF cPropiedadReset={
-    &propNumLFPFFactory,getReset,"rES",setReset,-9999,9999,1
+  const struct ConstructorPropNumLFPV cPropiedadReset={
+    &propNumLFPVFactory,getReset,"rES",setReset,-9999,9999,getDecimalesControl
   };
 
   //Histeresis
@@ -94,8 +95,8 @@ int getVal_ (void * control){
     return "Ab ";    
 }
   
-  const struct ConstructorPropDescripcionVariable cPropiedadHisteresis={
-    &propDescripcionVariableFactory,getHisteresis,"H  ",setHisteresis,-9999,9999,1,histeresisVista
+  const struct ConstructorPropDescripcionVariablePV cPropiedadHisteresis={
+    &propDescripcionVariablePVFactory,getHisteresis,"H  ",setHisteresis,-9999,9999,getDecimalesControl,histeresisVista
   };
     
   
