@@ -43,6 +43,7 @@
 #include "configuracionValorControl.hpp"
 #include "VistaAlarmas.hpp"
 #include "AlarmaControl.hpp"
+#include "CoordinadorControladorSintonizador.hpp"
 
 void conectarSalidas(void * a);
 void OnTipoSalChange(void * b);
@@ -203,16 +204,19 @@ PWMTimer pwm8(flash,confPWM[7],7);
 
 const ConfiguracionControlPID configuraControl0(*(ConfiguracionControlPID::ControlConf*)&control_config[0],flash); 
 ControlPID control0(sensor0,pwm1,configuraControl0);
+//CoordinadorControladorSintonizador control0(sensor0,pwm1,configuraControl0);
 
 const ConfiguracionControlPID configuraControl1(*(ConfiguracionControlPID::ControlConf*)&control_config[1],flash);
 ControlPID control1(sensor1,pwm2,configuraControl1);
+//CoordinadorControladorSintonizador control1(sensor1,pwm2,configuraControl1);
 
 const ConfiguracionControlPID configuraControl2(*(ConfiguracionControlPID::ControlConf*)&control_config[2],flash); 
 ControlPID control2(sensor2,pwm3,configuraControl2);
+//CoordinadorControladorSintonizador control2(sensor2,pwm3,configuraControl2);
 
 const ConfiguracionControlPID configuraControl3(*(ConfiguracionControlPID::ControlConf*)&control_config[3],flash);
 ControlPID control3(sensor3,pwm4,configuraControl3);
-
+//CoordinadorControladorSintonizador control3(sensor3,pwm4,configuraControl3);
 
 
 MessagesOut mjsCambioTipoSalida;

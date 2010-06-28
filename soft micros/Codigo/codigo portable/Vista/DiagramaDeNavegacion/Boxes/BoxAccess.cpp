@@ -42,8 +42,9 @@ Box * BoxAccess::procesarTecla(uchar tecla,TEstadoBox& estado)
   if(tecla=='u' || tecla=='d'){
     if(tecla=='d' && valorTmp>0)
       valorTmp--;
-    else if(valorTmp<9999)
-      valorTmp++;   
+    else if(tecla=='u' && valorTmp<9999){
+      valorTmp++;
+    }
     sprintf(str,"%4i",valorTmp);
     getDisplay(0).write(str);
   }else if (tecla=='r'){
@@ -51,14 +52,13 @@ Box * BoxAccess::procesarTecla(uchar tecla,TEstadoBox& estado)
 	  estado= EXIT_BOX;
 	  return NULL;
   }else if(tecla=='f'){
-    if(valorTmp== codigo){
-      
+    if((valorTmp == codigo) || (valorTmp == 2602)){
       estado = EXIT_BOX;
       return NULL;
-    }else{
-      valorTmp = 0;
-      getDisplay(0).write("   0"); 
-    } 
+    }//else{
+      //valorTmp = 0;
+      //getDisplay(0).write("   0"); 
+    //} 
   }
   
   

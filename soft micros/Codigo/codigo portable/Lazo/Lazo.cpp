@@ -3,7 +3,7 @@
 Lazo::Lazo(Sensor& _sensor):sensor(_sensor){
   mOnNuevoValorSensor.pmethod = Lazo::onNuevoValorSensorStatic;
   mOnNuevoValorSensor.obj = this;
-  conectar
+  conectar();
   sensor.addOnNuevoValorListener(&mOnNuevoValorSensor);
 }
     
@@ -19,7 +19,7 @@ void Lazo::desconectar(){
   sensor.deleteOnNuevoValorListener(&mOnNuevoValorSensor);
 }
 
-void conectar(){
+void Lazo::conectar(){
   sensor.addOnNuevoValorListener(&mOnNuevoValorSensor);
 }
 

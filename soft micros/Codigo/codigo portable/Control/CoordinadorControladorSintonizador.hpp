@@ -20,7 +20,7 @@ class CoordinadorControladorSintonizador{
     void addOnNuevoModoControlListener(const struct Method* metodo);
     void deleteOnNuevoModoControlListener(const struct Method * metodo);
  
-  private:
+  //private:
     
     class SintonizadorOptMem:public AutoSintonia{
       public:
