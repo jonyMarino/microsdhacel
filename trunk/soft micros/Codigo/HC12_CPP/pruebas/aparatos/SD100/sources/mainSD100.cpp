@@ -46,7 +46,6 @@
 #include "CoordinadorControladorSintonizador.hpp"
 
 void conectarSalidas(void * a);
-void OnTipoSalChange(void * b);
 
 
 #pragma CONST_SEG PARAMETERS_PAGE
@@ -623,9 +622,7 @@ struct Method timerSalida={
 &conectarSalidas,NULL
 }; 
 
-struct Method cambioTipoSalida={
-&OnTipoSalChange,NULL
-};                                              
+                                             
 
 
 void main(void) {
@@ -634,9 +631,7 @@ void main(void) {
   RlxMTimer timerConexionSalidas(SALIDA_TIEMPO_DESCONECTADA,timerSalida);
   timer=&timerConexionSalidas;
   DiagramaNavegacionSD d(&opList,&accessList,FrenteSD::getInstancia());
- // PE_low_level_init();
-  //control0.addOnTipoSalidaListener(cambioTipoSalida);
-  
+ 
   for(;;){
     
     byte tecla = FrenteSD::getInstancia()->getTecla();
@@ -658,37 +653,22 @@ void conectarSalidas(void * a){
  
   ((RlxMTimer *)timer)->stop();
    pwm1.setConectada(TRUE);
-   pwm1.setPeriodo(PWM_100ms);   // seteo el periodo inicial
+   pwm1.setPeriodo(pwm1.getPeriodo());   // seteo el periodo inicial
    pwm2.setConectada(TRUE);
-   pwm2.setPeriodo(PWM_100ms);   // seteo el periodo inicial
+   pwm2.setPeriodo(pwm2.getPeriodo());   // seteo el periodo inicial
    pwm3.setConectada(TRUE);
-   pwm3.setPeriodo(PWM_100ms);   // seteo el periodo inicial
+   pwm3.setPeriodo(pwm3.getPeriodo());   // seteo el periodo inicial
    pwm4.setConectada(TRUE);
-   pwm4.setPeriodo(PWM_100ms);   // seteo el periodo inicial
+   pwm4.setPeriodo(pwm4.getPeriodo());   // seteo el periodo inicial
    pwm5.setConectada(TRUE);
-   pwm5.setPeriodo(PWM_100ms);   // seteo el periodo inicial
+   pwm5.setPeriodo(pwm5.getPeriodo());   // seteo el periodo inicial
    pwm6.setConectada(TRUE);
-   pwm6.setPeriodo(PWM_100ms);   // seteo el periodo inicial
+   pwm6.setPeriodo(pwm6.getPeriodo());   // seteo el periodo inicial
    pwm7.setConectada(TRUE);
-   pwm7.setPeriodo(PWM_100ms);   // seteo el periodo inicial
+   pwm7.setPeriodo(pwm7.getPeriodo());   // seteo el periodo inicial
    pwm8.setConectada(TRUE);
-   pwm8.setPeriodo(PWM_100ms);   // seteo el periodo inicial
+   pwm8.setPeriodo(pwm8.getPeriodo());   // seteo el periodo inicial
 }
 
 
 
-void OnTipoSalChange(void * b){
-  static MessagesOut::Message msj_on_sal_change;  
-  if(control0.getModoSalida()==ControlPID::_MAN){
-    if(!msj_on_sal_change)
-      msj_on_sal_change = mjsCambioTipoSalida.addMessage("Pot "); 
-     BoxPrincipalControlSD::MostrarProp((ConstructorPropGetterVisual *)&cPropiedadPotManual,&control0);   
-  }else{
-    if(msj_on_sal_change){
-
-      mjsCambioTipoSalida.deleteMessage(msj_on_sal_change);
-      BoxPrincipalControlSD::MostrarProp((ConstructorPropGetterVisual *)&cPropiedadSetPoint,&control0);
-      msj_on_sal_change=NULL; 
-    }                          
-  } 
-}

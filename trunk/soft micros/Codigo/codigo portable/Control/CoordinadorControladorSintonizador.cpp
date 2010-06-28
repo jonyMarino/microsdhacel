@@ -68,12 +68,6 @@ void CoordinadorControladorSintonizador::setModo(eModoControl modo){
   crearModo(sensor,salida,*confControl); 
 }
 
-ControlPID* CoordinadorControladorSintonizador::getControl(){
- //si no se encuentra en modo RETRANSMISION devuelve NULL
-  if(getModo()!=CONTROL)
-   return NULL;
-  return (ControlPID *)&poolModo;
-}
 
 void CoordinadorControladorSintonizador::addOnNuevoModoControlListener(const struct Method* metodo){
     listeners.add((void*)metodo);
