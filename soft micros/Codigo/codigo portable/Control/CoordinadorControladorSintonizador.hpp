@@ -15,11 +15,14 @@ class CoordinadorControladorSintonizador{
     CoordinadorControladorSintonizador(Sensor& sensor,ISalida& salida,const ConfiguracionControl& configuracionControl);
     eModoControl getModo();
     void setModo(eModoControl); //valores posibles: CONTROL,AUTOSINTONIA
-    ControlPID* getControl();
     int getPasoAutosintonia();
     void addOnNuevoModoControlListener(const struct Method* metodo);
     void deleteOnNuevoModoControlListener(const struct Method * metodo);
- 
+  
+  inline ControlPID* getControl(){
+    return (ControlPID *)&poolModo;
+  }
+
   //private:
     
     class SintonizadorOptMem:public AutoSintonia{
