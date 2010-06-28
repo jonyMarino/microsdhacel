@@ -19,6 +19,7 @@
 #include "VistaControl.hpp"
 #include "configuracionValorControl.hpp"
 #include "configuracionAlarmas.hpp"
+#include "PropDescripcionVariablePV.hpp"
 
 #pragma MESSAGE DISABLE C1825          /* Disable warning C5703 "Parameter is not referenced" */
 
@@ -172,8 +173,17 @@ uchar getDecimalesAlarma(void*alarma){
   //Histeresis de Alarma
   ADAPTAR_FUNCION_ADAP_SAL_GET(getHisteresisAlarma,getHisteresis)
   ADAPTAR_FUNCION_ADAP_SAL_SET(setHisteresisAlarma,setHisteresis)
-  const struct ConstructorPropNumLFPV cPropiedadHistAlarma={
-    &propNumLFPVFactory,getHisteresisAlarma,"HA",setHisteresisAlarma,-9999,9999,getDecimalesAlarma
+  
+  const char * histeresisAlarmaVista(PropGetterVisual * prop){    
+    int valObj=prop->getVal();
+    
+    if(valObj<0)
+      return "HA ";
+    return "AbA";    
+}
+  
+  const struct ConstructorPropDescripcionVariablePV cPropiedadHistAlarma={
+    &propDescripcionVariablePVFactory,getHisteresisAlarma,"HA",setHisteresisAlarma,-9999,9999,getDecimalesAlarma,histeresisAlarmaVista
   };
   
   //tipo salida

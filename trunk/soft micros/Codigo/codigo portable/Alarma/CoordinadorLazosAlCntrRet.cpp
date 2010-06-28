@@ -1,4 +1,5 @@
 #include "CoordinadorLazosAlCntrRet.hpp"
+#include "CoordinadorControladorSintonizador.hpp"
 
 CoordinadorLazosAlCntrRet::RetransmisionOptMem::RetransmisionOptMem(Sensor&sensor,IPWM&pwm,ConfiguracionRetransmision& configuracion):Retransmision(sensor,pwm,configuracion){
 }
@@ -28,6 +29,7 @@ CoordinadorLazosAlCntrRet::CoordinadorLazosAlCntrRet( ConfiguracionCoordinadorLa
                               AdaptadorSalidaConfiguracion& _confAdaptadorSalida,
                               ConfiguracionRetransmision& _confRetransmision,
                               ControlPID& _control,
+                              //CoordinadorControladorSintonizador& _control,
                               IPWM&_pwm):configuracion(_configuracion),confAlarma(_confAlarma),confValorControl(_confValorControl),confAdaptadorSalida(_confAdaptadorSalida),confRetransmision(_confRetransmision), control(_control){
 
   crearLazo(getLazo(),_pwm);

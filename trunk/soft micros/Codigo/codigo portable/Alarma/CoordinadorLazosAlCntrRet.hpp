@@ -3,7 +3,7 @@
 
 #include "AlarmaControl.hpp"
 #include "Retransmision.hpp"
-
+#include "CoordinadorControladorSintonizador.hpp"
 
 typedef enum{
   ALARMA,
@@ -18,12 +18,13 @@ class ConfiguracionCoordinadorLazosAlCntrRet {
 
 class CoordinadorLazosAlCntrRet{
   public:
-    CoordinadorLazosAlCntrRet( ConfiguracionCoordinadorLazosAlCntrRet& configuracion,
-                              ConfiguracionAlarmaControl& confAlarma,
-                              ConfiguracionValorControl& confValorControl,
-                              AdaptadorSalidaConfiguracion& confAdaptadorSalida,
-                              ConfiguracionRetransmision& confRetransmision,
-                              ControlPID& control,
+    CoordinadorLazosAlCntrRet( ConfiguracionCoordinadorLazosAlCntrRet& _configuracion,
+                              ConfiguracionAlarmaControl& _confAlarma,
+                              ConfiguracionValorControl& _confValorControl,
+                              AdaptadorSalidaConfiguracion& _confAdaptadorSalida,
+                              ConfiguracionRetransmision& _confRetransmision,
+                              ControlPID& _control,
+                              //CoordinadorControladorSintonizador & _control,
                               IPWM&_pwm);
     Retransmision& getRetransmision();  //si no se encuentra en modo RETRANSMISION devuelve NULL
     AlarmaControl& getAlarmaControl();  //si no se encuentra en modo ALARMA devuelve NULL
@@ -57,6 +58,7 @@ class CoordinadorLazosAlCntrRet{
     AdaptadorSalidaConfiguracion& confAdaptadorSalida;
     ConfiguracionRetransmision& confRetransmision;
     ControlPID& control;
+    //CoordinadorControladorSintonizador& control;
     void crearLazo(TipoLazo tipo,IPWM&pwm_);
 };
 
