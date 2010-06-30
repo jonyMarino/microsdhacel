@@ -4,6 +4,7 @@
 
 
 extern const struct ConstructorBoxPropiedad cBoxPeriodo;
+extern const struct ConstructorBoxPropiedad cBoxPeriodoAlarma;
 extern const struct ConstructorBoxPropiedad cBoxGetPotencia;
 extern const struct ConstructorBoxPropiedad cBoxPotencia;
 

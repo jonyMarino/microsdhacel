@@ -57,7 +57,9 @@
   const struct ConstructorPropiedadTextual cPropiedadPeriodo={
     &propiedadTextualFactory,getPeriodo,"Pr",setPeriodo,Periodos_getText,10
   };
-    
+ const struct ConstructorPropiedadTextual cPropiedadPeriodoAlarma={
+    &propiedadTextualFactory,getPeriodo,"PrA",setPeriodo,Periodos_getText,10
+  };   
   
   //potencia
    
@@ -80,6 +82,11 @@
 const struct ConstructorBoxPropiedad cBoxPeriodo={
       &boxPropiedadFactory,	
 			(const struct ConstructorPropGetterVisual*)&cPropiedadPeriodo
+}; 
+
+const struct ConstructorBoxPropiedad cBoxPeriodoAlarma={
+      &boxPropiedadFactory,	
+			(const struct ConstructorPropGetterVisual*)&cPropiedadPeriodoAlarma
 }; 
  
 /*

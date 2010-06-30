@@ -44,6 +44,7 @@
 #include "VistaAlarmas.hpp"
 #include "AlarmaControl.hpp"
 #include "CoordinadorControladorSintonizador.hpp"
+#include "vistaAutoSintonia.hpp"
 
 void conectarSalidas(void * a);
 
@@ -227,7 +228,7 @@ ConfiguracionRetransm configuracionRetrans0(*(ConfiguracionRetransm::RetConf*)&r
 ConfiguracionAdapSalida configuracionAdapSalida0(*(ConfiguracionAdapSalida::AdapSalConf*)&adapSal_conf[0],flash);
 ConfiguracionValorControlado configuracionValorAlarma0(*(ConfiguracionValorControlado::ValorControlConf*)&alarmaSP_conf[0],flash);
 
-CoordinadorLazosAlCntrRet alarma0(configuracionLazoAlarmas0,configuracionAlarma0,configuracionValorAlarma0,configuracionAdapSalida0,configuracionRetrans0,control0,pwm5);
+CoordinadorLazosAlCntrRet alarma0(configuracionLazoAlarmas0,configuracionAlarma0,configuracionValorAlarma0,configuracionAdapSalida0,configuracionRetrans0,/*(*(ControlPID*)(control0.getControl()))*/control0,pwm5);
 
 ConfiguracionLazoAlarmas configuracionLazoAlarmas1(*(ConfiguracionLazoAlarmas::LazoAlarmConf*)&lazo_alar_conf[1],flash);
 ConfiguracionAlarmas configuracionAlarma1(*(ConfiguracionAlarmas::AlarmConf*)&alar_conf[1],flash);
@@ -348,6 +349,10 @@ const struct FstBoxPointer *const opArray[]={
 const NEW_BOX_LIST(opList,opArray,"");
 
 //TUN        
+const struct FstBoxPointer AutoSintonia0={
+  (const struct ConstructorBox*)&cBoxModos,&control0,1
+};
+
 const struct FstBoxPointer reset0={
   (const struct ConstructorBox*)&cBoxesReset,&control0,1
 };
@@ -386,6 +391,22 @@ const struct FstBoxPointer periodo3={
   (const struct ConstructorBox*)&cBoxPeriodo,&pwm4,4
 };
 
+const struct FstBoxPointer periodoAlarma0={
+  (const struct ConstructorBox*)&cBoxPeriodoAlarma,&pwm5,1
+};
+
+const struct FstBoxPointer periodoAlarma1={
+  (const struct ConstructorBox*)&cBoxPeriodoAlarma,&pwm6,2
+};
+
+const struct FstBoxPointer periodoAlarma2={
+  (const struct ConstructorBox*)&cBoxPeriodoAlarma,&pwm7,3
+};
+
+const struct FstBoxPointer periodoAlarma3={
+  (const struct ConstructorBox*)&cBoxPeriodoAlarma,&pwm8,4
+};
+
 const struct FstBoxPointer histAlarma0={
   (const struct ConstructorBox*)&cBoxesHistAlarma,&alarma0,1
 };
@@ -400,23 +421,28 @@ const struct FstBoxPointer histAlarma3={
 };
 
 static const struct FstBoxPointer *const tunArray[]={
+  //&AutoSintonia0,
   &reset0,
   &periodo0,
   &aparatoConf0,
+  &periodoAlarma0,
   &histAlarma0,
   &reset1,
   &periodo1,
   &aparatoConf1,
+  &periodoAlarma1,
   &histAlarma1,
   &reset2,
   &periodo2,
   &aparatoConf2,
+  &periodoAlarma2,
   &histAlarma2,
   &reset3,
   &periodo3,
   &aparatoConf3,
+  &periodoAlarma3,
   &histAlarma3,
-    
+  
 };
 
 static const NEW_BOX_LIST(tun,tunArray,"SintoniA");

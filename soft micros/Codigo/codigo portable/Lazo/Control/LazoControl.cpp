@@ -1,4 +1,5 @@
 #include "LazoControl.hpp"
+#include "IPWM.hpp"
 
 LazoControl::LazoControl(ValorControl& _valorControl,AdaptadorSalida& _adaptadorSalida):Lazo(_valorControl.getSensor()),valorControl(&_valorControl),adaptadorSalida(&_adaptadorSalida)
 {}
