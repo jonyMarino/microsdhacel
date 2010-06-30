@@ -1385,7 +1385,7 @@
 
                 <!-- Settings for "Panel for Compiler for HC12" panel -->
                 <SETTING><NAME>Panel for Compiler for HC12</NAME>
-                    <SETTING><NAME>Options</NAME><VALUE>-C++f -CPUHCS12 -DCANTIDAD_CANALES=2 -DCANTIDAD_SAL_ALARMA=2  -D_PWM -DSALIDA7_PUERTO_P -D__NO_FLOAT__ -D_TI -D_ADC -DMAX_MENSAJE=30 -DPAGE_SIZE=512 -Ms -Qvtpnone</VALUE></SETTING>
+                    <SETTING><NAME>Options</NAME><VALUE>-C++f -CPUHCS12 -DCANTIDAD_CANALES=1 -DCANTIDAD_SAL_ALARMA=1 -D_PWM  -D__NO_FLOAT__ -D_TI -DSALIDA_PUERTO_P -D_ADC -DMAX_MENSAJE=30 -DPAGE_SIZE=512 -Ms -Qvtpnone</VALUE></SETTING>
                     <SETTING><NAME>UseDecoder</NAME><VALUE>0</VALUE></SETTING>
                     <SETTING><NAME>EchoCommandLine</NAME><VALUE>0</VALUE></SETTING>
                 </SETTING>
@@ -2484,6 +2484,48 @@
                     <FILEKIND>Text</FILEKIND>
                     <FILEFLAGS>Debug</FILEFLAGS>
                 </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>CoordinadorControladorSintonizador.hpp</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS></FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>CoordinadorControladorSintonizador.cpp</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS>Debug</FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>AutoSintonia.cpp</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS>Debug</FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>AutoSintonia.hpp</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS></FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>vistaAutoSintonia.cpp</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS>Debug</FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>vistaAutoSintonia.hpp</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS></FILEFLAGS>
+                </FILE>
             </FILELIST>
             <LINKORDER>
                 <FILEREF>
@@ -3216,6 +3258,36 @@
                     <PATH>DecoradorSalida.cpp</PATH>
                     <PATHFORMAT>Windows</PATHFORMAT>
                 </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>CoordinadorControladorSintonizador.hpp</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>CoordinadorControladorSintonizador.cpp</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>AutoSintonia.cpp</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>AutoSintonia.hpp</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>vistaAutoSintonia.cpp</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>vistaAutoSintonia.hpp</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
             </LINKORDER>
         </TARGET>
     </TARGETLIST>
@@ -3891,6 +3963,32 @@
                         <PATHFORMAT>Windows</PATHFORMAT>
                     </FILEREF>
                 </GROUP>
+                <GROUP><NAME>AutoSintonia</NAME>
+                    <FILEREF>
+                        <TARGETNAME>Standard</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>CoordinadorControladorSintonizador.hpp</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                    <FILEREF>
+                        <TARGETNAME>Standard</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>CoordinadorControladorSintonizador.cpp</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                    <FILEREF>
+                        <TARGETNAME>Standard</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>AutoSintonia.cpp</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                    <FILEREF>
+                        <TARGETNAME>Standard</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>AutoSintonia.hpp</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                </GROUP>
                 <FILEREF>
                     <TARGETNAME>Standard</TARGETNAME>
                     <PATHTYPE>Name</PATHTYPE>
@@ -4131,6 +4229,18 @@
                     <TARGETNAME>Standard</TARGETNAME>
                     <PATHTYPE>Name</PATHTYPE>
                     <PATH>VistaAlarmas.hpp</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <TARGETNAME>Standard</TARGETNAME>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>vistaAutoSintonia.cpp</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <TARGETNAME>Standard</TARGETNAME>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>vistaAutoSintonia.hpp</PATH>
                     <PATHFORMAT>Windows</PATHFORMAT>
                 </FILEREF>
             </GROUP>
