@@ -20,7 +20,7 @@ class CoordinadorControladorSintonizador{
     void deleteOnNuevoModoControlListener(const struct Method * metodo);
   
   inline ControlPID* getControl(){
-    return (ControlPID *)&poolModo;
+    return (ControlPID *)&(poolModo);
   }
 
   //private:

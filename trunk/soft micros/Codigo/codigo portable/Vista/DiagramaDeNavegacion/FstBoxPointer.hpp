@@ -15,6 +15,7 @@ struct FstBoxPointer{
   Box& getNextBox()const;
 };
 
+
 //#else
 /*
 struct FstBoxPointer{	

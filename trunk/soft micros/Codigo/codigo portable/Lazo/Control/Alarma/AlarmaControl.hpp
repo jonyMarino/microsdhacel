@@ -43,6 +43,7 @@ class AlarmaControl:public LazoControl{
     TipoControl  getTipoControl();
     void setTipoControl(TipoControl tipoControl);
     virtual ISalida& getSalida();
+    
        
   private:
     class GetterSP:public Getter{

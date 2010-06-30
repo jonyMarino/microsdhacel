@@ -30,7 +30,7 @@ CoordinadorLazosAlCntrRet::CoordinadorLazosAlCntrRet( ConfiguracionCoordinadorLa
                               ConfiguracionRetransmision& _confRetransmision,
                               ControlPID& _control,
                               //CoordinadorControladorSintonizador& _control,
-                              IPWM&_pwm):configuracion(_configuracion),confAlarma(_confAlarma),confValorControl(_confValorControl),confAdaptadorSalida(_confAdaptadorSalida),confRetransmision(_confRetransmision), control(_control){
+                              IPWM&_pwm):configuracion(_configuracion),confAlarma(_confAlarma),confValorControl(_confValorControl),confAdaptadorSalida(_confAdaptadorSalida),confRetransmision(_confRetransmision), control(_control),pwm(_pwm){
 
   crearLazo(getLazo(),_pwm);
 }

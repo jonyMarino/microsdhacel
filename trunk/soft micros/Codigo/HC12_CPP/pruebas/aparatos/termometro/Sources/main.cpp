@@ -43,7 +43,8 @@
 #include "configuracionValorControl.hpp"
 #include "VistaAlarmas.hpp"
 #include "AlarmaControl.hpp"
-
+#include "vistaAutoSintonia.hpp"
+#include "CoordinadorControladorSintonizador.hpp"
 
 void conectarSalidas(void * a);
 void OnTipoSalChange(void * b);
@@ -214,7 +215,8 @@ PWMTimer pwm4(flash,confPWM[3],7);  // pwm alarma 3 o si es de 2 canales alarma 
 
 
 const ConfiguracionControlPID configuraControl0(*(ConfiguracionControlPID::ControlConf*)&control_config[0],flash); 
-ControlPID control0(sensor0,pwm23,configuraControl0);
+//ControlPID control0(sensor0,pwm23,configuraControl0);
+CoordinadorControladorSintonizador control0(sensor0,pwm23,configuraControl0);
 
 #if CANTIDAD_CANALES>1 
 const ConfiguracionControlPID configuraControl1(*(ConfiguracionControlPID::ControlConf*)&control_config[1],flash);
@@ -229,7 +231,7 @@ ConfiguracionRetransm configuracionRetrans0(*(ConfiguracionRetransm::RetConf*)&r
 ConfiguracionAdapSalida configuracionAdapSalida0(*(ConfiguracionAdapSalida::AdapSalConf*)&adapSal_conf[0],flash);
 ConfiguracionValorControlado configuracionValorAlarma0(*(ConfiguracionValorControlado::ValorControlConf*)&alarmaSP_conf[0],flash);
 
-CoordinadorLazosAlCntrRet alarma0(configuracionLazoAlarmas0,configuracionAlarma0,configuracionValorAlarma0,configuracionAdapSalida0,configuracionRetrans0,control0,pwm3);
+CoordinadorLazosAlCntrRet alarma0(configuracionLazoAlarmas0,configuracionAlarma0,configuracionValorAlarma0,configuracionAdapSalida0,configuracionRetrans0,(*(ControlPID*)(control0.getControl())),pwm3);
 
 #if CANTIDAD_SAL_ALARMA>1 && CANTIDAD_CANALES==1  
 ConfiguracionLazoAlarmas configuracionLazoAlarmas1(*(ConfiguracionLazoAlarmas::LazoAlarmConf*)&lazo_alar_conf[1],flash);
@@ -360,8 +362,12 @@ const NEW_BOX_LIST(opList,opArray,"");
 
 //TUN        
 
+const struct FstBoxPointer autoSintonia0={
+  (const struct ConstructorBox*)&cBoxModos,&control0,0
+}; 
 
-#if CANTIDAD_CANALES==1 
+#if CANTIDAD_CANALES==1  
+
 const struct FstBoxPointer reset0={
   (const struct ConstructorBox*)&cBoxesReset,&control0,0
 };
@@ -374,6 +380,8 @@ const struct FstBoxPointer periodo0={
 const struct FstBoxPointer histAlarma0={
   (const struct ConstructorBox*)&cBoxesHistAlarma,&alarma0,0
 };
+
+
 #else
 const struct FstBoxPointer reset0={
   (const struct ConstructorBox*)&cBoxesReset,&control0,1
@@ -409,15 +417,14 @@ const struct FstBoxPointer histAlarma2={
 #endif
 
 static const struct FstBoxPointer *const tunArray[]={
+  &autoSintonia0,
   &reset0,
   &periodo0,
-  #if CANTIDAD_CANALES>1 
-  &reset1,
-  &periodo1,
-  #endif
   &aparatoConf0,
   &histAlarma0,
   #if CANTIDAD_CANALES>1 
+  &reset1,
+  &periodo1, 
   &aparatoConf1,
   #endif
   #if CANTIDAD_SAL_ALARMA>1 && CANTIDAD_CANALES>1 
@@ -480,6 +487,7 @@ static const struct FstBoxPointer *const calArray[]={
   #endif 
   &retAlmLimInf0,
   &retAlmLimSup0,
+  
   #if CANTIDAD_SAL_ALARMA>1 || CANTIDAD_CANALES>1 
   &retAlmLimInf1,
   &retAlmLimSup1,
@@ -640,7 +648,8 @@ void main(void) {
   DiagramaNavegacion d(&opList,&accessList,FrenteDH::getInstancia());
   PE_low_level_init();
   #if CANTIDAD_CANALES==1
-  control0.addOnTipoSalidaListener(cambioTipoSalida);
+   //control0.addOnTipoSalidaListener(cambioTipoSalida);
+   (*(ControlPID*)(control0.getControl())).addOnTipoSalidaListener(cambioTipoSalida);
   #elif CANTIDAD_CANALES==2 
   control1.addOnTipoSalidaListener(cambioTipoSalida);
   #endif
@@ -669,7 +678,7 @@ void conectarSalidas(void * a){
  
   ((RlxMTimer *)timer)->stop();
    pwm23.setConectada(TRUE);
-   pwm23.setPeriodo(PWM_100ms);        // seteo el periodo inicial
+   pwm23.setPeriodo(pwm23.getPeriodo());        // seteo el periodo inicial
    pwm2.setConectada(TRUE);
    pwm2.setTipoSalida(SALIDA_ONOFF);
    
@@ -690,7 +699,7 @@ void conectarSalidas(void * a){
 void OnTipoSalChange(void * b){
   #if CANTIDAD_CANALES == 1 
   static MessagesOut::Message msj_on_sal_change;  
-  if(control0.getModoSalida()==ControlPID::_MAN){
+  if((*(ControlPID*)(control0.getControl())).getModoSalida()==ControlPID::_MAN/*control0.getModoSalida()==ControlPID::_MAN*/){
     if(!msj_on_sal_change)
       msj_on_sal_change = mjsCambioTipoSalida.addMessage("Pot "); 
      BoxPrincipalControl::MostrarProp((ConstructorPropGetterVisual *)&cPropiedadPotManual,&control0);   

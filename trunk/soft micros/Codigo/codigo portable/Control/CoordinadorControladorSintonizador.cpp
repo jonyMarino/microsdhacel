@@ -27,21 +27,6 @@ CoordinadorControladorSintonizador::CoordinadorControladorSintonizador( Sensor& 
   crearModo(sensor,salida,configuracionControl);
 }
 
-void CoordinadorControladorSintonizador::crearModo(Sensor& sensor,ISalida& salida,const ConfiguracionControl& configuracionControl){  
-
-  switch(modoActual){
-    case CONTROL:
-      new((byte*)&poolModo) ControlPIDOptMem(sensor,salida,configuracionControl);        
-    break;
-    case AUTOSINTONIA:
-    default:
-      new((byte*)&poolModo) SintonizadorOptMem(sensor,salida,configuracionControl);  
-    break;
-  }
-
-}
-                             
-
 
 eModoControl  CoordinadorControladorSintonizador::getModo(){
   return modoActual;
@@ -68,6 +53,22 @@ void CoordinadorControladorSintonizador::setModo(eModoControl modo){
   crearModo(sensor,salida,*confControl); 
 }
 
+
+
+void CoordinadorControladorSintonizador::crearModo(Sensor& sensor,ISalida& salida,const ConfiguracionControl& configuracionControl){  
+
+  switch(modoActual){
+    case CONTROL:
+      new((byte*)&poolModo) ControlPIDOptMem(sensor,salida,configuracionControl);        
+    break;
+    case AUTOSINTONIA:
+    default:
+      new((byte*)&poolModo) SintonizadorOptMem(sensor,salida,configuracionControl);  
+    break;
+  }
+
+}
+                             
 
 void CoordinadorControladorSintonizador::addOnNuevoModoControlListener(const struct Method* metodo){
     listeners.add((void*)metodo);

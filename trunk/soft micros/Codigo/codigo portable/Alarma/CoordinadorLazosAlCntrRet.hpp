@@ -30,7 +30,8 @@ class CoordinadorLazosAlCntrRet{
     AlarmaControl& getAlarmaControl();  //si no se encuentra en modo ALARMA devuelve NULL
     TipoLazo getLazo();
     void setLazo(TipoLazo);
-
+    
+    
   private:
     class RetransmisionOptMem:public Retransmision{
       public:
@@ -58,6 +59,7 @@ class CoordinadorLazosAlCntrRet{
     AdaptadorSalidaConfiguracion& confAdaptadorSalida;
     ConfiguracionRetransmision& confRetransmision;
     ControlPID& control;
+    IPWM& pwm;
     //CoordinadorControladorSintonizador& control;
     void crearLazo(TipoLazo tipo,IPWM&pwm_);
 };
