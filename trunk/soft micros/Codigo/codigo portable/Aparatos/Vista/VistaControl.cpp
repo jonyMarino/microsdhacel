@@ -17,6 +17,7 @@
 #include "VistaControl.hpp"
 #include "SensorTermoPT100.hpp"
 #include "PropGetterNumericoPV.hpp"
+#include "CoordinadorControladorSintonizador.hpp"
 
 #pragma MESSAGE DISABLE C1825          /* Disable warning C5703 "Parameter is not referenced" */
 
@@ -32,6 +33,20 @@
     ((ControlPID*)conf)->METODO(valor); \
   }   
 
+
+
+
+#define ADAPTAR_FUNCION_GET_AUTS(NOMBRE,METODO)\
+    int NOMBRE(void*conf){           \
+    return ((CoordinadorControladorSintonizador*)conf)->METODO(); \
+  }
+  
+#define ADAPTAR_FUNCION_SET_AUTS(NOMBRE,METODO)      \
+  void NOMBRE(void*conf,int valor){           \
+    ((CoordinadorControladorSintonizador*)conf)->METODO(valor); \
+  }   
+  
+ 
 
 uchar getDecimalesControl(void*control){           
   return ((ControlPID*)control)->getDecimales();
@@ -75,7 +90,29 @@ int getVal_ (void * control){
 /********PROPIEDADES**********/
 /*****************************/
 
+  //Modos
+  const char * const Modos[2]={
+      "oFF ",	//controlPID								
+			"on  ", //AutoSintonia
+			
+  };
 
+
+
+  const char * Modos_getText(byte Modo){
+    return Modos[Modo];
+  }   
+
+ 
+  ADAPTAR_FUNCION_GET_AUTS(getModo,getModo)
+  ADAPTAR_FUNCION_SET_AUTS(setModo,setModo)
+
+  const struct ConstructorPropiedadTextual cPropiedadModos={
+    &propiedadTextualFactory,getModo,"St",setModo,Modos_getText,2
+  };
+  
+  
+  
   //Reset
   ADAPTAR_FUNCION_GET(getReset,getReset)
   ADAPTAR_FUNCION_SET(setReset,setReset)
@@ -190,6 +227,11 @@ int getVal_ (void * control){
  /***********************/
  /****** BOXES  *********/
  
+const struct ConstructorBoxPropiedad cBoxModos={
+      &boxPropiedadFactory,	
+			(const struct ConstructorPropGetterVisual*)&cPropiedadModos
+}; 
+
   
 
 const struct ConstructorPropGetterVisual *const propSintonia[]=	{

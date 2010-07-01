@@ -51,8 +51,8 @@ void PWMSoft::setPotenciaGuardada(){
   if(getTipoSalida()==SALIDA_PROPORCIONAL){ 
    ((MethodTimer*)time)->stop();  
     if(potencia!=0){
-      setReg8Bits(*salida, mascara);  
-      ((MethodTimer*)time)->setTime(periodos[getPeriodo()]* potencia/1000);
+      setReg8Bits(*salida, mascara);
+        ((MethodTimer*)time)->setTime(2500/*(unsigned long)(periodos[getPeriodo()]* potencia/1000)*/);
     }else{
       clrReg8Bits(*salida, mascara);  
       ((MethodTimer*)time)->setTime(periodos[getPeriodo()]);

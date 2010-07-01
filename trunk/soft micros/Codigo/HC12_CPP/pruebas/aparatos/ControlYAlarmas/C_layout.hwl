@@ -7,7 +7,7 @@ Data:1 < attributes SCOPE global,COMPLEMENT None,FORMAT Symb,MODE automatic,SORT
 OPEN Data 0 78 60 22
 Data:2 < attributes SCOPE local,COMPLEMENT None,FORMAT Symb,MODE automatic,SORT NotSort,UPDATERATE 10,NAMEWIDTH 16
 OPEN Assembly 60 0 40 20
-Assembly < attributes ADR off,CODE off,ABSADR on,SYMB on,FORMAT Auto,FREEZE off,TOPPC 0x1
+Assembly < attributes ADR off,CODE off,ABSADR on,SYMB on,FORMAT Auto,FREEZE off,TOPPC 0x4838
 OPEN Register 60 20 40 20
 Register < attributes FORMAT AUTO,COMPLEMENT None
 OPEN Memory 60 40 40 35

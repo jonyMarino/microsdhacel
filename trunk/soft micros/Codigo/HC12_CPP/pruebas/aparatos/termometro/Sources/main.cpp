@@ -43,7 +43,6 @@
 #include "configuracionValorControl.hpp"
 #include "VistaAlarmas.hpp"
 #include "AlarmaControl.hpp"
-#include "vistaAutoSintonia.hpp"
 #include "CoordinadorControladorSintonizador.hpp"
 
 void conectarSalidas(void * a);
@@ -402,7 +401,7 @@ const struct FstBoxPointer periodo1={
   (const struct ConstructorBox*)&cBoxPeriodo,&pwm2,2
 };
 #endif
-#if CANTIDAD_SAL_ALARMA>1 && CANTIDAD_CANALES>1 
+#if CANTIDAD_SAL_ALARMA>1 || CANTIDAD_CANALES>1 
 const struct FstBoxPointer histAlarma0={
   (const struct ConstructorBox*)&cBoxesHistAlarma,&alarma0,1
 };
@@ -420,14 +419,14 @@ static const struct FstBoxPointer *const tunArray[]={
   &autoSintonia0,
   &reset0,
   &periodo0,
-  &aparatoConf0,
+ // &aparatoConf0,
   &histAlarma0,
   #if CANTIDAD_CANALES>1 
   &reset1,
   &periodo1, 
   &aparatoConf1,
   #endif
-  #if CANTIDAD_SAL_ALARMA>1 && CANTIDAD_CANALES>1 
+  #if CANTIDAD_SAL_ALARMA>1 || CANTIDAD_CANALES>1 
   &histAlarma1,
   #if CANTIDAD_SAL_ALARMA>2
   &histAlarma2
