@@ -13,7 +13,10 @@
 #include "PropDescripcionVariablePV.hpp"
 #include "CoordinadorControladorSintonizador.hpp"
 
+#pragma MESSAGE DISABLE C1825          /* Disable warning C5703 "Parameter is not referenced" */
+#pragma CONST_SEG DEFAULT 
 
+/*
 #define ADAPTAR_FUNCION_GET(NOMBRE,METODO)\
     int NOMBRE(void*conf){           \
     return ((CoordinadorControladorSintonizador*)conf)->METODO(); \
@@ -28,7 +31,7 @@
  /*****************************/
 /********PROPIEDADES**********/
 /*****************************/
- //Modos
+/* //Modos
   const char * const Modos[2]={
       "off ",	//controlPID								
 			"on  ", //AutoSintonia
@@ -51,8 +54,9 @@
   
   /***********************/
  /****** BOXES  *********/
- 
+/* 
 const struct ConstructorBoxPropiedad cBoxModos={
       &boxPropiedadFactory,	
 			(const struct ConstructorPropGetterVisual*)&cPropiedadModos
 }; 
+       */
