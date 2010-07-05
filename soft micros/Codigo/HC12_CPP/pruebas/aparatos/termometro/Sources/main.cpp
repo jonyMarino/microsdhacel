@@ -369,10 +369,10 @@ const struct FstBoxPointer autoSintonia0={
 #if CANTIDAD_CANALES==1  
 
 const struct FstBoxPointer reset0={
-  (const struct ConstructorBox*)&cBoxesReset,&control0,0
+  (const struct ConstructorBox*)&cBoxesReset,&control0.poolModo,0
 };
 const struct FstBoxPointer aparatoConf0={
-  (const struct ConstructorBox*)&cBoxesSintonia,&control0,0
+  (const struct ConstructorBox*)&cBoxesSintonia,&control0.poolModo,0
 };
 const struct FstBoxPointer periodo0={
   (const struct ConstructorBox*)&cBoxPeriodo,&pwm23,0
@@ -510,11 +510,11 @@ const struct FstBoxPointer setCList={
   };
 #if CANTIDAD_CANALES==1
 const struct FstBoxPointer modosSalida0={
-  (const struct ConstructorBox*)&cBoxModoSalida,&control0,0
+  (const struct ConstructorBox*)&cBoxModoSalida,&control0.poolModo,0
 };
 #else
 const struct FstBoxPointer modosSalida0={
-  (const struct ConstructorBox*)&cBoxModoSalida,&control0,1
+  (const struct ConstructorBox*)&cBoxModoSalida,&control0.poolModo,1
 };
 const struct FstBoxPointer modosSalida1={
   (const struct ConstructorBox*)&cBoxModoSalida,&control1,2
