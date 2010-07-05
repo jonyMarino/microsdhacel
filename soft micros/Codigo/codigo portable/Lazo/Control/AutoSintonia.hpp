@@ -7,14 +7,16 @@
 #include "ValorControlProporcional.hpp"
 #include "Timer/FlagTimer/FlagTimer.hpp"
 
+
 class AutoSintonia:public LazoControl{
   public:
     //Empieza el proceso de autosintonia
     AutoSintonia(Sensor& sensor,ISalida& salida,const ConfiguracionControl& configuracion);
-    void detener(); //detiene el proceso de autosintonia sin realizar cambios
+    bool isDetenido(); //detiene el proceso de autosintonia sin realizar cambios
     int getNumeroEstado();
     inline const ConfiguracionControl& getConfiguracion(){return confControl;}
-
+    int getConfiguracionSetPoint();
+    
   protected:
     void onNuevoValorSensor();
   private:
@@ -31,6 +33,8 @@ class AutoSintonia:public LazoControl{
         virtual int getHisteresis();
         virtual TipoSalida getTipoSalida();      
     }confAdaptSalida;
+    
+   
     SalidaBanda adaptSalida;
     ValorControlProporcional valControl;
     const ConfiguracionControl&confControl;

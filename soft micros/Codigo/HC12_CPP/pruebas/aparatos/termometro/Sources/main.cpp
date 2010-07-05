@@ -44,6 +44,7 @@
 #include "VistaAlarmas.hpp"
 #include "AlarmaControl.hpp"
 #include "CoordinadorControladorSintonizador.hpp"
+#include "AutoSintonia.hpp"
 
 void conectarSalidas(void * a);
 void OnTipoSalChange(void * b);
@@ -265,10 +266,10 @@ CoordinadorLazosAlCntrRet alarma2(configuracionLazoAlarmas2,configuracionAlarma2
 #if CANTIDAD_CANALES==1  
 //potencia
 const struct FstBoxPointer potInst0={
-  (const struct ConstructorBox*)&cBoxPotInst,&control0,0
+  (const struct ConstructorBox*)&cBoxPotInst,&control0.poolModo,0
 };  
 const struct FstBoxPointer potMan0={
-  (const struct ConstructorBox*)&cBoxPotMan,&control0,0
+  (const struct ConstructorBox*)&cBoxPotMan,&control0.poolModo,0
 };  
 
 #else
@@ -636,7 +637,7 @@ struct Method cambioTipoSalida={
 
 
 void main(void) {
-  
+  static MessagesOut::Message msj_AutoSintonia; 
   #if CANTIDAD_CANALES>1  
   BoxPrincipalControl::MostrarGetter((ConstructorPropGetterVisual *)&cPropiedadGetSensor1,&control1); 
   #else
@@ -648,7 +649,7 @@ void main(void) {
   PE_low_level_init();
   #if CANTIDAD_CANALES==1
    //control0.addOnTipoSalidaListener(cambioTipoSalida);
-   (*(ControlPID*)(control0.getControl())).addOnTipoSalidaListener(cambioTipoSalida);
+   ((ControlPID*)(control0.getControl()))->addOnTipoSalidaListener(cambioTipoSalida);
   #elif CANTIDAD_CANALES==2 
   control1.addOnTipoSalidaListener(cambioTipoSalida);
   #endif
@@ -658,9 +659,25 @@ void main(void) {
     byte tecla = FrenteDH::getInstancia()->getTecla();
     termometro.mainLoop();
     d.procesar(tecla);
-   //for(i=0;i<CANTIDAD_CANALES;i++)
+   
    #if CANTIDAD_CANALES == 1 
     sensor0.checkADC();
+    if(control0.getEstadoAutosintonia() == TRUE){ //AutoSintonia detenida?
+      if(msj_AutoSintonia)
+        mjsCambioTipoSalida.deleteMessage(msj_AutoSintonia);
+      control0.setModo(CONTROL);
+    }else if(control0.getEstadoAutosintonia() == FALSE){
+      //estoy en autoSintonia presento los carteles
+      char mensaje[5];
+      mensaje[0]='S';
+      mensaje[1]='t';
+      mensaje[2]=' ';
+      mensaje[3]=((char)(control0.getPasoAutosintonia())+0x30);  
+      mensaje[4]='\0';
+      if(!msj_AutoSintonia)
+        msj_AutoSintonia = mjsCambioTipoSalida.addMessage(mensaje);
+    }
+      
    #else
     sensor0.checkADC();
     sensor1.checkADC();
@@ -698,7 +715,7 @@ void conectarSalidas(void * a){
 void OnTipoSalChange(void * b){
   #if CANTIDAD_CANALES == 1 
   static MessagesOut::Message msj_on_sal_change;  
-  if((*(ControlPID*)(control0.getControl())).getModoSalida()==ControlPID::_MAN/*control0.getModoSalida()==ControlPID::_MAN*/){
+  if(((ControlPID*)(control0.getControl()))->getModoSalida()==ControlPID::_MAN/*control0.getModoSalida()==ControlPID::_MAN*/){
     if(!msj_on_sal_change)
       msj_on_sal_change = mjsCambioTipoSalida.addMessage("Pot "); 
      BoxPrincipalControl::MostrarProp((ConstructorPropGetterVisual *)&cPropiedadPotManual,&control0);   

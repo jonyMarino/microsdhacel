@@ -3,7 +3,7 @@
 
 #include "AlarmaControl.hpp"
 #include "Retransmision.hpp"
-#include "CoordinadorControladorSintonizador.hpp"
+//#include "CoordinadorControladorSintonizador.hpp"
 
 typedef enum{
   ALARMA,

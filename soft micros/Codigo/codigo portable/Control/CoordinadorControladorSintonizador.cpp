@@ -38,6 +38,12 @@ int CoordinadorControladorSintonizador::getPasoAutosintonia(){
   return ((AutoSintonia*)&poolModo)->getNumeroEstado();
 }
 
+bool CoordinadorControladorSintonizador::getEstadoAutosintonia(){
+  if(modoActual!=AUTOSINTONIA)
+    return -1;
+  return ((AutoSintonia*)&poolModo)->isDetenido();
+}
+
 void CoordinadorControladorSintonizador::setModo(eModoControl modo){
   if(modo>1)
     return;

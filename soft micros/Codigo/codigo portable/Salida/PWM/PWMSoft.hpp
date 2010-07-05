@@ -29,13 +29,12 @@ class PWMSoft : public PWM {
 
   static MethodTimer * time;
   
-  static PWMSoft* pwmSoft_;
   
   private:
     
     TipoSalida tipoSalida; 
     
-    static const struct Method onChg;
+    static struct Method onChg;
 
     
 };

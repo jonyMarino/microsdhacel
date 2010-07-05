@@ -44,7 +44,6 @@
 #include "VistaAlarmas.hpp"
 #include "AlarmaControl.hpp"
 #include "CoordinadorControladorSintonizador.hpp"
-#include "vistaAutoSintonia.hpp"
 
 void conectarSalidas(void * a);
 

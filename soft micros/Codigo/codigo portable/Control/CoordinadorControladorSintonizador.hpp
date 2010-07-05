@@ -16,6 +16,7 @@ class CoordinadorControladorSintonizador{
     eModoControl getModo();
     void setModo(eModoControl); //valores posibles: CONTROL,AUTOSINTONIA
     int getPasoAutosintonia();
+    bool getEstadoAutosintonia();
     void addOnNuevoModoControlListener(const struct Method* metodo);
     void deleteOnNuevoModoControlListener(const struct Method * metodo);
   
