@@ -296,7 +296,7 @@ uso K=1 para ponerlo despues en otro lado
 */
 
 
-  int proporcional (int val_x,
+  long proporcional (int val_x,
                 int reset,
                 int spt
                 )
@@ -304,7 +304,7 @@ uso K=1 para ponerlo despues en otro lado
         int sp;
         sp = spt + reset;
 
-  return (sp-val_x);
+  return (long)(sp-val_x);
 
 };
 

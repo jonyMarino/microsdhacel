@@ -4,7 +4,6 @@
 
 void onCambio(void * self);
 
-PWMSoft* PWMSoft::pwmSoft_=NULL;
 
 static const ulong periodos[]={   
   100,											//100 ms
@@ -22,13 +21,13 @@ static const ulong periodos[]={
 
 
 
-const struct Method PWMSoft::onChg={
+struct Method PWMSoft::onChg={
 onCambio,NULL
 };
 
 
 PWMSoft::PWMSoft(struct ManejadorMemoria &_manejadorMemoria,byte * _salida,TConfPWM &_conf, uchar pin_out):PWM(_manejadorMemoria,_conf){
-  pwmSoft_=this;
+  onChg.obj=this;
   salida=_salida;
   mascara=1<<pin_out;
   time=new MethodTimer(periodos[_conf.periodo],onChg);
@@ -47,17 +46,17 @@ void PWMSoft::setPotencia(unsigned int potencia){
 
 void PWMSoft::setPotenciaGuardada(){
 
-  unsigned int potencia = getPotencia();
-  if(getTipoSalida()==SALIDA_PROPORCIONAL){ 
-   ((MethodTimer*)time)->stop();  
-    if(potencia!=0){
-      setReg8Bits(*salida, mascara);
-        ((MethodTimer*)time)->setTime(2500/*(unsigned long)(periodos[getPeriodo()]* potencia/1000)*/);
-    }else{
-      clrReg8Bits(*salida, mascara);  
-      ((MethodTimer*)time)->setTime(periodos[getPeriodo()]);
-    }  
-  }
+  //unsigned int potencia = getPotencia();
+  //if(getTipoSalida()==SALIDA_PROPORCIONAL){ 
+   //((MethodTimer*)time)->stop();  
+    //if(potencia!=0){
+      //setReg8Bits(*salida, mascara);
+        //((MethodTimer*)time)->setTime((unsigned long)(periodos[getPeriodo()]* potencia/1000));
+    //}else{
+      //clrReg8Bits(*salida, mascara);  
+      //((MethodTimer*)time)->setTime(periodos[getPeriodo()]);
+    //}  
+  //}
 }
 
 unsigned char PWMSoft::setPeriodo(TPeriod period){
@@ -92,7 +91,7 @@ return (bool)(*salida|mascara);
 }
 
 void onCambio(void * self){
-  PWMSoft* pwmSoft=PWMSoft::pwmSoft_;
+  PWMSoft* pwmSoft=(PWMSoft*)self;
   int pot = ((PWM*)pwmSoft)->getPotencia();
   unsigned long tiempoEnUno=(unsigned long)(periodos[((PWM*)pwmSoft)->getPeriodo()]* pot)/1000;
   if(testReg8Bits(*(((PWMSoft*)pwmSoft)->salida),((PWMSoft*)pwmSoft)->mascara)){    

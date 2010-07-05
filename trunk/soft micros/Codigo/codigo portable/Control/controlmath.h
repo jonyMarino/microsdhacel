@@ -52,7 +52,7 @@ int derivada3p(int * val_T, //array con tres valores
                int kder	 //kder = 2 derivada exacta
               );
 
-int proporcional (int val_x,
+long proporcional (int val_x,
                 int reset,
                 int spt
                 );

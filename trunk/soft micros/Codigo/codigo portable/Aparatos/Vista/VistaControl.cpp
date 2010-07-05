@@ -18,9 +18,9 @@
 #include "SensorTermoPT100.hpp"
 #include "PropGetterNumericoPV.hpp"
 #include "CoordinadorControladorSintonizador.hpp"
+#include "AutoSintonia.hpp"
 
 #pragma MESSAGE DISABLE C1825          /* Disable warning C5703 "Parameter is not referenced" */
-
 
 
 #define ADAPTAR_FUNCION_GET(NOMBRE,METODO)\

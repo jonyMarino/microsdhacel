@@ -1,6 +1,7 @@
+
 #include "AutoSintonia.hpp"
 
-#define TIEMPO_ABIERTO_MAXIMO 2000
+#define TIEMPO_ABIERTO_MAXIMO 4000
 #define HISTERESIS_AUTO_SINTONIA 4
 
 int AutoSintonia::ConfValControl::getValorControlador(){
@@ -27,22 +28,28 @@ AutoSintonia::AutoSintonia(Sensor& sensor,ISalida& salida,const ConfiguracionCon
 
 }
 
-void AutoSintonia::detener(){
-
+bool AutoSintonia::isDetenido(){
+  if(paso == 5 || paso ==6) 
+    return TRUE;
+  return FALSE;
 }
 
 //bool AutoSintonia::error(){
 //  return FALSE;
 //}                                                                                                                                                                                      
 
+int AutoSintonia::getNumeroEstado(){
+  return paso;
+}
+
+int AutoSintonia::getConfiguracionSetPoint(){
+  return  confControl.getSetPoint();
+}
+
 
 
 void AutoSintonia::onNuevoValorSensor(){
   LazoControl::onNuevoValorSensor();
-
-
-
- 
 
 // primero hago el control onoff  
 
@@ -57,12 +64,12 @@ void AutoSintonia::onNuevoValorSensor(){
         */
   if(paso == 5 || paso==6)
     return;
-
   
-  if (contadorTiempoAbierto.getFlag()){    
+  /*if (contadorTiempoAbierto.getFlag()){    
     paso=6;                              //veo si me pase y pongo error
     return;
-  }
+  } */  //comento para poderlo probar manualmente
+  
  int valorSensor = getSensor().getVal();  
 
  switch(paso){							          					             //estoy en el paso cero que es comienzo abajo. 

@@ -58,7 +58,7 @@ int SensorTermoPT100::getLimiteSuperior() {
 int SensorTermoPT100::getVal() {
   byte sensor = getSensor();
   uchar decimales= SENSOR_Decimales_Mostrar(sensor);
-  return valor/Math::pow10(SENSOR_Decimales(sensor)-decimales);
+  return valor/(long)Math::pow10(SENSOR_Decimales(sensor)-decimales);
 }
 
 /**
