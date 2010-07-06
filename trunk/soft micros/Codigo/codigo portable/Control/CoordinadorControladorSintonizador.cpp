@@ -54,6 +54,12 @@ void CoordinadorControladorSintonizador::setModo(eModoControl modo){
   Sensor  &sensor = (Sensor&)lazo->getSensor();
   const ConfiguracionControl* confControl = &((modoActual==CONTROL)?((ControlPID*)lazo)->getConfiguracion():((AutoSintonia*)lazo)->getConfiguracion());
   
+  //avisa que va a ser cambiado el tipo de control.
+  listeners.executeMethods();
+  delete lazo;
+  modoActual = modo;
+  crearModo(sensor,salida,*confControl);
+  
   if(onControlChange){
     LinkedList::LinkedListIterator it;
     onControlChange->linkedListIterator(&it); 
@@ -63,12 +69,7 @@ void CoordinadorControladorSintonizador::setModo(eModoControl modo){
       (*(void(*)(void*,void*))mo->pmethod)(mo->obj,this);
     }
   }
-  
-  //avisa que va a ser cambiado el tipo de control.
-  listeners.executeMethods();
-  delete lazo;
-  modoActual = modo;
-  crearModo(sensor,salida,*confControl); 
+   
 }
 
 

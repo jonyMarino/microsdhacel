@@ -766,7 +766,7 @@ void OnTipoSalChange(void * b){
 }
 
 void OnControlChange(void * c){
-  if(control0.getModo() != AUTOSINTONIA)
+  if(control0.getModo() == AUTOSINTONIA)
     BoxPrincipalControl::MostrarProp((ConstructorPropGetterVisual *)&cPropiedadSetPointAutoSintonia,&control0);
   else
     BoxPrincipalControl::MostrarProp((ConstructorPropGetterVisual *)&cPropiedadSetPoint,&control0);
