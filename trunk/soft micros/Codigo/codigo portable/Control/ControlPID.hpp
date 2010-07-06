@@ -91,6 +91,7 @@ class ControlPID:public Lazo{
     ControlPID(Sensor& sensor,ISalida& salida,const ConfiguracionControl& configuracion);
     
     void addOnTipoSalidaListener(struct Method& metodo);
+    
     /*
     ** ===================================================================
     **     Method      :  Disconect 

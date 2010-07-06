@@ -17,13 +17,18 @@ class CoordinadorControladorSintonizador{
     void setModo(eModoControl); //valores posibles: CONTROL,AUTOSINTONIA
     int getPasoAutosintonia();
     bool getEstadoAutosintonia();
+    void addOnControlListener(struct Method& metodo);
     void addOnNuevoModoControlListener(const struct Method* metodo);
     void deleteOnNuevoModoControlListener(const struct Method * metodo);
   
   inline ControlPID* getControl(){
-    return (ControlPID *)&(poolModo);
+    //return (ControlPID *)&(poolModo);
+      return (ControlPID *)lazo;
   }
-
+  inline AutoSintonia* getAutoSintonia(){
+    //return (AutoSintonia *)&(poolModo);
+    return (AutoSintonia *)lazo;
+  }
   //private:
     
     class SintonizadorOptMem:public AutoSintonia{
@@ -42,13 +47,15 @@ class CoordinadorControladorSintonizador{
     };
     
     union{
-      byte sintonizador[sizeof(CoordinadorControladorSintonizador::SintonizadorOptMem)];
       byte control[sizeof(CoordinadorControladorSintonizador::ControlPIDOptMem)];    
+      byte sintonizador[sizeof(CoordinadorControladorSintonizador::SintonizadorOptMem)];
     }poolModo;
     
     void crearModo(Sensor& sensor,ISalida& salida,const ConfiguracionControl& configuracionControl);
     eModoControl modoActual;
     MethodContainer listeners;
+    MethodContainer * onControlChange;
+    Lazo * lazo;
 };
 
 #endif

@@ -5,8 +5,12 @@
 #include "PropNumLFPV.hpp"
 
 extern const struct ConstructorBoxLineal cBoxesSintonia;
+extern const struct ConstructorBoxPropiedadEntradaCondicional cBoxesHisteresis;
+extern const struct ConstructorBoxPropiedadEntradaCondicional cBoxesDerivada;
+extern const struct ConstructorBoxPropiedadEntradaCondicional cBoxesIntegral;
 extern const struct ConstructorBoxPropiedad cBoxesReset;
 extern const struct ConstructorBoxPropiedad cBoxesSetPoint;
+extern const struct ConstructorPropNumLFPV cPropiedadSetPointAutoSintonia;
 extern const struct ConstructorPropNumLFPV cPropiedadSetPoint;
 extern const struct ConstructorPropNumLVPF cPropiedadPotManual;
 extern const struct ConstructorPropGetterNumerico cPropiedadGetPotenciaInst;

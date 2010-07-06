@@ -33,7 +33,25 @@
     ((ControlPID*)conf)->METODO(valor); \
   }   
 
+#define ADAPTAR_FUNCION_GET_CONTROL(NOMBRE,METODO)\
+    int NOMBRE(void*conf){           \
+    return ((ControlPID*)(((CoordinadorControladorSintonizador*)conf)->getControl()))->METODO(); \
+  }
+  
+#define ADAPTAR_FUNCION_SET_CONTROL(NOMBRE,METODO)      \
+  void NOMBRE(void*conf,int valor){           \
+    ((ControlPID*)(((CoordinadorControladorSintonizador*)conf)->getControl()))->METODO(valor); \
+  }   
 
+#define ADAPTAR_FUNCION_GET_AUTOSINTONIA(NOMBRE,METODO)\
+    int NOMBRE(void*conf){           \
+    return ((AutoSintonia*)(((CoordinadorControladorSintonizador*)conf)->getAutoSintonia()))->METODO(); \
+  }
+  
+#define ADAPTAR_FUNCION_SET_AUTOSINTONIA(NOMBRE,METODO)      \
+  void NOMBRE(void*conf,int valor){           \
+    ((AutoSintonia*)(((CoordinadorControladorSintonizador*)conf)->getAutoSintonia()))->METODO(valor); \
+  }   
 
 
 #define ADAPTAR_FUNCION_GET_AUTS(NOMBRE,METODO)\
@@ -121,8 +139,8 @@ int getVal_ (void * control){
   };
 
   //Histeresis
-  ADAPTAR_FUNCION_GET(getHisteresis,getHisteresis)
-  ADAPTAR_FUNCION_SET(setHisteresis,setHisteresis)
+  ADAPTAR_FUNCION_GET_CONTROL(getHisteresis,getHisteresis)
+  ADAPTAR_FUNCION_SET_CONTROL(setHisteresis,setHisteresis)
   
   const char * histeresisVista(PropGetterVisual * prop){    
     int valObj=prop->getVal();
@@ -138,15 +156,15 @@ int getVal_ (void * control){
     
   
   //Integral
-  ADAPTAR_FUNCION_GET(getIntegral,getIntegral)
-  ADAPTAR_FUNCION_SET(setIntegral,setIntegral)
+  ADAPTAR_FUNCION_GET_CONTROL(getIntegral,getIntegral)
+  ADAPTAR_FUNCION_SET_CONTROL(setIntegral,setIntegral)
   const struct ConstructorPropNumLFPF cPropiedadIntegral={
     &propNumLFPFFactory,getIntegral,"in ",setIntegral,-9999,9999,1
   };
 
   //Derivada
-  ADAPTAR_FUNCION_GET(getDerivada,getDerivada)
-  ADAPTAR_FUNCION_SET(setDerivada,setDerivada)
+  ADAPTAR_FUNCION_GET_CONTROL(getDerivada,getDerivada)
+  ADAPTAR_FUNCION_SET_CONTROL(setDerivada,setDerivada)
   const struct ConstructorPropNumLFPF cPropiedadDerivada={
     &propNumLFPFFactory,getDerivada,"dr",setDerivada,0,9999,1
   };
@@ -159,6 +177,18 @@ int getVal_ (void * control){
   const struct ConstructorPropNumLFPV cPropiedadSetPoint={
     &propNumLFPVFactory,getConfiguracionSetPoint,"SP",setConfiguracionSetPoint,-9999,9999,getDecimalesControl 
   };
+  
+  //SetPoint autoSintonia                              
+  ADAPTAR_FUNCION_GET_AUTOSINTONIA(getConfiguracionSetPointAs,getConfiguracionSetPoint)
+  ADAPTAR_FUNCION_SET_AUTOSINTONIA(setConfiguracionSetPointAs,setConfiguracionSetPoint)
+  //ADAPTAR_FUNCION_GET(getDecimales,getDecimales)
+  
+  const struct ConstructorPropNumLFPV cPropiedadSetPointAutoSintonia={
+    &propNumLFPVFactory,getConfiguracionSetPointAs,"SP",setConfiguracionSetPointAs,-9999,9999,getDecimalesControl 
+  };
+  
+  
+  
   
   //ModoSalida
   
@@ -227,6 +257,14 @@ int getVal_ (void * control){
  /***********************/
  /****** BOXES  *********/
  
+bool getCondicionEntradaSint (void* control){
+  if(((CoordinadorControladorSintonizador*)control)->getModo() != AUTOSINTONIA)
+    return TRUE;
+  else
+    return FALSE;  
+}
+
+
 const struct ConstructorBoxPropiedad cBoxModos={
       &boxPropiedadFactory,	
 			(const struct ConstructorPropGetterVisual*)&cPropiedadModos
@@ -248,6 +286,26 @@ const struct ConstructorBoxLineal cBoxesSintonia={
   		  NULL						 //Proximo box	
 };
 
+
+
+const struct ConstructorBoxPropiedadEntradaCondicional cBoxesHisteresis={
+      &boxPropiedadEntradaCondicionalFactory,	
+			(const struct ConstructorPropGetterVisual*)&cPropiedadHisteresis,
+			getCondicionEntradaSint
+};
+
+
+const struct ConstructorBoxPropiedadEntradaCondicional cBoxesDerivada={
+      &boxPropiedadEntradaCondicionalFactory,	
+			(const struct ConstructorPropGetterVisual*)&cPropiedadDerivada,
+			getCondicionEntradaSint
+};
+
+const struct ConstructorBoxPropiedadEntradaCondicional cBoxesIntegral={
+      &boxPropiedadEntradaCondicionalFactory,	
+			(const struct ConstructorPropGetterVisual*)&cPropiedadIntegral,
+			getCondicionEntradaSint
+};
 
 const struct ConstructorBoxPropiedad cBoxesReset={
       &boxPropiedadFactory,	
