@@ -16,6 +16,7 @@ class AutoSintonia:public LazoControl{
     int getNumeroEstado();
     inline const ConfiguracionControl& getConfiguracion(){return confControl;}
     int getConfiguracionSetPoint();
+    void setConfiguracionSetPoint(int val);
     
   protected:
     void onNuevoValorSensor();

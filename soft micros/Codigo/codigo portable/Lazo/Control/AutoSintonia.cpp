@@ -46,7 +46,9 @@ int AutoSintonia::getConfiguracionSetPoint(){
   return  confControl.getSetPoint();
 }
 
-
+void AutoSintonia::setConfiguracionSetPoint(int val){
+  confControl.setSetPoint(val);
+}
 
 void AutoSintonia::onNuevoValorSensor(){
   LazoControl::onNuevoValorSensor();

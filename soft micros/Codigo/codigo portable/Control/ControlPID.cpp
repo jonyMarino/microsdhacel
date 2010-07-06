@@ -62,6 +62,9 @@ void ControlPID::addOnTipoSalidaListener(struct Method& metodo){
    
   onTipoSalidaChange->add((void*)&metodo);
 }
+
+
+
 /*
 ** ===================================================================
 **     Method      :  ControlPID::Disconect 
