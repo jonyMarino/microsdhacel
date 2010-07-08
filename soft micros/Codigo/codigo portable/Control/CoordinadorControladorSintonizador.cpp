@@ -68,11 +68,11 @@ void CoordinadorControladorSintonizador::crearModo(Sensor& sensor,ISalida& salid
 
   switch(modoActual){
     case CONTROL:
-     lazo = new((byte*)&poolModo) ControlPIDOptMem(sensor,salida,configuracionControl);        
+     new((byte*)&poolModo) ControlPIDOptMem(sensor,salida,configuracionControl);        
     break;
     case AUTOSINTONIA:
     default:
-      lazo = new((byte*)&poolModo) SintonizadorOptMem(sensor,salida,configuracionControl);  
+      new((byte*)&poolModo) SintonizadorOptMem(sensor,salida,configuracionControl);  
     break;
   }
 
