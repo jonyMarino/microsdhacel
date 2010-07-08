@@ -54,22 +54,12 @@ void CoordinadorControladorSintonizador::setModo(eModoControl modo){
   Sensor  &sensor = (Sensor&)lazo->getSensor();
   const ConfiguracionControl* confControl = &((modoActual==CONTROL)?((ControlPID*)lazo)->getConfiguracion():((AutoSintonia*)lazo)->getConfiguracion());
   
-  //avisa que va a ser cambiado el tipo de control.
-  listeners.executeMethods();
+
   delete lazo;
   modoActual = modo;
   crearModo(sensor,salida,*confControl);
-  
-  if(onControlChange){
-    LinkedList::LinkedListIterator it;
-    onControlChange->linkedListIterator(&it); 
-    
-    while(it.hasNext()){    
-      const struct Method* mo= (const struct Method*)it.next();
-      (*(void(*)(void*,void*))mo->pmethod)(mo->obj,this);
-    }
-  }
-   
+  //avisa que va fue cambiado el tipo de control.
+  listeners.executeMethods();   
 }
 
 
@@ -89,26 +79,14 @@ void CoordinadorControladorSintonizador::crearModo(Sensor& sensor,ISalida& salid
 }
                              
 
-void CoordinadorControladorSintonizador::addOnNuevoModoControlListener(const struct Method* metodo){
-    listeners.add((void*)metodo);
+void CoordinadorControladorSintonizador::addOnControlListener(const struct Method& metodo){
+    listeners.add((void*)&metodo);
 }
-void CoordinadorControladorSintonizador::deleteOnNuevoModoControlListener(const struct Method * metodo){
-    listeners.moveOut((void*)metodo);
+void CoordinadorControladorSintonizador::deleteOnControlListener(const struct Method& metodo){
+    listeners.moveOut((void*)&metodo);
 }
 
-/*
-** ===================================================================
-**     Method      :  ControlPID::AddOnControlChange 
-**     Description :  Agrega evento de cambio del control
-** ===================================================================
-*/
 
-void CoordinadorControladorSintonizador::addOnControlListener(struct Method& metodo){
-  if(!onControlChange)
-    onControlChange=new MethodContainer(); 
-   
-  onControlChange->add((void*)&metodo);
-}
 
 
 
