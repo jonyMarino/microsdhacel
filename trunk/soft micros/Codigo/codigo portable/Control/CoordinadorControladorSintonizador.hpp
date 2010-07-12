@@ -26,7 +26,7 @@ class CoordinadorControladorSintonizador{
   inline AutoSintonia* getAutoSintonia(){
     return (AutoSintonia *)&(poolModo);
   }
-  //private:
+  
     
     class SintonizadorOptMem:public AutoSintonia{
       public:
@@ -45,13 +45,17 @@ class CoordinadorControladorSintonizador{
     
     union{
       byte control[sizeof(CoordinadorControladorSintonizador::ControlPIDOptMem)];    
+      struct{
       byte sintonizador[sizeof(CoordinadorControladorSintonizador::SintonizadorOptMem)];
+      struct Method onChangeAutoTun;
+      }autoSintonia;
     }poolModo;
-    
+  private:  
     void crearModo(Sensor& sensor,ISalida& salida,const ConfiguracionControl& configuracionControl);
     eModoControl modoActual;
     MethodContainer onControlChange;
     Lazo * lazo;
+    
 };
 
 #endif
