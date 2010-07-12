@@ -97,6 +97,7 @@ void AutoSintonia::onNuevoValorSensor(){
    			  if (valorSensor>= (confControl.getSetPoint()+HISTERESIS_AUTO_SINTONIA/2)){    //Si subo pongo paso 1
             paso++;																		 //
 				    contadorTiempoAbierto.restart();																 //paro el abort
+            onChange.executeMethods();
           } 
    break;																										 //y me voy
 
@@ -106,6 +107,7 @@ void AutoSintonia::onNuevoValorSensor(){
             paso++;														         //pongo paso 2
             contadorTiempoAbierto.restart();																 //paro el abort
             valorPrevio = valorSensor;                           //e inicio detector de minima
+            onChange.executeMethods();
           }
    break;
 
@@ -117,6 +119,7 @@ void AutoSintonia::onNuevoValorSensor(){
             paso++;                             				        //pongo paso 3
     				contadorTiempoAbierto.restart();										//paro el abort
             minimo = valorPrevio;                               //pero guardo minimo
+            onChange.executeMethods();
           }
 	 break;
 
@@ -128,6 +131,7 @@ void AutoSintonia::onNuevoValorSensor(){
           paso++;                             				 //pongo paso 4
   				contadorTiempoAbierto.restart();																 //paro el abort
           maximo = valorPrevio;                               //pero guardo maximo
+          onChange.executeMethods();
         }
    break;
 
@@ -141,6 +145,7 @@ void AutoSintonia::onNuevoValorSensor(){
   			confControl.setHisteresis((maximo-minimo)*2);																 
         confControl.setIntegral(contadorSegundos);
         confControl.setDerivada(contadorSegundos/10);
+        onChange.executeMethods();
       }
 	 break;
 
