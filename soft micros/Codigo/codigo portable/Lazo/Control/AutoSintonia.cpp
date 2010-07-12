@@ -16,7 +16,23 @@ TipoSalida AutoSintonia::ConfAdaptSalida::getTipoSalida(){
   return SALIDA_ONOFF;
 }
 
+void AutoSintonia::addOnChangeListener(const struct Method& metodo){
+  onChange.add((void*)&metodo);
+}
+void AutoSintonia::deleteOnChangeListener(const struct Method& metodo){
+  onChange.moveOut((void*)&metodo);
+}
+
+
 AutoSintonia::AutoSintonia(Sensor& sensor,ISalida& salida,const ConfiguracionControl& configuracion):LazoControl(sensor),valControl(confValControl,sensor),adaptSalida(salida,confAdaptSalida),confControl(configuracion),contadorTiempoAbierto(TIEMPO_ABIERTO_MAXIMO){
+  init(configuracion);
+}
+
+AutoSintonia::AutoSintonia(Sensor& sensor,ISalida& salida,const ConfiguracionControl& configuracion,MethodContainer& listenersOnChange):LazoControl(sensor),valControl(confValControl,sensor),adaptSalida(salida,confAdaptSalida),confControl(configuracion),contadorTiempoAbierto(TIEMPO_ABIERTO_MAXIMO),onChange(listenersOnChange){
+  init(configuracion);
+}
+
+void AutoSintonia::init(const ConfiguracionControl& configuracion){
   confValControl.setPointControl = configuracion.getSetPoint();
   LazoControl::valorControl = &valControl;
   LazoControl::adaptadorSalida = &adaptSalida;
@@ -25,7 +41,6 @@ AutoSintonia::AutoSintonia(Sensor& sensor,ISalida& salida,const ConfiguracionCon
   valorPrevio = 0;
   maximo = 0;
   minimo = 0;
-
 }
 
 bool AutoSintonia::isDetenido(){

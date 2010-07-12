@@ -23,7 +23,6 @@ void CoordinadorControladorSintonizador::ControlPIDOptMem::operator delete(void 
 }
 
 CoordinadorControladorSintonizador::CoordinadorControladorSintonizador( Sensor& sensor,ISalida& salida,const ConfiguracionControl& configuracionControl):modoActual(CONTROL){
-  onControlChange=NULL;
   crearModo(sensor,salida,configuracionControl);
 }
 
@@ -59,7 +58,7 @@ void CoordinadorControladorSintonizador::setModo(eModoControl modo){
   modoActual = modo;
   crearModo(sensor,salida,*confControl);
   //avisa que va fue cambiado el tipo de control.
-  listeners.executeMethods();   
+  onControlChange.executeMethods();   
 }
 
 
@@ -80,10 +79,10 @@ void CoordinadorControladorSintonizador::crearModo(Sensor& sensor,ISalida& salid
                              
 
 void CoordinadorControladorSintonizador::addOnControlListener(const struct Method& metodo){
-    listeners.add((void*)&metodo);
+    onControlChange.add((void*)&metodo);
 }
 void CoordinadorControladorSintonizador::deleteOnControlListener(const struct Method& metodo){
-    listeners.moveOut((void*)&metodo);
+    onControlChange.moveOut((void*)&metodo);
 }
 
 
