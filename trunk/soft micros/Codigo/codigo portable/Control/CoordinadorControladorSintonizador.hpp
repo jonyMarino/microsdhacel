@@ -24,13 +24,13 @@ class CoordinadorControladorSintonizador{
     return (ControlPID *)&(poolModo);
   }
   inline AutoSintonia* getAutoSintonia(){
-    return (AutoSintonia *)&(poolModo);
+    return (AutoSintonia *)&(poolModo.autoSintonia.sintonizador);
   }
   
     
     class SintonizadorOptMem:public AutoSintonia{
       public:
-        SintonizadorOptMem(Sensor& sensor,ISalida& salida,const ConfiguracionControl& configuracion);
+        SintonizadorOptMem(Sensor& sensor,ISalida& salida,const ConfiguracionControl& configuracion,MethodContainer& listenersOnChange);
         void * operator new(size_t size,byte * dir);
 
         void operator delete(void *ptr);
@@ -46,16 +46,16 @@ class CoordinadorControladorSintonizador{
     union{
       byte control[sizeof(CoordinadorControladorSintonizador::ControlPIDOptMem)];    
       struct{
-      byte sintonizador[sizeof(CoordinadorControladorSintonizador::SintonizadorOptMem)];
-      struct Method onChangeAutoTun;
+        byte sintonizador[sizeof(CoordinadorControladorSintonizador::SintonizadorOptMem)];
+        struct Method onChangeAutoTun;
       }autoSintonia;
     }poolModo;
   private:  
+    static void onChangeAutoTun(void *self);
     void crearModo(Sensor& sensor,ISalida& salida,const ConfiguracionControl& configuracionControl);
     eModoControl modoActual;
     MethodContainer onControlChange;
     Lazo * lazo;
-    
 };
 
 #endif
