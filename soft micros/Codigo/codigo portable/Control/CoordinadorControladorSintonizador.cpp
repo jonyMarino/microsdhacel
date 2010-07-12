@@ -1,6 +1,6 @@
 #include "CoordinadorControladorSintonizador.hpp"
 
-CoordinadorControladorSintonizador::SintonizadorOptMem::SintonizadorOptMem(Sensor& sensor,ISalida& salida,const ConfiguracionControl& configuracion):AutoSintonia(sensor,salida,configuracion){
+CoordinadorControladorSintonizador::SintonizadorOptMem::SintonizadorOptMem(Sensor& sensor,ISalida& salida,const ConfiguracionControl& configuracion,MethodContainer& listenersOnChange):AutoSintonia(sensor,salida,configuracion,listenersOnChange){
 }
 
 void * CoordinadorControladorSintonizador::SintonizadorOptMem::operator new(size_t size,byte * dir){
@@ -34,13 +34,13 @@ eModoControl  CoordinadorControladorSintonizador::getModo(){
 int CoordinadorControladorSintonizador::getPasoAutosintonia(){
   if(modoActual!=AUTOSINTONIA)
     return -1;
-  return ((AutoSintonia*)&poolModo)->getNumeroEstado();
+  return ((AutoSintonia*)&poolModo.autoSintonia.sintonizador)->getNumeroEstado();
 }
 
 bool CoordinadorControladorSintonizador::getEstadoAutosintonia(){
   if(modoActual!=AUTOSINTONIA)
     return -1;
-  return ((AutoSintonia*)&poolModo)->isDetenido();
+  return ((AutoSintonia*)&poolModo.autoSintonia.sintonizador)->isDetenido();
 }
 
 void CoordinadorControladorSintonizador::setModo(eModoControl modo){
@@ -71,7 +71,11 @@ void CoordinadorControladorSintonizador::crearModo(Sensor& sensor,ISalida& salid
     break;
     case AUTOSINTONIA:
     default:
-      new((byte*)&poolModo) SintonizadorOptMem(sensor,salida,configuracionControl);  
+      new((byte*)&poolModo.autoSintonia.sintonizador) SintonizadorOptMem(sensor,salida,configuracionControl,onControlChange);  
+      AutoSintonia * autoTun = (AutoSintonia*)&poolModo.autoSintonia.sintonizador;
+      poolModo.autoSintonia.onChangeAutoTun.pmethod = onChangeAutoTun;
+      poolModo.autoSintonia.onChangeAutoTun.obj = this;
+      autoTun->addOnChangeListener(poolModo.autoSintonia.onChangeAutoTun);
     break;
   }
 
@@ -83,6 +87,15 @@ void CoordinadorControladorSintonizador::addOnControlListener(const struct Metho
 }
 void CoordinadorControladorSintonizador::deleteOnControlListener(const struct Method& metodo){
     onControlChange.moveOut((void*)&metodo);
+}
+
+static void CoordinadorControladorSintonizador::onChangeAutoTun(void *_self){
+  CoordinadorControladorSintonizador * self = (CoordinadorControladorSintonizador *)_self;
+  AutoSintonia * autoTun = (AutoSintonia*)&self->poolModo.autoSintonia.sintonizador;
+
+  if(autoTun->getNumeroEstado()==5)          //termino la autosintonia normamente?
+    self->setModo(CONTROL);  
+  
 }
 
 
