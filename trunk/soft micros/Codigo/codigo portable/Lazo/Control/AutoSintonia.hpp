@@ -6,21 +6,28 @@
 #include "SalidaBanda.hpp"
 #include "ValorControlProporcional.hpp"
 #include "Timer/FlagTimer/FlagTimer.hpp"
+#include "MethodContainer.hpp"
 
 
 class AutoSintonia:public LazoControl{
   public:
     //Empieza el proceso de autosintonia
     AutoSintonia(Sensor& sensor,ISalida& salida,const ConfiguracionControl& configuracion);
-    bool isDetenido(); //detiene el proceso de autosintonia sin realizar cambios
+    AutoSintonia(Sensor& sensor,ISalida& salida,const ConfiguracionControl& configuracion,MethodContainer& listenersOnChange);
+    bool isDetenido(); // indica si la autusintonia esta en el estado 5 o 6 (termino o error respectivamente)
     int getNumeroEstado();
     inline const ConfiguracionControl& getConfiguracion(){return confControl;}
     int getConfiguracionSetPoint();
     void setConfiguracionSetPoint(int val);
+    void addOnChangeListener(const struct Method& metodo);
+    void deleteOnChangeListener(const struct Method& metodo);
+    
     
   protected:
     void onNuevoValorSensor();
   private:
+    void init(const ConfiguracionControl& configuracion);
+    
     class ConfValControl:public ConfiguracionValorControl{
       public:
         //ConfValControl(int setPointControl);
@@ -42,6 +49,7 @@ class AutoSintonia:public LazoControl{
     byte paso;
     int valorPrevio,maximo,minimo;
     FlagTimer contadorTiempoAbierto;
+    MethodContainer onChange;
 };
 
 #endif
