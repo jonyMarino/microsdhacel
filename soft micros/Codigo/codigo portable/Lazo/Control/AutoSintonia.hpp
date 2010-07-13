@@ -19,9 +19,21 @@ class AutoSintonia:public LazoControl{
     inline const ConfiguracionControl& getConfiguracion(){return confControl;}
     int getConfiguracionSetPoint();
     void setConfiguracionSetPoint(int val);
+
+    int getLimiteInferiorSetPoint();
+    int getLimiteSuperiorSetPoint();
+    void setLimiteInferiorSetPoint(int val);
+    void setLimiteSuperiorSetPoint(int val);
+    int getLimiteInferiorPotencia();
+    void setLimiteInferiorPotencia(int val);
+    int getLimiteSuperiorPotencia();
+    void setLimiteSuperiorPotencia(int val);
+    uchar getDecimales();
+
     void addOnChangeListener(const struct Method& metodo);
     void deleteOnChangeListener(const struct Method& metodo);
     
+
     
   protected:
     void onNuevoValorSensor();

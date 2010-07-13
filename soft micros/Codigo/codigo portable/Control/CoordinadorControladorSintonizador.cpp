@@ -57,8 +57,18 @@ void CoordinadorControladorSintonizador::setModo(eModoControl modo){
   delete lazo;
   modoActual = modo;
   crearModo(sensor,salida,*confControl);
+
+  
+ /* if(onControlChange){
+    LinkedList::LinkedListIterator it;
+    onControlChange->linkedListIterator(&it); 
+    
+    onControlChange->executeMethods();
+  }*/
+   
   //avisa que va fue cambiado el tipo de control.
   onControlChange.executeMethods();   
+
 }
 
 

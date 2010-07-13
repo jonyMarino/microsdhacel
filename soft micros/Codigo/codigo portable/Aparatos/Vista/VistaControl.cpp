@@ -64,7 +64,9 @@
     ((CoordinadorControladorSintonizador*)conf)->METODO(valor); \
   }   
   
- 
+uchar getDecimalesAutoSintonia(void*control){           
+  return (uchar)(((AutoSintonia*)(((CoordinadorControladorSintonizador*)control)->getAutoSintonia()))->getDecimales());
+} 
 
 uchar getDecimalesControl(void*control){           
   return ((ControlPID*)control)->getDecimales();
@@ -83,20 +85,48 @@ int getLimiteSupPotManual(void*control){
 }
 
 bool getCondicionEntrada (void* control){
-  if(((ControlPID*)control)->getModoSalida() != ControlPID::_MAN)
+  if(((ControlPID*)control)->getModoSalida() != ControlPID::_MAN && ((CoordinadorControladorSintonizador*)control)->getModo() != AUTOSINTONIA)
     return TRUE;
   else
     return FALSE;  
 }
 
+bool getCondicionEntrada2 (void* control){
+  if(((ControlPID*)control)->getModoSalida() == ControlPID::_MAN)
+    return TRUE;
+  else
+    return FALSE;  
+}
 
-uchar nextSetProp (void * obj){
-  
-  if(((ControlPID*)obj)->getModoSalida() != ControlPID::_MAN)
+bool getCondicionEntradaAut (void* control){
+  if(((CoordinadorControladorSintonizador*)control)->getModo() == AUTOSINTONIA)
+    return TRUE;
+  else
+    return FALSE;  
+}
+
+bool getCondicionEntradaAut2 (void* control){
+  if(((CoordinadorControladorSintonizador*)control)->getModo() != AUTOSINTONIA)
+    return TRUE;
+  else
+    return FALSE;  
+}
+
+uchar nextLimProp (void * obj){
+  if(((CoordinadorControladorSintonizador*)obj)->getModo() == AUTOSINTONIA)
+    return 0;
+  else
+    return 5;
+}
+
+/*uchar nextSetProp (void * obj){
+  if(((CoordinadorControladorSintonizador*)obj)->getModo() == AUTOSINTONIA)
+    return 4;
+  else if(((ControlPID*)obj)->getModoSalida() != ControlPID::_MAN)
     return 0;  // posicion de cPropiedadGetPotencia en el la tabla propsPot
   else
     return 2;  
-}
+}*/
 
 int getVal_ (void * control){
   
@@ -132,7 +162,7 @@ int getVal_ (void * control){
   
   
   //Reset
-  ADAPTAR_FUNCION_GET(getReset,getReset)
+  ADAPTAR_FUNCION_GET_CONTROL(getReset,getReset)
   ADAPTAR_FUNCION_SET(setReset,setReset)
   const struct ConstructorPropNumLFPV cPropiedadReset={
     &propNumLFPVFactory,getReset,"rES",setReset,-9999,9999,getDecimalesControl
@@ -170,7 +200,7 @@ int getVal_ (void * control){
   };
   
   //SetPoint                              
-  ADAPTAR_FUNCION_GET(getConfiguracionSetPoint,getConfiguracionSetPoint)
+  ADAPTAR_FUNCION_GET_CONTROL(getConfiguracionSetPoint,getConfiguracionSetPoint)
   ADAPTAR_FUNCION_SET(setConfiguracionSetPoint,setConfiguracionSetPoint)
   //ADAPTAR_FUNCION_GET(getDecimales,getDecimales)
   
@@ -180,14 +210,16 @@ int getVal_ (void * control){
   
   //SetPoint autoSintonia                              
   ADAPTAR_FUNCION_GET_AUTOSINTONIA(getConfiguracionSetPointAs,getConfiguracionSetPoint)
-  ADAPTAR_FUNCION_SET_AUTOSINTONIA(setConfiguracionSetPointAs,setConfiguracionSetPoint)
+  //ADAPTAR_FUNCION_SET_AUTOSINTONIA(setConfiguracionSetPointAs,setConfiguracionSetPoint)
   //ADAPTAR_FUNCION_GET(getDecimales,getDecimales)
+ 
+ // const struct ConstructorPropNumLFPV cPropiedadSetPointAutoSintonia={
+  //  &propNumLFPVFactory,getConfiguracionSetPointAs,"SP",setConfiguracionSetPointAs,-9999,9999,getDecimalesAutoSintonia 
+ // };
   
-  const struct ConstructorPropNumLFPV cPropiedadSetPointAutoSintonia={
-    &propNumLFPVFactory,getConfiguracionSetPointAs,"SP",setConfiguracionSetPointAs,-9999,9999,getDecimalesControl 
-  };
-  
-  
+  const struct ConstructorPropGetterNumericoPV cPropiedadSetPointAutoSintonia={
+    &propGetterNumericoPVFactory,getConfiguracionSetPointAs,"SP",getDecimalesAutoSintonia
+  }; 
   
   
   //ModoSalida
@@ -246,6 +278,30 @@ int getVal_ (void * control){
    ADAPTAR_FUNCION_SET(setLimiteSuperiorSetPoint,setLimiteSuperiorSetPoint)
    const struct ConstructorPropNumLFPV cPropiedadLimSupSp={
     &propNumLFPVFactory,getLimiteSuperiorSetPoint,"LS",setLimiteSuperiorSetPoint,-9999,9999,getDecimalesControl
+  };
+  
+  ADAPTAR_FUNCION_GET_AUTOSINTONIA(getLimiteInferiorPotenciaAs,getLimiteInferiorPotencia)
+   ADAPTAR_FUNCION_SET_AUTOSINTONIA(setLimiteInferiorPotenciaAs,setLimiteInferiorPotencia)
+   const struct ConstructorPropNumLFPF cPropiedadLimInfPotAs={
+    &propNumLFPFFactory,getLimiteInferiorPotenciaAs,"Pi",setLimiteInferiorPotenciaAs,-9999,9999,1
+  };
+   
+   ADAPTAR_FUNCION_GET_AUTOSINTONIA(getLimiteSuperiorPotenciaAs,getLimiteSuperiorPotencia)
+   ADAPTAR_FUNCION_SET_AUTOSINTONIA(setLimiteSuperiorPotenciaAs,setLimiteSuperiorPotencia)
+   const struct ConstructorPropNumLFPF cPropiedadLimSupPotAs={
+    &propNumLFPFFactory,getLimiteSuperiorPotenciaAs,"PS",setLimiteSuperiorPotenciaAs,-9999,9999,1
+  };
+  
+   ADAPTAR_FUNCION_GET_AUTOSINTONIA(getLimiteInferiorSetPointAs,getLimiteInferiorSetPoint)
+   ADAPTAR_FUNCION_SET_AUTOSINTONIA(setLimiteInferiorSetPointAs,setLimiteInferiorSetPoint)
+   const struct ConstructorPropNumLFPV cPropiedadLimInfSpAs={
+    &propNumLFPVFactory,getLimiteInferiorSetPointAs,"Li",setLimiteInferiorSetPointAs,-9999,9999,getDecimalesControl
+  };
+  
+   ADAPTAR_FUNCION_GET_AUTOSINTONIA(getLimiteSuperiorSetPointAs,getLimiteSuperiorSetPoint)
+   ADAPTAR_FUNCION_SET_AUTOSINTONIA(setLimiteSuperiorSetPointAs,setLimiteSuperiorSetPoint)
+   const struct ConstructorPropNumLFPV cPropiedadLimSupSpAs={
+    &propNumLFPVFactory,getLimiteSuperiorSetPointAs,"LS",setLimiteSuperiorSetPointAs,-9999,9999,getDecimalesControl
   };
   
   //valor del sensor2
@@ -318,9 +374,10 @@ const struct ConstructorBoxPropiedad cBoxesSetPoint={
 			(const struct ConstructorPropGetterVisual*)&cPropiedadSetPoint
 };  
 
-const struct ConstructorBoxPropiedad cBoxModoSalida={
-      &boxPropiedadFactory,	
-			(const struct ConstructorPropGetterVisual*)&cPropiedadModoSalida
+const struct ConstructorBoxPropiedadEntradaCondicional cBoxModoSalida={
+      &boxPropGetterEntradaCondicionalFactory,	
+			(const struct ConstructorPropGetterVisual*)&cPropiedadModoSalida,
+      getCondicionEntradaAut2
 };
 
 
@@ -330,12 +387,30 @@ const struct ConstructorBoxPropiedadEntradaCondicional cBoxPotInst ={
    getCondicionEntrada
 };
  
- 
+const struct ConstructorBoxPropiedadEntradaCondicional cBoxPotMan ={
+   &boxPropiedadEntradaCondicionalFactory,
+   (const struct ConstructorPropGetterVisual*)&cPropiedadPotManual,
+   getCondicionEntrada2
+}; 
 
+const struct ConstructorBoxPropiedadEntradaCondicional cBoxSetPoint ={
+   &boxPropiedadEntradaCondicionalFactory,
+   (const struct ConstructorPropGetterVisual*)&cPropiedadSetPoint,
+   getCondicionEntrada
+}; 
+
+const struct ConstructorBoxPropiedadEntradaCondicional cBoxSetPointAut ={
+   &boxPropGetterEntradaCondicionalFactory,
+   (const struct ConstructorPropGetterVisual*)&cPropiedadSetPointAutoSintonia,
+   getCondicionEntradaAut
+};
+/*
 const struct ConstructorPropGetterVisual*const propsPot[]=	{
 			  (const struct ConstructorPropGetterVisual*)&cPropiedadSetPoint,
 			  NULL,
 			  (const struct ConstructorPropGetterVisual*)&cPropiedadPotManual,
+			  NULL,
+			  (const struct ConstructorPropGetterVisual*)&cPropiedadSetPointAutoSintonia,
 			  NULL
 };
 const struct ConstructorBoxLinealCondicional cBoxPotMan={
@@ -344,8 +419,13 @@ const struct ConstructorBoxLinealCondicional cBoxPotMan={
 			NULL,
 			nextSetProp
 };	 
- 
+     */
 const struct ConstructorPropGetterVisual *const propLimites[]=	{
+  			  (const struct ConstructorPropGetterVisual*)&cPropiedadLimInfSpAs,
+  			  (const struct ConstructorPropGetterVisual*)&cPropiedadLimSupSpAs,
+  			  (const struct ConstructorPropGetterVisual*)&cPropiedadLimInfPotAs,
+  			  (const struct ConstructorPropGetterVisual*)&cPropiedadLimSupPotAs,
+  			  NULL,
   			  (const struct ConstructorPropGetterVisual*)&cPropiedadLimInfSp,
   			  (const struct ConstructorPropGetterVisual*)&cPropiedadLimSupSp,
   			  (const struct ConstructorPropGetterVisual*)&cPropiedadLimInfPot,
@@ -353,8 +433,9 @@ const struct ConstructorPropGetterVisual *const propLimites[]=	{
   			  NULL
 };
 
-const struct ConstructorBoxLineal cBoxesLimites={
-        &boxLinealFactory,						       
+const struct ConstructorBoxLinealCondicional cBoxesLimites={
+        &boxLinealCondicionalFactory,						       
   		  propLimites,
-  		  NULL						 //Proximo box	
+  		  NULL,						 //Proximo box
+  		  nextLimProp	
 }; 
