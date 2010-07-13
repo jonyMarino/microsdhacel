@@ -224,7 +224,7 @@ const ConfiguracionControlPID configuraControl1(*(ConfiguracionControlPID::Contr
 ControlPID control1(sensor1,pwm2,configuraControl1);
 #endif
 MessagesOut mjsCambioTipoSalida;
-
+MessagesOut::Message msj_AutoSintonia; 
 
 ConfiguracionLazoAlarmas configuracionLazoAlarmas0(*(ConfiguracionLazoAlarmas::LazoAlarmConf*)&lazo_alar_conf[0],flash);
 ConfiguracionAlarmas configuracionAlarma0(*(ConfiguracionAlarmas::AlarmConf*)&alar_conf[0],flash);
@@ -267,11 +267,19 @@ CoordinadorLazosAlCntrRet alarma2(configuracionLazoAlarmas2,configuracionAlarma2
 #if CANTIDAD_CANALES==1  
 //potencia
 const struct FstBoxPointer potInst0={
-  (const struct ConstructorBox*)&cBoxPotInst,&control0.poolModo,0
+  (const struct ConstructorBox*)&cBoxPotInst,&control0,0
 };  
 const struct FstBoxPointer potMan0={
-  (const struct ConstructorBox*)&cBoxPotMan,&control0.poolModo,0
+  (const struct ConstructorBox*)&cBoxPotMan,&control0,0
 };  
+
+const struct FstBoxPointer setPoint0={
+  (const struct ConstructorBox*)&cBoxSetPoint,&control0,0
+};  
+
+const struct FstBoxPointer setPointAut0={
+  (const struct ConstructorBox*)&cBoxSetPointAut,&control0,0
+}; 
 
 #else
 const struct FstBoxPointer potInst0={
@@ -340,6 +348,8 @@ const struct FstBoxPointer *const opArray[]={
   &principal,
   &potInst0,
   &potMan0,
+  &setPoint0,
+  &setPointAut0,
   #if CANTIDAD_CANALES>1
   &potInst1, 
   &potMan1,
@@ -370,10 +380,10 @@ const struct FstBoxPointer autoSintonia0={
 #if CANTIDAD_CANALES==1  
 
 const struct FstBoxPointer reset0={
-  (const struct ConstructorBox*)&cBoxesReset,&control0.poolModo,0
+  (const struct ConstructorBox*)&cBoxesReset,&control0,0
 };
 /*const struct FstBoxPointer aparatoConf0={
-  (const struct ConstructorBox*)&cBoxesSintonia,&control0.poolModo,0
+  (const struct ConstructorBox*)&cBoxesSintonia,&control0,0
 };*/
 const struct FstBoxPointer histeresisControl0={
   (const struct ConstructorBox*)&cBoxesHisteresis,&control0,0
@@ -427,14 +437,14 @@ const struct FstBoxPointer histAlarma2={
 #endif
 
 static const struct FstBoxPointer *const tunArray[]={
-  &autoSintonia0,
+  
   &reset0,
   &periodo0,
-  //&aparatoConf0,
+  &autoSintonia0,
   &histeresisControl0,
   &integralControl0,
   &derivadaControl0,
-  //&histAlarma0,
+  &histAlarma0,
   #if CANTIDAD_CANALES>1 
   &reset1,
   &periodo1, 
@@ -523,11 +533,11 @@ const struct FstBoxPointer setCList={
   };
 #if CANTIDAD_CANALES==1
 const struct FstBoxPointer modosSalida0={
-  (const struct ConstructorBox*)&cBoxModoSalida,&control0.poolModo,0
+  (const struct ConstructorBox*)&cBoxModoSalida,&control0,0
 };
 #else
 const struct FstBoxPointer modosSalida0={
-  (const struct ConstructorBox*)&cBoxModoSalida,&control0.poolModo,1
+  (const struct ConstructorBox*)&cBoxModoSalida,&control0,1
 };
 const struct FstBoxPointer modosSalida1={
   (const struct ConstructorBox*)&cBoxModoSalida,&control1,2
@@ -653,12 +663,12 @@ struct Method cambioControl={
 }; 
 
 void main(void) {
-  static MessagesOut::Message msj_AutoSintonia; 
+  
   #if CANTIDAD_CANALES>1  
   BoxPrincipalControl::MostrarGetter((ConstructorPropGetterVisual *)&cPropiedadGetSensor1,&control1); 
   #else
   if(control0.getModo() == AUTOSINTONIA)
-    BoxPrincipalControl::MostrarProp((ConstructorPropGetterVisual *)&cPropiedadSetPointAutoSintonia,&control0);
+    BoxPrincipalControl::MostrarGetter((ConstructorPropGetterVisual *)&cPropiedadSetPointAutoSintonia,&control0);
   else
     BoxPrincipalControl::MostrarProp((ConstructorPropGetterVisual *)&cPropiedadSetPoint,&control0);
   #endif
@@ -682,29 +692,6 @@ void main(void) {
    
    #if CANTIDAD_CANALES == 1 
     sensor0.checkADC();
-     
-     if(control0.getModo() == AUTOSINTONIA){
-      if(control0.getEstadoAutosintonia() == TRUE){ //AutoSintonia detenida?
-        if(msj_AutoSintonia)
-          mjsCambioTipoSalida.deleteMessage(msj_AutoSintonia);
-        control0.setModo(CONTROL);
-      }else if(control0.getEstadoAutosintonia() == FALSE){
-        //estoy en autoSintonia presento los carteles
-        char mensaje[5];
-        mensaje[0]='S';
-        mensaje[1]='t';
-        mensaje[2]=' ';
-        mensaje[3]=((char)(control0.getPasoAutosintonia())+0x30);  
-        mensaje[4]='\0';
-        if(!msj_AutoSintonia)
-         msj_AutoSintonia = mjsCambioTipoSalida.addMessage(mensaje);
-      }
-     }else{
-        if(msj_AutoSintonia){
-          mjsCambioTipoSalida.deleteMessage(msj_AutoSintonia);
-          msj_AutoSintonia = NULL;
-        }
-     }
    #else
     sensor0.checkADC();
     sensor1.checkADC();
@@ -722,12 +709,12 @@ void conectarSalidas(void * a){
   ((RlxMTimer *)timer)->stop();
    pwm23.setConectada(TRUE);
    pwm23.setPeriodo(pwm23.getPeriodo());        // seteo el periodo inicial
-   pwm2.setConectada(TRUE);
-   pwm2.setTipoSalida(SALIDA_ONOFF);
-   
-   #if CANTIDAD_SAL_ALARMA>1 || CANTIDAD_CANALES>1 
    pwm3.setConectada(TRUE);
    pwm3.setTipoSalida(SALIDA_ONOFF);
+   
+   #if CANTIDAD_SAL_ALARMA>1 || CANTIDAD_CANALES>1 
+   pwm2.setConectada(TRUE);
+   pwm2.setTipoSalida(SALIDA_ONOFF);
    
    #endif 
    #if CANTIDAD_SAL_ALARMA>2 || CANTIDAD_CANALES>1
@@ -766,9 +753,47 @@ void OnTipoSalChange(void * b){
 }
 
 void OnControlChange(void * c){
-  if(control0.getModo() == AUTOSINTONIA)
-    BoxPrincipalControl::MostrarProp((ConstructorPropGetterVisual *)&cPropiedadSetPointAutoSintonia,&control0);
-  else
+  if(control0.getModo() == AUTOSINTONIA) {
+    static char mensaje[6];
+    static bool firtsTime=FALSE;
+    BoxPrincipalControl::MostrarGetter((ConstructorPropGetterVisual *)&cPropiedadSetPointAutoSintonia,&control0);
+    
+    if(control0.getEstadoAutosintonia() == TRUE){ //AutoSintonia detenida?
+       
+       if((char)(control0.getPasoAutosintonia())==6){
+            if(msj_AutoSintonia){
+              mjsCambioTipoSalida.deleteMessage(msj_AutoSintonia);
+              msj_AutoSintonia = NULL;
+            }
+            mensaje[0]='E';
+            mensaje[1]='r';
+            mensaje[2]='r';
+            mensaje[3]='o';
+            mensaje[4]='r';  
+            mensaje[5]='\0';
+            if(!msj_AutoSintonia)
+              msj_AutoSintonia = mjsCambioTipoSalida.addMessage(mensaje);
+        }else if(msj_AutoSintonia)
+          mjsCambioTipoSalida.deleteMessage(msj_AutoSintonia); 
+        
+      }else if(control0.getEstadoAutosintonia() == FALSE){
+        //estoy en autoSintonia presento los carteles
+            mensaje[0]='S';
+            mensaje[1]='t';
+            mensaje[2]=' ';
+            mensaje[3]=((char)(control0.getPasoAutosintonia())+0x30);  
+            mensaje[4]='\0';
+       
+        if(!msj_AutoSintonia)
+         msj_AutoSintonia = mjsCambioTipoSalida.addMessage(mensaje);
+      }
+     
+     
+  }else {
+    if(msj_AutoSintonia){
+          mjsCambioTipoSalida.deleteMessage(msj_AutoSintonia);
+          msj_AutoSintonia = NULL;
+    }
     BoxPrincipalControl::MostrarProp((ConstructorPropGetterVisual *)&cPropiedadSetPoint,&control0);
-
+  }
 }

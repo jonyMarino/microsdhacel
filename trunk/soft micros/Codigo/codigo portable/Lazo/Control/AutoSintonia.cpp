@@ -65,6 +65,49 @@ void AutoSintonia::setConfiguracionSetPoint(int val){
   confControl.setSetPoint(val);
 }
 
+
+int AutoSintonia::getLimiteInferiorSetPoint(){
+  return confControl.getLimiteInferiorSetPoint();    
+}
+
+int AutoSintonia::getLimiteSuperiorSetPoint(){
+  return  confControl.getLimiteSuperiorSetPoint();    
+}
+
+void AutoSintonia::setLimiteInferiorSetPoint(int val){
+  confControl.setLimiteInferiorSetPoint(val);
+  if( getConfiguracionSetPoint()<val)
+    setConfiguracionSetPoint(val);
+}
+
+void AutoSintonia::setLimiteSuperiorSetPoint(int val){
+  confControl.setLimiteSuperiorSetPoint(val); 
+  if( getConfiguracionSetPoint()>val)
+      setConfiguracionSetPoint(val);  
+}
+
+int AutoSintonia::getLimiteInferiorPotencia(){
+  return confControl.getLimiteInferiorPotencia();
+}
+
+void AutoSintonia::setLimiteInferiorPotencia(int val){
+  confControl.setLimiteInferiorPotencia(val);
+}
+
+int AutoSintonia::getLimiteSuperiorPotencia(){
+  return confControl.getLimiteSuperiorPotencia();
+}
+
+void AutoSintonia::setLimiteSuperiorPotencia(int val){
+  confControl.setLimiteSuperiorPotencia(val);
+}
+
+uchar AutoSintonia::getDecimales() {
+  return getSensor().getDecimales();
+}
+
+
+
 void AutoSintonia::onNuevoValorSensor(){
   LazoControl::onNuevoValorSensor();
 
@@ -79,13 +122,16 @@ void AutoSintonia::onNuevoValorSensor(){
                               -HISTERESIS_AUTO_SINTONIA 
                               );
         */
-  if(paso == 5 || paso==6)
-    return;
+  if(paso == 5 || paso==6){
+    //onChange.executeMethods();
+    return;               
+  }
   
-  /*if (contadorTiempoAbierto.getFlag()){    
+  if (contadorTiempoAbierto.getFlag()){    
     paso=6;                              //veo si me pase y pongo error
+    onChange.executeMethods();
     return;
-  } */  //comento para poderlo probar manualmente
+  }   // para poderlo probar manualmente, comentar
   
  int valorSensor = getSensor().getVal();  
 

@@ -249,8 +249,8 @@ void ControlPID::setTipoControl(ControlPID::TTipoControl tipoControl){
 ** ===================================================================
 */
 ControlPID::TSalida ControlPID::getModoSalida(){
-  //return modoSalida;
-  return configuracion.getTipoSalida();  
+  return modoSalida;
+  //return configuracion.getTipoSalida();  
 }
 
 /*
