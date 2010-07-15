@@ -10,7 +10,7 @@ AlarmaControl::AlarmaControl(ConfiguracionAlarmaControl& _configuracion,
                            ConfiguracionValorControl&  confValorControl,
                            AdaptadorSalidaConfiguracion& confAdaptadorSalida,
                            ControlPID& _control,
-                           ISalida&salida):LazoControl(_control.getSensor()),getterSP(_control),configuracion(_configuracion),salidaConPolaridad(salida),_salida(salida){
+                           ISalida&salida):LazoControl(_control.getSensor()),getterSP(_control.getConfiguracion()),configuracion(_configuracion),salidaConPolaridad(salida),_salida(salida){
   
   crearAdaptadorSalida( getAdaptadorSalidaAlarm() , confAdaptadorSalida);
   crearTipoControl( getTipoControl() , confValorControl);
@@ -57,15 +57,15 @@ void AlarmaControl::setAdaptadorSalidaAlarm(TipoAdaptadorSalida adaptSalida){
 void AlarmaControl::crearTipoControl(TipoControl tipoControl,ConfiguracionValorControl&  confValorControl){
   switch(tipoControl){             
     case CONTROL_PROPORCIONAL:               
-        LazoControl::valorControl=new((byte*)&valorControlPull)ValorControlProporcionalInvertido( confValorControl,getterSP.control.getSensor());        
+        LazoControl::valorControl=new((byte*)&valorControlPull)ValorControlProporcionalInvertido( confValorControl,getSensor());        
       break;
     case CONTROL_RELATIVO: 
-        LazoControl::valorControl=new((byte*)&valorControlPull)ValorControlRelativo( confValorControl,getterSP.control.getSensor(),getterSP);        
+        LazoControl::valorControl=new((byte*)&valorControlPull)ValorControlRelativo( confValorControl,getSensor(),getterSP);        
          //ValorControlRelativo valorControl( confValorControl,getterSP.control.getSensor(),getterSP);
       break;
     case CONTROL_BANDA: 
     default:  //error 
-        LazoControl::valorControl=new((byte*)&valorControlPull)ValorControlBanda(confValorControl,getterSP.control.getSensor(),getterSP);        
+        LazoControl::valorControl=new((byte*)&valorControlPull)ValorControlBanda(confValorControl,getSensor(),getterSP);        
       break;      
   } 
 }
@@ -82,11 +82,11 @@ void AlarmaControl::setTipoControl(TipoControl tipo){
   crearTipoControl(tipo,((ValorControl*)&valorControlPull)->getConfiguracion());    
 }
 //GetterSP
-AlarmaControl::GetterSP::GetterSP(ControlPID& _control):control(_control){
+AlarmaControl::GetterSP::GetterSP(ConfiguracionControl& _confControl):confControl(_confControl){
 }
 
 int AlarmaControl::GetterSP::getVal(){
-  return control.getConfiguracionSetPoint();
+  return confControl.getSetPoint();
 }
 
 

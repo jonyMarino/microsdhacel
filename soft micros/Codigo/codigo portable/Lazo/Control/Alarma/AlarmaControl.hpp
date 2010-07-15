@@ -48,10 +48,10 @@ class AlarmaControl:public LazoControl{
   private:
     class GetterSP:public Getter{
       public:
-        GetterSP(ControlPID& control);
+        GetterSP(ConfiguracionControl& control);
         int getVal();
         void print(OutputStream&os);
-        ControlPID& control;  
+        ConfiguracionControl& confControl;  
     }getterSP;
     ConfiguracionAlarmaControl& configuracion;
     union{   
@@ -69,7 +69,6 @@ class AlarmaControl:public LazoControl{
     
     SalidaConPolaridad salidaConPolaridad;
     ISalida& _salida;
-    
     void crearAdaptadorSalida(TipoAdaptadorSalida adaptSalida,AdaptadorSalidaConfiguracion& confAdaptadorSalida);
     void crearTipoControl(TipoControl tipoControl,ConfiguracionValorControl&  confValorControl);
 };
