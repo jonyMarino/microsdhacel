@@ -1,8 +1,8 @@
 
 #include "AutoSintonia.hpp"
 
-#define TIEMPO_ABIERTO_MAXIMO 4000
-#define HISTERESIS_AUTO_SINTONIA 4
+#define TIEMPO_ABIERTO_MAXIMO 1800000
+#define HISTERESIS_AUTO_SINTONIA 2
 
 int AutoSintonia::ConfValControl::getValorControlador(){
   return setPointControl;
@@ -28,7 +28,7 @@ AutoSintonia::AutoSintonia(Sensor& sensor,ISalida& salida,const ConfiguracionCon
   init(configuracion);
 }
 
-AutoSintonia::AutoSintonia(Sensor& sensor,ISalida& salida,const ConfiguracionControl& configuracion,MethodContainer& listenersOnChange):LazoControl(sensor),valControl(confValControl,sensor),adaptSalida(salida,confAdaptSalida),confControl(configuracion),contadorTiempoAbierto(TIEMPO_ABIERTO_MAXIMO),onChange(listenersOnChange){
+AutoSintonia::AutoSintonia(Sensor& sensor,ISalida& salida,const ConfiguracionControl& configuracion,MethodContainer& listenersOnChange,MessagesOut* msj):LazoControl(sensor),valControl(confValControl,sensor),adaptSalida(salida,confAdaptSalida),confControl(configuracion),contadorTiempoAbierto(TIEMPO_ABIERTO_MAXIMO),onChange(listenersOnChange),msjOutAs(msj){
   init(configuracion);
 }
 
@@ -123,7 +123,7 @@ void AutoSintonia::onNuevoValorSensor(){
                               );
         */
   if(paso == 5 || paso==6){
-    //onChange.executeMethods();
+    
     return;               
   }
   
@@ -191,9 +191,44 @@ void AutoSintonia::onNuevoValorSensor(){
   			confControl.setHisteresis((maximo-minimo)*2);																 
         confControl.setIntegral(contadorSegundos);
         confControl.setDerivada(contadorSegundos/10);
+        
         onChange.executeMethods();
       }
 	 break;
 
  }
 }
+
+
+void AutoSintonia::setMensajeEstado(){
+ 
+    if(isDetenido() == TRUE){ //AutoSintonia detenida?
+      
+       if(getNumeroEstado()==6){
+            if(msj_AutoSintonia){
+              msjOutAs->deleteMessage(msj_AutoSintonia);
+              msj_AutoSintonia = NULL;
+            }
+            mensaje[0]='E';
+            mensaje[1]='r';
+            mensaje[2]='r';
+            mensaje[3]='o';
+            mensaje[4]='r';  
+            mensaje[5]='\0';
+            if(!msj_AutoSintonia)
+              msj_AutoSintonia = msjOutAs->addMessage(mensaje);
+        }else if(msj_AutoSintonia)
+          msjOutAs->deleteMessage(msj_AutoSintonia); 
+        
+      }else {
+        //estoy en autoSintonia presento los carteles
+            mensaje[0]='S';
+            mensaje[1]='t';
+            mensaje[2]=' ';
+            mensaje[3]=(char)((getNumeroEstado())+0x30);  
+            mensaje[4]='\0';
+       
+        if(!msj_AutoSintonia)
+         msj_AutoSintonia = msjOutAs->addMessage(mensaje);
+      }   
+ }

@@ -1,6 +1,6 @@
 #include "CoordinadorControladorSintonizador.hpp"
 
-CoordinadorControladorSintonizador::SintonizadorOptMem::SintonizadorOptMem(Sensor& sensor,ISalida& salida,const ConfiguracionControl& configuracion,MethodContainer& listenersOnChange):AutoSintonia(sensor,salida,configuracion,listenersOnChange){
+CoordinadorControladorSintonizador::SintonizadorOptMem::SintonizadorOptMem(Sensor& sensor,ISalida& salida,const ConfiguracionControl& configuracion,MethodContainer& listenersOnChange,MessagesOut* msj):AutoSintonia(sensor,salida,configuracion,listenersOnChange,msj){
 }
 
 void * CoordinadorControladorSintonizador::SintonizadorOptMem::operator new(size_t size,byte * dir){
@@ -22,7 +22,7 @@ void CoordinadorControladorSintonizador::ControlPIDOptMem::operator delete(void 
   return;  
 }
 
-CoordinadorControladorSintonizador::CoordinadorControladorSintonizador( Sensor& sensor,ISalida& salida,const ConfiguracionControl& configuracionControl):modoActual(CONTROL){
+CoordinadorControladorSintonizador::CoordinadorControladorSintonizador( Sensor& sensor,ISalida& salida,const ConfiguracionControl& configuracionControl,MessagesOut* msj):modoActual(CONTROL),msjOut(msj){
   crearModo(sensor,salida,configuracionControl);
 }
 
@@ -42,6 +42,13 @@ bool CoordinadorControladorSintonizador::getEstadoAutosintonia(){
     return -1;
   return ((AutoSintonia*)&poolModo.autoSintonia.sintonizador)->isDetenido();
 }
+
+void CoordinadorControladorSintonizador::setMesnsajeAutoSintonia(){
+  if(getEstadoAutosintonia()!= -1)
+    ((AutoSintonia*)&poolModo.autoSintonia.sintonizador)->setMensajeEstado();
+  
+}
+
 
 void CoordinadorControladorSintonizador::setModo(eModoControl modo){
   if(modo>1)
@@ -74,6 +81,11 @@ void CoordinadorControladorSintonizador::setModo(eModoControl modo){
 
 
 void CoordinadorControladorSintonizador::crearModo(Sensor& sensor,ISalida& salida,const ConfiguracionControl& configuracionControl){  
+  
+  if(((AutoSintonia*)&poolModo.autoSintonia.sintonizador)->getMensajeAutosiontonia()){
+          msjOut->deleteMessage(((AutoSintonia*)&poolModo.autoSintonia.sintonizador)->getMensajeAutosiontonia());
+          ((AutoSintonia*)&poolModo.autoSintonia.sintonizador)->setMensajeAutosiontonia(NULL);
+    }
 
   switch(modoActual){
     case CONTROL:
@@ -81,7 +93,7 @@ void CoordinadorControladorSintonizador::crearModo(Sensor& sensor,ISalida& salid
     break;
     case AUTOSINTONIA:
     default:
-      new((byte*)&poolModo.autoSintonia.sintonizador) SintonizadorOptMem(sensor,salida,configuracionControl,onControlChange);  
+      new((byte*)&poolModo.autoSintonia.sintonizador) SintonizadorOptMem(sensor,salida,configuracionControl,onControlChange,msjOut);  
       AutoSintonia * autoTun = (AutoSintonia*)&poolModo.autoSintonia.sintonizador;
       poolModo.autoSintonia.onChangeAutoTun.pmethod = onChangeAutoTun;
       poolModo.autoSintonia.onChangeAutoTun.obj = this;

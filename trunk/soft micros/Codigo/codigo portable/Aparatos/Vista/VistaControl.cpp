@@ -363,9 +363,10 @@ const struct ConstructorBoxPropiedadEntradaCondicional cBoxesIntegral={
 			getCondicionEntradaSint
 };
 
-const struct ConstructorBoxPropiedad cBoxesReset={
-      &boxPropiedadFactory,	
-			(const struct ConstructorPropGetterVisual*)&cPropiedadReset
+const struct ConstructorBoxPropiedadEntradaCondicional cBoxesReset={
+      &boxPropiedadEntradaCondicionalFactory,	
+			(const struct ConstructorPropGetterVisual*)&cPropiedadReset,
+			getCondicionEntradaSint
 };
 
 
