@@ -23,7 +23,8 @@ const struct BoxPrincipalFactory boxPrincipalFactory;
 */
 BoxPrincipal::BoxPrincipal(struct ConstructorBoxPrincipal * _constructor):Box(),timerPri(TIME_BETWEEN_PARS)
 {
-  msj_index=0;  
+  msj_index=0; 
+  msj_index_sup=0; 
   constructor=_constructor;
   constructor->flash->habilitar();  
   constructor->snsr1->print(getDisplay(0));  

@@ -10,8 +10,7 @@
                   
 
 struct ConstructorBoxPrincipalControl{
-  struct ConstructorBoxPrincipal super;
-   
+  struct ConstructorBoxPrincipal super;   
 };
 
 class BoxPrincipalControl:public BoxPrincipal{
@@ -23,15 +22,19 @@ class BoxPrincipalControl:public BoxPrincipal{
     static void MostrarProp( const ConstructorPropGetterVisual* _prop, void * obj);
     static void Refresh(void);
     static void setRefresh(void);
+    
   protected:
-  //  struct ConstructorBoxPrincipalControl * constructor;
+    //struct ConstructorBoxPrincipalControl * constructorControl;
+    
     static bool priIsProp;       // TRUE: es propiedad, FALSE: es getter
     static bool propCambio;
     static bool propRefres;
     FlagTimer timerProp;
     FlagTimer timerGrab;
     FlagTimer timerRefresh;
+    FlagTimer timerMsjDysSup;
     uchar par_seconds;
+    
     static PropGetterVisual * parametroAMostrar;
  // private:
    // bool _refrescar;  

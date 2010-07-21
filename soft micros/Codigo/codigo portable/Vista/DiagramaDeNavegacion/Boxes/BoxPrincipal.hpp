@@ -24,7 +24,8 @@
 struct ConstructorBoxPrincipal{
   struct ConstructorBox super;
   Getter * snsr1; 
-  MessagesOut * msjs; 
+  MessagesOut * msjs;
+  MessagesOut * msjsDysSup; 
   FlashBkp * flash;   
 };
 
@@ -36,6 +37,7 @@ class BoxPrincipal:public Box{
   protected:
     struct ConstructorBoxPrincipal * constructor;
     uint msj_index;       // indice del msj a mostrar
+    uint msj_index_sup;       // indice del msj a mostrar
     FlagTimer timerPri;		// Timer de refresco
 
 };

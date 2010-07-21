@@ -13,12 +13,11 @@ const struct BoxPrincipalControlFactory boxPrincipalControlFactory;
 PropGetterVisual * BoxPrincipalControl::parametroAMostrar=NULL;
 bool BoxPrincipalControl::priIsProp=FALSE; 
 
-BoxPrincipalControl::BoxPrincipalControl(struct ConstructorBoxPrincipalControl * _constructor):BoxPrincipal((struct ConstructorBoxPrincipal*)_constructor),timerProp(TIME_BETWEEN_PARS),timerGrab(PRI_PAR_SECONDS),timerRefresh(REFRESH_SECONDS){
+BoxPrincipalControl::BoxPrincipalControl(struct ConstructorBoxPrincipalControl * _constructor):BoxPrincipal((struct ConstructorBoxPrincipal*)_constructor),timerProp(TIME_BETWEEN_PARS),timerGrab(PRI_PAR_SECONDS),timerRefresh(REFRESH_SECONDS),timerMsjDysSup(REFRESH_SECONDS){
   
   par_seconds=0;
   propCambio=FALSE;
   propRefres=TRUE;
-   
   constructor=(struct ConstructorBoxPrincipal*)_constructor;
   
   if(parametroAMostrar){
@@ -41,7 +40,7 @@ Box * BoxPrincipalControl::procesarTecla(uchar tecla,TEstadoBox& estado){
   
   if(timerPri.getFlag()){ 
      mjs=NULL;
-    
+   
     if(constructor->msjs){     
        
        if(par_seconds==0){
@@ -50,19 +49,37 @@ Box * BoxPrincipalControl::procesarTecla(uchar tecla,TEstadoBox& estado){
          par_seconds --;
        
         if( mjs ){
-          ++msj_index; 
-          getDisplay(1).write(mjs);
+            ++msj_index;
+            getDisplay(1).write(mjs);
+          
         }else{
            if(parametroAMostrar)        
                parametroAMostrar->print(getDisplay(1));
            msj_index=0;
         }
      }
-    constructor->snsr1->print(getDisplay(0));
-  		timerPri.reset();
+      constructor->snsr1->print(getDisplay(0));
+      timerPri.reset();
+      
   	}
   
+  if(timerMsjDysSup.getFlag()){
+    if(constructor->msjsDysSup){     
+        char* mjsDs=constructor->msjsDysSup->getMessage(msj_index_sup);
+        if( mjsDs ){
+          ++msj_index_sup; 
+          getDisplay(0).write(mjsDs);
+         }else
+           msj_index_sup=0;    
+    }
+    
+      timerMsjDysSup.reset();
+        
+  } 
+  
+  
   if(timerRefresh.getFlag()){
+      
       Refresh(); 
     }
   	

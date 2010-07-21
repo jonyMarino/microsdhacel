@@ -214,17 +214,20 @@ PWMTimer pwm2(flash,confPWM[1],1);  // pwm alarma 1 o si es de 2 canales pwm con
 PWMTimer pwm3(flash,confPWM[2],4);  // pwm alarma 2 o si es de 2 canales pwm alarma 1(canal 1)
 PWMTimer pwm4(flash,confPWM[3],7);  // pwm alarma 3 o si es de 2 canales alarma 1(canal 2)
 
+MessagesOut msjDisplayInferior; 
+MessagesOut msjDisplaySuperior; 
 
 const ConfiguracionControlPID configuraControl0(*(ConfiguracionControlPID::ControlConf*)&control_config[0],flash); 
 //ControlPID control0(sensor0,pwm23,configuraControl0);
-CoordinadorControladorSintonizador control0(sensor0,pwm23,configuraControl0);
+CoordinadorControladorSintonizador control0(sensor0,pwm23,configuraControl0,&msjDisplaySuperior);
 
 #if CANTIDAD_CANALES>1 
 const ConfiguracionControlPID configuraControl1(*(ConfiguracionControlPID::ControlConf*)&control_config[1],flash);
-ControlPID control1(sensor1,pwm2,configuraControl1);
+//ControlPID control1(sensor1,pwm2,configuraControl1);
+CoordinadorControladorSintonizador control1(sensor1,pwm2,configuraControl1,&msjDisplayInferior);
 #endif
-MessagesOut mjsCambioTipoSalida;
-MessagesOut::Message msj_AutoSintonia; 
+
+
 
 ConfiguracionLazoAlarmas configuracionLazoAlarmas0(*(ConfiguracionLazoAlarmas::LazoAlarmConf*)&lazo_alar_conf[0],flash);
 ConfiguracionAlarmas configuracionAlarma0(*(ConfiguracionAlarmas::AlarmConf*)&alar_conf[0],flash);
@@ -241,7 +244,7 @@ ConfiguracionRetransm configuracionRetrans1(*(ConfiguracionRetransm::RetConf*)&r
 ConfiguracionAdapSalida configuracionAdapSalida1(*(ConfiguracionAdapSalida::AdapSalConf*)&adapSal_conf[1],flash);
 ConfiguracionValorControlado configuracionValorAlarma1(*(ConfiguracionValorControlado::ValorControlConf*)&alarmaSP_conf[1],flash);
 
-CoordinadorLazosAlCntrRet alarma1(configuracionLazoAlarmas1,configuracionAlarma1,configuracionValorAlarma1,configuracionAdapSalida1,configuracionRetrans1,control0,pwm2);
+CoordinadorLazosAlCntrRet alarma1(configuracionLazoAlarmas1,configuracionAlarma1,configuracionValorAlarma1,configuracionAdapSalida1,configuracionRetrans1,(*(ControlPID*)(control0.getControl())),pwm2);
 #elif CANTIDAD_CANALES>1
 ConfiguracionLazoAlarmas configuracionLazoAlarmas1(*(ConfiguracionLazoAlarmas::LazoAlarmConf*)&lazo_alar_conf[1],flash);
 ConfiguracionAlarmas configuracionAlarma1(*(ConfiguracionAlarmas::AlarmConf*)&alar_conf[1],flash);
@@ -249,7 +252,7 @@ ConfiguracionRetransm configuracionRetrans1(*(ConfiguracionRetransm::RetConf*)&r
 ConfiguracionAdapSalida configuracionAdapSalida1(*(ConfiguracionAdapSalida::AdapSalConf*)&adapSal_conf[1],flash);
 ConfiguracionValorControlado configuracionValorAlarma1(*(ConfiguracionValorControlado::ValorControlConf*)&alarmaSP_conf[1],flash);
 
-CoordinadorLazosAlCntrRet alarma1(configuracionLazoAlarmas1,configuracionAlarma1,configuracionValorAlarma1,configuracionAdapSalida1,configuracionRetrans1,control1,pwm4);
+CoordinadorLazosAlCntrRet alarma1(configuracionLazoAlarmas1,configuracionAlarma1,configuracionValorAlarma1,configuracionAdapSalida1,configuracionRetrans1,(*(ControlPID*)(control1.getControl())),pwm4);
 #endif
 
 #if CANTIDAD_SAL_ALARMA>2
@@ -260,7 +263,7 @@ ConfiguracionRetransm configuracionRetrans2(*(ConfiguracionRetransm::RetConf*)&r
 ConfiguracionAdapSalida configuracionAdapSalida2(*(ConfiguracionAdapSalida::AdapSalConf*)&adapSal_conf[2],flash);
 ConfiguracionValorControlado configuracionValorAlarma2(*(ConfiguracionValorControlado::ValorControlConf*)&alarmaSP_conf[2],flash);
  
-CoordinadorLazosAlCntrRet alarma2(configuracionLazoAlarmas2,configuracionAlarma2,configuracionValorAlarma2,configuracionAdapSalida2,configuracionRetrans2,control0,pwm4);
+CoordinadorLazosAlCntrRet alarma2(configuracionLazoAlarmas2,configuracionAlarma2,configuracionValorAlarma2,configuracionAdapSalida2,configuracionRetrans2,(*(ControlPID*)(control0.getControl())),pwm4);
 
 #endif
 
@@ -292,8 +295,24 @@ const struct FstBoxPointer potInst1={
   (const struct ConstructorBox*)&cBoxPotInst,&control1,2
 };  
 const struct FstBoxPointer potMan1={
-  (const struct ConstructorBox*)&cBoxPotMan,&control1,2
+  (const struct ConstructorBox*)&cBoxPotMan,&control1,2  
 };  
+
+const struct FstBoxPointer setPoint0={
+  (const struct ConstructorBox*)&cBoxSetPoint,&control0,1
+};  
+
+const struct FstBoxPointer setPointAut0={
+  (const struct ConstructorBox*)&cBoxSetPointAut,&control0,1
+}; 
+
+const struct FstBoxPointer setPoint1={
+  (const struct ConstructorBox*)&cBoxSetPoint,&control1,2
+};  
+
+const struct FstBoxPointer setPointAut1={
+  (const struct ConstructorBox*)&cBoxSetPointAut,&control1,2
+}; 
 
 #endif
 
@@ -337,8 +356,11 @@ const struct FstBoxPointer potMan1={
 struct ConstructorBoxPrincipalControl cBoxPri={
       &boxPrincipalControlFactory,							/* funcion que procesa al box*/
       &sensor0,      
-      &mjsCambioTipoSalida,
-      &flash						
+      &msjDisplayInferior,
+      &msjDisplaySuperior,
+      &flash,
+      
+
 };
 
 const struct FstBoxPointer principal={
@@ -353,6 +375,8 @@ const struct FstBoxPointer *const opArray[]={
   #if CANTIDAD_CANALES>1
   &potInst1, 
   &potMan1,
+  &setPoint1,
+  &setPointAut1,
   #endif
   &SPal0,
   #if CANTIDAD_CANALES>1 || CANTIDAD_SAL_ALARMA>1
@@ -373,18 +397,18 @@ const NEW_BOX_LIST(opList,opArray,"");
 
 //TUN        
 
+
+
+#if CANTIDAD_CANALES==1 
+
 const struct FstBoxPointer autoSintonia0={
   (const struct ConstructorBox*)&cBoxModos,&control0,0
 }; 
 
-#if CANTIDAD_CANALES==1  
-
 const struct FstBoxPointer reset0={
   (const struct ConstructorBox*)&cBoxesReset,&control0,0
 };
-/*const struct FstBoxPointer aparatoConf0={
-  (const struct ConstructorBox*)&cBoxesSintonia,&control0,0
-};*/
+
 const struct FstBoxPointer histeresisControl0={
   (const struct ConstructorBox*)&cBoxesHisteresis,&control0,0
 };
@@ -403,17 +427,41 @@ const struct FstBoxPointer histAlarma0={
 
 
 #else
+
+const struct FstBoxPointer autoSintonia0={
+  (const struct ConstructorBox*)&cBoxModos,&control0,1
+}; 
+
+const struct FstBoxPointer autoSintonia1={
+  (const struct ConstructorBox*)&cBoxModos,&control1,2
+}; 
+
+
 const struct FstBoxPointer reset0={
   (const struct ConstructorBox*)&cBoxesReset,&control0,1
 };
-const struct FstBoxPointer aparatoConf0={
-  (const struct ConstructorBox*)&cBoxesSintonia,&control0,1
+const struct FstBoxPointer histeresisControl0={
+  (const struct ConstructorBox*)&cBoxesHisteresis,&control0,1
 };
+const struct FstBoxPointer integralControl0={
+  (const struct ConstructorBox*)&cBoxesIntegral,&control0,1
+};
+const struct FstBoxPointer derivadaControl0={
+  (const struct ConstructorBox*)&cBoxesDerivada,&control0,1
+};
+
 const struct FstBoxPointer reset1={
   (const struct ConstructorBox*)&cBoxesReset,&control1,2
 };
-const struct FstBoxPointer aparatoConf1={
-  (const struct ConstructorBox*)&cBoxesSintonia,&control1,2
+const struct FstBoxPointer histeresisControl1={
+  (const struct ConstructorBox*)&cBoxesHisteresis,&control1,2
+};
+const struct FstBoxPointer integralControl1={
+  (const struct ConstructorBox*)&cBoxesIntegral,&control1,2
+};
+const struct FstBoxPointer derivadaControl1={
+  (const struct ConstructorBox*)&cBoxesDerivada,&control1,2
+  
 };
 const struct FstBoxPointer periodo0={
   (const struct ConstructorBox*)&cBoxPeriodo,&pwm23,1
@@ -448,7 +496,10 @@ static const struct FstBoxPointer *const tunArray[]={
   #if CANTIDAD_CANALES>1 
   &reset1,
   &periodo1, 
-  &aparatoConf1,
+  &autoSintonia1,
+  &histeresisControl1,
+  &integralControl1,
+  &derivadaControl1,
   #endif
   #if CANTIDAD_SAL_ALARMA>1 || CANTIDAD_CANALES>1 
   &histAlarma1,
@@ -665,11 +716,8 @@ struct Method cambioControl={
 void main(void) {
   
   #if CANTIDAD_CANALES>1  
-  BoxPrincipalControl::MostrarGetter((ConstructorPropGetterVisual *)&cPropiedadGetSensor1,&control1); 
+    BoxPrincipalControl::MostrarGetter((ConstructorPropGetterVisual *)&cPropiedadGetSensor1,&control1); 
   #else
-  if(control0.getModo() == AUTOSINTONIA)
-    BoxPrincipalControl::MostrarGetter((ConstructorPropGetterVisual *)&cPropiedadSetPointAutoSintonia,&control0);
-  else
     BoxPrincipalControl::MostrarProp((ConstructorPropGetterVisual *)&cPropiedadSetPoint,&control0);
   #endif
   RlxMTimer timerConexionSalidas(SALIDA_TIEMPO_DESCONECTADA,timerSalida);
@@ -677,11 +725,13 @@ void main(void) {
   DiagramaNavegacion d(&opList,&accessList,FrenteDH::getInstancia());
   PE_low_level_init();
   #if CANTIDAD_CANALES==1
-   //control0.addOnTipoSalidaListener(cambioTipoSalida);
    ((ControlPID*)(control0.getControl()))->addOnTipoSalidaListener(cambioTipoSalida);
    control0.addOnControlListener(cambioControl);
-  #elif CANTIDAD_CANALES==2 
-  control1.addOnTipoSalidaListener(cambioTipoSalida);
+  #elif CANTIDAD_CANALES==2
+  ((ControlPID*)(control0.getControl()))->addOnTipoSalidaListener(cambioTipoSalida);
+   control0.addOnControlListener(cambioControl); 
+  ((ControlPID*)(control1.getControl()))->addOnTipoSalidaListener(cambioTipoSalida);
+  control1.addOnControlListener(cambioControl);
   #endif
   
   for(;;){
@@ -727,22 +777,24 @@ void conectarSalidas(void * a){
 
 
 void OnTipoSalChange(void * b){
+  
+  
   #if CANTIDAD_CANALES == 1 
   static MessagesOut::Message msj_on_sal_change;  
   if(((ControlPID*)(control0.getControl()))->getModoSalida()==ControlPID::_MAN/*control0.getModoSalida()==ControlPID::_MAN*/){
     if(!msj_on_sal_change)
-      msj_on_sal_change = mjsCambioTipoSalida.addMessage("Pot "); 
+      msj_on_sal_change = msjDisplayInferior.addMessage("Pot "); 
      BoxPrincipalControl::MostrarProp((ConstructorPropGetterVisual *)&cPropiedadPotManual,&control0);   
   }else{
     if(msj_on_sal_change){
 
-      mjsCambioTipoSalida.deleteMessage(msj_on_sal_change);
+      msjDisplayInferior.deleteMessage(msj_on_sal_change);
       BoxPrincipalControl::MostrarProp((ConstructorPropGetterVisual *)&cPropiedadSetPoint,&control0);
       msj_on_sal_change=NULL; 
     }                          
   }
   #elif CANTIDAD_CANALES == 2 
-  if(control1.getModoSalida()==ControlPID::_MAN){
+  if(((ControlPID*)(control1.getControl()))->getModoSalida()==ControlPID::_MAN){
     pwm2.setTipoSalida(SALIDA_PROPORCIONAL);   
      
   }else{
@@ -753,47 +805,18 @@ void OnTipoSalChange(void * b){
 }
 
 void OnControlChange(void * c){
+  #if CANTIDAD_CANALES == 1 
   if(control0.getModo() == AUTOSINTONIA) {
-    static char mensaje[6];
-    static bool firtsTime=FALSE;
     BoxPrincipalControl::MostrarGetter((ConstructorPropGetterVisual *)&cPropiedadSetPointAutoSintonia,&control0);
+    control0.setMesnsajeAutoSintonia();
     
-    if(control0.getEstadoAutosintonia() == TRUE){ //AutoSintonia detenida?
-       
-       if((char)(control0.getPasoAutosintonia())==6){
-            if(msj_AutoSintonia){
-              mjsCambioTipoSalida.deleteMessage(msj_AutoSintonia);
-              msj_AutoSintonia = NULL;
-            }
-            mensaje[0]='E';
-            mensaje[1]='r';
-            mensaje[2]='r';
-            mensaje[3]='o';
-            mensaje[4]='r';  
-            mensaje[5]='\0';
-            if(!msj_AutoSintonia)
-              msj_AutoSintonia = mjsCambioTipoSalida.addMessage(mensaje);
-        }else if(msj_AutoSintonia)
-          mjsCambioTipoSalida.deleteMessage(msj_AutoSintonia); 
-        
-      }else if(control0.getEstadoAutosintonia() == FALSE){
-        //estoy en autoSintonia presento los carteles
-            mensaje[0]='S';
-            mensaje[1]='t';
-            mensaje[2]=' ';
-            mensaje[3]=((char)(control0.getPasoAutosintonia())+0x30);  
-            mensaje[4]='\0';
-       
-        if(!msj_AutoSintonia)
-         msj_AutoSintonia = mjsCambioTipoSalida.addMessage(mensaje);
-      }
-     
-     
-  }else {
-    if(msj_AutoSintonia){
-          mjsCambioTipoSalida.deleteMessage(msj_AutoSintonia);
-          msj_AutoSintonia = NULL;
-    }
+  }else 
     BoxPrincipalControl::MostrarProp((ConstructorPropGetterVisual *)&cPropiedadSetPoint,&control0);
-  }
+  #else
+  if(control0.getModo() == AUTOSINTONIA)
+    control0.setMesnsajeAutoSintonia();
+  if(control1.getModo() == AUTOSINTONIA)
+    control1.setMesnsajeAutoSintonia();
+  #endif
+ 
 }

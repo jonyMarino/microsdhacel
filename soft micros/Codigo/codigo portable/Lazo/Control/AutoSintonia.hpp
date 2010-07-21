@@ -5,15 +5,18 @@
 #include "LazoControl.hpp"
 #include "SalidaBanda.hpp"
 #include "ValorControlProporcional.hpp"
+#include "ValorControlRelativo.hpp"
 #include "Timer/FlagTimer/FlagTimer.hpp"
 #include "MethodContainer.hpp"
+#include "MessagesOut.hpp"
 
+ 
 
 class AutoSintonia:public LazoControl{
   public:
     //Empieza el proceso de autosintonia
     AutoSintonia(Sensor& sensor,ISalida& salida,const ConfiguracionControl& configuracion);
-    AutoSintonia(Sensor& sensor,ISalida& salida,const ConfiguracionControl& configuracion,MethodContainer& listenersOnChange);
+    AutoSintonia(Sensor& sensor,ISalida& salida,const ConfiguracionControl& configuracion,MethodContainer& listenersOnChange,MessagesOut* msj);
     bool isDetenido(); // indica si la autusintonia esta en el estado 5 o 6 (termino o error respectivamente)
     int getNumeroEstado();
     inline const ConfiguracionControl& getConfiguracion(){return confControl;}
@@ -29,6 +32,15 @@ class AutoSintonia:public LazoControl{
     int getLimiteSuperiorPotencia();
     void setLimiteSuperiorPotencia(int val);
     uchar getDecimales();
+    
+    void setMensajeEstado();
+    inline MessagesOut::Message getMensajeAutosiontonia(){
+      return  msj_AutoSintonia;
+    };
+    inline void setMensajeAutosiontonia(MessagesOut::Message mensj){
+        msj_AutoSintonia=mensj;
+    };
+    
 
     void addOnChangeListener(const struct Method& metodo);
     void deleteOnChangeListener(const struct Method& metodo);
@@ -62,6 +74,9 @@ class AutoSintonia:public LazoControl{
     int valorPrevio,maximo,minimo;
     FlagTimer contadorTiempoAbierto;
     MethodContainer onChange;
+    MessagesOut * msjOutAs;
+    MessagesOut::Message msj_AutoSintonia;
+    char mensaje[6];
 };
 
 #endif
