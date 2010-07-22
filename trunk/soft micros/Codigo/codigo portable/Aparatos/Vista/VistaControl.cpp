@@ -236,8 +236,8 @@ int getVal_ (void * control){
   }   
 
  
-  ADAPTAR_FUNCION_GET(getModoSalida,getModoSalida)
-  ADAPTAR_FUNCION_SET(setModoSalida,setModoSalida)
+  ADAPTAR_FUNCION_GET_CONTROL(getModoSalida,getModoSalida)
+  ADAPTAR_FUNCION_SET_CONTROL(setModoSalida,setModoSalida)
 
   const struct ConstructorPropiedadTextual cPropiedadModoSalida={
     &propiedadTextualFactory,getModoSalida,"C",setModoSalida,ms_getText,3
@@ -376,11 +376,16 @@ const struct ConstructorBoxPropiedad cBoxesSetPoint={
 };  
 
 const struct ConstructorBoxPropiedadEntradaCondicional cBoxModoSalida={
-      &boxPropGetterEntradaCondicionalFactory,	
+      &boxPropiedadEntradaCondicionalFactory,	
 			(const struct ConstructorPropGetterVisual*)&cPropiedadModoSalida,
       getCondicionEntradaAut2
 };
-
+   
+/* const struct ConstructorBoxPropiedad cBoxModoSalida={
+      &boxPropiedadFactory,	
+			(const struct ConstructorPropGetterVisual*)&cPropiedadModoSalida,
+      
+};*/
 
 const struct ConstructorBoxPropiedadEntradaCondicional cBoxPotInst ={
    &boxPropGetterEntradaCondicionalFactory,

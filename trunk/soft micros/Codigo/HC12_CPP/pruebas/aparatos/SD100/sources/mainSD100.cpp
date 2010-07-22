@@ -46,7 +46,7 @@
 #include "CoordinadorControladorSintonizador.hpp"
 
 void conectarSalidas(void * a);
-
+void OnControlChange(void * c);
 
 #pragma CONST_SEG PARAMETERS_PAGE
  
@@ -201,24 +201,26 @@ PWMTimer pwm6(flash,confPWM[5],5);
 PWMTimer pwm7(flash,confPWM[6],6);
 PWMTimer pwm8(flash,confPWM[7],7);
 
+
+MessagesOut mjsDisplay1;
+MessagesOut mjsDisplay2;
+MessagesOut mjsDisplay3;
+MessagesOut mjsDisplay4;
+
+
+
 const ConfiguracionControlPID configuraControl0(*(ConfiguracionControlPID::ControlConf*)&control_config[0],flash); 
-ControlPID control0(sensor0,pwm1,configuraControl0);
-//CoordinadorControladorSintonizador control0(sensor0,pwm1,configuraControl0);
+CoordinadorControladorSintonizador control0(sensor0,pwm1,configuraControl0,&mjsDisplay1);
 
 const ConfiguracionControlPID configuraControl1(*(ConfiguracionControlPID::ControlConf*)&control_config[1],flash);
-ControlPID control1(sensor1,pwm2,configuraControl1);
-//CoordinadorControladorSintonizador control1(sensor1,pwm2,configuraControl1);
+CoordinadorControladorSintonizador control1(sensor1,pwm2,configuraControl1,&mjsDisplay2);
 
 const ConfiguracionControlPID configuraControl2(*(ConfiguracionControlPID::ControlConf*)&control_config[2],flash); 
-ControlPID control2(sensor2,pwm3,configuraControl2);
-//CoordinadorControladorSintonizador control2(sensor2,pwm3,configuraControl2);
+CoordinadorControladorSintonizador control2(sensor2,pwm3,configuraControl2,&mjsDisplay3);
 
 const ConfiguracionControlPID configuraControl3(*(ConfiguracionControlPID::ControlConf*)&control_config[3],flash);
-ControlPID control3(sensor3,pwm4,configuraControl3);
-//CoordinadorControladorSintonizador control3(sensor3,pwm4,configuraControl3);
+CoordinadorControladorSintonizador control3(sensor3,pwm4,configuraControl3,&mjsDisplay4);
 
-
-MessagesOut mjsCambioTipoSalida;
 
 
 ConfiguracionLazoAlarmas configuracionLazoAlarmas0(*(ConfiguracionLazoAlarmas::LazoAlarmConf*)&lazo_alar_conf[0],flash);
@@ -227,7 +229,7 @@ ConfiguracionRetransm configuracionRetrans0(*(ConfiguracionRetransm::RetConf*)&r
 ConfiguracionAdapSalida configuracionAdapSalida0(*(ConfiguracionAdapSalida::AdapSalConf*)&adapSal_conf[0],flash);
 ConfiguracionValorControlado configuracionValorAlarma0(*(ConfiguracionValorControlado::ValorControlConf*)&alarmaSP_conf[0],flash);
 
-CoordinadorLazosAlCntrRet alarma0(configuracionLazoAlarmas0,configuracionAlarma0,configuracionValorAlarma0,configuracionAdapSalida0,configuracionRetrans0,/*(*(ControlPID*)(control0.getControl()))*/control0,pwm5);
+CoordinadorLazosAlCntrRet alarma0(configuracionLazoAlarmas0,configuracionAlarma0,configuracionValorAlarma0,configuracionAdapSalida0,configuracionRetrans0,(*(ControlPID*)(control0.getControl())),pwm5);
 
 ConfiguracionLazoAlarmas configuracionLazoAlarmas1(*(ConfiguracionLazoAlarmas::LazoAlarmConf*)&lazo_alar_conf[1],flash);
 ConfiguracionAlarmas configuracionAlarma1(*(ConfiguracionAlarmas::AlarmConf*)&alar_conf[1],flash);
@@ -235,7 +237,7 @@ ConfiguracionRetransm configuracionRetrans1(*(ConfiguracionRetransm::RetConf*)&r
 ConfiguracionAdapSalida configuracionAdapSalida1(*(ConfiguracionAdapSalida::AdapSalConf*)&adapSal_conf[1],flash);
 ConfiguracionValorControlado configuracionValorAlarma1(*(ConfiguracionValorControlado::ValorControlConf*)&alarmaSP_conf[1],flash);
 
-CoordinadorLazosAlCntrRet alarma1(configuracionLazoAlarmas1,configuracionAlarma1,configuracionValorAlarma1,configuracionAdapSalida1,configuracionRetrans1,control1,pwm6);
+CoordinadorLazosAlCntrRet alarma1(configuracionLazoAlarmas1,configuracionAlarma1,configuracionValorAlarma1,configuracionAdapSalida1,configuracionRetrans1,(*(ControlPID*)(control1.getControl())),pwm6);
 
 
 ConfiguracionLazoAlarmas configuracionLazoAlarmas2(*(ConfiguracionLazoAlarmas::LazoAlarmConf*)&lazo_alar_conf[2],flash);
@@ -244,7 +246,7 @@ ConfiguracionRetransm configuracionRetrans2(*(ConfiguracionRetransm::RetConf*)&r
 ConfiguracionAdapSalida configuracionAdapSalida2(*(ConfiguracionAdapSalida::AdapSalConf*)&adapSal_conf[2],flash);
 ConfiguracionValorControlado configuracionValorAlarma2(*(ConfiguracionValorControlado::ValorControlConf*)&alarmaSP_conf[2],flash);
  
-CoordinadorLazosAlCntrRet alarma2(configuracionLazoAlarmas2,configuracionAlarma2,configuracionValorAlarma2,configuracionAdapSalida2,configuracionRetrans2,control2,pwm7);
+CoordinadorLazosAlCntrRet alarma2(configuracionLazoAlarmas2,configuracionAlarma2,configuracionValorAlarma2,configuracionAdapSalida2,configuracionRetrans2,(*(ControlPID*)(control2.getControl())),pwm7);
 
 ConfiguracionLazoAlarmas configuracionLazoAlarmas3(*(ConfiguracionLazoAlarmas::LazoAlarmConf*)&lazo_alar_conf[3],flash);
 ConfiguracionAlarmas configuracionAlarma3(*(ConfiguracionAlarmas::AlarmConf*)&alar_conf[3],flash);
@@ -252,7 +254,7 @@ ConfiguracionRetransm configuracionRetrans3(*(ConfiguracionRetransm::RetConf*)&r
 ConfiguracionAdapSalida configuracionAdapSalida3(*(ConfiguracionAdapSalida::AdapSalConf*)&adapSal_conf[3],flash);
 ConfiguracionValorControlado configuracionValorAlarma3(*(ConfiguracionValorControlado::ValorControlConf*)&alarmaSP_conf[3],flash);
  
-CoordinadorLazosAlCntrRet alarma3(configuracionLazoAlarmas3,configuracionAlarma3,configuracionValorAlarma3,configuracionAdapSalida3,configuracionRetrans3,control3,pwm8);
+CoordinadorLazosAlCntrRet alarma3(configuracionLazoAlarmas3,configuracionAlarma3,configuracionValorAlarma3,configuracionAdapSalida3,configuracionRetrans3,(*(ControlPID*)(control3.getControl())),pwm8);
 
 
 
@@ -288,7 +290,38 @@ const struct FstBoxPointer potMan3={
   (const struct ConstructorBox*)&cBoxPotMan,&control3,4
 };  
   
- 
+const struct FstBoxPointer setPoint0={
+  (const struct ConstructorBox*)&cBoxSetPoint,&control0,1
+};  
+
+const struct FstBoxPointer setPointAut0={
+  (const struct ConstructorBox*)&cBoxSetPointAut,&control0,1
+};  
+
+const struct FstBoxPointer setPoint1={
+  (const struct ConstructorBox*)&cBoxSetPoint,&control1,2
+};  
+
+const struct FstBoxPointer setPointAut1={
+  (const struct ConstructorBox*)&cBoxSetPointAut,&control1,2
+};  
+
+const struct FstBoxPointer setPoint2={
+  (const struct ConstructorBox*)&cBoxSetPoint,&control2,3
+};  
+
+const struct FstBoxPointer setPointAut2={
+  (const struct ConstructorBox*)&cBoxSetPointAut,&control2,3
+};  
+
+const struct FstBoxPointer setPoint3={
+  (const struct ConstructorBox*)&cBoxSetPoint,&control3,4
+};  
+
+const struct FstBoxPointer setPointAut3={
+  (const struct ConstructorBox*)&cBoxSetPointAut,&control3,4
+};  
+
 
 //SP_alarma
     const struct FstBoxPointer SPal0={
@@ -312,7 +345,10 @@ const struct FstBoxPointer potMan3={
 struct ConstructorBoxPrincipalControlSD cBoxPri={
       &boxPrincipalControlSDFactory,							// funcion que procesa al box
       gettersAMostrar,      
-      NULL,//&mjsCambioTipoSalida,
+      &mjsDisplay1,
+      &mjsDisplay2,
+      &mjsDisplay3,
+      &mjsDisplay4,
       &flash						
 };
 
@@ -325,12 +361,20 @@ const struct FstBoxPointer *const opArray[]={
   &principal,
   &potInst0,
   &potMan0,
+  &setPoint0,
+  &setPointAut0,
   &potInst1,
   &potMan1,
+  &setPoint1,
+  &setPointAut1,
   &potInst2,
   &potMan2,
+  &setPoint2,
+  &setPointAut2,
   &potInst3,
   &potMan3,
+  &setPoint3,
+  &setPointAut3,
   &SPal0,
   &SPal1,
   &SPal2,
@@ -355,26 +399,62 @@ const struct FstBoxPointer AutoSintonia0={
 const struct FstBoxPointer reset0={
   (const struct ConstructorBox*)&cBoxesReset,&control0,1
 };
-const struct FstBoxPointer aparatoConf0={
-  (const struct ConstructorBox*)&cBoxesSintonia,&control0,1
+const struct FstBoxPointer histeresisControl0={
+  (const struct ConstructorBox*)&cBoxesHisteresis,&control0,1
+};
+const struct FstBoxPointer integralControl0={
+  (const struct ConstructorBox*)&cBoxesIntegral,&control0,1
+};
+const struct FstBoxPointer derivadaControl0={
+  (const struct ConstructorBox*)&cBoxesDerivada,&control0,1
+};
+
+const struct FstBoxPointer AutoSintonia1={
+  (const struct ConstructorBox*)&cBoxModos,&control1,2
 };
 const struct FstBoxPointer reset1={
   (const struct ConstructorBox*)&cBoxesReset,&control1,2
 };
-const struct FstBoxPointer aparatoConf1={
-  (const struct ConstructorBox*)&cBoxesSintonia,&control1,2
+const struct FstBoxPointer histeresisControl1={
+  (const struct ConstructorBox*)&cBoxesHisteresis,&control1,2
+};
+const struct FstBoxPointer integralControl1={
+  (const struct ConstructorBox*)&cBoxesIntegral,&control1,2
+};
+const struct FstBoxPointer derivadaControl1={
+  (const struct ConstructorBox*)&cBoxesDerivada,&control1,2
+};
+
+const struct FstBoxPointer AutoSintonia2={
+  (const struct ConstructorBox*)&cBoxModos,&control2,3
 };
 const struct FstBoxPointer reset2={
   (const struct ConstructorBox*)&cBoxesReset,&control2,3
 };
-const struct FstBoxPointer aparatoConf2={
-  (const struct ConstructorBox*)&cBoxesSintonia,&control2,3
+const struct FstBoxPointer histeresisControl2={
+  (const struct ConstructorBox*)&cBoxesHisteresis,&control2,3
+};
+const struct FstBoxPointer integralControl2={
+  (const struct ConstructorBox*)&cBoxesIntegral,&control2,3
+};
+const struct FstBoxPointer derivadaControl2={
+  (const struct ConstructorBox*)&cBoxesDerivada,&control2,3
+};
+
+const struct FstBoxPointer AutoSintonia3={
+  (const struct ConstructorBox*)&cBoxModos,&control3,4
 };
 const struct FstBoxPointer reset3={
   (const struct ConstructorBox*)&cBoxesReset,&control3,4
 };
-const struct FstBoxPointer aparatoConf3={
-  (const struct ConstructorBox*)&cBoxesSintonia,&control3,4
+const struct FstBoxPointer histeresisControl3={
+  (const struct ConstructorBox*)&cBoxesHisteresis,&control3,4
+};
+const struct FstBoxPointer integralControl3={
+  (const struct ConstructorBox*)&cBoxesIntegral,&control3,4
+};
+const struct FstBoxPointer derivadaControl3={
+  (const struct ConstructorBox*)&cBoxesDerivada,&control3,4
 };
 
 const struct FstBoxPointer periodo0={
@@ -420,25 +500,37 @@ const struct FstBoxPointer histAlarma3={
 };
 
 static const struct FstBoxPointer *const tunArray[]={
-  //&AutoSintonia0,
+  
   &reset0,
   &periodo0,
-  &aparatoConf0,
+  &AutoSintonia0,
+  &histeresisControl0,
+  &integralControl0,
+  &derivadaControl0,
   &periodoAlarma0,
   &histAlarma0,
   &reset1,
   &periodo1,
-  &aparatoConf1,
+  &AutoSintonia1,
+  &histeresisControl1,
+  &integralControl1,
+  &derivadaControl1,
   &periodoAlarma1,
   &histAlarma1,
   &reset2,
   &periodo2,
-  &aparatoConf2,
+  &AutoSintonia2,
+  &histeresisControl2,
+  &integralControl2,
+  &derivadaControl2,
   &periodoAlarma2,
   &histAlarma2,
   &reset3,
   &periodo3,
-  &aparatoConf3,
+  &AutoSintonia3,
+  &histeresisControl3,
+  &integralControl3,
+  &derivadaControl3,
   &periodoAlarma3,
   &histAlarma3,
   
@@ -648,7 +740,9 @@ struct Method timerSalida={
 }; 
 
                                              
-
+struct Method cambioControl={
+&OnControlChange,NULL
+}; 
 
 void main(void) {
   
@@ -656,7 +750,11 @@ void main(void) {
   RlxMTimer timerConexionSalidas(SALIDA_TIEMPO_DESCONECTADA,timerSalida);
   timer=&timerConexionSalidas;
   DiagramaNavegacionSD d(&opList,&accessList,FrenteSD::getInstancia());
- 
+  control0.addOnControlListener(cambioControl);
+  control1.addOnControlListener(cambioControl);
+  control2.addOnControlListener(cambioControl);
+  control3.addOnControlListener(cambioControl);
+  
   for(;;){
     
     byte tecla = FrenteSD::getInstancia()->getTecla();
@@ -696,4 +794,18 @@ void conectarSalidas(void * a){
 }
 
 
-
+void OnControlChange(void * c){
+  
+  if(control0.getModo() == AUTOSINTONIA) 
+    control0.setMesnsajeAutoSintonia();
+    
+  if(control1.getModo() == AUTOSINTONIA) 
+    control1.setMesnsajeAutoSintonia();
+  
+  if(control2.getModo() == AUTOSINTONIA) 
+    control2.setMesnsajeAutoSintonia();
+  
+  if(control3.getModo() == AUTOSINTONIA) 
+    control3.setMesnsajeAutoSintonia();
+ 
+}

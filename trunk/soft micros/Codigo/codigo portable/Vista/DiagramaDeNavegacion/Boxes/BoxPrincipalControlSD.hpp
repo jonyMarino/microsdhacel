@@ -24,7 +24,7 @@
 struct ConstructorBoxPrincipalControlSD{
   struct ConstructorBox super;
   Getter ** snsrs; 
-  MessagesOut * msjs; 
+  MessagesOut * msjs[CANTIDAD_CANALES]; 
   FlashBkp * flash;   
    
 };
@@ -34,22 +34,14 @@ class BoxPrincipalControlSD:public Box{
     BoxPrincipalControlSD(struct ConstructorBoxPrincipalControlSD * constructor);
     virtual ~BoxPrincipalControlSD();
     virtual Box * procesarTecla(uchar tecla,TEstadoBox& estado);
-    static void MostrarGetter(const ConstructorPropGetterVisual *_getter,void * obj);
-    static void MostrarProp( const ConstructorPropGetterVisual* _prop, void * obj);
-    static void Refresh(void);
-    static void setRefresh(void);
+    
   protected:
     struct ConstructorBoxPrincipalControlSD * constructor;
-    static bool priIsProp;       // TRUE: es propiedad, FALSE: es getter
-    static bool propCambio;
-    static bool propRefres;
     FlagTimer timerPri;		// Timer de refresco
-    FlagTimer timerProp;
-    FlagTimer timerGrab;
     FlagTimer timerRefresh;
-    uchar par_seconds;
-    uint msj_index;       // indice del msj a mostrar
-    static PropGetterVisual * parametroAMostrar;
+    
+    uint msj_index[CANTIDAD_CANALES];       // indice del msj a mostrar
+    
  // private:
    // bool _refrescar;  
     

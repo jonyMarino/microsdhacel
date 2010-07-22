@@ -10,55 +10,30 @@
 
 
 const struct BoxPrincipalControlSDFactory boxPrincipalControlSDFactory; 
-PropGetterVisual * BoxPrincipalControlSD::parametroAMostrar=NULL;
-bool BoxPrincipalControlSD::priIsProp=FALSE; 
 
-BoxPrincipalControlSD::BoxPrincipalControlSD(struct ConstructorBoxPrincipalControlSD * _constructor):Box(),timerPri(TIME_BETWEEN_PARS),timerProp(TIME_BETWEEN_PARS),timerGrab(PRI_PAR_SECONDS),timerRefresh(REFRESH_SECONDS){
-  msj_index=0;
-  par_seconds=0;
-  propCambio=FALSE;
-  propRefres=TRUE;
+BoxPrincipalControlSD::BoxPrincipalControlSD(struct ConstructorBoxPrincipalControlSD * _constructor):Box(),timerPri(TIME_BETWEEN_PARS),timerRefresh(REFRESH_SECONDS){
+  char i;
+  for(i=0;i<CANTIDAD_CANALES;i++)
+    msj_index[i]=0;
+    
   timerPri.setFlag();   // Seteo el flag de manera tal que la primera vez no espere que pase  TIME_BETWEEN_PARS para actulizar el box
   constructor=_constructor;
-  
-  if(parametroAMostrar){
-    if(priIsProp)
-      ((PropiedadIncrementable*)parametroAMostrar)->refrescar();  
-    parametroAMostrar->print(getDisplay(1));
-  }
-  
+   
 }
 
 BoxPrincipalControlSD::~BoxPrincipalControlSD(){
 }
 
 Box * BoxPrincipalControlSD::procesarTecla(uchar tecla,TEstadoBox& estado){
-  PropiedadIncrementable * p=NULL;
-  char* mjs;
+  
+  char* mjs[CANTIDAD_CANALES];
   char i;
   
-  if(priIsProp)
-    p = (PropiedadIncrementable *)parametroAMostrar;
+  for(i=0;i<CANTIDAD_CANALES;i++)
+    mjs[i]=NULL;
   
   if(timerPri.getFlag()){ 
-     mjs=NULL;
     
-    if(constructor->msjs){     
-       
-       if(par_seconds==0){
-         mjs=constructor->msjs->getMessage(msj_index);
-       }else
-         par_seconds --;
-       
-        if( mjs ){
-          ++msj_index; 
-          getDisplay(1).write(mjs);
-        }else{
-           if(parametroAMostrar)        
-               parametroAMostrar->print(getDisplay(1));
-           msj_index=0;
-        }
-     }
      for(i=0;i<CANTIDAD_CANALES;i++){
       
         constructor->snsrs[i]->print(getDisplay(i));
@@ -68,52 +43,24 @@ Box * BoxPrincipalControlSD::procesarTecla(uchar tecla,TEstadoBox& estado){
   	}
   
   if(timerRefresh.getFlag()){
-      Refresh(); 
+    
+    for(i=0;i<CANTIDAD_CANALES;i++){ 
+     if(constructor->msjs[i]){     
+        mjs[i]=constructor->msjs[i]->getMessage(msj_index[i]);
+        if( mjs[i] ){
+          ++msj_index[i]; 
+          getDisplay(i).write(mjs[i]);
+         }else
+           msj_index[i]=0;    
+      } 
+    }   
+     timerRefresh.reset();
+      
     }
   	
-  if(propCambio && timerProp.getFlag()){    
-      if(timerGrab.getFlag()){
-         propCambio=FALSE;
-         p->guardar();
-      }
-  }
-  if(parametroAMostrar && p && msj_index==0 )	 //no hay mensaje que mostrar
-  {
-      
-      if(tecla == 'd' || tecla == 'u'){
-        par_seconds=PRI_PAR_SECONDS;
-        if(tecla == 'd') 
-          p->decrementar();
-        else  
-          p->incrementar();
-        
-        propCambio=TRUE; 
-        timerGrab.reset();
-        timerGrab.restart();              
-        timerProp.reset();
-        timerRefresh.reset();
-        timerRefresh.restart();
-        parametroAMostrar->print(getDisplay(1));
-        
-        estado = STAY_BOX;
-        return NULL;
-      } 
-   }
-    
-    
-  if(constructor->flash->grabacionOBorradoEnEspera() ){
-      
-      estado = STAY_BOX;
-      return NULL;
-  }
 
   if(tecla=='r' || tecla=='f'){
-    if(propCambio && p){
-        propCambio=FALSE;
-        p->guardar(); 
-        estado = STAY_BOX;
-        return NULL; 
-    }
+    
     estado = EXIT_BOX;
     return NULL;
   }
@@ -123,40 +70,8 @@ Box * BoxPrincipalControlSD::procesarTecla(uchar tecla,TEstadoBox& estado){
 } 
 
 
-void BoxPrincipalControlSD::MostrarGetter(const ConstructorPropGetterVisual * _getter,void * obj){
-  if(parametroAMostrar){
-    delete parametroAMostrar;
-  }
-  
-  parametroAMostrar=&_getter->getPropiedad(obj,0);
-  priIsProp=FALSE;
 
-}
 
-void BoxPrincipalControlSD::MostrarProp( const ConstructorPropGetterVisual* _prop, void * obj){
- if(parametroAMostrar){
-    delete parametroAMostrar;
-  }
-  
-  parametroAMostrar=&_prop->getPropiedad(obj,0);
-  priIsProp=TRUE;
-  
-}
-
-void BoxPrincipalControlSD::Refresh(){
-  
-  if(parametroAMostrar){
-    if(priIsProp && propRefres){
-      ((PropiedadIncrementable *)parametroAMostrar)->refrescar();
-      parametroAMostrar->print(getDisplay(1));
-      propRefres = FALSE;
-      }
-    }
-}
-
-void BoxPrincipalControlSD::setRefresh(void){
-     propRefres = TRUE;;
-}
 
 #pragma DATA_SEG DEFAULT                                            
 #pragma CODE_SEG DEFAULT  
