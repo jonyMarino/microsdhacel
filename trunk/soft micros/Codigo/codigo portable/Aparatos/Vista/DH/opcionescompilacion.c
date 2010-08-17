@@ -30,7 +30,11 @@
   #define _ADQ  0
 #endif  
 
-
+#ifdef VF
+  #define _VF 1
+#else
+  #define _VF 0  
+#endif
  
 #define _COMP_OPTIONS	(CANTIDAD_CANALES-1) /*2bit*/  //   \
   //                   | CANTIDAD_SAL_CONTROL<<2/*3bit*/| AD_T<<5/*3 bit*/ \
@@ -40,6 +44,8 @@
 const char * getModelo(void){
   #ifdef SD
   return "Sd101";
+  #elif defined VF
+  return "d101 VF";
   #else
   return "d101";
   #endif

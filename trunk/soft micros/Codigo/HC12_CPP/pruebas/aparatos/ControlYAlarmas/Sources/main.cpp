@@ -34,6 +34,7 @@
 #include "SensorTermoPT100.hpp"
 #include "VistaPWM.hpp"
 #include "BoxPrincipalControl.hpp"
+#include "BoxPrincipalVF.hpp"
 #include "MessagesOut.hpp"
 #include "LedSalida.hpp"
 #include "configuracionAlarmas.hpp"
@@ -353,19 +354,38 @@ const struct FstBoxPointer setPointAut1={
 
 #endif
 
+#ifdef VF 
+struct ConstructorBoxPrincipalVF cBoxPri={
+      &boxPrincipalVFFactory,							/* funcion que procesa al box*/
+      &sensor0,      
+      &msjDisplayInferior,
+      &msjDisplaySuperior,
+      &flash,
+
+};
+#else
 struct ConstructorBoxPrincipalControl cBoxPri={
       &boxPrincipalControlFactory,							/* funcion que procesa al box*/
       &sensor0,      
       &msjDisplayInferior,
       &msjDisplaySuperior,
       &flash,
-      
 
 };
+
+#endif
 
 const struct FstBoxPointer principal={
   (const ConstructorBox*)&cBoxPri,NULL,0
 };  
+
+#ifdef VF 
+const struct FstBoxPointer *const opArray[]={
+  &principal,
+  
+};
+
+#else
 const struct FstBoxPointer *const opArray[]={
   &principal,
   &potInst0,
@@ -387,6 +407,7 @@ const struct FstBoxPointer *const opArray[]={
   #endif
 };
 
+#endif
 /*const struct BoxList opList ={
   &opArray,
   1,
@@ -715,15 +736,17 @@ struct Method cambioControl={
 
 void main(void) {
   
+  RlxMTimer timerConexionSalidas(SALIDA_TIEMPO_DESCONECTADA,timerSalida);
+  timer=&timerConexionSalidas;
+  DiagramaNavegacion d(&opList,&accessList,FrenteDH::getInstancia());
+  PE_low_level_init();
+ #ifndef VF 
   #if CANTIDAD_CANALES>1  
     BoxPrincipalControl::MostrarGetter((ConstructorPropGetterVisual *)&cPropiedadGetSensor1,&control1); 
   #else
     BoxPrincipalControl::MostrarProp((ConstructorPropGetterVisual *)&cPropiedadSetPoint,&control0);
   #endif
-  RlxMTimer timerConexionSalidas(SALIDA_TIEMPO_DESCONECTADA,timerSalida);
-  timer=&timerConexionSalidas;
-  DiagramaNavegacion d(&opList,&accessList,FrenteDH::getInstancia());
-  PE_low_level_init();
+  
   #if CANTIDAD_CANALES==1
    ((ControlPID*)(control0.getControl()))->addOnTipoSalidaListener(cambioTipoSalida);
    control0.addOnControlListener(cambioControl);
@@ -733,7 +756,7 @@ void main(void) {
   ((ControlPID*)(control1.getControl()))->addOnTipoSalidaListener(cambioTipoSalida);
   control1.addOnControlListener(cambioControl);
   #endif
-  
+ #endif 
   for(;;){
     
     byte tecla = FrenteDH::getInstancia()->getTecla();

@@ -26,6 +26,7 @@ class ConfiguracionControlPID: public ConfiguracionControl{
          ConfiguracionControlPID( ControlConf &_conf_, struct ManejadorMemoria & _manejadorMemoria);
          int getSetPoint();
          void setSetPoint(int);
+         void setSetPointEnRam(int);
          int getLimiteInferiorSetPoint();
          void setLimiteInferiorSetPoint(int val);
          int getLimiteSuperiorSetPoint();

@@ -317,8 +317,6 @@ int ControlPID::getConfiguracionSetPoint(){
   return  configuracion.getSetPoint();
 }
 
-
-
 void ControlPID::setConfiguracionSetPoint(int val){
   configuracion.setSetPoint(val);
 }
