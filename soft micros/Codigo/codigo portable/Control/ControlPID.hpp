@@ -202,9 +202,7 @@ class ControlPID:public Lazo{
 
     int getLimiteSuperiorSetPoint();
 
-
     int getConfiguracionSetPoint();
-
 
     void setConfiguracionSetPoint(int valor);
     /*
