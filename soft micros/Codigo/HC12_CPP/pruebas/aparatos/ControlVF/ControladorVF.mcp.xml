@@ -1385,7 +1385,7 @@
 
                 <!-- Settings for "Panel for Compiler for HC12" panel -->
                 <SETTING><NAME>Panel for Compiler for HC12</NAME>
-                    <SETTING><NAME>Options</NAME><VALUE>-C++f -CPUHCS12 -DCANTIDAD_CANALES=1 -DCANTIDAD_SAL_ALARMA=1 -D_PWM -D__NO_FLOAT__ -D_TI -DSALIDA_PUERTO_P -D_ADC -DMAX_MENSAJE=30 -DPAGE_SIZE=512 -Ms -Qvtpnone</VALUE></SETTING>
+                    <SETTING><NAME>Options</NAME><VALUE>-C++f -CPUHCS12 -DCANTIDAD_CANALES=1 -DCANTIDAD_SAL_ALARMA=1 -D_PWM -D__NO_FLOAT__ -D_TI -DSALIDA_PUERTO_P -D_ADC -DMAX_MENSAJE=30 -DVF -DPAGE_SIZE=512 -Ms -Qvtpnone</VALUE></SETTING>
                     <SETTING><NAME>UseDecoder</NAME><VALUE>0</VALUE></SETTING>
                     <SETTING><NAME>EchoCommandLine</NAME><VALUE>0</VALUE></SETTING>
                 </SETTING>
@@ -1912,13 +1912,6 @@
                 </FILE>
                 <FILE>
                     <PATHTYPE>Name</PATHTYPE>
-                    <PATH>main.cpp</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                    <FILEKIND>Text</FILEKIND>
-                    <FILEFLAGS>Debug</FILEFLAGS>
-                </FILE>
-                <FILE>
-                    <PATHTYPE>Name</PATHTYPE>
                     <PATH>ControlPID.cpp</PATH>
                     <PATHFORMAT>Windows</PATHFORMAT>
                     <FILEKIND>Text</FILEKIND>
@@ -2512,6 +2505,48 @@
                     <FILEKIND>Text</FILEKIND>
                     <FILEFLAGS></FILEFLAGS>
                 </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>mainVF.cpp</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS>Debug</FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>ControlVF.hpp</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS></FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>configuracionVF.hpp</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS></FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>configuracionVF.cpp</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS>Debug</FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>ControlVF.cpp</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS>Debug</FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>VistaControlVF.cpp</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS>Debug</FILEFLAGS>
+                </FILE>
             </FILELIST>
             <LINKORDER>
                 <FILEREF>
@@ -2832,11 +2867,6 @@
                 <FILEREF>
                     <PATHTYPE>Name</PATHTYPE>
                     <PATH>timers_si.lib</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <PATHTYPE>Name</PATHTYPE>
-                    <PATH>main.cpp</PATH>
                     <PATHFORMAT>Windows</PATHFORMAT>
                 </FILEREF>
                 <FILEREF>
@@ -3264,6 +3294,36 @@
                     <PATH>AutoSintonia.hpp</PATH>
                     <PATHFORMAT>Windows</PATHFORMAT>
                 </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>mainVF.cpp</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>ControlVF.hpp</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>configuracionVF.hpp</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>configuracionVF.cpp</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>ControlVF.cpp</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>VistaControlVF.cpp</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
             </LINKORDER>
         </TARGET>
     </TARGETLIST>
@@ -3619,12 +3679,6 @@
             <FILEREF>
                 <TARGETNAME>Standard</TARGETNAME>
                 <PATHTYPE>Name</PATHTYPE>
-                <PATH>main.cpp</PATH>
-                <PATHFORMAT>Windows</PATHFORMAT>
-            </FILEREF>
-            <FILEREF>
-                <TARGETNAME>Standard</TARGETNAME>
-                <PATHTYPE>Name</PATHTYPE>
                 <PATH>MessagesOut.cpp</PATH>
                 <PATHFORMAT>Windows</PATHFORMAT>
             </FILEREF>
@@ -3632,6 +3686,12 @@
                 <TARGETNAME>Standard</TARGETNAME>
                 <PATHTYPE>Name</PATHTYPE>
                 <PATH>MethodContainer.cpp</PATH>
+                <PATHFORMAT>Windows</PATHFORMAT>
+            </FILEREF>
+            <FILEREF>
+                <TARGETNAME>Standard</TARGETNAME>
+                <PATHTYPE>Name</PATHTYPE>
+                <PATH>mainVF.cpp</PATH>
                 <PATHFORMAT>Windows</PATHFORMAT>
             </FILEREF>
             <GROUP><NAME>Modelo</NAME>
@@ -3965,6 +4025,32 @@
                         <PATHFORMAT>Windows</PATHFORMAT>
                     </FILEREF>
                 </GROUP>
+                <GROUP><NAME>VF</NAME>
+                    <FILEREF>
+                        <TARGETNAME>Standard</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>ControlVF.hpp</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                    <FILEREF>
+                        <TARGETNAME>Standard</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>configuracionVF.hpp</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                    <FILEREF>
+                        <TARGETNAME>Standard</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>configuracionVF.cpp</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                    <FILEREF>
+                        <TARGETNAME>Standard</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>ControlVF.cpp</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                </GROUP>
                 <FILEREF>
                     <TARGETNAME>Standard</TARGETNAME>
                     <PATHTYPE>Name</PATHTYPE>
@@ -4205,6 +4291,12 @@
                     <TARGETNAME>Standard</TARGETNAME>
                     <PATHTYPE>Name</PATHTYPE>
                     <PATH>VistaAlarmas.hpp</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <TARGETNAME>Standard</TARGETNAME>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>VistaControlVF.cpp</PATH>
                     <PATHFORMAT>Windows</PATHFORMAT>
                 </FILEREF>
             </GROUP>

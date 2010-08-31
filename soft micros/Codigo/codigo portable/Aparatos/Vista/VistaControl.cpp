@@ -199,10 +199,15 @@ int getVal_ (void * control){
     &propNumLFPFFactory,getDerivada,"dr",setDerivada,0,9999,1
   };
   
-  //SetPoint                              
+  //SetPoint
+  #ifdef VF
+  ADAPTAR_FUNCION_GET_CONTROL(getConfiguracionSetPoint,getSetPointEnRam)
+  ADAPTAR_FUNCION_SET(setConfiguracionSetPoint,setSetPointEnRam)  
+  #else                               
   ADAPTAR_FUNCION_GET_CONTROL(getConfiguracionSetPoint,getConfiguracionSetPoint)
   ADAPTAR_FUNCION_SET(setConfiguracionSetPoint,setConfiguracionSetPoint)
   //ADAPTAR_FUNCION_GET(getDecimales,getDecimales)
+  #endif
   
   const struct ConstructorPropNumLFPV cPropiedadSetPoint={
     &propNumLFPVFactory,getConfiguracionSetPoint,"SP",setConfiguracionSetPoint,-9999,9999,getDecimalesControl 
