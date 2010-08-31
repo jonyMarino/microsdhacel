@@ -378,21 +378,25 @@ const struct FstBoxPointer setPointAut1={
 
 #endif
 
-//#ifdef VF 
+#ifdef VF 
 
 const struct FstBoxPointer Etapas0={
   (const struct ConstructorBox*)&cBoxesEtapas,&VF1,0
 }; 
 
-//struct ConstructorBoxPrincipalVF cBoxPri={
-//      &boxPrincipalVFFactory,							/* funcion que procesa al box*/
-//      &sensor0,      
-//      &msjDisplayInferior,
- //     &msjDisplaySuperior,
- //     &flash,
+const struct FstBoxPointer Vel1={
+  (const struct ConstructorBox*)&cBoxesVel1,&VF1,1
+}; 
 
-//};
-//#else
+struct ConstructorBoxPrincipalVF cBoxPri={
+      &boxPrincipalVFFactory,							/* funcion que procesa al box*/
+      &sensor0,      
+      &msjDisplayInferior,
+      &msjDisplaySuperior,
+      &flash,
+
+};
+#else
 struct ConstructorBoxPrincipalControl cBoxPri={
       &boxPrincipalControlFactory,							/* funcion que procesa al box*/
       &sensor0,      
@@ -402,7 +406,7 @@ struct ConstructorBoxPrincipalControl cBoxPri={
 
 };
 
-//#endif
+#endif
 
 const struct FstBoxPointer principal={
   (const ConstructorBox*)&cBoxPri,NULL,0
@@ -412,6 +416,7 @@ const struct FstBoxPointer principal={
 const struct FstBoxPointer *const opArray[]={
   &principal,
   &Etapas0,
+  &Vel1
   
 };
 
