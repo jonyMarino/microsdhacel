@@ -1,4 +1,4 @@
-#include <hidef.h>      /* common defines and macros */
+ #include <hidef.h>      /* common defines and macros */
 #include "derivative.h"      /* derivative-specific definitions */
 #include "timer_interrupt.h"
 #include "Adc.hpp"
@@ -46,6 +46,9 @@
 #include "AlarmaControl.hpp"
 #include "CoordinadorControladorSintonizador.hpp"
 #include "AutoSintonia.hpp"
+#include "VistaControlVF.hpp"
+#include "configuracionVF.hpp"
+#include "ControlVF.hpp"
 
 void conectarSalidas(void * a);
 void OnTipoSalChange(void * b);
@@ -82,6 +85,23 @@ volatile const ConfiguracionControlPID::ControlConf control_config[CANTIDAD_CANA
    ControlDefaultConf
    #endif
 };
+ 
+volatile const ConfiguracionVF::ConfVF controlVF_config={
+  1,  //nro de etapas inicial
+  {
+  {1000,80,0}, // vel, temp, tiempo de la etapa 1
+  {0,0,0}, // vel, temp, tiempo de la etapa 2
+  {0,0,0}, // vel, temp, tiempo de la etapa 3
+  {0,0,0}, // vel, temp, tiempo de la etapa 4
+  {0,0,0}, // vel, temp, tiempo de la etapa 5
+  {0,0,0}, // vel, temp, tiempo de la etapa 6
+  {0,0,0}, // vel, temp, tiempo de la etapa 7
+  {0,0,0}, // vel, temp, tiempo de la etapa 8
+  {0,0,0}, // vel, temp, tiempo de la etapa 9
+  {0,0,0}, // vel, temp, tiempo de la etapa 10
+  }
+}; 
+ 
   
 volatile const ConfiguracionAlarmas::AlarmConf alar_conf[CANTIDAD_SAL_ALARMA]={
   4,1,
@@ -219,8 +239,11 @@ MessagesOut msjDisplayInferior;
 MessagesOut msjDisplaySuperior; 
 
 const ConfiguracionControlPID configuraControl0(*(ConfiguracionControlPID::ControlConf*)&control_config[0],flash); 
+
+
 //ControlPID control0(sensor0,pwm23,configuraControl0);
 CoordinadorControladorSintonizador control0(sensor0,pwm23,configuraControl0,&msjDisplaySuperior);
+
 
 #if CANTIDAD_CANALES>1 
 const ConfiguracionControlPID configuraControl1(*(ConfiguracionControlPID::ControlConf*)&control_config[1],flash);
@@ -228,8 +251,9 @@ const ConfiguracionControlPID configuraControl1(*(ConfiguracionControlPID::Contr
 CoordinadorControladorSintonizador control1(sensor1,pwm2,configuraControl1,&msjDisplayInferior);
 #endif
 
-
-
+const ConfiguracionVF configuraControlVF(*(ConfiguracionVF::ConfVF*)&controlVF_config,flash);
+ControlVF VF1(sensor0,(*(ControlPID*)(control0.getControl())),configuraControlVF);
+  
 ConfiguracionLazoAlarmas configuracionLazoAlarmas0(*(ConfiguracionLazoAlarmas::LazoAlarmConf*)&lazo_alar_conf[0],flash);
 ConfiguracionAlarmas configuracionAlarma0(*(ConfiguracionAlarmas::AlarmConf*)&alar_conf[0],flash);
 ConfiguracionRetransm configuracionRetrans0(*(ConfiguracionRetransm::RetConf*)&ret_conf[0],flash);
@@ -354,7 +378,21 @@ const struct FstBoxPointer setPointAut1={
 
 #endif
 
+//#ifdef VF 
 
+const struct FstBoxPointer Etapas0={
+  (const struct ConstructorBox*)&cBoxesEtapas,&VF1,0
+}; 
+
+//struct ConstructorBoxPrincipalVF cBoxPri={
+//      &boxPrincipalVFFactory,							/* funcion que procesa al box*/
+//      &sensor0,      
+//      &msjDisplayInferior,
+ //     &msjDisplaySuperior,
+ //     &flash,
+
+//};
+//#else
 struct ConstructorBoxPrincipalControl cBoxPri={
       &boxPrincipalControlFactory,							/* funcion que procesa al box*/
       &sensor0,      
@@ -364,13 +402,20 @@ struct ConstructorBoxPrincipalControl cBoxPri={
 
 };
 
-
+//#endif
 
 const struct FstBoxPointer principal={
   (const ConstructorBox*)&cBoxPri,NULL,0
 };  
 
+#ifdef VF 
+const struct FstBoxPointer *const opArray[]={
+  &principal,
+  &Etapas0,
+  
+};
 
+#else
 const struct FstBoxPointer *const opArray[]={
   &principal,
   &potInst0,
@@ -392,7 +437,7 @@ const struct FstBoxPointer *const opArray[]={
   #endif
 };
 
-
+#endif
 /*const struct BoxList opList ={
   &opArray,
   1,
@@ -726,6 +771,7 @@ void main(void) {
   DiagramaNavegacion d(&opList,&accessList,FrenteDH::getInstancia());
   PE_low_level_init();
  
+ #ifndef VF 
   #if CANTIDAD_CANALES>1  
     BoxPrincipalControl::MostrarGetter((ConstructorPropGetterVisual *)&cPropiedadGetSensor1,&control1); 
   #else
@@ -741,6 +787,7 @@ void main(void) {
   ((ControlPID*)(control1.getControl()))->addOnTipoSalidaListener(cambioTipoSalida);
   control1.addOnControlListener(cambioControl);
   #endif
+ #endif 
  
   for(;;){
     

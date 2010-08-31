@@ -212,8 +212,9 @@ class ControlPID:public Lazo{
     **     para las  OPeraciones de calculo del control
     ** ===================================================================
     */
-    int getSetPointOperativo();
-
+    int getSetPointEnRam();
+    
+    void setSetPointEnRam(int val);
     /*
     ** ===================================================================
     **     Method      :  set_LimInf_SP 
@@ -346,7 +347,7 @@ class ControlPID:public Lazo{
     long sumatoriaIntegral;
   //  struct MethodTimer * timerDesconexion;
     MethodContainer * onTipoSalidaChange;
-    
+    int setPointEnRam;
     
     void actualizarValorControl();
 };
