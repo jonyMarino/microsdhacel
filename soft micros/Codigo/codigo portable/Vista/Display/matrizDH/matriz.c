@@ -28,7 +28,7 @@ const unsigned char Car_Ini[]=	{
 0x77,					// 9 	ok
 0x46,					// : (lo uso como -1) ok
 0x6A,					// ;
-0x3E,					// <
+0x27,					// <
 0x76,					// =
 0x47,					// >
 0x73,					// ?

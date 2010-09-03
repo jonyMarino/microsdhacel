@@ -384,9 +384,11 @@ const struct FstBoxPointer Etapas0={
   (const struct ConstructorBox*)&cBoxesEtapas,&VF1,0
 }; 
 
-const struct FstBoxPointer Vel1={
-  (const struct ConstructorBox*)&cBoxesVel1,&VF1,1
+const struct FstBoxPointer etapaVF1={
+  (const struct ConstructorBox*)&cBoxesVF1,&VF1,1
 }; 
+
+
 
 struct ConstructorBoxPrincipalVF cBoxPri={
       &boxPrincipalVFFactory,							/* funcion que procesa al box*/
@@ -416,7 +418,8 @@ const struct FstBoxPointer principal={
 const struct FstBoxPointer *const opArray[]={
   &principal,
   &Etapas0,
-  &Vel1
+  &etapaVF1,
+  
   
 };
 
