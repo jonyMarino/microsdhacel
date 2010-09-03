@@ -22,7 +22,8 @@
 #include "PropGetterNumericoPV.hpp"
 #include "ControlVF.hpp"
 #include "VistaControlVF.hpp"
-
+#include "BoxLinealVF.hpp"
+#include "BoxLinealVFCondicional.hpp"
 
 #pragma MESSAGE DISABLE C1825          /* Disable warning C5703 "Parameter is not referenced" */
 
@@ -61,8 +62,22 @@
   // Vel
   ADAPTAR_FUNCION_VF_GET(getVelDeEtapa,getVelDeEtapa)
   ADAPTAR_FUNCION_VF_SET(setVelDeEtapa,setVelDeEtapa)
-  const struct ConstructorPropNumVFLFPF cPropiedadVel1={
-    &propNumVFLFPFFactory,getVelDeEtapa,"VEL"," <C/HorA",setVelDeEtapa,0,9999,1
+  const struct ConstructorPropNumVFLFPF cPropiedadVel={
+    &propNumVFLFPFFactory,getVelDeEtapa,"VEL"," <C/min",setVelDeEtapa,0,9999,1
+  };
+  
+  // temperatura
+  ADAPTAR_FUNCION_VF_GET(getTempDeEtapa,getTempDeEtapa)
+  ADAPTAR_FUNCION_VF_SET(setTempDeEtapa,setTempDeEtapa)
+  const struct ConstructorPropNumVFLFPF cPropiedadTemp={
+    &propNumVFLFPFFactory,getTempDeEtapa,"tEmPErtUrA"," <C",setTempDeEtapa,0,9999,0
+  };
+  
+  // tiempo
+  ADAPTAR_FUNCION_VF_GET(getTiempoDeEtapa,getTiempoDeEtapa)
+  ADAPTAR_FUNCION_VF_SET(setTiempoDeEtapa,setTiempoDeEtapa)
+  const struct ConstructorPropNumVFLFPF cPropiedadTiempo={
+    &propNumVFLFPFFactory,getTiempoDeEtapa,"tiEmPo"," min",setTiempoDeEtapa,0,9999,0
   };
  /***********************/
  /****** BOXES  *********/
@@ -74,7 +89,32 @@ const struct ConstructorBoxPropiedad cBoxesEtapas={
 			(const struct ConstructorPropGetterVisual*)&cPropiedadEtapas
 };  
 
- const struct ConstructorBoxPropiedadVF cBoxesVel1={
+ const struct ConstructorBoxPropiedadVF cBoxesVel={
       &boxPropiedadVFFactory,	
-			(const struct ConstructorPropGetterVisualVF*)&cPropiedadVel1
+			(const struct ConstructorPropGetterVisualVF*)&cPropiedadVel
 };  
+
+const struct ConstructorBoxPropiedadVF cBoxesTemp={
+      &boxPropiedadVFFactory,	
+			(const struct ConstructorPropGetterVisualVF*)&cPropiedadTemp
+};  
+   
+const struct ConstructorBoxPropiedadVF cBoxesTiempo={
+      &boxPropiedadVFFactory,	
+			(const struct ConstructorPropGetterVisualVF*)&cPropiedadTiempo
+};  
+ 
+
+const struct ConstructorPropGetterVisualVF *const propVF1[]=	{
+  			  
+  			  (const struct ConstructorPropGetterVisualVF*)&cPropiedadVel,
+  			  (const struct ConstructorPropGetterVisualVF*)&cPropiedadTemp,
+  			  (const struct ConstructorPropGetterVisualVF*)&cPropiedadTiempo,
+  			  NULL
+};
+
+const struct ConstructorBoxLinealVF cBoxesVF1={
+        &boxLinealVFFactory,						       
+  		  propVF1,
+  		  NULL						 //Proximo box	
+};
