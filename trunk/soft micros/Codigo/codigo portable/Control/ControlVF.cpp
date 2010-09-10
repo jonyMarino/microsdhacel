@@ -5,11 +5,13 @@
 
 void procesarVF(void * a);
 
-ControlVF::ControlVF(Sensor& sensor,ControlPID& control,const ConfiguracionControlVF & configuracion):_sensor(sensor),_control(control),_configuracion(configuracion){
- 
+ControlVF::ControlVF(Sensor& sensor,ControlPID& control,const ConfiguracionControlVF & configuracion,MessagesOut* msj):_sensor(sensor),_control(control),_configuracion(configuracion),msjOutVF(msj){
+  estado=RAMPA;
+  modo=FIN;
+  nroDeEtapaActual=1;
+  minutos=0;
   mOnTimeVF.pmethod=&procesarVF;
   mOnTimeVF.obj=this;
-  
   timerVF = new RlxMTimer(TIEMPO_VF,mOnTimeVF);
   
 }
@@ -33,11 +35,11 @@ void ControlVF::setModoVF(ModoVF mod){
     
 }
 
-unsigned char ControlVF::getNroDeEtapa(){
+int ControlVF::getNroDeEtapa(){
   return nroDeEtapaActual;
 }
 
-void ControlVF::setNroDeEtapa(unsigned char val){
+void ControlVF::setNroDeEtapa(int val){
   nroDeEtapaActual=val;
 }
 
@@ -53,35 +55,35 @@ ControlPID * ControlVF::getControlVF(){
   return &_control;
 }
 
-unsigned char ControlVF::getCantidadDeEtapas(){
+int ControlVF::getCantidadDeEtapas(){
   return _configuracion.getCantidadDeEtapas();
 }
 
-void ControlVF::setCantidadDeEtapas(unsigned char val){
+void ControlVF::setCantidadDeEtapas(int val){
     _configuracion.setCantidadDeEtapas(val);
 }
 
-unsigned char ControlVF::getVelDeEtapa(unsigned char nroEtp){
+int ControlVF::getVelDeEtapa(int nroEtp){
   return _configuracion.getVelDeEtapa(nroEtp);
 }
 
-void ControlVF::setVelDeEtapa(unsigned char nroEtp,unsigned char val){
+void ControlVF::setVelDeEtapa(int nroEtp,int val){
   _configuracion.setVelDeEtapa(nroEtp,val);
 }
 
-unsigned char ControlVF::getTempDeEtapa(unsigned char nroEtp){
+int ControlVF::getTempDeEtapa(int nroEtp){
   return _configuracion.getTempDeEtapa(nroEtp);
 }
 
-void ControlVF::setTempDeEtapa(unsigned char nroEtp,unsigned char val){
+void ControlVF::setTempDeEtapa(int nroEtp,int val){
     _configuracion.setTempDeEtapa(nroEtp,val);
 }
 
-unsigned char ControlVF::getTiempoDeEtapa(unsigned char nroEtp){
+int ControlVF::getTiempoDeEtapa(int nroEtp){
   return _configuracion.getTiempoDeEtapa(nroEtp);
 }
 
-void ControlVF::setTiempoDeEtapa(unsigned char nroEtp,unsigned char val){
+void ControlVF::setTiempoDeEtapa(int nroEtp,int val){
    _configuracion.setTiempoDeEtapa(nroEtp,val);
 }
 
@@ -100,6 +102,80 @@ void ControlVF::setMinutos(word val){
 }
 
 
+void ControlVF::procesaTeclasVF(uchar tecla){
+  if(tecla == 'u')
+    setModoVF(RUN);
+  if(tecla == 'd')
+     nroDeEtapaActual++;
+}
+
+
+void ControlVF::procesCartelesVF(){
+      
+      if(getModoVF()==RUN){
+        
+        if(getEstadoVF()==RAMPA){
+          if(msj_VF){
+              msjOutVF->deleteMessage(msj_VF);
+              msj_VF = NULL;
+            }
+            mensaje[0]='r';
+            mensaje[1]='A';
+            mensaje[2]='m';
+            mensaje[3]='P';
+            mensaje[4]='A';  
+            
+            mensaje[5]=(char)((getNroDeEtapa())+0x30);
+            mensaje[6]='\0';
+            if(!msj_VF)
+              msj_VF = msjOutVF->addMessage(mensaje);
+       
+        }else if(getEstadoVF()==MESETA) {
+        
+            if(msj_VF){ 
+              msjOutVF->deleteMessage(msj_VF);
+               msj_VF = NULL; 
+            }
+            mensaje[0]='m';
+            mensaje[1]='E';
+            mensaje[2]='S';
+            mensaje[3]='E';
+            mensaje[4]='t';
+            mensaje[5]='A';
+            
+            mensaje[6]=(char)((getNroDeEtapa())+0x30);  
+            mensaje[7]='\0';
+       
+        if(!msj_VF)
+         msj_VF = msjOutVF->addMessage(mensaje);
+      }   
+     }else {
+            if(msj_VF){ 
+              msjOutVF->deleteMessage(msj_VF);
+               msj_VF = NULL; 
+            }
+            mensaje[0]='F';
+            mensaje[1]='i';
+            mensaje[2]='n';
+            mensaje[3]='\0';
+       
+        if(!msj_VF)
+         msj_VF = msjOutVF->addMessage(mensaje);
+      }    
+    
+}
+
+
+int Te_MES_ANT(ControlVF *_self){
+ ControlVF * self=_self; 
+  
+  if((self->getNroDeEtapa())>1){
+      return (self->getTempDeEtapa((self->getNroDeEtapa())-1)); 
+   }else{
+      return 0;
+   }
+}
+
 void procesarVF(void * a){
  char Kdec;
  long tempActVF;
@@ -107,8 +183,10 @@ void procesarVF(void * a){
  static dword rampa_mestaTime=0;
  ControlVF * self=(ControlVF*)a; 
  
+  self->procesCartelesVF();
+ 
   if(self->getModoVF() == RUN){   //estoy corriendo?
-    
+ 
    rampa_mestaTime++;
 
 /* calculo de la temperatura de la rampa cada 1 segundos y             */
@@ -150,6 +228,7 @@ void procesarVF(void * a){
           tempActVF=Te_MES(self)+MaxMin;                                           //limito
           SET_SP(self,tempActVF);
         }else
+          SET_SP(self,tempActVF); 
           return;         //retorno por que no llegue al limite max
         
        }
@@ -178,6 +257,7 @@ void procesarVF(void * a){
           tempActVF=Te_MES(self)-MaxMin;
           SET_SP(self,tempActVF);
         }else
+          SET_SP(self,tempActVF); 
           return;                                                             //retorno por que no llegue al limite max
         
        }
@@ -218,5 +298,7 @@ void procesarVF(void * a){
   tempActVF=0;
   SET_SP(self,tempActVF);   
 } 
+
+
 }
 

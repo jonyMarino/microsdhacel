@@ -12,6 +12,7 @@
 #include "BoxLineal.hpp"
 #include "BoxSaltoCondicional.hpp"
 #include "BoxPropiedadEntradaCondicional.hpp"
+#include "BoxSaltoVFCondicional.hpp"
 #include "BoxLinealCondicional.hpp"
 #include "PropDescripcionVariable.hpp"
 #include "PropDescripcionVariablePV.hpp"
@@ -118,3 +119,131 @@ const struct ConstructorBoxLinealVF cBoxesVF1={
   		  propVF1,
   		  NULL						 //Proximo box	
 };
+
+
+uchar nextVFProp2 (void * obj){
+  if(((ControlVF*)obj)->getCantidadDeEtapas() > 1)
+    return 0;
+  else
+    return 3;
+}
+
+const struct ConstructorBoxLinealVFCondicional cBoxesVFcondicional2={
+        &boxLinealVFCondicionalFactory,						       
+  		  propVF1,
+  		  NULL,						 //Proximo box
+  		  nextVFProp2	
+}; 
+
+uchar nextVFProp3 (void * obj){
+  if(((ControlVF*)obj)->getCantidadDeEtapas() > 2)
+    return 0;
+  else
+    return 3;
+}
+
+const struct ConstructorBoxLinealVFCondicional cBoxesVFcondicional3={
+        &boxLinealVFCondicionalFactory,						       
+  		  propVF1,
+  		  NULL,						 //Proximo box
+  		  nextVFProp3	
+}; 
+
+uchar nextVFProp4 (void * obj){
+  if(((ControlVF*)obj)->getCantidadDeEtapas() > 3)
+    return 0;
+  else
+    return 3;
+}
+
+const struct ConstructorBoxLinealVFCondicional cBoxesVFcondicional4={
+        &boxLinealVFCondicionalFactory,						       
+  		  propVF1,
+  		  NULL,						 //Proximo box
+  		  nextVFProp4	
+}; 
+
+uchar nextVFProp5 (void * obj){
+  if(((ControlVF*)obj)->getCantidadDeEtapas() > 4)
+    return 0;
+  else
+    return 3;
+}
+
+const struct ConstructorBoxLinealVFCondicional cBoxesVFcondicional5={
+        &boxLinealVFCondicionalFactory,						       
+  		  propVF1,
+  		  NULL,						 //Proximo box
+  		  nextVFProp5	
+}; 
+
+uchar nextVFProp6(void * obj){
+  if(((ControlVF*)obj)->getCantidadDeEtapas() > 5)
+    return 0;
+  else
+    return 3;
+}
+
+const struct ConstructorBoxLinealVFCondicional cBoxesVFcondicional6={
+        &boxLinealVFCondicionalFactory,						       
+  		  propVF1,
+  		  NULL,						 //Proximo box
+  		  nextVFProp6	
+}; 
+
+uchar nextVFProp7 (void * obj){
+  if(((ControlVF*)obj)->getCantidadDeEtapas() > 6)
+    return 0;
+  else
+    return 3;
+}
+
+const struct ConstructorBoxLinealVFCondicional cBoxesVFcondicional7={
+        &boxLinealVFCondicionalFactory,						       
+  		  propVF1,
+  		  NULL,						 //Proximo box
+  		  nextVFProp7	
+}; 
+
+uchar nextVFProp8 (void * obj){
+  if(((ControlVF*)obj)->getCantidadDeEtapas() > 7)
+    return 0;
+  else
+    return 3;
+}
+
+const struct ConstructorBoxLinealVFCondicional cBoxesVFcondicional8={
+        &boxLinealVFCondicionalFactory,						       
+  		  propVF1,
+  		  NULL,						 //Proximo box
+  		  nextVFProp8	
+}; 
+
+uchar nextVFProp9 (void * obj){
+  if(((ControlVF*)obj)->getCantidadDeEtapas() > 8)
+    return 0;
+  else
+    return 3;
+}
+
+const struct ConstructorBoxLinealVFCondicional cBoxesVFcondicional9={
+        &boxLinealVFCondicionalFactory,						       
+  		  propVF1,
+  		  NULL,						 //Proximo box
+  		  nextVFProp9	
+}; 
+
+uchar nextVFProp10 (void * obj){
+  if(((ControlVF*)obj)->getCantidadDeEtapas() > 9)
+    return 0;
+  else
+    return 3;
+}
+
+const struct ConstructorBoxLinealVFCondicional cBoxesVFcondicional10={
+        &boxLinealVFCondicionalFactory,						       
+  		  propVF1,
+  		  NULL,						 //Proximo box
+  		  nextVFProp10	
+}; 
+
