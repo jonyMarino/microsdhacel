@@ -26,9 +26,6 @@
 #define Te_MES(self) \
   self->getTempDeEtapa((self->getNroDeEtapa())) \
     
-#define Te_MES_ANT(self) \
-  self->getTempDeEtapa((self->getNroDeEtapa())-1) \
-  
 #define Ve_RMP(self) \
   self->getVelDeEtapa((self->getNroDeEtapa())) \
   
@@ -51,14 +48,14 @@
       
 class ConfiguracionControlVF{
   public:
-    virtual unsigned char getCantidadDeEtapas()=0;
-    virtual void setCantidadDeEtapas(unsigned char val)=0;
-    virtual unsigned char getVelDeEtapa(unsigned char nroEtp)=0;
-    virtual void setVelDeEtapa(unsigned char nroEtp,unsigned char val)=0;
-    virtual unsigned char getTempDeEtapa(unsigned char nroEtp)=0;
-    virtual void setTempDeEtapa(unsigned char nroEtp,unsigned char val)=0;
-    virtual unsigned char getTiempoDeEtapa(unsigned char nroEtp)=0;
-    virtual void setTiempoDeEtapa(unsigned char nroEtp,unsigned char val)=0;
+    virtual int getCantidadDeEtapas()=0;
+    virtual void setCantidadDeEtapas(int val)=0;
+    virtual int getVelDeEtapa(int nroEtp)=0;
+    virtual void setVelDeEtapa(int nroEtp,int val)=0;
+    virtual int getTempDeEtapa(int nroEtp)=0;
+    virtual void setTempDeEtapa(int nroEtp,int val)=0;
+    virtual int getTiempoDeEtapa(int nroEtp)=0;
+    virtual void setTiempoDeEtapa(int nroEtp,int val)=0;
     friend class ControlVF;
 };    
 
@@ -67,7 +64,7 @@ class ConfiguracionControlVF{
 class ControlVF{
   public:
     
-    ControlVF(Sensor& sensor,ControlPID& control,const ConfiguracionControlVF & configuracion);
+    ControlVF(Sensor& sensor,ControlPID& control,const ConfiguracionControlVF & configuracion,MessagesOut* msj);
    
     
     EstadoVF getEstadoVF();
@@ -78,9 +75,9 @@ class ControlVF{
     
     void setModoVF(ModoVF mod);
     
-    unsigned char getNroDeEtapa();
+    int getNroDeEtapa();
      
-    void setNroDeEtapa(unsigned char val); 
+    void setNroDeEtapa(int val); 
     
     void setSetPointVF(int val);
     
@@ -88,21 +85,25 @@ class ControlVF{
     
     ControlPID * getControlVF();
     
-    unsigned char getCantidadDeEtapas();
+    int getCantidadDeEtapas();
          
-    void setCantidadDeEtapas(unsigned char val);
+    void setCantidadDeEtapas(int val);
          
-    unsigned char getVelDeEtapa(unsigned char nroEtp);
+    int getVelDeEtapa(int nroEtp);
     
-    void setVelDeEtapa(unsigned char nroEtp,unsigned char val);
+    void setVelDeEtapa(int nroEtp,int val);
     
-    unsigned char getTempDeEtapa(unsigned char nroEtp);
+    int getTempDeEtapa(int nroEtp);
     
-    void setTempDeEtapa(unsigned char nroEtp,unsigned char val);
+    void setTempDeEtapa(int nroEtp,int val);
    
-    unsigned char getTiempoDeEtapa(unsigned char nroEtp);
+    int getTiempoDeEtapa(int nroEtp);
    
-    void setTiempoDeEtapa(unsigned char nroEtp,unsigned char val);
+    void setTiempoDeEtapa(int nroEtp,int val);
+    
+    void procesaTeclasVF(uchar tecla);
+    
+    void procesCartelesVF();
    
     inline MessagesOut::Message getMensajeVF(){
       return  msj_VF;
@@ -125,7 +126,7 @@ class ControlVF{
     EstadoVF estado;
     ModoVF modo;
     word minutos;
-    unsigned char nroDeEtapaActual;
+    int nroDeEtapaActual;
     RlxMTimer * timerVF;
     struct Method mOnTimeVF;
     MessagesOut * msjOutVF;

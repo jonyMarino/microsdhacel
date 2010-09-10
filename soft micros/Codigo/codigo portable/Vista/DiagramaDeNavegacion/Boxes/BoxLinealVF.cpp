@@ -44,7 +44,8 @@ BoxLinealVF::~BoxLinealVF(){
 void BoxLinealVF::mostrarPropiedad(void * obj,int numObjeto){
 
   PropiedadIncrementableVF* propiedadActual = (PropiedadIncrementableVF*)&((constructor->propiedades[numProp])->getPropiedad(obj,numObjeto)); 
-  setPropiedad(*propiedadActual,TRUE);
+  
+   setPropiedad(*propiedadActual,TRUE);
 }
 
 /*

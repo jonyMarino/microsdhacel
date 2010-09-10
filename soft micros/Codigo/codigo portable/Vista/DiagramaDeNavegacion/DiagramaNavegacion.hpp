@@ -21,6 +21,7 @@ class DiagramaNavegacion{
     DiagramaNavegacion(const struct BoxList *BoxesOp,const struct Array *accesos,FrenteCustom * frente);
     void procesar(uchar tecla);
     void refresh(void);
+    bool isBoxPrincipal();
   private:
     FrenteCustom * frente;
     struct Method metodoParaTimer;

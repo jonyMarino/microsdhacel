@@ -10,8 +10,13 @@ struct ConstructorBoxLinealVFCondicional{
 
 class BoxLinealVFCondicional:public BoxLinealVF{
   public:
-    BoxLinealVFCondicional(struct ConstructorBoxLinealVFCondicional * constructor,void*obj,uchar numObjeto);  
+    BoxLinealVFCondicional(struct ConstructorBoxLinealVFCondicional * _constructor,void*_obj,uchar _numObjeto);  
     ~BoxLinealVFCondicional();   
+    
+   private: 
+    struct ConstructorBoxLinealVFCondicional * constructor;
+    void*obj;
+    uchar numObj; 
     
 };
 

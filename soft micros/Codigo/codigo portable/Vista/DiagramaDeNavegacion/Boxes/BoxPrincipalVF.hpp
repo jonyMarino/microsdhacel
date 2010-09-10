@@ -18,10 +18,23 @@ class BoxPrincipalVF:public BoxPrincipal{
     BoxPrincipalVF(struct ConstructorBoxPrincipalVF * constructor);
     virtual ~BoxPrincipalVF();
     virtual Box * procesarTecla(uchar tecla,TEstadoBox& estado);
-  
+    static void MostrarGetter(const ConstructorPropGetterVisual *_getter,void * obj);
+    static void MostrarProp( const ConstructorPropGetterVisual* _prop, void * obj);
+    static void Refresh(void);
+    static void setRefresh(void);
+    
   protected:
+    
+    static bool priIsProp;       // TRUE: es propiedad, FALSE: es getter
+    static bool propCambio;
+    static bool propRefres;
+    FlagTimer timerProp;
+    FlagTimer timerGrab;
+    FlagTimer timerRefresh;
+    FlagTimer timerMsjDysSup;
+    uchar par_seconds;
+    static bool isPropGeter;
     static PropGetterVisual * parametroAMostrar;
-    static bool priIsProp;    
   
     
 };

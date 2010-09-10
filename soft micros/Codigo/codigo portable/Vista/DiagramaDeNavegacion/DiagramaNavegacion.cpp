@@ -82,6 +82,14 @@ void DiagramaNavegacion::showCompilacion(void*self){
 **    Description :    Vuelve al Box Principal
 ** =====================================================================
 */
+
+bool DiagramaNavegacion::isBoxPrincipal(){
+  if(accessCount==0&&boxListCount==1&&listCount==0)
+    return TRUE;
+  else
+    return FALSE;  
+}
+
 void DiagramaNavegacion::goPrincipal(){
   struct FstBoxPointer * fb;
   listCount=0;

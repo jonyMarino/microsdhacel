@@ -87,11 +87,11 @@ volatile const ConfiguracionControlPID::ControlConf control_config[CANTIDAD_CANA
 };
  
 volatile const ConfiguracionVF::ConfVF controlVF_config={
-  1,  //nro de etapas inicial
+  3,  //nro de etapas inicial
   {
-  {1000,80,0}, // vel, temp, tiempo de la etapa 1
-  {0,0,0}, // vel, temp, tiempo de la etapa 2
-  {0,0,0}, // vel, temp, tiempo de la etapa 3
+  {300,120,1}, // vel, temp, tiempo de la etapa 1
+  {200,20,1}, // vel, temp, tiempo de la etapa 2
+  {500,150,1}, // vel, temp, tiempo de la etapa 3
   {0,0,0}, // vel, temp, tiempo de la etapa 4
   {0,0,0}, // vel, temp, tiempo de la etapa 5
   {0,0,0}, // vel, temp, tiempo de la etapa 6
@@ -252,7 +252,7 @@ CoordinadorControladorSintonizador control1(sensor1,pwm2,configuraControl1,&msjD
 #endif
 
 const ConfiguracionVF configuraControlVF(*(ConfiguracionVF::ConfVF*)&controlVF_config,flash);
-ControlVF VF1(sensor0,(*(ControlPID*)(control0.getControl())),configuraControlVF);
+ControlVF VF1(sensor0,(*(ControlPID*)(control0.getControl())),configuraControlVF,&msjDisplayInferior);
   
 ConfiguracionLazoAlarmas configuracionLazoAlarmas0(*(ConfiguracionLazoAlarmas::LazoAlarmConf*)&lazo_alar_conf[0],flash);
 ConfiguracionAlarmas configuracionAlarma0(*(ConfiguracionAlarmas::AlarmConf*)&alar_conf[0],flash);
@@ -378,7 +378,7 @@ const struct FstBoxPointer setPointAut1={
 
 #endif
 
-#ifdef VF 
+
 
 const struct FstBoxPointer Etapas0={
   (const struct ConstructorBox*)&cBoxesEtapas,&VF1,0
@@ -388,7 +388,41 @@ const struct FstBoxPointer etapaVF1={
   (const struct ConstructorBox*)&cBoxesVF1,&VF1,1
 }; 
 
+const struct FstBoxPointer etapaVF2={
+  (const struct ConstructorBox*)&cBoxesVFcondicional2,&VF1,2
+}; 
 
+const struct FstBoxPointer etapaVF3={
+  (const struct ConstructorBox*)&cBoxesVFcondicional3,&VF1,3
+}; 
+
+const struct FstBoxPointer etapaVF4={
+  (const struct ConstructorBox*)&cBoxesVFcondicional4,&VF1,4
+}; 
+
+const struct FstBoxPointer etapaVF5={
+  (const struct ConstructorBox*)&cBoxesVFcondicional5,&VF1,5
+}; 
+
+const struct FstBoxPointer etapaVF6={
+  (const struct ConstructorBox*)&cBoxesVFcondicional6,&VF1,6
+}; 
+
+const struct FstBoxPointer etapaVF7={
+  (const struct ConstructorBox*)&cBoxesVFcondicional7,&VF1,7
+}; 
+
+const struct FstBoxPointer etapaVF8={
+  (const struct ConstructorBox*)&cBoxesVFcondicional8,&VF1,8
+}; 
+
+const struct FstBoxPointer etapaVF9={
+  (const struct ConstructorBox*)&cBoxesVFcondicional9,&VF1,9
+}; 
+
+const struct FstBoxPointer etapaVF10={
+  (const struct ConstructorBox*)&cBoxesVFcondicional10,&VF1,10
+}; 
 
 struct ConstructorBoxPrincipalVF cBoxPri={
       &boxPrincipalVFFactory,							/* funcion que procesa al box*/
@@ -398,54 +432,28 @@ struct ConstructorBoxPrincipalVF cBoxPri={
       &flash,
 
 };
-#else
-struct ConstructorBoxPrincipalControl cBoxPri={
-      &boxPrincipalControlFactory,							/* funcion que procesa al box*/
-      &sensor0,      
-      &msjDisplayInferior,
-      &msjDisplaySuperior,
-      &flash,
-
-};
-
-#endif
 
 const struct FstBoxPointer principal={
   (const ConstructorBox*)&cBoxPri,NULL,0
 };  
 
-#ifdef VF 
+
 const struct FstBoxPointer *const opArray[]={
   &principal,
   &Etapas0,
   &etapaVF1,
-  
-  
+  &etapaVF2,
+  &etapaVF3,
+  &etapaVF4,
+  &etapaVF5,
+  &etapaVF6,
+  &etapaVF7,
+  &etapaVF8,
+  &etapaVF9,
+  &etapaVF10,
 };
 
-#else
-const struct FstBoxPointer *const opArray[]={
-  &principal,
-  &potInst0,
-  &potMan0,
-  &setPoint0,
-  &setPointAut0,
-  #if CANTIDAD_CANALES>1
-  &potInst1, 
-  &potMan1,
-  &setPoint1,
-  &setPointAut1,
-  #endif
-  &SPal0,
-  #if CANTIDAD_CANALES>1 || CANTIDAD_SAL_ALARMA>1
-  &SPal1,
-  #endif
-  #if CANTIDAD_SAL_ALARMA>2
-  &SPal2,
-  #endif
-};
 
-#endif
 /*const struct BoxList opList ={
   &opArray,
   1,
@@ -547,15 +555,13 @@ static const struct FstBoxPointer *const tunArray[]={
   
   &reset0,
   &periodo0,
-  &autoSintonia0,
   &histeresisControl0,
   &integralControl0,
   &derivadaControl0,
   &histAlarma0,
   #if CANTIDAD_CANALES>1 
   &reset1,
-  &periodo1, 
-  &autoSintonia1,
+  &periodo1,
   &histeresisControl1,
   &integralControl1,
   &derivadaControl1,
@@ -740,9 +746,9 @@ static const NEW_BOX_LIST(lim,limArray,"LimitES");
 // Acceso comun
 const struct BoxList *const boxListArray[]={
   &tun,
-  &cal,
-  &set,
-  &lim
+  //&cal,
+  //&set,
+  //&lim
 };
 
 const NEW_ACCESS(accesoComun,boxListArray,"Cod",(const int*)&codigo);
@@ -779,13 +785,9 @@ void main(void) {
   DiagramaNavegacion d(&opList,&accessList,FrenteDH::getInstancia());
   PE_low_level_init();
  
- #ifndef VF 
-  #if CANTIDAD_CANALES>1  
-    BoxPrincipalControl::MostrarGetter((ConstructorPropGetterVisual *)&cPropiedadGetSensor1,&control1); 
-  #else
-    BoxPrincipalControl::MostrarProp((ConstructorPropGetterVisual *)&cPropiedadSetPoint,&control0);
-  #endif
+ 
   
+ #ifndef VF 
   #if CANTIDAD_CANALES==1
    ((ControlPID*)(control0.getControl()))->addOnTipoSalidaListener(cambioTipoSalida);
    control0.addOnControlListener(cambioControl);
@@ -798,10 +800,12 @@ void main(void) {
  #endif 
  
   for(;;){
-    
+   // BoxPrincipalVF::MostrarGetter((ConstructorPropGetterVisual *)&cPropiedadSetPoint,&control0);
     byte tecla = FrenteDH::getInstancia()->getTecla();
     termometro.mainLoop();
     d.procesar(tecla);
+    if(d.isBoxPrincipal())  
+      VF1.procesaTeclasVF(tecla);
    
    #if CANTIDAD_CANALES == 1 
     sensor0.checkADC();
