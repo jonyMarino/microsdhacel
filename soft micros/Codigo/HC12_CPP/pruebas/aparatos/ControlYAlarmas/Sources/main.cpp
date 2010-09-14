@@ -218,12 +218,12 @@ PWMTimer pwm4(flash,confPWM[3],7);  // pwm alarma 3 o si es de 2 canales alarma 
 MessagesOut msjDisplayInferior; 
 MessagesOut msjDisplaySuperior; 
 
-const ConfiguracionControlPID configuraControl0(*(ConfiguracionControlPID::ControlConf*)&control_config[0],flash); 
+const ConfiguracionControlPID configuraControl0(*(ConfiguracionControlPID::ControlConf*)&control_config[0],NULL,flash); 
 //ControlPID control0(sensor0,pwm23,configuraControl0);
 CoordinadorControladorSintonizador control0(sensor0,pwm23,configuraControl0,&msjDisplaySuperior);
 
 #if CANTIDAD_CANALES>1 
-const ConfiguracionControlPID configuraControl1(*(ConfiguracionControlPID::ControlConf*)&control_config[1],flash);
+const ConfiguracionControlPID configuraControl1(*(ConfiguracionControlPID::ControlConf*)&control_config[1],NULL,flash);
 //ControlPID control1(sensor1,pwm2,configuraControl1);
 CoordinadorControladorSintonizador control1(sensor1,pwm2,configuraControl1,&msjDisplayInferior);
 #endif

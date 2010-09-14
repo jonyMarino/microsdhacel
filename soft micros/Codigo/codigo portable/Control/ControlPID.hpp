@@ -32,8 +32,8 @@
   1700,														\
   0,															\
   0,														  \
-  /*CNTR_ONOFF*/0,											\
-	/*_CAL*/0,														\
+  0,				        							\
+	0,								  						\
 	0,															\
 	0,															\
 	0,															\
@@ -41,6 +41,23 @@
 	0 															\
 }																	\
 
+class SetPoint{
+  public:
+    inline  SetPoint(int val){
+     setPointEnRam=val; 
+    }
+    
+    inline int getVal(){
+      return  setPointEnRam;
+    }
+    
+    inline void setVal(int val){
+      setPointEnRam=val;
+    }
+  private:
+    int setPointEnRam;
+  
+}; 
     
     
 class ConfiguracionControl{
@@ -69,6 +86,7 @@ class ConfiguracionControl{
     virtual void setLimiteSuperiorPotencia(int val)=0;
     virtual int getPotenciaManual()=0;
     virtual void setPotenciaManual(int val)=0;
+    
     friend class ControlPID;
 };    
 
@@ -212,9 +230,7 @@ class ControlPID:public Lazo{
     **     para las  OPeraciones de calculo del control
     ** ===================================================================
     */
-    int getSetPointEnRam();
-    
-    void setSetPointEnRam(int val);
+ 
     /*
     ** ===================================================================
     **     Method      :  set_LimInf_SP 
@@ -347,7 +363,7 @@ class ControlPID:public Lazo{
     long sumatoriaIntegral;
   //  struct MethodTimer * timerDesconexion;
     MethodContainer * onTipoSalidaChange;
-    int setPointEnRam;
+    //int setPointEnRam;
     
     void actualizarValorControl();
 };

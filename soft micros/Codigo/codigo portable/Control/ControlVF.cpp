@@ -5,7 +5,7 @@
 
 void procesarVF(void * a);
 
-ControlVF::ControlVF(Sensor& sensor,ControlPID& control,const ConfiguracionControlVF & configuracion,MessagesOut* msj):_sensor(sensor),_control(control),_configuracion(configuracion),msjOutVF(msj){
+ControlVF::ControlVF(Sensor& sensor,SetPoint& setPoint,const ConfiguracionControlVF & configuracion,MessagesOut* msj):_sensor(sensor),_setPoint(setPoint),_configuracion(configuracion),msjOutVF(msj){
   estado=RAMPA;
   modo=FIN;
   nroDeEtapaActual=1;
@@ -44,15 +44,16 @@ void ControlVF::setNroDeEtapa(int val){
 }
 
 void ControlVF::setSetPointVF(int val){
-  _control.setSetPointEnRam(val);
+  _setPoint.setVal(val);
+}
+
+
+int  ControlVF::getSetPointVF(){
+  return  _setPoint.getVal();
 }
 
 const ConfiguracionControlVF* ControlVF::getConfiguracionVF(){
   return &_configuracion;
-}
-
-ControlPID * ControlVF::getControlVF(){
-  return &_control;
 }
 
 int ControlVF::getCantidadDeEtapas(){
@@ -166,6 +167,14 @@ void ControlVF::procesCartelesVF(){
 }
 
 
+
+
+uchar ControlVF::getDecimales(){
+  return _sensor.getDecimales();
+}
+
+
+
 int Te_MES_ANT(ControlVF *_self){
  ControlVF * self=_self; 
   
@@ -197,7 +206,7 @@ void procesarVF(void * a){
   
    if(self->getEstadoVF() == RAMPA) {                                                     //si, es rampa?
     
-      if(((self->getControlVF())->getDecimales()) == 0)                                             //si, pongo decimales
+      if((self->getDecimales()) == 0)                                             //si, pongo decimales
         Kdec = 10;
       else
         Kdec = 1;

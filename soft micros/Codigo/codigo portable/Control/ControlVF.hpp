@@ -2,6 +2,7 @@
 #define _CONTROL_VF_HPP
 
 #include "ControlPID.hpp"
+#include "SensorTermoPT100.hpp"
 #include "LazoControl.hpp"
 #include "SalidaBanda.hpp"
 #include "ValorControlProporcional.hpp"
@@ -33,7 +34,7 @@
   self->getTiempoDeEtapa((self->getNroDeEtapa())) \
 
 #define SET_SP(self,val) \
-  (self->getControlVF())->setSetPointEnRam(val) \
+  self->setSetPointVF(val) \
 
     
  typedef enum{
@@ -64,7 +65,7 @@ class ConfiguracionControlVF{
 class ControlVF{
   public:
     
-    ControlVF(Sensor& sensor,ControlPID& control,const ConfiguracionControlVF & configuracion,MessagesOut* msj);
+    ControlVF(Sensor& sensor,SetPoint& setPoint,const ConfiguracionControlVF & configuracion,MessagesOut* msj);
    
     
     EstadoVF getEstadoVF();
@@ -81,9 +82,9 @@ class ControlVF{
     
     void setSetPointVF(int val);
     
-    const ConfiguracionControlVF* getConfiguracionVF();
+    int getSetPointVF();
     
-    ControlPID * getControlVF();
+    const ConfiguracionControlVF* getConfiguracionVF();
     
     int getCantidadDeEtapas();
          
@@ -117,10 +118,13 @@ class ControlVF{
     word getMinutos();
     
     void setMinutos(word val); 
+    
+    uchar getDecimales();
+    
      
   private:
     
-    ControlPID &_control;
+    SetPoint &_setPoint;
     Sensor& _sensor;
     const ConfiguracionControlVF & _configuracion;
     EstadoVF estado;
