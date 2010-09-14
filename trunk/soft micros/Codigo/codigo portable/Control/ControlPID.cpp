@@ -33,7 +33,7 @@ ControlPID::ControlPID(Sensor& _sensor,ISalida& _salida,const ConfiguracionContr
   sumatoriaIntegral=0;
   bufferDerivada=0;
   onTipoSalidaChange=NULL;
-  setPointEnRam=0;
+  //setPointEnRam=0;
   //MedidorFunciones_setDeltaTiempo(_Sensor_getMeasurePeriod(sensor)); 
   
  /* if(time_desc!=0){    
@@ -125,11 +125,11 @@ void ControlPID::onNuevoValorSensor(){
 ** ===================================================================
 */
 void ControlPID::actualizarValorControl(){
-  #ifdef VF
-  int sp= getSetPointEnRam();
-  #else
+  //#ifdef VF
+  //int sp= getSetPointEnRam();
+  //#else
   int sp= getConfiguracionSetPoint();
-  #endif
+  //#endif
   int vp= getSensor().getVal();
   int h= getHisteresis(); 
   int res= getReset(); 
@@ -325,13 +325,7 @@ void ControlPID::setConfiguracionSetPoint(int val){
   configuracion.setSetPoint(val);
 }
 
-int ControlPID::getSetPointEnRam(){
-  return setPointEnRam;
-}
 
-void ControlPID::setSetPointEnRam(int val){
-  setPointEnRam=val;
-}
 /*
 ** ===================================================================
 **     Method      :  set_LimInf_SP 
@@ -341,25 +335,19 @@ void ControlPID::setSetPointEnRam(int val){
 void ControlPID::setLimiteInferiorSetPoint(int val){
   configuracion.setLimiteInferiorSetPoint(val);
   
-    #ifdef VF
-    if(getSetPointEnRam()<val)
-      setSetPointEnRam(val);
-    #else
+   
     if( getConfiguracionSetPoint()<val)
       setConfiguracionSetPoint(val);
-    #endif
+  
 }
 
 void ControlPID::setLimiteSuperiorSetPoint(int val){
   configuracion.setLimiteSuperiorSetPoint(val); 
   
-    #ifdef VF
-    if(getSetPointEnRam()>val)
-      setSetPointEnRam(val);
-    #else
+    
     if( getConfiguracionSetPoint()>val)
       setConfiguracionSetPoint(val);
-    #endif  
+    
 }
 
 int ControlPID::getLimiteInferiorSensor(){

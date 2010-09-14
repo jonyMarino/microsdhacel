@@ -1,14 +1,21 @@
 #include "configuracionControlPID.hpp"
  
-ConfiguracionControlPID::ConfiguracionControlPID( ControlConf &_conf_, struct ManejadorMemoria & _manejadorMemoria):configuracion(_conf_),manejadorMemoria(_manejadorMemoria){
+ConfiguracionControlPID::ConfiguracionControlPID( ControlConf &_conf_,SetPoint *_setPoint, struct ManejadorMemoria & _manejadorMemoria):configuracion(_conf_),setPoint(_setPoint),manejadorMemoria(_manejadorMemoria){
 }
     
 int ConfiguracionControlPID::getSetPoint(){
-    return configuracion.iSP;
+    if(setPoint)
+      return setPoint->getVal();
+    else
+      return configuracion.iSP;
 }
 
 void ConfiguracionControlPID::setSetPoint(int val){
+   if(setPoint) 
+    setPoint->setVal(val);
+   else 
     manejadorMemoria.setWord((unsigned int * const)&configuracion.iSP,val);
+   
 }
 
 int ConfiguracionControlPID::getLimiteInferiorSetPoint(){
@@ -98,3 +105,4 @@ int ConfiguracionControlPID::getPotenciaManual(){
 void ConfiguracionControlPID::setPotenciaManual(int val){
     manejadorMemoria.setWord((unsigned int * const)&configuracion.iPotenciaManual,val);
 }
+
