@@ -1,20 +1,5 @@
-* Ya esta problema flash, teclas y encendido de led.
-
-* Grabar el setPoint del box principal solo despues de un tiempo de no presionarlo (proba mantener apretado el boton de up y vas a ver que se manda a grabar varias veces) 
-
-* Mandar a conectar la salida despes de cierto tiempo de haber entrado al main(ver programa orientado a objetos viejo).
-
-* que se pueda ver la salida en los leds(ver programa orientado a objetos viejo, creo que la clase se llamaba EncendidoLeds )
-
-
-* Seguir con el diagrama de navegacion del proyecto Control.mcp hasta que quede como el aparato comun.
-
-*Hacer una clase autosintonia que reciba para construirlo los mismos parametros que para construir el control,  y luego vamos a hacer la coordinacion de los dos. 
-
-
-*ver codigo repetido en herencia boxPrincipal a boxPrincipalControl 
-
-* Siempre crear clases hijas al agregar nueva funcionalidad. A menos que se encuentre un bug o un error de diseño(Hablar con Jony del cambio) no modificar codigo de una clase ya hecha
+* Fijarse como manejar la licencia del compilador 08 para no comprar una. Esta la versio eclipse y la del codewarrior (eclipse es mejor)
+* Siempre crear clases hijas o crear clases base al agregar nueva funcionalidad. A menos que se encuentre un bug o un error de disenio(hablar con Jony del cambio) no modificar codigo de una clase ya hecha!
 * Siempre al terminar el dia subir al SVN
 
 
