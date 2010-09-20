@@ -1,10 +1,12 @@
+**** Mantenimiento ********
+* modificar parte visual VF, no hacen falta tantas clases para su manejo.
+*ver codigo repetido en herencia boxPrincipal a boxPrincipalControl
+
 **** APARATOS Y PROGRAMAS *************
-* Modificacion del box fuera de limite como corresponde y en la ultima version (error detectado a traves del SD100)
 * Probar todos los casos del Timer, cuando pasa la cuenta y el nextCuenta
 * Checkear estado de la FLASH al inicio
 * hacer mcp del adquisidor bajo consumo para GC64
-* pasar a OutputStream el manejo del display
-* luego hacer un display especial para el adquisidor (que pueda solo mostrar la linea superior)
+* hacer un display especial para el adquisidor (que pueda solo mostrar la linea superior)
 * Impresor: Mostrar fecha sola al imprimirse separada arriba y abajo por una linea y al no haber ingresado la fecha, no mostrarla.
 * Timer comienza desconectado
 * probar timer integer
