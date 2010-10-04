@@ -3,25 +3,24 @@
 
 #include "ControlPID.hpp"
 #include "AutoSintonia.hpp"
-#include "MessagesOut.hpp"
+
  
 typedef enum{
   CONTROL,
   AUTOSINTONIA
 }eModoControl;
-
+                                                                      
 class CoordinadorControladorSintonizador{
   public:
-    CoordinadorControladorSintonizador(Sensor& sensor,ISalida& salida,const ConfiguracionControl& configuracionControl,MessagesOut* msj);
+    CoordinadorControladorSintonizador(Sensor& sensor,ISalida& salida,const ConfiguracionControl& configuracionControl);
     eModoControl getModo();
     void setModo(eModoControl); //valores posibles: CONTROL,AUTOSINTONIA
     int getPasoAutosintonia();
     bool getEstadoAutosintonia();
     void addOnControlListener(const struct Method& metodo);
     void deleteOnControlListener(const struct Method& metodo);
-    void setMesnsajeAutoSintonia();
   
-   inline ControlPID* getControl(){
+  inline ControlPID* getControl(){
     return (ControlPID *)&(poolModo);
   }
   inline AutoSintonia* getAutoSintonia(){
@@ -31,7 +30,7 @@ class CoordinadorControladorSintonizador{
     
     class SintonizadorOptMem:public AutoSintonia{
       public:
-        SintonizadorOptMem(Sensor& sensor,ISalida& salida,const ConfiguracionControl& configuracion,MethodContainer& listenersOnChange,MessagesOut* msj);
+        SintonizadorOptMem(Sensor& sensor,ISalida& salida,const ConfiguracionControl& configuracion,MethodContainer& listenersOnChange);
         void * operator new(size_t size,byte * dir);
 
         void operator delete(void *ptr);
@@ -57,7 +56,6 @@ class CoordinadorControladorSintonizador{
     eModoControl modoActual;
     MethodContainer onControlChange;
     Lazo * lazo;
-    MessagesOut * msjOut;
 };
 
 #endif
