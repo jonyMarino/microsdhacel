@@ -31,6 +31,7 @@ class FrenteCustom{
     virtual void encenderLeds(byte leds)=0;
     virtual bool isTeclaPresionada()=0;
     virtual byte getTeclaPosicion(byte barrido)=0;  //para el barrido pasado, cual es la tecla correspondiente
+    
   private:   
     
     struct Method mOn1ms;

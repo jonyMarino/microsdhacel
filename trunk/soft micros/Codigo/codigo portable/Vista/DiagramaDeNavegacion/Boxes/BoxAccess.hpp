@@ -13,6 +13,7 @@ class BoxAccess:public Box{
   private:
     int valorTmp;
     int codigo;
+    
 };
 
 

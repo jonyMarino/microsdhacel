@@ -107,7 +107,12 @@ void ControlVF::procesaTeclasVF(uchar tecla){
   if(tecla == 'u')
     setModoVF(RUN);
   if(tecla == 'd')
-     nroDeEtapaActual++;
+    if(nroDeEtapaActual<getCantidadDeEtapas()){
+      nroDeEtapaActual++;
+      setEstadoVF(RAMPA);
+    }else
+     setModoVF(FIN); 
+    
 }
 
 
@@ -120,14 +125,34 @@ void ControlVF::procesCartelesVF(){
               msjOutVF->deleteMessage(msj_VF);
               msj_VF = NULL;
             }
+            
+            #ifndef BKR
             mensaje[0]='r';
             mensaje[1]='A';
             mensaje[2]='m';
             mensaje[3]='P';
             mensaje[4]='A';  
-            
-            mensaje[5]=(char)((getNroDeEtapa())+0x30);
-            mensaje[6]='\0';
+            if(getNroDeEtapa()/10){
+              mensaje[5]=(char)((getNroDeEtapa()/10)+0x30);
+              mensaje[6]=(char)((getNroDeEtapa()%10)+0x30);
+              mensaje[7]='\0';
+            }else{
+              mensaje[5]=(char)((getNroDeEtapa())+0x30);
+              mensaje[6]='\0';
+            }
+            #else
+            mensaje[0]='C';
+            mensaje[1]='A';
+            mensaje[2]='L';
+            mensaje[3]='E';
+            mensaje[4]='n';
+            mensaje[5]='t';
+            mensaje[6]='A';
+            mensaje[7]='n';
+            mensaje[8]='d';
+            mensaje[9]='o';  
+            mensaje[10]='\0';
+            #endif
             if(!msj_VF)
               msj_VF = msjOutVF->addMessage(mensaje);
        
@@ -137,6 +162,8 @@ void ControlVF::procesCartelesVF(){
               msjOutVF->deleteMessage(msj_VF);
                msj_VF = NULL; 
             }
+            
+            #ifndef BKR
             mensaje[0]='m';
             mensaje[1]='E';
             mensaje[2]='S';
@@ -144,8 +171,75 @@ void ControlVF::procesCartelesVF(){
             mensaje[4]='t';
             mensaje[5]='A';
             
-            mensaje[6]=(char)((getNroDeEtapa())+0x30);  
-            mensaje[7]='\0';
+            if(getNroDeEtapa()/10){
+              mensaje[6]=(char)((getNroDeEtapa()/10)+0x30);
+              mensaje[7]=(char)((getNroDeEtapa()%10)+0x30);
+              
+            }else{
+              mensaje[6]=(char)((getNroDeEtapa())+0x30);
+              mensaje[7]=' ';
+            }
+       
+            if((minutos+1)/100){
+              mensaje[8]=(minutos+1)/100+0x30;
+              mensaje[9]=((minutos+1)%100)/10+0x30; 
+              mensaje[10]=(minutos+1)%10+0x30;
+              mensaje[11]='m';
+              mensaje[12]='i';
+              mensaje[13]='n';
+              mensaje[14]='\0';
+            }else if(((minutos+1)/10) && ((minutos+1)/100) != 1) {
+              mensaje[8]=(minutos+1)/10+0x30; 
+              mensaje[9]=(minutos+1)%10+0x30;
+              mensaje[10]='m';
+              mensaje[11]='i';
+              mensaje[12]='n';
+              mensaje[13]='\0';
+            }else{
+              mensaje[8]=(minutos+1+0x30);
+              mensaje[9]='m';
+              mensaje[10]='i';
+              mensaje[11]='n';
+              mensaje[12]='\0';
+             
+             #else
+              
+              mensaje[0]='F';
+              mensaje[1]='i';
+              mensaje[2]='n';
+              mensaje[3]='A';
+              mensaje[4]='L';
+              mensaje[5]=' ';
+              
+              mensaje[6]='E';
+              mensaje[7]='n';
+              mensaje[8]=' ';
+              
+              if((getTiempoDeEtapa(getNroDeEtapa())-minutos)/100){
+              mensaje[9]=(getTiempoDeEtapa(getNroDeEtapa())-minutos)/100+0x30;
+              mensaje[10]=((getTiempoDeEtapa(getNroDeEtapa())-minutos)%100)/10+0x30; 
+              mensaje[11]=(getTiempoDeEtapa(getNroDeEtapa())-minutos)%10+0x30;
+              mensaje[12]='m';
+              mensaje[13]='i';
+              mensaje[14]='n';
+              mensaje[15]='\0';
+            }else if(((getTiempoDeEtapa(getNroDeEtapa())-minutos)/10) && ((getTiempoDeEtapa(getNroDeEtapa())-minutos)/100) != 1) {
+              mensaje[9]=((getTiempoDeEtapa(getNroDeEtapa())-minutos)/10+0x30); 
+              mensaje[10]=((getTiempoDeEtapa(getNroDeEtapa())-minutos)%10+0x30);
+              mensaje[11]='m';
+              mensaje[12]='i';
+              mensaje[13]='n';
+              mensaje[14]='\0';
+            }else{
+              mensaje[9]=(getTiempoDeEtapa(getNroDeEtapa())-minutos+0x30);
+              mensaje[10]='m';
+              mensaje[11]='i';
+              mensaje[12]='n';
+              mensaje[13]='\0';
+             
+             #endif 
+              
+       }
        
         if(!msj_VF)
          msj_VF = msjOutVF->addMessage(mensaje);
@@ -187,7 +281,7 @@ int Te_MES_ANT(ControlVF *_self){
 
 void procesarVF(void * a){
  char Kdec;
- long tempActVF;
+ long tempActVF=0;
  static char contProtecRuido=0;
  static dword rampa_mestaTime=0;
  ControlVF * self=(ControlVF*)a; 
@@ -197,7 +291,10 @@ void procesarVF(void * a){
   if(self->getModoVF() == RUN){   //estoy corriendo?
  
    rampa_mestaTime++;
-
+   
+   if((self->getMinutos()))
+      if(rampa_mestaTime>(60*(self->getMinutos())))
+          (self->setMinutos((self->getMinutos()+1)));
 /* calculo de la temperatura de la rampa cada 1 segundos y             */
 /* calculo del tiempo transcurrido una ves llegado a la temp de meseta */  
                               
@@ -303,6 +400,7 @@ void procesarVF(void * a){
 }else{                                                                           //si no era run era stop  
   rampa_mestaTime = 0;                                                           // reseteo todo
   contProtecRuido=0;
+  self->setMinutos(0);
   self->setEstadoVF(RAMPA);
   tempActVF=0;
   SET_SP(self,tempActVF);   

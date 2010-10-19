@@ -102,7 +102,7 @@ Box * BoxPrincipalVF::procesarTecla(uchar tecla,TEstadoBox& estado){
         par_seconds=PRI_PAR_SECONDS;
         if(tecla == 'd') 
           p->decrementar();
-        else  
+        else   
           p->incrementar();
         
         propCambio=TRUE; 
@@ -125,7 +125,7 @@ Box * BoxPrincipalVF::procesarTecla(uchar tecla,TEstadoBox& estado){
       return NULL;
   }
 
-  if(tecla=='r' || tecla=='f'){
+  if(tecla=='r' ||  tecla=='f'){
     if(propCambio && p){
         propCambio=FALSE;
         p->guardar(); 

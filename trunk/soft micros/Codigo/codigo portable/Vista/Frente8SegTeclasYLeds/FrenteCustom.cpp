@@ -79,6 +79,7 @@ void FrenteCustom::on1ms(){
 /* se fija si se encuentra el barrido en la posicion para leer una tecla, el barrido se encuentra en la posicion anterior para mayor estabilidad*/
 void FrenteCustom::actualizarTeclas(){
   byte tecla = getTeclaPosicion(barrido);
+  
   if(!tecla) return;  //no es la posicion del barrido que corresponde a la lectura de una letra
   
   if(isTeclaPresionada()) teclasPresionadas|=tecla;

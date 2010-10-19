@@ -209,16 +209,16 @@ MessagesOut mjsDisplay4;
 
 
 
-const ConfiguracionControlPID configuraControl0(*(ConfiguracionControlPID::ControlConf*)&control_config[0],flash); 
+const ConfiguracionControlPID configuraControl0(*(ConfiguracionControlPID::ControlConf*)&control_config[0],NULL,flash); 
 CoordinadorControladorSintonizador control0(sensor0,pwm1,configuraControl0,&mjsDisplay1);
 
-const ConfiguracionControlPID configuraControl1(*(ConfiguracionControlPID::ControlConf*)&control_config[1],flash);
+const ConfiguracionControlPID configuraControl1(*(ConfiguracionControlPID::ControlConf*)&control_config[1],NULL,flash);
 CoordinadorControladorSintonizador control1(sensor1,pwm2,configuraControl1,&mjsDisplay2);
 
-const ConfiguracionControlPID configuraControl2(*(ConfiguracionControlPID::ControlConf*)&control_config[2],flash); 
+const ConfiguracionControlPID configuraControl2(*(ConfiguracionControlPID::ControlConf*)&control_config[2],NULL,flash); 
 CoordinadorControladorSintonizador control2(sensor2,pwm3,configuraControl2,&mjsDisplay3);
 
-const ConfiguracionControlPID configuraControl3(*(ConfiguracionControlPID::ControlConf*)&control_config[3],flash);
+const ConfiguracionControlPID configuraControl3(*(ConfiguracionControlPID::ControlConf*)&control_config[3],NULL,flash);
 CoordinadorControladorSintonizador control3(sensor3,pwm4,configuraControl3,&mjsDisplay4);
 
 

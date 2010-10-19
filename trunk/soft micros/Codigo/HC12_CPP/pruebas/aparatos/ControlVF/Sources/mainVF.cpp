@@ -1,5 +1,5 @@
  #include <hidef.h>      /* common defines and macros */
-#include "derivative.h"      /* derivative-specific definitions */
+//#include "derivative.h"      /* derivative-specific definitions */
 #include "timer_interrupt.h"
 #include "Adc.hpp"
 #include "IAdc.hpp"
@@ -49,6 +49,7 @@
 #include "VistaControlVF.hpp"
 #include "configuracionVF.hpp"
 #include "ControlVF.hpp"
+#include "DiagramaNavegacionVF.hpp"
 
 void conectarSalidas(void * a);
 void OnTipoSalChange(void * b);
@@ -199,7 +200,7 @@ volatile const TConfPWM confPWM[CANTIDAD_CANALES+CANTIDAD_SAL_ALARMA]={
 #pragma CONST_SEG DEFAULT
 
 
-FlashBkpMitad flash((void*)0x4200);
+FlashBkpMitad flash((void*)0x4400);
 
 class Init{
   public:
@@ -309,7 +310,19 @@ const struct FstBoxPointer setPointAut0={
    
   #endif
 
+static const struct FstBoxPointer *const alarmas[]={
+  
+  &SPal0,
+  #if CANTIDAD_SAL_ALARMA>1 
+  &SPal1,
+  #if CANTIDAD_SAL_ALARMA>2
+  &SPal2
+  #endif
+  #endif
+    
+};
 
+static const NEW_BOX_LIST(Alarmas,alarmas,"ALArmAS");
 
 
 const struct FstBoxPointer Etapas0={
@@ -589,15 +602,20 @@ static const NEW_BOX_LIST(lim,limArray,"LimitES");
   
 // Acceso comun
 const struct BoxList *const boxListArray[]={
+  &Alarmas,
   &tun,
   &cal,
-  //&set,
-  //&lim
+  &set,
+  &lim
 };
+                         
+
+
 
 const NEW_ACCESS(accesoComun,boxListArray,"Cod",(const int*)&codigo);
 
 const struct Access *const accessArray[]={
+  
   &accesoComun
 };
 
@@ -644,7 +662,7 @@ void main(void) {
  #endif 
  
   for(;;){
-    BoxPrincipalVF::MostrarGetter((ConstructorPropGetterVisual *)&cPropiedadSetPoint,&control0);
+   // BoxPrincipalVF::MostrarGetter((ConstructorPropGetterVisual *)&cPropiedadSetPoint,&control0);
     byte tecla = FrenteDH::getInstancia()->getTecla();
     termometro.mainLoop();
     d.procesar(tecla);

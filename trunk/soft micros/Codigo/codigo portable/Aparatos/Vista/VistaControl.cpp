@@ -19,6 +19,7 @@
 #include "PropGetterNumericoPV.hpp"
 #include "CoordinadorControladorSintonizador.hpp"
 #include "AutoSintonia.hpp"
+#include "MessagesOut.hpp"
 
 #pragma MESSAGE DISABLE C1825          /* Disable warning C5703 "Parameter is not referenced" */
 
@@ -450,3 +451,44 @@ const struct ConstructorBoxLinealCondicional cBoxesLimites={
   		  NULL,						 //Proximo box
   		  nextLimProp	
 }; 
+
+void setMensajeEstadoAutosintonia(CoordinadorControladorSintonizador* conf,MessagesOut* msjOutAs){
+    
+    static MessagesOut::Message msj_AutoSintonia;
+    static char mensaje[6];
+ 
+    if(((AutoSintonia*)(((CoordinadorControladorSintonizador*)conf)->getAutoSintonia()))->isDetenido() == TRUE){ //AutoSintonia detenida?
+      
+       if(((AutoSintonia*)(((CoordinadorControladorSintonizador*)conf)->getAutoSintonia()))->getNumeroEstado()==6){
+            if(msj_AutoSintonia){
+              msjOutAs->deleteMessage(msj_AutoSintonia);
+              msj_AutoSintonia = NULL;
+            }
+            mensaje[0]='E';
+            mensaje[1]='r';
+            mensaje[2]='r';
+            mensaje[3]='o';
+            mensaje[4]='r';  
+            mensaje[5]='\0';
+            if(!msj_AutoSintonia)
+              msj_AutoSintonia = msjOutAs->addMessage(mensaje);
+        }else if(msj_AutoSintonia)
+          msjOutAs->deleteMessage(msj_AutoSintonia); 
+        
+      }else if(((((AutoSintonia*)(((CoordinadorControladorSintonizador*)conf)->getAutoSintonia()))->getNumeroEstado()))<5) {
+        //estoy en autoSintonia presento los carteles
+            mensaje[0]='S';
+            mensaje[1]='t';
+            mensaje[2]=' ';
+            mensaje[3]=(char)((((AutoSintonia*)(((CoordinadorControladorSintonizador*)conf)->getAutoSintonia()))->getNumeroEstado())+0x30);  
+            mensaje[4]='\0';
+       
+        if(!msj_AutoSintonia)
+         msj_AutoSintonia = msjOutAs->addMessage(mensaje);
+      }else{
+        if(msj_AutoSintonia){ 
+          msjOutAs->deleteMessage(msj_AutoSintonia); 
+          msj_AutoSintonia=NULL;
+        }
+      }
+ }

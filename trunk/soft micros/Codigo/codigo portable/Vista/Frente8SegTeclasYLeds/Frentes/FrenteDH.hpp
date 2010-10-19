@@ -15,6 +15,7 @@ class FrenteDH:public FrenteCustom{
     virtual void encenderLeds(byte leds);
     virtual bool isTeclaPresionada();
     virtual byte getTeclaPosicion(byte barrido);
+    
   private:
     Display display1;
     Display display2;

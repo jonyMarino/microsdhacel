@@ -103,9 +103,9 @@ static void CoordinadorControladorSintonizador::onChangeAutoTun(void *_self){
   CoordinadorControladorSintonizador * self = (CoordinadorControladorSintonizador *)_self;
   AutoSintonia * autoTun = (AutoSintonia*)&self->poolModo.autoSintonia.sintonizador;
 
-  if(autoTun->getNumeroEstado()==5)          //termino la autosintonia normamente?
+  if(autoTun->getNumeroEstado()==7){ //termino la autosintonia normamente?
     self->setModo(CONTROL);  
-  
+  }
 }
 
 

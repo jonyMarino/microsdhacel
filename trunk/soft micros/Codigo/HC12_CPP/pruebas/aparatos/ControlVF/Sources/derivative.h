@@ -4,7 +4,7 @@
  */
 
 /* Include the derivative-specific header file */
-#include <MC9S12GC32.h>
+#include <MC9S12GC64.h>
 
-#pragma LINK_INFO DERIVATIVE "MC9S12GC32"
+#pragma LINK_INFO DERIVATIVE "MC9S12GC64"
 
