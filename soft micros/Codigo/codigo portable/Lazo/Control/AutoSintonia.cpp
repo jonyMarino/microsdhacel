@@ -1,7 +1,7 @@
 
 #include "AutoSintonia.hpp"
 
-#define TIEMPO_ABIERTO_MAXIMO 4000
+#define TIEMPO_ABIERTO_MAXIMO 1800000//4000
 #define HISTERESIS_AUTO_SINTONIA 4                      
 
 int AutoSintonia::ConfValControl::getValorControlador(){
@@ -44,7 +44,7 @@ void AutoSintonia::init(const ConfiguracionControl& configuracion){
 }
 
 bool AutoSintonia::isDetenido(){
-  if(paso == 5 || paso ==6) 
+  if(paso == 7 || paso ==6) 
     return TRUE;
   return FALSE;
 }
@@ -123,7 +123,11 @@ void AutoSintonia::onNuevoValorSensor(){
                               );
         */
   if(paso == 5 || paso==6){
-    //onChange.executeMethods();
+    if(paso == 5){
+      paso = 7; //fin ok
+      onChange.executeMethods();
+      
+    }
     return;               
   }
   

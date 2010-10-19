@@ -220,12 +220,12 @@ MessagesOut msjDisplaySuperior;
 
 const ConfiguracionControlPID configuraControl0(*(ConfiguracionControlPID::ControlConf*)&control_config[0],NULL,flash); 
 //ControlPID control0(sensor0,pwm23,configuraControl0);
-CoordinadorControladorSintonizador control0(sensor0,pwm23,configuraControl0,&msjDisplaySuperior);
+CoordinadorControladorSintonizador control0(sensor0,pwm23,configuraControl0);
 
 #if CANTIDAD_CANALES>1 
 const ConfiguracionControlPID configuraControl1(*(ConfiguracionControlPID::ControlConf*)&control_config[1],NULL,flash);
 //ControlPID control1(sensor1,pwm2,configuraControl1);
-CoordinadorControladorSintonizador control1(sensor1,pwm2,configuraControl1,&msjDisplayInferior);
+CoordinadorControladorSintonizador control1(sensor1,pwm2,configuraControl1);
 #endif
 
 
@@ -816,15 +816,18 @@ void OnControlChange(void * c){
   #if CANTIDAD_CANALES == 1 
   if(control0.getModo() == AUTOSINTONIA) {
     BoxPrincipalControl::MostrarGetter((ConstructorPropGetterVisual *)&cPropiedadSetPointAutoSintonia,&control0);
-    control0.setMesnsajeAutoSintonia();
+    setMensajeEstadoAutosintonia(&control0,&msjDisplayInferior);
+    
     
   }else 
     BoxPrincipalControl::MostrarProp((ConstructorPropGetterVisual *)&cPropiedadSetPoint,&control0);
   #else
   if(control0.getModo() == AUTOSINTONIA)
-    control0.setMesnsajeAutoSintonia();
+   setMensajeEstadoAutosintonia(&control0,&msjDisplayInferior);
   if(control1.getModo() == AUTOSINTONIA)
-    control1.setMesnsajeAutoSintonia();
+    setMensajeEstadoAutosintonia(&control1,&msjDisplaySuperior);
   #endif
  
 }
+
+ 

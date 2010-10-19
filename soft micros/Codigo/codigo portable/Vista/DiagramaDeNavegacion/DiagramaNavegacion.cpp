@@ -28,10 +28,6 @@
 
 
 
-
-
-
-
 /*
 ** =====================================================================
 **    Function      :  DN_StaticInit 
@@ -167,7 +163,8 @@ void DiagramaNavegacion::procesar(uchar tecla){
   if(!boxActual)			 // Todavia no se cargo el box inicial?
     return;
   
-  if(tecla=='k' || (frente->getTeclas().isTimePass() && !(accessCount==0 && listCount==0)) ){					//Exit
+  
+  if(tecla=='k' || ((frente->getTeclas().isTimePass() && !(accessCount==0 && listCount==0))) ){					//Exit
     goPrincipal();
     return;
   } 
@@ -233,9 +230,8 @@ void DiagramaNavegacion::procesar(uchar tecla){
   		  boxActual=NULL;
   }
   
-  if(boxActual==NULL)		 // Se llego a algun extremo?	 o no se puedo cargar el box
+  if(boxActual==NULL )		 // Se llego a algun extremo?	 o no se puedo cargar el box
     goPrincipal();  
-  
   
 }	 
 

@@ -37,7 +37,7 @@ void BoxAccess::BoxAccess(const char*str,int _codigo):Box(){
 ** ===================================================================
 */
 Box * BoxAccess::procesarTecla(uchar tecla,TEstadoBox& estado)
-{
+{ 
   char str[5];
   if(tecla=='u' || tecla=='d'){
     if(tecla=='d' && valorTmp>0)
@@ -48,7 +48,6 @@ Box * BoxAccess::procesarTecla(uchar tecla,TEstadoBox& estado)
     sprintf(str,"%4i",valorTmp);
     getDisplay(0).write(str);
   }else if (tecla=='r'){
-    
 	  estado= EXIT_BOX;
 	  return NULL;
   }else if(tecla=='f'){

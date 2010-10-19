@@ -15,6 +15,8 @@ const byte FrenteDH::codigoTecla[]={
   0x10,0,0,0   //display inferior
 };
 
+
+
 FrenteDH * FrenteDH::instancia=NULL;
 
 FrenteDH::FrenteDH():display1(&P_DISPLAY1),display2(&P_DISPLAY1){
@@ -49,3 +51,5 @@ bool FrenteDH::isTeclaPresionada(){
 byte FrenteDH::getTeclaPosicion(byte barrido){
   return  codigoTecla[barrido];
 }
+
+

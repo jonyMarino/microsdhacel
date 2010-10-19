@@ -22,6 +22,7 @@ class DiagramaNavegacion{
     void procesar(uchar tecla);
     void refresh(void);
     bool isBoxPrincipal();
+    void goPrincipal();
   private:
     FrenteCustom * frente;
     struct Method metodoParaTimer;
@@ -32,7 +33,6 @@ class DiagramaNavegacion{
     uchar listCount;
     uchar accessCount;
     Box * boxActual;
-    void goPrincipal();
     struct FstBoxPointer* opgetFstBoxP();
     struct FstBoxPointer* getActualFstBoxP();
     static void showCompilacion(void*);   

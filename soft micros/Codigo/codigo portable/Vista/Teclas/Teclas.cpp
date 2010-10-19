@@ -21,7 +21,7 @@
   #define KEY_NULL		0X00
   #define KEY_UP      0x04
   #define KEY_DOWN    0x08
-  #define KEY_RESET   0x01
+  #define KEY_RESET   0x10
   #define KEY_ENTER   0x02
 
 #endif
@@ -33,7 +33,7 @@ typedef struct {
 }t_key;
 
 const t_key keys[]={
-  'c',KEY_UP | KEY_RESET,
+  'c',KEY_UP | KEY_ENTER,
   's',KEY_DOWN | KEY_RESET,
   'p',KEY_UP | KEY_DOWN | KEY_RESET,
   0,0
@@ -52,6 +52,7 @@ const t_hold_key hold_keys[]={
   'r','f',KEY_ENTER,9,TRUE,
   'u','u',KEY_UP,10,FALSE,
   'd','d',KEY_DOWN,10,FALSE,
+  'v','v',KEY_ENTER|KEY_UP,4,FALSE,
   0,0,0,0
 };
 

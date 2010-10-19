@@ -45,9 +45,9 @@ const char * getModelo(void){
   #ifdef SD
   return "Sd101";
   #elif defined VF
-  return "d101 VF";
+  return "dh101 VF";
   #else
-  return "d101";
+  return "dh101";
   #endif
 }
  const char * getVersion(void){

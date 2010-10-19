@@ -3,6 +3,10 @@
 
 #include "BoxLineal.hpp"
 #include "PropNumLFPV.hpp"
+#include "CoordinadorControladorSintonizador.hpp"
+#include "AutoSintonia.hpp"
+#include "MessagesOut.hpp"
+
 
 extern const struct ConstructorBoxLineal cBoxesSintonia;
 extern const struct ConstructorBoxPropiedadEntradaCondicional cBoxesHisteresis;
@@ -24,4 +28,7 @@ extern const struct ConstructorBoxLinealCondicional cBoxesLimites;
 extern const struct ConstructorPropiedadTextual cPropiedadModoSalida;
 extern const struct ConstructorPropGetterNumericoPV cPropiedadGetSensor1;
 extern const struct ConstructorBoxPropiedad cBoxModos;
+
+void setMensajeEstadoAutosintonia(CoordinadorControladorSintonizador* conf,MessagesOut* msjOutAs);
+
 #endif
