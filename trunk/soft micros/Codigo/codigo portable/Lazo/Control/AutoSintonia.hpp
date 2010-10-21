@@ -8,7 +8,7 @@
 #include "Timer/FlagTimer/FlagTimer.hpp"
 #include "MethodContainer.hpp"
 
-                                    
+#define MODO_CONTROL 7                                       
 class AutoSintonia:public LazoControl{
   public:
     //Empieza el proceso de autosintonia
