@@ -815,9 +815,13 @@ void OnTipoSalChange(void * b){
 void OnControlChange(void * c){
   #if CANTIDAD_CANALES == 1 
   if(control0.getModo() == AUTOSINTONIA) {
+    
     BoxPrincipalControl::MostrarGetter((ConstructorPropGetterVisual *)&cPropiedadSetPointAutoSintonia,&control0);
     setMensajeEstadoAutosintonia(&control0,&msjDisplayInferior);
-    
+   
+   //if(((AutoSintonia *)(control0.getAutoSintonia()))->getNumeroEstado()==7){ //termino la autosintonia normamente?
+     // control0.setModo(CONTROL);  
+   //}
     
   }else 
     BoxPrincipalControl::MostrarProp((ConstructorPropGetterVisual *)&cPropiedadSetPoint,&control0);
