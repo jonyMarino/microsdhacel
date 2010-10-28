@@ -126,7 +126,7 @@ void AutoSintonia::onNuevoValorSensor(){
   if(paso == 5 || paso==6){
     if(paso == 5){
       paso = MODO_CONTROL; // para indicarle al coordinador que ya termino la autoSintonia, debe pasar a modo controlador
-      onChange.executeMethods(); 
+      onChange.executeMethods(); // paso en el que se pasa a modo Controlador 
     }
     return;               
   }
@@ -195,7 +195,7 @@ void AutoSintonia::onNuevoValorSensor(){
   			confControl.setHisteresis((maximo-minimo)*2);																 
         confControl.setIntegral(contadorSegundos);
         confControl.setDerivada(contadorSegundos/10);
-        onChange.executeMethods();
+        onChange.executeMethods(); // paso vale 5, etapa en la que se eliminan los msj(todavia no se pasa a modo CONTROLADOR)
       }
 	 break;
 

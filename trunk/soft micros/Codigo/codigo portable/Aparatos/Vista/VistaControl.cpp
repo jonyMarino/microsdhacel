@@ -490,5 +490,6 @@ void setMensajeEstadoAutosintonia(CoordinadorControladorSintonizador* conf,Messa
           msjOutAs->deleteMessage(msj_AutoSintonia); 
           msj_AutoSintonia=NULL;
         }
+        
       }
  }
