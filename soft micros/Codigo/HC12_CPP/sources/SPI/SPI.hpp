@@ -6,14 +6,14 @@
 class SPI: public ISPI{
   public:
     SPI(){}
-    virtual void sendByte(UINT8 u8Data){
+    virtual void sendByte(VUINT8 u8Data){
     }
-    virtual UINT8 receiveByte(void){
+    virtual VUINT8 receiveByte(void){
       return 0;
     }
     virtual void highRate(void){
     }//pone el SPI en 375KHz
-    virtual void setSlaveSelect(byte){
+    virtual void setSlaveSelect(byte a){
     }//selecciona el esclavo con el cual se comunica
 };
 
