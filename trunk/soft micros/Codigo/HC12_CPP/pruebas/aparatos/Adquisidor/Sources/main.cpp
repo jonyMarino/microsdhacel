@@ -1,4 +1,6 @@
 #include <hidef.h>      /* common defines and macros */
+#include <stdio.h>
+#include <stdlib.h>
 #include "derivative.h"      /* derivative-specific definitions */
 #include "timer_interrupt.h"
 #include "Adc.hpp"
@@ -45,6 +47,9 @@
 #include "AlarmaControl.hpp"
 #include "CoordinadorControladorSintonizador.hpp"
 #include "AutoSintonia.hpp"
+#include "RegistradorSD.hpp"
+#include "Math.hpp"
+#include "SPI.hpp"
 
 void conectarSalidas(void * a);
 void OnTipoSalChange(void * b);
@@ -80,7 +85,7 @@ volatile const ConfiguracionControlPID::ControlConf control_config[CANTIDAD_CANA
    ControlDefaultConf
    #endif
 };
-  
+ /* 
 volatile const ConfiguracionAlarmas::AlarmConf alar_conf[CANTIDAD_SAL_ALARMA]={
   4,1,
   #if CANTIDAD_SAL_ALARMA>1 
@@ -144,7 +149,7 @@ volatile const ConfiguracionValorControlado::ValorControlConf alarmaSP_conf[CANT
   #endif
   #endif
 };  
-  
+   */
   volatile const SensorTermoPT100::TConfSensor sensor_config[CANTIDAD_CANALES]= {
     STPT_DEF_CONF,
   #if CANTIDAD_CANALES>1 
@@ -224,15 +229,15 @@ ControlPID control1(sensor1,pwm2,configuraControl1);
 #endif
 MessagesOut mjsCambioTipoSalida;
 
-
+ /*
 ConfiguracionLazoAlarmas configuracionLazoAlarmas0(*(ConfiguracionLazoAlarmas::LazoAlarmConf*)&lazo_alar_conf[0],flash);
 ConfiguracionAlarmas configuracionAlarma0(*(ConfiguracionAlarmas::AlarmConf*)&alar_conf[0],flash);
 ConfiguracionRetransm configuracionRetrans0(*(ConfiguracionRetransm::RetConf*)&ret_conf[0],flash);
 ConfiguracionAdapSalida configuracionAdapSalida0(*(ConfiguracionAdapSalida::AdapSalConf*)&adapSal_conf[0],flash);
 ConfiguracionValorControlado configuracionValorAlarma0(*(ConfiguracionValorControlado::ValorControlConf*)&alarmaSP_conf[0],flash);
-
+   
 CoordinadorLazosAlCntrRet alarma0(configuracionLazoAlarmas0,configuracionAlarma0,configuracionValorAlarma0,configuracionAdapSalida0,configuracionRetrans0,(*(ControlPID*)(control0.getControl())),pwm3);
-
+ */
 #if CANTIDAD_SAL_ALARMA>1 && CANTIDAD_CANALES==1  
 ConfiguracionLazoAlarmas configuracionLazoAlarmas1(*(ConfiguracionLazoAlarmas::LazoAlarmConf*)&lazo_alar_conf[1],flash);
 ConfiguracionAlarmas configuracionAlarma1(*(ConfiguracionAlarmas::AlarmConf*)&alar_conf[1],flash);
@@ -301,11 +306,11 @@ const struct FstBoxPointer potMan1={
     };  
    
   #else
-    
+    /*
      const struct FstBoxPointer SPal0={
       (const struct ConstructorBox*)&cBoxesSetPointAlarma,&alarma0,0
      };  
-    
+      */
   #endif
    
   #if CANTIDAD_SAL_ALARMA>2
@@ -329,7 +334,8 @@ struct ConstructorBoxPrincipalControl cBoxPri={
       &boxPrincipalControlFactory,							/* funcion que procesa al box*/
       &sensor0,      
       &mjsCambioTipoSalida,
-      &flash						
+      &mjsCambioTipoSalida,
+      //&flash						
 };
 
 const struct FstBoxPointer principal={
@@ -343,13 +349,7 @@ const struct FstBoxPointer *const opArray[]={
   &potInst1, 
   &potMan1,
   #endif
-  &SPal0,
-  #if CANTIDAD_CANALES>1 || CANTIDAD_SAL_ALARMA>1
-  &SPal1,
-  #endif
-  #if CANTIDAD_SAL_ALARMA>2
-  &SPal2,
-  #endif
+  
 };
 
 /*const struct BoxList opList ={
@@ -377,9 +377,6 @@ const struct FstBoxPointer aparatoConf0={
 const struct FstBoxPointer periodo0={
   (const struct ConstructorBox*)&cBoxPeriodo,&pwm23,0
 };
-const struct FstBoxPointer histAlarma0={
-  (const struct ConstructorBox*)&cBoxesHistAlarma,&alarma0,0
-};
 
 
 #else
@@ -402,37 +399,14 @@ const struct FstBoxPointer periodo1={
   (const struct ConstructorBox*)&cBoxPeriodo,&pwm2,2
 };
 #endif
-#if CANTIDAD_SAL_ALARMA>1 || CANTIDAD_CANALES>1 
-const struct FstBoxPointer histAlarma0={
-  (const struct ConstructorBox*)&cBoxesHistAlarma,&alarma0,1
-};
-const struct FstBoxPointer histAlarma1={
-  (const struct ConstructorBox*)&cBoxesHistAlarma,&alarma1,2
-};
-#if CANTIDAD_SAL_ALARMA>2
-const struct FstBoxPointer histAlarma2={
-  (const struct ConstructorBox*)&cBoxesHistAlarma,&alarma2,3
-};
-#endif
-#endif
+
 
 static const struct FstBoxPointer *const tunArray[]={
   &autoSintonia0,
   &reset0,
   &periodo0,
  // &aparatoConf0,
-  &histAlarma0,
-  #if CANTIDAD_CANALES>1 
-  &reset1,
-  &periodo1, 
-  &aparatoConf1,
-  #endif
-  #if CANTIDAD_SAL_ALARMA>1 || CANTIDAD_CANALES>1 
-  &histAlarma1,
-  #if CANTIDAD_SAL_ALARMA>2
-  &histAlarma2
-  #endif
-  #endif
+  
     
 };
 
@@ -443,24 +417,12 @@ static const NEW_BOX_LIST(tun,tunArray,"SintoniA");
 const struct FstBoxPointer sensor1List0={
   (const struct ConstructorBox*)&cBoxesSensor,&sensor0,0
 };
-const struct FstBoxPointer retAlmLimInf0={
-  (const struct ConstructorBox*)&cBoxesRetLimInf,&alarma0,0
-};
-const struct FstBoxPointer retAlmLimSup0={
-  (const struct ConstructorBox*)&cBoxesRetLimSup,&alarma0,0
-};
 #else
 const struct FstBoxPointer sensor1List0={
   (const struct ConstructorBox*)&cBoxesSensor,&sensor0,1
 };
 const struct FstBoxPointer sensor1List1={
   (const struct ConstructorBox*)&cBoxesSensor,&sensor1,2
-};
-const struct FstBoxPointer retAlmLimInf0={
-  (const struct ConstructorBox*)&cBoxesRetLimInf,&alarma0,0
-};
-const struct FstBoxPointer retAlmLimSup0={
-  (const struct ConstructorBox*)&cBoxesRetLimSup,&alarma0,0
 };
 #endif
 #if CANTIDAD_SAL_ALARMA>1  || CANTIDAD_CANALES>1 
@@ -484,17 +446,7 @@ static const struct FstBoxPointer *const calArray[]={
   &sensor1List0,
   #if CANTIDAD_CANALES>1
   &sensor1List1,
-  #endif 
-  &retAlmLimInf0,
-  &retAlmLimSup0,
   
-  #if CANTIDAD_SAL_ALARMA>1 || CANTIDAD_CANALES>1 
-  &retAlmLimInf1,
-  &retAlmLimSup1,
-  #if CANTIDAD_SAL_ALARMA>2
-  &retAlmLimInf2,
-  &retAlmLimSup2
-  #endif
   #endif  
 };
 
@@ -520,15 +472,8 @@ const struct FstBoxPointer modosSalida1={
   (const struct ConstructorBox*)&cBoxModoSalida,&control1,2
 };    
 #endif
-const struct FstBoxPointer tipoLazoAlarma0={
-  (const struct ConstructorBox*)&cBoxesTipoLazo,&alarma0,1
-};
-const struct FstBoxPointer modosAlarma0={
-  (const struct ConstructorBox*)&cBoxesAlarma,&alarma0,1
-};
-const struct FstBoxPointer ctrlAlarma0={
-  (const struct ConstructorBox*)&cBoxesAlarmaCtrl,&alarma0,1
-};
+
+
 #if CANTIDAD_SAL_ALARMA>1 || CANTIDAD_CANALES>1
 const struct FstBoxPointer tipoLazoAlarma1={
   (const struct ConstructorBox*)&cBoxesTipoLazo,&alarma1,2
@@ -554,22 +499,7 @@ const struct FstBoxPointer ctrlAlarma2={
 
 static const struct FstBoxPointer *const setArray[]={
   &modosSalida0,
-  #if CANTIDAD_CANALES>1
-  &modosSalida1,
-  #endif
-  &tipoLazoAlarma0,
-  &modosAlarma0,
-  &ctrlAlarma0,
-  #if CANTIDAD_SAL_ALARMA>1 || CANTIDAD_CANALES>1 
-  &tipoLazoAlarma1,
-  &modosAlarma1,
-  &ctrlAlarma1,
-  #if CANTIDAD_SAL_ALARMA>2
-  &tipoLazoAlarma2,
-  &modosAlarma2,
-  &ctrlAlarma2,
-  #endif
-  #endif
+  
   &setCList
     
 };
@@ -633,7 +563,91 @@ struct Method timerSalida={
 
 struct Method cambioTipoSalida={
 &OnTipoSalChange,NULL
-};                                              
+};              
+
+/***REGISTRADOR SD**********/
+class ConfiguracionRegistradorSD:public ConfiguracionRegistrador{
+  public:
+    virtual byte getAdquirir(){
+      return adquirir;
+    }
+    virtual void setAdquirir(byte a){
+      adquirir = a;  
+    }
+    virtual int getIntervalo(){
+      return intervalo;
+    }
+    virtual void setIntervalo(int i){
+      if(i>0 && i<10000)
+        intervalo = i;
+    }
+  private:
+    int adquirir,intervalo;
+}confRegistrador;
+
+class SerializadorSensor:public ElementoRegistrable{
+  public:
+     virtual const char * serializar(int& tamanio){
+      sensor0.print(o);
+      return o.str;   
+     }
+     
+     virtual const char * getDescripcion(){
+      return "SENSOR";
+     }
+     virtual Tipo getTipo(){
+      return ElementoRegistrable::TXT;
+     }
+  private:
+    
+    class O: public OutputStream{     //mejorar codigo para aparato C++, copia de codigo con Display
+      public:
+        virtual void write(const char * b){
+          memcpy(str,b,7);
+        }
+    
+    
+        virtual void write(int i){
+          sprintf(str,"%i",i);
+        }
+     
+        virtual void writeAsFloat(int i,uchar decimales){
+          if(!decimales){ 
+            write(i);
+            return;
+          }
+          int a;
+          a=sprintf(str,"%*i.",4-decimales,1);//i/ Math::pow10(decimales));
+          sprintf(str+a,"%0*i",decimales,abs(i)% Math::pow10(decimales));
+
+          write(str);
+        }
+        char str[7]; 
+    }o;
+}serializadorSensor;
+
+
+ElementoRegistrable *  arraySerializables[]={
+  &serializadorSensor
+};
+NEW_ARRAY( serializables,arraySerializables);
+
+/*Reemplazar por verdaderos:*/
+    SPI spi;
+
+    class SDPresent: public BitIn{
+      public:
+        SDPresent(){
+          DDRB_BIT3 = 1;  //PTB bit3 es entrada
+        }
+        bool getBit(){
+          return PORTB_BIT3;
+        }
+    }sdPresent;
+/*****************************/
+
+SDFat sd(spi,sdPresent);
+RegistradorSD registrador(serializables,confRegistrador,sd);                                
 
 
 void main(void) {
