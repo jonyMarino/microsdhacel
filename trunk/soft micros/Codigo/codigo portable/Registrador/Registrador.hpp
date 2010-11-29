@@ -18,6 +18,18 @@ class ConfiguracionRegistrador{
     virtual void setIntervalo(int)=0;              
 };
 
+class ElementoRegistrable{
+  public:
+     typedef enum{
+      TXT,
+      NUMERICO,
+      REAL
+     }Tipo;
+     virtual const char * serializar(int& tamanio)=0;
+     virtual const char * getDescripcion()=0;
+     virtual Tipo getTipo()=0;
+};
+
 class Registrador{
   public:
     typedef enum{
@@ -26,18 +38,7 @@ class Registrador{
       HULT,
       FULL  
     }Estado;
-    class ElementoSerializable{
-      public:
-         typedef enum{
-          TXT,
-          NUMERICO,
-          REAL
-         }Tipo;
-         virtual const char * serializar(int& tamanio)=0;
-         virtual const char * getDescripcion()=0;
-         virtual Tipo getTipo()=0;
-    };
-    
+        
     Registrador(const struct Array& serializables,ConfiguracionRegistrador& configuracion);
     void start();
     void stop();
@@ -57,7 +58,9 @@ class Registrador{
     bool grabando;
     Estado estado;
     RlxMTimer timer;    
+    //Texto txt;
     static void onTime(void*);
+    
 };
 
 #endif
