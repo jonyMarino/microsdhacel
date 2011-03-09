@@ -1,3 +1,5 @@
+* subir ModBus
+
 **** Mantenimiento ********
 * modificar parte visual VF, no hacen falta tantas clases para su manejo.
 *ver codigo repetido en herencia boxPrincipal a boxPrincipalControl
