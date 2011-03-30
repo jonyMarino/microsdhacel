@@ -1,5 +1,5 @@
 #include "LedSalida.hpp"
-#include "Thread.h"
+#include "Thread/Thread.h"
 
 LedsSalida:: LedsSalida(const struct Array& _a,FrenteCustom & _f):frente(_f),array(_a){
   void*thread;

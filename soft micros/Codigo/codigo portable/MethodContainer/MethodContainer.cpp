@@ -16,7 +16,7 @@ bool MethodContainer::add(void *obj){
   
 //  if(classOf(obj)!=&Method)
 //    return EXIT_FAILURE; 
-  LinkedList::add(obj);
+  Set::add(obj);
   return EXIT_SUCCESS;
 }
 

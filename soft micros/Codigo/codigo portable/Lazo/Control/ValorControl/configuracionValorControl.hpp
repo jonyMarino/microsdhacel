@@ -20,7 +20,7 @@ class ConfiguracionValorControlado: public ConfiguracionValorControl{
           ManejadorMemoria &manejadorMemoria;
 
           ValorControlConf &_configuracion;  
-    };    
+};    
 
 
 
