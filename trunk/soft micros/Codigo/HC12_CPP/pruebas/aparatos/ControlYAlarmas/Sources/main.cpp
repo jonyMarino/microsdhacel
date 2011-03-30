@@ -7,8 +7,6 @@
 #include "OutputStream.hpp"
 #include "Cpu.h"
 #include "WDog1.h"
-//#include "object_r.h"
-//#include "Object.h"
 #include "FrenteDH.hpp"
 #include "Timer/Timer.hpp"
 #include "Timer/interrup_1ms_40ms/BaseTimers_1ms_40ms.hpp"
@@ -36,7 +34,7 @@
 #include "BoxPrincipalControl.hpp"
 #include "BoxPrincipalVF.hpp"
 #include "MessagesOut.hpp"
-#include "LedSalida.hpp"
+#include "Vista/Led/LedSalida.hpp"
 #include "configuracionAlarmas.hpp"
 #include "configuracionLazoAlarmas.hpp"
 #include "ConfiguracionRetransmision.hpp"
@@ -184,7 +182,7 @@ volatile const TConfPWM confPWM[CANTIDAD_CANALES+CANTIDAD_SAL_ALARMA]={
 #pragma CONST_SEG DEFAULT
 
 
-FlashBkpMitad flash((void*)0x4200);
+//No poder inilizaciones de objetos antes de Init
 
 class Init{
   public:
@@ -195,7 +193,7 @@ class Init{
   }
 }ini;
 
-
+FlashBkpMitad flash((void*)0x4200);
  
 Termometro termometro(flash); 
 

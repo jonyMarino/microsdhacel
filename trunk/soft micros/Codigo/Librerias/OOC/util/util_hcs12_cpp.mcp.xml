@@ -1087,7 +1087,7 @@
 
                 <!-- Settings for "Panel for Compiler for HC12" panel -->
                 <SETTING><NAME>Panel for Compiler for HC12</NAME>
-                    <SETTING><NAME>Options</NAME><VALUE>-C++c -CPUHCS12 -D__ONLY_INIT_SP -D__NO_FLOAT__ -Mb</VALUE></SETTING>
+                    <SETTING><NAME>Options</NAME><VALUE>-C++c -CPUHCS12 -D__ONLY_INIT_SP -D__NO_FLOAT__ -Mb -Qvtpnone</VALUE></SETTING>
                     <SETTING><NAME>UseDecoder</NAME><VALUE>0</VALUE></SETTING>
                     <SETTING><NAME>EchoCommandLine</NAME><VALUE>0</VALUE></SETTING>
                 </SETTING>
@@ -1241,6 +1241,13 @@
                     <FILEKIND>Text</FILEKIND>
                     <FILEFLAGS></FILEFLAGS>
                 </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>Set.cpp</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS>Debug</FILEFLAGS>
+                </FILE>
             </FILELIST>
             <LINKORDER>
                 <FILEREF>
@@ -1296,6 +1303,11 @@
                 <FILEREF>
                     <PATHTYPE>Name</PATHTYPE>
                     <PATH>Array.h</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>Set.cpp</PATH>
                     <PATHFORMAT>Windows</PATHFORMAT>
                 </FILEREF>
             </LINKORDER>
@@ -2014,7 +2026,7 @@
 
                 <!-- Settings for "Panel for Compiler for HC12" panel -->
                 <SETTING><NAME>Panel for Compiler for HC12</NAME>
-                    <SETTING><NAME>Options</NAME><VALUE>-C++e -CPUHCS12 -D__ONLY_INIT_SP -D__NO_FLOAT__ -Ms</VALUE></SETTING>
+                    <SETTING><NAME>Options</NAME><VALUE>-C++e -CPUHCS12 -D__ONLY_INIT_SP -D__NO_FLOAT__ -Ms -Qvtpnone</VALUE></SETTING>
                     <SETTING><NAME>UseDecoder</NAME><VALUE>0</VALUE></SETTING>
                     <SETTING><NAME>EchoCommandLine</NAME><VALUE>0</VALUE></SETTING>
                 </SETTING>
@@ -2168,6 +2180,13 @@
                     <FILEKIND>Text</FILEKIND>
                     <FILEFLAGS></FILEFLAGS>
                 </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>Set.cpp</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS>Debug</FILEFLAGS>
+                </FILE>
             </FILELIST>
             <LINKORDER>
                 <FILEREF>
@@ -2225,6 +2244,11 @@
                     <PATH>Array.h</PATH>
                     <PATHFORMAT>Windows</PATHFORMAT>
                 </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>Set.cpp</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
             </LINKORDER>
         </TARGET>
     </TARGETLIST>
@@ -2249,6 +2273,12 @@
             <PATHFORMAT>Windows</PATHFORMAT>
         </FILEREF>
         <GROUP><NAME>Sources</NAME>
+            <FILEREF>
+                <TARGETNAME>C++ Mb no float</TARGETNAME>
+                <PATHTYPE>Name</PATHTYPE>
+                <PATH>Array.h</PATH>
+                <PATHFORMAT>Windows</PATHFORMAT>
+            </FILEREF>
             <FILEREF>
                 <TARGETNAME>C++ Mb no float</TARGETNAME>
                 <PATHTYPE>Name</PATHTYPE>
@@ -2295,6 +2325,12 @@
                 <TARGETNAME>C++ Mb no float</TARGETNAME>
                 <PATHTYPE>Name</PATHTYPE>
                 <PATH>Array.c</PATH>
+                <PATHFORMAT>Windows</PATHFORMAT>
+            </FILEREF>
+            <FILEREF>
+                <TARGETNAME>C++ Mb no float</TARGETNAME>
+                <PATHTYPE>Name</PATHTYPE>
+                <PATH>Set.cpp</PATH>
                 <PATHFORMAT>Windows</PATHFORMAT>
             </FILEREF>
         </GROUP>
