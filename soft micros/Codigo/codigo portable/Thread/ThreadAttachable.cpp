@@ -15,7 +15,16 @@ void ThreadAttachable::adjuntar(struct Method * method){
 }
 
 void ThreadAttachable::executeThreads(){
-  executeMethods();
+  //executeMethods();
+  typedef void*(*pf)(void*);
+  LinkedListIterator it;
+  
+  linkedListIterator(&it);
+  
+  while(it.hasNext()){
+    struct Method * m = (struct Method *)it.next();
+    (*((pf)(m->pmethod)))(m->obj);
+  }
 }
 
 ThreadAttachable::ThreadAttacher * ThreadAttachable::getAdjuntador(void){
