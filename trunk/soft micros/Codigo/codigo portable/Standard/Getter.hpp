@@ -2,7 +2,7 @@
 #define _GETTER_HPP
 
 
-#include "../../Librerias/OOC/ooc/lib_cpp/OutputStream.hpp"
+#include "OOC/ooc/lib_cpp/OutputStream.hpp"
 
 #pragma DATA_SEG GETTER_DATA                                            
 #pragma CODE_SEG GETTER_CODE                     

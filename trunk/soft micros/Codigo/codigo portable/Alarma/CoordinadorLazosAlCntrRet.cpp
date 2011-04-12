@@ -1,8 +1,8 @@
 #include "CoordinadorLazosAlCntrRet.hpp"
 #include "CoordinadorControladorSintonizador.hpp"
 
-CoordinadorLazosAlCntrRet::RetransmisionOptMem::RetransmisionOptMem(Sensor&sensor,IPWM&pwm,ConfiguracionRetransmision& configuracion):Retransmision(sensor,pwm,configuracion){
-}
+//CoordinadorLazosAlCntrRet::RetransmisionOptMem::RetransmisionOptMem(Sensor&sensor,IPWM&pwm,ConfiguracionRetransmision& configuracion):Retransmision(sensor,pwm,configuracion){
+//}
 
 void * CoordinadorLazosAlCntrRet::RetransmisionOptMem::operator new(size_t size,byte * dir){
   return dir;  
@@ -39,7 +39,7 @@ void CoordinadorLazosAlCntrRet::crearLazo(TipoLazo tipo,IPWM&pwm_){
 
   switch(tipo){
     case RETRANSMISION:
-      lazo = new((byte*)&poolLazo) RetransmisionOptMem(control.getSensor(),pwm_,confRetransmision);        
+      lazo = new ((byte*)&poolLazo) RetransmisionOptMem(control.getSensor(),pwm_,confRetransmision);        
     break;
     case ALARMA:
     default:
@@ -58,7 +58,7 @@ TipoLazo  CoordinadorLazosAlCntrRet::getLazo(){
 void CoordinadorLazosAlCntrRet::setLazo(TipoLazo tipo){
   configuracion.setLazo( tipo );
   
-    IPWM&pwm = (IPWM&)lazo->getSalida();
+  IPWM&pwm = (IPWM&)lazo->getSalida();
   
   delete lazo;
   crearLazo(tipo,pwm); 

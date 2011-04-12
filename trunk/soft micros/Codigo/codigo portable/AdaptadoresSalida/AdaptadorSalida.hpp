@@ -16,9 +16,9 @@ class AdaptadorSalida {
     ISalida& getSalida();
     AdaptadorSalidaConfiguracion& getConfiguracion();
     int getHisteresis();
-    void setHisteresis(int histeresis);
+   // void setHisteresis(int histeresis); pedir configuracion
     int getTipoSalida();
-    void setTipoSalida(TipoSalida tipoSalida);
+   // void setTipoSalida(TipoSalida tipoSalida);  pedir congiguracion
   
   protected:
     virtual int calcularPotencia(int valorControl)=0;
