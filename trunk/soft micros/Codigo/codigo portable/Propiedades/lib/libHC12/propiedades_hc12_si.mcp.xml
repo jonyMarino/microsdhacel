@@ -541,6 +541,98 @@
                     0100
                 </VALUE></PANELDATA>
 
+                <!-- Settings for "Panel for Assembler for HC12" panel -->
+                <SETTING><NAME>Panel for Assembler for HC12</NAME>
+                    <SETTING><NAME>Options</NAME><VALUE></VALUE></SETTING>
+                    <SETTING><NAME>UseDecoder</NAME><VALUE>0</VALUE></SETTING>
+                    <SETTING><NAME>EchoCommandLine</NAME><VALUE>0</VALUE></SETTING>
+                </SETTING>
+
+                <!-- Settings for "Panel for Burner for HC12" panel -->
+                <SETTING><NAME>Panel for Burner for HC12</NAME>
+                    <SETTING><NAME>Options</NAME><VALUE></VALUE></SETTING>
+                    <SETTING><NAME>EchoCommandLine</NAME><VALUE>0</VALUE></SETTING>
+                    <SETTING><NAME>BurnerDialogdata</NAME><VALUE></VALUE></SETTING>
+                </SETTING>
+
+                <!-- Settings for "Panel for Compiler for HC12" panel -->
+                <SETTING><NAME>Panel for Compiler for HC12</NAME>
+                    <SETTING><NAME>Options</NAME><VALUE>-Cc -D__NO_FLOAT__ -F2 -Ms -Qvtpnone -W2</VALUE></SETTING>
+                    <SETTING><NAME>UseDecoder</NAME><VALUE>0</VALUE></SETTING>
+                    <SETTING><NAME>EchoCommandLine</NAME><VALUE>0</VALUE></SETTING>
+                </SETTING>
+
+                <!-- Settings for "Panel for Importer for HC12" panel -->
+                <SETTING><NAME>Panel for Importer for HC12</NAME>
+                    <SETTING><NAME>Options</NAME><VALUE></VALUE></SETTING>
+                    <SETTING><NAME>EchoCommandLine</NAME><VALUE>0</VALUE></SETTING>
+                </SETTING>
+
+                <!-- Settings for "Panel for Libmaker for HC12" panel -->
+                <SETTING><NAME>Panel for Libmaker for HC12</NAME>
+                    <SETTING><NAME>Options</NAME><VALUE>-NoPath</VALUE></SETTING>
+                    <SETTING><NAME>EchoCommandLine</NAME><VALUE>0</VALUE></SETTING>
+                    <SETTING><NAME>OutputFilename</NAME><VALUE>propiedades_hc12_si.lib</VALUE></SETTING>
+                    <SETTING><NAME>LibGenObjFile</NAME><VALUE>0</VALUE></SETTING>
+                </SETTING>
+
+                <!-- Settings for "Panel for Linker for HC12" panel -->
+                <SETTING><NAME>Panel for Linker for HC12</NAME>
+                    <SETTING><NAME>Options</NAME><VALUE>-WErrFileOff -WOutFileOff -WStdoutOff</VALUE></SETTING>
+                    <SETTING><NAME>LinkParameterFilename</NAME><VALUE>out.prm</VALUE></SETTING>
+                    <SETTING><NAME>EchoCommandLine</NAME><VALUE>0</VALUE></SETTING>
+                    <SETTING><NAME>OutputFilename</NAME><VALUE>out.abs</VALUE></SETTING>
+                    <SETTING><NAME>UseTemplate</NAME><VALUE>1</VALUE></SETTING>
+                    <SETTING><NAME>PrmTemplateName</NAME><VALUE>default.prm</VALUE></SETTING>
+                    <SETTING><NAME>RunPreprocessor</NAME><VALUE>0</VALUE></SETTING>
+                </SETTING>
+
+                <!-- Settings for "Panel for Assembler for XGATE" panel -->
+                <SETTING><NAME>Panel for Assembler for XGATE</NAME>
+                    <SETTING><NAME>Options</NAME><VALUE></VALUE></SETTING>
+                    <SETTING><NAME>UseDecoder</NAME><VALUE>0</VALUE></SETTING>
+                    <SETTING><NAME>EchoCommandLine</NAME><VALUE>0</VALUE></SETTING>
+                </SETTING>
+
+                <!-- Settings for "Panel for Burner for XGATE" panel -->
+                <SETTING><NAME>Panel for Burner for XGATE</NAME>
+                    <SETTING><NAME>Options</NAME><VALUE></VALUE></SETTING>
+                    <SETTING><NAME>EchoCommandLine</NAME><VALUE>0</VALUE></SETTING>
+                    <SETTING><NAME>BurnerDialogdata</NAME><VALUE></VALUE></SETTING>
+                </SETTING>
+
+                <!-- Settings for "Panel for Compiler for XGATE" panel -->
+                <SETTING><NAME>Panel for Compiler for XGATE</NAME>
+                    <SETTING><NAME>Options</NAME><VALUE></VALUE></SETTING>
+                    <SETTING><NAME>UseDecoder</NAME><VALUE>0</VALUE></SETTING>
+                    <SETTING><NAME>EchoCommandLine</NAME><VALUE>0</VALUE></SETTING>
+                </SETTING>
+
+                <!-- Settings for "Panel for Importer for XGATE" panel -->
+                <SETTING><NAME>Panel for Importer for XGATE</NAME>
+                    <SETTING><NAME>Options</NAME><VALUE></VALUE></SETTING>
+                    <SETTING><NAME>EchoCommandLine</NAME><VALUE>0</VALUE></SETTING>
+                </SETTING>
+
+                <!-- Settings for "Panel for Libmaker for XGATE" panel -->
+                <SETTING><NAME>Panel for Libmaker for XGATE</NAME>
+                    <SETTING><NAME>Options</NAME><VALUE></VALUE></SETTING>
+                    <SETTING><NAME>EchoCommandLine</NAME><VALUE>0</VALUE></SETTING>
+                    <SETTING><NAME>OutputFilename</NAME><VALUE>out.lib</VALUE></SETTING>
+                    <SETTING><NAME>LibGenObjFile</NAME><VALUE>0</VALUE></SETTING>
+                </SETTING>
+
+                <!-- Settings for "Panel for Linker for XGATE" panel -->
+                <SETTING><NAME>Panel for Linker for XGATE</NAME>
+                    <SETTING><NAME>Options</NAME><VALUE></VALUE></SETTING>
+                    <SETTING><NAME>LinkParameterFilename</NAME><VALUE>out.prm</VALUE></SETTING>
+                    <SETTING><NAME>EchoCommandLine</NAME><VALUE>0</VALUE></SETTING>
+                    <SETTING><NAME>OutputFilename</NAME><VALUE>out.abs</VALUE></SETTING>
+                    <SETTING><NAME>UseTemplate</NAME><VALUE>2</VALUE></SETTING>
+                    <SETTING><NAME>PrmTemplateName</NAME><VALUE>default.prm</VALUE></SETTING>
+                    <SETTING><NAME>RunPreprocessor</NAME><VALUE>0</VALUE></SETTING>
+                </SETTING>
+
                 <!-- Settings for "OSEK Sysgen Panel" panel -->
                 <SETTING><NAME>OSEKCompilerPref_PropertyFileName</NAME><VALUE>{Project}gen\osprop.h</VALUE></SETTING>
                 <SETTING><NAME>OSEKCompilerPref_IncludeFileName</NAME><VALUE>{Project}gen\cfg.h</VALUE></SETTING>
@@ -558,6 +650,21 @@
                 <SETTING><NAME>OSEKCompilerPref_SuppressWarning</NAME><VALUE>false</VALUE></SETTING>
                 <SETTING><NAME>OSEKCompilerPref_AbsolutePathes</NAME><VALUE>false</VALUE></SETTING>
                 <SETTING><NAME>OSEKCompilerPref_GenerateSingleBackslash</NAME><VALUE>false</VALUE></SETTING>
+
+                <!-- Settings for "BatchRunner Panel" panel -->
+                <SETTING><NAME>MWBatchRunnerPostLinker_BatchPath</NAME>
+                    <SETTING><NAME>Path</NAME><VALUE></VALUE></SETTING>
+                    <SETTING><NAME>PathFormat</NAME><VALUE>Windows</VALUE></SETTING>
+                    <SETTING><NAME>PathRoot</NAME><VALUE>Absolute</VALUE></SETTING>
+                </SETTING>
+                <SETTING><NAME>MWBatchRunnerPostLinker_SendParam</NAME><VALUE>false</VALUE></SETTING>
+
+                <!-- Settings for "BatchRunner PreLinker Panel" panel -->
+                <SETTING><NAME>MWBatchRunnerPreLinker_BatchPath</NAME>
+                    <SETTING><NAME>Path</NAME><VALUE></VALUE></SETTING>
+                    <SETTING><NAME>PathFormat</NAME><VALUE>Windows</VALUE></SETTING>
+                    <SETTING><NAME>PathRoot</NAME><VALUE>Absolute</VALUE></SETTING>
+                </SETTING>
 
                 <!-- Settings for "PCLint Options" panel -->
                 <SETTING><NAME>useMeyers</NAME><VALUE>0</VALUE></SETTING>
@@ -624,113 +731,6 @@
                 <SETTING><NAME>MWExternalBuild_targetOS</NAME><VALUE></VALUE></SETTING>
                 <SETTING><NAME>MWExternalBuild_targetCPU</NAME><VALUE></VALUE></SETTING>
                 <SETTING><NAME>MWExternalBuild_targetName</NAME><VALUE></VALUE></SETTING>
-
-                <!-- Settings for "Panel for Assembler for XGATE" panel -->
-                <SETTING><NAME>Panel for Assembler for XGATE</NAME>
-                    <SETTING><NAME>Options</NAME><VALUE></VALUE></SETTING>
-                    <SETTING><NAME>UseDecoder</NAME><VALUE>0</VALUE></SETTING>
-                    <SETTING><NAME>EchoCommandLine</NAME><VALUE>0</VALUE></SETTING>
-                </SETTING>
-
-                <!-- Settings for "BatchRunner Panel" panel -->
-                <SETTING><NAME>MWBatchRunnerPostLinker_BatchPath</NAME>
-                    <SETTING><NAME>Path</NAME><VALUE></VALUE></SETTING>
-                    <SETTING><NAME>PathFormat</NAME><VALUE>Windows</VALUE></SETTING>
-                    <SETTING><NAME>PathRoot</NAME><VALUE>Absolute</VALUE></SETTING>
-                </SETTING>
-                <SETTING><NAME>MWBatchRunnerPostLinker_SendParam</NAME><VALUE>false</VALUE></SETTING>
-
-                <!-- Settings for "BatchRunner PreLinker Panel" panel -->
-                <SETTING><NAME>MWBatchRunnerPreLinker_BatchPath</NAME>
-                    <SETTING><NAME>Path</NAME><VALUE></VALUE></SETTING>
-                    <SETTING><NAME>PathFormat</NAME><VALUE>Windows</VALUE></SETTING>
-                    <SETTING><NAME>PathRoot</NAME><VALUE>Absolute</VALUE></SETTING>
-                </SETTING>
-
-                <!-- Settings for "Panel for Burner for HC12" panel -->
-                <SETTING><NAME>Panel for Burner for HC12</NAME>
-                    <SETTING><NAME>Options</NAME><VALUE></VALUE></SETTING>
-                    <SETTING><NAME>EchoCommandLine</NAME><VALUE>0</VALUE></SETTING>
-                    <SETTING><NAME>BurnerDialogdata</NAME><VALUE></VALUE></SETTING>
-                </SETTING>
-
-                <!-- Settings for "Panel for Compiler for HC12" panel -->
-                <SETTING><NAME>Panel for Compiler for HC12</NAME>
-                    <SETTING><NAME>Options</NAME><VALUE>-Cc -D__NO_FLOAT__ -F2 -Ms -Qvtpnone -W2</VALUE></SETTING>
-                    <SETTING><NAME>UseDecoder</NAME><VALUE>0</VALUE></SETTING>
-                    <SETTING><NAME>EchoCommandLine</NAME><VALUE>0</VALUE></SETTING>
-                </SETTING>
-
-                <!-- Settings for "Panel for Compiler for XGATE" panel -->
-                <SETTING><NAME>Panel for Compiler for XGATE</NAME>
-                    <SETTING><NAME>Options</NAME><VALUE></VALUE></SETTING>
-                    <SETTING><NAME>UseDecoder</NAME><VALUE>0</VALUE></SETTING>
-                    <SETTING><NAME>EchoCommandLine</NAME><VALUE>0</VALUE></SETTING>
-                </SETTING>
-
-                <!-- Settings for "Panel for Importer for HC12" panel -->
-                <SETTING><NAME>Panel for Importer for HC12</NAME>
-                    <SETTING><NAME>Options</NAME><VALUE></VALUE></SETTING>
-                    <SETTING><NAME>EchoCommandLine</NAME><VALUE>0</VALUE></SETTING>
-                </SETTING>
-
-                <!-- Settings for "Panel for Importer for XGATE" panel -->
-                <SETTING><NAME>Panel for Importer for XGATE</NAME>
-                    <SETTING><NAME>Options</NAME><VALUE></VALUE></SETTING>
-                    <SETTING><NAME>EchoCommandLine</NAME><VALUE>0</VALUE></SETTING>
-                </SETTING>
-
-                <!-- Settings for "Panel for Libmaker for HC12" panel -->
-                <SETTING><NAME>Panel for Libmaker for HC12</NAME>
-                    <SETTING><NAME>Options</NAME><VALUE>-NoPath</VALUE></SETTING>
-                    <SETTING><NAME>EchoCommandLine</NAME><VALUE>0</VALUE></SETTING>
-                    <SETTING><NAME>OutputFilename</NAME><VALUE>propiedades_hc12_si.lib</VALUE></SETTING>
-                    <SETTING><NAME>LibGenObjFile</NAME><VALUE>0</VALUE></SETTING>
-                </SETTING>
-
-                <!-- Settings for "Panel for Linker for HC12" panel -->
-                <SETTING><NAME>Panel for Linker for HC12</NAME>
-                    <SETTING><NAME>Options</NAME><VALUE>-WErrFileOff -WOutFileOff -WStdoutOff</VALUE></SETTING>
-                    <SETTING><NAME>LinkParameterFilename</NAME><VALUE>out.prm</VALUE></SETTING>
-                    <SETTING><NAME>EchoCommandLine</NAME><VALUE>0</VALUE></SETTING>
-                    <SETTING><NAME>OutputFilename</NAME><VALUE>out.abs</VALUE></SETTING>
-                    <SETTING><NAME>UseTemplate</NAME><VALUE>1</VALUE></SETTING>
-                    <SETTING><NAME>PrmTemplateName</NAME><VALUE>default.prm</VALUE></SETTING>
-                    <SETTING><NAME>RunPreprocessor</NAME><VALUE>0</VALUE></SETTING>
-                </SETTING>
-
-                <!-- Settings for "Panel for Linker for XGATE" panel -->
-                <SETTING><NAME>Panel for Linker for XGATE</NAME>
-                    <SETTING><NAME>Options</NAME><VALUE></VALUE></SETTING>
-                    <SETTING><NAME>LinkParameterFilename</NAME><VALUE>out.prm</VALUE></SETTING>
-                    <SETTING><NAME>EchoCommandLine</NAME><VALUE>0</VALUE></SETTING>
-                    <SETTING><NAME>OutputFilename</NAME><VALUE>out.abs</VALUE></SETTING>
-                    <SETTING><NAME>UseTemplate</NAME><VALUE>2</VALUE></SETTING>
-                    <SETTING><NAME>PrmTemplateName</NAME><VALUE>default.prm</VALUE></SETTING>
-                    <SETTING><NAME>RunPreprocessor</NAME><VALUE>0</VALUE></SETTING>
-                </SETTING>
-
-                <!-- Settings for "Panel for Burner for XGATE" panel -->
-                <SETTING><NAME>Panel for Burner for XGATE</NAME>
-                    <SETTING><NAME>Options</NAME><VALUE></VALUE></SETTING>
-                    <SETTING><NAME>EchoCommandLine</NAME><VALUE>0</VALUE></SETTING>
-                    <SETTING><NAME>BurnerDialogdata</NAME><VALUE></VALUE></SETTING>
-                </SETTING>
-
-                <!-- Settings for "Panel for Assembler for HC12" panel -->
-                <SETTING><NAME>Panel for Assembler for HC12</NAME>
-                    <SETTING><NAME>Options</NAME><VALUE></VALUE></SETTING>
-                    <SETTING><NAME>UseDecoder</NAME><VALUE>0</VALUE></SETTING>
-                    <SETTING><NAME>EchoCommandLine</NAME><VALUE>0</VALUE></SETTING>
-                </SETTING>
-
-                <!-- Settings for "Panel for Libmaker for XGATE" panel -->
-                <SETTING><NAME>Panel for Libmaker for XGATE</NAME>
-                    <SETTING><NAME>Options</NAME><VALUE></VALUE></SETTING>
-                    <SETTING><NAME>EchoCommandLine</NAME><VALUE>0</VALUE></SETTING>
-                    <SETTING><NAME>OutputFilename</NAME><VALUE>out.lib</VALUE></SETTING>
-                    <SETTING><NAME>LibGenObjFile</NAME><VALUE>0</VALUE></SETTING>
-                </SETTING>
             </SETTINGLIST>
             <FILELIST>
                 <FILE>
@@ -890,24 +890,6 @@
                     <PATHTYPE>PathRelative</PATHTYPE>
                     <PATHROOT>Project</PATHROOT>
                     <ACCESSPATH>..\..\PropiedadGetterVisual</ACCESSPATH>
-                    <PATH>PropDescripcionVariable.hpp</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                    <FILEKIND>Text</FILEKIND>
-                    <FILEFLAGS></FILEFLAGS>
-                </FILE>
-                <FILE>
-                    <PATHTYPE>PathRelative</PATHTYPE>
-                    <PATHROOT>Project</PATHROOT>
-                    <ACCESSPATH>..\..\PropiedadGetterVisual</ACCESSPATH>
-                    <PATH>PropDescripcionVariable.cpp</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                    <FILEKIND>Text</FILEKIND>
-                    <FILEFLAGS>Debug</FILEFLAGS>
-                </FILE>
-                <FILE>
-                    <PATHTYPE>PathRelative</PATHTYPE>
-                    <PATHROOT>Project</PATHROOT>
-                    <ACCESSPATH>..\..\PropiedadGetterVisual</ACCESSPATH>
                     <PATH>PropGetterNumericoPV.hpp</PATH>
                     <PATHFORMAT>Windows</PATHFORMAT>
                     <FILEKIND>Text</FILEKIND>
@@ -921,6 +903,42 @@
                     <PATHFORMAT>Windows</PATHFORMAT>
                     <FILEKIND>Text</FILEKIND>
                     <FILEFLAGS>Debug</FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>PathRelative</PATHTYPE>
+                    <PATHROOT>Project</PATHROOT>
+                    <ACCESSPATH>..\..\PropiedadIncrementable</ACCESSPATH>
+                    <PATH>PropDescripcionVariablePV.cpp</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS>Debug</FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>PathRelative</PATHTYPE>
+                    <PATHROOT>Project</PATHROOT>
+                    <ACCESSPATH>..\..\PropiedadIncrementable</ACCESSPATH>
+                    <PATH>PropDescripcionVariablePV.hpp</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS></FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>PathRelative</PATHTYPE>
+                    <PATHROOT>Project</PATHROOT>
+                    <ACCESSPATH>..\..\PropiedadIncrementable</ACCESSPATH>
+                    <PATH>PropDescripcionVariable.cpp</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS>Debug</FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>PathRelative</PATHTYPE>
+                    <PATHROOT>Project</PATHROOT>
+                    <ACCESSPATH>..\..\PropiedadIncrementable</ACCESSPATH>
+                    <PATH>PropDescripcionVariable.hpp</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS></FILEFLAGS>
                 </FILE>
             </FILELIST>
             <LINKORDER>
@@ -1047,20 +1065,6 @@
                     <PATHTYPE>PathRelative</PATHTYPE>
                     <PATHROOT>Project</PATHROOT>
                     <ACCESSPATH>..\..\PropiedadGetterVisual</ACCESSPATH>
-                    <PATH>PropDescripcionVariable.hpp</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <PATHTYPE>PathRelative</PATHTYPE>
-                    <PATHROOT>Project</PATHROOT>
-                    <ACCESSPATH>..\..\PropiedadGetterVisual</ACCESSPATH>
-                    <PATH>PropDescripcionVariable.cpp</PATH>
-                    <PATHFORMAT>Windows</PATHFORMAT>
-                </FILEREF>
-                <FILEREF>
-                    <PATHTYPE>PathRelative</PATHTYPE>
-                    <PATHROOT>Project</PATHROOT>
-                    <ACCESSPATH>..\..\PropiedadGetterVisual</ACCESSPATH>
                     <PATH>PropGetterNumericoPV.hpp</PATH>
                     <PATHFORMAT>Windows</PATHFORMAT>
                 </FILEREF>
@@ -1069,6 +1073,34 @@
                     <PATHROOT>Project</PATHROOT>
                     <ACCESSPATH>..\..\PropiedadGetterVisual</ACCESSPATH>
                     <PATH>PropGetterNumericoPV.cpp</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>PathRelative</PATHTYPE>
+                    <PATHROOT>Project</PATHROOT>
+                    <ACCESSPATH>..\..\PropiedadIncrementable</ACCESSPATH>
+                    <PATH>PropDescripcionVariablePV.cpp</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>PathRelative</PATHTYPE>
+                    <PATHROOT>Project</PATHROOT>
+                    <ACCESSPATH>..\..\PropiedadIncrementable</ACCESSPATH>
+                    <PATH>PropDescripcionVariablePV.hpp</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>PathRelative</PATHTYPE>
+                    <PATHROOT>Project</PATHROOT>
+                    <ACCESSPATH>..\..\PropiedadIncrementable</ACCESSPATH>
+                    <PATH>PropDescripcionVariable.cpp</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>PathRelative</PATHTYPE>
+                    <PATHROOT>Project</PATHROOT>
+                    <ACCESSPATH>..\..\PropiedadIncrementable</ACCESSPATH>
+                    <PATH>PropDescripcionVariable.hpp</PATH>
                     <PATHFORMAT>Windows</PATHFORMAT>
                 </FILEREF>
             </LINKORDER>
@@ -1224,22 +1256,6 @@
                 <PATHTYPE>PathRelative</PATHTYPE>
                 <PATHROOT>Project</PATHROOT>
                 <ACCESSPATH>..\..\PropiedadGetterVisual</ACCESSPATH>
-                <PATH>PropDescripcionVariable.hpp</PATH>
-                <PATHFORMAT>Windows</PATHFORMAT>
-            </FILEREF>
-            <FILEREF>
-                <TARGETNAME>C++ Ms no float</TARGETNAME>
-                <PATHTYPE>PathRelative</PATHTYPE>
-                <PATHROOT>Project</PATHROOT>
-                <ACCESSPATH>..\..\PropiedadGetterVisual</ACCESSPATH>
-                <PATH>PropDescripcionVariable.cpp</PATH>
-                <PATHFORMAT>Windows</PATHFORMAT>
-            </FILEREF>
-            <FILEREF>
-                <TARGETNAME>C++ Ms no float</TARGETNAME>
-                <PATHTYPE>PathRelative</PATHTYPE>
-                <PATHROOT>Project</PATHROOT>
-                <ACCESSPATH>..\..\PropiedadGetterVisual</ACCESSPATH>
                 <PATH>PropGetterNumericoPV.hpp</PATH>
                 <PATHFORMAT>Windows</PATHFORMAT>
             </FILEREF>
@@ -1249,6 +1265,38 @@
                 <PATHROOT>Project</PATHROOT>
                 <ACCESSPATH>..\..\PropiedadGetterVisual</ACCESSPATH>
                 <PATH>PropGetterNumericoPV.cpp</PATH>
+                <PATHFORMAT>Windows</PATHFORMAT>
+            </FILEREF>
+            <FILEREF>
+                <TARGETNAME>C++ Ms no float</TARGETNAME>
+                <PATHTYPE>PathRelative</PATHTYPE>
+                <PATHROOT>Project</PATHROOT>
+                <ACCESSPATH>..\..\PropiedadIncrementable</ACCESSPATH>
+                <PATH>PropDescripcionVariablePV.cpp</PATH>
+                <PATHFORMAT>Windows</PATHFORMAT>
+            </FILEREF>
+            <FILEREF>
+                <TARGETNAME>C++ Ms no float</TARGETNAME>
+                <PATHTYPE>PathRelative</PATHTYPE>
+                <PATHROOT>Project</PATHROOT>
+                <ACCESSPATH>..\..\PropiedadIncrementable</ACCESSPATH>
+                <PATH>PropDescripcionVariablePV.hpp</PATH>
+                <PATHFORMAT>Windows</PATHFORMAT>
+            </FILEREF>
+            <FILEREF>
+                <TARGETNAME>C++ Ms no float</TARGETNAME>
+                <PATHTYPE>PathRelative</PATHTYPE>
+                <PATHROOT>Project</PATHROOT>
+                <ACCESSPATH>..\..\PropiedadIncrementable</ACCESSPATH>
+                <PATH>PropDescripcionVariable.cpp</PATH>
+                <PATHFORMAT>Windows</PATHFORMAT>
+            </FILEREF>
+            <FILEREF>
+                <TARGETNAME>C++ Ms no float</TARGETNAME>
+                <PATHTYPE>PathRelative</PATHTYPE>
+                <PATHROOT>Project</PATHROOT>
+                <ACCESSPATH>..\..\PropiedadIncrementable</ACCESSPATH>
+                <PATH>PropDescripcionVariable.hpp</PATH>
                 <PATHFORMAT>Windows</PATHFORMAT>
             </FILEREF>
         </GROUP>

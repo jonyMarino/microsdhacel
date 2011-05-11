@@ -20,6 +20,7 @@
 #include "configuracionValorControl.hpp"
 #include "configuracionAlarmas.hpp"
 #include "PropDescripcionVariablePV.hpp"
+#include "ConfiguracionAdapSalida.hpp"
 
 #pragma MESSAGE DISABLE C1825          /* Disable warning C5703 "Parameter is not referenced" */
 
@@ -61,12 +62,6 @@
     return (*(AdaptadorSalida*)&(*(LazoControl*)&(((CoordinadorLazosAlCntrRet*)conf)->getAlarmaControl())).getAdaptadorSalida()).METODO(); \
   }
   
-#define ADAPTAR_FUNCION_ADAP_SAL_SET(NOMBRE,METODO)      \
-  void NOMBRE(void*conf,int valor){           \
-    (*(AdaptadorSalida*)&(*(LazoControl*)&(((CoordinadorLazosAlCntrRet*)conf)->getAlarmaControl())).getAdaptadorSalida()).METODO(valor); \
-  }   
-  
-
 #define ADAPTAR_FUNCION_VAL_CONTROL_GET(NOMBRE,METODO)\
     int NOMBRE(void*conf){           \
     return (*(ValorControl*)&(*(LazoControl*)&(((CoordinadorLazosAlCntrRet*)conf)->getAlarmaControl())).getValorControl()).METODO(); \
@@ -172,7 +167,11 @@ uchar getDecimalesAlarma(void*alarma){
   
   //Histeresis de Alarma
   ADAPTAR_FUNCION_ADAP_SAL_GET(getHisteresisAlarma,getHisteresis)
-  ADAPTAR_FUNCION_ADAP_SAL_SET(setHisteresisAlarma,setHisteresis)
+  
+ void setHisteresisAlarma(void*conf,int valor){           
+    const AdaptadorSalidaConfiguracion& config = (*(AdaptadorSalida*)&(*(LazoControl*)&(((CoordinadorLazosAlCntrRet*)conf)->getAlarmaControl())).getAdaptadorSalida()).getConfiguracion();
+    ((ConfiguracionAdapSalida*)&config)->setHisteresis(valor);
+ }
   
   const char * histeresisAlarmaVista(PropGetterVisual * prop){    
     int valObj=prop->getVal();
@@ -199,7 +198,12 @@ uchar getDecimalesAlarma(void*alarma){
 
   
   ADAPTAR_FUNCION_ADAP_SAL_GET(getTipoSalida,getTipoSalida)
-  ADAPTAR_FUNCION_ADAP_SAL_SET(setTipoSalida,setTipoSalida)
+  
+   void setTipoSalida(void*conf,int valor){           
+      const AdaptadorSalidaConfiguracion& config = (*(AdaptadorSalida*)&(*(LazoControl*)&(((CoordinadorLazosAlCntrRet*)conf)->getAlarmaControl())).getAdaptadorSalida()).getConfiguracion();
+      ((ConfiguracionAdapSalida*)&config)->setTipoSalida(valor);
+   }
+   
    const struct ConstructorPropiedadTextual cPropiedadTipoSalida={
     &propiedadTextualFactory,getTipoSalida,"AL",setTipoSalida,ms_getText_c,2
   };

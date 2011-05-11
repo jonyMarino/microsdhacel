@@ -6,6 +6,10 @@ const struct PropGetterNumericoPVFactory propGetterNumericoPVFactory;
 PropGetterNumericoPVFactory::PropGetterNumericoPVFactory(){
 }
 
+PropiedadGetter& PropGetterNumericoPVFactory::getPropiedad(void*obj,const struct ArgumentosPropiedadGetter* args,uchar numObjeto)const{
+  return *new PropGetterNumericoPV(obj,(const struct ArgumentosPropGetterNumericoPV*)args,numObjeto);
+} 
+
 PropGetterNumericoPV::PropGetterNumericoPV(void*obj,const struct ArgumentosPropGetterNumericoPV* args,uchar numObjeto):PropGetterVisual(obj,(const struct ArgumentosPropGetterVisual*)args,numObjeto){}
 /*
 ** ===================================================================
@@ -21,6 +25,4 @@ void PropGetterNumericoPV::print(OutputStream&os){
   os.writeAsFloat(getVal(),puntoDecimal);  
 }
 
-PropiedadGetter& PropGetterNumericoPVFactory::getPropiedad(void*obj,const struct ArgumentosPropiedadGetter* args,uchar numObjeto)const{
-  return *new PropGetterNumericoPV(obj,(const struct ArgumentosPropGetterNumericoPV*)args,numObjeto);
-} 
+

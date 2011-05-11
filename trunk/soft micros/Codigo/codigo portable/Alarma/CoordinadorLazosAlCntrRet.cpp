@@ -1,8 +1,8 @@
 #include "CoordinadorLazosAlCntrRet.hpp"
 #include "CoordinadorControladorSintonizador.hpp"
 
-//CoordinadorLazosAlCntrRet::RetransmisionOptMem::RetransmisionOptMem(Sensor&sensor,IPWM&pwm,ConfiguracionRetransmision& configuracion):Retransmision(sensor,pwm,configuracion){
-//}
+CoordinadorLazosAlCntrRet::RetransmisionOptMem::RetransmisionOptMem(Sensor&sensor,IPWM&pwm,ConfiguracionRetransmision& configuracion):Retransmision(sensor,pwm,configuracion){
+}
 
 void * CoordinadorLazosAlCntrRet::RetransmisionOptMem::operator new(size_t size,byte * dir){
   return dir;  
