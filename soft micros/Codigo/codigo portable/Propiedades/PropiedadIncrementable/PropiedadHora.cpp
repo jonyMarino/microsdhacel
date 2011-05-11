@@ -31,6 +31,11 @@ void PropiedadHora::decrementar(){
 	setValorTmp(valorTmp);  
 }
 
+void PropiedadHora::setValor(int valor){
+  if( (((uint)valor)%100 < 59) && (((uint)valor)/100<24))
+    setValorTmp(valor);
+}
+
 PropiedadGetter& PropiedadHoraFactory::getPropiedad(void*obj,const struct ArgumentosPropiedadGetter* args,uchar numObjeto)const{
   return *new PropiedadHora(obj,(const struct ArgumentosPropiedadIncrementable*)args,numObjeto);
 } 

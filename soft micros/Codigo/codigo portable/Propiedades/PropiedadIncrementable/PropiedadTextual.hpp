@@ -19,6 +19,7 @@ class PropiedadTextual:public PropiedadIncrementable{
     PropiedadTextual(void*obj,const struct ArgumentosPropiedadTextual* args,uchar numObjeto);
     virtual void incrementar();
     virtual void decrementar();
+    virtual void setValor(int valor);
     virtual void print(OutputStream&os);
 };
 

@@ -13,6 +13,7 @@ class PropiedadNumerica:public PropiedadIncrementable{
     PropiedadNumerica(void*obj,const struct ArgumentosPropiedadIncrementable* args,uchar numObjeto);
     virtual void incrementar();
     virtual void decrementar();
+    virtual void setValor(int valor);
     virtual void print(OutputStream&os);
     virtual int getLimiteInferior()=0;
     virtual int getLimiteSuperior()=0;

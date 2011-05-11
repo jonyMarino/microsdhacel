@@ -47,7 +47,7 @@ Box * BoxPropiedad::procesarTecla(uchar tecla,TEstadoBox& estado){
 			    p->decrementar();			  
 			  save=TRUE;							            // Grabar parametros
 			  propiedad->print(getDisplay(0));
-			  //propiedad->printDescripcion(getDisplay(1));
+			  propiedad->printDescripcion(getDisplay(1));
 			  estado = STAY_BOX;
 			  return NULL;
   } else if (tecla=='r'){

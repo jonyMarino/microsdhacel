@@ -34,6 +34,13 @@ void PropiedadTextual::decrementar(){
 	  
 }
 
+void PropiedadTextual::setValor(int valor){
+  byte limSup =  ((struct ArgumentosPropiedadTextual*)getArgumentos())->maximoValorTexto -1;
+  if (valor > 0 && valor<limSup)
+    setValorTmp(valor);
+
+}
+
 PropiedadGetter& PropiedadTextualFactory::getPropiedad(void*obj,const struct ArgumentosPropiedadGetter* args,uchar numObjeto)const{
   return *new PropiedadTextual(obj,(const struct ArgumentosPropiedadTextual*)args,numObjeto);
 } 

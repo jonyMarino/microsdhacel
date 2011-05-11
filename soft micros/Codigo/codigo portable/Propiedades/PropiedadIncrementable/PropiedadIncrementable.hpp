@@ -19,6 +19,7 @@ class PropiedadIncrementable:public PropGetterVisual{
     PropiedadIncrementable(void*obj,const struct ArgumentosPropiedadIncrementable* args,uchar numObjeto);
     virtual void incrementar()=0;
     virtual void decrementar()=0;
+    virtual void setValor(int valor)=0;
     void guardar(); //para que los incrementos surjan efecto en el objeto controlado por la propiedad
     virtual int getVal();
     void refrescar();

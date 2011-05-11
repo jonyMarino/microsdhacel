@@ -30,7 +30,7 @@ bool NodoICModBus::setDato(void * dir,int dato) {
     return ERR_VALUE;  
   ConstructorPropGetterVisual * constGetter= (ConstructorPropGetterVisual *)Array_get( getsProps.arrayConstructores , ((size_t)dir - (size_t)dirIni) /2);
   PropiedadGetter*p = &constGetter->getPropiedad(obj,0);  
-  ((PropiedadIncrementable*)p)->setValorTmp(dato);
+  ((PropiedadIncrementable*)p)->setValor(dato);
   ((PropiedadIncrementable*)p)->guardar();
   delete p;
   return ERR_OK;

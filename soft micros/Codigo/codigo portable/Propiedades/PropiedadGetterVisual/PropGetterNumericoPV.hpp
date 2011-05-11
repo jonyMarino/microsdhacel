@@ -13,16 +13,18 @@ struct ArgumentosPropGetterNumericoPV{
   uchar (*getCantidadDecimales)(void*);
 };
 
+struct PropGetterNumericoPVFactory:public PropGetterVisualFactory{
+    PropGetterNumericoPVFactory();
+    virtual PropiedadGetter& getPropiedad(void*obj,const struct ArgumentosPropiedadGetter* args,uchar numObjeto)const;
+};
+
+
 class PropGetterNumericoPV:public PropGetterVisual{
   public:
     PropGetterNumericoPV(void*obj,const struct ArgumentosPropGetterNumericoPV* args,uchar numObjeto);
     virtual void print(OutputStream&os);
 };
 
-struct PropGetterNumericoPVFactory:public PropGetterVisualFactory{
-    PropGetterNumericoPVFactory();
-    virtual PropiedadGetter& getPropiedad(void*obj,const struct ArgumentosPropiedadGetter* args,uchar numObjeto)const;
-};
 
 struct ConstructorPropGetterNumericoPV{
     const struct PropGetterVisualFactory * factory;

@@ -29,3 +29,12 @@ void PropiedadNumerica::decrementar(){
 	  
 }
 
+
+void PropiedadNumerica::setValor(int valor){
+  int limInf =  getLimiteInferior();  
+  int limSup =  getLimiteSuperior();
+  
+  if (valor > limInf && valor<limSup)
+    setValorTmp(valor);
+}
+
