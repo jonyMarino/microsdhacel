@@ -25,7 +25,7 @@ class ConfModBus: public ConfiguracionModBus{
     }
 }confModBus;
 
-//PlataformaEmbedded plataforma; 
+PlataformaEmbedded plataforma; 
 
 class Init{
   public:
@@ -78,7 +78,7 @@ void main(void) {
   PE_low_level_init();
   
   for(;;){    
-    //plataforma.mainLoop();
+    plataforma.mainLoop();
     
   }
     

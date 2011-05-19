@@ -34,7 +34,7 @@
 #include "PUL.h"
 #include "WDog1.h"
 //#include "HC12_CPP/sources/ComunicacionAsincronica/puertoSerie1.h"
-#include "AS1.h"
+#include "puertoSerie1.h"
 #include "ADC1.h"
 #include "FLASH1.h"
 #include "TI1.h"

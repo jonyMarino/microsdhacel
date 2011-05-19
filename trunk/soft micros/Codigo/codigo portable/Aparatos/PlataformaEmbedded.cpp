@@ -7,6 +7,10 @@
 
 ThreadAttachable* PlataformaEmbedded::threads;
 
+
+PlataformaEmbedded::PlataformaEmbedded(){threads=&thread;}
+
+
 void pthread_create(void ** _self,void * attr,void*(*pf)(void*),void* args){
   struct Method * m = new Method();
   m->pmethod=(Method::pMethod)pf;

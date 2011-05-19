@@ -67,7 +67,7 @@
 #pragma MESSAGE DISABLE C4002 /* WARNING C4002: Result not used is ignored */
 #pragma MESSAGE DISABLE C4301 /* INFORMATION C4301: Inline expansion done for function call */
 
-#include "AS1.h"
+#include "puertoSerie1.h"
 //#include "test.h"
 #include "ModBus.hpp"
 
@@ -255,20 +255,19 @@ byte AS1_SendChar(AS1_TComData Chr)
 void AS1_InterruptRx(void)
 {
   AS1_TComData Data;                   /* Temporary variable for data */
-  byte StatReg = getReg(SCISR1);
   byte OnFlags = 0;                    /* Temporary variable for flags */
 
   Data = SCIDRL;                       /* Read data from the receiver */
   if(SerFlag & CHAR_IN_RX) {           /* Is a character already present in the receive buffer? */
     SerFlag |= OVERRUN_ERR;            /* If yes then set flag OVERRUN_ERR */
-  }
-  SerFlag |= CHAR_IN_RX;               /* Set flag "char in RX buffer" */
-  if(!(SerFlag & OVERRUN_ERR )) {      /* Is an overrun detected? */
+  } else {
     BufferRead = Data;
+    SerFlag |= CHAR_IN_RX;             /* Set flag "char in RX buffer" */
     OnFlags |= ON_RX_CHAR;             /* Set flag "OnRxChar" */
   }
     if(OnFlags & ON_RX_CHAR) {         /* Is OnRxChar flag set? */
-      modbus->onRxChar(Data);                  /* If yes then invoke user event */
+      modbus->onRxChar(Data);          /* If yes then invoke user event */
+      SerFlag      = 0;                /* Clear all errors in the status variable */
     }
 }
 
@@ -368,9 +367,9 @@ ISR(AS1_Interrupt)
 **         only.
 ** ===================================================================
 */
-void AS1_Init(ModBus& _modbus)
+void AS1_Init(ModBus* _modbus)
 {
-  ModBus* modbus = &_modbus;
+  modbus = _modbus;
   SerFlag = 0;                         /* Reset flags */
   EnUser = TRUE;                       /* Enable device */
 

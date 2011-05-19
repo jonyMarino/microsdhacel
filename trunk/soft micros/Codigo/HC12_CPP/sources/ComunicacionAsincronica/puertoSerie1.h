@@ -223,7 +223,7 @@ __interrupt void AS1_Interrupt(void);
 */
 
 
-void AS1_Init(ModBus& _modbus);
+void AS1_Init(ModBus* _modbus);
 /*
 ** ===================================================================
 **     Method      :  AS1_Init (bean AsynchroSerial)

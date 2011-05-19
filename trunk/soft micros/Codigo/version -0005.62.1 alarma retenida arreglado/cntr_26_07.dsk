@@ -1,8 +1,8 @@
 [Version]
-PE_DesktopFileVersion=920
+PE_DesktopFileVersion=1092
 
 [Desktop]
-StartupPrj=D:\microsdhacel2\version -0005.62.1 alarma retenida arreglado\cntr_26_07.pe
+StartupPrj=C:\Documents and Settings\John\Escritorio\versionR51\microsdhacel\soft micros\Codigo\version -0005.62.1 alarma retenida arreglado\cntr_26_07.pe
 
 [PE_IDE_PlugIn]
 
@@ -11,7 +11,7 @@ StartupPrj=D:\microsdhacel2\version -0005.62.1 alarma retenida arreglado\cntr_26
 [AppPanel]
 Status=hiden
 WindowState=NORMAL
-Rect=[-4|58|318|530]
+Rect=[88|204|310|496]
 
 [CpuPanel]
 Status=hiden
@@ -105,41 +105,9 @@ Rect=[94|63|309|507]
 WindowWidth=450
 WindowHeight=333
 
-[Breakpoints]
-WindowVisible=No
-Rect=[0|0|0|0]
-BreakLine1=0
-BreakModule1=
-
-[Watches]
-Rect=[0|0|0|0]
-WindowVisible=No
-WatchCount=0
-WatchHistoryCount=0
-
-[Registers]
-Rect=[0|0|100|500]
-WindowVisible=No
-
-[Dump]
-WindowVisible=No
-Rect=[0|0|0|0]
-Address=0
-DataSize=1
-DataType=num
-HistoryAddrCount=0
-
-[InterruptVectors]
-WindowVisible=No
-Rect=[0|0|0|0]
-
 [MemoryMap]
 Rect=[64|35|355|475]
 DisplayOnlyMemories=No
-WindowVisible=No
-
-[Browser]
-Rect=[0|0|0|0]
 WindowVisible=No
 
 [BeanManager]
@@ -165,9 +133,6 @@ DragNDropMethodWithParams=No
 CpuBitmapFileName=Config\PE\CPUbckgr.bmp
 CpuBitmapTilled=No
 ShowProducerLogo=No
-AutoStartApplicationCode=No
-ShowSourceLinAfterDbgInit=No
-RestoreFilesAfterDebug=No
 UsePEEditor=No
 
 [_end_]
