@@ -11,6 +11,8 @@
 #pragma CODE_SEG ModBus_CODE 
 #pragma CONST_SEG DEFAULT
 
+#define ESPERA_ENTRE_CARACTER_MS 3
+
 
 
 /* EscrituraDemorada se encarga de guardar las variables para grabar el dato en el thread y no en la interrupcion, lo que traeria problemas*/
@@ -22,21 +24,21 @@ void ModBus::EscrituraDemorada::escribir(){
         
 
 static const ModBus::T_OnRecive ModBus::onRecive[6]={
-/*  #ifdef _N_MODBUS
-    1,dhacelRead,
-    3,dhacelRead,
+  #ifdef _N_MODBUS
+    1,ModBus::dhacelRead,
+    3,ModBus::dhacelRead,
   #else
-    3,modBusRead,
-    4,modBusRead, 
+    3,ModBus::modBusRead,
+    4,ModBus::modBusRead, 
   #endif  
   #ifdef _N_MODBUS
-    5,modBusWrite,
-    6,modBusWrite,
+    5,ModBus::modBusWrite,
+    6,ModBus::modBusWrite,
   #else
-    6,modBusWrite,
+    6,ModBus::modBusWrite,
   #endif
-    8,readCompilacion,
-  */
+ //   8,readCompilacion,
+  
   0,NULL    //NO SACAR: Indican el Final
 };
 
@@ -54,11 +56,10 @@ static void* ModBus::escribirDatoEnColaIntermedia(void*_self){
 **         Inicializacion de la comunicacion
 ** ===================================================================
 */
-ModBus::ModBus(ConfiguracionModBus& conf,const struct Array/*<NodoICModBus>*/ *_comProps,PromBkp*_prom):configuracion(conf),comProps(_comProps),prom(_prom),timer(3,mOnTime),step(0),pEscrituraDemorada(NULL){
+ModBus::ModBus(ConfiguracionModBus& conf,const struct Array/*<NodoICModBus>*/ *_comProps,PromBkp*_prom):configuracion(conf),comProps(_comProps),prom(_prom),timer(ESPERA_ENTRE_CARACTER_MS),step(0),pEscrituraDemorada(NULL){
+  asTx=FALSE;
   timer.stop();
-  AS1_Init(*this);
-  mOnTime.pmethod= onTimePass;
-  mOnTime.obj = this;
+  AS1_Init(this);
   void*thread;
   pthread_create(&thread,NULL,escribirDatoEnColaIntermedia,this);
 }
@@ -91,11 +92,11 @@ void ModBus::escribirDatoEnCola(){
 ** ===================================================================
 */
 
-static void ModBus::onTimePass(void*_self){
+/*static void ModBus::onTimePass(void*_self){
   ModBus *self = (ModBus*)_self;
   self->step=0;
   self->timer.stop();
-}
+} */
 
 /*
 ** ===================================================================
@@ -145,13 +146,16 @@ void ModBus::onRxChar(byte dat)
   byte i;
   word crc;
   
-  
+  if(timer.getFlag()){   
+    step=0;
+    timer.reset();
+    timer.restart();
+  }
   msj[step]=dat;
   switch(step){
     
-    case 0:if (msj[0]!= configuracion.getId() || !timer.isFinished() ){
-      timer.restart();
-      break;         //Id 
+    case 0:if (msj[0]!= configuracion.getId() ){
+      break;         
     }
     case 1:
     case 2:
@@ -170,7 +174,7 @@ void ModBus::onRxChar(byte dat)
               break; 
           }
         
-					
+					asTx=FALSE; //flag de inicio de transmision
 					for(i=0;onRecive[i].onFuncion!=NULL;i++){
 					  if(onRecive[i].id==msj[1]){
 					    (*onRecive[i].onFuncion)(this,msj);
@@ -226,13 +230,11 @@ byte ModBus::send(byte * data,byte cant){
   
   if(asTx)
     return ERR_BUSY;
-  
-  for(i=0;i<cant;i++)
-    msj[i]=data[i];  
+ 
   
   crc = calcularCrc(msj,cant);
-  msj[i]= crc%256;  // a los siguientes 2 bytes les agrego el crc
-  msj[i+1]= crc/256;  // a los siguientes 2 bytes les agrego el crc
+  data[cant]= crc%256;  // a los siguientes 2 bytes les agrego el crc
+  data[cant+1]= crc/256;  // a los siguientes 2 bytes les agrego el crc
   
   cantMsjsOut=cant+2;
   asTx=TRUE;
@@ -693,7 +695,7 @@ const unsigned int ModBus::crcControl[256]=	{
 */
 
 
-static unsigned short int ModBus::calcularCrc(unsigned char *z_p,unsigned char z_message_length){
+unsigned short int ModBus::calcularCrc(unsigned char *z_p,unsigned char z_message_length){
 
 unsigned short int CRC= 0xffff;
 unsigned short int next;

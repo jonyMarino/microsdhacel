@@ -3,7 +3,7 @@
 
 #include "NodoICModBus.hpp"
 //#include "puertoSerie1.h"
-#include "MethodTimer.hpp"
+#include "FlagTimer.hpp"
 #include "PromBkp.hpp"
 
 #pragma DATA_SEG ModBus_DATA                                            
@@ -105,8 +105,7 @@ class ModBus{
     word crc;
     bool asTx; 
     byte msj[16];
-    struct Method& mOnTime;
-    MethodTimer timer;
+    FlagTimer timer;
     static const unsigned int crcControl[256];
     static const T_OnRecive onRecive[6];
     void (*onSend)(void*);
@@ -132,8 +131,6 @@ class ModBus{
     ** ===================================================================
     */
     byte getCompilacion(byte * data);
-    
-    static void onTimePass(void*);
     
     static unsigned short int calcularCrc(unsigned char *z_p,unsigned char z_message_length);
 

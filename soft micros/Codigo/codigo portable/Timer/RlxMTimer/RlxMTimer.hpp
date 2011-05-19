@@ -11,7 +11,6 @@
 struct RlxMTimer:public MethodTimer{
   public:
     RlxMTimer(ulong tiempo,struct Method& metodo);
-    RlxMTimer(ulong tiempo,Method::pMethod metodo,void*obj);
     ~RlxMTimer();
   protected:
     void onTime();  
