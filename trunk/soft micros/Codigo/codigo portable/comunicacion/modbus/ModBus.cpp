@@ -22,7 +22,27 @@ void ModBus::EscrituraDemorada::escribir(){
   nodo.setDato(dir,dato);
 }
         
+void ModBus::sendingIntermedia(void*_self){
+  ModBus  * self = (ModBus*)_self;
+  self->sending(); 
+}
 
+void ModBus::sendReadIntermedia(void*_self){
+  ModBus  * self = (ModBus*)_self;
+  self->sendRead();
+}
+
+void ModBus::sendNextReadIntermedia(void*_self){
+  ModBus  * self = (ModBus*)_self;
+  self->sendNextRead();
+}
+
+void ModBus::sendCRCIntermedia(void*_self){
+  ModBus  * self = (ModBus*)_self;
+  self->sendCRC();
+}
+    
+    
 static const ModBus::T_OnRecive ModBus::onRecive[6]={
   #ifdef _N_MODBUS
     1,ModBus::dhacelRead,
@@ -181,7 +201,11 @@ void ModBus::onRxChar(byte dat)
 					    break;  
 					  }
 					}
- 			
+					#ifdef DEBUG
+					if(onRecive[i].onFuncion==NULL)
+ 			      asm(BGND);
+					#endif
+ 			    
   }
     
 }
@@ -288,7 +312,7 @@ byte ModBus::writeAddress(word address,int dato){
         if(nodo->isEscribible()){         
           if(pEscrituraDemorada)
             return 1; //cambiar : error no alcanzo el tiempo
-          /*pEscrituraDemorada =*/ new ModBus::EscrituraDemorada(*nodo,(void*)address,dato);
+          pEscrituraDemorada = new ModBus::EscrituraDemorada(*nodo,(void*)address,dato);
           return ERR_OK;       
         }
       }

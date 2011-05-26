@@ -15,8 +15,8 @@
 #define FUNCION_ESTATICA_INTERMEDIA_DE(clase,funcion) \
   void funcion(void);                             \
     static void funcion##Intermedia(void*_self){  \
-    clase * self = (clase*)self;                \
-    self->funcion;                              \
+    clase * self = (clase*)_self;                \
+    self->funcion();                              \
   }                                             
   
   
@@ -134,11 +134,15 @@ class ModBus{
     
     static unsigned short int calcularCrc(unsigned char *z_p,unsigned char z_message_length);
 
-    FUNCION_ESTATICA_INTERMEDIA_DE(ModBus,sending);
-    
-    FUNCION_ESTATICA_INTERMEDIA_DE(ModBus, sendRead);
-    FUNCION_ESTATICA_INTERMEDIA_DE(ModBus, sendNextRead);
-    FUNCION_ESTATICA_INTERMEDIA_DE(ModBus, sendCRC);
+   // FUNCION_ESTATICA_INTERMEDIA_DE(ModBus,sending);
+    void sending(void);
+    static void sendingIntermedia(void*);
+    void sendRead(void);
+    static void sendReadIntermedia(void*);
+    void sendNextRead(void);
+    static void sendNextReadIntermedia(void*);
+    void sendCRC(void);
+    static void sendCRCIntermedia(void*);
 
     void escribirDatoEnCola(void);
     static void* escribirDatoEnColaIntermedia(void*);
