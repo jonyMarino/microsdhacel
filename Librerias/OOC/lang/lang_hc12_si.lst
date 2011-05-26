@@ -1,0 +1,20 @@
+Units and locations in library 'D:\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\lang\lang_hc12_si.lib'
+Unit name                                                                                                                                size     from       to
+D:\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\lang\lib_project\lang_Data\C++_Ms_no_float\ObjectCode\CharPointer.cpp.o     11162      141    11303
+D:\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\lang\lib_project\lang_Data\C++_Ms_no_float\ObjectCode\Math.cpp.o             5294    11303    16597
+
+EXPORTED OBJECTS
+__as__11CharPointerFRC11CharPointer             F   (D:\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\lang\lib_project\lang_Data\C++_Ms_no_float\ObjectCode\CharPointer.cpp.o)
+__as__4MathFRC4Math                             F   (D:\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\lang\lib_project\lang_Data\C++_Ms_no_float\ObjectCode\CharPointer.cpp.o)
+__as__4MathFRC4Math                             F   (D:\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\lang\lib_project\lang_Data\C++_Ms_no_float\ObjectCode\Math.cpp.o)
+__ct__11CharPointerFRC11CharPointer             F   (D:\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\lang\lib_project\lang_Data\C++_Ms_no_float\ObjectCode\CharPointer.cpp.o)
+__ct__4MathFRC4Math                             F   (D:\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\lang\lib_project\lang_Data\C++_Ms_no_float\ObjectCode\CharPointer.cpp.o)
+__ct__4MathFRC4Math                             F   (D:\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\lang\lib_project\lang_Data\C++_Ms_no_float\ObjectCode\Math.cpp.o)
+__sf_11CharPointer_printFloatLeft__FPSciT1Uc    F   (D:\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\lang\lib_project\lang_Data\C++_Ms_no_float\ObjectCode\CharPointer.cpp.o)
+__sf_11CharPointer_printFloat__FPSciUc          F   (D:\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\lang\lib_project\lang_Data\C++_Ms_no_float\ObjectCode\CharPointer.cpp.o)
+__sf_4Math_div_dec                              I   (D:\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\lang\lib_project\lang_Data\C++_Ms_no_float\ObjectCode\CharPointer.cpp.o)
+__sf_4Math_div_dec                              O   (D:\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\lang\lib_project\lang_Data\C++_Ms_no_float\ObjectCode\Math.cpp.o)
+__sf_4Math_pow10__FUc                           I   (D:\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\lang\lib_project\lang_Data\C++_Ms_no_float\ObjectCode\CharPointer.cpp.o)
+__sf_4Math_pow10__FUc                           F   (D:\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\lang\lib_project\lang_Data\C++_Ms_no_float\ObjectCode\Math.cpp.o)
+abs                                             I   (D:\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\lang\lib_project\lang_Data\C++_Ms_no_float\ObjectCode\CharPointer.cpp.o)
+sprintf                                         I   (D:\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\lang\lib_project\lang_Data\C++_Ms_no_float\ObjectCode\CharPointer.cpp.o)

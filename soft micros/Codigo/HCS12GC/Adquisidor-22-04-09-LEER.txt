@@ -1,4 +1,0 @@
-Antes de recompilar/cargar el adquisidor se debe verificar que:
-
-la macro LIBDEF_HEAPSIZE este definda con el valor 1192, 
-esta macro se encuentra en la libreria HC12C DE FREESCALE en el archivo ALLOC.C

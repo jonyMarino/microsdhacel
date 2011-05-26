@@ -1,0 +1,9 @@
+Units and locations in library 'D:\versionR51\microsdhacel\soft micros\Codigo\codigo portable\Control\lib\libHC12\lib\cppsi.lib'
+Unit name            size     from       to
+controlmath.c.o      4476      155     4631
+
+EXPORTED OBJECTS
+_ILSEXT       I   (controlmath.c.o)
+_LDIVS        I   (controlmath.c.o)
+duty_onoff    F   (controlmath.c.o)
+duty_prop     F   (controlmath.c.o)

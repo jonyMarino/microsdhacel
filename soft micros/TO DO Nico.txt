@@ -1,5 +1,0 @@
-* Fijarse como manejar la licencia del compilador 08 para no comprar una. Esta la versio eclipse y la del codewarrior (eclipse es mejor)
-* Siempre crear clases hijas o crear clases base al agregar nueva funcionalidad. A menos que se encuentre un bug o un error de disenio(hablar con Jony del cambio) no modificar codigo de una clase ya hecha!
-* Siempre al terminar el dia subir al SVN
-
-

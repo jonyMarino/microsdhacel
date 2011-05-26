@@ -1,0 +1,24 @@
+Units and locations in library 'D:\versionR51\microsdhacel\soft micros\Codigo\codigo portable\Salida\lib\libHC12\lib\cppsi.lib'
+Unit name             size     from       to
+ISalida.cpp.o         5473     2708     8181
+Salida.cpp.o         11224     8181    19405
+TipoSalida.cpp.o      2554      154     2708
+
+EXPORTED OBJECTS
+_LOAD_FAR_16                 I   (Salida.cpp.o)
+____vtbl__ISalida            O   (ISalida.cpp.o)
+____vtbl__ISalida            O   (Salida.cpp.o)
+____vtbl__SalidaISalida      O   (Salida.cpp.o)
+__as__6SalidaFRC6Salida      F   (Salida.cpp.o)
+__as__7ISalidaFRC7ISalida    F   (ISalida.cpp.o)
+__as__7ISalidaFRC7ISalida    F   (Salida.cpp.o)
+__ct__6SalidaFRC6Salida      F   (Salida.cpp.o)
+__ct__6SalidaFv              F   (Salida.cpp.o)
+__ct__7ISalidaFRC7ISalida    F   (ISalida.cpp.o)
+__ct__7ISalidaFRC7ISalida    F   (Salida.cpp.o)
+__ct__7ISalidaFv             F   (ISalida.cpp.o)
+__ct__7ISalidaFv             F   (Salida.cpp.o)
+getConectada__6SalidaFv      F   (Salida.cpp.o)
+getPotencia__6SalidaFv       F   (Salida.cpp.o)
+setConectada__6SalidaFUi     F   (Salida.cpp.o)
+setPotencia__6SalidaFUi      F   (Salida.cpp.o)

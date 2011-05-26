@@ -1,0 +1,2 @@
+savebp on
+BS &ModBus.cpp:escribirDatoEnCola+23 P E;cdSz=45 

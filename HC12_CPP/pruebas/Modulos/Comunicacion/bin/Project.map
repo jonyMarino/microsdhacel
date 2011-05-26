@@ -1,0 +1,2942 @@
+
+PROGRAM "C:\Documents and Settings\John\Escritorio\versionR51\microsdhacel\soft micros\Codigo\HC12_CPP\pruebas\Modulos\Comunicacion\bin\Project.abs"
+
+*********************************************************************************************
+TARGET SECTION
+---------------------------------------------------------------------------------------------
+Processor   : Freescale HC12
+Memory Model: SMALL
+File Format : ELF\DWARF 2.0
+Linker      : SmartLinker V-5.0.40 Build 10203, Jul 23 2010
+
+*********************************************************************************************
+FILE SECTION
+---------------------------------------------------------------------------------------------
+Start12.cpp.o                           Model: SMALL,         Lang: C++
+ASSERT.C.o (ansisi.lib)                 Model: SMALL,         Lang: ANSI-C
+EMBEDDED.C.o (ansisi.lib)               Model: SMALL,         Lang: ANSI-C
+HEAP.C.o (ansisi.lib)                   Model: SMALL,         Lang: ANSI-C
+ALLOC.C.o (ansisi.lib)                  Model: SMALL,         Lang: ANSI-C
+rtshc12.c.o (ansisi.lib)                Model: SMALL,         Lang: ANSI-C
+NEW.CPP.o (cppsi.lib)                   Model: SMALL,         Lang: C++
+D:\Jony\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\util\util_hcs12_cpp_Data\C++_Ms_no_float\ObjectCode\DobleList.cpp.o (util_cpp_si.lib)Model: SMALL,         Lang: C++
+D:\Jony\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\util\util_hcs12_cpp_Data\C++_Ms_no_float\ObjectCode\LinkedList.cpp.o (util_cpp_si.lib)Model: SMALL,         Lang: C++
+D:\Jony\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\util\util_hcs12_cpp_Data\C++_Ms_no_float\ObjectCode\nodo.cpp.o (util_cpp_si.lib)Model: SMALL,         Lang: C++
+D:\Jony\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\util\util_hcs12_cpp_Data\C++_Ms_no_float\ObjectCode\Array.c.o (util_cpp_si.lib)Model: SMALL,         Lang: C++
+D:\Jony\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\util\util_hcs12_cpp_Data\C++_Ms_no_float\ObjectCode\Set.cpp.o (util_cpp_si.lib)Model: SMALL,         Lang: C++
+timer_interrupt.c.o                     Model: SMALL,         Lang: C++
+MethodContainer.cpp.o                   Model: SMALL,         Lang: C++
+TI1.c.o                                 Model: SMALL,         Lang: C++
+IO_Map.c.o                              Model: SMALL,         Lang: C++
+PlataformaEmbedded.cpp.o                Model: SMALL,         Lang: C++
+Termometro.cpp.o                        Model: SMALL,         Lang: C++
+ThreadAttachable.cpp.o                  Model: SMALL,         Lang: C++
+BaseTimers_1ms_40ms.cpp.o               Model: SMALL,         Lang: C++
+Cpu.c.o                                 Model: SMALL,         Lang: C++
+PromBkp.cpp.o (memorias_si.lib)         Model: SMALL,         Lang: C++
+Timer.cpp.o (timers_si.lib)             Model: SMALL,         Lang: C++
+BaseTimers.cpp.o (timers_si.lib)        Model: SMALL,         Lang: C++
+FlagTimer.cpp.o (timers_si.lib)         Model: SMALL,         Lang: C++
+main.cpp.o                              Model: SMALL,         Lang: C++
+PropGetterVisual.cpp.o (propiedades_hc12_si.lib)Model: SMALL,         Lang: C++
+PropiedadGetter.cpp.o (propiedades_hc12_si.lib)Model: SMALL,         Lang: C++
+PropiedadIncrementable.cpp.o (propiedades_hc12_si.lib)Model: SMALL,         Lang: C++
+PropiedadNumerica.cpp.o (propiedades_hc12_si.lib)Model: SMALL,         Lang: C++
+PropNumLF.cpp.o (propiedades_hc12_si.lib)Model: SMALL,         Lang: C++
+PropNumLFPF.cpp.o (propiedades_hc12_si.lib)Model: SMALL,         Lang: C++
+NodoICModBus.cpp.o                      Model: SMALL,         Lang: C++
+Vectors.c.o                             Model: SMALL,         Lang: C++
+puertoSerie1.c.o                        Model: SMALL,         Lang: C++
+ModBus.cpp.o                            Model: SMALL,         Lang: C++
+
+*********************************************************************************************
+STARTUP SECTION
+---------------------------------------------------------------------------------------------
+Entry point: 0x460E (_EntryPoint)
+_startupData is allocated at 0x467C and uses 14 Bytes
+extern struct _tagStartup {
+  unsigned nofZeroOut     1
+  _Range   pZeroOut       0x1000     1095
+  _Copy    *toCopyDownBeg 0x5CB8
+  int      nofInitBodies  3
+  _Cpp     *initBodies    0x468E
+  int      nofFiniBodies  1
+  _Cpp     *finiBodies    0x4694
+} _startupData;
+
+*********************************************************************************************
+SECTION-ALLOCATION SECTION
+Section Name                    Size  Type     From       To       Segment
+---------------------------------------------------------------------------------------------
+.data                              4   R/W     0x1000     0x1003   RAM_1000
+.init                            112     R     0x460C     0x467B   ROM_6000
+.startData                        26     R     0x467C     0x4695   ROM_6000
+.rodata                          556     R     0x4696     0x48C1   ROM_6000
+.rodata1                         145     R     0x48C2     0x4952   ROM_6000
+NON_BANKED                       150     R     0x4953     0x49E8   ROM_6000
+.text                           2299     R     0x49E9     0x52E3   ROM_6000
+.copy                             10     R     0x5CB8     0x5CC1   ROM_6000
+.abs_section_8                     1   N/I        0x8        0x8   .absSeg0
+.abs_section_9                     1   N/I        0x9        0x9   .absSeg1
+.abs_section_a                     1   N/I        0xA        0xA   .absSeg2
+.abs_section_b                     1   N/I        0xB        0xB   .absSeg3
+.abs_section_c                     1   N/I        0xC        0xC   .absSeg4
+.abs_section_d                     1   N/I        0xD        0xD   .absSeg5
+.abs_section_e                     1   N/I        0xE        0xE   .absSeg6
+.abs_section_10                    1   N/I       0x10       0x10   .absSeg7
+.abs_section_11                    1   N/I       0x11       0x11   .absSeg8
+.abs_section_13                    1   N/I       0x13       0x13   .absSeg9
+.abs_section_15                    1   N/I       0x15       0x15   .absSeg10
+.abs_section_16                    1   N/I       0x16       0x16   .absSeg11
+.abs_section_19                    1   N/I       0x19       0x19   .absSeg12
+.abs_section_1c                    1   N/I       0x1C       0x1C   .absSeg13
+.abs_section_1d                    1   N/I       0x1D       0x1D   .absSeg14
+.abs_section_1e                    1   N/I       0x1E       0x1E   .absSeg15
+.abs_section_1f                    1   N/I       0x1F       0x1F   .absSeg16
+.abs_section_20                    1   N/I       0x20       0x20   .absSeg17
+.abs_section_21                    1   N/I       0x21       0x21   .absSeg18
+.abs_section_24                    1   N/I       0x24       0x24   .absSeg19
+.abs_section_25                    1   N/I       0x25       0x25   .absSeg20
+.abs_section_28                    1   N/I       0x28       0x28   .absSeg21
+.abs_section_29                    1   N/I       0x29       0x29   .absSeg22
+.abs_section_2a                    1   N/I       0x2A       0x2A   .absSeg23
+.abs_section_2d                    1   N/I       0x2D       0x2D   .absSeg24
+.abs_section_30                    1   N/I       0x30       0x30   .absSeg25
+.abs_section_34                    1   N/I       0x34       0x34   .absSeg26
+.abs_section_35                    1   N/I       0x35       0x35   .absSeg27
+.abs_section_37                    1   N/I       0x37       0x37   .absSeg28
+.abs_section_38                    1   N/I       0x38       0x38   .absSeg29
+.abs_section_39                    1   N/I       0x39       0x39   .absSeg30
+.abs_section_3a                    1   N/I       0x3A       0x3A   .absSeg31
+.abs_section_3b                    1   N/I       0x3B       0x3B   .absSeg32
+.abs_section_3c                    1   N/I       0x3C       0x3C   .absSeg33
+.abs_section_3f                    1   N/I       0x3F       0x3F   .absSeg34
+.abs_section_40                    1   N/I       0x40       0x40   .absSeg35
+.abs_section_41                    1   N/I       0x41       0x41   .absSeg36
+.abs_section_42                    1   N/I       0x42       0x42   .absSeg37
+.abs_section_43                    1   N/I       0x43       0x43   .absSeg38
+.abs_section_46                    1   N/I       0x46       0x46   .absSeg39
+.abs_section_47                    1   N/I       0x47       0x47   .absSeg40
+.abs_section_48                    1   N/I       0x48       0x48   .absSeg41
+.abs_section_49                    1   N/I       0x49       0x49   .absSeg42
+.abs_section_4a                    1   N/I       0x4A       0x4A   .absSeg43
+.abs_section_4b                    1   N/I       0x4B       0x4B   .absSeg44
+.abs_section_4c                    1   N/I       0x4C       0x4C   .absSeg45
+.abs_section_4d                    1   N/I       0x4D       0x4D   .absSeg46
+.abs_section_4e                    1   N/I       0x4E       0x4E   .absSeg47
+.abs_section_4f                    1   N/I       0x4F       0x4F   .absSeg48
+.abs_section_60                    1   N/I       0x60       0x60   .absSeg49
+.abs_section_61                    1   N/I       0x61       0x61   .absSeg50
+.abs_section_86                    1   N/I       0x86       0x86   .absSeg51
+.abs_section_89                    1   N/I       0x89       0x89   .absSeg52
+.abs_section_8b                    1   N/I       0x8B       0x8B   .absSeg53
+.abs_section_8d                    1   N/I       0x8D       0x8D   .absSeg54
+.abs_section_8f                    1   N/I       0x8F       0x8F   .absSeg55
+.abs_section_ca                    1   N/I       0xCA       0xCA   .absSeg56
+.abs_section_cb                    1   N/I       0xCB       0xCB   .absSeg57
+.abs_section_cc                    1   N/I       0xCC       0xCC   .absSeg58
+.abs_section_cd                    1   N/I       0xCD       0xCD   .absSeg59
+.abs_section_ce                    1   N/I       0xCE       0xCE   .absSeg60
+.abs_section_cf                    1   N/I       0xCF       0xCF   .absSeg61
+.abs_section_d8                    1   N/I       0xD8       0xD8   .absSeg62
+.abs_section_d9                    1   N/I       0xD9       0xD9   .absSeg63
+.abs_section_da                    1   N/I       0xDA       0xDA   .absSeg64
+.abs_section_db                    1   N/I       0xDB       0xDB   .absSeg65
+.abs_section_dd                    1   N/I       0xDD       0xDD   .absSeg66
+.abs_section_e0                    1   N/I       0xE0       0xE0   .absSeg67
+.abs_section_e1                    1   N/I       0xE1       0xE1   .absSeg68
+.abs_section_e2                    1   N/I       0xE2       0xE2   .absSeg69
+.abs_section_e3                    1   N/I       0xE3       0xE3   .absSeg70
+.abs_section_e4                    1   N/I       0xE4       0xE4   .absSeg71
+.abs_section_e5                    1   N/I       0xE5       0xE5   .absSeg72
+.abs_section_e8                    1   N/I       0xE8       0xE8   .absSeg73
+.abs_section_e9                    1   N/I       0xE9       0xE9   .absSeg74
+.abs_section_fe                    1   N/I       0xFE       0xFE   .absSeg75
+.abs_section_100                   1   N/I      0x100      0x100   .absSeg76
+.abs_section_101                   1   N/I      0x101      0x101   .absSeg77
+.abs_section_103                   1   N/I      0x103      0x103   .absSeg78
+.abs_section_104                   1   N/I      0x104      0x104   .absSeg79
+.abs_section_105                   1   N/I      0x105      0x105   .absSeg80
+.abs_section_106                   1   N/I      0x106      0x106   .absSeg81
+.abs_section_240                   1   N/I      0x240      0x240   .absSeg82
+.abs_section_241                   1   N/I      0x241      0x241   .absSeg83
+.abs_section_242                   1   N/I      0x242      0x242   .absSeg84
+.abs_section_243                   1   N/I      0x243      0x243   .absSeg85
+.abs_section_244                   1   N/I      0x244      0x244   .absSeg86
+.abs_section_245                   1   N/I      0x245      0x245   .absSeg87
+.abs_section_247                   1   N/I      0x247      0x247   .absSeg88
+.abs_section_248                   1   N/I      0x248      0x248   .absSeg89
+.abs_section_249                   1   N/I      0x249      0x249   .absSeg90
+.abs_section_24a                   1   N/I      0x24A      0x24A   .absSeg91
+.abs_section_24b                   1   N/I      0x24B      0x24B   .absSeg92
+.abs_section_24c                   1   N/I      0x24C      0x24C   .absSeg93
+.abs_section_24d                   1   N/I      0x24D      0x24D   .absSeg94
+.abs_section_24e                   1   N/I      0x24E      0x24E   .absSeg95
+.abs_section_250                   1   N/I      0x250      0x250   .absSeg96
+.abs_section_251                   1   N/I      0x251      0x251   .absSeg97
+.abs_section_252                   1   N/I      0x252      0x252   .absSeg98
+.abs_section_253                   1   N/I      0x253      0x253   .absSeg99
+.abs_section_254                   1   N/I      0x254      0x254   .absSeg100
+.abs_section_255                   1   N/I      0x255      0x255   .absSeg101
+.abs_section_256                   1   N/I      0x256      0x256   .absSeg102
+.abs_section_258                   1   N/I      0x258      0x258   .absSeg103
+.abs_section_259                   1   N/I      0x259      0x259   .absSeg104
+.abs_section_25a                   1   N/I      0x25A      0x25A   .absSeg105
+.abs_section_25b                   1   N/I      0x25B      0x25B   .absSeg106
+.abs_section_25c                   1   N/I      0x25C      0x25C   .absSeg107
+.abs_section_25d                   1   N/I      0x25D      0x25D   .absSeg108
+.abs_section_25e                   1   N/I      0x25E      0x25E   .absSeg109
+.abs_section_25f                   1   N/I      0x25F      0x25F   .absSeg110
+.abs_section_268                   1   N/I      0x268      0x268   .absSeg111
+.abs_section_269                   1   N/I      0x269      0x269   .absSeg112
+.abs_section_26a                   1   N/I      0x26A      0x26A   .absSeg113
+.abs_section_26b                   1   N/I      0x26B      0x26B   .absSeg114
+.abs_section_26c                   1   N/I      0x26C      0x26C   .absSeg115
+.abs_section_26d                   1   N/I      0x26D      0x26D   .absSeg116
+.abs_section_26e                   1   N/I      0x26E      0x26E   .absSeg117
+.abs_section_26f                   1   N/I      0x26F      0x26F   .absSeg118
+.abs_section_270                   1   N/I      0x270      0x270   .absSeg119
+.abs_section_271                   1   N/I      0x271      0x271   .absSeg120
+.abs_section_272                   1   N/I      0x272      0x272   .absSeg121
+.abs_section_273                   1   N/I      0x273      0x273   .absSeg122
+.abs_section_274                   1   N/I      0x274      0x274   .absSeg123
+.abs_section_275                   1   N/I      0x275      0x275   .absSeg124
+.abs_section_0                     2   N/I        0x0        0x1   .absSeg125
+.abs_section_2                     2   N/I        0x2        0x3   .absSeg126
+.abs_section_1a                    2   N/I       0x1A       0x1B   .absSeg127
+.abs_section_22                    2   N/I       0x22       0x23   .absSeg128
+.abs_section_26                    2   N/I       0x26       0x27   .absSeg129
+.abs_section_2b                    2   N/I       0x2B       0x2C   .absSeg130
+.abs_section_2e                    2   N/I       0x2E       0x2F   .absSeg131
+.abs_section_44                    2   N/I       0x44       0x45   .absSeg132
+.abs_section_50                    2   N/I       0x50       0x51   .absSeg133
+.abs_section_52                    2   N/I       0x52       0x53   .absSeg134
+.abs_section_54                    2   N/I       0x54       0x55   .absSeg135
+.abs_section_56                    2   N/I       0x56       0x57   .absSeg136
+.abs_section_58                    2   N/I       0x58       0x59   .absSeg137
+.abs_section_5a                    2   N/I       0x5A       0x5B   .absSeg138
+.abs_section_5c                    2   N/I       0x5C       0x5D   .absSeg139
+.abs_section_5e                    2   N/I       0x5E       0x5F   .absSeg140
+.abs_section_62                    2   N/I       0x62       0x63   .absSeg141
+.abs_section_82                    2   N/I       0x82       0x83   .absSeg142
+.abs_section_84                    2   N/I       0x84       0x85   .absSeg143
+.abs_section_90                    2   N/I       0x90       0x91   .absSeg144
+.abs_section_92                    2   N/I       0x92       0x93   .absSeg145
+.abs_section_94                    2   N/I       0x94       0x95   .absSeg146
+.abs_section_96                    2   N/I       0x96       0x97   .absSeg147
+.abs_section_98                    2   N/I       0x98       0x99   .absSeg148
+.abs_section_9a                    2   N/I       0x9A       0x9B   .absSeg149
+.abs_section_9c                    2   N/I       0x9C       0x9D   .absSeg150
+.abs_section_9e                    2   N/I       0x9E       0x9F   .absSeg151
+.abs_section_c8                    2   N/I       0xC8       0xC9   .absSeg152
+.abs_section_ec                    2   N/I       0xEC       0xED   .absSeg153
+.abs_section_ee                    2   N/I       0xEE       0xEF   .absSeg154
+.abs_section_f0                    2   N/I       0xF0       0xF1   .absSeg155
+.abs_section_f2                    2   N/I       0xF2       0xF3   .absSeg156
+.abs_section_f4                    2   N/I       0xF4       0xF5   .absSeg157
+.abs_section_f6                    2   N/I       0xF6       0xF7   .absSeg158
+.abs_section_f8                    2   N/I       0xF8       0xF9   .absSeg159
+.abs_section_fa                    2   N/I       0xFA       0xFB   .absSeg160
+.abs_section_fc                    2   N/I       0xFC       0xFD   .absSeg161
+.abs_section_ff80                128     R     0xFF80     0xFFFF   .absSeg162
+.bss                              11   R/W     0x1004     0x100E   RAM_1000
+.fini                             12     R     0x4600     0x460B   ROM_6000
+RUNTIME                           28     R     0x52E4     0x52FF   ROM_6000
+HEAP_SEGMENT                    1000   R/W     0x100F     0x13F6   RAM_1000
+.common                           71   R/W     0x13F7     0x143D   RAM_1000
+VIRTUAL_TABLE_SEGMENT            500     R     0x5300     0x54F3   ROM_6000
+GEN_FUNCS_SEGMENT                132     R     0x54F4     0x5577   ROM_6000
+NODO_CODE                          5     R     0x5578     0x557C   ROM_6000
+LinkedList_CODE                  410     R     0x557D     0x5716   ROM_6000
+Nodo_CODE                         18     R     0x5717     0x5728   ROM_6000
+ARRAY_LIST_CODE                   27     R     0x5729     0x5743   ROM_6000
+TI1_CODE                          11     R     0x5744     0x574E   ROM_6000
+TI1_DATA                           2   R/W     0x143E     0x143F   RAM_1000
+Timer_CODE                       514     R     0x574F     0x5950   ROM_6000
+Timer_DATA                         2   R/W     0x1440     0x1441   RAM_1000
+ModBus_CODE                      800     R     0x5951     0x5C70   ROM_6000
+AS1_DATA                           5   R/W     0x1442     0x1446   RAM_1000
+AS1_CODE                          71     R     0x5C71     0x5CB7   ROM_6000
+.stack                           336   R/W     0x1447     0x1596   RAM_1000
+
+Summary of section sizes per section type:
+READ_ONLY (R):        1742 (dec:     5954)
+READ_WRITE (R/W):      597 (dec:     1431)
+NO_INIT (N/I):          C7 (dec:      199)
+
+*********************************************************************************************
+VECTOR-ALLOCATION SECTION
+    Address     InitValue   InitFunction
+---------------------------------------------------------------------------------------------
+
+*********************************************************************************************
+OBJECT-ALLOCATION SECTION
+     Name               Module                 Addr   hSize   dSize     Ref    Section   RLIB
+---------------------------------------------------------------------------------------------
+MODULE:                 -- Start12.cpp.o --
+- PROCEDURES:
+     Init__Fv                                  49E9      3C      60       1   .text       
+     _Startup                                  4A25       8       8       1   .text       
+- VARIABLES:
+     _startupData                              467C       E      14       5   .startData  
+- LABELS:
+     __SEG_END_SSTACK                          1597       0       0       1               
+MODULE:                 -- ASSERT.C.o (ansisi.lib) --
+- PROCEDURES:
+     _assert                                   4A2D       7       7       2   .text       
+- VARIABLES:
+MODULE:                 -- EMBEDDED.C.o (ansisi.lib) --
+- PROCEDURES:
+     abort                                     4A34       4       4       1   .text       
+     exit                                      4A38       4       4       1   .text       
+- VARIABLES:
+MODULE:                 -- HEAP.C.o (ansisi.lib) --
+- PROCEDURES:
+     _heapcrash_                               4A3C       C      12       3   .text       
+- VARIABLES:
+     _heap_                                    100F     3E8    1000       2   HEAP_SEGMENT
+MODULE:                 -- ALLOC.C.o (ansisi.lib) --
+- PROCEDURES:
+     malloc                                    4A48      A5     165       1   .text       
+     free                                      4AED      C4     196       2   .text       
+- VARIABLES:
+     heap_end                                  1004       2       2       3   .bss        
+     free_ptr                                  1006       2       2       8   .bss        
+MODULE:                 -- rtshc12.c.o (ansisi.lib) --
+- PROCEDURES:
+     _LCMP_P                                   52E4      15      21       2   RUNTIME     
+     _ILSEXT                                   52F9       7       7       1   RUNTIME     
+- VARIABLES:
+MODULE:                 -- NEW.CPP.o (cppsi.lib) --
+- PROCEDURES:
+     __nw__FGUi                                4BB1      12      18      11   .text       
+     __dl__FGPv                                4BC3       3       3       4   .text       
+- VARIABLES:
+MODULE:                 -- D:\Jony\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\util\util_hcs12_cpp_Data\C++_Ms_no_float\ObjectCode\DobleList.cpp.o (util_cpp_si.lib) --
+- PROCEDURES:
+     __ct__8IteratorFv                         54F4       8       8       1   GEN_FUNCS_SEGMENT
+     __ct__10CollectionFv                      54FC       8       8       1   GEN_FUNCS_SEGMENT
+     __ct__4ListFv                             5504       C      12       1   GEN_FUNCS_SEGMENT
+- VARIABLES:
+     ____vtbl__Iterator                        5300       8       8       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__Collection                      5308      1C      28       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__ListCollection                  5324      20      32       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__LinkedListIteratorIterator       5344       8       8       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__LinkedListListCollection        534C      24      36       1   VIRTUAL_TABLE_SEGMENT
+MODULE:                 -- D:\Jony\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\util\util_hcs12_cpp_Data\C++_Ms_no_float\ObjectCode\LinkedList.cpp.o (util_cpp_si.lib) --
+- PROCEDURES:
+     getNext__4NodoFv.2                        5578       5       5       1   NODO_CODE   
+     __ct__10LinkedListFv                      557D      11      17       2   LinkedList_CODE
+     __dt__10LinkedListFv                      558E       C      12       1   LinkedList_CODE
+     isEmpty__10LinkedListFv                   559A       B      11       6   LinkedList_CODE
+     clear__10LinkedListFv                     55A5      21      33       6   LinkedList_CODE
+     add__10LinkedListFPv                      55C6      27      39       4   LinkedList_CODE
+     aniadir__10LinkedListFPv                  55ED      4D      77       4   LinkedList_CODE
+     size__10LinkedListFv                      563A      13      19       6   LinkedList_CODE
+     get__10LinkedListFUi                      564D      24      36       6   LinkedList_CODE
+     moveOut__10LinkedListFPv                  5671      2D      45       5   LinkedList_CODE
+     deleteNodo__10LinkedListFP4NodoT1         569E      25      37       1   LinkedList_CODE
+     contains__10LinkedListFPv                 56C3      1C      28       6   LinkedList_CODE
+     linkedListIterator__10LinkedListFP28LinkedListIteratorLinkedList       56DF       B      11       3   LinkedList_CODE
+     iterator__10LinkedListFv                  56EA       3       3       6   LinkedList_CODE
+     __ct__28LinkedListIteratorLinkedListFv       56ED       D      13       3   LinkedList_CODE
+     hasNext__28LinkedListIteratorLinkedListFv       56FA       B      11       4   LinkedList_CODE
+     next__28LinkedListIteratorLinkedListFv       5705      12      18       4   LinkedList_CODE
+- VARIABLES:
+MODULE:                 -- D:\Jony\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\util\util_hcs12_cpp_Data\C++_Ms_no_float\ObjectCode\nodo.cpp.o (util_cpp_si.lib) --
+- PROCEDURES:
+     __ct__4NodoFPvP4Nodo                      5717       D      13       2   Nodo_CODE   
+     setNext__4NodoFP4Nodo                     5724       5       5       2   Nodo_CODE   
+- VARIABLES:
+MODULE:                 -- D:\Jony\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\util\util_hcs12_cpp_Data\C++_Ms_no_float\ObjectCode\Array.c.o (util_cpp_si.lib) --
+- PROCEDURES:
+     Array_get                                 5729      16      22       4   ARRAY_LIST_CODE
+     Array_count                               573F       5       5       3   ARRAY_LIST_CODE
+- VARIABLES:
+MODULE:                 -- D:\Jony\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\util\util_hcs12_cpp_Data\C++_Ms_no_float\ObjectCode\Set.cpp.o (util_cpp_si.lib) --
+- PROCEDURES:
+     add__3SetFPv                              4BC6      28      40       2   .text       
+     aniadir__3SetFPv                          4BEE      28      40       3   .text       
+     __ct__3SetFv                              5510       D      13       1   GEN_FUNCS_SEGMENT
+     __dt__3SetFv                              551D       3       3       1   GEN_FUNCS_SEGMENT
+- VARIABLES:
+     ____vtbl__SetLinkedListListCollection       5370      24      36       1   VIRTUAL_TABLE_SEGMENT
+MODULE:                 -- timer_interrupt.c.o --
+- PROCEDURES:
+     TI1ms_OnInterrupt__Fv                     4C16       6       6       1   .text       
+     TI40ms_OnInterrupt__Fv                    4C1C       6       6       1   .text       
+     add1msListener__FP6Method                 4C22      32      50       1   .text       
+     add40msListener__FP6Method                4C54      32      50       1   .text       
+     __dt__15MethodContainerFv                 5520       3       3       1   GEN_FUNCS_SEGMENT
+- VARIABLES:
+     ____vtbl__MethodContainerSetLinkedListListCollection       5394      24      36       1   VIRTUAL_TABLE_SEGMENT
+     listeners1ms                              13F7       2       2       5   .common     
+     listeners40ms                             13F9       2       2       5   .common     
+MODULE:                 -- MethodContainer.cpp.o --
+- PROCEDURES:
+     __ct__15MethodContainerFv                 4C86       D      13       3   .text       
+     add__15MethodContainerFPv                 4C93       E      14       2   .text       
+     executeMethods__15MethodContainerFv       4CA1      34      52       2   .text       
+- VARIABLES:
+MODULE:                 -- TI1.c.o --
+- PROCEDURES:
+     TI1_Interrupt__Fv                         4953      1D      29       1   NON_BANKED  
+     TI1_Init__Fv                              5744       B      11       1   TI1_CODE    
+- VARIABLES:
+     CmpVal                                    143E       2       2       3   TI1_DATA    
+MODULE:                 -- IO_Map.c.o --
+- PROCEDURES:
+- VARIABLES:
+     _PORTE                                       8       1       1       0   .abs_section_8
+     _DDRE                                        9       1       1       1   .abs_section_9
+     _PEAR                                        A       1       1       2   .abs_section_a
+     _MODE                                        B       1       1       0   .abs_section_b
+     _PUCR                                        C       1       1       1   .abs_section_c
+     _RDRIV                                       D       1       1       0   .abs_section_d
+     _EBICTL                                      E       1       1       0   .abs_section_e
+     _INITRM                                     10       1       1       1   .abs_section_10
+     _INITRG                                     11       1       1       0   .abs_section_11
+     _MISC                                       13       1       1       1   .abs_section_13
+     _ITCR                                       15       1       1       0   .abs_section_15
+     _ITEST                                      16       1       1       0   .abs_section_16
+     _VREGCTRL                                   19       1       1       0   .abs_section_19
+     _MEMSIZ0                                    1C       1       1       0   .abs_section_1c
+     _MEMSIZ1                                    1D       1       1       0   .abs_section_1d
+     _INTCR                                      1E       1       1       0   .abs_section_1e
+     _HPRIO                                      1F       1       1       1   .abs_section_1f
+     _DBGC1                                      20       1       1       0   .abs_section_20
+     _DBGSC                                      21       1       1       0   .abs_section_21
+     _DBGCNT                                     24       1       1       0   .abs_section_24
+     _DBGCCX                                     25       1       1       0   .abs_section_25
+     _DBGC2                                      28       1       1       0   .abs_section_28
+     _DBGC3                                      29       1       1       0   .abs_section_29
+     _DBGCAX                                     2A       1       1       0   .abs_section_2a
+     _DBGCBX                                     2D       1       1       0   .abs_section_2d
+     _PPAGE                                      30       1       1       0   .abs_section_30
+     _SYNR                                       34       1       1       1   .abs_section_34
+     _REFDV                                      35       1       1       1   .abs_section_35
+     _CRGFLG                                     37       1       1       1   .abs_section_37
+     _CRGINT                                     38       1       1       0   .abs_section_38
+     _CLKSEL                                     39       1       1       2   .abs_section_39
+     _PLLCTL                                     3A       1       1       2   .abs_section_3a
+     _RTICTL                                     3B       1       1       0   .abs_section_3b
+     _COPCTL                                     3C       1       1       2   .abs_section_3c
+     _ARMCOP                                     3F       1       1       2   .abs_section_3f
+     _TIOS                                       40       1       1       1   .abs_section_40
+     _CFORC                                      41       1       1       0   .abs_section_41
+     _OC7M                                       42       1       1       1   .abs_section_42
+     _OC7D                                       43       1       1       0   .abs_section_43
+     _TSCR1                                      46       1       1       3   .abs_section_46
+     _TTOV                                       47       1       1       1   .abs_section_47
+     _TCTL1                                      48       1       1       1   .abs_section_48
+     _TCTL2                                      49       1       1       1   .abs_section_49
+     _TCTL3                                      4A       1       1       0   .abs_section_4a
+     _TCTL4                                      4B       1       1       0   .abs_section_4b
+     _TIE                                        4C       1       1       2   .abs_section_4c
+     _TSCR2                                      4D       1       1       2   .abs_section_4d
+     _TFLG1                                      4E       1       1       2   .abs_section_4e
+     _TFLG2                                      4F       1       1       0   .abs_section_4f
+     _PACTL                                      60       1       1       0   .abs_section_60
+     _PAFLG                                      61       1       1       0   .abs_section_61
+     _ATDSTAT0                                   86       1       1       0   .abs_section_86
+     _ATDTEST1                                   89       1       1       0   .abs_section_89
+     _ATDSTAT1                                   8B       1       1       0   .abs_section_8b
+     _ATDDIEN                                    8D       1       1       1   .abs_section_8d
+     _PORTAD0                                    8F       1       1       0   .abs_section_8f
+     _SCICR1                                     CA       1       1       1   .abs_section_ca
+     _SCICR2                                     CB       1       1       7   .abs_section_cb
+     _SCISR1                                     CC       1       1       5   .abs_section_cc
+     _SCISR2                                     CD       1       1       1   .abs_section_cd
+     _SCIDRH                                     CE       1       1       0   .abs_section_ce
+     _SCIDRL                                     CF       1       1       3   .abs_section_cf
+     _SPICR1                                     D8       1       1       0   .abs_section_d8
+     _SPICR2                                     D9       1       1       0   .abs_section_d9
+     _SPIBR                                      DA       1       1       0   .abs_section_da
+     _SPISR                                      DB       1       1       0   .abs_section_db
+     _SPIDR                                      DD       1       1       0   .abs_section_dd
+     _PWME                                       E0       1       1       0   .abs_section_e0
+     _PWMPOL                                     E1       1       1       0   .abs_section_e1
+     _PWMCLK                                     E2       1       1       0   .abs_section_e2
+     _PWMPRCLK                                   E3       1       1       0   .abs_section_e3
+     _PWMCAE                                     E4       1       1       0   .abs_section_e4
+     _PWMCTL                                     E5       1       1       1   .abs_section_e5
+     _PWMSCLA                                    E8       1       1       0   .abs_section_e8
+     _PWMSCLB                                    E9       1       1       0   .abs_section_e9
+     _PWMSDN                                     FE       1       1       1   .abs_section_fe
+     _FCLKDIV                                   100       1       1       0   .abs_section_100
+     _FSEC                                      101       1       1       0   .abs_section_101
+     _FCNFG                                     103       1       1       0   .abs_section_103
+     _FPROT                                     104       1       1       0   .abs_section_104
+     _FSTAT                                     105       1       1       0   .abs_section_105
+     _FCMD                                      106       1       1       0   .abs_section_106
+     _PTT                                       240       1       1       1   .abs_section_240
+     _PTIT                                      241       1       1       0   .abs_section_241
+     _DDRT                                      242       1       1       1   .abs_section_242
+     _RDRT                                      243       1       1       0   .abs_section_243
+     _PERT                                      244       1       1       0   .abs_section_244
+     _PPST                                      245       1       1       0   .abs_section_245
+     _MODRR                                     247       1       1       0   .abs_section_247
+     _PTS                                       248       1       1       3   .abs_section_248
+     _PTIS                                      249       1       1       0   .abs_section_249
+     _DDRS                                      24A       1       1       1   .abs_section_24a
+     _RDRS                                      24B       1       1       0   .abs_section_24b
+     _PERS                                      24C       1       1       0   .abs_section_24c
+     _PPSS                                      24D       1       1       0   .abs_section_24d
+     _WOMS                                      24E       1       1       1   .abs_section_24e
+     _PTM                                       250       1       1       1   .abs_section_250
+     _PTIM                                      251       1       1       0   .abs_section_251
+     _DDRM                                      252       1       1       1   .abs_section_252
+     _RDRM                                      253       1       1       0   .abs_section_253
+     _PERM                                      254       1       1       0   .abs_section_254
+     _PPSM                                      255       1       1       0   .abs_section_255
+     _WOMM                                      256       1       1       0   .abs_section_256
+     _PTP                                       258       1       1       1   .abs_section_258
+     _PTIP                                      259       1       1       0   .abs_section_259
+     _DDRP                                      25A       1       1       1   .abs_section_25a
+     _RDRP                                      25B       1       1       0   .abs_section_25b
+     _PERP                                      25C       1       1       1   .abs_section_25c
+     _PPSP                                      25D       1       1       0   .abs_section_25d
+     _PIEP                                      25E       1       1       1   .abs_section_25e
+     _PIFP                                      25F       1       1       0   .abs_section_25f
+     _PTJ                                       268       1       1       1   .abs_section_268
+     _PTIJ                                      269       1       1       0   .abs_section_269
+     _DDRJ                                      26A       1       1       1   .abs_section_26a
+     _RDRJ                                      26B       1       1       0   .abs_section_26b
+     _PERJ                                      26C       1       1       1   .abs_section_26c
+     _PPSJ                                      26D       1       1       0   .abs_section_26d
+     _PIEJ                                      26E       1       1       1   .abs_section_26e
+     _PIFJ                                      26F       1       1       0   .abs_section_26f
+     _PTAD                                      270       1       1       1   .abs_section_270
+     _PTIAD                                     271       1       1       0   .abs_section_271
+     _DDRAD                                     272       1       1       1   .abs_section_272
+     _RDRAD                                     273       1       1       0   .abs_section_273
+     _PERAD                                     274       1       1       1   .abs_section_274
+     _PPSAD                                     275       1       1       0   .abs_section_275
+     _PORTAB                                      0       2       2       2   .abs_section_0
+     _DDRAB                                       2       2       2       2   .abs_section_2
+     _PARTID                                     1A       2       2       0   .abs_section_1a
+     _DBGTB                                      22       2       2       0   .abs_section_22
+     _DBGCC                                      26       2       2       0   .abs_section_26
+     _DBGCA                                      2B       2       2       0   .abs_section_2b
+     _DBGCB                                      2E       2       2       0   .abs_section_2e
+     _TCNT                                       44       2       2       0   .abs_section_44
+     _TC0                                        50       2       2       3   .abs_section_50
+     _TC1                                        52       2       2       0   .abs_section_52
+     _TC2                                        54       2       2       0   .abs_section_54
+     _TC3                                        56       2       2       0   .abs_section_56
+     _TC4                                        58       2       2       0   .abs_section_58
+     _TC5                                        5A       2       2       0   .abs_section_5a
+     _TC6                                        5C       2       2       0   .abs_section_5c
+     _TC7                                        5E       2       2       0   .abs_section_5e
+     _PACNT                                      62       2       2       0   .abs_section_62
+     _ATDCTL23                                   82       2       2       0   .abs_section_82
+     _ATDCTL45                                   84       2       2       0   .abs_section_84
+     _ATDDR0                                     90       2       2       0   .abs_section_90
+     _ATDDR1                                     92       2       2       0   .abs_section_92
+     _ATDDR2                                     94       2       2       0   .abs_section_94
+     _ATDDR3                                     96       2       2       0   .abs_section_96
+     _ATDDR4                                     98       2       2       0   .abs_section_98
+     _ATDDR5                                     9A       2       2       0   .abs_section_9a
+     _ATDDR6                                     9C       2       2       0   .abs_section_9c
+     _ATDDR7                                     9E       2       2       0   .abs_section_9e
+     _SCIBD                                      C8       2       2       1   .abs_section_c8
+     _PWMCNT01                                   EC       2       2       0   .abs_section_ec
+     _PWMCNT23                                   EE       2       2       0   .abs_section_ee
+     _PWMCNT45                                   F0       2       2       0   .abs_section_f0
+     _PWMPER01                                   F2       2       2       0   .abs_section_f2
+     _PWMPER23                                   F4       2       2       0   .abs_section_f4
+     _PWMPER45                                   F6       2       2       0   .abs_section_f6
+     _PWMDTY01                                   F8       2       2       0   .abs_section_f8
+     _PWMDTY23                                   FA       2       2       0   .abs_section_fa
+     _PWMDTY45                                   FC       2       2       0   .abs_section_fc
+MODULE:                 -- PlataformaEmbedded.cpp.o --
+- PROCEDURES:
+     __ct__18PlataformaEmbeddedFv              4CD5      1A      26       1   .text       
+     pthread_create__FPPvPvPFPv_PvT1           4CEF      1F      31       1   .text       
+     mainLoop__18PlataformaEmbeddedFv          4D0E       D      13       2   .text       
+     __dt__16ThreadAttachableFv                5523       3       3       1   GEN_FUNCS_SEGMENT
+     __dt__18PlataformaEmbeddedFv              5526       6       6       1   GEN_FUNCS_SEGMENT
+- VARIABLES:
+     ____vtbl__ThreadAttachableMethodContainerSetLinkedListListCollection       53B8      24      36       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__PlataformaEmbedded              53DC       4       4       1   VIRTUAL_TABLE_SEGMENT
+     __sf_18PlataformaEmbedded_threads         13FB       2       2       3   .common     
+MODULE:                 -- Termometro.cpp.o --
+- PROCEDURES:
+     __ct__6GetterFv                           552C       8       8       1   GEN_FUNCS_SEGMENT
+     __ct__10BaseTimersFv                      5534       D      13       1   GEN_FUNCS_SEGMENT
+- VARIABLES:
+     ____vtbl__Getter                          53E0       8       8       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__BaseTimersLinkedListListCollection       53E8      2C      44       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__Timer                           5414       4       4       1   VIRTUAL_TABLE_SEGMENT
+MODULE:                 -- ThreadAttachable.cpp.o --
+- PROCEDURES:
+     adjuntar__16ThreadAttachableFP6Method       4D1B      17      23       1   .text       
+     executeThreads__16ThreadAttachableFv       4D32      34      52       1   .text       
+- VARIABLES:
+MODULE:                 -- BaseTimers_1ms_40ms.cpp.o --
+- PROCEDURES:
+     __ct__19BaseTimers_1ms_40msFv             4D66      2F      47       1   .text       
+     __sf_19BaseTimers_1ms_40ms_getInstance__Fv       4D95      16      22       1   .text       
+     lockInc__19BaseTimers_1ms_40msFv          4DAB       3       3       1   .text       
+     unlockInc__19BaseTimers_1ms_40msFv        4DAE       3       3       1   .text       
+     __sf_19BaseTimers_1ms_40ms_inc1__FPv       4DB1       F      15       1   .text       
+     __sf_19BaseTimers_1ms_40ms_inc40__FPv       4DC0       F      15       1   .text       
+- VARIABLES:
+     __sf_19BaseTimers_1ms_40ms_instance       1008       2       2       3   .bss        
+     ____vtbl__BaseTimers_1ms_40msBaseTimersLinkedListListCollection       5418      2C      44       1   VIRTUAL_TABLE_SEGMENT
+MODULE:                 -- Cpu.c.o --
+- PROCEDURES:
+     PE_low_level_init__Fv                     4DCF      9B     155       1   .text       
+     Cpu_Interrupt__Fv                         460C       2       2      50   .init       
+     _EntryPoint                               460E      29      41       2   .init       
+- VARIABLES:
+     CCR_reg                                   13FD       1       1       2   .common     
+MODULE:                 -- PromBkp.cpp.o (memorias_si.lib) --
+- PROCEDURES:
+     demorarGrabado__7PromBkpFUi               4E6A      30      48       1   .text       
+- VARIABLES:
+MODULE:                 -- Timer.cpp.o (timers_si.lib) --
+- PROCEDURES:
+     __sf_5Timer_setBaseTimerDefault__FR10BaseTimers       574F       4       4       1   Timer_CODE  
+     __ct__5TimerFUl                           5753      51      81       2   Timer_CODE  
+     __dt__5TimerFv                            57A4       3       3       1   Timer_CODE  
+     onTime__5TimerFv                          57A7       3       3       1   Timer_CODE  
+     comparar__5TimerFv                        57AA      C3     195       1   Timer_CODE  
+     isFinished__5TimerFv                      586D      26      38       1   Timer_CODE  
+     restart__5TimerFv                         5893      70     112       4   Timer_CODE  
+     setTime__5TimerFUl                        5903      34      52       1   Timer_CODE  
+     stop__5TimerFv                            5937      1A      26       3   Timer_CODE  
+- VARIABLES:
+     __sf_5Timer_baseTimerDefault              1440       2       2       2   Timer_DATA  
+MODULE:                 -- BaseTimers.cpp.o (timers_si.lib) --
+- PROCEDURES:
+     incrementar__10BaseTimersFUi              4E9A       F      15       2   .text       
+     moveOut__10BaseTimersFPv                  4EA9      2C      44       2   .text       
+     actualizarTimers__10BaseTimersFv          4ED5      2D      45       2   .text       
+     getCuenta__10BaseTimersFv                 4F02      2D      45       3   .text       
+- VARIABLES:
+MODULE:                 -- FlagTimer.cpp.o (timers_si.lib) --
+- PROCEDURES:
+     __ct__9FlagTimerFUl                       4F2F      17      23       1   .text       
+     onTime__9FlagTimerFv                      4F46       9       9       1   .text       
+     reset__9FlagTimerFv                       4F4F       5       5       1   .text       
+     __dt__9FlagTimerFv                        5541       3       3       1   GEN_FUNCS_SEGMENT
+- VARIABLES:
+     ____vtbl__FlagTimerTimer                  5444       4       4       1   VIRTUAL_TABLE_SEGMENT
+MODULE:                 -- main.cpp.o --
+- PROCEDURES:
+     __ct__12NodoICModBusFPvRC9GetsPropsT1.8       4F54      11      17       1   .text       
+     getId__10ConfModBusFv.11                  4F65       4       4       1   .text       
+     __ct__4InitFv.12                          4F69       6       6       1   .text       
+     get__FPv                                  4F6F      17      23       1   .text       
+     set__FPvi                                 4F86      1B      27       1   .text       
+     main                                      4FA1       B      11       1   .text       
+     __ct__16PropNumLFFactoryFv                5544       D      13       1   GEN_FUNCS_SEGMENT
+     __ct__18PropNumLFPFFactoryFv              5551       D      13       1   GEN_FUNCS_SEGMENT
+     __ct__19ConfiguracionModBusFv             555E       8       8       1   GEN_FUNCS_SEGMENT
+     __dt__6ModBusFv                           5566       6       6       1   GEN_FUNCS_SEGMENT
+     __ct__10ConfModBusFv                      556C       C      12       1   GEN_FUNCS_SEGMENT
+     __ConstructorInit__                       4637      39      57       0   .init       
+     __DestructorInit__                        4600       C      12       0   .fini       
+- VARIABLES:
+     cPropiedad                                4696       D      13       1   .rodata     
+     arrayConstructores                        46A3       5       5       1   .rodata     
+     getProps                                  46A8       3       3       1   .rodata     
+     comProps                                  46AB       5       5       1   .rodata     
+     STRING.C..Documents.and.Set.13            48C2      8C     140       2   .rodata1    
+     STRING.test.14                            494E       5       5       1   .rodata1    
+     costructores                              1000       2       2       1   .data       
+     nodos                                     1002       2       2       1   .data       
+     ____vtbl__PropiedadGetterGetter           5448       8       8       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__PropGetterVisualPropiedadGetterGetter       5450       C      12       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__PropGetterVisualFactory         545C       4       4       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__PropiedadIncrementablePropGetterVisualPropiedadGetterGetter       5460      18      24       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__PropiedadNumericaPropiedadIncrementablePropGetterVisualPropiedadGetterGetter       5478      24      36       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__PropNumLFPropiedadNumericaPropiedadIncrementablePropGetterVisualPropiedadGetterGetter       549C      24      36       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__PropNumLFFactoryPropGetterVisualFactory       54C0       4       4       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__PropNumLFPFPropNumLFPropiedadNumericaPropiedadIncrementablePropGetterVisualPropiedadGetterGetter       54C4      24      36       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__PropNumLFPFFactoryPropGetterVisualFactory       54E8       4       4       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__ConfiguracionModBus             54EC       4       4       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__ConfModBusConfiguracionModBus       54F0       4       4       1   VIRTUAL_TABLE_SEGMENT
+     confModBus                                13FE       2       2       2   .common     
+     plataforma                                1400       6       6       3   .common     
+     ini                                       1406       1       1       1   .common     
+     objetoInt                                 1407       2       2       5   .common     
+     nodo                                      1409       6       6       2   .common     
+     modbus                                    140F      2F      47       2   .common     
+MODULE:                 -- PropGetterVisual.cpp.o (propiedades_hc12_si.lib) --
+- PROCEDURES:
+     __ct__23PropGetterVisualFactoryFv         4FAC       8       8       2   .text       
+     __ct__16PropGetterVisualFPvPC26ArgumentosPropGetterVisualUc       4FB4      1B      27       2   .text       
+     getDescripcion__16PropGetterVisualFv       4FCF       8       8       5   .text       
+     getPropiedad__27ConstructorPropGetterVisualFPvUc       4FD7      1B      27       1   .text       
+     getPropiedad__23PropGetterVisualFactoryFPvPC25ArgumentosPropiedadGetterUc       4FF2      1B      27       1   .text       
+- VARIABLES:
+MODULE:                 -- PropiedadGetter.cpp.o (propiedades_hc12_si.lib) --
+- PROCEDURES:
+     __ct__15PropiedadGetterFPvPC25ArgumentosPropiedadGetter       500D      17      23       1   .text       
+     getObjeto__15PropiedadGetterFv            5024       5       5       1   .text       
+     getVal__15PropiedadGetterFv               5029       B      11       3   .text       
+     print__15PropiedadGetterFR12OutputStream       5034      25      37       3   .text       
+     getArgumentos__15PropiedadGetterFv        5059       5       5       5   .text       
+- VARIABLES:
+MODULE:                 -- PropiedadIncrementable.cpp.o (propiedades_hc12_si.lib) --
+- PROCEDURES:
+     __ct__22PropiedadIncrementableFPvPC32ArgumentosPropiedadIncrementableUc       505E      1F      31       1   .text       
+     guardar__22PropiedadIncrementableFv       507D      21      33       1   .text       
+     getVal__22PropiedadIncrementableFv        509E       5       5       4   .text       
+     setValorTmp__22PropiedadIncrementableFi       50A3       5       5       3   .text       
+     refrescar__22PropiedadIncrementableFv       50A8       C      12       1   .text       
+- VARIABLES:
+MODULE:                 -- PropiedadNumerica.cpp.o (propiedades_hc12_si.lib) --
+- PROCEDURES:
+     __ct__17PropiedadNumericaFPvPC32ArgumentosPropiedadIncrementableUc       50B4      1A      26       1   .text       
+     print__17PropiedadNumericaFR12OutputStream       50CE      37      55       3   .text       
+     incrementar__17PropiedadNumericaFv        5105      37      55       3   .text       
+     decrementar__17PropiedadNumericaFv        513C      37      55       3   .text       
+     setValor__17PropiedadNumericaFi           5173      39      57       3   .text       
+- VARIABLES:
+MODULE:                 -- PropNumLF.cpp.o (propiedades_hc12_si.lib) --
+- PROCEDURES:
+     __ct__9PropNumLFFPvPC19ArgumentosPropNumLFUc       51AC      1A      26       2   .text       
+     getLimiteInferior__9PropNumLFFv           51C6       8       8       2   .text       
+     getLimiteSuperior__9PropNumLFFv           51CE       8       8       2   .text       
+     getCantidadDecimales__9PropNumLFFv        51D6       2       2       1   .text       
+     getPropiedad__16PropNumLFFactoryFPvPC25ArgumentosPropiedadGetterUc       51D8      1A      26       1   .text       
+     __ConstructorInit__                       4670       6       6       0   .init       
+- VARIABLES:
+     propNumLFFactory                          100A       2       2       1   .bss        
+MODULE:                 -- PropNumLFPF.cpp.o (propiedades_hc12_si.lib) --
+- PROCEDURES:
+     __ct__11PropNumLFPFFPvPC21ArgumentosPropNumLFPFUc       51F2      1A      26       1   .text       
+     getCantidadDecimales__11PropNumLFPFFv       520C       8       8       1   .text       
+     getPropiedad__18PropNumLFPFFactoryFPvPC25ArgumentosPropiedadGetterUc       5214      1A      26       1   .text       
+     __ConstructorInit__                       4676       6       6       0   .init       
+- VARIABLES:
+     propNumLFPFFactory                        100C       2       2       2   .bss        
+MODULE:                 -- NodoICModBus.cpp.o --
+- PROCEDURES:
+     getDato__12NodoICModBusFPv                522E      30      48       1   .text       
+     contieneDireccion__12NodoICModBusFPv       525E      18      24       4   .text       
+     setDato__12NodoICModBusFPvi               5276      56      86       1   .text       
+     getDirFin__12NodoICModBusFv               52CC      11      17       1   .text       
+     isEscribible__12NodoICModBusFv            52DD       7       7       1   .text       
+- VARIABLES:
+MODULE:                 -- Vectors.c.o --
+- PROCEDURES:
+     Cpu_Interrupt41__Fv                       4970       1       1       1   NON_BANKED  
+     Cpu_Interrupt47__Fv                       4971       1       1       1   NON_BANKED  
+     Cpu_Interrupt48__Fv                       4972       1       1       1   NON_BANKED  
+     Cpu_Interrupt49__Fv                       4973       1       1       1   NON_BANKED  
+     Cpu_Interrupt50__Fv                       4974       1       1       1   NON_BANKED  
+     Cpu_Interrupt51__Fv                       4975       1       1       1   NON_BANKED  
+     Cpu_Interrupt52__Fv                       4976       1       1       1   NON_BANKED  
+     Cpu_Interrupt53__Fv                       4977       1       1       1   NON_BANKED  
+     Cpu_Interrupt54__Fv                       4978       1       1       1   NON_BANKED  
+     Cpu_Interrupt56__Fv                       4979       1       1       1   NON_BANKED  
+- VARIABLES:
+     _vect                                     FF80      80     128       0   .abs_section_ff80
+MODULE:                 -- puertoSerie1.c.o --
+- PROCEDURES:
+     AS1_Interrupt__Fv                         497A      6F     111       1   NON_BANKED  
+     AS1_SendChar__FUc                         5C71      28      40       1   AS1_CODE    
+     AS1_Init__FP6ModBus                       5C99      1F      31       1   AS1_CODE    
+- VARIABLES:
+     SerFlag                                   1442       1       1       9   AS1_DATA    
+     BufferRead                                1443       1       1       1   AS1_DATA    
+     EnUser                                    1444       1       1       1   AS1_DATA    
+     modbus                                    1445       2       2       3   AS1_DATA    
+MODULE:                 -- ModBus.cpp.o --
+- PROCEDURES:
+     __ct__23EscrituraDemoradaModBusFR12NodoICModBusPvUi       5951      11      17       1   ModBus_CODE 
+     escribir__23EscrituraDemoradaModBusFv       5962      10      16       1   ModBus_CODE 
+     __sf_6ModBus_sendingIntermedia__FPv       5972       3       3       1   ModBus_CODE 
+     __sf_6ModBus_escribirDatoEnColaIntermedia__FPv.7       5975       6       6       1   ModBus_CODE 
+     __ct__6ModBusFR19ConfiguracionModBusPC5ArrayP7PromBkp       597B      47      71       1   ModBus_CODE 
+     escribirDatoEnCola__6ModBusFv             59C2      2D      45       1   ModBus_CODE 
+     onTxComplete__6ModBusFv                   59EF       9       9       1   ModBus_CODE 
+     setOnSend__6ModBusFPFPv_v                 59F8       6       6       1   ModBus_CODE 
+     onRxChar__6ModBusFUc                      59FE      CD     205       2   ModBus_CODE 
+     sending__6ModBusFv                        5ACB      39      57       2   ModBus_CODE 
+     send__6ModBusFPUcUc                       5B04      43      67       2   ModBus_CODE 
+     getAddressData__6ModBusFUi                5B47      4B      75       1   ModBus_CODE 
+     writeAddress__6ModBusFUii                 5B92      60      96       1   ModBus_CODE 
+     __sf_6ModBus_modBusWrite__FPvPUc          5BF2      2F      47       2   ModBus_CODE 
+     __sf_6ModBus_dhacelRead__FPvPUc           5C21      1C      28       2   ModBus_CODE 
+     __sf_6ModBus_calcularCrc__FPUcUc          5C3D      34      52       2   ModBus_CODE 
+- VARIABLES:
+     __sf_6ModBus_onRecive                     46B0      12      18       3   .rodata     
+     __sf_6ModBus_crcControl                   46C2     200     512       2   .rodata     
+     __sf_6ModBus_cantMsjsOut                  100E       1       1       2   .bss        
+
+*********************************************************************************************
+MODULE STATISTIC
+  Name                                      Data   Code  Const
+---------------------------------------------------------------------------------------------
+  Start12.cpp.o                                0     68      0
+  ASSERT.C.o (ansisi.lib)                      0      7      0
+  EMBEDDED.C.o (ansisi.lib)                    0      8      0
+  HEAP.C.o (ansisi.lib)                     1000     12      0
+  ALLOC.C.o (ansisi.lib)                       4    361      0
+  rtshc12.c.o (ansisi.lib)                     0     28      0
+  NEW.CPP.o (cppsi.lib)                        0     21      0
+  D:\Jony\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\util\util_hcs12_cpp_Data\C++_Ms_no_float\ObjectCode\DobleList.cpp.o (util_cpp_si.lib)     0     28    112
+  D:\Jony\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\util\util_hcs12_cpp_Data\C++_Ms_no_float\ObjectCode\LinkedList.cpp.o (util_cpp_si.lib)     0    415      0
+  D:\Jony\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\util\util_hcs12_cpp_Data\C++_Ms_no_float\ObjectCode\nodo.cpp.o (util_cpp_si.lib)     0     18      0
+  D:\Jony\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\util\util_hcs12_cpp_Data\C++_Ms_no_float\ObjectCode\Array.c.o (util_cpp_si.lib)     0     27      0
+  D:\Jony\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\util\util_hcs12_cpp_Data\C++_Ms_no_float\ObjectCode\Set.cpp.o (util_cpp_si.lib)     0     96     36
+  timer_interrupt.c.o                          4    115     36
+  MethodContainer.cpp.o                        0     79      0
+  TI1.c.o                                      2     40      0
+  IO_Map.c.o                                 199      0      0
+  PlataformaEmbedded.cpp.o                     2     79     40
+  Termometro.cpp.o                             0     21     56
+  ThreadAttachable.cpp.o                       0     75      0
+  BaseTimers_1ms_40ms.cpp.o                    2    105     44
+  Cpu.c.o                                      1    198      0
+  PromBkp.cpp.o (memorias_si.lib)              0     48      0
+  Timer.cpp.o (timers_si.lib)                  2    514      0
+  BaseTimers.cpp.o (timers_si.lib)             0    149      0
+  FlagTimer.cpp.o (timers_si.lib)              0     40      4
+  main.cpp.o                                  68    209    343
+  PropGetterVisual.cpp.o (propiedades_hc12_si.lib)     0     97      0
+  PropiedadGetter.cpp.o (propiedades_hc12_si.lib)     0     81      0
+  PropiedadIncrementable.cpp.o (propiedades_hc12_si.lib)     0     86      0
+  PropiedadNumerica.cpp.o (propiedades_hc12_si.lib)     0    248      0
+  PropNumLF.cpp.o (propiedades_hc12_si.lib)     2     76      0
+  PropNumLFPF.cpp.o (propiedades_hc12_si.lib)     2     66      0
+  NodoICModBus.cpp.o                           0    182      0
+  Vectors.c.o                                  0     10    128
+  puertoSerie1.c.o                             5    182      0
+  ModBus.cpp.o                                 1    800    530
+  other                                      336     26     10
+
+*********************************************************************************************
+SECTION USE IN OBJECT-ALLOCATION SECTION
+---------------------------------------------------------------------------------------------
+SECTION: ".text"
+  Init__Fv _Startup _assert abort exit _heapcrash_ malloc free __nw__FGUi 
+  __dl__FGPv add__3SetFPv aniadir__3SetFPv TI1ms_OnInterrupt__Fv 
+  TI40ms_OnInterrupt__Fv add1msListener__FP6Method add40msListener__FP6Method 
+  __ct__15MethodContainerFv add__15MethodContainerFPv 
+  executeMethods__15MethodContainerFv __ct__18PlataformaEmbeddedFv 
+  pthread_create__FPPvPvPFPv_PvT1 mainLoop__18PlataformaEmbeddedFv 
+  adjuntar__16ThreadAttachableFP6Method executeThreads__16ThreadAttachableFv 
+  __ct__19BaseTimers_1ms_40msFv __sf_19BaseTimers_1ms_40ms_getInstance__Fv 
+  lockInc__19BaseTimers_1ms_40msFv unlockInc__19BaseTimers_1ms_40msFv 
+  __sf_19BaseTimers_1ms_40ms_inc1__FPv __sf_19BaseTimers_1ms_40ms_inc40__FPv 
+  PE_low_level_init__Fv demorarGrabado__7PromBkpFUi 
+  incrementar__10BaseTimersFUi moveOut__10BaseTimersFPv 
+  actualizarTimers__10BaseTimersFv getCuenta__10BaseTimersFv 
+  __ct__9FlagTimerFUl onTime__9FlagTimerFv reset__9FlagTimerFv 
+  __ct__12NodoICModBusFPvRC9GetsPropsT1.8 getId__10ConfModBusFv.11 
+  __ct__4InitFv.12 get__FPv set__FPvi main __ct__23PropGetterVisualFactoryFv 
+  __ct__16PropGetterVisualFPvPC26ArgumentosPropGetterVisualUc 
+  getDescripcion__16PropGetterVisualFv 
+  getPropiedad__27ConstructorPropGetterVisualFPvUc 
+  getPropiedad__23PropGetterVisualFactoryFPvPC25ArgumentosPropiedadGetterUc 
+  __ct__15PropiedadGetterFPvPC25ArgumentosPropiedadGetter 
+  getObjeto__15PropiedadGetterFv getVal__15PropiedadGetterFv 
+  print__15PropiedadGetterFR12OutputStream getArgumentos__15PropiedadGetterFv 
+  __ct__22PropiedadIncrementableFPvPC32ArgumentosPropiedadIncrementableUc 
+  guardar__22PropiedadIncrementableFv getVal__22PropiedadIncrementableFv 
+  setValorTmp__22PropiedadIncrementableFi refrescar__22PropiedadIncrementableFv 
+  __ct__17PropiedadNumericaFPvPC32ArgumentosPropiedadIncrementableUc 
+  print__17PropiedadNumericaFR12OutputStream incrementar__17PropiedadNumericaFv 
+  decrementar__17PropiedadNumericaFv setValor__17PropiedadNumericaFi 
+  __ct__9PropNumLFFPvPC19ArgumentosPropNumLFUc getLimiteInferior__9PropNumLFFv 
+  getLimiteSuperior__9PropNumLFFv getCantidadDecimales__9PropNumLFFv 
+  getPropiedad__16PropNumLFFactoryFPvPC25ArgumentosPropiedadGetterUc 
+  __ct__11PropNumLFPFFPvPC21ArgumentosPropNumLFPFUc 
+  getCantidadDecimales__11PropNumLFPFFv 
+  getPropiedad__18PropNumLFPFFactoryFPvPC25ArgumentosPropiedadGetterUc 
+  getDato__12NodoICModBusFPv contieneDireccion__12NodoICModBusFPv 
+  setDato__12NodoICModBusFPvi getDirFin__12NodoICModBusFv 
+  isEscribible__12NodoICModBusFv 
+SECTION: ".data"
+  costructores nodos 
+SECTION: ".bss"
+  heap_end free_ptr __sf_19BaseTimers_1ms_40ms_instance propNumLFFactory 
+  propNumLFPFFactory __sf_6ModBus_cantMsjsOut 
+SECTION: ".init"
+  Cpu_Interrupt__Fv _EntryPoint __ConstructorInit__ __ConstructorInit__ 
+  __ConstructorInit__ 
+SECTION: ".fini"
+  __DestructorInit__ 
+SECTION: ".rodata"
+  cPropiedad arrayConstructores getProps comProps __sf_6ModBus_onRecive 
+  __sf_6ModBus_crcControl 
+SECTION: ".rodata1"
+  STRING.C..Documents.and.Set.13 STRING.test.14 
+SECTION: "NON_BANKED"
+  TI1_Interrupt__Fv Cpu_Interrupt41__Fv Cpu_Interrupt47__Fv 
+  Cpu_Interrupt48__Fv Cpu_Interrupt49__Fv Cpu_Interrupt50__Fv 
+  Cpu_Interrupt51__Fv Cpu_Interrupt52__Fv Cpu_Interrupt53__Fv 
+  Cpu_Interrupt54__Fv Cpu_Interrupt56__Fv AS1_Interrupt__Fv 
+SECTION: "RUNTIME"
+  _LCMP_P _ILSEXT 
+SECTION: "HEAP_SEGMENT"
+  _heap_ 
+SECTION: ".common"
+  listeners1ms listeners40ms __sf_18PlataformaEmbedded_threads CCR_reg 
+  confModBus plataforma ini objetoInt nodo modbus 
+SECTION: "VIRTUAL_TABLE_SEGMENT"
+  ____vtbl__Iterator ____vtbl__Collection ____vtbl__ListCollection 
+  ____vtbl__LinkedListIteratorIterator ____vtbl__LinkedListListCollection 
+  ____vtbl__SetLinkedListListCollection 
+  ____vtbl__MethodContainerSetLinkedListListCollection 
+  ____vtbl__ThreadAttachableMethodContainerSetLinkedListListCollection 
+  ____vtbl__PlataformaEmbedded ____vtbl__Getter 
+  ____vtbl__BaseTimersLinkedListListCollection ____vtbl__Timer 
+  ____vtbl__BaseTimers_1ms_40msBaseTimersLinkedListListCollection 
+  ____vtbl__FlagTimerTimer ____vtbl__PropiedadGetterGetter 
+  ____vtbl__PropGetterVisualPropiedadGetterGetter 
+  ____vtbl__PropGetterVisualFactory 
+  ____vtbl__PropiedadIncrementablePropGetterVisualPropiedadGetterGetter 
+  ____vtbl__PropiedadNumericaPropiedadIncrementablePropGetterVisualPropiedadGetterGetter 
+  ____vtbl__PropNumLFPropiedadNumericaPropiedadIncrementablePropGetterVisualPropiedadGetterGetter 
+  ____vtbl__PropNumLFFactoryPropGetterVisualFactory 
+  ____vtbl__PropNumLFPFPropNumLFPropiedadNumericaPropiedadIncrementablePropGetterVisualPropiedadGetterGetter 
+  ____vtbl__PropNumLFPFFactoryPropGetterVisualFactory 
+  ____vtbl__ConfiguracionModBus ____vtbl__ConfModBusConfiguracionModBus 
+SECTION: "GEN_FUNCS_SEGMENT"
+  __ct__8IteratorFv __ct__10CollectionFv __ct__4ListFv __ct__3SetFv 
+  __dt__3SetFv __dt__15MethodContainerFv __dt__16ThreadAttachableFv 
+  __dt__18PlataformaEmbeddedFv __ct__6GetterFv __ct__10BaseTimersFv 
+  __dt__9FlagTimerFv __ct__16PropNumLFFactoryFv __ct__18PropNumLFPFFactoryFv 
+  __ct__19ConfiguracionModBusFv __dt__6ModBusFv __ct__10ConfModBusFv 
+SECTION: "NODO_CODE"
+  getNext__4NodoFv.2 
+SECTION: "LinkedList_CODE"
+  __ct__10LinkedListFv __dt__10LinkedListFv isEmpty__10LinkedListFv 
+  clear__10LinkedListFv add__10LinkedListFPv aniadir__10LinkedListFPv 
+  size__10LinkedListFv get__10LinkedListFUi moveOut__10LinkedListFPv 
+  deleteNodo__10LinkedListFP4NodoT1 contains__10LinkedListFPv 
+  linkedListIterator__10LinkedListFP28LinkedListIteratorLinkedList 
+  iterator__10LinkedListFv __ct__28LinkedListIteratorLinkedListFv 
+  hasNext__28LinkedListIteratorLinkedListFv 
+  next__28LinkedListIteratorLinkedListFv 
+SECTION: "Nodo_CODE"
+  __ct__4NodoFPvP4Nodo setNext__4NodoFP4Nodo 
+SECTION: "ARRAY_LIST_CODE"
+  Array_get Array_count 
+SECTION: "TI1_CODE"
+  TI1_Init__Fv 
+SECTION: "TI1_DATA"
+  CmpVal 
+SECTION: ".abs_section_8"
+  _PORTE 
+SECTION: ".abs_section_9"
+  _DDRE 
+SECTION: ".abs_section_a"
+  _PEAR 
+SECTION: ".abs_section_b"
+  _MODE 
+SECTION: ".abs_section_c"
+  _PUCR 
+SECTION: ".abs_section_d"
+  _RDRIV 
+SECTION: ".abs_section_e"
+  _EBICTL 
+SECTION: ".abs_section_10"
+  _INITRM 
+SECTION: ".abs_section_11"
+  _INITRG 
+SECTION: ".abs_section_13"
+  _MISC 
+SECTION: ".abs_section_15"
+  _ITCR 
+SECTION: ".abs_section_16"
+  _ITEST 
+SECTION: ".abs_section_19"
+  _VREGCTRL 
+SECTION: ".abs_section_1c"
+  _MEMSIZ0 
+SECTION: ".abs_section_1d"
+  _MEMSIZ1 
+SECTION: ".abs_section_1e"
+  _INTCR 
+SECTION: ".abs_section_1f"
+  _HPRIO 
+SECTION: ".abs_section_20"
+  _DBGC1 
+SECTION: ".abs_section_21"
+  _DBGSC 
+SECTION: ".abs_section_24"
+  _DBGCNT 
+SECTION: ".abs_section_25"
+  _DBGCCX 
+SECTION: ".abs_section_28"
+  _DBGC2 
+SECTION: ".abs_section_29"
+  _DBGC3 
+SECTION: ".abs_section_2a"
+  _DBGCAX 
+SECTION: ".abs_section_2d"
+  _DBGCBX 
+SECTION: ".abs_section_30"
+  _PPAGE 
+SECTION: ".abs_section_34"
+  _SYNR 
+SECTION: ".abs_section_35"
+  _REFDV 
+SECTION: ".abs_section_37"
+  _CRGFLG 
+SECTION: ".abs_section_38"
+  _CRGINT 
+SECTION: ".abs_section_39"
+  _CLKSEL 
+SECTION: ".abs_section_3a"
+  _PLLCTL 
+SECTION: ".abs_section_3b"
+  _RTICTL 
+SECTION: ".abs_section_3c"
+  _COPCTL 
+SECTION: ".abs_section_3f"
+  _ARMCOP 
+SECTION: ".abs_section_40"
+  _TIOS 
+SECTION: ".abs_section_41"
+  _CFORC 
+SECTION: ".abs_section_42"
+  _OC7M 
+SECTION: ".abs_section_43"
+  _OC7D 
+SECTION: ".abs_section_46"
+  _TSCR1 
+SECTION: ".abs_section_47"
+  _TTOV 
+SECTION: ".abs_section_48"
+  _TCTL1 
+SECTION: ".abs_section_49"
+  _TCTL2 
+SECTION: ".abs_section_4a"
+  _TCTL3 
+SECTION: ".abs_section_4b"
+  _TCTL4 
+SECTION: ".abs_section_4c"
+  _TIE 
+SECTION: ".abs_section_4d"
+  _TSCR2 
+SECTION: ".abs_section_4e"
+  _TFLG1 
+SECTION: ".abs_section_4f"
+  _TFLG2 
+SECTION: ".abs_section_60"
+  _PACTL 
+SECTION: ".abs_section_61"
+  _PAFLG 
+SECTION: ".abs_section_86"
+  _ATDSTAT0 
+SECTION: ".abs_section_89"
+  _ATDTEST1 
+SECTION: ".abs_section_8b"
+  _ATDSTAT1 
+SECTION: ".abs_section_8d"
+  _ATDDIEN 
+SECTION: ".abs_section_8f"
+  _PORTAD0 
+SECTION: ".abs_section_ca"
+  _SCICR1 
+SECTION: ".abs_section_cb"
+  _SCICR2 
+SECTION: ".abs_section_cc"
+  _SCISR1 
+SECTION: ".abs_section_cd"
+  _SCISR2 
+SECTION: ".abs_section_ce"
+  _SCIDRH 
+SECTION: ".abs_section_cf"
+  _SCIDRL 
+SECTION: ".abs_section_d8"
+  _SPICR1 
+SECTION: ".abs_section_d9"
+  _SPICR2 
+SECTION: ".abs_section_da"
+  _SPIBR 
+SECTION: ".abs_section_db"
+  _SPISR 
+SECTION: ".abs_section_dd"
+  _SPIDR 
+SECTION: ".abs_section_e0"
+  _PWME 
+SECTION: ".abs_section_e1"
+  _PWMPOL 
+SECTION: ".abs_section_e2"
+  _PWMCLK 
+SECTION: ".abs_section_e3"
+  _PWMPRCLK 
+SECTION: ".abs_section_e4"
+  _PWMCAE 
+SECTION: ".abs_section_e5"
+  _PWMCTL 
+SECTION: ".abs_section_e8"
+  _PWMSCLA 
+SECTION: ".abs_section_e9"
+  _PWMSCLB 
+SECTION: ".abs_section_fe"
+  _PWMSDN 
+SECTION: ".abs_section_100"
+  _FCLKDIV 
+SECTION: ".abs_section_101"
+  _FSEC 
+SECTION: ".abs_section_103"
+  _FCNFG 
+SECTION: ".abs_section_104"
+  _FPROT 
+SECTION: ".abs_section_105"
+  _FSTAT 
+SECTION: ".abs_section_106"
+  _FCMD 
+SECTION: ".abs_section_240"
+  _PTT 
+SECTION: ".abs_section_241"
+  _PTIT 
+SECTION: ".abs_section_242"
+  _DDRT 
+SECTION: ".abs_section_243"
+  _RDRT 
+SECTION: ".abs_section_244"
+  _PERT 
+SECTION: ".abs_section_245"
+  _PPST 
+SECTION: ".abs_section_247"
+  _MODRR 
+SECTION: ".abs_section_248"
+  _PTS 
+SECTION: ".abs_section_249"
+  _PTIS 
+SECTION: ".abs_section_24a"
+  _DDRS 
+SECTION: ".abs_section_24b"
+  _RDRS 
+SECTION: ".abs_section_24c"
+  _PERS 
+SECTION: ".abs_section_24d"
+  _PPSS 
+SECTION: ".abs_section_24e"
+  _WOMS 
+SECTION: ".abs_section_250"
+  _PTM 
+SECTION: ".abs_section_251"
+  _PTIM 
+SECTION: ".abs_section_252"
+  _DDRM 
+SECTION: ".abs_section_253"
+  _RDRM 
+SECTION: ".abs_section_254"
+  _PERM 
+SECTION: ".abs_section_255"
+  _PPSM 
+SECTION: ".abs_section_256"
+  _WOMM 
+SECTION: ".abs_section_258"
+  _PTP 
+SECTION: ".abs_section_259"
+  _PTIP 
+SECTION: ".abs_section_25a"
+  _DDRP 
+SECTION: ".abs_section_25b"
+  _RDRP 
+SECTION: ".abs_section_25c"
+  _PERP 
+SECTION: ".abs_section_25d"
+  _PPSP 
+SECTION: ".abs_section_25e"
+  _PIEP 
+SECTION: ".abs_section_25f"
+  _PIFP 
+SECTION: ".abs_section_268"
+  _PTJ 
+SECTION: ".abs_section_269"
+  _PTIJ 
+SECTION: ".abs_section_26a"
+  _DDRJ 
+SECTION: ".abs_section_26b"
+  _RDRJ 
+SECTION: ".abs_section_26c"
+  _PERJ 
+SECTION: ".abs_section_26d"
+  _PPSJ 
+SECTION: ".abs_section_26e"
+  _PIEJ 
+SECTION: ".abs_section_26f"
+  _PIFJ 
+SECTION: ".abs_section_270"
+  _PTAD 
+SECTION: ".abs_section_271"
+  _PTIAD 
+SECTION: ".abs_section_272"
+  _DDRAD 
+SECTION: ".abs_section_273"
+  _RDRAD 
+SECTION: ".abs_section_274"
+  _PERAD 
+SECTION: ".abs_section_275"
+  _PPSAD 
+SECTION: ".abs_section_0"
+  _PORTAB 
+SECTION: ".abs_section_2"
+  _DDRAB 
+SECTION: ".abs_section_1a"
+  _PARTID 
+SECTION: ".abs_section_22"
+  _DBGTB 
+SECTION: ".abs_section_26"
+  _DBGCC 
+SECTION: ".abs_section_2b"
+  _DBGCA 
+SECTION: ".abs_section_2e"
+  _DBGCB 
+SECTION: ".abs_section_44"
+  _TCNT 
+SECTION: ".abs_section_50"
+  _TC0 
+SECTION: ".abs_section_52"
+  _TC1 
+SECTION: ".abs_section_54"
+  _TC2 
+SECTION: ".abs_section_56"
+  _TC3 
+SECTION: ".abs_section_58"
+  _TC4 
+SECTION: ".abs_section_5a"
+  _TC5 
+SECTION: ".abs_section_5c"
+  _TC6 
+SECTION: ".abs_section_5e"
+  _TC7 
+SECTION: ".abs_section_62"
+  _PACNT 
+SECTION: ".abs_section_82"
+  _ATDCTL23 
+SECTION: ".abs_section_84"
+  _ATDCTL45 
+SECTION: ".abs_section_90"
+  _ATDDR0 
+SECTION: ".abs_section_92"
+  _ATDDR1 
+SECTION: ".abs_section_94"
+  _ATDDR2 
+SECTION: ".abs_section_96"
+  _ATDDR3 
+SECTION: ".abs_section_98"
+  _ATDDR4 
+SECTION: ".abs_section_9a"
+  _ATDDR5 
+SECTION: ".abs_section_9c"
+  _ATDDR6 
+SECTION: ".abs_section_9e"
+  _ATDDR7 
+SECTION: ".abs_section_c8"
+  _SCIBD 
+SECTION: ".abs_section_ec"
+  _PWMCNT01 
+SECTION: ".abs_section_ee"
+  _PWMCNT23 
+SECTION: ".abs_section_f0"
+  _PWMCNT45 
+SECTION: ".abs_section_f2"
+  _PWMPER01 
+SECTION: ".abs_section_f4"
+  _PWMPER23 
+SECTION: ".abs_section_f6"
+  _PWMPER45 
+SECTION: ".abs_section_f8"
+  _PWMDTY01 
+SECTION: ".abs_section_fa"
+  _PWMDTY23 
+SECTION: ".abs_section_fc"
+  _PWMDTY45 
+SECTION: "Timer_CODE"
+  __sf_5Timer_setBaseTimerDefault__FR10BaseTimers __ct__5TimerFUl 
+  __dt__5TimerFv onTime__5TimerFv comparar__5TimerFv isFinished__5TimerFv 
+  restart__5TimerFv setTime__5TimerFUl stop__5TimerFv 
+SECTION: "Timer_DATA"
+  __sf_5Timer_baseTimerDefault 
+SECTION: "ModBus_CODE"
+  __ct__23EscrituraDemoradaModBusFR12NodoICModBusPvUi 
+  escribir__23EscrituraDemoradaModBusFv __sf_6ModBus_sendingIntermedia__FPv 
+  __sf_6ModBus_escribirDatoEnColaIntermedia__FPv.7 
+  __ct__6ModBusFR19ConfiguracionModBusPC5ArrayP7PromBkp 
+  escribirDatoEnCola__6ModBusFv onTxComplete__6ModBusFv 
+  setOnSend__6ModBusFPFPv_v onRxChar__6ModBusFUc sending__6ModBusFv 
+  send__6ModBusFPUcUc getAddressData__6ModBusFUi writeAddress__6ModBusFUii 
+  __sf_6ModBus_modBusWrite__FPvPUc __sf_6ModBus_dhacelRead__FPvPUc 
+  __sf_6ModBus_calcularCrc__FPUcUc 
+SECTION: "AS1_DATA"
+  SerFlag BufferRead EnUser modbus 
+SECTION: "AS1_CODE"
+  AS1_SendChar__FUc AS1_Init__FP6ModBus 
+SECTION: ".abs_section_ff80"
+  _vect 
+
+*********************************************************************************************
+OBJECT LIST SORTED BY ADDRESS
+     Name                                      Addr   hSize   dSize     Ref    Section   RLIB
+---------------------------------------------------------------------------------------------
+     _PORTAB                                      0       2       2       2   .abs_section_0
+     _DDRAB                                       2       2       2       2   .abs_section_2
+     _PORTE                                       8       1       1       0   .abs_section_8
+     _DDRE                                        9       1       1       1   .abs_section_9
+     _PEAR                                        A       1       1       2   .abs_section_a
+     _MODE                                        B       1       1       0   .abs_section_b
+     _PUCR                                        C       1       1       1   .abs_section_c
+     _RDRIV                                       D       1       1       0   .abs_section_d
+     _EBICTL                                      E       1       1       0   .abs_section_e
+     _INITRM                                     10       1       1       1   .abs_section_10
+     _INITRG                                     11       1       1       0   .abs_section_11
+     _MISC                                       13       1       1       1   .abs_section_13
+     _ITCR                                       15       1       1       0   .abs_section_15
+     _ITEST                                      16       1       1       0   .abs_section_16
+     _VREGCTRL                                   19       1       1       0   .abs_section_19
+     _PARTID                                     1A       2       2       0   .abs_section_1a
+     _MEMSIZ0                                    1C       1       1       0   .abs_section_1c
+     _MEMSIZ1                                    1D       1       1       0   .abs_section_1d
+     _INTCR                                      1E       1       1       0   .abs_section_1e
+     _HPRIO                                      1F       1       1       1   .abs_section_1f
+     _DBGC1                                      20       1       1       0   .abs_section_20
+     _DBGSC                                      21       1       1       0   .abs_section_21
+     _DBGTB                                      22       2       2       0   .abs_section_22
+     _DBGCNT                                     24       1       1       0   .abs_section_24
+     _DBGCCX                                     25       1       1       0   .abs_section_25
+     _DBGCC                                      26       2       2       0   .abs_section_26
+     _DBGC2                                      28       1       1       0   .abs_section_28
+     _DBGC3                                      29       1       1       0   .abs_section_29
+     _DBGCAX                                     2A       1       1       0   .abs_section_2a
+     _DBGCA                                      2B       2       2       0   .abs_section_2b
+     _DBGCBX                                     2D       1       1       0   .abs_section_2d
+     _DBGCB                                      2E       2       2       0   .abs_section_2e
+     _PPAGE                                      30       1       1       0   .abs_section_30
+     _SYNR                                       34       1       1       1   .abs_section_34
+     _REFDV                                      35       1       1       1   .abs_section_35
+     _CRGFLG                                     37       1       1       1   .abs_section_37
+     _CRGINT                                     38       1       1       0   .abs_section_38
+     _CLKSEL                                     39       1       1       2   .abs_section_39
+     _PLLCTL                                     3A       1       1       2   .abs_section_3a
+     _RTICTL                                     3B       1       1       0   .abs_section_3b
+     _COPCTL                                     3C       1       1       2   .abs_section_3c
+     _ARMCOP                                     3F       1       1       2   .abs_section_3f
+     _TIOS                                       40       1       1       1   .abs_section_40
+     _CFORC                                      41       1       1       0   .abs_section_41
+     _OC7M                                       42       1       1       1   .abs_section_42
+     _OC7D                                       43       1       1       0   .abs_section_43
+     _TCNT                                       44       2       2       0   .abs_section_44
+     _TSCR1                                      46       1       1       3   .abs_section_46
+     _TTOV                                       47       1       1       1   .abs_section_47
+     _TCTL1                                      48       1       1       1   .abs_section_48
+     _TCTL2                                      49       1       1       1   .abs_section_49
+     _TCTL3                                      4A       1       1       0   .abs_section_4a
+     _TCTL4                                      4B       1       1       0   .abs_section_4b
+     _TIE                                        4C       1       1       2   .abs_section_4c
+     _TSCR2                                      4D       1       1       2   .abs_section_4d
+     _TFLG1                                      4E       1       1       2   .abs_section_4e
+     _TFLG2                                      4F       1       1       0   .abs_section_4f
+     _TC0                                        50       2       2       3   .abs_section_50
+     _TC1                                        52       2       2       0   .abs_section_52
+     _TC2                                        54       2       2       0   .abs_section_54
+     _TC3                                        56       2       2       0   .abs_section_56
+     _TC4                                        58       2       2       0   .abs_section_58
+     _TC5                                        5A       2       2       0   .abs_section_5a
+     _TC6                                        5C       2       2       0   .abs_section_5c
+     _TC7                                        5E       2       2       0   .abs_section_5e
+     _PACTL                                      60       1       1       0   .abs_section_60
+     _PAFLG                                      61       1       1       0   .abs_section_61
+     _PACNT                                      62       2       2       0   .abs_section_62
+     _ATDCTL23                                   82       2       2       0   .abs_section_82
+     _ATDCTL45                                   84       2       2       0   .abs_section_84
+     _ATDSTAT0                                   86       1       1       0   .abs_section_86
+     _ATDTEST1                                   89       1       1       0   .abs_section_89
+     _ATDSTAT1                                   8B       1       1       0   .abs_section_8b
+     _ATDDIEN                                    8D       1       1       1   .abs_section_8d
+     _PORTAD0                                    8F       1       1       0   .abs_section_8f
+     _ATDDR0                                     90       2       2       0   .abs_section_90
+     _ATDDR1                                     92       2       2       0   .abs_section_92
+     _ATDDR2                                     94       2       2       0   .abs_section_94
+     _ATDDR3                                     96       2       2       0   .abs_section_96
+     _ATDDR4                                     98       2       2       0   .abs_section_98
+     _ATDDR5                                     9A       2       2       0   .abs_section_9a
+     _ATDDR6                                     9C       2       2       0   .abs_section_9c
+     _ATDDR7                                     9E       2       2       0   .abs_section_9e
+     _SCIBD                                      C8       2       2       1   .abs_section_c8
+     _SCICR1                                     CA       1       1       1   .abs_section_ca
+     _SCICR2                                     CB       1       1       7   .abs_section_cb
+     _SCISR1                                     CC       1       1       5   .abs_section_cc
+     _SCISR2                                     CD       1       1       1   .abs_section_cd
+     _SCIDRH                                     CE       1       1       0   .abs_section_ce
+     _SCIDRL                                     CF       1       1       3   .abs_section_cf
+     _SPICR1                                     D8       1       1       0   .abs_section_d8
+     _SPICR2                                     D9       1       1       0   .abs_section_d9
+     _SPIBR                                      DA       1       1       0   .abs_section_da
+     _SPISR                                      DB       1       1       0   .abs_section_db
+     _SPIDR                                      DD       1       1       0   .abs_section_dd
+     _PWME                                       E0       1       1       0   .abs_section_e0
+     _PWMPOL                                     E1       1       1       0   .abs_section_e1
+     _PWMCLK                                     E2       1       1       0   .abs_section_e2
+     _PWMPRCLK                                   E3       1       1       0   .abs_section_e3
+     _PWMCAE                                     E4       1       1       0   .abs_section_e4
+     _PWMCTL                                     E5       1       1       1   .abs_section_e5
+     _PWMSCLA                                    E8       1       1       0   .abs_section_e8
+     _PWMSCLB                                    E9       1       1       0   .abs_section_e9
+     _PWMCNT01                                   EC       2       2       0   .abs_section_ec
+     _PWMCNT23                                   EE       2       2       0   .abs_section_ee
+     _PWMCNT45                                   F0       2       2       0   .abs_section_f0
+     _PWMPER01                                   F2       2       2       0   .abs_section_f2
+     _PWMPER23                                   F4       2       2       0   .abs_section_f4
+     _PWMPER45                                   F6       2       2       0   .abs_section_f6
+     _PWMDTY01                                   F8       2       2       0   .abs_section_f8
+     _PWMDTY23                                   FA       2       2       0   .abs_section_fa
+     _PWMDTY45                                   FC       2       2       0   .abs_section_fc
+     _PWMSDN                                     FE       1       1       1   .abs_section_fe
+     _FCLKDIV                                   100       1       1       0   .abs_section_100
+     _FSEC                                      101       1       1       0   .abs_section_101
+     _FCNFG                                     103       1       1       0   .abs_section_103
+     _FPROT                                     104       1       1       0   .abs_section_104
+     _FSTAT                                     105       1       1       0   .abs_section_105
+     _FCMD                                      106       1       1       0   .abs_section_106
+     _PTT                                       240       1       1       1   .abs_section_240
+     _PTIT                                      241       1       1       0   .abs_section_241
+     _DDRT                                      242       1       1       1   .abs_section_242
+     _RDRT                                      243       1       1       0   .abs_section_243
+     _PERT                                      244       1       1       0   .abs_section_244
+     _PPST                                      245       1       1       0   .abs_section_245
+     _MODRR                                     247       1       1       0   .abs_section_247
+     _PTS                                       248       1       1       3   .abs_section_248
+     _PTIS                                      249       1       1       0   .abs_section_249
+     _DDRS                                      24A       1       1       1   .abs_section_24a
+     _RDRS                                      24B       1       1       0   .abs_section_24b
+     _PERS                                      24C       1       1       0   .abs_section_24c
+     _PPSS                                      24D       1       1       0   .abs_section_24d
+     _WOMS                                      24E       1       1       1   .abs_section_24e
+     _PTM                                       250       1       1       1   .abs_section_250
+     _PTIM                                      251       1       1       0   .abs_section_251
+     _DDRM                                      252       1       1       1   .abs_section_252
+     _RDRM                                      253       1       1       0   .abs_section_253
+     _PERM                                      254       1       1       0   .abs_section_254
+     _PPSM                                      255       1       1       0   .abs_section_255
+     _WOMM                                      256       1       1       0   .abs_section_256
+     _PTP                                       258       1       1       1   .abs_section_258
+     _PTIP                                      259       1       1       0   .abs_section_259
+     _DDRP                                      25A       1       1       1   .abs_section_25a
+     _RDRP                                      25B       1       1       0   .abs_section_25b
+     _PERP                                      25C       1       1       1   .abs_section_25c
+     _PPSP                                      25D       1       1       0   .abs_section_25d
+     _PIEP                                      25E       1       1       1   .abs_section_25e
+     _PIFP                                      25F       1       1       0   .abs_section_25f
+     _PTJ                                       268       1       1       1   .abs_section_268
+     _PTIJ                                      269       1       1       0   .abs_section_269
+     _DDRJ                                      26A       1       1       1   .abs_section_26a
+     _RDRJ                                      26B       1       1       0   .abs_section_26b
+     _PERJ                                      26C       1       1       1   .abs_section_26c
+     _PPSJ                                      26D       1       1       0   .abs_section_26d
+     _PIEJ                                      26E       1       1       1   .abs_section_26e
+     _PIFJ                                      26F       1       1       0   .abs_section_26f
+     _PTAD                                      270       1       1       1   .abs_section_270
+     _PTIAD                                     271       1       1       0   .abs_section_271
+     _DDRAD                                     272       1       1       1   .abs_section_272
+     _RDRAD                                     273       1       1       0   .abs_section_273
+     _PERAD                                     274       1       1       1   .abs_section_274
+     _PPSAD                                     275       1       1       0   .abs_section_275
+     costructores                              1000       2       2       1   .data       
+     nodos                                     1002       2       2       1   .data       
+     heap_end                                  1004       2       2       3   .bss        
+     free_ptr                                  1006       2       2       8   .bss        
+     __sf_19BaseTimers_1ms_40ms_instance       1008       2       2       3   .bss        
+     propNumLFFactory                          100A       2       2       1   .bss        
+     propNumLFPFFactory                        100C       2       2       2   .bss        
+     __sf_6ModBus_cantMsjsOut                  100E       1       1       2   .bss        
+     _heap_                                    100F     3E8    1000       2   HEAP_SEGMENT
+     listeners1ms                              13F7       2       2       5   .common     
+     listeners40ms                             13F9       2       2       5   .common     
+     __sf_18PlataformaEmbedded_threads         13FB       2       2       3   .common     
+     CCR_reg                                   13FD       1       1       2   .common     
+     confModBus                                13FE       2       2       2   .common     
+     plataforma                                1400       6       6       3   .common     
+     ini                                       1406       1       1       1   .common     
+     objetoInt                                 1407       2       2       5   .common     
+     nodo                                      1409       6       6       2   .common     
+     modbus                                    140F      2F      47       2   .common     
+     CmpVal                                    143E       2       2       3   TI1_DATA    
+     __sf_5Timer_baseTimerDefault              1440       2       2       2   Timer_DATA  
+     SerFlag                                   1442       1       1       9   AS1_DATA    
+     BufferRead                                1443       1       1       1   AS1_DATA    
+     EnUser                                    1444       1       1       1   AS1_DATA    
+     modbus                                    1445       2       2       3   AS1_DATA    
+     __DestructorInit__                        4600       C      12       0   .fini       
+     Cpu_Interrupt__Fv                         460C       2       2      50   .init       
+     _EntryPoint                               460E      29      41       2   .init       
+     __ConstructorInit__                       4637      39      57       0   .init       
+     __ConstructorInit__                       4670       6       6       0   .init       
+     __ConstructorInit__                       4676       6       6       0   .init       
+     cPropiedad                                4696       D      13       1   .rodata     
+     arrayConstructores                        46A3       5       5       1   .rodata     
+     getProps                                  46A8       3       3       1   .rodata     
+     comProps                                  46AB       5       5       1   .rodata     
+     __sf_6ModBus_onRecive                     46B0      12      18       3   .rodata     
+     __sf_6ModBus_crcControl                   46C2     200     512       2   .rodata     
+     STRING.C..Documents.and.Set.13            48C2      8C     140       2   .rodata1    
+     STRING.test.14                            494E       5       5       1   .rodata1    
+     TI1_Interrupt__Fv                         4953      1D      29       1   NON_BANKED  
+     Cpu_Interrupt41__Fv                       4970       1       1       1   NON_BANKED  
+     Cpu_Interrupt47__Fv                       4971       1       1       1   NON_BANKED  
+     Cpu_Interrupt48__Fv                       4972       1       1       1   NON_BANKED  
+     Cpu_Interrupt49__Fv                       4973       1       1       1   NON_BANKED  
+     Cpu_Interrupt50__Fv                       4974       1       1       1   NON_BANKED  
+     Cpu_Interrupt51__Fv                       4975       1       1       1   NON_BANKED  
+     Cpu_Interrupt52__Fv                       4976       1       1       1   NON_BANKED  
+     Cpu_Interrupt53__Fv                       4977       1       1       1   NON_BANKED  
+     Cpu_Interrupt54__Fv                       4978       1       1       1   NON_BANKED  
+     Cpu_Interrupt56__Fv                       4979       1       1       1   NON_BANKED  
+     AS1_Interrupt__Fv                         497A      6F     111       1   NON_BANKED  
+     Init__Fv                                  49E9      3C      60       1   .text       
+     _Startup                                  4A25       8       8       1   .text       
+     _assert                                   4A2D       7       7       2   .text       
+     abort                                     4A34       4       4       1   .text       
+     exit                                      4A38       4       4       1   .text       
+     _heapcrash_                               4A3C       C      12       3   .text       
+     malloc                                    4A48      A5     165       1   .text       
+     free                                      4AED      C4     196       2   .text       
+     __nw__FGUi                                4BB1      12      18      11   .text       
+     __dl__FGPv                                4BC3       3       3       4   .text       
+     add__3SetFPv                              4BC6      28      40       2   .text       
+     aniadir__3SetFPv                          4BEE      28      40       3   .text       
+     TI1ms_OnInterrupt__Fv                     4C16       6       6       1   .text       
+     TI40ms_OnInterrupt__Fv                    4C1C       6       6       1   .text       
+     add1msListener__FP6Method                 4C22      32      50       1   .text       
+     add40msListener__FP6Method                4C54      32      50       1   .text       
+     __ct__15MethodContainerFv                 4C86       D      13       3   .text       
+     add__15MethodContainerFPv                 4C93       E      14       2   .text       
+     executeMethods__15MethodContainerFv       4CA1      34      52       2   .text       
+     __ct__18PlataformaEmbeddedFv              4CD5      1A      26       1   .text       
+     pthread_create__FPPvPvPFPv_PvT1           4CEF      1F      31       1   .text       
+     mainLoop__18PlataformaEmbeddedFv          4D0E       D      13       2   .text       
+     adjuntar__16ThreadAttachableFP6Method       4D1B      17      23       1   .text       
+     executeThreads__16ThreadAttachableFv       4D32      34      52       1   .text       
+     __ct__19BaseTimers_1ms_40msFv             4D66      2F      47       1   .text       
+     __sf_19BaseTimers_1ms_40ms_getInstance__Fv       4D95      16      22       1   .text       
+     lockInc__19BaseTimers_1ms_40msFv          4DAB       3       3       1   .text       
+     unlockInc__19BaseTimers_1ms_40msFv        4DAE       3       3       1   .text       
+     __sf_19BaseTimers_1ms_40ms_inc1__FPv       4DB1       F      15       1   .text       
+     __sf_19BaseTimers_1ms_40ms_inc40__FPv       4DC0       F      15       1   .text       
+     PE_low_level_init__Fv                     4DCF      9B     155       1   .text       
+     demorarGrabado__7PromBkpFUi               4E6A      30      48       1   .text       
+     incrementar__10BaseTimersFUi              4E9A       F      15       2   .text       
+     moveOut__10BaseTimersFPv                  4EA9      2C      44       2   .text       
+     actualizarTimers__10BaseTimersFv          4ED5      2D      45       2   .text       
+     getCuenta__10BaseTimersFv                 4F02      2D      45       3   .text       
+     __ct__9FlagTimerFUl                       4F2F      17      23       1   .text       
+     onTime__9FlagTimerFv                      4F46       9       9       1   .text       
+     reset__9FlagTimerFv                       4F4F       5       5       1   .text       
+     __ct__12NodoICModBusFPvRC9GetsPropsT1.8       4F54      11      17       1   .text       
+     getId__10ConfModBusFv.11                  4F65       4       4       1   .text       
+     __ct__4InitFv.12                          4F69       6       6       1   .text       
+     get__FPv                                  4F6F      17      23       1   .text       
+     set__FPvi                                 4F86      1B      27       1   .text       
+     main                                      4FA1       B      11       1   .text       
+     __ct__23PropGetterVisualFactoryFv         4FAC       8       8       2   .text       
+     __ct__16PropGetterVisualFPvPC26ArgumentosPropGetterVisualUc       4FB4      1B      27       2   .text       
+     getDescripcion__16PropGetterVisualFv       4FCF       8       8       5   .text       
+     getPropiedad__27ConstructorPropGetterVisualFPvUc       4FD7      1B      27       1   .text       
+     getPropiedad__23PropGetterVisualFactoryFPvPC25ArgumentosPropiedadGetterUc       4FF2      1B      27       1   .text       
+     __ct__15PropiedadGetterFPvPC25ArgumentosPropiedadGetter       500D      17      23       1   .text       
+     getObjeto__15PropiedadGetterFv            5024       5       5       1   .text       
+     getVal__15PropiedadGetterFv               5029       B      11       3   .text       
+     print__15PropiedadGetterFR12OutputStream       5034      25      37       3   .text       
+     getArgumentos__15PropiedadGetterFv        5059       5       5       5   .text       
+     __ct__22PropiedadIncrementableFPvPC32ArgumentosPropiedadIncrementableUc       505E      1F      31       1   .text       
+     guardar__22PropiedadIncrementableFv       507D      21      33       1   .text       
+     getVal__22PropiedadIncrementableFv        509E       5       5       4   .text       
+     setValorTmp__22PropiedadIncrementableFi       50A3       5       5       3   .text       
+     refrescar__22PropiedadIncrementableFv       50A8       C      12       1   .text       
+     __ct__17PropiedadNumericaFPvPC32ArgumentosPropiedadIncrementableUc       50B4      1A      26       1   .text       
+     print__17PropiedadNumericaFR12OutputStream       50CE      37      55       3   .text       
+     incrementar__17PropiedadNumericaFv        5105      37      55       3   .text       
+     decrementar__17PropiedadNumericaFv        513C      37      55       3   .text       
+     setValor__17PropiedadNumericaFi           5173      39      57       3   .text       
+     __ct__9PropNumLFFPvPC19ArgumentosPropNumLFUc       51AC      1A      26       2   .text       
+     getLimiteInferior__9PropNumLFFv           51C6       8       8       2   .text       
+     getLimiteSuperior__9PropNumLFFv           51CE       8       8       2   .text       
+     getCantidadDecimales__9PropNumLFFv        51D6       2       2       1   .text       
+     getPropiedad__16PropNumLFFactoryFPvPC25ArgumentosPropiedadGetterUc       51D8      1A      26       1   .text       
+     __ct__11PropNumLFPFFPvPC21ArgumentosPropNumLFPFUc       51F2      1A      26       1   .text       
+     getCantidadDecimales__11PropNumLFPFFv       520C       8       8       1   .text       
+     getPropiedad__18PropNumLFPFFactoryFPvPC25ArgumentosPropiedadGetterUc       5214      1A      26       1   .text       
+     getDato__12NodoICModBusFPv                522E      30      48       1   .text       
+     contieneDireccion__12NodoICModBusFPv       525E      18      24       4   .text       
+     setDato__12NodoICModBusFPvi               5276      56      86       1   .text       
+     getDirFin__12NodoICModBusFv               52CC      11      17       1   .text       
+     isEscribible__12NodoICModBusFv            52DD       7       7       1   .text       
+     _LCMP_P                                   52E4      15      21       2   RUNTIME     
+     _ILSEXT                                   52F9       7       7       1   RUNTIME     
+     ____vtbl__Iterator                        5300       8       8       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__Collection                      5308      1C      28       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__ListCollection                  5324      20      32       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__LinkedListIteratorIterator       5344       8       8       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__LinkedListListCollection        534C      24      36       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__SetLinkedListListCollection       5370      24      36       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__MethodContainerSetLinkedListListCollection       5394      24      36       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__ThreadAttachableMethodContainerSetLinkedListListCollection       53B8      24      36       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__PlataformaEmbedded              53DC       4       4       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__Getter                          53E0       8       8       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__BaseTimersLinkedListListCollection       53E8      2C      44       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__Timer                           5414       4       4       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__BaseTimers_1ms_40msBaseTimersLinkedListListCollection       5418      2C      44       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__FlagTimerTimer                  5444       4       4       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__PropiedadGetterGetter           5448       8       8       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__PropGetterVisualPropiedadGetterGetter       5450       C      12       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__PropGetterVisualFactory         545C       4       4       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__PropiedadIncrementablePropGetterVisualPropiedadGetterGetter       5460      18      24       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__PropiedadNumericaPropiedadIncrementablePropGetterVisualPropiedadGetterGetter       5478      24      36       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__PropNumLFPropiedadNumericaPropiedadIncrementablePropGetterVisualPropiedadGetterGetter       549C      24      36       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__PropNumLFFactoryPropGetterVisualFactory       54C0       4       4       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__PropNumLFPFPropNumLFPropiedadNumericaPropiedadIncrementablePropGetterVisualPropiedadGetterGetter       54C4      24      36       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__PropNumLFPFFactoryPropGetterVisualFactory       54E8       4       4       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__ConfiguracionModBus             54EC       4       4       1   VIRTUAL_TABLE_SEGMENT
+     ____vtbl__ConfModBusConfiguracionModBus       54F0       4       4       1   VIRTUAL_TABLE_SEGMENT
+     __ct__8IteratorFv                         54F4       8       8       1   GEN_FUNCS_SEGMENT
+     __ct__10CollectionFv                      54FC       8       8       1   GEN_FUNCS_SEGMENT
+     __ct__4ListFv                             5504       C      12       1   GEN_FUNCS_SEGMENT
+     __ct__3SetFv                              5510       D      13       1   GEN_FUNCS_SEGMENT
+     __dt__3SetFv                              551D       3       3       1   GEN_FUNCS_SEGMENT
+     __dt__15MethodContainerFv                 5520       3       3       1   GEN_FUNCS_SEGMENT
+     __dt__16ThreadAttachableFv                5523       3       3       1   GEN_FUNCS_SEGMENT
+     __dt__18PlataformaEmbeddedFv              5526       6       6       1   GEN_FUNCS_SEGMENT
+     __ct__6GetterFv                           552C       8       8       1   GEN_FUNCS_SEGMENT
+     __ct__10BaseTimersFv                      5534       D      13       1   GEN_FUNCS_SEGMENT
+     __dt__9FlagTimerFv                        5541       3       3       1   GEN_FUNCS_SEGMENT
+     __ct__16PropNumLFFactoryFv                5544       D      13       1   GEN_FUNCS_SEGMENT
+     __ct__18PropNumLFPFFactoryFv              5551       D      13       1   GEN_FUNCS_SEGMENT
+     __ct__19ConfiguracionModBusFv             555E       8       8       1   GEN_FUNCS_SEGMENT
+     __dt__6ModBusFv                           5566       6       6       1   GEN_FUNCS_SEGMENT
+     __ct__10ConfModBusFv                      556C       C      12       1   GEN_FUNCS_SEGMENT
+     getNext__4NodoFv.2                        5578       5       5       1   NODO_CODE   
+     __ct__10LinkedListFv                      557D      11      17       2   LinkedList_CODE
+     __dt__10LinkedListFv                      558E       C      12       1   LinkedList_CODE
+     isEmpty__10LinkedListFv                   559A       B      11       6   LinkedList_CODE
+     clear__10LinkedListFv                     55A5      21      33       6   LinkedList_CODE
+     add__10LinkedListFPv                      55C6      27      39       4   LinkedList_CODE
+     aniadir__10LinkedListFPv                  55ED      4D      77       4   LinkedList_CODE
+     size__10LinkedListFv                      563A      13      19       6   LinkedList_CODE
+     get__10LinkedListFUi                      564D      24      36       6   LinkedList_CODE
+     moveOut__10LinkedListFPv                  5671      2D      45       5   LinkedList_CODE
+     deleteNodo__10LinkedListFP4NodoT1         569E      25      37       1   LinkedList_CODE
+     contains__10LinkedListFPv                 56C3      1C      28       6   LinkedList_CODE
+     linkedListIterator__10LinkedListFP28LinkedListIteratorLinkedList       56DF       B      11       3   LinkedList_CODE
+     iterator__10LinkedListFv                  56EA       3       3       6   LinkedList_CODE
+     __ct__28LinkedListIteratorLinkedListFv       56ED       D      13       3   LinkedList_CODE
+     hasNext__28LinkedListIteratorLinkedListFv       56FA       B      11       4   LinkedList_CODE
+     next__28LinkedListIteratorLinkedListFv       5705      12      18       4   LinkedList_CODE
+     __ct__4NodoFPvP4Nodo                      5717       D      13       2   Nodo_CODE   
+     setNext__4NodoFP4Nodo                     5724       5       5       2   Nodo_CODE   
+     Array_get                                 5729      16      22       4   ARRAY_LIST_CODE
+     Array_count                               573F       5       5       3   ARRAY_LIST_CODE
+     TI1_Init__Fv                              5744       B      11       1   TI1_CODE    
+     __sf_5Timer_setBaseTimerDefault__FR10BaseTimers       574F       4       4       1   Timer_CODE  
+     __ct__5TimerFUl                           5753      51      81       2   Timer_CODE  
+     __dt__5TimerFv                            57A4       3       3       1   Timer_CODE  
+     onTime__5TimerFv                          57A7       3       3       1   Timer_CODE  
+     comparar__5TimerFv                        57AA      C3     195       1   Timer_CODE  
+     isFinished__5TimerFv                      586D      26      38       1   Timer_CODE  
+     restart__5TimerFv                         5893      70     112       4   Timer_CODE  
+     setTime__5TimerFUl                        5903      34      52       1   Timer_CODE  
+     stop__5TimerFv                            5937      1A      26       3   Timer_CODE  
+     __ct__23EscrituraDemoradaModBusFR12NodoICModBusPvUi       5951      11      17       1   ModBus_CODE 
+     escribir__23EscrituraDemoradaModBusFv       5962      10      16       1   ModBus_CODE 
+     __sf_6ModBus_sendingIntermedia__FPv       5972       3       3       1   ModBus_CODE 
+     __sf_6ModBus_escribirDatoEnColaIntermedia__FPv.7       5975       6       6       1   ModBus_CODE 
+     __ct__6ModBusFR19ConfiguracionModBusPC5ArrayP7PromBkp       597B      47      71       1   ModBus_CODE 
+     escribirDatoEnCola__6ModBusFv             59C2      2D      45       1   ModBus_CODE 
+     onTxComplete__6ModBusFv                   59EF       9       9       1   ModBus_CODE 
+     setOnSend__6ModBusFPFPv_v                 59F8       6       6       1   ModBus_CODE 
+     onRxChar__6ModBusFUc                      59FE      CD     205       2   ModBus_CODE 
+     sending__6ModBusFv                        5ACB      39      57       2   ModBus_CODE 
+     send__6ModBusFPUcUc                       5B04      43      67       2   ModBus_CODE 
+     getAddressData__6ModBusFUi                5B47      4B      75       1   ModBus_CODE 
+     writeAddress__6ModBusFUii                 5B92      60      96       1   ModBus_CODE 
+     __sf_6ModBus_modBusWrite__FPvPUc          5BF2      2F      47       2   ModBus_CODE 
+     __sf_6ModBus_dhacelRead__FPvPUc           5C21      1C      28       2   ModBus_CODE 
+     __sf_6ModBus_calcularCrc__FPUcUc          5C3D      34      52       2   ModBus_CODE 
+     AS1_SendChar__FUc                         5C71      28      40       1   AS1_CODE    
+     AS1_Init__FP6ModBus                       5C99      1F      31       1   AS1_CODE    
+     _vect                                     FF80      80     128       0   .abs_section_ff80
+
+*********************************************************************************************
+UNUSED-OBJECTS SECTION
+---------------------------------------------------------------------------------------------
+NOT USED PROCEDURES
+EMBEDDED.C.o (ansisi.lib):
+  printf scanf gets puts fopen fflush fclose fprintf fputs fputc fgetc remove 
+  clock 
+ALLOC.C.o (ansisi.lib):
+  calloc realloc 
+rtshc12.c.o (ansisi.lib):
+  _BSHL _BSHRS _BSHRU _BDIVMODU _BDIVMODS _ISHL _ISHRU _ISHRS _LSHL _LSHRU 
+  _LSHRS _LADD _LSUB _LAND _LOR _LXOR _LCMP _LCMP_PP _LNEG _LCOM _LINC _LDEC 
+  _LMUL _LMULU16x32 _LMULS16x32 _lDivMod _LDIVU _NEG_P _LDIVS _LMODU _LMODS 
+  _COPY _CASE_DIRECT _CASE_DIRECT_BYTE _CASE_CHECKED _CASE_CHECKED_BYTE 
+  _CASE_SEARCH _CASE_SEARCH_BYTE _CASE_SEARCH_8 _CASE_SEARCH_8_BYTE _FCALL 
+  _FPCMP 
+NEW.CPP.o (cppsi.lib):
+  abs__Fl __ct__7InitiosFv.31 __sf_3ios_sync_with_stdio__Fv.30 
+  rdbuf__3iosFP9streambuf.29 rdbuf__3iosFv.28 exceptions__3iosFi.27 
+  exceptions__3iosFv.26 __nt__3iosFv.25 __opPv__3iosFv.24 rdstate__3iosFv.23 
+  bad__3iosFv.22 fail__3iosFv.21 eof__3iosFv.20 good__3iosFv.19 
+  setstate__3iosFi.18 set__3iosFi.17 clear__3iosFi.16 _throw_failure__3iosFv.14 
+  width__3iosFi.13 width__3iosFv.12 unsetf__3iosFUl.11 setf__3iosFUlT1.10 
+  setf__3iosFUl.9 precision__3iosFi.8 precision__3iosFv.7 flags__3iosFUl.6 
+  flags__3iosFv.5 fill__3iosFs.4 fill__3iosFv.3 tie__3iosFP7ostream.2 
+  tie__3iosFv.1 saving__12streammarkerFv.39 set_offset__12streammarkerFi.38 
+  stossc__9streambufFv.99 snextc__9streambufFv.98 sgetc__9streambufFv.97 
+  sbumpc__9streambufFv.96 sputc__9streambufFi.95 sgetn__9streambufFPScl.94 
+  padn__9streambufFScl.93 sputn__9streambufFPCScl.92 
+  out_waiting__9streambufFv.91 in_avail__9streambufFv.90 
+  allocbuf__9streambufFv.89 allocate__9streambufFv.88 
+  linebuffered__9streambufFi.87 unbuffered__9streambufFi.86 
+  linebuffered__9streambufFv.85 unbuffered__9streambufFv.84 
+  pubseekpos__9streambufFli.80 pubseekoff__9streambufFl8seek_diri.78 
+  put_mode__9streambufFv.72 have_markers__9streambufFv.71 
+  have_backup__9streambufFv.70 eNptr__9streambufFv.69 Nbase__9streambufFv.68 
+  eBptr__9streambufFv.67 Bptr__9streambufFv.66 Bbase__9streambufFv.65 
+  eGptr__9streambufFv.64 Gbase__9streambufFv.63 in_backup__9streambufFv.62 
+  shortbuf__9streambufFv.61 setg__9streambufFPScN21.60 
+  setp__9streambufFPScT1.59 pbump__9streambufFi.57 gbump__9streambufFi.56 
+  xsetflags__9streambufFiT1.55 xsetflags__9streambufFi.54 
+  xflags__9streambufFi.53 xflags__9streambufFv.52 xput_char__9streambufFSc.51 
+  blen__9streambufFv.50 ebuf__9streambufFv.49 base__9streambufFv.48 
+  eback__9streambufFv.47 pbase__9streambufFv.46 epptr__9streambufFv.45 
+  egptr__9streambufFv.44 pptr__9streambufFv.43 gptr__9streambufFv.42 
+  xchain__9streambufFv.41 _vtable__9streambufFv.40 file_ptr__7filebufFv.108 
+  cur_ptr__7filebufFv.107 is_reading__7filebufFv.106 fd__7filebufFv.104 
+  is_open__7filebufFv.103 init__3iosFP9streambufP7ostream.36 
+  __ct__3iosFP9streambufP7ostream.32 __dt__3iosFv.35 
+  __ls__7ostreamFPFR3ios_R3ios.117 __ls__7ostreamFPFR7ostream_R7ostream.116 
+  __ls__7ostreamFUc.115 put__7ostreamFSc.114 osfx__7ostreamFv.113 
+  opfx__7ostreamFv.112 __ct__7ostreamFUcP11_ios_fields.110 
+  __ct__7ostreamFUc.109 __rs__7istreamFPFR7istream_R7istream.142 
+  __rs__7istreamFPFR3ios_R3ios.141 scan__7istreamFPCSce.140 
+  unget__7istreamFv.139 putback__7istreamFSc.138 gcount__7istreamFv.135 
+  get__7istreamFv.134 isfx__7istreamFv.133 ipfx1__7istreamFv.132 
+  ipfx0__7istreamFv.131 ipfx__7istreamFi.130 getline__7istreamFPUciSc.126 
+  get__7istreamFPUciSc.123 __ct__7istreamFUcP11_ios_fields.119 
+  __ct__7istreamFUc.118 __ct__8iostreamFv.143 __as__5RegexFRC5Regex.146 
+  __ct__5RegexFRC5Regex.145 length__6StringFv.200 empty__6StringFv.201 
+  chars__6StringFv.202 allocation__6StringFv.203 length__9SubStringFv.204 
+  empty__9SubStringFv.205 chars__9SubStringFv.206 __ct__6StringFv.207 
+  __ct__6StringFRC6String.208 __ct__6StringFPCSc.209 __ct__6StringFPCSci.210 
+  __ct__6StringFRC9SubString.211 __ct__6StringFSc.212 __dt__6StringFv.213 
+  __ct__9SubStringFRC9SubString.214 __ct__9SubStringFR6StringiT2.215 
+  __dt__9SubStringFv.216 __as__6StringFRC6String.217 __as__6StringFPCSc.218 
+  __as__6StringFRC9SubString.219 __as__6StringFSc.220 __as__9SubStringFPCSc.221 
+  __as__9SubStringFSc.222 __as__9SubStringFRC6String.223 
+  __as__9SubStringFRC9SubString.224 cat__FRC6StringT0R6String 
+  cat__FRC6StringRC9SubStringR6String cat__FRC6StringPCScR6String 
+  cat__FRC6StringScR6String cat__FRC9SubStringRC6StringR6String 
+  cat__FRC9SubStringT0R6String cat__FRC9SubStringPCScR6String 
+  cat__FRC9SubStringScR6String cat__FPCScRC6StringR6String 
+  cat__FPCScRC9SubStringR6String cat__FPCScT0R6String cat__FPCScScR6String 
+  cat__FRC6StringN20R6String cat__FRC6StringT0RC9SubStringR6String 
+  cat__FRC6StringT0PCScR6String cat__FRC6StringT0ScR6String 
+  cat__FRC6StringRC9SubStringT0R6String cat__FRC6StringRC9SubStringT1R6String 
+  cat__FRC6StringRC9SubStringPCScR6String cat__FRC6StringRC9SubStringScR6String 
+  cat__FRC6StringPCScT0R6String cat__FRC6StringPCScRC9SubStringR6String 
+  cat__FRC6StringPCScT1R6String cat__FRC6StringPCScScR6String 
+  cat__FPCScRC6StringT1R6String cat__FPCScRC6StringRC9SubStringR6String 
+  cat__FPCScRC6StringT0R6String cat__FPCScRC6StringScR6String 
+  cat__FPCScRC9SubStringRC6StringR6String cat__FPCScRC9SubStringT1R6String 
+  cat__FPCScRC9SubStringT0R6String cat__FPCScRC9SubStringScR6String 
+  cat__FPCScT0RC6StringR6String cat__FPCScT0RC9SubStringR6String 
+  cat__FPCScN20R6String cat__FPCScT0ScR6String __apl__6StringFRC6String.225 
+  __apl__6StringFRC9SubString.226 __apl__6StringFPCSc.227 __apl__6StringFSc.228 
+  __pl__FGRC6StringT0 __pl__FGRC6StringRC9SubString __pl__FGRC6StringPCSc 
+  __pl__FGRC6StringSc __pl__FGRC9SubStringRC6String __pl__FGRC9SubStringT0 
+  __pl__FGRC9SubStringPCSc __pl__FGRC9SubStringSc __pl__FGPCScRC6String 
+  __pl__FGPCScRC9SubString reverse__FRC6String upcase__FRC6String 
+  downcase__FRC6String capitalize__FRC6String prepend__6StringFRC6String.229 
+  prepend__6StringFPCSc.230 prepend__6StringFSc.231 
+  prepend__6StringFRC9SubString.232 reverse__6StringFv.233 
+  upcase__6StringFv.234 downcase__6StringFv.235 capitalize__6StringFv.236 
+  __vc__6StringFi.237 __vc__6StringFi.239 elem__6StringFi.241 
+  firstchar__6StringFv.243 lastchar__6StringFv.244 index__6StringFSci.245 
+  index__6StringFPCSci.246 index__6StringFRC6Stringi.247 
+  index__6StringFRC9SubStringi.248 index__6StringFRC5Regexi.249 
+  contains__6StringFSc.250 contains__6StringFPCSc.251 
+  contains__6StringFRC6String.252 contains__6StringFRC9SubString.253 
+  contains__6StringFSci.254 contains__6StringFPCSci.255 
+  contains__6StringFRC6Stringi.256 contains__6StringFRC9SubStringi.257 
+  contains__6StringFRC5Regex.258 contains__6StringFRC5Regexi.259 
+  matches__6StringFRC9SubStringi.260 matches__6StringFRC6Stringi.261 
+  matches__6StringFPCSci.262 matches__6StringFSci.263 
+  matches__6StringFRC5Regexi.264 contains__9SubStringFPCSc.265 
+  contains__9SubStringFRC6String.266 contains__9SubStringFRC9SubString.267 
+  contains__9SubStringFSc.268 contains__9SubStringFRC5Regex.269 
+  matches__9SubStringFRC5Regex.270 gsub__6StringFRC6StringT1.271 
+  gsub__6StringFRC9SubStringRC6String.272 gsub__6StringFRC5RegexRC6String.273 
+  gsub__6StringFPCScRC6String.274 gsub__6StringFPCScT1.275 
+  __ls__FGR7ostreamRC6String __eq__FGRC6StringT0 __ne__FGRC6StringT0 
+  __gt__FGRC6StringT0 __ge__FGRC6StringT0 __lt__FGRC6StringT0 
+  __le__FGRC6StringT0 __eq__FGRC6StringRC9SubString 
+  __ne__FGRC6StringRC9SubString __gt__FGRC6StringRC9SubString 
+  __ge__FGRC6StringRC9SubString __lt__FGRC6StringRC9SubString 
+  __le__FGRC6StringRC9SubString __eq__FGRC6StringPCSc __ne__FGRC6StringPCSc 
+  __gt__FGRC6StringPCSc __ge__FGRC6StringPCSc __lt__FGRC6StringPCSc 
+  __le__FGRC6StringPCSc __eq__FGRC9SubStringRC6String 
+  __ne__FGRC9SubStringRC6String __gt__FGRC9SubStringRC6String 
+  __ge__FGRC9SubStringRC6String __lt__FGRC9SubStringRC6String 
+  __le__FGRC9SubStringRC6String __eq__FGRC9SubStringT0 __ne__FGRC9SubStringT0 
+  __gt__FGRC9SubStringT0 __ge__FGRC9SubStringT0 __lt__FGRC9SubStringT0 
+  __le__FGRC9SubStringT0 __eq__FGRC9SubStringPCSc __ne__FGRC9SubStringPCSc 
+  __gt__FGRC9SubStringPCSc __ge__FGRC9SubStringPCSc __lt__FGRC9SubStringPCSc 
+  __le__FGRC9SubStringPCSc _substr__6StringFiT1.276 __dt__5TraceFv.278 
+  __ct__5TraceFPSc.277 set_new_handler __ct__7Std_ErrFRC7Std_Err 
+  __as__7Std_ErrFRC7Std_Err __ct__5TraceFRC5Trace __as__5TraceFRC5Trace 
+D:\Jony\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\util\util_hcs12_cpp_Data\C++_Ms_no_float\ObjectCode\DobleList.cpp.o (util_cpp_si.lib):
+  __ct__9DobleListFv deleteNodo__9DobleListFP9NodoDoble 
+  insertFirst__9DobleListFPv getDato__9DobleListFUi getNext__4NodoFv.2 
+  getDato__4NodoFv.1 getPrev__9NodoDobleFv.3 __ct__4NodoFRC4Nodo 
+  __as__4NodoFRC4Nodo __ct__9NodoDobleFRC9NodoDoble 
+  __as__9NodoDobleFRC9NodoDoble __ct__8IteratorFRC8Iterator 
+  __as__8IteratorFRC8Iterator __ct__10CollectionFRC10Collection 
+  __as__10CollectionFRC10Collection __ct__4ListFRC4List __as__4ListFRC4List 
+  __ct__28LinkedListIteratorLinkedListFRC28LinkedListIteratorLinkedList 
+  __ct__10LinkedListFRC10LinkedList 
+  __as__28LinkedListIteratorLinkedListFRC28LinkedListIteratorLinkedList 
+  __as__10LinkedListFRC10LinkedList __ct__9DobleListFRC9DobleList 
+  __as__9DobleListFRC9DobleList __dt__9DobleListFv 
+D:\Jony\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\util\util_hcs12_cpp_Data\C++_Ms_no_float\ObjectCode\LinkedList.cpp.o (util_cpp_si.lib):
+  getDato__4NodoFv.1 differ__10LinkedListFP10LinkedList 
+  eliminarPrimero__10LinkedListFv getPrimerNodo__10LinkedListFv 
+  setPrimerNodo__10LinkedListFP4Nodo 
+  __ct__28LinkedListIteratorLinkedListFP10LinkedList 
+D:\Jony\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\util\util_hcs12_cpp_Data\C++_Ms_no_float\ObjectCode\nodo.cpp.o (util_cpp_si.lib):
+  getNext__4NodoFv.2 getDato__4NodoFv.1 setDato__4NodoFPv differ__4NodoFP4Nodo 
+D:\Jony\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\util\util_hcs12_cpp_Data\C++_Ms_no_float\ObjectCode\Array.c.o (util_cpp_si.lib):
+  Array_destructor__FPv Array_set Array_ownsObjects Array_search Array_isEmpty 
+D:\Jony\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\util\util_hcs12_cpp_Data\C++_Ms_no_float\ObjectCode\Set.cpp.o (util_cpp_si.lib):
+  getNext__4NodoFv.2 getDato__4NodoFv.1 __ct__3SetFRC3Set __as__3SetFRC3Set 
+timer_interrupt.c.o:
+  timerInterrupt_init__Fv getNext__4NodoFv.2 getDato__4NodoFv.1 
+  __ct__15MethodContainerFRC15MethodContainer 
+  __as__15MethodContainerFRC15MethodContainer __ct__6MethodFRC6Method 
+  __as__6MethodFRC6Method getObj__6MethodFv.4 getMethod__6MethodFv.3 
+MethodContainer.cpp.o:
+  getNext__4NodoFv.2 getDato__4NodoFv.1 getObj__6MethodFv.4 
+  getMethod__6MethodFv.3 
+TI1.c.o:
+  TI1_Enable__Fv TI1_Disable__Fv TI1_SetPeriodMode__F8TI1_mode 
+  getObj__6MethodFv.2 getMethod__6MethodFv.1 
+PlataformaEmbedded.cpp.o:
+  __ct__16ThreadAttachableFv.5 getNext__4NodoFv.2 getDato__4NodoFv.1 
+  __ct__30ThreadAttacherThreadAttachableFRC30ThreadAttacherThreadAttachable 
+  __ct__16ThreadAttachableFRC16ThreadAttachable 
+  __as__30ThreadAttacherThreadAttachableFRC30ThreadAttacherThreadAttachable 
+  __as__16ThreadAttachableFRC16ThreadAttachable 
+  __ct__18PlataformaEmbeddedFRC18PlataformaEmbedded 
+  __as__18PlataformaEmbeddedFRC18PlataformaEmbedded getObj__6MethodFv.4 
+  getMethod__6MethodFv.3 
+Termometro.cpp.o:
+  __ct__6SensorFv.5 __ct__16ThreadAttachableFv.6 fOn1ms__FPv fOn40ms__FPv 
+  __ct__10TermometroFR7PromBkp mainLoop__10TermometroFv 
+  __ct__12OutputStreamFRC12OutputStream __as__12OutputStreamFRC12OutputStream 
+  __ct__6GetterFRC6Getter __as__6GetterFRC6Getter __ct__4IAdcFv 
+  __ct__4IAdcFRC4IAdc __as__4IAdcFRC4IAdc __ct__10BaseTimersFRC10BaseTimers 
+  __as__10BaseTimersFRC10BaseTimers __dt__10BaseTimersFv __ct__5TimerFRC5Timer 
+  __as__5TimerFRC5Timer __ct__11MethodTimerFRC11MethodTimer 
+  __as__11MethodTimerFRC11MethodTimer __dt__11MethodTimerFv __ct__3AdcFRC3Adc 
+  __as__3AdcFRC3Adc __ct__6SensorFRC6Sensor __as__6SensorFRC6Sensor 
+  __dt__6SensorFv __ct__16ManejadorMemoriaFv 
+  __ct__16ManejadorMemoriaFRC16ManejadorMemoria 
+  __as__16ManejadorMemoriaFRC16ManejadorMemoria 
+  __ct__16SensorTermoPT100FRC16SensorTermoPT100 __dt__16SensorTermoPT100Fv 
+  __ct__7PromBkpFRC7PromBkp __as__7PromBkpFRC7PromBkp __dt__7PromBkpFv 
+  __ct__10TermometroFRC10Termometro __dt__10TermometroFv getNext__4NodoFv.2 
+  getDato__4NodoFv.1 getObj__6MethodFv.4 getMethod__6MethodFv.3 
+ThreadAttachable.cpp.o:
+  __ct__16ThreadAttachableFv.5 getAdjuntador__16ThreadAttachableFv 
+  __ct__30ThreadAttacherThreadAttachableFP16ThreadAttachable 
+  adjuntar__30ThreadAttacherThreadAttachableFP6Method getNext__4NodoFv.2 
+  getDato__4NodoFv.1 getObj__6MethodFv.4 getMethod__6MethodFv.3 
+BaseTimers_1ms_40ms.cpp.o:
+  getNext__4NodoFv.2 getDato__4NodoFv.1 
+  __ct__19BaseTimers_1ms_40msFRC19BaseTimers_1ms_40ms 
+  __as__19BaseTimers_1ms_40msFRC19BaseTimers_1ms_40ms getObj__6MethodFv.4 
+  getMethod__6MethodFv.3 
+PromBkp.cpp.o (memorias_si.lib):
+  __ct__7PromBkpFv deshabilitar__7PromBkpFv habilitar__7PromBkpFv 
+  listoParaGrabarOBorrar__7PromBkpFv grabacionOBorradoEnEspera__7PromBkpFv 
+  borrarPagina__7PromBkpFPv grabarOBorrar__7PromBkpFv setAGrabar__7PromBkpFUc 
+  getAGrabar__7PromBkpFv getNext__4NodoFv.2 getDato__4NodoFv.1 
+Timer.cpp.o (timers_si.lib):
+  getNext__4NodoFv.2 getDato__4NodoFv.1 setBaseTimer__5TimerFP10BaseTimers 
+  getCuenta__5TimerFv getTime__5TimerFv 
+BaseTimers.cpp.o (timers_si.lib):
+  getNext__4NodoFv.2 getDato__4NodoFv.1 
+FlagTimer.cpp.o (timers_si.lib):
+  getFlag__9FlagTimerFv.3 getNext__4NodoFv.2 getDato__4NodoFv.1 
+  __ct__9FlagTimerFRC9FlagTimer __as__9FlagTimerFRC9FlagTimer 
+main.cpp.o:
+  __ct__6SensorFv.5 __ct__16ThreadAttachableFv.6 getFlag__9FlagTimerFv.9 
+  getObj__6MethodFv.2 getMethod__6MethodFv.1 
+  __ct__15PropiedadGetterFRC15PropiedadGetter 
+  __as__15PropiedadGetterFRC15PropiedadGetter 
+  __ct__16PropGetterVisualFRC16PropGetterVisual 
+  __as__16PropGetterVisualFRC16PropGetterVisual 
+  __ct__23PropGetterVisualFactoryFRC23PropGetterVisualFactory 
+  __as__23PropGetterVisualFactoryFRC23PropGetterVisualFactory 
+  __ct__27ConstructorPropGetterVisualFRC27ConstructorPropGetterVisual 
+  __as__27ConstructorPropGetterVisualFRC27ConstructorPropGetterVisual 
+  __ct__22PropiedadIncrementableFRC22PropiedadIncrementable 
+  __as__22PropiedadIncrementableFRC22PropiedadIncrementable 
+  __ct__17PropiedadNumericaFRC17PropiedadNumerica 
+  __as__17PropiedadNumericaFRC17PropiedadNumerica __ct__9PropNumLFFRC9PropNumLF 
+  __as__9PropNumLFFRC9PropNumLF __ct__16PropNumLFFactoryFRC16PropNumLFFactory 
+  __as__16PropNumLFFactoryFRC16PropNumLFFactory 
+  __ct__11PropNumLFPFFRC11PropNumLFPF __as__11PropNumLFPFFRC11PropNumLFPF 
+  __ct__18PropNumLFPFFactoryFRC18PropNumLFPFFactory 
+  __as__18PropNumLFPFFactoryFRC18PropNumLFPFFactory 
+  __ct__12NodoICModBusFRC12NodoICModBus 
+  __ct__19ConfiguracionModBusFRC19ConfiguracionModBus 
+  __as__19ConfiguracionModBusFRC19ConfiguracionModBus 
+  __ct__23EscrituraDemoradaModBusFRC23EscrituraDemoradaModBus 
+  __ct__6ModBusFRC6ModBus __ct__10ConfModBusFRC10ConfModBus 
+  __as__10ConfModBusFRC10ConfModBus __ct__4InitFRC4Init __as__4InitFRC4Init 
+  getNext__4NodoFv.4 getDato__4NodoFv.3 getNumObjeto__16PropGetterVisualFv.7 
+PropGetterVisual.cpp.o (propiedades_hc12_si.lib):
+  printDescripcion__16PropGetterVisualFR12OutputStream 
+  getNumObjeto__16PropGetterVisualFv.1 
+PropiedadIncrementable.cpp.o (propiedades_hc12_si.lib):
+  getIsGuardado__22PropiedadIncrementableFv 
+  setIsGuardado__22PropiedadIncrementableFUc 
+  getNumObjeto__16PropGetterVisualFv.1 
+PropiedadNumerica.cpp.o (propiedades_hc12_si.lib):
+  getNumObjeto__16PropGetterVisualFv.1 
+PropNumLF.cpp.o (propiedades_hc12_si.lib):
+  getNumObjeto__16PropGetterVisualFv.1 
+PropNumLFPF.cpp.o (propiedades_hc12_si.lib):
+  getNumObjeto__16PropGetterVisualFv.1 
+NodoICModBus.cpp.o:
+  __ct__12NodoICModBusFPvRC9GetsPropsT1.2 getDirIni__12NodoICModBusFv 
+  getGetter__12NodoICModBusFv getObj__12NodoICModBusFv 
+  getNumObjeto__16PropGetterVisualFv.1 
+Vectors.c.o:
+  __ct__12NodoICModBusFPvRC9GetsPropsT1.2 getFlag__9FlagTimerFv.5 
+  Cpu_Interrupt0__Fv Cpu_Interrupt1__Fv Cpu_Interrupt2__Fv Cpu_Interrupt3__Fv 
+  Cpu_Interrupt4__Fv Cpu_Interrupt5__Fv Cpu_Interrupt6__Fv Cpu_Interrupt7__Fv 
+  Cpu_Interrupt8__Fv Cpu_Interrupt9__Fv Cpu_Interrupt10__Fv Cpu_Interrupt11__Fv 
+  Cpu_Interrupt12__Fv Cpu_Interrupt13__Fv Cpu_Interrupt14__Fv 
+  Cpu_Interrupt15__Fv Cpu_Interrupt16__Fv Cpu_Interrupt17__Fv 
+  Cpu_Interrupt43__Fv Cpu_Interrupt55__Fv getNumObjeto__16PropGetterVisualFv.1 
+  getNext__4NodoFv.4 getDato__4NodoFv.3 
+puertoSerie1.c.o:
+  __ct__12NodoICModBusFPvRC9GetsPropsT1.2 getFlag__9FlagTimerFv.5 
+  getNumObjeto__16PropGetterVisualFv.1 getNext__4NodoFv.4 getDato__4NodoFv.3 
+  AS1_Enable__Fv AS1_Disable__Fv AS1_RecvChar__FPUc AS1_InterruptRx__Fv 
+  AS1_InterruptTx__Fv AS1_InterruptError__Fv 
+ModBus.cpp.o:
+  __ct__12NodoICModBusFPvRC9GetsPropsT1.2 getFlag__9FlagTimerFv.5 
+  getNumObjeto__16PropGetterVisualFv.1 getNext__4NodoFv.4 getDato__4NodoFv.3 
+  __sf_6ModBus_sendReadIntermedia__FPv __sf_6ModBus_sendNextReadIntermedia__FPv 
+  __sf_6ModBus_sendCRCIntermedia__FPv __sf_6ModBus_modBusRead__FPvPUc 
+  sendRead__6ModBusFv sendNextRead__6ModBusFv sendCRC__6ModBusFv 
+  getCompilacion__6ModBusFPUc 
+NOT USED VARIABLES
+EMBEDDED.C.o (ansisi.lib):
+  STRING..1 
+rtshc12.c.o (ansisi.lib):
+  _PowOfTwo_8 _PowOfTwo_16 _PowOfTwo_32 errno 
+NEW.CPP.o (cppsi.lib):
+  STRING.invalid.index.238 STRING.invalid.index.240 STRING.invalid.index.242 
+  _nilStrRep ____vtbl__ios ____vtbl__streambuf ____vtbl__filebufstreambuf 
+  ____vtbl__ostreamios ____vtbl__istreamios ____vtbl__iostreamistreamios 
+  ____vtbl__iostreamostreamios ____vtbl__iostreamios 
+  ____vtbl___IO_istream_withassignistreamios 
+  ____vtbl___IO_ostream_withassignostreamios _nilString __sf_5Trace_nesting 
+D:\Jony\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\util\util_hcs12_cpp_Data\C++_Ms_no_float\ObjectCode\DobleList.cpp.o (util_cpp_si.lib):
+  ____vtbl__DobleListLinkedListListCollection 
+D:\Jony\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\util\util_hcs12_cpp_Data\C++_Ms_no_float\ObjectCode\Array.c.o (util_cpp_si.lib):
+  ____vtbl__Comparator 
+TI1.c.o:
+  HighComp 
+Termometro.cpp.o:
+  ____vtbl__Comparator ____vtbl__OutputStream ____vtbl__IAdcGetter 
+  ____vtbl__MethodTimerTimer ____vtbl__AdcIAdcGetter ____vtbl__SensorGetter 
+  ____vtbl__ManejadorMemoria ____vtbl__SensorTermoPT100SensorGetter 
+  ____vtbl__PromBkpManejadorMemoria ____vtbl__TermometroPlataformaEmbedded 
+PromBkp.cpp.o (memorias_si.lib):
+  ____vtbl__ManejadorMemoria ____vtbl__PromBkpManejadorMemoria 
+main.cpp.o:
+  ____vtbl__Comparator ____vtbl__OutputStream ____vtbl__IAdcGetter 
+  ____vtbl__MethodTimerTimer ____vtbl__AdcIAdcGetter ____vtbl__SensorGetter 
+  ____vtbl__ManejadorMemoria ____vtbl__SensorTermoPT100SensorGetter 
+  ____vtbl__PromBkpManejadorMemoria ____vtbl__TermometroPlataformaEmbedded 
+  ____vtbl__FlashBkpPromBkpManejadorMemoria 
+  ____vtbl__FlashBkpMitadFlashBkpPromBkpManejadorMemoria 
+PropGetterVisual.cpp.o (propiedades_hc12_si.lib):
+  STRING..s.d.2 ____vtbl__OutputStream 
+PropiedadGetter.cpp.o (propiedades_hc12_si.lib):
+  ____vtbl__OutputStream 
+PropiedadIncrementable.cpp.o (propiedades_hc12_si.lib):
+  ____vtbl__OutputStream 
+PropiedadNumerica.cpp.o (propiedades_hc12_si.lib):
+  ____vtbl__OutputStream 
+PropNumLF.cpp.o (propiedades_hc12_si.lib):
+  ____vtbl__OutputStream 
+PropNumLFPF.cpp.o (propiedades_hc12_si.lib):
+  ____vtbl__OutputStream 
+NodoICModBus.cpp.o:
+  ____vtbl__Comparator ____vtbl__OutputStream 
+Vectors.c.o:
+  ____vtbl__Comparator ____vtbl__OutputStream ____vtbl__ManejadorMemoria 
+  ____vtbl__PromBkpManejadorMemoria 
+puertoSerie1.c.o:
+  ____vtbl__Comparator ____vtbl__OutputStream ____vtbl__ManejadorMemoria 
+  ____vtbl__PromBkpManejadorMemoria 
+ModBus.cpp.o:
+  ____vtbl__Comparator ____vtbl__OutputStream ____vtbl__ManejadorMemoria 
+  ____vtbl__PromBkpManejadorMemoria wordOut.8 
+
+*********************************************************************************************
+COPYDOWN SECTION
+---------------------------------------------------------------------------------------------
+------- ROM-ADDRESS: 0x5CB8 ---- SIZE       4 ---
+Filling bytes inserted
+ 00041000
+------- ROM-ADDRESS: 0x5CBC ---- RAM-ADDRESS: 0x1000 ---- SIZE       2 ---
+Name of initialized Object : costructores
+ 4696
+------- ROM-ADDRESS: 0x5CBE ---- RAM-ADDRESS: 0x1002 ---- SIZE       2 ---
+Name of initialized Object : nodos
+ 1409
+------- ROM-ADDRESS: 0x5CC0 ---- SIZE       2 ---
+Filling bytes inserted
+ 0000
+
+*********************************************************************************************
+OBJECT-DEPENDENCIES SECTION
+---------------------------------------------------------------------------------------------
+costructores              USES cPropiedad 
+nodos                     USES nodo 
+__DestructorInit__        USES modbus __dt__6ModBusFv plataforma 
+                                __dt__18PlataformaEmbeddedFv 
+_EntryPoint               USES _INITRM _MISC _PEAR _CLKSEL _PLLCTL _SYNR 
+                                _REFDV _CRGFLG _Startup 
+__ConstructorInit__       USES confModBus __ct__10ConfModBusFv plataforma 
+                                __ct__18PlataformaEmbeddedFv ini __ct__4InitFv.12 nodo getProps objetoInt 
+                                __ct__12NodoICModBusFPvRC9GetsPropsT1.8 modbus comProps 
+                                __ct__6ModBusFR19ConfiguracionModBusPC5ArrayP7PromBkp 
+__ConstructorInit__       USES propNumLFFactory __ct__16PropNumLFFactoryFv 
+__ConstructorInit__       USES propNumLFPFFactory __ct__18PropNumLFPFFactoryFv 
+cPropiedad                USES propNumLFPFFactory get__FPv STRING.test.14 
+                                set__FPvi 
+arrayConstructores        USES costructores 
+getProps                  USES arrayConstructores 
+comProps                  USES nodos 
+__sf_6ModBus_onRecive     USES __sf_6ModBus_dhacelRead__FPvPUc 
+                                __sf_6ModBus_modBusWrite__FPvPUc 
+TI1_Interrupt__Fv         USES _TC0 CmpVal _TFLG1 TI1ms_OnInterrupt__Fv 
+                                TI40ms_OnInterrupt__Fv 
+AS1_Interrupt__Fv         USES _SCISR1 SerFlag _SCIDRL BufferRead modbus 
+                                onRxChar__6ModBusFUc _SCICR2 onTxComplete__6ModBusFv 
+Init__Fv                  USES _startupData 
+_Startup                  USES __SEG_END_SSTACK Init__Fv main 
+_assert                   USES abort 
+malloc                    USES heap_end _heap_ free_ptr _heapcrash_ 
+free                      USES _heap_ heap_end free free_ptr _heapcrash_ 
+__nw__FGUi                USES malloc exit 
+__dl__FGPv                USES free 
+add__3SetFPv              USES add__10LinkedListFPv 
+aniadir__3SetFPv          USES aniadir__10LinkedListFPv 
+TI1ms_OnInterrupt__Fv     USES listeners1ms 
+                                executeMethods__15MethodContainerFv 
+TI40ms_OnInterrupt__Fv    USES listeners40ms 
+                                executeMethods__15MethodContainerFv 
+add1msListener__FP6Method USES listeners1ms __nw__FGUi 
+                                __ct__15MethodContainerFv 
+add40msListener__FP6Method USES listeners40ms __nw__FGUi 
+                                __ct__15MethodContainerFv 
+__ct__15MethodContainerFv USES __ct__3SetFv 
+                                ____vtbl__MethodContainerSetLinkedListListCollection 
+add__15MethodContainerFPv USES add__3SetFPv 
+executeMethods__15MethodContainerFv USES 
+                                __ct__28LinkedListIteratorLinkedListFv 
+                                linkedListIterator__10LinkedListFP28LinkedListIteratorLinkedList next__28LinkedListIteratorLinkedListFv 
+                                hasNext__28LinkedListIteratorLinkedListFv 
+__ct__18PlataformaEmbeddedFv USES __ct__15MethodContainerFv 
+                                ____vtbl__ThreadAttachableMethodContainerSetLinkedListListCollection ____vtbl__PlataformaEmbedded 
+                                __sf_18PlataformaEmbedded_threads 
+pthread_create__FPPvPvPFPv_PvT1 USES __nw__FGUi 
+                                __sf_18PlataformaEmbedded_threads adjuntar__16ThreadAttachableFP6Method 
+mainLoop__18PlataformaEmbeddedFv USES _ARMCOP 
+                                __sf_18PlataformaEmbedded_threads executeThreads__16ThreadAttachableFv 
+executeThreads__16ThreadAttachableFv USES 
+                                __ct__28LinkedListIteratorLinkedListFv 
+                                linkedListIterator__10LinkedListFP28LinkedListIteratorLinkedList next__28LinkedListIteratorLinkedListFv 
+                                hasNext__28LinkedListIteratorLinkedListFv 
+__ct__19BaseTimers_1ms_40msFv USES __ct__10BaseTimersFv 
+                                ____vtbl__BaseTimers_1ms_40msBaseTimersLinkedListListCollection __sf_19BaseTimers_1ms_40ms_inc1__FPv 
+                                add1msListener__FP6Method __sf_19BaseTimers_1ms_40ms_inc40__FPv 
+                                add40msListener__FP6Method 
+__sf_19BaseTimers_1ms_40ms_getInstance__Fv USES 
+                                __sf_19BaseTimers_1ms_40ms_instance __nw__FGUi __ct__19BaseTimers_1ms_40msFv 
+__sf_19BaseTimers_1ms_40ms_inc1__FPv USES incrementar__10BaseTimersFUi 
+                                actualizarTimers__10BaseTimersFv 
+__sf_19BaseTimers_1ms_40ms_inc40__FPv USES incrementar__10BaseTimersFUi 
+                                actualizarTimers__10BaseTimersFv 
+PE_low_level_init__Fv     USES _HPRIO _PORTAB _PUCR _DDRAB _PTM _DDRM _PIEJ 
+                                _PTJ _PERJ _DDRJ _PTS _WOMS _DDRS _PIEP _PTP _PERP 
+                                _DDRP _PEAR _DDRE _COPCTL _TSCR1 _OC7M _TCTL1 _TCTL2 
+                                _TIE _TIOS _TTOV _TSCR2 _TFLG1 _PTT _DDRT _ATDDIEN 
+                                _PTAD _PERAD _DDRAD _PWMCTL _PWMSDN TI1_Init__Fv 
+demorarGrabado__7PromBkpFUi USES __nw__FGUi __ct__5TimerFUl setTime__5TimerFUl 
+moveOut__10BaseTimersFPv  USES moveOut__10LinkedListFPv 
+actualizarTimers__10BaseTimersFv USES __ct__28LinkedListIteratorLinkedListFv 
+                                linkedListIterator__10LinkedListFP28LinkedListIteratorLinkedList next__28LinkedListIteratorLinkedListFv 
+                                comparar__5TimerFv hasNext__28LinkedListIteratorLinkedListFv 
+__ct__9FlagTimerFUl       USES __ct__5TimerFUl ____vtbl__FlagTimerTimer 
+__ct__4InitFv.12          USES __sf_19BaseTimers_1ms_40ms_getInstance__Fv 
+                                __sf_5Timer_setBaseTimerDefault__FR10BaseTimers 
+get__FPv                  USES objetoInt STRING.C..Documents.and.Set.13 
+                                _assert 
+set__FPvi                 USES objetoInt STRING.C..Documents.and.Set.13 
+                                _assert 
+main                      USES PE_low_level_init__Fv plataforma 
+                                mainLoop__18PlataformaEmbeddedFv 
+__ct__23PropGetterVisualFactoryFv USES ____vtbl__PropGetterVisualFactory 
+__ct__16PropGetterVisualFPvPC26ArgumentosPropGetterVisualUc USES 
+                                __ct__15PropiedadGetterFPvPC25ArgumentosPropiedadGetter 
+                                ____vtbl__PropGetterVisualPropiedadGetterGetter 
+getDescripcion__16PropGetterVisualFv USES getArgumentos__15PropiedadGetterFv 
+getPropiedad__23PropGetterVisualFactoryFPvPC25ArgumentosPropiedadGetterUc USES 
+                                __nw__FGUi 
+                                __ct__16PropGetterVisualFPvPC26ArgumentosPropGetterVisualUc 
+__ct__15PropiedadGetterFPvPC25ArgumentosPropiedadGetter USES __ct__6GetterFv 
+                                ____vtbl__PropiedadGetterGetter 
+__ct__22PropiedadIncrementableFPvPC32ArgumentosPropiedadIncrementableUc USES 
+                                __ct__16PropGetterVisualFPvPC26ArgumentosPropGetterVisualUc 
+                                ____vtbl__PropiedadIncrementablePropGetterVisualPropiedadGetterGetter refrescar__22PropiedadIncrementableFv 
+guardar__22PropiedadIncrementableFv USES getArgumentos__15PropiedadGetterFv 
+                                getObjeto__15PropiedadGetterFv 
+refrescar__22PropiedadIncrementableFv USES getVal__15PropiedadGetterFv 
+__ct__17PropiedadNumericaFPvPC32ArgumentosPropiedadIncrementableUc USES 
+                                __ct__22PropiedadIncrementableFPvPC32ArgumentosPropiedadIncrementableUc 
+                                ____vtbl__PropiedadNumericaPropiedadIncrementablePropGetterVisualPropiedadGetterGetter 
+incrementar__17PropiedadNumericaFv USES 
+                                setValorTmp__22PropiedadIncrementableFi 
+decrementar__17PropiedadNumericaFv USES 
+                                setValorTmp__22PropiedadIncrementableFi 
+setValor__17PropiedadNumericaFi USES setValorTmp__22PropiedadIncrementableFi 
+__ct__9PropNumLFFPvPC19ArgumentosPropNumLFUc USES 
+                                __ct__17PropiedadNumericaFPvPC32ArgumentosPropiedadIncrementableUc 
+                                ____vtbl__PropNumLFPropiedadNumericaPropiedadIncrementablePropGetterVisualPropiedadGetterGetter 
+getLimiteInferior__9PropNumLFFv USES getArgumentos__15PropiedadGetterFv 
+getLimiteSuperior__9PropNumLFFv USES getArgumentos__15PropiedadGetterFv 
+getPropiedad__16PropNumLFFactoryFPvPC25ArgumentosPropiedadGetterUc USES 
+                                __nw__FGUi __ct__9PropNumLFFPvPC19ArgumentosPropNumLFUc 
+__ct__11PropNumLFPFFPvPC21ArgumentosPropNumLFPFUc USES 
+                                __ct__9PropNumLFFPvPC19ArgumentosPropNumLFUc 
+                                ____vtbl__PropNumLFPFPropNumLFPropiedadNumericaPropiedadIncrementablePropGetterVisualPropiedadGetterGetter 
+getCantidadDecimales__11PropNumLFPFFv USES getArgumentos__15PropiedadGetterFv 
+getPropiedad__18PropNumLFPFFactoryFPvPC25ArgumentosPropiedadGetterUc USES 
+                                __nw__FGUi 
+                                __ct__11PropNumLFPFFPvPC21ArgumentosPropNumLFPFUc 
+getDato__12NodoICModBusFPv USES contieneDireccion__12NodoICModBusFPv Array_get 
+contieneDireccion__12NodoICModBusFPv USES getDirFin__12NodoICModBusFv 
+setDato__12NodoICModBusFPvi USES contieneDireccion__12NodoICModBusFPv 
+                                Array_get 
+                                getPropiedad__27ConstructorPropGetterVisualFPvUc guardar__22PropiedadIncrementableFv __dl__FGPv 
+getDirFin__12NodoICModBusFv USES Array_count 
+____vtbl__LinkedListIteratorIterator USES 
+                                next__28LinkedListIteratorLinkedListFv hasNext__28LinkedListIteratorLinkedListFv 
+____vtbl__LinkedListListCollection USES add__10LinkedListFPv 
+                                clear__10LinkedListFv contains__10LinkedListFPv 
+                                isEmpty__10LinkedListFv iterator__10LinkedListFv 
+                                moveOut__10LinkedListFPv size__10LinkedListFv get__10LinkedListFUi 
+                                aniadir__10LinkedListFPv 
+____vtbl__SetLinkedListListCollection USES add__3SetFPv clear__10LinkedListFv 
+                                contains__10LinkedListFPv isEmpty__10LinkedListFv 
+                                iterator__10LinkedListFv moveOut__10LinkedListFPv size__10LinkedListFv 
+                                get__10LinkedListFUi aniadir__3SetFPv 
+____vtbl__MethodContainerSetLinkedListListCollection USES 
+                                add__15MethodContainerFPv clear__10LinkedListFv 
+                                contains__10LinkedListFPv isEmpty__10LinkedListFv 
+                                iterator__10LinkedListFv moveOut__10LinkedListFPv size__10LinkedListFv 
+                                get__10LinkedListFUi aniadir__3SetFPv 
+____vtbl__ThreadAttachableMethodContainerSetLinkedListListCollection USES 
+                                add__15MethodContainerFPv clear__10LinkedListFv 
+                                contains__10LinkedListFPv isEmpty__10LinkedListFv 
+                                iterator__10LinkedListFv moveOut__10LinkedListFPv size__10LinkedListFv 
+                                get__10LinkedListFUi aniadir__3SetFPv 
+____vtbl__PlataformaEmbedded USES mainLoop__18PlataformaEmbeddedFv 
+____vtbl__BaseTimersLinkedListListCollection USES add__10LinkedListFPv 
+                                clear__10LinkedListFv contains__10LinkedListFPv 
+                                isEmpty__10LinkedListFv iterator__10LinkedListFv 
+                                moveOut__10BaseTimersFPv size__10LinkedListFv get__10LinkedListFUi 
+                                aniadir__10LinkedListFPv 
+____vtbl__Timer           USES onTime__5TimerFv 
+____vtbl__BaseTimers_1ms_40msBaseTimersLinkedListListCollection USES 
+                                add__10LinkedListFPv clear__10LinkedListFv 
+                                contains__10LinkedListFPv isEmpty__10LinkedListFv 
+                                iterator__10LinkedListFv moveOut__10BaseTimersFPv size__10LinkedListFv 
+                                get__10LinkedListFUi aniadir__10LinkedListFPv 
+                                lockInc__19BaseTimers_1ms_40msFv unlockInc__19BaseTimers_1ms_40msFv 
+____vtbl__FlagTimerTimer  USES onTime__9FlagTimerFv 
+____vtbl__PropiedadGetterGetter USES print__15PropiedadGetterFR12OutputStream 
+                                getVal__15PropiedadGetterFv 
+____vtbl__PropGetterVisualPropiedadGetterGetter USES 
+                                print__15PropiedadGetterFR12OutputStream getVal__15PropiedadGetterFv 
+                                getDescripcion__16PropGetterVisualFv 
+____vtbl__PropGetterVisualFactory USES 
+                                getPropiedad__23PropGetterVisualFactoryFPvPC25ArgumentosPropiedadGetterUc 
+____vtbl__PropiedadIncrementablePropGetterVisualPropiedadGetterGetter USES 
+                                print__15PropiedadGetterFR12OutputStream getVal__22PropiedadIncrementableFv 
+                                getDescripcion__16PropGetterVisualFv 
+____vtbl__PropiedadNumericaPropiedadIncrementablePropGetterVisualPropiedadGetterGetter USES 
+                                print__17PropiedadNumericaFR12OutputStream getVal__22PropiedadIncrementableFv 
+                                getDescripcion__16PropGetterVisualFv incrementar__17PropiedadNumericaFv 
+                                decrementar__17PropiedadNumericaFv setValor__17PropiedadNumericaFi 
+____vtbl__PropNumLFPropiedadNumericaPropiedadIncrementablePropGetterVisualPropiedadGetterGetter USES 
+                                print__17PropiedadNumericaFR12OutputStream getVal__22PropiedadIncrementableFv 
+                                getDescripcion__16PropGetterVisualFv incrementar__17PropiedadNumericaFv 
+                                decrementar__17PropiedadNumericaFv setValor__17PropiedadNumericaFi 
+                                getLimiteInferior__9PropNumLFFv getLimiteSuperior__9PropNumLFFv 
+                                getCantidadDecimales__9PropNumLFFv 
+____vtbl__PropNumLFFactoryPropGetterVisualFactory USES 
+                                getPropiedad__16PropNumLFFactoryFPvPC25ArgumentosPropiedadGetterUc 
+____vtbl__PropNumLFPFPropNumLFPropiedadNumericaPropiedadIncrementablePropGetterVisualPropiedadGetterGetter USES 
+                                print__17PropiedadNumericaFR12OutputStream getVal__22PropiedadIncrementableFv 
+                                getDescripcion__16PropGetterVisualFv incrementar__17PropiedadNumericaFv 
+                                decrementar__17PropiedadNumericaFv setValor__17PropiedadNumericaFi 
+                                getLimiteInferior__9PropNumLFFv getLimiteSuperior__9PropNumLFFv 
+                                getCantidadDecimales__11PropNumLFPFFv 
+____vtbl__PropNumLFPFFactoryPropGetterVisualFactory USES 
+                                getPropiedad__18PropNumLFPFFactoryFPvPC25ArgumentosPropiedadGetterUc 
+____vtbl__ConfModBusConfiguracionModBus USES getId__10ConfModBusFv.11 
+__ct__8IteratorFv         USES ____vtbl__Iterator 
+__ct__10CollectionFv      USES ____vtbl__Collection 
+__ct__4ListFv             USES __ct__10CollectionFv ____vtbl__ListCollection 
+__ct__3SetFv              USES __ct__10LinkedListFv 
+                                ____vtbl__SetLinkedListListCollection 
+__dt__3SetFv              USES __dt__10LinkedListFv 
+__dt__15MethodContainerFv USES __dt__3SetFv 
+__dt__16ThreadAttachableFv USES __dt__15MethodContainerFv 
+__dt__18PlataformaEmbeddedFv USES __dt__16ThreadAttachableFv 
+__ct__6GetterFv           USES ____vtbl__Getter 
+__ct__10BaseTimersFv      USES __ct__10LinkedListFv 
+                                ____vtbl__BaseTimersLinkedListListCollection 
+__dt__9FlagTimerFv        USES __dt__5TimerFv 
+__ct__16PropNumLFFactoryFv USES __ct__23PropGetterVisualFactoryFv 
+                                ____vtbl__PropNumLFFactoryPropGetterVisualFactory 
+__ct__18PropNumLFPFFactoryFv USES __ct__23PropGetterVisualFactoryFv 
+                                ____vtbl__PropNumLFPFFactoryPropGetterVisualFactory 
+__ct__19ConfiguracionModBusFv USES ____vtbl__ConfiguracionModBus 
+__dt__6ModBusFv           USES __dt__9FlagTimerFv 
+__ct__10ConfModBusFv      USES __ct__19ConfiguracionModBusFv 
+                                ____vtbl__ConfModBusConfiguracionModBus 
+__ct__10LinkedListFv      USES __ct__4ListFv 
+                                ____vtbl__LinkedListListCollection 
+clear__10LinkedListFv     USES __dl__FGPv 
+add__10LinkedListFPv      USES __nw__FGUi __ct__4NodoFPvP4Nodo 
+aniadir__10LinkedListFPv  USES __nw__FGUi __ct__4NodoFPvP4Nodo 
+                                setNext__4NodoFP4Nodo 
+moveOut__10LinkedListFPv  USES deleteNodo__10LinkedListFP4NodoT1 
+deleteNodo__10LinkedListFP4NodoT1 USES getNext__4NodoFv.2 
+                                setNext__4NodoFP4Nodo __dl__FGPv 
+__ct__28LinkedListIteratorLinkedListFv USES __ct__8IteratorFv 
+                                ____vtbl__LinkedListIteratorIterator 
+TI1_Init__Fv              USES CmpVal _TC0 _TIE 
+__sf_5Timer_setBaseTimerDefault__FR10BaseTimers USES 
+                                __sf_5Timer_baseTimerDefault 
+__ct__5TimerFUl           USES ____vtbl__Timer __sf_5Timer_baseTimerDefault 
+                                getCuenta__10BaseTimersFv _LCMP_P 
+__dt__5TimerFv            USES stop__5TimerFv 
+onTime__5TimerFv          USES stop__5TimerFv 
+comparar__5TimerFv        USES getCuenta__10BaseTimersFv _ILSEXT 
+restart__5TimerFv         USES getCuenta__10BaseTimersFv _LCMP_P 
+                                isFinished__5TimerFv 
+setTime__5TimerFUl        USES restart__5TimerFv 
+escribir__23EscrituraDemoradaModBusFv USES setDato__12NodoICModBusFPvi 
+__sf_6ModBus_sendingIntermedia__FPv USES sending__6ModBusFv 
+__sf_6ModBus_escribirDatoEnColaIntermedia__FPv.7 USES 
+                                escribirDatoEnCola__6ModBusFv 
+__ct__6ModBusFR19ConfiguracionModBusPC5ArrayP7PromBkp USES __ct__9FlagTimerFUl 
+                                stop__5TimerFv AS1_Init__FP6ModBus 
+                                __sf_6ModBus_escribirDatoEnColaIntermedia__FPv.7 pthread_create__FPPvPvPFPv_PvT1 
+escribirDatoEnCola__6ModBusFv USES demorarGrabado__7PromBkpFUi 
+                                escribir__23EscrituraDemoradaModBusFv __dl__FGPv 
+onRxChar__6ModBusFUc      USES onRxChar__6ModBusFUc reset__9FlagTimerFv 
+                                restart__5TimerFv __sf_6ModBus_calcularCrc__FPUcUc 
+                                __sf_6ModBus_onRecive 
+sending__6ModBusFv        USES _PTS __sf_6ModBus_cantMsjsOut AS1_SendChar__FUc 
+send__6ModBusFPUcUc       USES __sf_6ModBus_calcularCrc__FPUcUc 
+                                __sf_6ModBus_cantMsjsOut __sf_6ModBus_sendingIntermedia__FPv 
+                                setOnSend__6ModBusFPFPv_v sending__6ModBusFv 
+getAddressData__6ModBusFUi USES Array_count Array_get 
+                                contieneDireccion__12NodoICModBusFPv getDato__12NodoICModBusFPv 
+writeAddress__6ModBusFUii USES Array_count Array_get 
+                                contieneDireccion__12NodoICModBusFPv isEscribible__12NodoICModBusFv __nw__FGUi 
+                                __ct__23EscrituraDemoradaModBusFR12NodoICModBusPvUi 
+__sf_6ModBus_modBusWrite__FPvPUc USES writeAddress__6ModBusFUii 
+                                send__6ModBusFPUcUc 
+__sf_6ModBus_dhacelRead__FPvPUc USES getAddressData__6ModBusFUi 
+                                send__6ModBusFPUcUc 
+__sf_6ModBus_calcularCrc__FPUcUc USES __sf_6ModBus_crcControl 
+AS1_SendChar__FUc         USES SerFlag CCR_reg _SCISR1 _SCIDRL _SCICR2 
+AS1_Init__FP6ModBus       USES modbus SerFlag EnUser _SCICR1 _SCISR2 _SCISR1 
+                                _SCICR2 _SCIBD 
+_vect                     USES Cpu_Interrupt__Fv Cpu_Interrupt41__Fv 
+                                AS1_Interrupt__Fv Cpu_Interrupt47__Fv Cpu_Interrupt48__Fv 
+                                Cpu_Interrupt49__Fv Cpu_Interrupt50__Fv Cpu_Interrupt51__Fv 
+                                Cpu_Interrupt52__Fv Cpu_Interrupt53__Fv Cpu_Interrupt54__Fv 
+                                TI1_Interrupt__Fv Cpu_Interrupt56__Fv _EntryPoint 
+
+*********************************************************************************************
+DEPENDENCY TREE
+*********************************************************************************************
+ main and _Startup Group
+ | 
+ +- main                
+ |  | 
+ |  +- PE_low_level_init__Fv
+ |  |  | 
+ |  |  +- TI1_Init__Fv        
+ |  |       
+ |  +- mainLoop__18PlataformaEmbeddedFv
+ |     | 
+ |     +- executeThreads__16ThreadAttachableFv
+ |        | 
+ |        +- __ct__28LinkedListIteratorLinkedListFv
+ |        |  | 
+ |        |  +- __ct__8IteratorFv   
+ |        |  |    
+ |        |  +- ____vtbl__LinkedListIteratorIterator
+ |        |     | 
+ |        |     +- next__28LinkedListIteratorLinkedListFv
+ |        |     |    
+ |        |     +- hasNext__28LinkedListIteratorLinkedListFv
+ |        |          
+ |        +- linkedListIterator__10LinkedListFP28LinkedListIteratorLinkedList
+ |        |    
+ |        +- next__28LinkedListIteratorLinkedListFv (see above)
+ |        |  
+ |        +- hasNext__28LinkedListIteratorLinkedListFv (see above)
+ |           
+ +- _EntryPoint         
+    | 
+    +- _Startup            
+       | 
+       +- Init__Fv            
+       |  | 
+       |  +- _startupData        
+       |     | 
+       |     +- __ConstructorInit__ 
+       |     |  | 
+       |     |  +- __ct__10ConfModBusFv
+       |     |  |  | 
+       |     |  |  +- __ct__19ConfiguracionModBusFv
+       |     |  |  |    
+       |     |  |  +- ____vtbl__ConfModBusConfiguracionModBus
+       |     |  |     | 
+       |     |  |     +- getId__10ConfModBusFv.11
+       |     |  |          
+       |     |  +- __ct__18PlataformaEmbeddedFv
+       |     |  |  | 
+       |     |  |  +- __ct__15MethodContainerFv
+       |     |  |  |  | 
+       |     |  |  |  +- __ct__3SetFv        
+       |     |  |  |  |  | 
+       |     |  |  |  |  +- __ct__10LinkedListFv
+       |     |  |  |  |  |  | 
+       |     |  |  |  |  |  +- __ct__4ListFv       
+       |     |  |  |  |  |  |  | 
+       |     |  |  |  |  |  |  +- __ct__10CollectionFv
+       |     |  |  |  |  |  |       
+       |     |  |  |  |  |  +- ____vtbl__LinkedListListCollection
+       |     |  |  |  |  |     | 
+       |     |  |  |  |  |     +- add__10LinkedListFPv
+       |     |  |  |  |  |     |  | 
+       |     |  |  |  |  |     |  +- __nw__FGUi          
+       |     |  |  |  |  |     |  |  | 
+       |     |  |  |  |  |     |  |  +- malloc              
+       |     |  |  |  |  |     |  |  |  | 
+       |     |  |  |  |  |     |  |  |  +- _heapcrash_         
+       |     |  |  |  |  |     |  |  |       
+       |     |  |  |  |  |     |  |  +- exit                
+       |     |  |  |  |  |     |  |       
+       |     |  |  |  |  |     |  +- __ct__4NodoFPvP4Nodo
+       |     |  |  |  |  |     |       
+       |     |  |  |  |  |     +- clear__10LinkedListFv
+       |     |  |  |  |  |     |  | 
+       |     |  |  |  |  |     |  +- __dl__FGPv          
+       |     |  |  |  |  |     |     | 
+       |     |  |  |  |  |     |     +- free                
+       |     |  |  |  |  |     |        | 
+       |     |  |  |  |  |     |        +- _heapcrash_          (see above)
+       |     |  |  |  |  |     |           
+       |     |  |  |  |  |     +- contains__10LinkedListFPv
+       |     |  |  |  |  |     |    
+       |     |  |  |  |  |     +- isEmpty__10LinkedListFv
+       |     |  |  |  |  |     |    
+       |     |  |  |  |  |     +- iterator__10LinkedListFv
+       |     |  |  |  |  |     |    
+       |     |  |  |  |  |     +- moveOut__10LinkedListFPv
+       |     |  |  |  |  |     |  | 
+       |     |  |  |  |  |     |  +- deleteNodo__10LinkedListFP4NodoT1
+       |     |  |  |  |  |     |     | 
+       |     |  |  |  |  |     |     +- getNext__4NodoFv.2  
+       |     |  |  |  |  |     |     |    
+       |     |  |  |  |  |     |     +- setNext__4NodoFP4Nodo
+       |     |  |  |  |  |     |     |    
+       |     |  |  |  |  |     |     +- __dl__FGPv           (see above)
+       |     |  |  |  |  |     |        
+       |     |  |  |  |  |     +- size__10LinkedListFv
+       |     |  |  |  |  |     |    
+       |     |  |  |  |  |     +- get__10LinkedListFUi
+       |     |  |  |  |  |     |    
+       |     |  |  |  |  |     +- aniadir__10LinkedListFPv
+       |     |  |  |  |  |        | 
+       |     |  |  |  |  |        +- __nw__FGUi           (see above)
+       |     |  |  |  |  |        |  
+       |     |  |  |  |  |        +- __ct__4NodoFPvP4Nodo (see above)
+       |     |  |  |  |  |        |  
+       |     |  |  |  |  |        +- setNext__4NodoFP4Nodo (see above)
+       |     |  |  |  |  |           
+       |     |  |  |  |  +- ____vtbl__SetLinkedListListCollection
+       |     |  |  |  |     | 
+       |     |  |  |  |     +- add__3SetFPv        
+       |     |  |  |  |     |  | 
+       |     |  |  |  |     |  +- add__10LinkedListFPv (see above)
+       |     |  |  |  |     |     
+       |     |  |  |  |     +- clear__10LinkedListFv (see above)
+       |     |  |  |  |     |  
+       |     |  |  |  |     +- contains__10LinkedListFPv (see above)
+       |     |  |  |  |     |  
+       |     |  |  |  |     +- isEmpty__10LinkedListFv (see above)
+       |     |  |  |  |     |  
+       |     |  |  |  |     +- iterator__10LinkedListFv (see above)
+       |     |  |  |  |     |  
+       |     |  |  |  |     +- moveOut__10LinkedListFPv (see above)
+       |     |  |  |  |     |  
+       |     |  |  |  |     +- size__10LinkedListFv (see above)
+       |     |  |  |  |     |  
+       |     |  |  |  |     +- get__10LinkedListFUi (see above)
+       |     |  |  |  |     |  
+       |     |  |  |  |     +- aniadir__3SetFPv    
+       |     |  |  |  |        | 
+       |     |  |  |  |        +- aniadir__10LinkedListFPv (see above)
+       |     |  |  |  |           
+       |     |  |  |  +- ____vtbl__MethodContainerSetLinkedListListCollection
+       |     |  |  |     | 
+       |     |  |  |     +- add__15MethodContainerFPv
+       |     |  |  |     |  | 
+       |     |  |  |     |  +- add__3SetFPv         (see above)
+       |     |  |  |     |     
+       |     |  |  |     +- clear__10LinkedListFv (see above)
+       |     |  |  |     |  
+       |     |  |  |     +- contains__10LinkedListFPv (see above)
+       |     |  |  |     |  
+       |     |  |  |     +- isEmpty__10LinkedListFv (see above)
+       |     |  |  |     |  
+       |     |  |  |     +- iterator__10LinkedListFv (see above)
+       |     |  |  |     |  
+       |     |  |  |     +- moveOut__10LinkedListFPv (see above)
+       |     |  |  |     |  
+       |     |  |  |     +- size__10LinkedListFv (see above)
+       |     |  |  |     |  
+       |     |  |  |     +- get__10LinkedListFUi (see above)
+       |     |  |  |     |  
+       |     |  |  |     +- aniadir__3SetFPv     (see above)
+       |     |  |  |        
+       |     |  |  +- ____vtbl__ThreadAttachableMethodContainerSetLinkedListListCollection
+       |     |  |  |  | 
+       |     |  |  |  +- add__15MethodContainerFPv (see above)
+       |     |  |  |  |  
+       |     |  |  |  +- clear__10LinkedListFv (see above)
+       |     |  |  |  |  
+       |     |  |  |  +- contains__10LinkedListFPv (see above)
+       |     |  |  |  |  
+       |     |  |  |  +- isEmpty__10LinkedListFv (see above)
+       |     |  |  |  |  
+       |     |  |  |  +- iterator__10LinkedListFv (see above)
+       |     |  |  |  |  
+       |     |  |  |  +- moveOut__10LinkedListFPv (see above)
+       |     |  |  |  |  
+       |     |  |  |  +- size__10LinkedListFv (see above)
+       |     |  |  |  |  
+       |     |  |  |  +- get__10LinkedListFUi (see above)
+       |     |  |  |  |  
+       |     |  |  |  +- aniadir__3SetFPv     (see above)
+       |     |  |  |     
+       |     |  |  +- ____vtbl__PlataformaEmbedded
+       |     |  |     | 
+       |     |  |     +- mainLoop__18PlataformaEmbeddedFv (see above)
+       |     |  |        
+       |     |  +- __ct__4InitFv.12    
+       |     |  |  | 
+       |     |  |  +- __sf_19BaseTimers_1ms_40ms_getInstance__Fv
+       |     |  |  |  | 
+       |     |  |  |  +- __nw__FGUi           (see above)
+       |     |  |  |  |  
+       |     |  |  |  +- __ct__19BaseTimers_1ms_40msFv
+       |     |  |  |     | 
+       |     |  |  |     +- __ct__10BaseTimersFv
+       |     |  |  |     |  | 
+       |     |  |  |     |  +- __ct__10LinkedListFv (see above)
+       |     |  |  |     |  |  
+       |     |  |  |     |  +- ____vtbl__BaseTimersLinkedListListCollection
+       |     |  |  |     |     | 
+       |     |  |  |     |     +- add__10LinkedListFPv (see above)
+       |     |  |  |     |     |  
+       |     |  |  |     |     +- clear__10LinkedListFv (see above)
+       |     |  |  |     |     |  
+       |     |  |  |     |     +- contains__10LinkedListFPv (see above)
+       |     |  |  |     |     |  
+       |     |  |  |     |     +- isEmpty__10LinkedListFv (see above)
+       |     |  |  |     |     |  
+       |     |  |  |     |     +- iterator__10LinkedListFv (see above)
+       |     |  |  |     |     |  
+       |     |  |  |     |     +- moveOut__10BaseTimersFPv
+       |     |  |  |     |     |  | 
+       |     |  |  |     |     |  +- moveOut__10LinkedListFPv (see above)
+       |     |  |  |     |     |     
+       |     |  |  |     |     +- size__10LinkedListFv (see above)
+       |     |  |  |     |     |  
+       |     |  |  |     |     +- get__10LinkedListFUi (see above)
+       |     |  |  |     |     |  
+       |     |  |  |     |     +- aniadir__10LinkedListFPv (see above)
+       |     |  |  |     |        
+       |     |  |  |     +- ____vtbl__BaseTimers_1ms_40msBaseTimersLinkedListListCollection
+       |     |  |  |     |  | 
+       |     |  |  |     |  +- add__10LinkedListFPv (see above)
+       |     |  |  |     |  |  
+       |     |  |  |     |  +- clear__10LinkedListFv (see above)
+       |     |  |  |     |  |  
+       |     |  |  |     |  +- contains__10LinkedListFPv (see above)
+       |     |  |  |     |  |  
+       |     |  |  |     |  +- isEmpty__10LinkedListFv (see above)
+       |     |  |  |     |  |  
+       |     |  |  |     |  +- iterator__10LinkedListFv (see above)
+       |     |  |  |     |  |  
+       |     |  |  |     |  +- moveOut__10BaseTimersFPv (see above)
+       |     |  |  |     |  |  
+       |     |  |  |     |  +- size__10LinkedListFv (see above)
+       |     |  |  |     |  |  
+       |     |  |  |     |  +- get__10LinkedListFUi (see above)
+       |     |  |  |     |  |  
+       |     |  |  |     |  +- aniadir__10LinkedListFPv (see above)
+       |     |  |  |     |  |  
+       |     |  |  |     |  +- lockInc__19BaseTimers_1ms_40msFv
+       |     |  |  |     |  |    
+       |     |  |  |     |  +- unlockInc__19BaseTimers_1ms_40msFv
+       |     |  |  |     |       
+       |     |  |  |     +- __sf_19BaseTimers_1ms_40ms_inc1__FPv
+       |     |  |  |     |  | 
+       |     |  |  |     |  +- incrementar__10BaseTimersFUi
+       |     |  |  |     |  |    
+       |     |  |  |     |  +- actualizarTimers__10BaseTimersFv
+       |     |  |  |     |     | 
+       |     |  |  |     |     +- __ct__28LinkedListIteratorLinkedListFv (see above)
+       |     |  |  |     |     |  
+       |     |  |  |     |     +- linkedListIterator__10LinkedListFP28LinkedListIteratorLinkedList (see above)
+       |     |  |  |     |     |  
+       |     |  |  |     |     +- next__28LinkedListIteratorLinkedListFv (see above)
+       |     |  |  |     |     |  
+       |     |  |  |     |     +- comparar__5TimerFv  
+       |     |  |  |     |     |  | 
+       |     |  |  |     |     |  +- getCuenta__10BaseTimersFv
+       |     |  |  |     |     |  |    
+       |     |  |  |     |     |  +- _ILSEXT             
+       |     |  |  |     |     |       
+       |     |  |  |     |     +- hasNext__28LinkedListIteratorLinkedListFv (see above)
+       |     |  |  |     |        
+       |     |  |  |     +- add1msListener__FP6Method
+       |     |  |  |     |  | 
+       |     |  |  |     |  +- __nw__FGUi           (see above)
+       |     |  |  |     |  |  
+       |     |  |  |     |  +- __ct__15MethodContainerFv (see above)
+       |     |  |  |     |     
+       |     |  |  |     +- __sf_19BaseTimers_1ms_40ms_inc40__FPv
+       |     |  |  |     |  | 
+       |     |  |  |     |  +- incrementar__10BaseTimersFUi (see above)
+       |     |  |  |     |  |  
+       |     |  |  |     |  +- actualizarTimers__10BaseTimersFv (see above)
+       |     |  |  |     |     
+       |     |  |  |     +- add40msListener__FP6Method
+       |     |  |  |        | 
+       |     |  |  |        +- __nw__FGUi           (see above)
+       |     |  |  |        |  
+       |     |  |  |        +- __ct__15MethodContainerFv (see above)
+       |     |  |  |           
+       |     |  |  +- __sf_5Timer_setBaseTimerDefault__FR10BaseTimers
+       |     |  |       
+       |     |  +- getProps            
+       |     |  |  | 
+       |     |  |  +- arrayConstructores  
+       |     |  |     | 
+       |     |  |     +- costructores        
+       |     |  |        | 
+       |     |  |        +- cPropiedad          
+       |     |  |           | 
+       |     |  |           +- get__FPv            
+       |     |  |           |  | 
+       |     |  |           |  +- _assert             
+       |     |  |           |     | 
+       |     |  |           |     +- abort               
+       |     |  |           |          
+       |     |  |           +- set__FPvi           
+       |     |  |              | 
+       |     |  |              +- _assert              (see above)
+       |     |  |                 
+       |     |  +- __ct__12NodoICModBusFPvRC9GetsPropsT1.8
+       |     |  |    
+       |     |  +- __ct__6ModBusFR19ConfiguracionModBusPC5ArrayP7PromBkp
+       |     |     | 
+       |     |     +- __ct__9FlagTimerFUl 
+       |     |     |  | 
+       |     |     |  +- __ct__5TimerFUl     
+       |     |     |  |  | 
+       |     |     |  |  +- ____vtbl__Timer     
+       |     |     |  |  |  | 
+       |     |     |  |  |  +- onTime__5TimerFv    
+       |     |     |  |  |     | 
+       |     |     |  |  |     +- stop__5TimerFv      
+       |     |     |  |  |          
+       |     |     |  |  +- getCuenta__10BaseTimersFv (see above)
+       |     |     |  |  |  
+       |     |     |  |  +- _LCMP_P             
+       |     |     |  |       
+       |     |     |  +- ____vtbl__FlagTimerTimer
+       |     |     |     | 
+       |     |     |     +- onTime__9FlagTimerFv
+       |     |     |          
+       |     |     +- stop__5TimerFv       (see above)
+       |     |     |  
+       |     |     +- AS1_Init__FP6ModBus 
+       |     |     |    
+       |     |     +- __sf_6ModBus_escribirDatoEnColaIntermedia__FPv.7
+       |     |     |  | 
+       |     |     |  +- escribirDatoEnCola__6ModBusFv
+       |     |     |     | 
+       |     |     |     +- demorarGrabado__7PromBkpFUi
+       |     |     |     |  | 
+       |     |     |     |  +- __nw__FGUi           (see above)
+       |     |     |     |  |  
+       |     |     |     |  +- __ct__5TimerFUl      (see above)
+       |     |     |     |  |  
+       |     |     |     |  +- setTime__5TimerFUl  
+       |     |     |     |     | 
+       |     |     |     |     +- restart__5TimerFv   
+       |     |     |     |        | 
+       |     |     |     |        +- getCuenta__10BaseTimersFv (see above)
+       |     |     |     |        |  
+       |     |     |     |        +- _LCMP_P              (see above)
+       |     |     |     |        |  
+       |     |     |     |        +- isFinished__5TimerFv
+       |     |     |     |             
+       |     |     |     +- escribir__23EscrituraDemoradaModBusFv
+       |     |     |     |  | 
+       |     |     |     |  +- setDato__12NodoICModBusFPvi
+       |     |     |     |     | 
+       |     |     |     |     +- contieneDireccion__12NodoICModBusFPv
+       |     |     |     |     |  | 
+       |     |     |     |     |  +- getDirFin__12NodoICModBusFv
+       |     |     |     |     |     | 
+       |     |     |     |     |     +- Array_count         
+       |     |     |     |     |          
+       |     |     |     |     +- Array_get           
+       |     |     |     |     |    
+       |     |     |     |     +- getPropiedad__27ConstructorPropGetterVisualFPvUc
+       |     |     |     |     |    
+       |     |     |     |     +- guardar__22PropiedadIncrementableFv
+       |     |     |     |     |  | 
+       |     |     |     |     |  +- getArgumentos__15PropiedadGetterFv
+       |     |     |     |     |  |    
+       |     |     |     |     |  +- getObjeto__15PropiedadGetterFv
+       |     |     |     |     |       
+       |     |     |     |     +- __dl__FGPv           (see above)
+       |     |     |     |        
+       |     |     |     +- __dl__FGPv           (see above)
+       |     |     |        
+       |     |     +- pthread_create__FPPvPvPFPv_PvT1
+       |     |        | 
+       |     |        +- __nw__FGUi           (see above)
+       |     |        |  
+       |     |        +- adjuntar__16ThreadAttachableFP6Method
+       |     |             
+       |     +- __ConstructorInit__ 
+       |     |  | 
+       |     |  +- __ct__18PropNumLFPFFactoryFv
+       |     |     | 
+       |     |     +- __ct__23PropGetterVisualFactoryFv
+       |     |     |  | 
+       |     |     |  +- ____vtbl__PropGetterVisualFactory
+       |     |     |     | 
+       |     |     |     +- getPropiedad__23PropGetterVisualFactoryFPvPC25ArgumentosPropiedadGetterUc
+       |     |     |        | 
+       |     |     |        +- __nw__FGUi           (see above)
+       |     |     |        |  
+       |     |     |        +- __ct__16PropGetterVisualFPvPC26ArgumentosPropGetterVisualUc
+       |     |     |           | 
+       |     |     |           +- __ct__15PropiedadGetterFPvPC25ArgumentosPropiedadGetter
+       |     |     |           |  | 
+       |     |     |           |  +- __ct__6GetterFv     
+       |     |     |           |  |    
+       |     |     |           |  +- ____vtbl__PropiedadGetterGetter
+       |     |     |           |     | 
+       |     |     |           |     +- print__15PropiedadGetterFR12OutputStream
+       |     |     |           |     |    
+       |     |     |           |     +- getVal__15PropiedadGetterFv
+       |     |     |           |          
+       |     |     |           +- ____vtbl__PropGetterVisualPropiedadGetterGetter
+       |     |     |              | 
+       |     |     |              +- print__15PropiedadGetterFR12OutputStream (see above)
+       |     |     |              |  
+       |     |     |              +- getVal__15PropiedadGetterFv (see above)
+       |     |     |              |  
+       |     |     |              +- getDescripcion__16PropGetterVisualFv
+       |     |     |                 | 
+       |     |     |                 +- getArgumentos__15PropiedadGetterFv (see above)
+       |     |     |                    
+       |     |     +- ____vtbl__PropNumLFPFFactoryPropGetterVisualFactory
+       |     |        | 
+       |     |        +- getPropiedad__18PropNumLFPFFactoryFPvPC25ArgumentosPropiedadGetterUc
+       |     |           | 
+       |     |           +- __nw__FGUi           (see above)
+       |     |           |  
+       |     |           +- __ct__11PropNumLFPFFPvPC21ArgumentosPropNumLFPFUc
+       |     |              | 
+       |     |              +- __ct__9PropNumLFFPvPC19ArgumentosPropNumLFUc
+       |     |              |  | 
+       |     |              |  +- __ct__17PropiedadNumericaFPvPC32ArgumentosPropiedadIncrementableUc
+       |     |              |  |  | 
+       |     |              |  |  +- __ct__22PropiedadIncrementableFPvPC32ArgumentosPropiedadIncrementableUc
+       |     |              |  |  |  | 
+       |     |              |  |  |  +- __ct__16PropGetterVisualFPvPC26ArgumentosPropGetterVisualUc (see above)
+       |     |              |  |  |  |  
+       |     |              |  |  |  +- ____vtbl__PropiedadIncrementablePropGetterVisualPropiedadGetterGetter
+       |     |              |  |  |  |  | 
+       |     |              |  |  |  |  +- print__15PropiedadGetterFR12OutputStream (see above)
+       |     |              |  |  |  |  |  
+       |     |              |  |  |  |  +- getVal__22PropiedadIncrementableFv
+       |     |              |  |  |  |  |    
+       |     |              |  |  |  |  +- getDescripcion__16PropGetterVisualFv (see above)
+       |     |              |  |  |  |     
+       |     |              |  |  |  +- refrescar__22PropiedadIncrementableFv
+       |     |              |  |  |     | 
+       |     |              |  |  |     +- getVal__15PropiedadGetterFv (see above)
+       |     |              |  |  |        
+       |     |              |  |  +- ____vtbl__PropiedadNumericaPropiedadIncrementablePropGetterVisualPropiedadGetterGetter
+       |     |              |  |     | 
+       |     |              |  |     +- print__17PropiedadNumericaFR12OutputStream
+       |     |              |  |     |    
+       |     |              |  |     +- getVal__22PropiedadIncrementableFv (see above)
+       |     |              |  |     |  
+       |     |              |  |     +- getDescripcion__16PropGetterVisualFv (see above)
+       |     |              |  |     |  
+       |     |              |  |     +- incrementar__17PropiedadNumericaFv
+       |     |              |  |     |  | 
+       |     |              |  |     |  +- setValorTmp__22PropiedadIncrementableFi
+       |     |              |  |     |       
+       |     |              |  |     +- decrementar__17PropiedadNumericaFv
+       |     |              |  |     |  | 
+       |     |              |  |     |  +- setValorTmp__22PropiedadIncrementableFi (see above)
+       |     |              |  |     |     
+       |     |              |  |     +- setValor__17PropiedadNumericaFi
+       |     |              |  |        | 
+       |     |              |  |        +- setValorTmp__22PropiedadIncrementableFi (see above)
+       |     |              |  |           
+       |     |              |  +- ____vtbl__PropNumLFPropiedadNumericaPropiedadIncrementablePropGetterVisualPropiedadGetterGetter
+       |     |              |     | 
+       |     |              |     +- print__17PropiedadNumericaFR12OutputStream (see above)
+       |     |              |     |  
+       |     |              |     +- getVal__22PropiedadIncrementableFv (see above)
+       |     |              |     |  
+       |     |              |     +- getDescripcion__16PropGetterVisualFv (see above)
+       |     |              |     |  
+       |     |              |     +- incrementar__17PropiedadNumericaFv (see above)
+       |     |              |     |  
+       |     |              |     +- decrementar__17PropiedadNumericaFv (see above)
+       |     |              |     |  
+       |     |              |     +- setValor__17PropiedadNumericaFi (see above)
+       |     |              |     |  
+       |     |              |     +- getLimiteInferior__9PropNumLFFv
+       |     |              |     |  | 
+       |     |              |     |  +- getArgumentos__15PropiedadGetterFv (see above)
+       |     |              |     |     
+       |     |              |     +- getLimiteSuperior__9PropNumLFFv
+       |     |              |     |  | 
+       |     |              |     |  +- getArgumentos__15PropiedadGetterFv (see above)
+       |     |              |     |     
+       |     |              |     +- getCantidadDecimales__9PropNumLFFv
+       |     |              |          
+       |     |              +- ____vtbl__PropNumLFPFPropNumLFPropiedadNumericaPropiedadIncrementablePropGetterVisualPropiedadGetterGetter
+       |     |                 | 
+       |     |                 +- print__17PropiedadNumericaFR12OutputStream (see above)
+       |     |                 |  
+       |     |                 +- getVal__22PropiedadIncrementableFv (see above)
+       |     |                 |  
+       |     |                 +- getDescripcion__16PropGetterVisualFv (see above)
+       |     |                 |  
+       |     |                 +- incrementar__17PropiedadNumericaFv (see above)
+       |     |                 |  
+       |     |                 +- decrementar__17PropiedadNumericaFv (see above)
+       |     |                 |  
+       |     |                 +- setValor__17PropiedadNumericaFi (see above)
+       |     |                 |  
+       |     |                 +- getLimiteInferior__9PropNumLFFv (see above)
+       |     |                 |  
+       |     |                 +- getLimiteSuperior__9PropNumLFFv (see above)
+       |     |                 |  
+       |     |                 +- getCantidadDecimales__11PropNumLFPFFv
+       |     |                    | 
+       |     |                    +- getArgumentos__15PropiedadGetterFv (see above)
+       |     |                       
+       |     +- __ConstructorInit__ 
+       |     |  | 
+       |     |  +- __ct__16PropNumLFFactoryFv
+       |     |     | 
+       |     |     +- __ct__23PropGetterVisualFactoryFv (see above)
+       |     |     |  
+       |     |     +- ____vtbl__PropNumLFFactoryPropGetterVisualFactory
+       |     |        | 
+       |     |        +- getPropiedad__16PropNumLFFactoryFPvPC25ArgumentosPropiedadGetterUc
+       |     |           | 
+       |     |           +- __nw__FGUi           (see above)
+       |     |           |  
+       |     |           +- __ct__9PropNumLFFPvPC19ArgumentosPropNumLFUc (see above)
+       |     |              
+       |     +- __DestructorInit__  
+       |        | 
+       |        +- __dt__6ModBusFv     
+       |        |  | 
+       |        |  +- __dt__9FlagTimerFv  
+       |        |     | 
+       |        |     +- __dt__5TimerFv      
+       |        |        | 
+       |        |        +- stop__5TimerFv       (see above)
+       |        |           
+       |        +- __dt__18PlataformaEmbeddedFv
+       |           | 
+       |           +- __dt__16ThreadAttachableFv
+       |              | 
+       |              +- __dt__15MethodContainerFv
+       |                 | 
+       |                 +- __dt__3SetFv        
+       |                    | 
+       |                    +- __dt__10LinkedListFv
+       |                         
+       +- main                 (see above)
+          
+ _vect               
+ | 
+ +- Cpu_Interrupt__Fv   
+ |    
+ +- Cpu_Interrupt41__Fv 
+ |    
+ +- AS1_Interrupt__Fv   
+ |  | 
+ |  +- onRxChar__6ModBusFUc
+ |  |  | 
+ |  |  +- reset__9FlagTimerFv 
+ |  |  |    
+ |  |  +- restart__5TimerFv    (see above)
+ |  |  |  
+ |  |  +- __sf_6ModBus_calcularCrc__FPUcUc
+ |  |  |    
+ |  |  +- __sf_6ModBus_onRecive
+ |  |     | 
+ |  |     +- __sf_6ModBus_dhacelRead__FPvPUc
+ |  |     |  | 
+ |  |     |  +- getAddressData__6ModBusFUi
+ |  |     |  |  | 
+ |  |     |  |  +- Array_count          (see above)
+ |  |     |  |  |  
+ |  |     |  |  +- Array_get            (see above)
+ |  |     |  |  |  
+ |  |     |  |  +- contieneDireccion__12NodoICModBusFPv (see above)
+ |  |     |  |  |  
+ |  |     |  |  +- getDato__12NodoICModBusFPv
+ |  |     |  |     | 
+ |  |     |  |     +- contieneDireccion__12NodoICModBusFPv (see above)
+ |  |     |  |     |  
+ |  |     |  |     +- Array_get            (see above)
+ |  |     |  |        
+ |  |     |  +- send__6ModBusFPUcUc 
+ |  |     |     | 
+ |  |     |     +- __sf_6ModBus_calcularCrc__FPUcUc (see above)
+ |  |     |     |  
+ |  |     |     +- __sf_6ModBus_sendingIntermedia__FPv
+ |  |     |     |  | 
+ |  |     |     |  +- sending__6ModBusFv  
+ |  |     |     |     | 
+ |  |     |     |     +- AS1_SendChar__FUc   
+ |  |     |     |          
+ |  |     |     +- setOnSend__6ModBusFPFPv_v
+ |  |     |     |    
+ |  |     |     +- sending__6ModBusFv   (see above)
+ |  |     |        
+ |  |     +- __sf_6ModBus_modBusWrite__FPvPUc
+ |  |        | 
+ |  |        +- writeAddress__6ModBusFUii
+ |  |        |  | 
+ |  |        |  +- Array_count          (see above)
+ |  |        |  |  
+ |  |        |  +- Array_get            (see above)
+ |  |        |  |  
+ |  |        |  +- contieneDireccion__12NodoICModBusFPv (see above)
+ |  |        |  |  
+ |  |        |  +- isEscribible__12NodoICModBusFv
+ |  |        |  |    
+ |  |        |  +- __nw__FGUi           (see above)
+ |  |        |  |  
+ |  |        |  +- __ct__23EscrituraDemoradaModBusFR12NodoICModBusPvUi
+ |  |        |       
+ |  |        +- send__6ModBusFPUcUc  (see above)
+ |  |           
+ |  +- onTxComplete__6ModBusFv
+ |       
+ +- Cpu_Interrupt47__Fv 
+ |    
+ +- Cpu_Interrupt48__Fv 
+ |    
+ +- Cpu_Interrupt49__Fv 
+ |    
+ +- Cpu_Interrupt50__Fv 
+ |    
+ +- Cpu_Interrupt51__Fv 
+ |    
+ +- Cpu_Interrupt52__Fv 
+ |    
+ +- Cpu_Interrupt53__Fv 
+ |    
+ +- Cpu_Interrupt54__Fv 
+ |    
+ +- TI1_Interrupt__Fv   
+ |  | 
+ |  +- TI1ms_OnInterrupt__Fv
+ |  |  | 
+ |  |  +- executeMethods__15MethodContainerFv
+ |  |     | 
+ |  |     +- __ct__28LinkedListIteratorLinkedListFv (see above)
+ |  |     |  
+ |  |     +- linkedListIterator__10LinkedListFP28LinkedListIteratorLinkedList (see above)
+ |  |     |  
+ |  |     +- next__28LinkedListIteratorLinkedListFv (see above)
+ |  |     |  
+ |  |     +- hasNext__28LinkedListIteratorLinkedListFv (see above)
+ |  |        
+ |  +- TI40ms_OnInterrupt__Fv
+ |     | 
+ |     +- executeMethods__15MethodContainerFv (see above)
+ |        
+ +- Cpu_Interrupt56__Fv 
+ |    
+ +- _EntryPoint          (see above)
+    
+*********************************************************************************************
+STATISTIC SECTION
+---------------------------------------------------------------------------------------------
+
+ExeFile:
+--------
+Number of blocks to be downloaded: 13
+Total size of all blocks to be downloaded: 5954
+
