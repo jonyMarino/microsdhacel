@@ -1,0 +1,4 @@
+#include "BoxPropiedadEntradaCondicional.hpp"
+
+const struct BoxPropiedadEntradaCondicionalFactory boxPropiedadEntradaCondicionalFactory;
+const struct BoxPropGetterEntradaCondicionalFactory boxPropGetterEntradaCondicionalFactory;

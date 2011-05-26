@@ -1,0 +1,350 @@
+
+
+/**** FILE 'D:\versionR51\microsdhacel\soft micros\Codigo\codigo portable\Vista\Display\Display.cpp' */
+
+
+/*       16 */ 
+
+/**** FILE 'D:\versionR51\microsdhacel\soft micros\Codigo\codigo portable\Vista\Display\Display.cpp' */
+
+
+/*        2 */ 
+
+/**** FILE 'stdio.h' */
+
+
+/*       13 */  extern "C" {
+/*       17 */ 
+
+/**** FILE 'stddef.h' */
+
+
+/*       13 */  extern "C" {
+/*       22 */  typedef unsigned int size_t ;
+/*       35 */  typedef signed int ptrdiff_t ;
+/*       44 */  typedef unsigned char wchar_t ;
+/*       56 */  typedef unsigned long clock_t ;
+/*       58 */  typedef unsigned long time_t ;
+/*       66 */  }
+/*       75 */ 
+
+/**** FILE 'stdio.h' */
+
+
+/*       18 */ 
+
+/**** FILE 'stdarg.h' */
+
+
+/*       14 */  extern "C" {
+/*       27 */  typedef char * va_list ;
+/*      122 */  }
+/*      157 */ 
+
+/**** FILE 'stdio.h' */
+
+
+/*       19 */ 
+
+/**** FILE 'string.h' */
+
+
+/*       13 */  extern "C" {
+/*       17 */ 
+
+/**** FILE 'libdefs.h' */
+
+
+/*       30 */  extern "C" {
+/*       34 */ 
+
+/**** FILE 'hidef.h' */
+
+
+/*       13 */  extern "C" {
+/*       20 */ 
+
+/**** FILE 'default2.sgm' */
+
+
+/*       28 */ 
+
+/**** FILE 'hidef.h' */
+
+
+/*       28 */ 
+
+/**** FILE 'stdtypes.h' */
+
+
+/*       18 */  extern "C" {
+/*       26 */  typedef void ( * PROC ) ( void ) ;
+/*       30 */  typedef unsigned char Byte ;
+/*       31 */  typedef signed char sByte ;
+/*       61 */  typedef unsigned int Word ;
+/*       62 */  typedef signed int sWord ;
+/*       88 */  typedef unsigned long LWord ;
+/*       89 */  typedef signed long sLWord ;
+/*      102 */  typedef unsigned char uchar ;
+/*      104 */  typedef unsigned int uint ;
+/*      106 */  typedef unsigned long ulong ;
+/*      109 */  typedef unsigned long long ullong ;
+/*      113 */  typedef signed char schar ;
+/*      115 */  typedef signed int sint ;
+/*      117 */  typedef signed long slong ;
+/*      120 */  typedef signed long long sllong ;
+/*      137 */  typedef sWord enum_t ;
+/*      153 */  typedef int Bool ;
+/*      168 */  }
+/*      176 */ 
+
+/**** FILE 'hidef.h' */
+
+
+/*       30 */  #pragma NO_STRING_CONSTR
+/*      110 */  extern char __SEG_END_SSTACK [ ] ;
+/*      117 */  extern const unsigned char _PowOfTwo_8 [ 8 ] ;
+/*      119 */  extern const unsigned short _PowOfTwo_16 [ 16 ] ;
+/*      121 */  extern const unsigned long _PowOfTwo_32 [ 32 ] ;
+/*      138 */  }
+/*      146 */ 
+
+/**** FILE 'libdefs.h' */
+
+
+/*      153 */  typedef const char * ConstString ;
+/*      155 */  typedef const char * LIBDEF_ConstStringPtr ;
+/*      157 */  typedef char * LIBDEF_StringPtr ;
+/*      160 */  typedef const void * ConstMem ;
+/*      162 */  typedef const void * LIBDEF_ConstMemPtr ;
+/*      164 */  typedef void * LIBDEF_MemPtr ;
+/*      166 */  typedef char LIBDEF_MemByte ;
+/*      168 */  typedef LIBDEF_MemByte * LIBDEF_MemBytePtr ;
+/*      170 */  typedef const LIBDEF_MemByte * LIBDEF_ConstMemBytePtr ;
+/*      325 */  }
+/*      333 */ 
+
+/**** FILE 'string.h' */
+
+
+/*       50 */  extern LIBDEF_MemPtr memchr ( LIBDEF_ConstMemPtr buffer , int chr , size_t count ) ;
+/*       51 */  extern int memcmp ( LIBDEF_ConstMemPtr buf1 , LIBDEF_ConstMemPtr buf2 , size_t count ) ;
+/*       52 */  extern LIBDEF_MemPtr memcpy ( LIBDEF_MemPtr dest , LIBDEF_ConstMemPtr source , size_t count ) ;
+/*       54 */  extern void memcpy2 ( LIBDEF_MemPtr dest , LIBDEF_ConstMemPtr source , size_t count ) ;
+/*       56 */  extern void _memcpy_8bitCount ( LIBDEF_MemPtr dest , LIBDEF_ConstMemPtr source , unsigned char count ) ;
+/*       59 */  extern LIBDEF_MemPtr memmove ( LIBDEF_MemPtr dest , LIBDEF_ConstMemPtr source , size_t count ) ;
+/*       60 */  extern LIBDEF_MemPtr memset ( LIBDEF_MemPtr buffer , int chr , size_t count ) ;
+/*       61 */  extern void _memset_clear_8bitCount ( LIBDEF_MemPtr buffer , unsigned char count ) ;
+/*       69 */  extern size_t strlen ( LIBDEF_ConstStringPtr str ) ;
+/*       70 */  extern LIBDEF_StringPtr strset ( LIBDEF_StringPtr str , int chr ) ;
+/*       71 */  extern LIBDEF_StringPtr strcat ( LIBDEF_StringPtr str_d , LIBDEF_ConstStringPtr str_s ) ;
+/*       72 */  extern LIBDEF_StringPtr strncat ( LIBDEF_StringPtr str_d , LIBDEF_ConstStringPtr str_s , size_t count ) ;
+/*       73 */  extern LIBDEF_StringPtr strcpy ( LIBDEF_StringPtr str_d , LIBDEF_ConstStringPtr str_s ) ;
+/*       74 */  extern LIBDEF_StringPtr strncpy ( LIBDEF_StringPtr str_d , LIBDEF_ConstStringPtr str_s , size_t count ) ;
+/*       75 */  extern int strcmp ( LIBDEF_ConstStringPtr str1 , LIBDEF_ConstStringPtr str2 ) ;
+/*       76 */  extern int strncmp ( LIBDEF_ConstStringPtr str1 , LIBDEF_ConstStringPtr str2 , size_t count ) ;
+/*       77 */  extern LIBDEF_StringPtr strchr ( LIBDEF_ConstStringPtr str , int chr ) ;
+/*       78 */  extern LIBDEF_StringPtr strrchr ( LIBDEF_ConstStringPtr str , int chr ) ;
+/*       79 */  extern size_t strspn ( LIBDEF_ConstStringPtr str1 , LIBDEF_ConstStringPtr str2 ) ;
+/*       80 */  extern size_t strcspn ( LIBDEF_ConstStringPtr str1 , LIBDEF_ConstStringPtr str2 ) ;
+/*       81 */  extern LIBDEF_StringPtr strpbrk ( LIBDEF_ConstStringPtr str1 , LIBDEF_ConstStringPtr str2 ) ;
+/*       82 */  extern LIBDEF_StringPtr strstr ( LIBDEF_ConstStringPtr str1 , LIBDEF_ConstStringPtr str2 ) ;
+/*       83 */  extern LIBDEF_StringPtr strtok ( LIBDEF_StringPtr str1 , LIBDEF_ConstStringPtr str2 ) ;
+/*       84 */  extern LIBDEF_StringPtr strerror ( int errnum ) ;
+/*       85 */  extern int strcoll ( LIBDEF_ConstStringPtr string1 , LIBDEF_ConstStringPtr string2 ) ;
+/*       86 */  extern size_t strxfrm ( LIBDEF_StringPtr strDest , LIBDEF_ConstStringPtr strSource , size_t count ) ;
+/*       90 */  }
+/*       99 */ 
+
+/**** FILE 'stdio.h' */
+
+
+/*       21 */ 
+
+/**** FILE 'errno.h' */
+
+
+/*       13 */  extern "C" {
+/*       29 */  extern int errno ;
+/*       32 */  }
+/*       41 */ 
+
+/**** FILE 'stdio.h' */
+
+
+/*       34 */  typedef struct chnl {
+/*       35 */  char * channel_name ;
+/*       36 */  char * port_addr ;
+/*       37 */  char flags ;
+/*       38 */  char lastchar ;
+/*       39 */  int ( * open_channel ) ( ) ;
+/*       40 */  int ( * close_channel ) ( ) ;
+/*       41 */  int ( * read_channel ) ( ) ;
+/*       42 */  int ( * write_channel ) ( ) ;
+/*       43 */  } FILE ;
+/*       45 */  extern FILE channels [ 1 ] ;
+/*       47 */  typedef long fpos_t ;
+/*       77 */  int fputc ( int c , FILE * stream ) ;
+/*      145 */  extern FILE * fopen ( LIBDEF_ConstStringPtr name , LIBDEF_ConstStringPtr mode ) ;
+/*      146 */  extern int fsetpos ( FILE * f , const fpos_t * pos ) ;
+/*      147 */  extern int scanf ( LIBDEF_ConstStringPtr s , ... ) ;
+/*      148 */  extern int sscanf ( LIBDEF_ConstStringPtr s , LIBDEF_ConstStringPtr format , ... ) ;
+/*      149 */  extern int vsscanf ( LIBDEF_ConstStringPtr s , LIBDEF_ConstStringPtr format , va_list ) ;
+/*      150 */  extern int puts ( LIBDEF_ConstStringPtr s ) ;
+/*      155 */  extern int printf ( LIBDEF_ConstStringPtr s , ... ) ;
+/*      156 */  extern int fprintf ( FILE * f , LIBDEF_ConstStringPtr , ... ) ;
+/*      157 */  extern int vfprintf ( FILE * f , LIBDEF_ConstStringPtr s , va_list ) ;
+/*      158 */  extern int sprintf ( LIBDEF_StringPtr s , LIBDEF_ConstStringPtr format , ... ) ;
+/*      159 */  extern int vsprintf ( LIBDEF_StringPtr s , LIBDEF_ConstStringPtr format , va_list ) ;
+/*      161 */  extern void set_printf ( void ( * f ) ( char ) ) ;
+/*      163 */  extern int vprintf ( LIBDEF_ConstStringPtr format , va_list args ) ;
+/*      180 */  extern int fclose ( FILE * f ) ;
+/*      181 */  extern FILE * freopen ( const char * name , const char * mode , FILE * f ) ;
+/*      183 */  extern int remove ( LIBDEF_ConstStringPtr name ) ;
+/*      184 */  extern int rename ( const char * old_name , const char * new_name ) ;
+/*      188 */  extern FILE * tmpfile ( void ) ;
+/*      189 */  extern char * tmpnam ( char * name ) ;
+/*      190 */  extern int fflush ( FILE * f ) ;
+/*      191 */  extern void setbuf ( FILE * f , char * buf ) ;
+/*      192 */  extern int setvbuf ( FILE * f , char * buf , int mode , size_t size ) ;
+/*      193 */  extern int fgetpos ( FILE * f , long * pos ) ;
+/*      194 */  extern int fseek ( FILE * f , long offset , int mode ) ;
+/*      195 */  extern long int ftell ( FILE * f ) ;
+/*      196 */  extern void rewind ( FILE * f ) ;
+/*      197 */  extern int fgetc ( FILE * f ) ;
+/*      198 */  extern size_t fread ( void * buf , size_t size , size_t n , FILE * f ) ;
+/*      199 */  extern size_t fwrite ( const void * buf , size_t size , size_t n , FILE * f ) ;
+/*      200 */  extern LIBDEF_StringPtr fgets ( LIBDEF_StringPtr s , int n , FILE * f ) ;
+/*      201 */  extern int fputs ( LIBDEF_ConstStringPtr s , FILE * f ) ;
+/*      202 */  extern int fscanf ( FILE * f , const char * s , ... ) ;
+/*      203 */  extern int ungetc ( int c , FILE * f ) ;
+/*      205 */  extern LIBDEF_StringPtr gets ( LIBDEF_StringPtr s ) ;
+/*      212 */  }
+/*      221 */ 
+
+/**** FILE 'D:\versionR51\microsdhacel\soft micros\Codigo\codigo portable\Vista\Display\Display.cpp' */
+
+
+/*        3 */ 
+
+/**** FILE 'stdlib.h' */
+
+
+/*       13 */  extern "C" {
+/*       19 */  typedef struct _div_t {
+/*       20 */  int quot , rem ;
+/*       21 */  } div_t ;
+/*       23 */  typedef struct _ldiv_t {
+/*       24 */  long int quot , rem ;
+/*       25 */  } ldiv_t ;
+/*       49 */  LIBDEF_StringPtr _itoa ( int val , LIBDEF_StringPtr buf , int radix ) ;
+/*       53 */  extern double strtod ( LIBDEF_ConstStringPtr s , LIBDEF_StringPtr * end ) ;
+/*       54 */  extern long int strtol ( LIBDEF_ConstStringPtr s , LIBDEF_StringPtr * end , int base ) ;
+/*       55 */  extern unsigned long int strtoul ( LIBDEF_ConstStringPtr s , LIBDEF_StringPtr * end , int base ) ;
+/*       58 */  extern int rand ( void ) ;
+/*       59 */  extern void srand ( unsigned int seed ) ;
+/*       62 */  extern void * calloc ( size_t n , size_t size ) ;
+/*       63 */  extern void free ( void * ptr ) ;
+/*       64 */  extern void * malloc ( size_t size ) ;
+/*       65 */  extern void * realloc ( void * ptr , size_t size ) ;
+/*       68 */  extern void abort ( void ) ;
+/*       69 */  extern int atexit ( void ( * func ) ( void ) ) ;
+/*       70 */  extern void exit ( int status ) ;
+/*       73 */  extern LIBDEF_StringPtr getenv ( LIBDEF_ConstStringPtr name ) ;
+/*       74 */  extern int system ( LIBDEF_ConstStringPtr cmd ) ;
+/*       77 */  extern LIBDEF_MemPtr bsearch ( LIBDEF_ConstMemPtr look_for ,
+/*       78 */  LIBDEF_ConstMemPtr base_addr ,
+/*       79 */  size_t n , size_t size ,
+/*       80 */  int ( * cmp ) ( LIBDEF_ConstMemPtr , LIBDEF_ConstMemPtr ) ) ;
+/*       81 */  extern void qsort ( LIBDEF_ConstMemPtr base ,
+/*       82 */  size_t n , size_t size ,
+/*       83 */  int ( * cmp ) ( LIBDEF_ConstMemPtr , LIBDEF_ConstMemPtr ) ) ;
+/*       89 */  extern int abs ( int j ) ;
+/*       90 */  extern long int labs ( long int j ) ;
+/*       92 */  extern div_t div ( int dividend , int divisor ) ;
+/*       93 */  extern ldiv_t ldiv ( long int dividend , long int divisor ) ;
+/*       97 */  extern int mblen ( LIBDEF_ConstStringPtr mbs , size_t n ) ;
+/*       98 */  extern int mbtowc ( wchar_t * wc , LIBDEF_ConstStringPtr mb , size_t n ) ;
+/*       99 */  extern int wctomb ( LIBDEF_StringPtr mb , wchar_t wc ) ;
+/*      100 */  extern size_t mbstowcs ( wchar_t * wc , LIBDEF_ConstStringPtr mb , size_t n ) ;
+/*      101 */  extern size_t wcstombs ( LIBDEF_StringPtr mb , const wchar_t * wc , size_t n ) ;
+/*      104 */  }
+/*      113 */ 
+
+/**** FILE 'D:\versionR51\microsdhacel\soft micros\Codigo\codigo portable\Vista\Display\Display.cpp' */
+
+
+/*        5 */ 
+
+/**** FILE 'matriz.h' */
+
+
+/*        4 */  #pragma CONST_SEG DEFAULT
+/*        5 */  extern const unsigned char Car_Ini [ ] ;
+/*       11 */ 
+
+/**** FILE 'D:\versionR51\microsdhacel\soft micros\Codigo\codigo portable\Vista\Display\Display.cpp' */
+
+
+/*        7 */  Display :: Display ( byte * _puerto ) : puerto ( _puerto ) , corrimiento ( 0 ) , nLetras ( 0 ) { }
+/*       10 */  void Display :: write ( const char * str ) {
+/*       11 */  byte temp , digitoTmp ;
+/*       13 */  if ( nLetras > 4 )
+/*       14 */  resetearCorrimiento ( ) ;
+/*       15 */  nLetras = 0 ;
+/*       17 */  while ( * str != '\000' )
+/*       18 */  {
+/*       19 */  temp = * str ;
+/*       20 */  temp -= '-' ;
+/*       22 */  if ( * str == '.' && nLetras ) {
+/*       23 */  str ++ ;
+/*       24 */  mensaje [ nLetras - 1 ] |= 0x80 ;
+/*       25 */  continue ;
+/*       26 */  }
+/*       28 */  if ( ( * str ) != ' ' )
+/*       29 */  digitoTmp = ( byte ) Car_Ini [ temp ] ;
+/*       30 */  else
+/*       31 */  digitoTmp = 0x00 ;
+/*       33 */  mensaje [ nLetras ] = digitoTmp ;
+/*       34 */  nLetras ++ ;
+/*       35 */  str ++ ;
+/*       36 */  }
+/*       37 */  }
+/*       39 */  void Display :: write ( int i ) {
+/*       40 */  char str [ 5 ] ;
+/*       41 */  sprintf ( str , "%DIGITOSi" , abs ( i ) ) ;
+/*       42 */  if ( i < 0 )
+/*       43 */  str [ 0 ] |= Car_Ini [ 0 ] ;
+/*       44 */  write ( str ) ;
+/*       45 */  }
+/*       47 */  void Display :: write ( int i , uchar decimales ) {
+/*       49 */  }
+/*       52 */  void Display :: write ( unsigned char b ) {
+/*       53 */  char str [ 2 ] = " " ;
+/*       54 */  str [ 0 ] = b ;
+/*       55 */  write ( str ) ;
+/*       56 */  }
+/*       58 */  void Display :: borrar ( ) {
+/*       59 */  nLetras = 0 ;
+/*       60 */  }
+/*       62 */  void Display :: apagar ( ) {
+/*       63 */  * puerto = 0 ;
+/*       64 */  }
+/*       66 */  bool Display :: isScrolling ( ) {
+/*       67 */  return nLetras > DIGITOS ;
+/*       68 */  }
+/*       71 */  void Display :: resetearCorrimiento ( ) {
+/*       72 */  corrimiento = 0 ;
+/*       73 */  }
+/*       75 */  void Display :: incrementarCorrimiento ( ) {
+/*       76 */  corrimiento ++ ;
+/*       77 */  if ( corrimiento == nLetras + DIGITOS )
+/*       78 */  corrimiento = 0 ;
+/*       79 */  }
+/*       81 */  void Display :: imprimirDigito ( byte numDigito ) {
+/*       82 */  byte caracterAMostrar = numDigito + corrimiento ;
+/*       83 */  if ( caracterAMostrar < nLetras )
+/*       84 */  * puerto = mensaje [ numDigito + corrimiento ] ;
+/*       85 */  else
+/*       86 */  * puerto = 0 ;
+/*       87 */  }

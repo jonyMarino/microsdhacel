@@ -1,0 +1,11 @@
+Units and locations in library 'D:\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\ooc\lib_cpp\ooc_hcs12_cpp_si.lib'
+Unit name                                                                                                                             size     from       to
+D:\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\ooc\ooc_hcs12_cpp_Data\C++_Ms_no_float\ObjectCode\OutputStream.cpp.o      7608      155     7763
+
+EXPORTED OBJECTS
+____vtbl__OutputStream                   O   (D:\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\ooc\ooc_hcs12_cpp_Data\C++_Ms_no_float\ObjectCode\OutputStream.cpp.o)
+__as__12OutputStreamFRC12OutputStream    F   (D:\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\ooc\ooc_hcs12_cpp_Data\C++_Ms_no_float\ObjectCode\OutputStream.cpp.o)
+__ct__12OutputStreamFRC12OutputStream    F   (D:\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\ooc\ooc_hcs12_cpp_Data\C++_Ms_no_float\ObjectCode\OutputStream.cpp.o)
+__ct__12OutputStreamFv                   F   (D:\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\ooc\ooc_hcs12_cpp_Data\C++_Ms_no_float\ObjectCode\OutputStream.cpp.o)
+close__12OutputStreamFv                  F   (D:\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\ooc\ooc_hcs12_cpp_Data\C++_Ms_no_float\ObjectCode\OutputStream.cpp.o)
+flush__12OutputStreamFv                  F   (D:\versionR51\microsdhacel\soft micros\Codigo\Librerias\OOC\ooc\ooc_hcs12_cpp_Data\C++_Ms_no_float\ObjectCode\OutputStream.cpp.o)

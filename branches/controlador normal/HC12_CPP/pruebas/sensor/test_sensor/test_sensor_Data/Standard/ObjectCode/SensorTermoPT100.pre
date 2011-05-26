@@ -1,0 +1,4863 @@
+
+
+/**** FILE 'D:\versionR51\microsdhacel\soft micros\Codigo\codigo portable\Sensor\SensorTermoPT100.cpp' */
+
+
+/*       12 */ 
+
+/**** FILE 'D:\versionR51\microsdhacel\soft micros\Codigo\codigo portable\Sensor\SensorTermoPT100.cpp' */
+
+
+/*        3 */ 
+
+/**** FILE 'SensorTermoPT100.hpp' */
+
+
+/*        6 */ 
+
+/**** FILE 'Sensor.hpp' */
+
+
+/*        6 */ 
+
+/**** FILE 'Getter.hpp' */
+
+
+/*        6 */ 
+
+/**** FILE 'OutputStream.hpp' */
+
+
+/*        5 */  class OutputStream
+/*        6 */  {
+/*        7 */  public :
+/*        8 */  OutputStream ( ) ;
+/*       15 */  virtual void close ( void ) ;
+/*       22 */  virtual void flush ( void ) ;
+/*       27 */  virtual void write ( const char * b ) ;
+/*       30 */  virtual void write ( unsigned char b ) ;
+/*       31 */  } ;
+/*       36 */ 
+
+/**** FILE 'Getter.hpp' */
+
+
+/*        7 */  class Getter {
+/*        8 */  public :
+/*        9 */  virtual void print ( OutputStream & os ) = 0 ;
+/*       10 */  virtual int getVal ( ) = 0 ;
+/*       11 */  } ;
+/*       16 */ 
+
+/**** FILE 'Sensor.hpp' */
+
+
+/*        7 */ 
+
+/**** FILE 'MethodContainer.hpp' */
+
+
+/*        6 */ 
+
+/**** FILE 'LinkedList.hpp' */
+
+
+/*        5 */ 
+
+/**** FILE 'stddef.h' */
+
+
+/*       13 */  extern "C" {
+/*       22 */  typedef unsigned int size_t ;
+/*       35 */  typedef signed int ptrdiff_t ;
+/*       44 */  typedef unsigned char wchar_t ;
+/*       56 */  typedef unsigned long clock_t ;
+/*       58 */  typedef unsigned long time_t ;
+/*       66 */  }
+/*       75 */ 
+
+/**** FILE 'LinkedList.hpp' */
+
+
+/*        6 */ 
+
+/**** FILE 'nodo.hpp' */
+
+
+/*        5 */  #pragma CODE_SEG NODO_CODE
+/*        6 */  #pragma DATA_SEG NODO_DATA
+/*        7 */  #pragma CONST_SEG DEFAULT
+/*        9 */  class Nodo {
+/*       10 */  public :
+/*       11 */  Nodo ( void * _dato , Nodo * _next ) ;
+/*       12 */  inline void * getDato ( void ) { return dato ; } ;
+/*       13 */  void setDato ( void * dato ) ;
+/*       14 */  inline Nodo * getNext ( void ) { return next ; } ;
+/*       15 */  void setNext ( Nodo * nodo ) ;
+/*       17 */  private :
+/*       18 */  unsigned char differ ( Nodo * node ) ;
+/*       19 */  void * dato ;
+/*       20 */  Nodo * next ;
+/*       21 */  } ;
+/*       24 */  #pragma CODE_SEG DEFAULT
+/*       25 */  #pragma DATA_SEG DEFAULT
+/*       26 */  #pragma CONST_SEG DEFAULT
+/*       31 */ 
+
+/**** FILE 'LinkedList.hpp' */
+
+
+/*        7 */ 
+
+/**** FILE 'Iterator.hpp' */
+
+
+/*        5 */ 
+
+/**** FILE 'PE_Types.h' */
+
+
+/*       38 */  typedef unsigned char bool ;
+/*       39 */  typedef unsigned char byte ;
+/*       40 */  typedef unsigned int word ;
+/*       41 */  typedef unsigned long dword ;
+/*       42 */  typedef unsigned long dlong [ 2 ] ;
+/*       43 */  typedef void ( * tIntFunc ) ( void ) ;
+/*       46 */  typedef unsigned char VUINT8 ;
+/*       47 */  typedef signed char VINT8 ;
+/*       48 */  typedef unsigned short int VUINT16 ;
+/*       49 */  typedef signed short int VINT16 ;
+/*       50 */  typedef unsigned long int VUINT32 ;
+/*      162 */  typedef struct {
+/*      163 */  word width ;
+/*      164 */  word height ;
+/*      165 */  byte * pixmap ;
+/*      166 */  word size ;
+/*      167 */  VINT8 * name ;
+/*      168 */  } TIMAGE ;
+/*      169 */  typedef TIMAGE * PIMAGE ;
+/*      172 */  typedef union {
+/*      173 */  word w ;
+/*      174 */  struct {
+/*      175 */  byte high , low ;
+/*      176 */  } b ;
+/*      177 */  } TWREG ;
+/*      190 */ 
+
+/**** FILE 'Iterator.hpp' */
+
+
+/*        6 */  class Iterator {
+/*        7 */  public :
+/*        8 */  virtual void * next ( void ) = 0 ;
+/*        9 */  virtual bool hasNext ( void ) = 0 ;
+/*       10 */  } ;
+/*       16 */ 
+
+/**** FILE 'LinkedList.hpp' */
+
+
+/*        8 */ 
+
+/**** FILE 'List.hpp' */
+
+
+/*        5 */ 
+
+/**** FILE 'Collection.hpp' */
+
+
+/*        7 */  class Collection
+/*        8 */  {
+/*        9 */  public :
+/*       10 */  virtual bool add ( void * obj ) = 0 ;
+/*       11 */  virtual void clear ( void ) = 0 ;
+/*       12 */  virtual bool contains ( void * obj ) = 0 ;
+/*       13 */  virtual bool isEmpty ( void ) = 0 ;
+/*       14 */  virtual Iterator * iterator ( void ) = 0 ;
+/*       15 */  virtual bool moveOut ( void * obj ) = 0 ;
+/*       16 */  virtual unsigned int size ( void ) = 0 ;
+/*       17 */  } ;
+/*       23 */ 
+
+/**** FILE 'List.hpp' */
+
+
+/*        6 */  class List : public Collection
+/*        7 */  {
+/*        8 */  public :
+/*        9 */  virtual void * get ( unsigned int index ) = 0 ;
+/*       10 */  } ;
+/*       17 */ 
+
+/**** FILE 'LinkedList.hpp' */
+
+
+/*        9 */ 
+
+/**** FILE 'LinkedList.hpp' */
+
+
+/*       71 */ 
+
+/**** FILE 'LinkedList.hpp' */
+
+
+/*       10 */  #pragma CODE_SEG LinkedList_CODE
+/*       11 */  #pragma DATA_SEG LinkedList_DATA
+/*       14 */  class LinkedList : public List
+/*       15 */  {
+/*       16 */  public :
+/*       17 */  LinkedList ( ) ;
+/*       18 */  ~ LinkedList ( ) ;
+/*       19 */  virtual bool add ( void * dato ) ;
+/*       20 */  virtual bool aniadir ( void * dato ) ;
+/*       28 */  unsigned int size ( void ) ;
+/*       29 */  bool contains ( void * dato ) ;
+/*       30 */  void * eliminarPrimero ( void ) ;
+/*       31 */  Iterator * iterator ( ) ;
+/*       32 */  virtual void * get ( unsigned int index ) ;
+/*       33 */  bool moveOut ( void * dato ) ;
+/*       34 */  bool isEmpty ( ) ;
+/*       35 */  void clear ( ) ;
+/*       37 */  unsigned char differ ( LinkedList * _l ) ;
+/*       39 */  class LinkedListIterator : public Iterator {
+/*       40 */  public :
+/*       41 */  LinkedListIterator ( ) ;
+/*       42 */  LinkedListIterator ( LinkedList * list ) ;
+/*       43 */  virtual bool hasNext ( void ) ;
+/*       44 */  virtual void * next ( void ) ;
+/*       45 */  private :
+/*       46 */  Nodo * nodoNext ;
+/*       47 */  friend class LinkedList ;
+/*       48 */  } ;
+/*       50 */  void linkedListIterator ( LinkedListIterator * it ) ;
+/*       52 */  protected :
+/*       53 */  Nodo * getPrimerNodo ( ) ;
+/*       54 */  void setPrimerNodo ( Nodo * ) ;
+/*       55 */  private :
+/*       56 */  Nodo * nodo ;
+/*       57 */  void deleteNodo ( Nodo * tmpNodo , Nodo * tmpNodoAnterior ) ;
+/*       58 */  friend class LinkedListIterator ;
+/*       60 */  } ;
+/*       65 */  #pragma CODE_SEG DEFAULT
+/*       66 */  #pragma DATA_SEG DEFAULT
+/*       71 */ 
+
+/**** FILE 'MethodContainer.hpp' */
+
+
+/*        8 */  class MethodContainer : public LinkedList {
+/*        9 */  public :
+/*       10 */  MethodContainer ( ) ;
+/*       11 */  virtual bool add ( void * ) ;
+/*       12 */  void executeMethods ( ) ;
+/*       13 */  } ;
+/*       18 */ 
+
+/**** FILE 'Sensor.hpp' */
+
+
+/*        8 */  class Method ;
+/*       10 */  class Sensor : public Getter {
+/*       11 */  public :
+/*       12 */  void addOnNuevoValorListener ( const struct Method * metodo ) ;
+/*       13 */  void deleteOnNuevoValorListener ( const struct Method * metodo ) ;
+/*       15 */  unsigned char getDecimales ( ) ;
+/*       19 */  enum TSensorState {
+/*       20 */  SENSOR_OK ,
+/*       21 */  SENSOR_OF ,
+/*       22 */  SENSOR_UF
+/*       23 */  } ;
+/*       26 */  TSensorState getEstado ( ) ;
+/*       28 */  int getLimiteInferior ( ) ;
+/*       30 */  int getLimiteSuperior ( ) ;
+/*       32 */  protected :
+/*       33 */  void callOnNuevoValorListeners ( ) ;
+/*       35 */  private :
+/*       36 */  MethodContainer listeners ;
+/*       41 */  } ;
+/*       45 */ 
+
+/**** FILE 'SensorTermoPT100.hpp' */
+
+
+/*        7 */ 
+
+/**** FILE 'FshTypeSizes.h' */
+
+
+/*        9 */ 
+
+/**** FILE 'SensorTermoPT100.hpp' */
+
+
+/*        8 */ 
+
+/**** FILE 'IAdc.hpp' */
+
+
+/*        7 */  class IAdc : public Getter {
+/*        8 */  public :
+/*        9 */  virtual bool isNewVal ( ) = 0 ;
+/*       10 */  virtual int getTemperaturaAmbiente ( ) = 0 ;
+/*       11 */  enum AD_State {
+/*       12 */  AD_CONVERTING ,
+/*       13 */  AD_WAITING
+/*       15 */  } ;
+/*       16 */  virtual AD_State getState ( ) = 0 ;
+/*       18 */  } ;
+/*       22 */ 
+
+/**** FILE 'SensorTermoPT100.hpp' */
+
+
+/*        9 */ 
+
+/**** FILE 'Adc.hpp' */
+
+
+/*        7 */  class Adc : public IAdc {
+/*        8 */  public :
+/*       10 */  unsigned char pin ;
+/*       12 */  Adc ( int pin ) ;
+/*       14 */  bool isNewVal ( ) ;
+/*       16 */  IAdc :: AD_State getState ( ) ;
+/*       18 */  int getValor ( ) ;
+/*       20 */  void print ( OutputStream & os ) ;
+/*       22 */  virtual int getTemperaturaAmbiente ( ) ;
+/*       23 */  private :
+/*       25 */  static bool init ;
+/*       26 */  } ;
+/*       31 */ 
+
+/**** FILE 'SensorTermoPT100.hpp' */
+
+
+/*       10 */ 
+
+/**** FILE 'Sensores.h' */
+
+
+/*        9 */  enum TADState {
+/*       10 */  AD_OK ,
+/*       11 */  AD_OF ,
+/*       12 */  AD_UF
+/*       13 */  } ;
+/*       15 */  typedef struct {
+/*       16 */  const int * xdat ;
+/*       17 */  const int * ydat ;
+/*       18 */  byte max_array ;
+/*       19 */  byte decimales_max ;
+/*       21 */  byte decimales_mostrar ;
+/*       23 */  } T_Sensor ;
+/*       39 */  typedef enum {
+/*       40 */  SENSOR_JB ,
+/*       41 */  SENSOR_JA ,
+/*       42 */  SENSOR_N ,
+/*       43 */  SENSOR_KA ,
+/*       44 */  SENSOR_KB ,
+/*       45 */  SENSOR_S ,
+/*       46 */  SENSOR_R ,
+/*       47 */  SENSOR_T ,
+/*       48 */  SENSOR_PT ,
+/*       52 */  SENSOR_LIN1 ,
+/*       53 */  SENSOR_LIN2 ,
+/*       54 */  SENSOR_LIN3 ,
+/*       55 */  SENSOR_LIN4 ,
+/*       56 */  SENSOR_MV
+/*       57 */  } t_sensor ;
+/*       75 */  extern const T_Sensor sensorConf [ 14 + 0 ] ;
+/*       88 */  TADState Linealizar ( int Vx , t_sensor sensor , int * Vy ) ;
+/*       97 */  TADState Sens_getColdComp ( int temp_amb , int * ColdComp , t_sensor sensor ) ;
+/*      100 */  bool SENSOR_is_Lineal ( t_sensor sensor ) ;
+/*      108 */  const char * SENSOR_getText ( byte sensor ) ;
+/*      118 */ 
+
+/**** FILE 'SensorTermoPT100.hpp' */
+
+
+/*       12 */  class SensorTermoPT100 : public Sensor {
+/*       13 */  public :
+/*       14 */  typedef struct {
+/*       15 */  int sensor ;
+/*       17 */  int filtro ;
+/*       19 */  int offset ;
+/*       21 */  int ganancia ;
+/*       23 */  int ceroTermopar ;
+/*       25 */  int gananciaTermopar ;
+/*       27 */  int ceroPT100 ;
+/*       29 */  int gananciaPT100 ;
+/*       31 */  } TConfSensor ;
+/*       33 */  SensorTermoPT100 ( IAdc & _adc , const TConfSensor & _conf , struct ManejadorMemoria & _manejadorMemoria ) ;
+/*       35 */  static void setConfiguracionTemperaturaAmbiente ( int * ta ) ;
+/*       37 */  unsigned char getDecimales ( ) ;
+/*       39 */  Sensor :: TSensorState getEstado ( ) ;
+/*       41 */  int getLimiteInferior ( ) ;
+/*       43 */  int getLimiteSuperior ( ) ;
+/*       45 */  int getVal ( ) ;
+/*       50 */  void checkADC ( ) ;
+/*       52 */  void print ( OutputStream & os ) ;
+/*       54 */  int getSensor ( ) ;
+/*       56 */  void setSensor ( int ) ;
+/*       58 */  int getLimSupSensor ( ) ;
+/*       60 */  unsigned char getFiltro ( ) ;
+/*       62 */  void setFiltro ( unsigned char filtro ) ;
+/*       64 */  int getOffset ( ) ;
+/*       66 */  void setOffset ( int ) ;
+/*       68 */  int getGanancia ( ) ;
+/*       70 */  void setGanancia ( int ) ;
+/*       72 */  int getCeroTermopar ( ) ;
+/*       74 */  void setCeroTermopar ( int ) ;
+/*       76 */  int getGananciaTermopar ( ) ;
+/*       78 */  void setGananciaTermopar ( int ) ;
+/*       80 */  int getCeroPT100 ( ) ;
+/*       82 */  void setCeroPT100 ( int ) ;
+/*       84 */  int getGananciaPT100 ( ) ;
+/*       86 */  void setGananciaPT100 ( int ) ;
+/*       88 */  int getAjusteTemperaturaAmbiente ( ) ;
+/*       90 */  void setAjusteTemperaturaAmbiente ( int ) ;
+/*       92 */  int getTiempoMuestreo ( ) ;
+/*       95 */  private :
+/*       96 */  Adc & _adc ;
+/*       98 */  IAdc & adc ;
+/*      100 */  struct ManejadorMemoria & manejadorMemoria ;
+/*      102 */  const TConfSensor & configuracion ;
+/*      104 */  int valor ;
+/*      106 */  long bufferFiltro ;
+/*      108 */  Sensor :: TSensorState estado ;
+/*      110 */  static int * compensacionTempAmb ;
+/*      112 */  char onSensorChange ( int ) ;
+/*      114 */  void procesar ( ) ;
+/*      115 */  } ;
+/*      119 */ 
+
+/**** FILE 'D:\versionR51\microsdhacel\soft micros\Codigo\codigo portable\Sensor\SensorTermoPT100.cpp' */
+
+
+/*        4 */ 
+
+/**** FILE 'ManejadorMemoria.h' */
+
+
+/*        5 */ 
+
+/**** FILE 'Object.h' */
+
+
+/*        7 */  extern "C"
+/*        8 */  {
+/*       12 */ 
+
+/**** FILE 'stdarg.h' */
+
+
+/*       14 */  extern "C" {
+/*       27 */  typedef char * va_list ;
+/*      122 */  }
+/*      157 */ 
+
+/**** FILE 'Object.h' */
+
+
+/*       13 */ 
+
+/**** FILE 'stddef.h' */
+
+
+/*       75 */ 
+
+/**** FILE 'Object.h' */
+
+
+/*       14 */ 
+
+/**** FILE 'stdtypes.h' */
+
+
+/*       18 */  extern "C" {
+/*       26 */  typedef void ( * PROC ) ( void ) ;
+/*       30 */  typedef unsigned char Byte ;
+/*       31 */  typedef signed char sByte ;
+/*       61 */  typedef unsigned int Word ;
+/*       62 */  typedef signed int sWord ;
+/*       88 */  typedef unsigned long LWord ;
+/*       89 */  typedef signed long sLWord ;
+/*      102 */  typedef unsigned char uchar ;
+/*      104 */  typedef unsigned int uint ;
+/*      106 */  typedef unsigned long ulong ;
+/*      109 */  typedef unsigned long long ullong ;
+/*      113 */  typedef signed char schar ;
+/*      115 */  typedef signed int sint ;
+/*      117 */  typedef signed long slong ;
+/*      120 */  typedef signed long long sllong ;
+/*      137 */  typedef sWord enum_t ;
+/*      153 */  typedef int Bool ;
+/*      168 */  }
+/*      176 */ 
+
+/**** FILE 'Object.h' */
+
+
+/*       15 */ 
+
+/**** FILE 'stdio.h' */
+
+
+/*       13 */  extern "C" {
+/*       17 */ 
+
+/**** FILE 'stddef.h' */
+
+
+/*       75 */ 
+
+/**** FILE 'stdio.h' */
+
+
+/*       18 */ 
+
+/**** FILE 'stdarg.h' */
+
+
+/*      157 */ 
+
+/**** FILE 'stdio.h' */
+
+
+/*       19 */ 
+
+/**** FILE 'string.h' */
+
+
+/*       13 */  extern "C" {
+/*       17 */ 
+
+/**** FILE 'libdefs.h' */
+
+
+/*       30 */  extern "C" {
+/*       34 */ 
+
+/**** FILE 'hidef.h' */
+
+
+/*       13 */  extern "C" {
+/*       20 */ 
+
+/**** FILE 'default2.sgm' */
+
+
+/*       28 */ 
+
+/**** FILE 'hidef.h' */
+
+
+/*       29 */ 
+
+/**** FILE 'stddef.h' */
+
+
+/*       75 */ 
+
+/**** FILE 'hidef.h' */
+
+
+/*       30 */  #pragma NO_STRING_CONSTR
+/*      110 */  extern char __SEG_END_SSTACK [ ] ;
+/*      117 */  extern const unsigned char _PowOfTwo_8 [ 8 ] ;
+/*      119 */  extern const unsigned short _PowOfTwo_16 [ 16 ] ;
+/*      121 */  extern const unsigned long _PowOfTwo_32 [ 32 ] ;
+/*      138 */  }
+/*      146 */ 
+
+/**** FILE 'libdefs.h' */
+
+
+/*      153 */  typedef const char * ConstString ;
+/*      155 */  typedef const char * LIBDEF_ConstStringPtr ;
+/*      157 */  typedef char * LIBDEF_StringPtr ;
+/*      160 */  typedef const void * ConstMem ;
+/*      162 */  typedef const void * LIBDEF_ConstMemPtr ;
+/*      164 */  typedef void * LIBDEF_MemPtr ;
+/*      166 */  typedef char LIBDEF_MemByte ;
+/*      168 */  typedef LIBDEF_MemByte * LIBDEF_MemBytePtr ;
+/*      170 */  typedef const LIBDEF_MemByte * LIBDEF_ConstMemBytePtr ;
+/*      325 */  }
+/*      333 */ 
+
+/**** FILE 'string.h' */
+
+
+/*       18 */ 
+
+/**** FILE 'stddef.h' */
+
+
+/*       75 */ 
+
+/**** FILE 'string.h' */
+
+
+/*       50 */  extern LIBDEF_MemPtr memchr ( LIBDEF_ConstMemPtr buffer , int chr , size_t count ) ;
+/*       51 */  extern int memcmp ( LIBDEF_ConstMemPtr buf1 , LIBDEF_ConstMemPtr buf2 , size_t count ) ;
+/*       52 */  extern LIBDEF_MemPtr memcpy ( LIBDEF_MemPtr dest , LIBDEF_ConstMemPtr source , size_t count ) ;
+/*       54 */  extern void memcpy2 ( LIBDEF_MemPtr dest , LIBDEF_ConstMemPtr source , size_t count ) ;
+/*       56 */  extern void _memcpy_8bitCount ( LIBDEF_MemPtr dest , LIBDEF_ConstMemPtr source , unsigned char count ) ;
+/*       59 */  extern LIBDEF_MemPtr memmove ( LIBDEF_MemPtr dest , LIBDEF_ConstMemPtr source , size_t count ) ;
+/*       60 */  extern LIBDEF_MemPtr memset ( LIBDEF_MemPtr buffer , int chr , size_t count ) ;
+/*       61 */  extern void _memset_clear_8bitCount ( LIBDEF_MemPtr buffer , unsigned char count ) ;
+/*       69 */  extern size_t strlen ( LIBDEF_ConstStringPtr str ) ;
+/*       70 */  extern LIBDEF_StringPtr strset ( LIBDEF_StringPtr str , int chr ) ;
+/*       71 */  extern LIBDEF_StringPtr strcat ( LIBDEF_StringPtr str_d , LIBDEF_ConstStringPtr str_s ) ;
+/*       72 */  extern LIBDEF_StringPtr strncat ( LIBDEF_StringPtr str_d , LIBDEF_ConstStringPtr str_s , size_t count ) ;
+/*       73 */  extern LIBDEF_StringPtr strcpy ( LIBDEF_StringPtr str_d , LIBDEF_ConstStringPtr str_s ) ;
+/*       74 */  extern LIBDEF_StringPtr strncpy ( LIBDEF_StringPtr str_d , LIBDEF_ConstStringPtr str_s , size_t count ) ;
+/*       75 */  extern int strcmp ( LIBDEF_ConstStringPtr str1 , LIBDEF_ConstStringPtr str2 ) ;
+/*       76 */  extern int strncmp ( LIBDEF_ConstStringPtr str1 , LIBDEF_ConstStringPtr str2 , size_t count ) ;
+/*       77 */  extern LIBDEF_StringPtr strchr ( LIBDEF_ConstStringPtr str , int chr ) ;
+/*       78 */  extern LIBDEF_StringPtr strrchr ( LIBDEF_ConstStringPtr str , int chr ) ;
+/*       79 */  extern size_t strspn ( LIBDEF_ConstStringPtr str1 , LIBDEF_ConstStringPtr str2 ) ;
+/*       80 */  extern size_t strcspn ( LIBDEF_ConstStringPtr str1 , LIBDEF_ConstStringPtr str2 ) ;
+/*       81 */  extern LIBDEF_StringPtr strpbrk ( LIBDEF_ConstStringPtr str1 , LIBDEF_ConstStringPtr str2 ) ;
+/*       82 */  extern LIBDEF_StringPtr strstr ( LIBDEF_ConstStringPtr str1 , LIBDEF_ConstStringPtr str2 ) ;
+/*       83 */  extern LIBDEF_StringPtr strtok ( LIBDEF_StringPtr str1 , LIBDEF_ConstStringPtr str2 ) ;
+/*       84 */  extern LIBDEF_StringPtr strerror ( int errnum ) ;
+/*       85 */  extern int strcoll ( LIBDEF_ConstStringPtr string1 , LIBDEF_ConstStringPtr string2 ) ;
+/*       86 */  extern size_t strxfrm ( LIBDEF_StringPtr strDest , LIBDEF_ConstStringPtr strSource , size_t count ) ;
+/*       90 */  }
+/*       99 */ 
+
+/**** FILE 'stdio.h' */
+
+
+/*       21 */ 
+
+/**** FILE 'errno.h' */
+
+
+/*       13 */  extern "C" {
+/*       29 */  extern int errno ;
+/*       32 */  }
+/*       41 */ 
+
+/**** FILE 'stdio.h' */
+
+
+/*       34 */  typedef struct chnl {
+/*       35 */  char * channel_name ;
+/*       36 */  char * port_addr ;
+/*       37 */  char flags ;
+/*       38 */  char lastchar ;
+/*       39 */  int ( * open_channel ) ( ) ;
+/*       40 */  int ( * close_channel ) ( ) ;
+/*       41 */  int ( * read_channel ) ( ) ;
+/*       42 */  int ( * write_channel ) ( ) ;
+/*       43 */  } FILE ;
+/*       45 */  extern FILE channels [ 1 ] ;
+/*       47 */  typedef long fpos_t ;
+/*       77 */  int fputc ( int c , FILE * stream ) ;
+/*      145 */  extern FILE * fopen ( LIBDEF_ConstStringPtr name , LIBDEF_ConstStringPtr mode ) ;
+/*      146 */  extern int fsetpos ( FILE * f , const fpos_t * pos ) ;
+/*      147 */  extern int scanf ( LIBDEF_ConstStringPtr s , ... ) ;
+/*      148 */  extern int sscanf ( LIBDEF_ConstStringPtr s , LIBDEF_ConstStringPtr format , ... ) ;
+/*      149 */  extern int vsscanf ( LIBDEF_ConstStringPtr s , LIBDEF_ConstStringPtr format , va_list ) ;
+/*      150 */  extern int puts ( LIBDEF_ConstStringPtr s ) ;
+/*      155 */  extern int printf ( LIBDEF_ConstStringPtr s , ... ) ;
+/*      156 */  extern int fprintf ( FILE * f , LIBDEF_ConstStringPtr , ... ) ;
+/*      157 */  extern int vfprintf ( FILE * f , LIBDEF_ConstStringPtr s , va_list ) ;
+/*      158 */  extern int sprintf ( LIBDEF_StringPtr s , LIBDEF_ConstStringPtr format , ... ) ;
+/*      159 */  extern int vsprintf ( LIBDEF_StringPtr s , LIBDEF_ConstStringPtr format , va_list ) ;
+/*      161 */  extern void set_printf ( void ( * f ) ( char ) ) ;
+/*      163 */  extern int vprintf ( LIBDEF_ConstStringPtr format , va_list args ) ;
+/*      180 */  extern int fclose ( FILE * f ) ;
+/*      181 */  extern FILE * freopen ( const char * name , const char * mode , FILE * f ) ;
+/*      183 */  extern int remove ( LIBDEF_ConstStringPtr name ) ;
+/*      184 */  extern int rename ( const char * old_name , const char * new_name ) ;
+/*      188 */  extern FILE * tmpfile ( void ) ;
+/*      189 */  extern char * tmpnam ( char * name ) ;
+/*      190 */  extern int fflush ( FILE * f ) ;
+/*      191 */  extern void setbuf ( FILE * f , char * buf ) ;
+/*      192 */  extern int setvbuf ( FILE * f , char * buf , int mode , size_t size ) ;
+/*      193 */  extern int fgetpos ( FILE * f , long * pos ) ;
+/*      194 */  extern int fseek ( FILE * f , long offset , int mode ) ;
+/*      195 */  extern long int ftell ( FILE * f ) ;
+/*      196 */  extern void rewind ( FILE * f ) ;
+/*      197 */  extern int fgetc ( FILE * f ) ;
+/*      198 */  extern size_t fread ( void * buf , size_t size , size_t n , FILE * f ) ;
+/*      199 */  extern size_t fwrite ( const void * buf , size_t size , size_t n , FILE * f ) ;
+/*      200 */  extern LIBDEF_StringPtr fgets ( LIBDEF_StringPtr s , int n , FILE * f ) ;
+/*      201 */  extern int fputs ( LIBDEF_ConstStringPtr s , FILE * f ) ;
+/*      202 */  extern int fscanf ( FILE * f , const char * s , ... ) ;
+/*      203 */  extern int ungetc ( int c , FILE * f ) ;
+/*      205 */  extern LIBDEF_StringPtr gets ( LIBDEF_StringPtr s ) ;
+/*      212 */  }
+/*      221 */ 
+
+/**** FILE 'Object.h' */
+
+
+/*       16 */ 
+
+/**** FILE 'Object_r.h' */
+
+
+/*        5 */ 
+
+/**** FILE 'stdarg.h' */
+
+
+/*      157 */ 
+
+/**** FILE 'Object_r.h' */
+
+
+/*        8 */  extern "C"
+/*        9 */  {
+/*       14 */  struct Class ;
+/*       16 */  const struct Object {
+/*       17 */  const struct Class * _class ;
+/*       18 */  } ;
+/*       20 */  void Object_ctor ( void * _self , va_list * app ) ;
+/*       21 */  void Object_dtor ( void * _self ) ;
+/*       22 */  unsigned char Object_differ ( const void * _self , const void * b ) ;
+/*       23 */  int Object_puto ( const void * _self , struct OutStream * os ) ;
+/*       26 */  struct Class {
+/*       27 */  struct Object _super ;
+/*       28 */  const char * name ;
+/*       29 */  const struct Class * superPointer ;
+/*       30 */  size_t size ;
+/*       31 */  void ( * ctor ) ( void * self , va_list * app ) ;
+/*       32 */  void ( * dtor ) ( void * self ) ;
+/*       33 */  unsigned char ( * differ ) ( const void * self , const void * b ) ;
+/*       34 */  int ( * puto ) ( const void * self , struct OutStream * os ) ;
+/*       35 */  } ;
+/*       37 */  void super_ctor ( const void * _class , void * self , va_list * app ) ;
+/*       38 */  void super_dtor ( const void * _class , void * self ) ;
+/*       39 */  int super_differ ( const void * _class , const void * self , const void * b ) ;
+/*       40 */  int super_puto ( const void * _class , const void * self , FILE * fp ) ;
+/*       55 */  }
+/*       61 */ 
+
+/**** FILE 'Object.h' */
+
+
+/*       18 */  extern const struct Class Object ;
+/*       20 */  void * _new ( const void * _class , ... ) ;
+/*       22 */  void * newAlloced ( void * _self , const void * classOf , ... ) ;
+/*       23 */  void _delete ( void * self ) ;
+/*       24 */  void deleteAlloced ( void * _self ) ;
+/*       25 */  void deleteAndNil ( void * * _self ) ;
+/*       27 */  const void * classOf ( const void * self ) ;
+/*       28 */  uchar instanceOf ( const void * _self , const struct Class * _class ) ;
+/*       29 */  size_t sizeOf ( const void * self ) ;
+/*       31 */  void ctor ( void * self , va_list * app ) ;
+/*       32 */  void dtor ( void * self ) ;
+/*       33 */  unsigned char differ ( const void * _self , const void * b ) ;
+/*       34 */  int puto ( const void * _self , struct OutputStream * os ) ;
+/*       38 */  extern const struct Class Class ;
+/*       40 */  const void * super ( const void * self ) ;
+/*       43 */  }
+/*       49 */ 
+
+/**** FILE 'ManejadorMemoria.h' */
+
+
+/*        6 */ 
+
+/**** FILE 'Timer.h' */
+
+
+/*        5 */ 
+
+/**** FILE 'stdtypes.h' */
+
+
+/*      176 */ 
+
+/**** FILE 'Timer.h' */
+
+
+/*        8 */ 
+
+/**** FILE 'BaseTimers.hpp' */
+
+
+/*        7 */  class BaseTimers : public LinkedList {
+/*        8 */  public :
+/*        9 */  unsigned long getCuenta ( ) ;
+/*       10 */  virtual bool moveOut ( void * timer ) ;
+/*       11 */  protected :
+/*       12 */  void actualizarTimers ( void ) ;
+/*       13 */  void incrementar ( unsigned int ms ) ;
+/*       14 */  virtual void lockInc ( ) = 0 ;
+/*       15 */  virtual void unlockInc ( ) = 0 ;
+/*       16 */  private :
+/*       17 */  unsigned long cuenta ;
+/*       18 */  int index ;
+/*       19 */  } ;
+/*       25 */ 
+
+/**** FILE 'Timer.h' */
+
+
+/*       10 */  #pragma DATA_SEG Timer_DATA
+/*       11 */  #pragma CODE_SEG Timer_CODE
+/*       12 */  #pragma CONST_SEG DEFAULT
+/*       15 */  struct TimerClass {
+/*       16 */  struct Class super ;
+/*       17 */  void ( * onTime ) ( void * ) ;
+/*       18 */  } ;
+/*       21 */  struct Timer {
+/*       22 */  struct Object super ;
+/*       24 */  ulong next_cuenta ;
+/*       25 */  ulong tiempo ;
+/*       26 */  uchar of ;
+/*       27 */  BaseTimers * baseTimer ;
+/*       28 */  } ;
+/*       30 */  extern const struct Class TimerClass ;
+/*       31 */  extern const struct TimerClass Timer ;
+/*       33 */  void Timer_Construct ( void * _self , ulong tiempo ) ;
+/*       40 */  void Timer_Destruct ( void * _self ) ;
+/*       47 */  void setBaseTimer ( void * _self , BaseTimers * base ) ;
+/*       55 */  void TimerComp ( void * _self ) ;
+/*       62 */  uchar Timer_isfinish ( void * _self ) ;
+/*       69 */  ulong Timer_getCuenta ( void * _self ) ;
+/*       76 */  void Timer_Restart ( void * _self ) ;
+/*       83 */  void Timer_setTime ( void * _self , ulong tiempo ) ;
+/*       90 */  ulong Timer_getTime ( void * _self ) ;
+/*       97 */  void Timer_Stop ( void * _self ) ;
+/*      105 */  #pragma DATA_SEG DEFAULT
+/*      106 */  #pragma CODE_SEG DEFAULT
+/*      112 */ 
+
+/**** FILE 'ManejadorMemoria.h' */
+
+
+/*        8 */ 
+
+/**** FILE 'PE_Error.h' */
+
+
+/*       60 */ 
+
+/**** FILE 'ManejadorMemoria.h' */
+
+
+/*       10 */  struct ManejadorMemoriaClass {
+/*       11 */  struct Class _base ;
+/*       12 */  int ( * getByte ) ( void * , int * ) ;
+/*       13 */  byte ( * setByte ) ( void * , int * , int ) ;
+/*       14 */  word ( * getWord ) ( void * , word * ) ;
+/*       15 */  byte ( * setWord ) ( void * , word * , word ) ;
+/*       16 */  dword ( * getDWord ) ( void * , dword * ) ;
+/*       17 */  byte ( * setDWord ) ( void * , dword * , dword ) ;
+/*       18 */  } ;
+/*       20 */  struct ManejadorMemoria {
+/*       21 */  struct Object super ;
+/*       22 */  } ;
+/*       50 */  word super_getWord ( void * _class , void * _self , word * ) ;
+/*       52 */  byte super_setWord ( void * _class , void * _self , word * , word ) ;
+/*       70 */ 
+
+/**** FILE 'D:\versionR51\microsdhacel\soft micros\Codigo\codigo portable\Sensor\SensorTermoPT100.cpp' */
+
+
+/*        7 */ 
+
+/**** FILE 'WDog1.h' */
+
+
+/*       63 */ 
+
+/**** FILE 'Cpu.h' */
+
+
+/*       38 */ 
+
+/**** FILE 'PE_Const.h' */
+
+
+/*       53 */ 
+
+/**** FILE 'Cpu.h' */
+
+
+/*       39 */ 
+
+/**** FILE 'mc9s12gc32.h' */
+
+
+/*       87 */  typedef unsigned char byte ;
+/*       88 */  typedef unsigned int word ;
+/*       89 */  typedef unsigned long dword ;
+/*       90 */  typedef unsigned long dlong [ 2 ] ;
+/*       95 */  #pragma MESSAGE DISABLE C1106
+/*       96 */  #pragma OPTION ADD V30toV31Compatible "-BfaGapLimitBits4294967295"
+/*      233 */  typedef union {
+/*      234 */  word Word ;
+/*      236 */  struct {
+/*      238 */  union {
+/*      239 */  byte Byte ;
+/*      240 */  struct {
+/*      241 */  byte BIT0 : 1 ;
+/*      242 */  byte BIT1 : 1 ;
+/*      243 */  byte BIT2 : 1 ;
+/*      244 */  byte BIT3 : 1 ;
+/*      245 */  byte BIT4 : 1 ;
+/*      246 */  byte BIT5 : 1 ;
+/*      247 */  byte BIT6 : 1 ;
+/*      248 */  byte BIT7 : 1 ;
+/*      249 */  } Bits ;
+/*      250 */  } PORTASTR ;
+/*      272 */  union {
+/*      273 */  byte Byte ;
+/*      274 */  struct {
+/*      275 */  byte BIT0 : 1 ;
+/*      276 */  byte BIT1 : 1 ;
+/*      277 */  byte BIT2 : 1 ;
+/*      278 */  byte BIT3 : 1 ;
+/*      279 */  byte BIT4 : 1 ;
+/*      280 */  byte BIT5 : 1 ;
+/*      281 */  byte BIT6 : 1 ;
+/*      282 */  byte BIT7 : 1 ;
+/*      283 */  } Bits ;
+/*      284 */  } PORTBSTR ;
+/*      304 */  } Overlap_STR ;
+/*      306 */  struct {
+/*      307 */  word BIT0 : 1 ;
+/*      308 */  word BIT1 : 1 ;
+/*      309 */  word BIT2 : 1 ;
+/*      310 */  word BIT3 : 1 ;
+/*      311 */  word BIT4 : 1 ;
+/*      312 */  word BIT5 : 1 ;
+/*      313 */  word BIT6 : 1 ;
+/*      314 */  word BIT7 : 1 ;
+/*      315 */  word BIT8 : 1 ;
+/*      316 */  word BIT9 : 1 ;
+/*      317 */  word BIT10 : 1 ;
+/*      318 */  word BIT11 : 1 ;
+/*      319 */  word BIT12 : 1 ;
+/*      320 */  word BIT13 : 1 ;
+/*      321 */  word BIT14 : 1 ;
+/*      322 */  word BIT15 : 1 ;
+/*      323 */  } Bits ;
+/*      324 */  } PORTABSTR ;
+/*      325 */  extern volatile PORTABSTR _PORTAB @ ( 0x0000 + 0x00000000 ) ;
+/*      363 */  typedef union {
+/*      364 */  word Word ;
+/*      366 */  struct {
+/*      368 */  union {
+/*      369 */  byte Byte ;
+/*      370 */  struct {
+/*      371 */  byte BIT0 : 1 ;
+/*      372 */  byte BIT1 : 1 ;
+/*      373 */  byte BIT2 : 1 ;
+/*      374 */  byte BIT3 : 1 ;
+/*      375 */  byte BIT4 : 1 ;
+/*      376 */  byte BIT5 : 1 ;
+/*      377 */  byte BIT6 : 1 ;
+/*      378 */  byte BIT7 : 1 ;
+/*      379 */  } Bits ;
+/*      380 */  } DDRASTR ;
+/*      402 */  union {
+/*      403 */  byte Byte ;
+/*      404 */  struct {
+/*      405 */  byte BIT0 : 1 ;
+/*      406 */  byte BIT1 : 1 ;
+/*      407 */  byte BIT2 : 1 ;
+/*      408 */  byte BIT3 : 1 ;
+/*      409 */  byte BIT4 : 1 ;
+/*      410 */  byte BIT5 : 1 ;
+/*      411 */  byte BIT6 : 1 ;
+/*      412 */  byte BIT7 : 1 ;
+/*      413 */  } Bits ;
+/*      414 */  } DDRBSTR ;
+/*      434 */  } Overlap_STR ;
+/*      436 */  struct {
+/*      437 */  word BIT0 : 1 ;
+/*      438 */  word BIT1 : 1 ;
+/*      439 */  word BIT2 : 1 ;
+/*      440 */  word BIT3 : 1 ;
+/*      441 */  word BIT4 : 1 ;
+/*      442 */  word BIT5 : 1 ;
+/*      443 */  word BIT6 : 1 ;
+/*      444 */  word BIT7 : 1 ;
+/*      445 */  word BIT8 : 1 ;
+/*      446 */  word BIT9 : 1 ;
+/*      447 */  word BIT10 : 1 ;
+/*      448 */  word BIT11 : 1 ;
+/*      449 */  word BIT12 : 1 ;
+/*      450 */  word BIT13 : 1 ;
+/*      451 */  word BIT14 : 1 ;
+/*      452 */  word BIT15 : 1 ;
+/*      453 */  } Bits ;
+/*      454 */  } DDRABSTR ;
+/*      455 */  extern volatile DDRABSTR _DDRAB @ ( 0x0000 + 0x00000002 ) ;
+/*      493 */  typedef union {
+/*      494 */  byte Byte ;
+/*      495 */  struct {
+/*      496 */  byte BIT0 : 1 ;
+/*      497 */  byte BIT1 : 1 ;
+/*      498 */  byte BIT2 : 1 ;
+/*      499 */  byte BIT3 : 1 ;
+/*      500 */  byte BIT4 : 1 ;
+/*      501 */  byte BIT5 : 1 ;
+/*      502 */  byte BIT6 : 1 ;
+/*      503 */  byte BIT7 : 1 ;
+/*      504 */  } Bits ;
+/*      505 */  } PORTESTR ;
+/*      506 */  extern volatile PORTESTR _PORTE @ ( 0x0000 + 0x00000008 ) ;
+/*      528 */  typedef union {
+/*      529 */  byte Byte ;
+/*      530 */  struct {
+/*      531 */  byte : 1 ;
+/*      532 */  byte : 1 ;
+/*      533 */  byte BIT2 : 1 ;
+/*      534 */  byte BIT3 : 1 ;
+/*      535 */  byte BIT4 : 1 ;
+/*      536 */  byte BIT5 : 1 ;
+/*      537 */  byte BIT6 : 1 ;
+/*      538 */  byte BIT7 : 1 ;
+/*      539 */  } Bits ;
+/*      540 */  struct {
+/*      541 */  byte : 1 ;
+/*      542 */  byte : 1 ;
+/*      543 */  byte grpBIT_2 : 6 ;
+/*      544 */  } MergedBits ;
+/*      545 */  } DDRESTR ;
+/*      546 */  extern volatile DDRESTR _DDRE @ ( 0x0000 + 0x00000009 ) ;
+/*      568 */  typedef union {
+/*      569 */  byte Byte ;
+/*      570 */  struct {
+/*      571 */  byte : 1 ;
+/*      572 */  byte : 1 ;
+/*      573 */  byte RDWE : 1 ;
+/*      574 */  byte LSTRE : 1 ;
+/*      575 */  byte NECLK : 1 ;
+/*      576 */  byte PIPOE : 1 ;
+/*      577 */  byte : 1 ;
+/*      578 */  byte NOACCE : 1 ;
+/*      579 */  } Bits ;
+/*      580 */  } PEARSTR ;
+/*      581 */  extern volatile PEARSTR _PEAR @ ( 0x0000 + 0x0000000A ) ;
+/*      597 */  typedef union {
+/*      598 */  byte Byte ;
+/*      599 */  struct {
+/*      600 */  byte EME : 1 ;
+/*      601 */  byte EMK : 1 ;
+/*      602 */  byte : 1 ;
+/*      603 */  byte IVIS : 1 ;
+/*      604 */  byte : 1 ;
+/*      605 */  byte MODA : 1 ;
+/*      606 */  byte MODB : 1 ;
+/*      607 */  byte MODC : 1 ;
+/*      608 */  } Bits ;
+/*      609 */  struct {
+/*      610 */  byte : 1 ;
+/*      611 */  byte : 1 ;
+/*      612 */  byte : 1 ;
+/*      613 */  byte : 1 ;
+/*      614 */  byte : 1 ;
+/*      615 */  byte grpMODx : 3 ;
+/*      616 */  } MergedBits ;
+/*      617 */  } MODESTR ;
+/*      618 */  extern volatile MODESTR _MODE @ ( 0x0000 + 0x0000000B ) ;
+/*      639 */  typedef union {
+/*      640 */  byte Byte ;
+/*      641 */  struct {
+/*      642 */  byte PUPAE : 1 ;
+/*      643 */  byte PUPBE : 1 ;
+/*      644 */  byte : 1 ;
+/*      645 */  byte : 1 ;
+/*      646 */  byte PUPEE : 1 ;
+/*      647 */  byte : 1 ;
+/*      648 */  byte : 1 ;
+/*      649 */  byte PUPKE : 1 ;
+/*      650 */  } Bits ;
+/*      651 */  } PUCRSTR ;
+/*      652 */  extern volatile PUCRSTR _PUCR @ ( 0x0000 + 0x0000000C ) ;
+/*      666 */  typedef union {
+/*      667 */  byte Byte ;
+/*      668 */  struct {
+/*      669 */  byte RDPA : 1 ;
+/*      670 */  byte RDPB : 1 ;
+/*      671 */  byte : 1 ;
+/*      672 */  byte : 1 ;
+/*      673 */  byte RDPE : 1 ;
+/*      674 */  byte : 1 ;
+/*      675 */  byte : 1 ;
+/*      676 */  byte RDPK : 1 ;
+/*      677 */  } Bits ;
+/*      678 */  struct {
+/*      679 */  byte grpRDPx : 2 ;
+/*      680 */  byte : 1 ;
+/*      681 */  byte : 1 ;
+/*      682 */  byte : 1 ;
+/*      683 */  byte : 1 ;
+/*      684 */  byte : 1 ;
+/*      685 */  byte : 1 ;
+/*      686 */  } MergedBits ;
+/*      687 */  } RDRIVSTR ;
+/*      688 */  extern volatile RDRIVSTR _RDRIV @ ( 0x0000 + 0x0000000D ) ;
+/*      705 */  typedef union {
+/*      706 */  byte Byte ;
+/*      707 */  struct {
+/*      708 */  byte ESTR : 1 ;
+/*      709 */  byte : 1 ;
+/*      710 */  byte : 1 ;
+/*      711 */  byte : 1 ;
+/*      712 */  byte : 1 ;
+/*      713 */  byte : 1 ;
+/*      714 */  byte : 1 ;
+/*      715 */  byte : 1 ;
+/*      716 */  } Bits ;
+/*      717 */  } EBICTLSTR ;
+/*      718 */  extern volatile EBICTLSTR _EBICTL @ ( 0x0000 + 0x0000000E ) ;
+/*      726 */  typedef union {
+/*      727 */  byte Byte ;
+/*      728 */  struct {
+/*      729 */  byte RAMHAL : 1 ;
+/*      730 */  byte : 1 ;
+/*      731 */  byte : 1 ;
+/*      732 */  byte RAM11 : 1 ;
+/*      733 */  byte RAM12 : 1 ;
+/*      734 */  byte RAM13 : 1 ;
+/*      735 */  byte RAM14 : 1 ;
+/*      736 */  byte RAM15 : 1 ;
+/*      737 */  } Bits ;
+/*      738 */  struct {
+/*      739 */  byte : 1 ;
+/*      740 */  byte : 1 ;
+/*      741 */  byte : 1 ;
+/*      742 */  byte grpRAM_11 : 5 ;
+/*      743 */  } MergedBits ;
+/*      744 */  } INITRMSTR ;
+/*      745 */  extern volatile INITRMSTR _INITRM @ ( 0x0000 + 0x00000010 ) ;
+/*      767 */  typedef union {
+/*      768 */  byte Byte ;
+/*      769 */  struct {
+/*      770 */  byte : 1 ;
+/*      771 */  byte : 1 ;
+/*      772 */  byte : 1 ;
+/*      773 */  byte REG11 : 1 ;
+/*      774 */  byte REG12 : 1 ;
+/*      775 */  byte REG13 : 1 ;
+/*      776 */  byte REG14 : 1 ;
+/*      777 */  byte : 1 ;
+/*      778 */  } Bits ;
+/*      779 */  struct {
+/*      780 */  byte : 1 ;
+/*      781 */  byte : 1 ;
+/*      782 */  byte : 1 ;
+/*      783 */  byte grpREG_11 : 4 ;
+/*      784 */  byte : 1 ;
+/*      785 */  } MergedBits ;
+/*      786 */  } INITRGSTR ;
+/*      787 */  extern volatile INITRGSTR _INITRG @ ( 0x0000 + 0x00000011 ) ;
+/*      805 */  typedef union {
+/*      806 */  byte Byte ;
+/*      807 */  struct {
+/*      808 */  byte ROMON : 1 ;
+/*      809 */  byte ROMHM : 1 ;
+/*      810 */  byte EXSTR0 : 1 ;
+/*      811 */  byte EXSTR1 : 1 ;
+/*      812 */  byte : 1 ;
+/*      813 */  byte : 1 ;
+/*      814 */  byte : 1 ;
+/*      815 */  byte : 1 ;
+/*      816 */  } Bits ;
+/*      817 */  struct {
+/*      818 */  byte : 1 ;
+/*      819 */  byte : 1 ;
+/*      820 */  byte grpEXSTR : 2 ;
+/*      821 */  byte : 1 ;
+/*      822 */  byte : 1 ;
+/*      823 */  byte : 1 ;
+/*      824 */  byte : 1 ;
+/*      825 */  } MergedBits ;
+/*      826 */  } MISCSTR ;
+/*      827 */  extern volatile MISCSTR _MISC @ ( 0x0000 + 0x00000013 ) ;
+/*      844 */  typedef union {
+/*      845 */  byte Byte ;
+/*      846 */  struct {
+/*      847 */  byte ADR0 : 1 ;
+/*      848 */  byte ADR1 : 1 ;
+/*      849 */  byte ADR2 : 1 ;
+/*      850 */  byte ADR3 : 1 ;
+/*      851 */  byte WRTINT : 1 ;
+/*      852 */  byte : 1 ;
+/*      853 */  byte : 1 ;
+/*      854 */  byte : 1 ;
+/*      855 */  } Bits ;
+/*      856 */  struct {
+/*      857 */  byte grpADR : 4 ;
+/*      858 */  byte : 1 ;
+/*      859 */  byte : 1 ;
+/*      860 */  byte : 1 ;
+/*      861 */  byte : 1 ;
+/*      862 */  } MergedBits ;
+/*      863 */  } ITCRSTR ;
+/*      864 */  extern volatile ITCRSTR _ITCR @ ( 0x0000 + 0x00000015 ) ;
+/*      883 */  typedef union {
+/*      884 */  byte Byte ;
+/*      885 */  struct {
+/*      886 */  byte INT0 : 1 ;
+/*      887 */  byte INT2 : 1 ;
+/*      888 */  byte INT4 : 1 ;
+/*      889 */  byte INT6 : 1 ;
+/*      890 */  byte INT8 : 1 ;
+/*      891 */  byte INTA : 1 ;
+/*      892 */  byte INTC : 1 ;
+/*      893 */  byte INTE : 1 ;
+/*      894 */  } Bits ;
+/*      895 */  } ITESTSTR ;
+/*      896 */  extern volatile ITESTSTR _ITEST @ ( 0x0000 + 0x00000016 ) ;
+/*      918 */  typedef union {
+/*      919 */  byte Byte ;
+/*      920 */  struct {
+/*      921 */  byte LVIF : 1 ;
+/*      922 */  byte LVIE : 1 ;
+/*      923 */  byte LVDS : 1 ;
+/*      924 */  byte : 1 ;
+/*      925 */  byte : 1 ;
+/*      926 */  byte : 1 ;
+/*      927 */  byte : 1 ;
+/*      928 */  byte : 1 ;
+/*      929 */  } Bits ;
+/*      930 */  } VREGCTRLSTR ;
+/*      931 */  extern volatile VREGCTRLSTR _VREGCTRL @ ( 0x0000 + 0x00000019 ) ;
+/*      943 */  typedef union {
+/*      944 */  word Word ;
+/*      946 */  struct {
+/*      948 */  union {
+/*      949 */  byte Byte ;
+/*      950 */  struct {
+/*      951 */  byte ID8 : 1 ;
+/*      952 */  byte ID9 : 1 ;
+/*      953 */  byte ID10 : 1 ;
+/*      954 */  byte ID11 : 1 ;
+/*      955 */  byte ID12 : 1 ;
+/*      956 */  byte ID13 : 1 ;
+/*      957 */  byte ID14 : 1 ;
+/*      958 */  byte ID15 : 1 ;
+/*      959 */  } Bits ;
+/*      960 */  } PARTIDHSTR ;
+/*      982 */  union {
+/*      983 */  byte Byte ;
+/*      984 */  struct {
+/*      985 */  byte ID0 : 1 ;
+/*      986 */  byte ID1 : 1 ;
+/*      987 */  byte ID2 : 1 ;
+/*      988 */  byte ID3 : 1 ;
+/*      989 */  byte ID4 : 1 ;
+/*      990 */  byte ID5 : 1 ;
+/*      991 */  byte ID6 : 1 ;
+/*      992 */  byte ID7 : 1 ;
+/*      993 */  } Bits ;
+/*      994 */  } PARTIDLSTR ;
+/*     1014 */  } Overlap_STR ;
+/*     1016 */  struct {
+/*     1017 */  word ID0 : 1 ;
+/*     1018 */  word ID1 : 1 ;
+/*     1019 */  word ID2 : 1 ;
+/*     1020 */  word ID3 : 1 ;
+/*     1021 */  word ID4 : 1 ;
+/*     1022 */  word ID5 : 1 ;
+/*     1023 */  word ID6 : 1 ;
+/*     1024 */  word ID7 : 1 ;
+/*     1025 */  word ID8 : 1 ;
+/*     1026 */  word ID9 : 1 ;
+/*     1027 */  word ID10 : 1 ;
+/*     1028 */  word ID11 : 1 ;
+/*     1029 */  word ID12 : 1 ;
+/*     1030 */  word ID13 : 1 ;
+/*     1031 */  word ID14 : 1 ;
+/*     1032 */  word ID15 : 1 ;
+/*     1033 */  } Bits ;
+/*     1034 */  } PARTIDSTR ;
+/*     1035 */  extern volatile PARTIDSTR _PARTID @ ( 0x0000 + 0x0000001A ) ;
+/*     1073 */  typedef union {
+/*     1074 */  byte Byte ;
+/*     1075 */  struct {
+/*     1076 */  byte ram_sw0 : 1 ;
+/*     1077 */  byte ram_sw1 : 1 ;
+/*     1078 */  byte ram_sw2 : 1 ;
+/*     1079 */  byte : 1 ;
+/*     1080 */  byte eep_sw0 : 1 ;
+/*     1081 */  byte eep_sw1 : 1 ;
+/*     1082 */  byte : 1 ;
+/*     1083 */  byte reg_sw0 : 1 ;
+/*     1084 */  } Bits ;
+/*     1085 */  struct {
+/*     1086 */  byte grpram_sw : 3 ;
+/*     1087 */  byte : 1 ;
+/*     1088 */  byte grpeep_sw : 2 ;
+/*     1089 */  byte : 1 ;
+/*     1090 */  byte grpreg_sw : 1 ;
+/*     1091 */  } MergedBits ;
+/*     1092 */  } MEMSIZ0STR ;
+/*     1093 */  extern volatile MEMSIZ0STR _MEMSIZ0 @ ( 0x0000 + 0x0000001C ) ;
+/*     1119 */  typedef union {
+/*     1120 */  byte Byte ;
+/*     1121 */  struct {
+/*     1122 */  byte pag_sw0 : 1 ;
+/*     1123 */  byte pag_sw1 : 1 ;
+/*     1124 */  byte : 1 ;
+/*     1125 */  byte : 1 ;
+/*     1126 */  byte : 1 ;
+/*     1127 */  byte : 1 ;
+/*     1128 */  byte rom_sw0 : 1 ;
+/*     1129 */  byte rom_sw1 : 1 ;
+/*     1130 */  } Bits ;
+/*     1131 */  struct {
+/*     1132 */  byte grppag_sw : 2 ;
+/*     1133 */  byte : 1 ;
+/*     1134 */  byte : 1 ;
+/*     1135 */  byte : 1 ;
+/*     1136 */  byte : 1 ;
+/*     1137 */  byte grprom_sw : 2 ;
+/*     1138 */  } MergedBits ;
+/*     1139 */  } MEMSIZ1STR ;
+/*     1140 */  extern volatile MEMSIZ1STR _MEMSIZ1 @ ( 0x0000 + 0x0000001D ) ;
+/*     1160 */  typedef union {
+/*     1161 */  byte Byte ;
+/*     1162 */  struct {
+/*     1163 */  byte : 1 ;
+/*     1164 */  byte : 1 ;
+/*     1165 */  byte : 1 ;
+/*     1166 */  byte : 1 ;
+/*     1167 */  byte : 1 ;
+/*     1168 */  byte : 1 ;
+/*     1169 */  byte IRQEN : 1 ;
+/*     1170 */  byte IRQE : 1 ;
+/*     1171 */  } Bits ;
+/*     1172 */  } INTCRSTR ;
+/*     1173 */  extern volatile INTCRSTR _INTCR @ ( 0x0000 + 0x0000001E ) ;
+/*     1183 */  typedef union {
+/*     1184 */  byte Byte ;
+/*     1185 */  struct {
+/*     1186 */  byte : 1 ;
+/*     1187 */  byte PSEL1 : 1 ;
+/*     1188 */  byte PSEL2 : 1 ;
+/*     1189 */  byte PSEL3 : 1 ;
+/*     1190 */  byte PSEL4 : 1 ;
+/*     1191 */  byte PSEL5 : 1 ;
+/*     1192 */  byte PSEL6 : 1 ;
+/*     1193 */  byte PSEL7 : 1 ;
+/*     1194 */  } Bits ;
+/*     1195 */  struct {
+/*     1196 */  byte : 1 ;
+/*     1197 */  byte grpPSEL_1 : 7 ;
+/*     1198 */  } MergedBits ;
+/*     1199 */  } HPRIOSTR ;
+/*     1200 */  extern volatile HPRIOSTR _HPRIO @ ( 0x0000 + 0x0000001F ) ;
+/*     1224 */  typedef union {
+/*     1225 */  byte Byte ;
+/*     1226 */  struct {
+/*     1227 */  byte CAPMOD0 : 1 ;
+/*     1228 */  byte CAPMOD1 : 1 ;
+/*     1229 */  byte : 1 ;
+/*     1230 */  byte DBGBRK : 1 ;
+/*     1231 */  byte BEGIN : 1 ;
+/*     1232 */  byte TRGSEL : 1 ;
+/*     1233 */  byte ARM : 1 ;
+/*     1234 */  byte DBGEN : 1 ;
+/*     1235 */  } Bits ;
+/*     1236 */  struct {
+/*     1237 */  byte grpCAPMOD : 2 ;
+/*     1238 */  byte : 1 ;
+/*     1239 */  byte : 1 ;
+/*     1240 */  byte : 1 ;
+/*     1241 */  byte : 1 ;
+/*     1242 */  byte : 1 ;
+/*     1243 */  byte : 1 ;
+/*     1244 */  } MergedBits ;
+/*     1245 */  } DBGC1STR ;
+/*     1246 */  extern volatile DBGC1STR _DBGC1 @ ( 0x0000 + 0x00000020 ) ;
+/*     1269 */  typedef union {
+/*     1270 */  byte Byte ;
+/*     1271 */  struct {
+/*     1272 */  byte TRG0 : 1 ;
+/*     1273 */  byte TRG1 : 1 ;
+/*     1274 */  byte TRG2 : 1 ;
+/*     1275 */  byte TRG3 : 1 ;
+/*     1276 */  byte : 1 ;
+/*     1277 */  byte CF : 1 ;
+/*     1278 */  byte BF : 1 ;
+/*     1279 */  byte AF : 1 ;
+/*     1280 */  } Bits ;
+/*     1281 */  struct {
+/*     1282 */  byte grpTRG : 4 ;
+/*     1283 */  byte : 1 ;
+/*     1284 */  byte : 1 ;
+/*     1285 */  byte : 1 ;
+/*     1286 */  byte : 1 ;
+/*     1287 */  } MergedBits ;
+/*     1288 */  } DBGSCSTR ;
+/*     1289 */  extern volatile DBGSCSTR _DBGSC @ ( 0x0000 + 0x00000021 ) ;
+/*     1312 */  typedef union {
+/*     1313 */  word Word ;
+/*     1315 */  struct {
+/*     1317 */  union {
+/*     1318 */  byte Byte ;
+/*     1319 */  struct {
+/*     1320 */  byte BIT8 : 1 ;
+/*     1321 */  byte BIT9 : 1 ;
+/*     1322 */  byte BIT10 : 1 ;
+/*     1323 */  byte BIT11 : 1 ;
+/*     1324 */  byte BIT12 : 1 ;
+/*     1325 */  byte BIT13 : 1 ;
+/*     1326 */  byte BIT14 : 1 ;
+/*     1327 */  byte BIT15 : 1 ;
+/*     1328 */  } Bits ;
+/*     1329 */  } DBGTBHSTR ;
+/*     1351 */  union {
+/*     1352 */  byte Byte ;
+/*     1353 */  struct {
+/*     1354 */  byte BIT0 : 1 ;
+/*     1355 */  byte BIT1 : 1 ;
+/*     1356 */  byte BIT2 : 1 ;
+/*     1357 */  byte BIT3 : 1 ;
+/*     1358 */  byte BIT4 : 1 ;
+/*     1359 */  byte BIT5 : 1 ;
+/*     1360 */  byte BIT6 : 1 ;
+/*     1361 */  byte BIT7 : 1 ;
+/*     1362 */  } Bits ;
+/*     1363 */  } DBGTBLSTR ;
+/*     1383 */  } Overlap_STR ;
+/*     1385 */  struct {
+/*     1386 */  word BIT0 : 1 ;
+/*     1387 */  word BIT1 : 1 ;
+/*     1388 */  word BIT2 : 1 ;
+/*     1389 */  word BIT3 : 1 ;
+/*     1390 */  word BIT4 : 1 ;
+/*     1391 */  word BIT5 : 1 ;
+/*     1392 */  word BIT6 : 1 ;
+/*     1393 */  word BIT7 : 1 ;
+/*     1394 */  word BIT8 : 1 ;
+/*     1395 */  word BIT9 : 1 ;
+/*     1396 */  word BIT10 : 1 ;
+/*     1397 */  word BIT11 : 1 ;
+/*     1398 */  word BIT12 : 1 ;
+/*     1399 */  word BIT13 : 1 ;
+/*     1400 */  word BIT14 : 1 ;
+/*     1401 */  word BIT15 : 1 ;
+/*     1402 */  } Bits ;
+/*     1403 */  } DBGTBSTR ;
+/*     1404 */  extern volatile DBGTBSTR _DBGTB @ ( 0x0000 + 0x00000022 ) ;
+/*     1442 */  typedef union {
+/*     1443 */  byte Byte ;
+/*     1444 */  struct {
+/*     1445 */  byte CNT0 : 1 ;
+/*     1446 */  byte CNT1 : 1 ;
+/*     1447 */  byte CNT2 : 1 ;
+/*     1448 */  byte CNT3 : 1 ;
+/*     1449 */  byte CNT4 : 1 ;
+/*     1450 */  byte CNT5 : 1 ;
+/*     1451 */  byte : 1 ;
+/*     1452 */  byte TBF : 1 ;
+/*     1453 */  } Bits ;
+/*     1454 */  struct {
+/*     1455 */  byte grpCNT : 6 ;
+/*     1456 */  byte : 1 ;
+/*     1457 */  byte : 1 ;
+/*     1458 */  } MergedBits ;
+/*     1459 */  } DBGCNTSTR ;
+/*     1460 */  extern volatile DBGCNTSTR _DBGCNT @ ( 0x0000 + 0x00000024 ) ;
+/*     1483 */  typedef union {
+/*     1484 */  byte Byte ;
+/*     1485 */  struct {
+/*     1486 */  byte EXTCMP0 : 1 ;
+/*     1487 */  byte EXTCMP1 : 1 ;
+/*     1488 */  byte EXTCMP2 : 1 ;
+/*     1489 */  byte EXTCMP3 : 1 ;
+/*     1490 */  byte EXTCMP4 : 1 ;
+/*     1491 */  byte EXTCMP5 : 1 ;
+/*     1492 */  byte PAGSEL0 : 1 ;
+/*     1493 */  byte PAGSEL1 : 1 ;
+/*     1494 */  } Bits ;
+/*     1495 */  struct {
+/*     1496 */  byte grpEXTCMP : 6 ;
+/*     1497 */  byte grpPAGSEL : 2 ;
+/*     1498 */  } MergedBits ;
+/*     1499 */  } DBGCCXSTR ;
+/*     1500 */  extern volatile DBGCCXSTR _DBGCCX @ ( 0x0000 + 0x00000025 ) ;
+/*     1528 */  typedef union {
+/*     1529 */  word Word ;
+/*     1531 */  struct {
+/*     1533 */  union {
+/*     1534 */  byte Byte ;
+/*     1535 */  struct {
+/*     1536 */  byte BIT8 : 1 ;
+/*     1537 */  byte BIT9 : 1 ;
+/*     1538 */  byte BIT10 : 1 ;
+/*     1539 */  byte BIT11 : 1 ;
+/*     1540 */  byte BIT12 : 1 ;
+/*     1541 */  byte BIT13 : 1 ;
+/*     1542 */  byte BIT14 : 1 ;
+/*     1543 */  byte BIT15 : 1 ;
+/*     1544 */  } Bits ;
+/*     1545 */  } DBGCCHSTR ;
+/*     1567 */  union {
+/*     1568 */  byte Byte ;
+/*     1569 */  struct {
+/*     1570 */  byte BIT0 : 1 ;
+/*     1571 */  byte BIT1 : 1 ;
+/*     1572 */  byte BIT2 : 1 ;
+/*     1573 */  byte BIT3 : 1 ;
+/*     1574 */  byte BIT4 : 1 ;
+/*     1575 */  byte BIT5 : 1 ;
+/*     1576 */  byte BIT6 : 1 ;
+/*     1577 */  byte BIT7 : 1 ;
+/*     1578 */  } Bits ;
+/*     1579 */  } DBGCCLSTR ;
+/*     1599 */  } Overlap_STR ;
+/*     1601 */  struct {
+/*     1602 */  word BIT0 : 1 ;
+/*     1603 */  word BIT1 : 1 ;
+/*     1604 */  word BIT2 : 1 ;
+/*     1605 */  word BIT3 : 1 ;
+/*     1606 */  word BIT4 : 1 ;
+/*     1607 */  word BIT5 : 1 ;
+/*     1608 */  word BIT6 : 1 ;
+/*     1609 */  word BIT7 : 1 ;
+/*     1610 */  word BIT8 : 1 ;
+/*     1611 */  word BIT9 : 1 ;
+/*     1612 */  word BIT10 : 1 ;
+/*     1613 */  word BIT11 : 1 ;
+/*     1614 */  word BIT12 : 1 ;
+/*     1615 */  word BIT13 : 1 ;
+/*     1616 */  word BIT14 : 1 ;
+/*     1617 */  word BIT15 : 1 ;
+/*     1618 */  } Bits ;
+/*     1619 */  } DBGCCSTR ;
+/*     1620 */  extern volatile DBGCCSTR _DBGCC @ ( 0x0000 + 0x00000026 ) ;
+/*     1658 */  typedef union {
+/*     1659 */  byte Byte ;
+/*     1660 */  struct {
+/*     1661 */  byte RWC : 1 ;
+/*     1662 */  byte RWCEN : 1 ;
+/*     1663 */  byte TAGC : 1 ;
+/*     1664 */  byte BKCEN : 1 ;
+/*     1665 */  byte TAGAB : 1 ;
+/*     1666 */  byte BDM : 1 ;
+/*     1667 */  byte FULL : 1 ;
+/*     1668 */  byte BKABEN : 1 ;
+/*     1669 */  } Bits ;
+/*     1670 */  } DBGC2STR ;
+/*     1671 */  extern volatile DBGC2STR _DBGC2 @ ( 0x0000 + 0x00000028 ) ;
+/*     1693 */  typedef union {
+/*     1694 */  byte Byte ;
+/*     1695 */  struct {
+/*     1696 */  byte RWB : 1 ;
+/*     1697 */  byte RWBEN : 1 ;
+/*     1698 */  byte RWA : 1 ;
+/*     1699 */  byte RWAEN : 1 ;
+/*     1700 */  byte BKBMBL : 1 ;
+/*     1701 */  byte BKBMBH : 1 ;
+/*     1702 */  byte BKAMBL : 1 ;
+/*     1703 */  byte BKAMBH : 1 ;
+/*     1704 */  } Bits ;
+/*     1705 */  } DBGC3STR ;
+/*     1706 */  extern volatile DBGC3STR _DBGC3 @ ( 0x0000 + 0x00000029 ) ;
+/*     1728 */  typedef union {
+/*     1729 */  byte Byte ;
+/*     1730 */  struct {
+/*     1731 */  byte EXTCMP0 : 1 ;
+/*     1732 */  byte EXTCMP1 : 1 ;
+/*     1733 */  byte EXTCMP2 : 1 ;
+/*     1734 */  byte EXTCMP3 : 1 ;
+/*     1735 */  byte EXTCMP4 : 1 ;
+/*     1736 */  byte EXTCMP5 : 1 ;
+/*     1737 */  byte PAGSEL0 : 1 ;
+/*     1738 */  byte PAGSEL1 : 1 ;
+/*     1739 */  } Bits ;
+/*     1740 */  struct {
+/*     1741 */  byte grpEXTCMP : 6 ;
+/*     1742 */  byte grpPAGSEL : 2 ;
+/*     1743 */  } MergedBits ;
+/*     1744 */  } DBGCAXSTR ;
+/*     1745 */  extern volatile DBGCAXSTR _DBGCAX @ ( 0x0000 + 0x0000002A ) ;
+/*     1773 */  typedef union {
+/*     1774 */  word Word ;
+/*     1776 */  struct {
+/*     1778 */  union {
+/*     1779 */  byte Byte ;
+/*     1780 */  struct {
+/*     1781 */  byte BIT8 : 1 ;
+/*     1782 */  byte BIT9 : 1 ;
+/*     1783 */  byte BIT10 : 1 ;
+/*     1784 */  byte BIT11 : 1 ;
+/*     1785 */  byte BIT12 : 1 ;
+/*     1786 */  byte BIT13 : 1 ;
+/*     1787 */  byte BIT14 : 1 ;
+/*     1788 */  byte BIT15 : 1 ;
+/*     1789 */  } Bits ;
+/*     1790 */  } DBGCAHSTR ;
+/*     1812 */  union {
+/*     1813 */  byte Byte ;
+/*     1814 */  struct {
+/*     1815 */  byte BIT0 : 1 ;
+/*     1816 */  byte BIT1 : 1 ;
+/*     1817 */  byte BIT2 : 1 ;
+/*     1818 */  byte BIT3 : 1 ;
+/*     1819 */  byte BIT4 : 1 ;
+/*     1820 */  byte BIT5 : 1 ;
+/*     1821 */  byte BIT6 : 1 ;
+/*     1822 */  byte BIT7 : 1 ;
+/*     1823 */  } Bits ;
+/*     1824 */  } DBGCALSTR ;
+/*     1844 */  } Overlap_STR ;
+/*     1846 */  struct {
+/*     1847 */  word BIT0 : 1 ;
+/*     1848 */  word BIT1 : 1 ;
+/*     1849 */  word BIT2 : 1 ;
+/*     1850 */  word BIT3 : 1 ;
+/*     1851 */  word BIT4 : 1 ;
+/*     1852 */  word BIT5 : 1 ;
+/*     1853 */  word BIT6 : 1 ;
+/*     1854 */  word BIT7 : 1 ;
+/*     1855 */  word BIT8 : 1 ;
+/*     1856 */  word BIT9 : 1 ;
+/*     1857 */  word BIT10 : 1 ;
+/*     1858 */  word BIT11 : 1 ;
+/*     1859 */  word BIT12 : 1 ;
+/*     1860 */  word BIT13 : 1 ;
+/*     1861 */  word BIT14 : 1 ;
+/*     1862 */  word BIT15 : 1 ;
+/*     1863 */  } Bits ;
+/*     1864 */  } DBGCASTR ;
+/*     1865 */  extern volatile DBGCASTR _DBGCA @ ( 0x0000 + 0x0000002B ) ;
+/*     1903 */  typedef union {
+/*     1904 */  byte Byte ;
+/*     1905 */  struct {
+/*     1906 */  byte EXTCMP0 : 1 ;
+/*     1907 */  byte EXTCMP1 : 1 ;
+/*     1908 */  byte EXTCMP2 : 1 ;
+/*     1909 */  byte EXTCMP3 : 1 ;
+/*     1910 */  byte EXTCMP4 : 1 ;
+/*     1911 */  byte EXTCMP5 : 1 ;
+/*     1912 */  byte PAGSEL0 : 1 ;
+/*     1913 */  byte PAGSEL1 : 1 ;
+/*     1914 */  } Bits ;
+/*     1915 */  struct {
+/*     1916 */  byte grpEXTCMP : 6 ;
+/*     1917 */  byte grpPAGSEL : 2 ;
+/*     1918 */  } MergedBits ;
+/*     1919 */  } DBGCBXSTR ;
+/*     1920 */  extern volatile DBGCBXSTR _DBGCBX @ ( 0x0000 + 0x0000002D ) ;
+/*     1948 */  typedef union {
+/*     1949 */  word Word ;
+/*     1951 */  struct {
+/*     1953 */  union {
+/*     1954 */  byte Byte ;
+/*     1955 */  struct {
+/*     1956 */  byte BIT8 : 1 ;
+/*     1957 */  byte BIT9 : 1 ;
+/*     1958 */  byte BIT10 : 1 ;
+/*     1959 */  byte BIT11 : 1 ;
+/*     1960 */  byte BIT12 : 1 ;
+/*     1961 */  byte BIT13 : 1 ;
+/*     1962 */  byte BIT14 : 1 ;
+/*     1963 */  byte BIT15 : 1 ;
+/*     1964 */  } Bits ;
+/*     1965 */  } DBGCBHSTR ;
+/*     1987 */  union {
+/*     1988 */  byte Byte ;
+/*     1989 */  struct {
+/*     1990 */  byte BIT0 : 1 ;
+/*     1991 */  byte BIT1 : 1 ;
+/*     1992 */  byte BIT2 : 1 ;
+/*     1993 */  byte BIT3 : 1 ;
+/*     1994 */  byte BIT4 : 1 ;
+/*     1995 */  byte BIT5 : 1 ;
+/*     1996 */  byte BIT6 : 1 ;
+/*     1997 */  byte BIT7 : 1 ;
+/*     1998 */  } Bits ;
+/*     1999 */  } DBGCBLSTR ;
+/*     2019 */  } Overlap_STR ;
+/*     2021 */  struct {
+/*     2022 */  word BIT0 : 1 ;
+/*     2023 */  word BIT1 : 1 ;
+/*     2024 */  word BIT2 : 1 ;
+/*     2025 */  word BIT3 : 1 ;
+/*     2026 */  word BIT4 : 1 ;
+/*     2027 */  word BIT5 : 1 ;
+/*     2028 */  word BIT6 : 1 ;
+/*     2029 */  word BIT7 : 1 ;
+/*     2030 */  word BIT8 : 1 ;
+/*     2031 */  word BIT9 : 1 ;
+/*     2032 */  word BIT10 : 1 ;
+/*     2033 */  word BIT11 : 1 ;
+/*     2034 */  word BIT12 : 1 ;
+/*     2035 */  word BIT13 : 1 ;
+/*     2036 */  word BIT14 : 1 ;
+/*     2037 */  word BIT15 : 1 ;
+/*     2038 */  } Bits ;
+/*     2039 */  } DBGCBSTR ;
+/*     2040 */  extern volatile DBGCBSTR _DBGCB @ ( 0x0000 + 0x0000002E ) ;
+/*     2078 */  typedef union {
+/*     2079 */  byte Byte ;
+/*     2080 */  struct {
+/*     2081 */  byte PIX0 : 1 ;
+/*     2082 */  byte PIX1 : 1 ;
+/*     2083 */  byte PIX2 : 1 ;
+/*     2084 */  byte PIX3 : 1 ;
+/*     2085 */  byte PIX4 : 1 ;
+/*     2086 */  byte PIX5 : 1 ;
+/*     2087 */  byte : 1 ;
+/*     2088 */  byte : 1 ;
+/*     2089 */  } Bits ;
+/*     2090 */  struct {
+/*     2091 */  byte grpPIX : 6 ;
+/*     2092 */  byte : 1 ;
+/*     2093 */  byte : 1 ;
+/*     2094 */  } MergedBits ;
+/*     2095 */  } PPAGESTR ;
+/*     2096 */  extern volatile PPAGESTR _PPAGE @ ( 0x0000 + 0x00000030 ) ;
+/*     2117 */  typedef union {
+/*     2118 */  byte Byte ;
+/*     2119 */  struct {
+/*     2120 */  byte SYN0 : 1 ;
+/*     2121 */  byte SYN1 : 1 ;
+/*     2122 */  byte SYN2 : 1 ;
+/*     2123 */  byte SYN3 : 1 ;
+/*     2124 */  byte SYN4 : 1 ;
+/*     2125 */  byte SYN5 : 1 ;
+/*     2126 */  byte : 1 ;
+/*     2127 */  byte : 1 ;
+/*     2128 */  } Bits ;
+/*     2129 */  struct {
+/*     2130 */  byte grpSYN : 6 ;
+/*     2131 */  byte : 1 ;
+/*     2132 */  byte : 1 ;
+/*     2133 */  } MergedBits ;
+/*     2134 */  } SYNRSTR ;
+/*     2135 */  extern volatile SYNRSTR _SYNR @ ( 0x0000 + 0x00000034 ) ;
+/*     2156 */  typedef union {
+/*     2157 */  byte Byte ;
+/*     2158 */  struct {
+/*     2159 */  byte REFDV0 : 1 ;
+/*     2160 */  byte REFDV1 : 1 ;
+/*     2161 */  byte REFDV2 : 1 ;
+/*     2162 */  byte REFDV3 : 1 ;
+/*     2163 */  byte : 1 ;
+/*     2164 */  byte : 1 ;
+/*     2165 */  byte : 1 ;
+/*     2166 */  byte : 1 ;
+/*     2167 */  } Bits ;
+/*     2168 */  struct {
+/*     2169 */  byte grpREFDV : 4 ;
+/*     2170 */  byte : 1 ;
+/*     2171 */  byte : 1 ;
+/*     2172 */  byte : 1 ;
+/*     2173 */  byte : 1 ;
+/*     2174 */  } MergedBits ;
+/*     2175 */  } REFDVSTR ;
+/*     2176 */  extern volatile REFDVSTR _REFDV @ ( 0x0000 + 0x00000035 ) ;
+/*     2193 */  typedef union {
+/*     2194 */  byte Byte ;
+/*     2195 */  struct {
+/*     2196 */  byte SCM : 1 ;
+/*     2197 */  byte SCMIF : 1 ;
+/*     2198 */  byte TRACK : 1 ;
+/*     2199 */  byte LOCK : 1 ;
+/*     2200 */  byte LOCKIF : 1 ;
+/*     2201 */  byte LVRF : 1 ;
+/*     2202 */  byte PORF : 1 ;
+/*     2203 */  byte RTIF : 1 ;
+/*     2204 */  } Bits ;
+/*     2205 */  } CRGFLGSTR ;
+/*     2206 */  extern volatile CRGFLGSTR _CRGFLG @ ( 0x0000 + 0x00000037 ) ;
+/*     2228 */  typedef union {
+/*     2229 */  byte Byte ;
+/*     2230 */  struct {
+/*     2231 */  byte : 1 ;
+/*     2232 */  byte SCMIE : 1 ;
+/*     2233 */  byte : 1 ;
+/*     2234 */  byte : 1 ;
+/*     2235 */  byte LOCKIE : 1 ;
+/*     2236 */  byte : 1 ;
+/*     2237 */  byte : 1 ;
+/*     2238 */  byte RTIE : 1 ;
+/*     2239 */  } Bits ;
+/*     2240 */  } CRGINTSTR ;
+/*     2241 */  extern volatile CRGINTSTR _CRGINT @ ( 0x0000 + 0x00000038 ) ;
+/*     2253 */  typedef union {
+/*     2254 */  byte Byte ;
+/*     2255 */  struct {
+/*     2256 */  byte COPWAI : 1 ;
+/*     2257 */  byte RTIWAI : 1 ;
+/*     2258 */  byte CWAI : 1 ;
+/*     2259 */  byte PLLWAI : 1 ;
+/*     2260 */  byte ROAWAI : 1 ;
+/*     2261 */  byte SYSWAI : 1 ;
+/*     2262 */  byte PSTP : 1 ;
+/*     2263 */  byte PLLSEL : 1 ;
+/*     2264 */  } Bits ;
+/*     2265 */  } CLKSELSTR ;
+/*     2266 */  extern volatile CLKSELSTR _CLKSEL @ ( 0x0000 + 0x00000039 ) ;
+/*     2288 */  typedef union {
+/*     2289 */  byte Byte ;
+/*     2290 */  struct {
+/*     2291 */  byte SCME : 1 ;
+/*     2292 */  byte PCE : 1 ;
+/*     2293 */  byte PRE : 1 ;
+/*     2294 */  byte : 1 ;
+/*     2295 */  byte ACQ : 1 ;
+/*     2296 */  byte AUTO : 1 ;
+/*     2297 */  byte PLLON : 1 ;
+/*     2298 */  byte CME : 1 ;
+/*     2299 */  } Bits ;
+/*     2300 */  } PLLCTLSTR ;
+/*     2301 */  extern volatile PLLCTLSTR _PLLCTL @ ( 0x0000 + 0x0000003A ) ;
+/*     2321 */  typedef union {
+/*     2322 */  byte Byte ;
+/*     2323 */  struct {
+/*     2324 */  byte RTR0 : 1 ;
+/*     2325 */  byte RTR1 : 1 ;
+/*     2326 */  byte RTR2 : 1 ;
+/*     2327 */  byte RTR3 : 1 ;
+/*     2328 */  byte RTR4 : 1 ;
+/*     2329 */  byte RTR5 : 1 ;
+/*     2330 */  byte RTR6 : 1 ;
+/*     2331 */  byte : 1 ;
+/*     2332 */  } Bits ;
+/*     2333 */  struct {
+/*     2334 */  byte grpRTR : 7 ;
+/*     2335 */  byte : 1 ;
+/*     2336 */  } MergedBits ;
+/*     2337 */  } RTICTLSTR ;
+/*     2338 */  extern volatile RTICTLSTR _RTICTL @ ( 0x0000 + 0x0000003B ) ;
+/*     2361 */  typedef union {
+/*     2362 */  byte Byte ;
+/*     2363 */  struct {
+/*     2364 */  byte CR0 : 1 ;
+/*     2365 */  byte CR1 : 1 ;
+/*     2366 */  byte CR2 : 1 ;
+/*     2367 */  byte : 1 ;
+/*     2368 */  byte : 1 ;
+/*     2369 */  byte : 1 ;
+/*     2370 */  byte RSBCK : 1 ;
+/*     2371 */  byte WCOP : 1 ;
+/*     2372 */  } Bits ;
+/*     2373 */  struct {
+/*     2374 */  byte grpCR : 3 ;
+/*     2375 */  byte : 1 ;
+/*     2376 */  byte : 1 ;
+/*     2377 */  byte : 1 ;
+/*     2378 */  byte : 1 ;
+/*     2379 */  byte : 1 ;
+/*     2380 */  } MergedBits ;
+/*     2381 */  } COPCTLSTR ;
+/*     2382 */  extern volatile COPCTLSTR _COPCTL @ ( 0x0000 + 0x0000003C ) ;
+/*     2401 */  typedef union {
+/*     2402 */  byte Byte ;
+/*     2403 */  struct {
+/*     2404 */  byte BIT0 : 1 ;
+/*     2405 */  byte BIT1 : 1 ;
+/*     2406 */  byte BIT2 : 1 ;
+/*     2407 */  byte BIT3 : 1 ;
+/*     2408 */  byte BIT4 : 1 ;
+/*     2409 */  byte BIT5 : 1 ;
+/*     2410 */  byte BIT6 : 1 ;
+/*     2411 */  byte BIT7 : 1 ;
+/*     2412 */  } Bits ;
+/*     2413 */  } ARMCOPSTR ;
+/*     2414 */  extern volatile ARMCOPSTR _ARMCOP @ ( 0x0000 + 0x0000003F ) ;
+/*     2436 */  typedef union {
+/*     2437 */  byte Byte ;
+/*     2438 */  struct {
+/*     2439 */  byte IOS0 : 1 ;
+/*     2440 */  byte IOS1 : 1 ;
+/*     2441 */  byte IOS2 : 1 ;
+/*     2442 */  byte IOS3 : 1 ;
+/*     2443 */  byte IOS4 : 1 ;
+/*     2444 */  byte IOS5 : 1 ;
+/*     2445 */  byte IOS6 : 1 ;
+/*     2446 */  byte IOS7 : 1 ;
+/*     2447 */  } Bits ;
+/*     2448 */  } TIOSSTR ;
+/*     2449 */  extern volatile TIOSSTR _TIOS @ ( 0x0000 + 0x00000040 ) ;
+/*     2471 */  typedef union {
+/*     2472 */  byte Byte ;
+/*     2473 */  struct {
+/*     2474 */  byte FOC0 : 1 ;
+/*     2475 */  byte FOC1 : 1 ;
+/*     2476 */  byte FOC2 : 1 ;
+/*     2477 */  byte FOC3 : 1 ;
+/*     2478 */  byte FOC4 : 1 ;
+/*     2479 */  byte FOC5 : 1 ;
+/*     2480 */  byte FOC6 : 1 ;
+/*     2481 */  byte FOC7 : 1 ;
+/*     2482 */  } Bits ;
+/*     2483 */  } CFORCSTR ;
+/*     2484 */  extern volatile CFORCSTR _CFORC @ ( 0x0000 + 0x00000041 ) ;
+/*     2506 */  typedef union {
+/*     2507 */  byte Byte ;
+/*     2508 */  struct {
+/*     2509 */  byte OC7M0 : 1 ;
+/*     2510 */  byte OC7M1 : 1 ;
+/*     2511 */  byte OC7M2 : 1 ;
+/*     2512 */  byte OC7M3 : 1 ;
+/*     2513 */  byte OC7M4 : 1 ;
+/*     2514 */  byte OC7M5 : 1 ;
+/*     2515 */  byte OC7M6 : 1 ;
+/*     2516 */  byte OC7M7 : 1 ;
+/*     2517 */  } Bits ;
+/*     2518 */  } OC7MSTR ;
+/*     2519 */  extern volatile OC7MSTR _OC7M @ ( 0x0000 + 0x00000042 ) ;
+/*     2541 */  typedef union {
+/*     2542 */  byte Byte ;
+/*     2543 */  struct {
+/*     2544 */  byte OC7D0 : 1 ;
+/*     2545 */  byte OC7D1 : 1 ;
+/*     2546 */  byte OC7D2 : 1 ;
+/*     2547 */  byte OC7D3 : 1 ;
+/*     2548 */  byte OC7D4 : 1 ;
+/*     2549 */  byte OC7D5 : 1 ;
+/*     2550 */  byte OC7D6 : 1 ;
+/*     2551 */  byte OC7D7 : 1 ;
+/*     2552 */  } Bits ;
+/*     2553 */  } OC7DSTR ;
+/*     2554 */  extern volatile OC7DSTR _OC7D @ ( 0x0000 + 0x00000043 ) ;
+/*     2576 */  typedef union {
+/*     2577 */  word Word ;
+/*     2579 */  struct {
+/*     2581 */  union {
+/*     2582 */  byte Byte ;
+/*     2583 */  } TCNTHiSTR ;
+/*     2588 */  union {
+/*     2589 */  byte Byte ;
+/*     2590 */  } TCNTLoSTR ;
+/*     2593 */  } Overlap_STR ;
+/*     2595 */  } TCNTSTR ;
+/*     2596 */  extern volatile TCNTSTR _TCNT @ ( 0x0000 + 0x00000044 ) ;
+/*     2601 */  typedef union {
+/*     2602 */  byte Byte ;
+/*     2603 */  struct {
+/*     2604 */  byte : 1 ;
+/*     2605 */  byte : 1 ;
+/*     2606 */  byte : 1 ;
+/*     2607 */  byte : 1 ;
+/*     2608 */  byte TFFCA : 1 ;
+/*     2609 */  byte TSFRZ : 1 ;
+/*     2610 */  byte TSWAI : 1 ;
+/*     2611 */  byte TEN : 1 ;
+/*     2612 */  } Bits ;
+/*     2613 */  } TSCR1STR ;
+/*     2614 */  extern volatile TSCR1STR _TSCR1 @ ( 0x0000 + 0x00000046 ) ;
+/*     2628 */  typedef union {
+/*     2629 */  byte Byte ;
+/*     2630 */  struct {
+/*     2631 */  byte TOV0 : 1 ;
+/*     2632 */  byte TOV1 : 1 ;
+/*     2633 */  byte TOV2 : 1 ;
+/*     2634 */  byte TOV3 : 1 ;
+/*     2635 */  byte TOV4 : 1 ;
+/*     2636 */  byte TOV5 : 1 ;
+/*     2637 */  byte TOV6 : 1 ;
+/*     2638 */  byte TOV7 : 1 ;
+/*     2639 */  } Bits ;
+/*     2640 */  } TTOVSTR ;
+/*     2641 */  extern volatile TTOVSTR _TTOV @ ( 0x0000 + 0x00000047 ) ;
+/*     2663 */  typedef union {
+/*     2664 */  byte Byte ;
+/*     2665 */  struct {
+/*     2666 */  byte OL4 : 1 ;
+/*     2667 */  byte OM4 : 1 ;
+/*     2668 */  byte OL5 : 1 ;
+/*     2669 */  byte OM5 : 1 ;
+/*     2670 */  byte OL6 : 1 ;
+/*     2671 */  byte OM6 : 1 ;
+/*     2672 */  byte OL7 : 1 ;
+/*     2673 */  byte OM7 : 1 ;
+/*     2674 */  } Bits ;
+/*     2675 */  } TCTL1STR ;
+/*     2676 */  extern volatile TCTL1STR _TCTL1 @ ( 0x0000 + 0x00000048 ) ;
+/*     2698 */  typedef union {
+/*     2699 */  byte Byte ;
+/*     2700 */  struct {
+/*     2701 */  byte OL0 : 1 ;
+/*     2702 */  byte OM0 : 1 ;
+/*     2703 */  byte OL1 : 1 ;
+/*     2704 */  byte OM1 : 1 ;
+/*     2705 */  byte OL2 : 1 ;
+/*     2706 */  byte OM2 : 1 ;
+/*     2707 */  byte OL3 : 1 ;
+/*     2708 */  byte OM3 : 1 ;
+/*     2709 */  } Bits ;
+/*     2710 */  } TCTL2STR ;
+/*     2711 */  extern volatile TCTL2STR _TCTL2 @ ( 0x0000 + 0x00000049 ) ;
+/*     2733 */  typedef union {
+/*     2734 */  byte Byte ;
+/*     2735 */  struct {
+/*     2736 */  byte EDG4A : 1 ;
+/*     2737 */  byte EDG4B : 1 ;
+/*     2738 */  byte EDG5A : 1 ;
+/*     2739 */  byte EDG5B : 1 ;
+/*     2740 */  byte EDG6A : 1 ;
+/*     2741 */  byte EDG6B : 1 ;
+/*     2742 */  byte EDG7A : 1 ;
+/*     2743 */  byte EDG7B : 1 ;
+/*     2744 */  } Bits ;
+/*     2745 */  struct {
+/*     2746 */  byte grpEDG4x : 2 ;
+/*     2747 */  byte grpEDG5x : 2 ;
+/*     2748 */  byte grpEDG6x : 2 ;
+/*     2749 */  byte grpEDG7x : 2 ;
+/*     2750 */  } MergedBits ;
+/*     2751 */  } TCTL3STR ;
+/*     2752 */  extern volatile TCTL3STR _TCTL3 @ ( 0x0000 + 0x0000004A ) ;
+/*     2786 */  typedef union {
+/*     2787 */  byte Byte ;
+/*     2788 */  struct {
+/*     2789 */  byte EDG0A : 1 ;
+/*     2790 */  byte EDG0B : 1 ;
+/*     2791 */  byte EDG1A : 1 ;
+/*     2792 */  byte EDG1B : 1 ;
+/*     2793 */  byte EDG2A : 1 ;
+/*     2794 */  byte EDG2B : 1 ;
+/*     2795 */  byte EDG3A : 1 ;
+/*     2796 */  byte EDG3B : 1 ;
+/*     2797 */  } Bits ;
+/*     2798 */  struct {
+/*     2799 */  byte grpEDG0x : 2 ;
+/*     2800 */  byte grpEDG1x : 2 ;
+/*     2801 */  byte grpEDG2x : 2 ;
+/*     2802 */  byte grpEDG3x : 2 ;
+/*     2803 */  } MergedBits ;
+/*     2804 */  } TCTL4STR ;
+/*     2805 */  extern volatile TCTL4STR _TCTL4 @ ( 0x0000 + 0x0000004B ) ;
+/*     2839 */  typedef union {
+/*     2840 */  byte Byte ;
+/*     2841 */  struct {
+/*     2842 */  byte C0I : 1 ;
+/*     2843 */  byte C1I : 1 ;
+/*     2844 */  byte C2I : 1 ;
+/*     2845 */  byte C3I : 1 ;
+/*     2846 */  byte C4I : 1 ;
+/*     2847 */  byte C5I : 1 ;
+/*     2848 */  byte C6I : 1 ;
+/*     2849 */  byte C7I : 1 ;
+/*     2850 */  } Bits ;
+/*     2851 */  } TIESTR ;
+/*     2852 */  extern volatile TIESTR _TIE @ ( 0x0000 + 0x0000004C ) ;
+/*     2874 */  typedef union {
+/*     2875 */  byte Byte ;
+/*     2876 */  struct {
+/*     2877 */  byte PR0 : 1 ;
+/*     2878 */  byte PR1 : 1 ;
+/*     2879 */  byte PR2 : 1 ;
+/*     2880 */  byte TCRE : 1 ;
+/*     2881 */  byte : 1 ;
+/*     2882 */  byte : 1 ;
+/*     2883 */  byte : 1 ;
+/*     2884 */  byte TOI : 1 ;
+/*     2885 */  } Bits ;
+/*     2886 */  struct {
+/*     2887 */  byte grpPR : 3 ;
+/*     2888 */  byte : 1 ;
+/*     2889 */  byte : 1 ;
+/*     2890 */  byte : 1 ;
+/*     2891 */  byte : 1 ;
+/*     2892 */  byte : 1 ;
+/*     2893 */  } MergedBits ;
+/*     2894 */  } TSCR2STR ;
+/*     2895 */  extern volatile TSCR2STR _TSCR2 @ ( 0x0000 + 0x0000004D ) ;
+/*     2914 */  typedef union {
+/*     2915 */  byte Byte ;
+/*     2916 */  struct {
+/*     2917 */  byte C0F : 1 ;
+/*     2918 */  byte C1F : 1 ;
+/*     2919 */  byte C2F : 1 ;
+/*     2920 */  byte C3F : 1 ;
+/*     2921 */  byte C4F : 1 ;
+/*     2922 */  byte C5F : 1 ;
+/*     2923 */  byte C6F : 1 ;
+/*     2924 */  byte C7F : 1 ;
+/*     2925 */  } Bits ;
+/*     2926 */  } TFLG1STR ;
+/*     2927 */  extern volatile TFLG1STR _TFLG1 @ ( 0x0000 + 0x0000004E ) ;
+/*     2949 */  typedef union {
+/*     2950 */  byte Byte ;
+/*     2951 */  struct {
+/*     2952 */  byte : 1 ;
+/*     2953 */  byte : 1 ;
+/*     2954 */  byte : 1 ;
+/*     2955 */  byte : 1 ;
+/*     2956 */  byte : 1 ;
+/*     2957 */  byte : 1 ;
+/*     2958 */  byte : 1 ;
+/*     2959 */  byte TOF : 1 ;
+/*     2960 */  } Bits ;
+/*     2961 */  } TFLG2STR ;
+/*     2962 */  extern volatile TFLG2STR _TFLG2 @ ( 0x0000 + 0x0000004F ) ;
+/*     2970 */  typedef union {
+/*     2971 */  word Word ;
+/*     2973 */  struct {
+/*     2975 */  union {
+/*     2976 */  byte Byte ;
+/*     2977 */  } TC0HiSTR ;
+/*     2982 */  union {
+/*     2983 */  byte Byte ;
+/*     2984 */  } TC0LoSTR ;
+/*     2987 */  } Overlap_STR ;
+/*     2989 */  } TC0STR ;
+/*     2990 */  extern volatile TC0STR _TC0 @ ( 0x0000 + 0x00000050 ) ;
+/*     2997 */  typedef union {
+/*     2998 */  word Word ;
+/*     3000 */  struct {
+/*     3002 */  union {
+/*     3003 */  byte Byte ;
+/*     3004 */  } TC1HiSTR ;
+/*     3009 */  union {
+/*     3010 */  byte Byte ;
+/*     3011 */  } TC1LoSTR ;
+/*     3014 */  } Overlap_STR ;
+/*     3016 */  } TC1STR ;
+/*     3017 */  extern volatile TC1STR _TC1 @ ( 0x0000 + 0x00000052 ) ;
+/*     3022 */  typedef union {
+/*     3023 */  word Word ;
+/*     3025 */  struct {
+/*     3027 */  union {
+/*     3028 */  byte Byte ;
+/*     3029 */  } TC2HiSTR ;
+/*     3034 */  union {
+/*     3035 */  byte Byte ;
+/*     3036 */  } TC2LoSTR ;
+/*     3039 */  } Overlap_STR ;
+/*     3041 */  } TC2STR ;
+/*     3042 */  extern volatile TC2STR _TC2 @ ( 0x0000 + 0x00000054 ) ;
+/*     3047 */  typedef union {
+/*     3048 */  word Word ;
+/*     3050 */  struct {
+/*     3052 */  union {
+/*     3053 */  byte Byte ;
+/*     3054 */  } TC3HiSTR ;
+/*     3059 */  union {
+/*     3060 */  byte Byte ;
+/*     3061 */  } TC3LoSTR ;
+/*     3064 */  } Overlap_STR ;
+/*     3066 */  } TC3STR ;
+/*     3067 */  extern volatile TC3STR _TC3 @ ( 0x0000 + 0x00000056 ) ;
+/*     3072 */  typedef union {
+/*     3073 */  word Word ;
+/*     3075 */  struct {
+/*     3077 */  union {
+/*     3078 */  byte Byte ;
+/*     3079 */  } TC4HiSTR ;
+/*     3084 */  union {
+/*     3085 */  byte Byte ;
+/*     3086 */  } TC4LoSTR ;
+/*     3089 */  } Overlap_STR ;
+/*     3091 */  } TC4STR ;
+/*     3092 */  extern volatile TC4STR _TC4 @ ( 0x0000 + 0x00000058 ) ;
+/*     3097 */  typedef union {
+/*     3098 */  word Word ;
+/*     3100 */  struct {
+/*     3102 */  union {
+/*     3103 */  byte Byte ;
+/*     3104 */  } TC5HiSTR ;
+/*     3109 */  union {
+/*     3110 */  byte Byte ;
+/*     3111 */  } TC5LoSTR ;
+/*     3114 */  } Overlap_STR ;
+/*     3116 */  } TC5STR ;
+/*     3117 */  extern volatile TC5STR _TC5 @ ( 0x0000 + 0x0000005A ) ;
+/*     3122 */  typedef union {
+/*     3123 */  word Word ;
+/*     3125 */  struct {
+/*     3127 */  union {
+/*     3128 */  byte Byte ;
+/*     3129 */  } TC6HiSTR ;
+/*     3134 */  union {
+/*     3135 */  byte Byte ;
+/*     3136 */  } TC6LoSTR ;
+/*     3139 */  } Overlap_STR ;
+/*     3141 */  } TC6STR ;
+/*     3142 */  extern volatile TC6STR _TC6 @ ( 0x0000 + 0x0000005C ) ;
+/*     3147 */  typedef union {
+/*     3148 */  word Word ;
+/*     3150 */  struct {
+/*     3152 */  union {
+/*     3153 */  byte Byte ;
+/*     3154 */  } TC7HiSTR ;
+/*     3159 */  union {
+/*     3160 */  byte Byte ;
+/*     3161 */  } TC7LoSTR ;
+/*     3164 */  } Overlap_STR ;
+/*     3166 */  } TC7STR ;
+/*     3167 */  extern volatile TC7STR _TC7 @ ( 0x0000 + 0x0000005E ) ;
+/*     3172 */  typedef union {
+/*     3173 */  byte Byte ;
+/*     3174 */  struct {
+/*     3175 */  byte PAI : 1 ;
+/*     3176 */  byte PAOVI : 1 ;
+/*     3177 */  byte CLK0 : 1 ;
+/*     3178 */  byte CLK1 : 1 ;
+/*     3179 */  byte PEDGE : 1 ;
+/*     3180 */  byte PAMOD : 1 ;
+/*     3181 */  byte PAEN : 1 ;
+/*     3182 */  byte : 1 ;
+/*     3183 */  } Bits ;
+/*     3184 */  struct {
+/*     3185 */  byte : 1 ;
+/*     3186 */  byte : 1 ;
+/*     3187 */  byte grpCLK : 2 ;
+/*     3188 */  byte : 1 ;
+/*     3189 */  byte : 1 ;
+/*     3190 */  byte : 1 ;
+/*     3191 */  byte : 1 ;
+/*     3192 */  } MergedBits ;
+/*     3193 */  } PACTLSTR ;
+/*     3194 */  extern volatile PACTLSTR _PACTL @ ( 0x0000 + 0x00000060 ) ;
+/*     3217 */  typedef union {
+/*     3218 */  byte Byte ;
+/*     3219 */  struct {
+/*     3220 */  byte PAIF : 1 ;
+/*     3221 */  byte PAOVF : 1 ;
+/*     3222 */  byte : 1 ;
+/*     3223 */  byte : 1 ;
+/*     3224 */  byte : 1 ;
+/*     3225 */  byte : 1 ;
+/*     3226 */  byte : 1 ;
+/*     3227 */  byte : 1 ;
+/*     3228 */  } Bits ;
+/*     3229 */  } PAFLGSTR ;
+/*     3230 */  extern volatile PAFLGSTR _PAFLG @ ( 0x0000 + 0x00000061 ) ;
+/*     3240 */  typedef union {
+/*     3241 */  word Word ;
+/*     3242 */  } PACNTSTR ;
+/*     3243 */  extern volatile PACNTSTR _PACNT @ ( 0x0000 + 0x00000062 ) ;
+/*     3248 */  typedef union {
+/*     3249 */  word Word ;
+/*     3251 */  struct {
+/*     3253 */  union {
+/*     3254 */  byte Byte ;
+/*     3255 */  struct {
+/*     3256 */  byte ASCIF : 1 ;
+/*     3257 */  byte ASCIE : 1 ;
+/*     3258 */  byte ETRIGE : 1 ;
+/*     3259 */  byte ETRIGP : 1 ;
+/*     3260 */  byte ETRIGLE : 1 ;
+/*     3261 */  byte AWAI : 1 ;
+/*     3262 */  byte AFFC : 1 ;
+/*     3263 */  byte ADPU : 1 ;
+/*     3264 */  } Bits ;
+/*     3265 */  } ATDCTL2STR ;
+/*     3287 */  union {
+/*     3288 */  byte Byte ;
+/*     3289 */  struct {
+/*     3290 */  byte FRZ0 : 1 ;
+/*     3291 */  byte FRZ1 : 1 ;
+/*     3292 */  byte FIFO : 1 ;
+/*     3293 */  byte S1C : 1 ;
+/*     3294 */  byte S2C : 1 ;
+/*     3295 */  byte S4C : 1 ;
+/*     3296 */  byte S8C : 1 ;
+/*     3297 */  byte : 1 ;
+/*     3298 */  } Bits ;
+/*     3299 */  struct {
+/*     3300 */  byte grpFRZ : 2 ;
+/*     3301 */  byte : 1 ;
+/*     3302 */  byte : 1 ;
+/*     3303 */  byte : 1 ;
+/*     3304 */  byte : 1 ;
+/*     3305 */  byte : 1 ;
+/*     3306 */  byte : 1 ;
+/*     3307 */  } MergedBits ;
+/*     3308 */  } ATDCTL3STR ;
+/*     3329 */  } Overlap_STR ;
+/*     3331 */  struct {
+/*     3332 */  word FRZ0 : 1 ;
+/*     3333 */  word FRZ1 : 1 ;
+/*     3334 */  word FIFO : 1 ;
+/*     3335 */  word S1C : 1 ;
+/*     3336 */  word S2C : 1 ;
+/*     3337 */  word S4C : 1 ;
+/*     3338 */  word S8C : 1 ;
+/*     3339 */  word : 1 ;
+/*     3340 */  word ASCIF : 1 ;
+/*     3341 */  word ASCIE : 1 ;
+/*     3342 */  word ETRIGE : 1 ;
+/*     3343 */  word ETRIGP : 1 ;
+/*     3344 */  word ETRIGLE : 1 ;
+/*     3345 */  word AWAI : 1 ;
+/*     3346 */  word AFFC : 1 ;
+/*     3347 */  word ADPU : 1 ;
+/*     3348 */  } Bits ;
+/*     3349 */  struct {
+/*     3350 */  word grpFRZ : 2 ;
+/*     3351 */  word : 1 ;
+/*     3352 */  word : 1 ;
+/*     3353 */  word : 1 ;
+/*     3354 */  word : 1 ;
+/*     3355 */  word : 1 ;
+/*     3356 */  word : 1 ;
+/*     3357 */  word : 1 ;
+/*     3358 */  word : 1 ;
+/*     3359 */  word : 1 ;
+/*     3360 */  word : 1 ;
+/*     3361 */  word : 1 ;
+/*     3362 */  word : 1 ;
+/*     3363 */  word : 1 ;
+/*     3364 */  word : 1 ;
+/*     3365 */  } MergedBits ;
+/*     3366 */  } ATDCTL23STR ;
+/*     3367 */  extern volatile ATDCTL23STR _ATDCTL23 @ ( 0x0000 + 0x00000082 ) ;
+/*     3406 */  typedef union {
+/*     3407 */  word Word ;
+/*     3409 */  struct {
+/*     3411 */  union {
+/*     3412 */  byte Byte ;
+/*     3413 */  struct {
+/*     3414 */  byte PRS0 : 1 ;
+/*     3415 */  byte PRS1 : 1 ;
+/*     3416 */  byte PRS2 : 1 ;
+/*     3417 */  byte PRS3 : 1 ;
+/*     3418 */  byte PRS4 : 1 ;
+/*     3419 */  byte SMP0 : 1 ;
+/*     3420 */  byte SMP1 : 1 ;
+/*     3421 */  byte SRES8 : 1 ;
+/*     3422 */  } Bits ;
+/*     3423 */  struct {
+/*     3424 */  byte grpPRS : 5 ;
+/*     3425 */  byte grpSMP : 2 ;
+/*     3426 */  byte grpSRES_8 : 1 ;
+/*     3427 */  } MergedBits ;
+/*     3428 */  } ATDCTL4STR ;
+/*     3456 */  union {
+/*     3457 */  byte Byte ;
+/*     3458 */  struct {
+/*     3459 */  byte CA : 1 ;
+/*     3460 */  byte CB : 1 ;
+/*     3461 */  byte CC : 1 ;
+/*     3462 */  byte : 1 ;
+/*     3463 */  byte MULT : 1 ;
+/*     3464 */  byte SCAN : 1 ;
+/*     3465 */  byte DSGN : 1 ;
+/*     3466 */  byte DJM : 1 ;
+/*     3467 */  } Bits ;
+/*     3468 */  struct {
+/*     3469 */  byte grpCx : 3 ;
+/*     3470 */  byte : 1 ;
+/*     3471 */  byte : 1 ;
+/*     3472 */  byte : 1 ;
+/*     3473 */  byte : 1 ;
+/*     3474 */  byte : 1 ;
+/*     3475 */  } MergedBits ;
+/*     3476 */  } ATDCTL5STR ;
+/*     3497 */  } Overlap_STR ;
+/*     3499 */  struct {
+/*     3500 */  word CA : 1 ;
+/*     3501 */  word CB : 1 ;
+/*     3502 */  word CC : 1 ;
+/*     3503 */  word : 1 ;
+/*     3504 */  word MULT : 1 ;
+/*     3505 */  word SCAN : 1 ;
+/*     3506 */  word DSGN : 1 ;
+/*     3507 */  word DJM : 1 ;
+/*     3508 */  word PRS0 : 1 ;
+/*     3509 */  word PRS1 : 1 ;
+/*     3510 */  word PRS2 : 1 ;
+/*     3511 */  word PRS3 : 1 ;
+/*     3512 */  word PRS4 : 1 ;
+/*     3513 */  word SMP0 : 1 ;
+/*     3514 */  word SMP1 : 1 ;
+/*     3515 */  word SRES8 : 1 ;
+/*     3516 */  } Bits ;
+/*     3517 */  struct {
+/*     3518 */  word grpCx : 3 ;
+/*     3519 */  word : 1 ;
+/*     3520 */  word : 1 ;
+/*     3521 */  word : 1 ;
+/*     3522 */  word : 1 ;
+/*     3523 */  word : 1 ;
+/*     3524 */  word grpPRS : 5 ;
+/*     3525 */  word grpSMP : 2 ;
+/*     3526 */  word grpSRES_8 : 1 ;
+/*     3527 */  } MergedBits ;
+/*     3528 */  } ATDCTL45STR ;
+/*     3529 */  extern volatile ATDCTL45STR _ATDCTL45 @ ( 0x0000 + 0x00000084 ) ;
+/*     3574 */  typedef union {
+/*     3575 */  byte Byte ;
+/*     3576 */  struct {
+/*     3577 */  byte CC0 : 1 ;
+/*     3578 */  byte CC1 : 1 ;
+/*     3579 */  byte CC2 : 1 ;
+/*     3580 */  byte : 1 ;
+/*     3581 */  byte FIFOR : 1 ;
+/*     3582 */  byte ETORF : 1 ;
+/*     3583 */  byte : 1 ;
+/*     3584 */  byte SCF : 1 ;
+/*     3585 */  } Bits ;
+/*     3586 */  struct {
+/*     3587 */  byte grpCC : 3 ;
+/*     3588 */  byte : 1 ;
+/*     3589 */  byte : 1 ;
+/*     3590 */  byte : 1 ;
+/*     3591 */  byte : 1 ;
+/*     3592 */  byte : 1 ;
+/*     3593 */  } MergedBits ;
+/*     3594 */  } ATDSTAT0STR ;
+/*     3595 */  extern volatile ATDSTAT0STR _ATDSTAT0 @ ( 0x0000 + 0x00000086 ) ;
+/*     3616 */  typedef union {
+/*     3617 */  byte Byte ;
+/*     3618 */  struct {
+/*     3619 */  byte SC : 1 ;
+/*     3620 */  byte : 1 ;
+/*     3621 */  byte : 1 ;
+/*     3622 */  byte : 1 ;
+/*     3623 */  byte : 1 ;
+/*     3624 */  byte : 1 ;
+/*     3625 */  byte : 1 ;
+/*     3626 */  byte : 1 ;
+/*     3627 */  } Bits ;
+/*     3628 */  } ATDTEST1STR ;
+/*     3629 */  extern volatile ATDTEST1STR _ATDTEST1 @ ( 0x0000 + 0x00000089 ) ;
+/*     3637 */  typedef union {
+/*     3638 */  byte Byte ;
+/*     3639 */  struct {
+/*     3640 */  byte CCF0 : 1 ;
+/*     3641 */  byte CCF1 : 1 ;
+/*     3642 */  byte CCF2 : 1 ;
+/*     3643 */  byte CCF3 : 1 ;
+/*     3644 */  byte CCF4 : 1 ;
+/*     3645 */  byte CCF5 : 1 ;
+/*     3646 */  byte CCF6 : 1 ;
+/*     3647 */  byte CCF7 : 1 ;
+/*     3648 */  } Bits ;
+/*     3649 */  } ATDSTAT1STR ;
+/*     3650 */  extern volatile ATDSTAT1STR _ATDSTAT1 @ ( 0x0000 + 0x0000008B ) ;
+/*     3672 */  typedef union {
+/*     3673 */  byte Byte ;
+/*     3674 */  struct {
+/*     3675 */  byte IEN0 : 1 ;
+/*     3676 */  byte IEN1 : 1 ;
+/*     3677 */  byte IEN2 : 1 ;
+/*     3678 */  byte IEN3 : 1 ;
+/*     3679 */  byte IEN4 : 1 ;
+/*     3680 */  byte IEN5 : 1 ;
+/*     3681 */  byte IEN6 : 1 ;
+/*     3682 */  byte IEN7 : 1 ;
+/*     3683 */  } Bits ;
+/*     3684 */  } ATDDIENSTR ;
+/*     3685 */  extern volatile ATDDIENSTR _ATDDIEN @ ( 0x0000 + 0x0000008D ) ;
+/*     3707 */  typedef union {
+/*     3708 */  byte Byte ;
+/*     3709 */  struct {
+/*     3710 */  byte PTAD0 : 1 ;
+/*     3711 */  byte PTAD1 : 1 ;
+/*     3712 */  byte PTAD2 : 1 ;
+/*     3713 */  byte PTAD3 : 1 ;
+/*     3714 */  byte PTAD4 : 1 ;
+/*     3715 */  byte PTAD5 : 1 ;
+/*     3716 */  byte PTAD6 : 1 ;
+/*     3717 */  byte PTAD7 : 1 ;
+/*     3718 */  } Bits ;
+/*     3719 */  } PORTAD0STR ;
+/*     3720 */  extern volatile PORTAD0STR _PORTAD0 @ ( 0x0000 + 0x0000008F ) ;
+/*     3742 */  typedef union {
+/*     3743 */  word Word ;
+/*     3745 */  struct {
+/*     3747 */  union {
+/*     3748 */  byte Byte ;
+/*     3749 */  struct {
+/*     3750 */  byte BIT8 : 1 ;
+/*     3751 */  byte BIT9 : 1 ;
+/*     3752 */  byte BIT10 : 1 ;
+/*     3753 */  byte BIT11 : 1 ;
+/*     3754 */  byte BIT12 : 1 ;
+/*     3755 */  byte BIT13 : 1 ;
+/*     3756 */  byte BIT14 : 1 ;
+/*     3757 */  byte BIT15 : 1 ;
+/*     3758 */  } Bits ;
+/*     3759 */  } ATDDR0HSTR ;
+/*     3781 */  union {
+/*     3782 */  byte Byte ;
+/*     3783 */  struct {
+/*     3784 */  byte : 1 ;
+/*     3785 */  byte : 1 ;
+/*     3786 */  byte : 1 ;
+/*     3787 */  byte : 1 ;
+/*     3788 */  byte : 1 ;
+/*     3789 */  byte : 1 ;
+/*     3790 */  byte BIT6 : 1 ;
+/*     3791 */  byte BIT7 : 1 ;
+/*     3792 */  } Bits ;
+/*     3793 */  struct {
+/*     3794 */  byte : 1 ;
+/*     3795 */  byte : 1 ;
+/*     3796 */  byte : 1 ;
+/*     3797 */  byte : 1 ;
+/*     3798 */  byte : 1 ;
+/*     3799 */  byte : 1 ;
+/*     3800 */  byte grpBIT_6 : 2 ;
+/*     3801 */  } MergedBits ;
+/*     3802 */  } ATDDR0LSTR ;
+/*     3814 */  } Overlap_STR ;
+/*     3816 */  struct {
+/*     3817 */  word : 1 ;
+/*     3818 */  word : 1 ;
+/*     3819 */  word : 1 ;
+/*     3820 */  word : 1 ;
+/*     3821 */  word : 1 ;
+/*     3822 */  word : 1 ;
+/*     3823 */  word BIT6 : 1 ;
+/*     3824 */  word BIT7 : 1 ;
+/*     3825 */  word BIT8 : 1 ;
+/*     3826 */  word BIT9 : 1 ;
+/*     3827 */  word BIT10 : 1 ;
+/*     3828 */  word BIT11 : 1 ;
+/*     3829 */  word BIT12 : 1 ;
+/*     3830 */  word BIT13 : 1 ;
+/*     3831 */  word BIT14 : 1 ;
+/*     3832 */  word BIT15 : 1 ;
+/*     3833 */  } Bits ;
+/*     3834 */  struct {
+/*     3835 */  word : 1 ;
+/*     3836 */  word : 1 ;
+/*     3837 */  word : 1 ;
+/*     3838 */  word : 1 ;
+/*     3839 */  word : 1 ;
+/*     3840 */  word : 1 ;
+/*     3841 */  word grpBIT_6 : 10 ;
+/*     3842 */  } MergedBits ;
+/*     3843 */  } ATDDR0STR ;
+/*     3844 */  extern volatile ATDDR0STR _ATDDR0 @ ( 0x0000 + 0x00000090 ) ;
+/*     3876 */  typedef union {
+/*     3877 */  word Word ;
+/*     3879 */  struct {
+/*     3881 */  union {
+/*     3882 */  byte Byte ;
+/*     3883 */  struct {
+/*     3884 */  byte BIT8 : 1 ;
+/*     3885 */  byte BIT9 : 1 ;
+/*     3886 */  byte BIT10 : 1 ;
+/*     3887 */  byte BIT11 : 1 ;
+/*     3888 */  byte BIT12 : 1 ;
+/*     3889 */  byte BIT13 : 1 ;
+/*     3890 */  byte BIT14 : 1 ;
+/*     3891 */  byte BIT15 : 1 ;
+/*     3892 */  } Bits ;
+/*     3893 */  } ATDDR1HSTR ;
+/*     3915 */  union {
+/*     3916 */  byte Byte ;
+/*     3917 */  struct {
+/*     3918 */  byte : 1 ;
+/*     3919 */  byte : 1 ;
+/*     3920 */  byte : 1 ;
+/*     3921 */  byte : 1 ;
+/*     3922 */  byte : 1 ;
+/*     3923 */  byte : 1 ;
+/*     3924 */  byte BIT6 : 1 ;
+/*     3925 */  byte BIT7 : 1 ;
+/*     3926 */  } Bits ;
+/*     3927 */  struct {
+/*     3928 */  byte : 1 ;
+/*     3929 */  byte : 1 ;
+/*     3930 */  byte : 1 ;
+/*     3931 */  byte : 1 ;
+/*     3932 */  byte : 1 ;
+/*     3933 */  byte : 1 ;
+/*     3934 */  byte grpBIT_6 : 2 ;
+/*     3935 */  } MergedBits ;
+/*     3936 */  } ATDDR1LSTR ;
+/*     3948 */  } Overlap_STR ;
+/*     3950 */  struct {
+/*     3951 */  word : 1 ;
+/*     3952 */  word : 1 ;
+/*     3953 */  word : 1 ;
+/*     3954 */  word : 1 ;
+/*     3955 */  word : 1 ;
+/*     3956 */  word : 1 ;
+/*     3957 */  word BIT6 : 1 ;
+/*     3958 */  word BIT7 : 1 ;
+/*     3959 */  word BIT8 : 1 ;
+/*     3960 */  word BIT9 : 1 ;
+/*     3961 */  word BIT10 : 1 ;
+/*     3962 */  word BIT11 : 1 ;
+/*     3963 */  word BIT12 : 1 ;
+/*     3964 */  word BIT13 : 1 ;
+/*     3965 */  word BIT14 : 1 ;
+/*     3966 */  word BIT15 : 1 ;
+/*     3967 */  } Bits ;
+/*     3968 */  struct {
+/*     3969 */  word : 1 ;
+/*     3970 */  word : 1 ;
+/*     3971 */  word : 1 ;
+/*     3972 */  word : 1 ;
+/*     3973 */  word : 1 ;
+/*     3974 */  word : 1 ;
+/*     3975 */  word grpBIT_6 : 10 ;
+/*     3976 */  } MergedBits ;
+/*     3977 */  } ATDDR1STR ;
+/*     3978 */  extern volatile ATDDR1STR _ATDDR1 @ ( 0x0000 + 0x00000092 ) ;
+/*     4008 */  typedef union {
+/*     4009 */  word Word ;
+/*     4011 */  struct {
+/*     4013 */  union {
+/*     4014 */  byte Byte ;
+/*     4015 */  struct {
+/*     4016 */  byte BIT8 : 1 ;
+/*     4017 */  byte BIT9 : 1 ;
+/*     4018 */  byte BIT10 : 1 ;
+/*     4019 */  byte BIT11 : 1 ;
+/*     4020 */  byte BIT12 : 1 ;
+/*     4021 */  byte BIT13 : 1 ;
+/*     4022 */  byte BIT14 : 1 ;
+/*     4023 */  byte BIT15 : 1 ;
+/*     4024 */  } Bits ;
+/*     4025 */  } ATDDR2HSTR ;
+/*     4047 */  union {
+/*     4048 */  byte Byte ;
+/*     4049 */  struct {
+/*     4050 */  byte : 1 ;
+/*     4051 */  byte : 1 ;
+/*     4052 */  byte : 1 ;
+/*     4053 */  byte : 1 ;
+/*     4054 */  byte : 1 ;
+/*     4055 */  byte : 1 ;
+/*     4056 */  byte BIT6 : 1 ;
+/*     4057 */  byte BIT7 : 1 ;
+/*     4058 */  } Bits ;
+/*     4059 */  struct {
+/*     4060 */  byte : 1 ;
+/*     4061 */  byte : 1 ;
+/*     4062 */  byte : 1 ;
+/*     4063 */  byte : 1 ;
+/*     4064 */  byte : 1 ;
+/*     4065 */  byte : 1 ;
+/*     4066 */  byte grpBIT_6 : 2 ;
+/*     4067 */  } MergedBits ;
+/*     4068 */  } ATDDR2LSTR ;
+/*     4080 */  } Overlap_STR ;
+/*     4082 */  struct {
+/*     4083 */  word : 1 ;
+/*     4084 */  word : 1 ;
+/*     4085 */  word : 1 ;
+/*     4086 */  word : 1 ;
+/*     4087 */  word : 1 ;
+/*     4088 */  word : 1 ;
+/*     4089 */  word BIT6 : 1 ;
+/*     4090 */  word BIT7 : 1 ;
+/*     4091 */  word BIT8 : 1 ;
+/*     4092 */  word BIT9 : 1 ;
+/*     4093 */  word BIT10 : 1 ;
+/*     4094 */  word BIT11 : 1 ;
+/*     4095 */  word BIT12 : 1 ;
+/*     4096 */  word BIT13 : 1 ;
+/*     4097 */  word BIT14 : 1 ;
+/*     4098 */  word BIT15 : 1 ;
+/*     4099 */  } Bits ;
+/*     4100 */  struct {
+/*     4101 */  word : 1 ;
+/*     4102 */  word : 1 ;
+/*     4103 */  word : 1 ;
+/*     4104 */  word : 1 ;
+/*     4105 */  word : 1 ;
+/*     4106 */  word : 1 ;
+/*     4107 */  word grpBIT_6 : 10 ;
+/*     4108 */  } MergedBits ;
+/*     4109 */  } ATDDR2STR ;
+/*     4110 */  extern volatile ATDDR2STR _ATDDR2 @ ( 0x0000 + 0x00000094 ) ;
+/*     4140 */  typedef union {
+/*     4141 */  word Word ;
+/*     4143 */  struct {
+/*     4145 */  union {
+/*     4146 */  byte Byte ;
+/*     4147 */  struct {
+/*     4148 */  byte BIT8 : 1 ;
+/*     4149 */  byte BIT9 : 1 ;
+/*     4150 */  byte BIT10 : 1 ;
+/*     4151 */  byte BIT11 : 1 ;
+/*     4152 */  byte BIT12 : 1 ;
+/*     4153 */  byte BIT13 : 1 ;
+/*     4154 */  byte BIT14 : 1 ;
+/*     4155 */  byte BIT15 : 1 ;
+/*     4156 */  } Bits ;
+/*     4157 */  } ATDDR3HSTR ;
+/*     4179 */  union {
+/*     4180 */  byte Byte ;
+/*     4181 */  struct {
+/*     4182 */  byte : 1 ;
+/*     4183 */  byte : 1 ;
+/*     4184 */  byte : 1 ;
+/*     4185 */  byte : 1 ;
+/*     4186 */  byte : 1 ;
+/*     4187 */  byte : 1 ;
+/*     4188 */  byte BIT6 : 1 ;
+/*     4189 */  byte BIT7 : 1 ;
+/*     4190 */  } Bits ;
+/*     4191 */  struct {
+/*     4192 */  byte : 1 ;
+/*     4193 */  byte : 1 ;
+/*     4194 */  byte : 1 ;
+/*     4195 */  byte : 1 ;
+/*     4196 */  byte : 1 ;
+/*     4197 */  byte : 1 ;
+/*     4198 */  byte grpBIT_6 : 2 ;
+/*     4199 */  } MergedBits ;
+/*     4200 */  } ATDDR3LSTR ;
+/*     4212 */  } Overlap_STR ;
+/*     4214 */  struct {
+/*     4215 */  word : 1 ;
+/*     4216 */  word : 1 ;
+/*     4217 */  word : 1 ;
+/*     4218 */  word : 1 ;
+/*     4219 */  word : 1 ;
+/*     4220 */  word : 1 ;
+/*     4221 */  word BIT6 : 1 ;
+/*     4222 */  word BIT7 : 1 ;
+/*     4223 */  word BIT8 : 1 ;
+/*     4224 */  word BIT9 : 1 ;
+/*     4225 */  word BIT10 : 1 ;
+/*     4226 */  word BIT11 : 1 ;
+/*     4227 */  word BIT12 : 1 ;
+/*     4228 */  word BIT13 : 1 ;
+/*     4229 */  word BIT14 : 1 ;
+/*     4230 */  word BIT15 : 1 ;
+/*     4231 */  } Bits ;
+/*     4232 */  struct {
+/*     4233 */  word : 1 ;
+/*     4234 */  word : 1 ;
+/*     4235 */  word : 1 ;
+/*     4236 */  word : 1 ;
+/*     4237 */  word : 1 ;
+/*     4238 */  word : 1 ;
+/*     4239 */  word grpBIT_6 : 10 ;
+/*     4240 */  } MergedBits ;
+/*     4241 */  } ATDDR3STR ;
+/*     4242 */  extern volatile ATDDR3STR _ATDDR3 @ ( 0x0000 + 0x00000096 ) ;
+/*     4272 */  typedef union {
+/*     4273 */  word Word ;
+/*     4275 */  struct {
+/*     4277 */  union {
+/*     4278 */  byte Byte ;
+/*     4279 */  struct {
+/*     4280 */  byte BIT8 : 1 ;
+/*     4281 */  byte BIT9 : 1 ;
+/*     4282 */  byte BIT10 : 1 ;
+/*     4283 */  byte BIT11 : 1 ;
+/*     4284 */  byte BIT12 : 1 ;
+/*     4285 */  byte BIT13 : 1 ;
+/*     4286 */  byte BIT14 : 1 ;
+/*     4287 */  byte BIT15 : 1 ;
+/*     4288 */  } Bits ;
+/*     4289 */  } ATDDR4HSTR ;
+/*     4311 */  union {
+/*     4312 */  byte Byte ;
+/*     4313 */  struct {
+/*     4314 */  byte : 1 ;
+/*     4315 */  byte : 1 ;
+/*     4316 */  byte : 1 ;
+/*     4317 */  byte : 1 ;
+/*     4318 */  byte : 1 ;
+/*     4319 */  byte : 1 ;
+/*     4320 */  byte BIT6 : 1 ;
+/*     4321 */  byte BIT7 : 1 ;
+/*     4322 */  } Bits ;
+/*     4323 */  struct {
+/*     4324 */  byte : 1 ;
+/*     4325 */  byte : 1 ;
+/*     4326 */  byte : 1 ;
+/*     4327 */  byte : 1 ;
+/*     4328 */  byte : 1 ;
+/*     4329 */  byte : 1 ;
+/*     4330 */  byte grpBIT_6 : 2 ;
+/*     4331 */  } MergedBits ;
+/*     4332 */  } ATDDR4LSTR ;
+/*     4344 */  } Overlap_STR ;
+/*     4346 */  struct {
+/*     4347 */  word : 1 ;
+/*     4348 */  word : 1 ;
+/*     4349 */  word : 1 ;
+/*     4350 */  word : 1 ;
+/*     4351 */  word : 1 ;
+/*     4352 */  word : 1 ;
+/*     4353 */  word BIT6 : 1 ;
+/*     4354 */  word BIT7 : 1 ;
+/*     4355 */  word BIT8 : 1 ;
+/*     4356 */  word BIT9 : 1 ;
+/*     4357 */  word BIT10 : 1 ;
+/*     4358 */  word BIT11 : 1 ;
+/*     4359 */  word BIT12 : 1 ;
+/*     4360 */  word BIT13 : 1 ;
+/*     4361 */  word BIT14 : 1 ;
+/*     4362 */  word BIT15 : 1 ;
+/*     4363 */  } Bits ;
+/*     4364 */  struct {
+/*     4365 */  word : 1 ;
+/*     4366 */  word : 1 ;
+/*     4367 */  word : 1 ;
+/*     4368 */  word : 1 ;
+/*     4369 */  word : 1 ;
+/*     4370 */  word : 1 ;
+/*     4371 */  word grpBIT_6 : 10 ;
+/*     4372 */  } MergedBits ;
+/*     4373 */  } ATDDR4STR ;
+/*     4374 */  extern volatile ATDDR4STR _ATDDR4 @ ( 0x0000 + 0x00000098 ) ;
+/*     4404 */  typedef union {
+/*     4405 */  word Word ;
+/*     4407 */  struct {
+/*     4409 */  union {
+/*     4410 */  byte Byte ;
+/*     4411 */  struct {
+/*     4412 */  byte BIT8 : 1 ;
+/*     4413 */  byte BIT9 : 1 ;
+/*     4414 */  byte BIT10 : 1 ;
+/*     4415 */  byte BIT11 : 1 ;
+/*     4416 */  byte BIT12 : 1 ;
+/*     4417 */  byte BIT13 : 1 ;
+/*     4418 */  byte BIT14 : 1 ;
+/*     4419 */  byte BIT15 : 1 ;
+/*     4420 */  } Bits ;
+/*     4421 */  } ATDDR5HSTR ;
+/*     4443 */  union {
+/*     4444 */  byte Byte ;
+/*     4445 */  struct {
+/*     4446 */  byte : 1 ;
+/*     4447 */  byte : 1 ;
+/*     4448 */  byte : 1 ;
+/*     4449 */  byte : 1 ;
+/*     4450 */  byte : 1 ;
+/*     4451 */  byte : 1 ;
+/*     4452 */  byte BIT6 : 1 ;
+/*     4453 */  byte BIT7 : 1 ;
+/*     4454 */  } Bits ;
+/*     4455 */  struct {
+/*     4456 */  byte : 1 ;
+/*     4457 */  byte : 1 ;
+/*     4458 */  byte : 1 ;
+/*     4459 */  byte : 1 ;
+/*     4460 */  byte : 1 ;
+/*     4461 */  byte : 1 ;
+/*     4462 */  byte grpBIT_6 : 2 ;
+/*     4463 */  } MergedBits ;
+/*     4464 */  } ATDDR5LSTR ;
+/*     4476 */  } Overlap_STR ;
+/*     4478 */  struct {
+/*     4479 */  word : 1 ;
+/*     4480 */  word : 1 ;
+/*     4481 */  word : 1 ;
+/*     4482 */  word : 1 ;
+/*     4483 */  word : 1 ;
+/*     4484 */  word : 1 ;
+/*     4485 */  word BIT6 : 1 ;
+/*     4486 */  word BIT7 : 1 ;
+/*     4487 */  word BIT8 : 1 ;
+/*     4488 */  word BIT9 : 1 ;
+/*     4489 */  word BIT10 : 1 ;
+/*     4490 */  word BIT11 : 1 ;
+/*     4491 */  word BIT12 : 1 ;
+/*     4492 */  word BIT13 : 1 ;
+/*     4493 */  word BIT14 : 1 ;
+/*     4494 */  word BIT15 : 1 ;
+/*     4495 */  } Bits ;
+/*     4496 */  struct {
+/*     4497 */  word : 1 ;
+/*     4498 */  word : 1 ;
+/*     4499 */  word : 1 ;
+/*     4500 */  word : 1 ;
+/*     4501 */  word : 1 ;
+/*     4502 */  word : 1 ;
+/*     4503 */  word grpBIT_6 : 10 ;
+/*     4504 */  } MergedBits ;
+/*     4505 */  } ATDDR5STR ;
+/*     4506 */  extern volatile ATDDR5STR _ATDDR5 @ ( 0x0000 + 0x0000009A ) ;
+/*     4536 */  typedef union {
+/*     4537 */  word Word ;
+/*     4539 */  struct {
+/*     4541 */  union {
+/*     4542 */  byte Byte ;
+/*     4543 */  struct {
+/*     4544 */  byte BIT8 : 1 ;
+/*     4545 */  byte BIT9 : 1 ;
+/*     4546 */  byte BIT10 : 1 ;
+/*     4547 */  byte BIT11 : 1 ;
+/*     4548 */  byte BIT12 : 1 ;
+/*     4549 */  byte BIT13 : 1 ;
+/*     4550 */  byte BIT14 : 1 ;
+/*     4551 */  byte BIT15 : 1 ;
+/*     4552 */  } Bits ;
+/*     4553 */  } ATDDR6HSTR ;
+/*     4575 */  union {
+/*     4576 */  byte Byte ;
+/*     4577 */  struct {
+/*     4578 */  byte : 1 ;
+/*     4579 */  byte : 1 ;
+/*     4580 */  byte : 1 ;
+/*     4581 */  byte : 1 ;
+/*     4582 */  byte : 1 ;
+/*     4583 */  byte : 1 ;
+/*     4584 */  byte BIT6 : 1 ;
+/*     4585 */  byte BIT7 : 1 ;
+/*     4586 */  } Bits ;
+/*     4587 */  struct {
+/*     4588 */  byte : 1 ;
+/*     4589 */  byte : 1 ;
+/*     4590 */  byte : 1 ;
+/*     4591 */  byte : 1 ;
+/*     4592 */  byte : 1 ;
+/*     4593 */  byte : 1 ;
+/*     4594 */  byte grpBIT_6 : 2 ;
+/*     4595 */  } MergedBits ;
+/*     4596 */  } ATDDR6LSTR ;
+/*     4608 */  } Overlap_STR ;
+/*     4610 */  struct {
+/*     4611 */  word : 1 ;
+/*     4612 */  word : 1 ;
+/*     4613 */  word : 1 ;
+/*     4614 */  word : 1 ;
+/*     4615 */  word : 1 ;
+/*     4616 */  word : 1 ;
+/*     4617 */  word BIT6 : 1 ;
+/*     4618 */  word BIT7 : 1 ;
+/*     4619 */  word BIT8 : 1 ;
+/*     4620 */  word BIT9 : 1 ;
+/*     4621 */  word BIT10 : 1 ;
+/*     4622 */  word BIT11 : 1 ;
+/*     4623 */  word BIT12 : 1 ;
+/*     4624 */  word BIT13 : 1 ;
+/*     4625 */  word BIT14 : 1 ;
+/*     4626 */  word BIT15 : 1 ;
+/*     4627 */  } Bits ;
+/*     4628 */  struct {
+/*     4629 */  word : 1 ;
+/*     4630 */  word : 1 ;
+/*     4631 */  word : 1 ;
+/*     4632 */  word : 1 ;
+/*     4633 */  word : 1 ;
+/*     4634 */  word : 1 ;
+/*     4635 */  word grpBIT_6 : 10 ;
+/*     4636 */  } MergedBits ;
+/*     4637 */  } ATDDR6STR ;
+/*     4638 */  extern volatile ATDDR6STR _ATDDR6 @ ( 0x0000 + 0x0000009C ) ;
+/*     4668 */  typedef union {
+/*     4669 */  word Word ;
+/*     4671 */  struct {
+/*     4673 */  union {
+/*     4674 */  byte Byte ;
+/*     4675 */  struct {
+/*     4676 */  byte BIT8 : 1 ;
+/*     4677 */  byte BIT9 : 1 ;
+/*     4678 */  byte BIT10 : 1 ;
+/*     4679 */  byte BIT11 : 1 ;
+/*     4680 */  byte BIT12 : 1 ;
+/*     4681 */  byte BIT13 : 1 ;
+/*     4682 */  byte BIT14 : 1 ;
+/*     4683 */  byte BIT15 : 1 ;
+/*     4684 */  } Bits ;
+/*     4685 */  } ATDDR7HSTR ;
+/*     4707 */  union {
+/*     4708 */  byte Byte ;
+/*     4709 */  struct {
+/*     4710 */  byte : 1 ;
+/*     4711 */  byte : 1 ;
+/*     4712 */  byte : 1 ;
+/*     4713 */  byte : 1 ;
+/*     4714 */  byte : 1 ;
+/*     4715 */  byte : 1 ;
+/*     4716 */  byte BIT6 : 1 ;
+/*     4717 */  byte BIT7 : 1 ;
+/*     4718 */  } Bits ;
+/*     4719 */  struct {
+/*     4720 */  byte : 1 ;
+/*     4721 */  byte : 1 ;
+/*     4722 */  byte : 1 ;
+/*     4723 */  byte : 1 ;
+/*     4724 */  byte : 1 ;
+/*     4725 */  byte : 1 ;
+/*     4726 */  byte grpBIT_6 : 2 ;
+/*     4727 */  } MergedBits ;
+/*     4728 */  } ATDDR7LSTR ;
+/*     4740 */  } Overlap_STR ;
+/*     4742 */  struct {
+/*     4743 */  word : 1 ;
+/*     4744 */  word : 1 ;
+/*     4745 */  word : 1 ;
+/*     4746 */  word : 1 ;
+/*     4747 */  word : 1 ;
+/*     4748 */  word : 1 ;
+/*     4749 */  word BIT6 : 1 ;
+/*     4750 */  word BIT7 : 1 ;
+/*     4751 */  word BIT8 : 1 ;
+/*     4752 */  word BIT9 : 1 ;
+/*     4753 */  word BIT10 : 1 ;
+/*     4754 */  word BIT11 : 1 ;
+/*     4755 */  word BIT12 : 1 ;
+/*     4756 */  word BIT13 : 1 ;
+/*     4757 */  word BIT14 : 1 ;
+/*     4758 */  word BIT15 : 1 ;
+/*     4759 */  } Bits ;
+/*     4760 */  struct {
+/*     4761 */  word : 1 ;
+/*     4762 */  word : 1 ;
+/*     4763 */  word : 1 ;
+/*     4764 */  word : 1 ;
+/*     4765 */  word : 1 ;
+/*     4766 */  word : 1 ;
+/*     4767 */  word grpBIT_6 : 10 ;
+/*     4768 */  } MergedBits ;
+/*     4769 */  } ATDDR7STR ;
+/*     4770 */  extern volatile ATDDR7STR _ATDDR7 @ ( 0x0000 + 0x0000009E ) ;
+/*     4800 */  typedef union {
+/*     4801 */  word Word ;
+/*     4803 */  struct {
+/*     4805 */  union {
+/*     4806 */  byte Byte ;
+/*     4807 */  struct {
+/*     4808 */  byte SBR8 : 1 ;
+/*     4809 */  byte SBR9 : 1 ;
+/*     4810 */  byte SBR10 : 1 ;
+/*     4811 */  byte SBR11 : 1 ;
+/*     4812 */  byte SBR12 : 1 ;
+/*     4813 */  byte : 1 ;
+/*     4814 */  byte : 1 ;
+/*     4815 */  byte : 1 ;
+/*     4816 */  } Bits ;
+/*     4817 */  struct {
+/*     4818 */  byte grpSBR_8 : 5 ;
+/*     4819 */  byte : 1 ;
+/*     4820 */  byte : 1 ;
+/*     4821 */  byte : 1 ;
+/*     4822 */  } MergedBits ;
+/*     4823 */  } SCIBDHSTR ;
+/*     4843 */  union {
+/*     4844 */  byte Byte ;
+/*     4845 */  struct {
+/*     4846 */  byte SBR0 : 1 ;
+/*     4847 */  byte SBR1 : 1 ;
+/*     4848 */  byte SBR2 : 1 ;
+/*     4849 */  byte SBR3 : 1 ;
+/*     4850 */  byte SBR4 : 1 ;
+/*     4851 */  byte SBR5 : 1 ;
+/*     4852 */  byte SBR6 : 1 ;
+/*     4853 */  byte SBR7 : 1 ;
+/*     4854 */  } Bits ;
+/*     4855 */  } SCIBDLSTR ;
+/*     4875 */  } Overlap_STR ;
+/*     4877 */  struct {
+/*     4878 */  word SBR0 : 1 ;
+/*     4879 */  word SBR1 : 1 ;
+/*     4880 */  word SBR2 : 1 ;
+/*     4881 */  word SBR3 : 1 ;
+/*     4882 */  word SBR4 : 1 ;
+/*     4883 */  word SBR5 : 1 ;
+/*     4884 */  word SBR6 : 1 ;
+/*     4885 */  word SBR7 : 1 ;
+/*     4886 */  word SBR8 : 1 ;
+/*     4887 */  word SBR9 : 1 ;
+/*     4888 */  word SBR10 : 1 ;
+/*     4889 */  word SBR11 : 1 ;
+/*     4890 */  word SBR12 : 1 ;
+/*     4891 */  word : 1 ;
+/*     4892 */  word : 1 ;
+/*     4893 */  word : 1 ;
+/*     4894 */  } Bits ;
+/*     4895 */  struct {
+/*     4896 */  word grpSBR : 13 ;
+/*     4897 */  word : 1 ;
+/*     4898 */  word : 1 ;
+/*     4899 */  word : 1 ;
+/*     4900 */  } MergedBits ;
+/*     4901 */  } SCIBDSTR ;
+/*     4902 */  extern volatile SCIBDSTR _SCIBD @ ( 0x0000 + 0x000000C8 ) ;
+/*     4937 */  typedef union {
+/*     4938 */  byte Byte ;
+/*     4939 */  struct {
+/*     4940 */  byte PT : 1 ;
+/*     4941 */  byte PE : 1 ;
+/*     4942 */  byte ILT : 1 ;
+/*     4943 */  byte WAKE : 1 ;
+/*     4944 */  byte M : 1 ;
+/*     4945 */  byte RSRC : 1 ;
+/*     4946 */  byte SCISWAI : 1 ;
+/*     4947 */  byte LOOPS : 1 ;
+/*     4948 */  } Bits ;
+/*     4949 */  } SCICR1STR ;
+/*     4950 */  extern volatile SCICR1STR _SCICR1 @ ( 0x0000 + 0x000000CA ) ;
+/*     4972 */  typedef union {
+/*     4973 */  byte Byte ;
+/*     4974 */  struct {
+/*     4975 */  byte SBK : 1 ;
+/*     4976 */  byte RWU : 1 ;
+/*     4977 */  byte RE : 1 ;
+/*     4978 */  byte TE : 1 ;
+/*     4979 */  byte ILIE : 1 ;
+/*     4980 */  byte RIE : 1 ;
+/*     4981 */  byte TCIE : 1 ;
+/*     4982 */  byte SCTIE : 1 ;
+/*     4983 */  } Bits ;
+/*     4984 */  } SCICR2STR ;
+/*     4985 */  extern volatile SCICR2STR _SCICR2 @ ( 0x0000 + 0x000000CB ) ;
+/*     5007 */  typedef union {
+/*     5008 */  byte Byte ;
+/*     5009 */  struct {
+/*     5010 */  byte PF : 1 ;
+/*     5011 */  byte FE : 1 ;
+/*     5012 */  byte NF : 1 ;
+/*     5013 */  byte OR : 1 ;
+/*     5014 */  byte IDLE : 1 ;
+/*     5015 */  byte RDRF : 1 ;
+/*     5016 */  byte TC : 1 ;
+/*     5017 */  byte TDRE : 1 ;
+/*     5018 */  } Bits ;
+/*     5019 */  } SCISR1STR ;
+/*     5020 */  extern volatile SCISR1STR _SCISR1 @ ( 0x0000 + 0x000000CC ) ;
+/*     5042 */  typedef union {
+/*     5043 */  byte Byte ;
+/*     5044 */  struct {
+/*     5045 */  byte RAF : 1 ;
+/*     5046 */  byte TXDIR : 1 ;
+/*     5047 */  byte BRK13 : 1 ;
+/*     5048 */  byte : 1 ;
+/*     5049 */  byte : 1 ;
+/*     5050 */  byte : 1 ;
+/*     5051 */  byte : 1 ;
+/*     5052 */  byte : 1 ;
+/*     5053 */  } Bits ;
+/*     5054 */  } SCISR2STR ;
+/*     5055 */  extern volatile SCISR2STR _SCISR2 @ ( 0x0000 + 0x000000CD ) ;
+/*     5067 */  typedef union {
+/*     5068 */  byte Byte ;
+/*     5069 */  struct {
+/*     5070 */  byte : 1 ;
+/*     5071 */  byte : 1 ;
+/*     5072 */  byte : 1 ;
+/*     5073 */  byte : 1 ;
+/*     5074 */  byte : 1 ;
+/*     5075 */  byte : 1 ;
+/*     5076 */  byte T8 : 1 ;
+/*     5077 */  byte R8 : 1 ;
+/*     5078 */  } Bits ;
+/*     5079 */  } SCIDRHSTR ;
+/*     5080 */  extern volatile SCIDRHSTR _SCIDRH @ ( 0x0000 + 0x000000CE ) ;
+/*     5090 */  typedef union {
+/*     5091 */  byte Byte ;
+/*     5092 */  struct {
+/*     5093 */  byte R0_T0 : 1 ;
+/*     5094 */  byte R1_T1 : 1 ;
+/*     5095 */  byte R2_T2 : 1 ;
+/*     5096 */  byte R3_T3 : 1 ;
+/*     5097 */  byte R4_T4 : 1 ;
+/*     5098 */  byte R5_T5 : 1 ;
+/*     5099 */  byte R6_T6 : 1 ;
+/*     5100 */  byte R7_T7 : 1 ;
+/*     5101 */  } Bits ;
+/*     5102 */  } SCIDRLSTR ;
+/*     5103 */  extern volatile SCIDRLSTR _SCIDRL @ ( 0x0000 + 0x000000CF ) ;
+/*     5125 */  typedef union {
+/*     5126 */  byte Byte ;
+/*     5127 */  struct {
+/*     5128 */  byte LSBFE : 1 ;
+/*     5129 */  byte SSOE : 1 ;
+/*     5130 */  byte CPHA : 1 ;
+/*     5131 */  byte CPOL : 1 ;
+/*     5132 */  byte MSTR : 1 ;
+/*     5133 */  byte SPTIE : 1 ;
+/*     5134 */  byte SPE : 1 ;
+/*     5135 */  byte SPIE : 1 ;
+/*     5136 */  } Bits ;
+/*     5137 */  } SPICR1STR ;
+/*     5138 */  extern volatile SPICR1STR _SPICR1 @ ( 0x0000 + 0x000000D8 ) ;
+/*     5160 */  typedef union {
+/*     5161 */  byte Byte ;
+/*     5162 */  struct {
+/*     5163 */  byte SPC0 : 1 ;
+/*     5164 */  byte SPISWAI : 1 ;
+/*     5165 */  byte : 1 ;
+/*     5166 */  byte BIDIROE : 1 ;
+/*     5167 */  byte MODFEN : 1 ;
+/*     5168 */  byte : 1 ;
+/*     5169 */  byte : 1 ;
+/*     5170 */  byte : 1 ;
+/*     5171 */  } Bits ;
+/*     5172 */  } SPICR2STR ;
+/*     5173 */  extern volatile SPICR2STR _SPICR2 @ ( 0x0000 + 0x000000D9 ) ;
+/*     5187 */  typedef union {
+/*     5188 */  byte Byte ;
+/*     5189 */  struct {
+/*     5190 */  byte SPR0 : 1 ;
+/*     5191 */  byte SPR1 : 1 ;
+/*     5192 */  byte SPR2 : 1 ;
+/*     5193 */  byte : 1 ;
+/*     5194 */  byte SPPR0 : 1 ;
+/*     5195 */  byte SPPR1 : 1 ;
+/*     5196 */  byte SPPR2 : 1 ;
+/*     5197 */  byte : 1 ;
+/*     5198 */  } Bits ;
+/*     5199 */  struct {
+/*     5200 */  byte grpSPR : 3 ;
+/*     5201 */  byte : 1 ;
+/*     5202 */  byte grpSPPR : 3 ;
+/*     5203 */  byte : 1 ;
+/*     5204 */  } MergedBits ;
+/*     5205 */  } SPIBRSTR ;
+/*     5206 */  extern volatile SPIBRSTR _SPIBR @ ( 0x0000 + 0x000000DA ) ;
+/*     5230 */  typedef union {
+/*     5231 */  byte Byte ;
+/*     5232 */  struct {
+/*     5233 */  byte : 1 ;
+/*     5234 */  byte : 1 ;
+/*     5235 */  byte : 1 ;
+/*     5236 */  byte : 1 ;
+/*     5237 */  byte MODF : 1 ;
+/*     5238 */  byte SPTEF : 1 ;
+/*     5239 */  byte : 1 ;
+/*     5240 */  byte SPIF : 1 ;
+/*     5241 */  } Bits ;
+/*     5242 */  } SPISRSTR ;
+/*     5243 */  extern volatile SPISRSTR _SPISR @ ( 0x0000 + 0x000000DB ) ;
+/*     5255 */  typedef union {
+/*     5256 */  byte Byte ;
+/*     5257 */  } SPIDRSTR ;
+/*     5258 */  extern volatile SPIDRSTR _SPIDR @ ( 0x0000 + 0x000000DD ) ;
+/*     5263 */  typedef union {
+/*     5264 */  byte Byte ;
+/*     5265 */  struct {
+/*     5266 */  byte PWME0 : 1 ;
+/*     5267 */  byte PWME1 : 1 ;
+/*     5268 */  byte PWME2 : 1 ;
+/*     5269 */  byte PWME3 : 1 ;
+/*     5270 */  byte PWME4 : 1 ;
+/*     5271 */  byte PWME5 : 1 ;
+/*     5272 */  byte : 1 ;
+/*     5273 */  byte : 1 ;
+/*     5274 */  } Bits ;
+/*     5275 */  struct {
+/*     5276 */  byte grpPWME : 6 ;
+/*     5277 */  byte : 1 ;
+/*     5278 */  byte : 1 ;
+/*     5279 */  } MergedBits ;
+/*     5280 */  } PWMESTR ;
+/*     5281 */  extern volatile PWMESTR _PWME @ ( 0x0000 + 0x000000E0 ) ;
+/*     5302 */  typedef union {
+/*     5303 */  byte Byte ;
+/*     5304 */  struct {
+/*     5305 */  byte PPOL0 : 1 ;
+/*     5306 */  byte PPOL1 : 1 ;
+/*     5307 */  byte PPOL2 : 1 ;
+/*     5308 */  byte PPOL3 : 1 ;
+/*     5309 */  byte PPOL4 : 1 ;
+/*     5310 */  byte PPOL5 : 1 ;
+/*     5311 */  byte : 1 ;
+/*     5312 */  byte : 1 ;
+/*     5313 */  } Bits ;
+/*     5314 */  struct {
+/*     5315 */  byte grpPPOL : 6 ;
+/*     5316 */  byte : 1 ;
+/*     5317 */  byte : 1 ;
+/*     5318 */  } MergedBits ;
+/*     5319 */  } PWMPOLSTR ;
+/*     5320 */  extern volatile PWMPOLSTR _PWMPOL @ ( 0x0000 + 0x000000E1 ) ;
+/*     5341 */  typedef union {
+/*     5342 */  byte Byte ;
+/*     5343 */  struct {
+/*     5344 */  byte PCLK0 : 1 ;
+/*     5345 */  byte PCLK1 : 1 ;
+/*     5346 */  byte PCLK2 : 1 ;
+/*     5347 */  byte PCLK3 : 1 ;
+/*     5348 */  byte PCLK4 : 1 ;
+/*     5349 */  byte PCLK5 : 1 ;
+/*     5350 */  byte : 1 ;
+/*     5351 */  byte : 1 ;
+/*     5352 */  } Bits ;
+/*     5353 */  struct {
+/*     5354 */  byte grpPCLK : 6 ;
+/*     5355 */  byte : 1 ;
+/*     5356 */  byte : 1 ;
+/*     5357 */  } MergedBits ;
+/*     5358 */  } PWMCLKSTR ;
+/*     5359 */  extern volatile PWMCLKSTR _PWMCLK @ ( 0x0000 + 0x000000E2 ) ;
+/*     5380 */  typedef union {
+/*     5381 */  byte Byte ;
+/*     5382 */  struct {
+/*     5383 */  byte PCKA0 : 1 ;
+/*     5384 */  byte PCKA1 : 1 ;
+/*     5385 */  byte PCKA2 : 1 ;
+/*     5386 */  byte : 1 ;
+/*     5387 */  byte PCKB0 : 1 ;
+/*     5388 */  byte PCKB1 : 1 ;
+/*     5389 */  byte PCKB2 : 1 ;
+/*     5390 */  byte : 1 ;
+/*     5391 */  } Bits ;
+/*     5392 */  struct {
+/*     5393 */  byte grpPCKA : 3 ;
+/*     5394 */  byte : 1 ;
+/*     5395 */  byte grpPCKB : 3 ;
+/*     5396 */  byte : 1 ;
+/*     5397 */  } MergedBits ;
+/*     5398 */  } PWMPRCLKSTR ;
+/*     5399 */  extern volatile PWMPRCLKSTR _PWMPRCLK @ ( 0x0000 + 0x000000E3 ) ;
+/*     5423 */  typedef union {
+/*     5424 */  byte Byte ;
+/*     5425 */  struct {
+/*     5426 */  byte CAE0 : 1 ;
+/*     5427 */  byte CAE1 : 1 ;
+/*     5428 */  byte CAE2 : 1 ;
+/*     5429 */  byte CAE3 : 1 ;
+/*     5430 */  byte CAE4 : 1 ;
+/*     5431 */  byte CAE5 : 1 ;
+/*     5432 */  byte : 1 ;
+/*     5433 */  byte : 1 ;
+/*     5434 */  } Bits ;
+/*     5435 */  struct {
+/*     5436 */  byte grpCAE : 6 ;
+/*     5437 */  byte : 1 ;
+/*     5438 */  byte : 1 ;
+/*     5439 */  } MergedBits ;
+/*     5440 */  } PWMCAESTR ;
+/*     5441 */  extern volatile PWMCAESTR _PWMCAE @ ( 0x0000 + 0x000000E4 ) ;
+/*     5462 */  typedef union {
+/*     5463 */  byte Byte ;
+/*     5464 */  struct {
+/*     5465 */  byte : 1 ;
+/*     5466 */  byte : 1 ;
+/*     5467 */  byte PFRZ : 1 ;
+/*     5468 */  byte PSWAI : 1 ;
+/*     5469 */  byte CON01 : 1 ;
+/*     5470 */  byte CON23 : 1 ;
+/*     5471 */  byte CON45 : 1 ;
+/*     5472 */  byte : 1 ;
+/*     5473 */  } Bits ;
+/*     5474 */  } PWMCTLSTR ;
+/*     5475 */  extern volatile PWMCTLSTR _PWMCTL @ ( 0x0000 + 0x000000E5 ) ;
+/*     5491 */  typedef union {
+/*     5492 */  byte Byte ;
+/*     5493 */  struct {
+/*     5494 */  byte BIT0 : 1 ;
+/*     5495 */  byte BIT1 : 1 ;
+/*     5496 */  byte BIT2 : 1 ;
+/*     5497 */  byte BIT3 : 1 ;
+/*     5498 */  byte BIT4 : 1 ;
+/*     5499 */  byte BIT5 : 1 ;
+/*     5500 */  byte BIT6 : 1 ;
+/*     5501 */  byte BIT7 : 1 ;
+/*     5502 */  } Bits ;
+/*     5503 */  } PWMSCLASTR ;
+/*     5504 */  extern volatile PWMSCLASTR _PWMSCLA @ ( 0x0000 + 0x000000E8 ) ;
+/*     5526 */  typedef union {
+/*     5527 */  byte Byte ;
+/*     5528 */  struct {
+/*     5529 */  byte BIT0 : 1 ;
+/*     5530 */  byte BIT1 : 1 ;
+/*     5531 */  byte BIT2 : 1 ;
+/*     5532 */  byte BIT3 : 1 ;
+/*     5533 */  byte BIT4 : 1 ;
+/*     5534 */  byte BIT5 : 1 ;
+/*     5535 */  byte BIT6 : 1 ;
+/*     5536 */  byte BIT7 : 1 ;
+/*     5537 */  } Bits ;
+/*     5538 */  } PWMSCLBSTR ;
+/*     5539 */  extern volatile PWMSCLBSTR _PWMSCLB @ ( 0x0000 + 0x000000E9 ) ;
+/*     5561 */  typedef union {
+/*     5562 */  word Word ;
+/*     5564 */  struct {
+/*     5566 */  union {
+/*     5567 */  byte Byte ;
+/*     5568 */  } PWMCNT0STR ;
+/*     5575 */  union {
+/*     5576 */  byte Byte ;
+/*     5577 */  } PWMCNT1STR ;
+/*     5580 */  } Overlap_STR ;
+/*     5582 */  } PWMCNT01STR ;
+/*     5583 */  extern volatile PWMCNT01STR _PWMCNT01 @ ( 0x0000 + 0x000000EC ) ;
+/*     5588 */  typedef union {
+/*     5589 */  word Word ;
+/*     5591 */  struct {
+/*     5593 */  union {
+/*     5594 */  byte Byte ;
+/*     5595 */  } PWMCNT2STR ;
+/*     5600 */  union {
+/*     5601 */  byte Byte ;
+/*     5602 */  } PWMCNT3STR ;
+/*     5605 */  } Overlap_STR ;
+/*     5607 */  } PWMCNT23STR ;
+/*     5608 */  extern volatile PWMCNT23STR _PWMCNT23 @ ( 0x0000 + 0x000000EE ) ;
+/*     5613 */  typedef union {
+/*     5614 */  word Word ;
+/*     5616 */  struct {
+/*     5618 */  union {
+/*     5619 */  byte Byte ;
+/*     5620 */  } PWMCNT4STR ;
+/*     5625 */  union {
+/*     5626 */  byte Byte ;
+/*     5627 */  } PWMCNT5STR ;
+/*     5630 */  } Overlap_STR ;
+/*     5632 */  } PWMCNT45STR ;
+/*     5633 */  extern volatile PWMCNT45STR _PWMCNT45 @ ( 0x0000 + 0x000000F0 ) ;
+/*     5638 */  typedef union {
+/*     5639 */  word Word ;
+/*     5641 */  struct {
+/*     5643 */  union {
+/*     5644 */  byte Byte ;
+/*     5645 */  } PWMPER0STR ;
+/*     5652 */  union {
+/*     5653 */  byte Byte ;
+/*     5654 */  } PWMPER1STR ;
+/*     5657 */  } Overlap_STR ;
+/*     5659 */  } PWMPER01STR ;
+/*     5660 */  extern volatile PWMPER01STR _PWMPER01 @ ( 0x0000 + 0x000000F2 ) ;
+/*     5665 */  typedef union {
+/*     5666 */  word Word ;
+/*     5668 */  struct {
+/*     5670 */  union {
+/*     5671 */  byte Byte ;
+/*     5672 */  } PWMPER2STR ;
+/*     5677 */  union {
+/*     5678 */  byte Byte ;
+/*     5679 */  } PWMPER3STR ;
+/*     5682 */  } Overlap_STR ;
+/*     5684 */  } PWMPER23STR ;
+/*     5685 */  extern volatile PWMPER23STR _PWMPER23 @ ( 0x0000 + 0x000000F4 ) ;
+/*     5690 */  typedef union {
+/*     5691 */  word Word ;
+/*     5693 */  struct {
+/*     5695 */  union {
+/*     5696 */  byte Byte ;
+/*     5697 */  } PWMPER4STR ;
+/*     5702 */  union {
+/*     5703 */  byte Byte ;
+/*     5704 */  } PWMPER5STR ;
+/*     5707 */  } Overlap_STR ;
+/*     5709 */  } PWMPER45STR ;
+/*     5710 */  extern volatile PWMPER45STR _PWMPER45 @ ( 0x0000 + 0x000000F6 ) ;
+/*     5715 */  typedef union {
+/*     5716 */  word Word ;
+/*     5718 */  struct {
+/*     5720 */  union {
+/*     5721 */  byte Byte ;
+/*     5722 */  } PWMDTY0STR ;
+/*     5729 */  union {
+/*     5730 */  byte Byte ;
+/*     5731 */  } PWMDTY1STR ;
+/*     5734 */  } Overlap_STR ;
+/*     5736 */  } PWMDTY01STR ;
+/*     5737 */  extern volatile PWMDTY01STR _PWMDTY01 @ ( 0x0000 + 0x000000F8 ) ;
+/*     5742 */  typedef union {
+/*     5743 */  word Word ;
+/*     5745 */  struct {
+/*     5747 */  union {
+/*     5748 */  byte Byte ;
+/*     5749 */  } PWMDTY2STR ;
+/*     5754 */  union {
+/*     5755 */  byte Byte ;
+/*     5756 */  } PWMDTY3STR ;
+/*     5759 */  } Overlap_STR ;
+/*     5761 */  } PWMDTY23STR ;
+/*     5762 */  extern volatile PWMDTY23STR _PWMDTY23 @ ( 0x0000 + 0x000000FA ) ;
+/*     5767 */  typedef union {
+/*     5768 */  word Word ;
+/*     5770 */  struct {
+/*     5772 */  union {
+/*     5773 */  byte Byte ;
+/*     5774 */  } PWMDTY4STR ;
+/*     5779 */  union {
+/*     5780 */  byte Byte ;
+/*     5781 */  } PWMDTY5STR ;
+/*     5784 */  } Overlap_STR ;
+/*     5786 */  } PWMDTY45STR ;
+/*     5787 */  extern volatile PWMDTY45STR _PWMDTY45 @ ( 0x0000 + 0x000000FC ) ;
+/*     5792 */  typedef union {
+/*     5793 */  byte Byte ;
+/*     5794 */  struct {
+/*     5795 */  byte PWM5ENA : 1 ;
+/*     5796 */  byte PWM5INL : 1 ;
+/*     5797 */  byte PWM5IN : 1 ;
+/*     5798 */  byte : 1 ;
+/*     5799 */  byte PWMLVL : 1 ;
+/*     5800 */  byte PWMRSTRT : 1 ;
+/*     5801 */  byte PWMIE : 1 ;
+/*     5802 */  byte PWMIF : 1 ;
+/*     5803 */  } Bits ;
+/*     5804 */  } PWMSDNSTR ;
+/*     5805 */  extern volatile PWMSDNSTR _PWMSDN @ ( 0x0000 + 0x000000FE ) ;
+/*     5825 */  typedef union {
+/*     5826 */  byte Byte ;
+/*     5827 */  struct {
+/*     5828 */  byte FDIV0 : 1 ;
+/*     5829 */  byte FDIV1 : 1 ;
+/*     5830 */  byte FDIV2 : 1 ;
+/*     5831 */  byte FDIV3 : 1 ;
+/*     5832 */  byte FDIV4 : 1 ;
+/*     5833 */  byte FDIV5 : 1 ;
+/*     5834 */  byte PRDIV8 : 1 ;
+/*     5835 */  byte FDIVLD : 1 ;
+/*     5836 */  } Bits ;
+/*     5837 */  struct {
+/*     5838 */  byte grpFDIV : 6 ;
+/*     5839 */  byte grpPRDIV_8 : 1 ;
+/*     5840 */  byte : 1 ;
+/*     5841 */  } MergedBits ;
+/*     5842 */  } FCLKDIVSTR ;
+/*     5843 */  extern volatile FCLKDIVSTR _FCLKDIV @ ( 0x0000 + 0x00000100 ) ;
+/*     5868 */  typedef union {
+/*     5869 */  byte Byte ;
+/*     5870 */  struct {
+/*     5871 */  byte SEC0 : 1 ;
+/*     5872 */  byte SEC1 : 1 ;
+/*     5873 */  byte NV2 : 1 ;
+/*     5874 */  byte NV3 : 1 ;
+/*     5875 */  byte NV4 : 1 ;
+/*     5876 */  byte NV5 : 1 ;
+/*     5877 */  byte KEYEN0 : 1 ;
+/*     5878 */  byte KEYEN1 : 1 ;
+/*     5879 */  } Bits ;
+/*     5880 */  struct {
+/*     5881 */  byte grpSEC : 2 ;
+/*     5882 */  byte grpNV_2 : 4 ;
+/*     5883 */  byte grpKEYEN : 2 ;
+/*     5884 */  } MergedBits ;
+/*     5885 */  } FSECSTR ;
+/*     5886 */  extern volatile FSECSTR _FSEC @ ( 0x0000 + 0x00000101 ) ;
+/*     5918 */  typedef union {
+/*     5919 */  byte Byte ;
+/*     5920 */  struct {
+/*     5921 */  byte : 1 ;
+/*     5922 */  byte : 1 ;
+/*     5923 */  byte : 1 ;
+/*     5924 */  byte : 1 ;
+/*     5925 */  byte : 1 ;
+/*     5926 */  byte KEYACC : 1 ;
+/*     5927 */  byte CCIE : 1 ;
+/*     5928 */  byte CBEIE : 1 ;
+/*     5929 */  } Bits ;
+/*     5930 */  } FCNFGSTR ;
+/*     5931 */  extern volatile FCNFGSTR _FCNFG @ ( 0x0000 + 0x00000103 ) ;
+/*     5943 */  typedef union {
+/*     5944 */  byte Byte ;
+/*     5945 */  struct {
+/*     5946 */  byte FPLS0 : 1 ;
+/*     5947 */  byte FPLS1 : 1 ;
+/*     5948 */  byte FPLDIS : 1 ;
+/*     5949 */  byte FPHS0 : 1 ;
+/*     5950 */  byte FPHS1 : 1 ;
+/*     5951 */  byte FPHDIS : 1 ;
+/*     5952 */  byte NV6 : 1 ;
+/*     5953 */  byte FPOPEN : 1 ;
+/*     5954 */  } Bits ;
+/*     5955 */  struct {
+/*     5956 */  byte grpFPLS : 2 ;
+/*     5957 */  byte : 1 ;
+/*     5958 */  byte grpFPHS : 2 ;
+/*     5959 */  byte : 1 ;
+/*     5960 */  byte grpNV_6 : 1 ;
+/*     5961 */  byte : 1 ;
+/*     5962 */  } MergedBits ;
+/*     5963 */  } FPROTSTR ;
+/*     5964 */  extern volatile FPROTSTR _FPROT @ ( 0x0000 + 0x00000104 ) ;
+/*     5992 */  typedef union {
+/*     5993 */  byte Byte ;
+/*     5994 */  struct {
+/*     5995 */  byte : 1 ;
+/*     5996 */  byte : 1 ;
+/*     5997 */  byte BLANK : 1 ;
+/*     5998 */  byte : 1 ;
+/*     5999 */  byte ACCERR : 1 ;
+/*     6000 */  byte PVIOL : 1 ;
+/*     6001 */  byte CCIF : 1 ;
+/*     6002 */  byte CBEIF : 1 ;
+/*     6003 */  } Bits ;
+/*     6004 */  } FSTATSTR ;
+/*     6005 */  extern volatile FSTATSTR _FSTAT @ ( 0x0000 + 0x00000105 ) ;
+/*     6021 */  typedef union {
+/*     6022 */  byte Byte ;
+/*     6023 */  struct {
+/*     6024 */  byte CMDB0 : 1 ;
+/*     6025 */  byte : 1 ;
+/*     6026 */  byte CMDB2 : 1 ;
+/*     6027 */  byte : 1 ;
+/*     6028 */  byte : 1 ;
+/*     6029 */  byte CMDB5 : 1 ;
+/*     6030 */  byte CMDB6 : 1 ;
+/*     6031 */  byte : 1 ;
+/*     6032 */  } Bits ;
+/*     6033 */  struct {
+/*     6034 */  byte grpCMDB : 1 ;
+/*     6035 */  byte : 1 ;
+/*     6036 */  byte grpCMDB_2 : 1 ;
+/*     6037 */  byte : 1 ;
+/*     6038 */  byte : 1 ;
+/*     6039 */  byte grpCMDB_5 : 2 ;
+/*     6040 */  byte : 1 ;
+/*     6041 */  } MergedBits ;
+/*     6042 */  } FCMDSTR ;
+/*     6043 */  extern volatile FCMDSTR _FCMD @ ( 0x0000 + 0x00000106 ) ;
+/*     6061 */  typedef union {
+/*     6062 */  byte Byte ;
+/*     6063 */  struct {
+/*     6064 */  byte PTT0 : 1 ;
+/*     6065 */  byte PTT1 : 1 ;
+/*     6066 */  byte PTT2 : 1 ;
+/*     6067 */  byte PTT3 : 1 ;
+/*     6068 */  byte PTT4 : 1 ;
+/*     6069 */  byte PTT5 : 1 ;
+/*     6070 */  byte PTT6 : 1 ;
+/*     6071 */  byte PTT7 : 1 ;
+/*     6072 */  } Bits ;
+/*     6073 */  } PTTSTR ;
+/*     6074 */  extern volatile PTTSTR _PTT @ ( 0x0000 + 0x00000240 ) ;
+/*     6096 */  typedef union {
+/*     6097 */  byte Byte ;
+/*     6098 */  struct {
+/*     6099 */  byte PTIT0 : 1 ;
+/*     6100 */  byte PTIT1 : 1 ;
+/*     6101 */  byte PTIT2 : 1 ;
+/*     6102 */  byte PTIT3 : 1 ;
+/*     6103 */  byte PTIT4 : 1 ;
+/*     6104 */  byte PTIT5 : 1 ;
+/*     6105 */  byte PTIT6 : 1 ;
+/*     6106 */  byte PTIT7 : 1 ;
+/*     6107 */  } Bits ;
+/*     6108 */  } PTITSTR ;
+/*     6109 */  extern volatile PTITSTR _PTIT @ ( 0x0000 + 0x00000241 ) ;
+/*     6131 */  typedef union {
+/*     6132 */  byte Byte ;
+/*     6133 */  struct {
+/*     6134 */  byte DDRT0 : 1 ;
+/*     6135 */  byte DDRT1 : 1 ;
+/*     6136 */  byte DDRT2 : 1 ;
+/*     6137 */  byte DDRT3 : 1 ;
+/*     6138 */  byte DDRT4 : 1 ;
+/*     6139 */  byte DDRT5 : 1 ;
+/*     6140 */  byte DDRT6 : 1 ;
+/*     6141 */  byte DDRT7 : 1 ;
+/*     6142 */  } Bits ;
+/*     6143 */  } DDRTSTR ;
+/*     6144 */  extern volatile DDRTSTR _DDRT @ ( 0x0000 + 0x00000242 ) ;
+/*     6166 */  typedef union {
+/*     6167 */  byte Byte ;
+/*     6168 */  struct {
+/*     6169 */  byte RDRT0 : 1 ;
+/*     6170 */  byte RDRT1 : 1 ;
+/*     6171 */  byte RDRT2 : 1 ;
+/*     6172 */  byte RDRT3 : 1 ;
+/*     6173 */  byte RDRT4 : 1 ;
+/*     6174 */  byte RDRT5 : 1 ;
+/*     6175 */  byte RDRT6 : 1 ;
+/*     6176 */  byte RDRT7 : 1 ;
+/*     6177 */  } Bits ;
+/*     6178 */  } RDRTSTR ;
+/*     6179 */  extern volatile RDRTSTR _RDRT @ ( 0x0000 + 0x00000243 ) ;
+/*     6201 */  typedef union {
+/*     6202 */  byte Byte ;
+/*     6203 */  struct {
+/*     6204 */  byte PERT0 : 1 ;
+/*     6205 */  byte PERT1 : 1 ;
+/*     6206 */  byte PERT2 : 1 ;
+/*     6207 */  byte PERT3 : 1 ;
+/*     6208 */  byte PERT4 : 1 ;
+/*     6209 */  byte PERT5 : 1 ;
+/*     6210 */  byte PERT6 : 1 ;
+/*     6211 */  byte PERT7 : 1 ;
+/*     6212 */  } Bits ;
+/*     6213 */  } PERTSTR ;
+/*     6214 */  extern volatile PERTSTR _PERT @ ( 0x0000 + 0x00000244 ) ;
+/*     6236 */  typedef union {
+/*     6237 */  byte Byte ;
+/*     6238 */  struct {
+/*     6239 */  byte PPST0 : 1 ;
+/*     6240 */  byte PPST1 : 1 ;
+/*     6241 */  byte PPST2 : 1 ;
+/*     6242 */  byte PPST3 : 1 ;
+/*     6243 */  byte PPST4 : 1 ;
+/*     6244 */  byte PPST5 : 1 ;
+/*     6245 */  byte PPST6 : 1 ;
+/*     6246 */  byte PPST7 : 1 ;
+/*     6247 */  } Bits ;
+/*     6248 */  } PPSTSTR ;
+/*     6249 */  extern volatile PPSTSTR _PPST @ ( 0x0000 + 0x00000245 ) ;
+/*     6271 */  typedef union {
+/*     6272 */  byte Byte ;
+/*     6273 */  struct {
+/*     6274 */  byte MODRR0 : 1 ;
+/*     6275 */  byte MODRR1 : 1 ;
+/*     6276 */  byte MODRR2 : 1 ;
+/*     6277 */  byte MODRR3 : 1 ;
+/*     6278 */  byte MODRR4 : 1 ;
+/*     6279 */  byte : 1 ;
+/*     6280 */  byte : 1 ;
+/*     6281 */  byte : 1 ;
+/*     6282 */  } Bits ;
+/*     6283 */  struct {
+/*     6284 */  byte grpMODRR : 5 ;
+/*     6285 */  byte : 1 ;
+/*     6286 */  byte : 1 ;
+/*     6287 */  byte : 1 ;
+/*     6288 */  } MergedBits ;
+/*     6289 */  } MODRRSTR ;
+/*     6290 */  extern volatile MODRRSTR _MODRR @ ( 0x0000 + 0x00000247 ) ;
+/*     6309 */  typedef union {
+/*     6310 */  byte Byte ;
+/*     6311 */  struct {
+/*     6312 */  byte PTS0 : 1 ;
+/*     6313 */  byte PTS1 : 1 ;
+/*     6314 */  byte PTS2 : 1 ;
+/*     6315 */  byte PTS3 : 1 ;
+/*     6316 */  byte : 1 ;
+/*     6317 */  byte : 1 ;
+/*     6318 */  byte : 1 ;
+/*     6319 */  byte : 1 ;
+/*     6320 */  } Bits ;
+/*     6321 */  struct {
+/*     6322 */  byte grpPTS : 4 ;
+/*     6323 */  byte : 1 ;
+/*     6324 */  byte : 1 ;
+/*     6325 */  byte : 1 ;
+/*     6326 */  byte : 1 ;
+/*     6327 */  } MergedBits ;
+/*     6328 */  } PTSSTR ;
+/*     6329 */  extern volatile PTSSTR _PTS @ ( 0x0000 + 0x00000248 ) ;
+/*     6346 */  typedef union {
+/*     6347 */  byte Byte ;
+/*     6348 */  struct {
+/*     6349 */  byte PTIS0 : 1 ;
+/*     6350 */  byte PTIS1 : 1 ;
+/*     6351 */  byte PTIS2 : 1 ;
+/*     6352 */  byte PTIS3 : 1 ;
+/*     6353 */  byte : 1 ;
+/*     6354 */  byte : 1 ;
+/*     6355 */  byte : 1 ;
+/*     6356 */  byte : 1 ;
+/*     6357 */  } Bits ;
+/*     6358 */  struct {
+/*     6359 */  byte grpPTIS : 4 ;
+/*     6360 */  byte : 1 ;
+/*     6361 */  byte : 1 ;
+/*     6362 */  byte : 1 ;
+/*     6363 */  byte : 1 ;
+/*     6364 */  } MergedBits ;
+/*     6365 */  } PTISSTR ;
+/*     6366 */  extern volatile PTISSTR _PTIS @ ( 0x0000 + 0x00000249 ) ;
+/*     6383 */  typedef union {
+/*     6384 */  byte Byte ;
+/*     6385 */  struct {
+/*     6386 */  byte DDRS0 : 1 ;
+/*     6387 */  byte DDRS1 : 1 ;
+/*     6388 */  byte DDRS2 : 1 ;
+/*     6389 */  byte DDRS3 : 1 ;
+/*     6390 */  byte : 1 ;
+/*     6391 */  byte : 1 ;
+/*     6392 */  byte : 1 ;
+/*     6393 */  byte : 1 ;
+/*     6394 */  } Bits ;
+/*     6395 */  struct {
+/*     6396 */  byte grpDDRS : 4 ;
+/*     6397 */  byte : 1 ;
+/*     6398 */  byte : 1 ;
+/*     6399 */  byte : 1 ;
+/*     6400 */  byte : 1 ;
+/*     6401 */  } MergedBits ;
+/*     6402 */  } DDRSSTR ;
+/*     6403 */  extern volatile DDRSSTR _DDRS @ ( 0x0000 + 0x0000024A ) ;
+/*     6420 */  typedef union {
+/*     6421 */  byte Byte ;
+/*     6422 */  struct {
+/*     6423 */  byte RDRS0 : 1 ;
+/*     6424 */  byte RDRS1 : 1 ;
+/*     6425 */  byte RDRS2 : 1 ;
+/*     6426 */  byte RDRS3 : 1 ;
+/*     6427 */  byte : 1 ;
+/*     6428 */  byte : 1 ;
+/*     6429 */  byte : 1 ;
+/*     6430 */  byte : 1 ;
+/*     6431 */  } Bits ;
+/*     6432 */  struct {
+/*     6433 */  byte grpRDRS : 4 ;
+/*     6434 */  byte : 1 ;
+/*     6435 */  byte : 1 ;
+/*     6436 */  byte : 1 ;
+/*     6437 */  byte : 1 ;
+/*     6438 */  } MergedBits ;
+/*     6439 */  } RDRSSTR ;
+/*     6440 */  extern volatile RDRSSTR _RDRS @ ( 0x0000 + 0x0000024B ) ;
+/*     6457 */  typedef union {
+/*     6458 */  byte Byte ;
+/*     6459 */  struct {
+/*     6460 */  byte PERS0 : 1 ;
+/*     6461 */  byte PERS1 : 1 ;
+/*     6462 */  byte PERS2 : 1 ;
+/*     6463 */  byte PERS3 : 1 ;
+/*     6464 */  byte : 1 ;
+/*     6465 */  byte : 1 ;
+/*     6466 */  byte : 1 ;
+/*     6467 */  byte : 1 ;
+/*     6468 */  } Bits ;
+/*     6469 */  struct {
+/*     6470 */  byte grpPERS : 4 ;
+/*     6471 */  byte : 1 ;
+/*     6472 */  byte : 1 ;
+/*     6473 */  byte : 1 ;
+/*     6474 */  byte : 1 ;
+/*     6475 */  } MergedBits ;
+/*     6476 */  } PERSSTR ;
+/*     6477 */  extern volatile PERSSTR _PERS @ ( 0x0000 + 0x0000024C ) ;
+/*     6494 */  typedef union {
+/*     6495 */  byte Byte ;
+/*     6496 */  struct {
+/*     6497 */  byte PPSS0 : 1 ;
+/*     6498 */  byte PPSS1 : 1 ;
+/*     6499 */  byte PPSS2 : 1 ;
+/*     6500 */  byte PPSS3 : 1 ;
+/*     6501 */  byte : 1 ;
+/*     6502 */  byte : 1 ;
+/*     6503 */  byte : 1 ;
+/*     6504 */  byte : 1 ;
+/*     6505 */  } Bits ;
+/*     6506 */  struct {
+/*     6507 */  byte grpPPSS : 4 ;
+/*     6508 */  byte : 1 ;
+/*     6509 */  byte : 1 ;
+/*     6510 */  byte : 1 ;
+/*     6511 */  byte : 1 ;
+/*     6512 */  } MergedBits ;
+/*     6513 */  } PPSSSTR ;
+/*     6514 */  extern volatile PPSSSTR _PPSS @ ( 0x0000 + 0x0000024D ) ;
+/*     6531 */  typedef union {
+/*     6532 */  byte Byte ;
+/*     6533 */  struct {
+/*     6534 */  byte WOMS0 : 1 ;
+/*     6535 */  byte WOMS1 : 1 ;
+/*     6536 */  byte WOMS2 : 1 ;
+/*     6537 */  byte WOMS3 : 1 ;
+/*     6538 */  byte : 1 ;
+/*     6539 */  byte : 1 ;
+/*     6540 */  byte : 1 ;
+/*     6541 */  byte : 1 ;
+/*     6542 */  } Bits ;
+/*     6543 */  struct {
+/*     6544 */  byte grpWOMS : 4 ;
+/*     6545 */  byte : 1 ;
+/*     6546 */  byte : 1 ;
+/*     6547 */  byte : 1 ;
+/*     6548 */  byte : 1 ;
+/*     6549 */  } MergedBits ;
+/*     6550 */  } WOMSSTR ;
+/*     6551 */  extern volatile WOMSSTR _WOMS @ ( 0x0000 + 0x0000024E ) ;
+/*     6568 */  typedef union {
+/*     6569 */  byte Byte ;
+/*     6570 */  struct {
+/*     6571 */  byte PTM0 : 1 ;
+/*     6572 */  byte PTM1 : 1 ;
+/*     6573 */  byte PTM2 : 1 ;
+/*     6574 */  byte PTM3 : 1 ;
+/*     6575 */  byte PTM4 : 1 ;
+/*     6576 */  byte PTM5 : 1 ;
+/*     6577 */  byte : 1 ;
+/*     6578 */  byte : 1 ;
+/*     6579 */  } Bits ;
+/*     6580 */  struct {
+/*     6581 */  byte grpPTM : 6 ;
+/*     6582 */  byte : 1 ;
+/*     6583 */  byte : 1 ;
+/*     6584 */  } MergedBits ;
+/*     6585 */  } PTMSTR ;
+/*     6586 */  extern volatile PTMSTR _PTM @ ( 0x0000 + 0x00000250 ) ;
+/*     6607 */  typedef union {
+/*     6608 */  byte Byte ;
+/*     6609 */  struct {
+/*     6610 */  byte PTIM0 : 1 ;
+/*     6611 */  byte PTIM1 : 1 ;
+/*     6612 */  byte PTIM2 : 1 ;
+/*     6613 */  byte PTIM3 : 1 ;
+/*     6614 */  byte PTIM4 : 1 ;
+/*     6615 */  byte PTIM5 : 1 ;
+/*     6616 */  byte : 1 ;
+/*     6617 */  byte : 1 ;
+/*     6618 */  } Bits ;
+/*     6619 */  struct {
+/*     6620 */  byte grpPTIM : 6 ;
+/*     6621 */  byte : 1 ;
+/*     6622 */  byte : 1 ;
+/*     6623 */  } MergedBits ;
+/*     6624 */  } PTIMSTR ;
+/*     6625 */  extern volatile PTIMSTR _PTIM @ ( 0x0000 + 0x00000251 ) ;
+/*     6646 */  typedef union {
+/*     6647 */  byte Byte ;
+/*     6648 */  struct {
+/*     6649 */  byte DDRM0 : 1 ;
+/*     6650 */  byte DDRM1 : 1 ;
+/*     6651 */  byte DDRM2 : 1 ;
+/*     6652 */  byte DDRM3 : 1 ;
+/*     6653 */  byte DDRM4 : 1 ;
+/*     6654 */  byte DDRM5 : 1 ;
+/*     6655 */  byte : 1 ;
+/*     6656 */  byte : 1 ;
+/*     6657 */  } Bits ;
+/*     6658 */  struct {
+/*     6659 */  byte grpDDRM : 6 ;
+/*     6660 */  byte : 1 ;
+/*     6661 */  byte : 1 ;
+/*     6662 */  } MergedBits ;
+/*     6663 */  } DDRMSTR ;
+/*     6664 */  extern volatile DDRMSTR _DDRM @ ( 0x0000 + 0x00000252 ) ;
+/*     6685 */  typedef union {
+/*     6686 */  byte Byte ;
+/*     6687 */  struct {
+/*     6688 */  byte RDRM0 : 1 ;
+/*     6689 */  byte RDRM1 : 1 ;
+/*     6690 */  byte RDRM2 : 1 ;
+/*     6691 */  byte RDRM3 : 1 ;
+/*     6692 */  byte RDRM4 : 1 ;
+/*     6693 */  byte RDRM5 : 1 ;
+/*     6694 */  byte : 1 ;
+/*     6695 */  byte : 1 ;
+/*     6696 */  } Bits ;
+/*     6697 */  struct {
+/*     6698 */  byte grpRDRM : 6 ;
+/*     6699 */  byte : 1 ;
+/*     6700 */  byte : 1 ;
+/*     6701 */  } MergedBits ;
+/*     6702 */  } RDRMSTR ;
+/*     6703 */  extern volatile RDRMSTR _RDRM @ ( 0x0000 + 0x00000253 ) ;
+/*     6724 */  typedef union {
+/*     6725 */  byte Byte ;
+/*     6726 */  struct {
+/*     6727 */  byte PERM0 : 1 ;
+/*     6728 */  byte PERM1 : 1 ;
+/*     6729 */  byte PERM2 : 1 ;
+/*     6730 */  byte PERM3 : 1 ;
+/*     6731 */  byte PERM4 : 1 ;
+/*     6732 */  byte PERM5 : 1 ;
+/*     6733 */  byte : 1 ;
+/*     6734 */  byte : 1 ;
+/*     6735 */  } Bits ;
+/*     6736 */  struct {
+/*     6737 */  byte grpPERM : 6 ;
+/*     6738 */  byte : 1 ;
+/*     6739 */  byte : 1 ;
+/*     6740 */  } MergedBits ;
+/*     6741 */  } PERMSTR ;
+/*     6742 */  extern volatile PERMSTR _PERM @ ( 0x0000 + 0x00000254 ) ;
+/*     6763 */  typedef union {
+/*     6764 */  byte Byte ;
+/*     6765 */  struct {
+/*     6766 */  byte PPSM0 : 1 ;
+/*     6767 */  byte PPSM1 : 1 ;
+/*     6768 */  byte PPSM2 : 1 ;
+/*     6769 */  byte PPSM3 : 1 ;
+/*     6770 */  byte PPSM4 : 1 ;
+/*     6771 */  byte PPSM5 : 1 ;
+/*     6772 */  byte : 1 ;
+/*     6773 */  byte : 1 ;
+/*     6774 */  } Bits ;
+/*     6775 */  struct {
+/*     6776 */  byte grpPPSM : 6 ;
+/*     6777 */  byte : 1 ;
+/*     6778 */  byte : 1 ;
+/*     6779 */  } MergedBits ;
+/*     6780 */  } PPSMSTR ;
+/*     6781 */  extern volatile PPSMSTR _PPSM @ ( 0x0000 + 0x00000255 ) ;
+/*     6802 */  typedef union {
+/*     6803 */  byte Byte ;
+/*     6804 */  struct {
+/*     6805 */  byte WOMM0 : 1 ;
+/*     6806 */  byte WOMM1 : 1 ;
+/*     6807 */  byte WOMM2 : 1 ;
+/*     6808 */  byte WOMM3 : 1 ;
+/*     6809 */  byte WOMM4 : 1 ;
+/*     6810 */  byte WOMM5 : 1 ;
+/*     6811 */  byte : 1 ;
+/*     6812 */  byte : 1 ;
+/*     6813 */  } Bits ;
+/*     6814 */  struct {
+/*     6815 */  byte grpWOMM : 6 ;
+/*     6816 */  byte : 1 ;
+/*     6817 */  byte : 1 ;
+/*     6818 */  } MergedBits ;
+/*     6819 */  } WOMMSTR ;
+/*     6820 */  extern volatile WOMMSTR _WOMM @ ( 0x0000 + 0x00000256 ) ;
+/*     6841 */  typedef union {
+/*     6842 */  byte Byte ;
+/*     6843 */  struct {
+/*     6844 */  byte PTP0 : 1 ;
+/*     6845 */  byte PTP1 : 1 ;
+/*     6846 */  byte PTP2 : 1 ;
+/*     6847 */  byte PTP3 : 1 ;
+/*     6848 */  byte PTP4 : 1 ;
+/*     6849 */  byte PTP5 : 1 ;
+/*     6850 */  byte PTP6 : 1 ;
+/*     6851 */  byte PTP7 : 1 ;
+/*     6852 */  } Bits ;
+/*     6853 */  } PTPSTR ;
+/*     6854 */  extern volatile PTPSTR _PTP @ ( 0x0000 + 0x00000258 ) ;
+/*     6876 */  typedef union {
+/*     6877 */  byte Byte ;
+/*     6878 */  struct {
+/*     6879 */  byte PTIP0 : 1 ;
+/*     6880 */  byte PTIP1 : 1 ;
+/*     6881 */  byte PTIP2 : 1 ;
+/*     6882 */  byte PTIP3 : 1 ;
+/*     6883 */  byte PTIP4 : 1 ;
+/*     6884 */  byte PTIP5 : 1 ;
+/*     6885 */  byte PTIP6 : 1 ;
+/*     6886 */  byte PTIP7 : 1 ;
+/*     6887 */  } Bits ;
+/*     6888 */  } PTIPSTR ;
+/*     6889 */  extern volatile PTIPSTR _PTIP @ ( 0x0000 + 0x00000259 ) ;
+/*     6911 */  typedef union {
+/*     6912 */  byte Byte ;
+/*     6913 */  struct {
+/*     6914 */  byte DDRP0 : 1 ;
+/*     6915 */  byte DDRP1 : 1 ;
+/*     6916 */  byte DDRP2 : 1 ;
+/*     6917 */  byte DDRP3 : 1 ;
+/*     6918 */  byte DDRP4 : 1 ;
+/*     6919 */  byte DDRP5 : 1 ;
+/*     6920 */  byte DDRP6 : 1 ;
+/*     6921 */  byte DDRP7 : 1 ;
+/*     6922 */  } Bits ;
+/*     6923 */  } DDRPSTR ;
+/*     6924 */  extern volatile DDRPSTR _DDRP @ ( 0x0000 + 0x0000025A ) ;
+/*     6946 */  typedef union {
+/*     6947 */  byte Byte ;
+/*     6948 */  struct {
+/*     6949 */  byte RDRP0 : 1 ;
+/*     6950 */  byte RDRP1 : 1 ;
+/*     6951 */  byte RDRP2 : 1 ;
+/*     6952 */  byte RDRP3 : 1 ;
+/*     6953 */  byte RDRP4 : 1 ;
+/*     6954 */  byte RDRP5 : 1 ;
+/*     6955 */  byte RDRP6 : 1 ;
+/*     6956 */  byte RDRP7 : 1 ;
+/*     6957 */  } Bits ;
+/*     6958 */  } RDRPSTR ;
+/*     6959 */  extern volatile RDRPSTR _RDRP @ ( 0x0000 + 0x0000025B ) ;
+/*     6981 */  typedef union {
+/*     6982 */  byte Byte ;
+/*     6983 */  struct {
+/*     6984 */  byte PERP0 : 1 ;
+/*     6985 */  byte PERP1 : 1 ;
+/*     6986 */  byte PERP2 : 1 ;
+/*     6987 */  byte PERP3 : 1 ;
+/*     6988 */  byte PERP4 : 1 ;
+/*     6989 */  byte PERP5 : 1 ;
+/*     6990 */  byte PERP6 : 1 ;
+/*     6991 */  byte PERP7 : 1 ;
+/*     6992 */  } Bits ;
+/*     6993 */  } PERPSTR ;
+/*     6994 */  extern volatile PERPSTR _PERP @ ( 0x0000 + 0x0000025C ) ;
+/*     7016 */  typedef union {
+/*     7017 */  byte Byte ;
+/*     7018 */  struct {
+/*     7019 */  byte PPSP0 : 1 ;
+/*     7020 */  byte PPSP1 : 1 ;
+/*     7021 */  byte PPSP2 : 1 ;
+/*     7022 */  byte PPSP3 : 1 ;
+/*     7023 */  byte PPSP4 : 1 ;
+/*     7024 */  byte PPSP5 : 1 ;
+/*     7025 */  byte PPSP6 : 1 ;
+/*     7026 */  byte PPSP7 : 1 ;
+/*     7027 */  } Bits ;
+/*     7028 */  } PPSPSTR ;
+/*     7029 */  extern volatile PPSPSTR _PPSP @ ( 0x0000 + 0x0000025D ) ;
+/*     7051 */  typedef union {
+/*     7052 */  byte Byte ;
+/*     7053 */  struct {
+/*     7054 */  byte PIEP0 : 1 ;
+/*     7055 */  byte PIEP1 : 1 ;
+/*     7056 */  byte PIEP2 : 1 ;
+/*     7057 */  byte PIEP3 : 1 ;
+/*     7058 */  byte PIEP4 : 1 ;
+/*     7059 */  byte PIEP5 : 1 ;
+/*     7060 */  byte PIEP6 : 1 ;
+/*     7061 */  byte PIEP7 : 1 ;
+/*     7062 */  } Bits ;
+/*     7063 */  } PIEPSTR ;
+/*     7064 */  extern volatile PIEPSTR _PIEP @ ( 0x0000 + 0x0000025E ) ;
+/*     7086 */  typedef union {
+/*     7087 */  byte Byte ;
+/*     7088 */  struct {
+/*     7089 */  byte PIFP0 : 1 ;
+/*     7090 */  byte PIFP1 : 1 ;
+/*     7091 */  byte PIFP2 : 1 ;
+/*     7092 */  byte PIFP3 : 1 ;
+/*     7093 */  byte PIFP4 : 1 ;
+/*     7094 */  byte PIFP5 : 1 ;
+/*     7095 */  byte PIFP6 : 1 ;
+/*     7096 */  byte PIFP7 : 1 ;
+/*     7097 */  } Bits ;
+/*     7098 */  } PIFPSTR ;
+/*     7099 */  extern volatile PIFPSTR _PIFP @ ( 0x0000 + 0x0000025F ) ;
+/*     7121 */  typedef union {
+/*     7122 */  byte Byte ;
+/*     7123 */  struct {
+/*     7124 */  byte : 1 ;
+/*     7125 */  byte : 1 ;
+/*     7126 */  byte : 1 ;
+/*     7127 */  byte : 1 ;
+/*     7128 */  byte : 1 ;
+/*     7129 */  byte : 1 ;
+/*     7130 */  byte PTJ6 : 1 ;
+/*     7131 */  byte PTJ7 : 1 ;
+/*     7132 */  } Bits ;
+/*     7133 */  struct {
+/*     7134 */  byte : 1 ;
+/*     7135 */  byte : 1 ;
+/*     7136 */  byte : 1 ;
+/*     7137 */  byte : 1 ;
+/*     7138 */  byte : 1 ;
+/*     7139 */  byte : 1 ;
+/*     7140 */  byte grpPTJ_6 : 2 ;
+/*     7141 */  } MergedBits ;
+/*     7142 */  } PTJSTR ;
+/*     7143 */  extern volatile PTJSTR _PTJ @ ( 0x0000 + 0x00000268 ) ;
+/*     7156 */  typedef union {
+/*     7157 */  byte Byte ;
+/*     7158 */  struct {
+/*     7159 */  byte : 1 ;
+/*     7160 */  byte : 1 ;
+/*     7161 */  byte : 1 ;
+/*     7162 */  byte : 1 ;
+/*     7163 */  byte : 1 ;
+/*     7164 */  byte : 1 ;
+/*     7165 */  byte PTIJ6 : 1 ;
+/*     7166 */  byte PTIJ7 : 1 ;
+/*     7167 */  } Bits ;
+/*     7168 */  struct {
+/*     7169 */  byte : 1 ;
+/*     7170 */  byte : 1 ;
+/*     7171 */  byte : 1 ;
+/*     7172 */  byte : 1 ;
+/*     7173 */  byte : 1 ;
+/*     7174 */  byte : 1 ;
+/*     7175 */  byte grpPTIJ_6 : 2 ;
+/*     7176 */  } MergedBits ;
+/*     7177 */  } PTIJSTR ;
+/*     7178 */  extern volatile PTIJSTR _PTIJ @ ( 0x0000 + 0x00000269 ) ;
+/*     7191 */  typedef union {
+/*     7192 */  byte Byte ;
+/*     7193 */  struct {
+/*     7194 */  byte : 1 ;
+/*     7195 */  byte : 1 ;
+/*     7196 */  byte : 1 ;
+/*     7197 */  byte : 1 ;
+/*     7198 */  byte : 1 ;
+/*     7199 */  byte : 1 ;
+/*     7200 */  byte DDRJ6 : 1 ;
+/*     7201 */  byte DDRJ7 : 1 ;
+/*     7202 */  } Bits ;
+/*     7203 */  struct {
+/*     7204 */  byte : 1 ;
+/*     7205 */  byte : 1 ;
+/*     7206 */  byte : 1 ;
+/*     7207 */  byte : 1 ;
+/*     7208 */  byte : 1 ;
+/*     7209 */  byte : 1 ;
+/*     7210 */  byte grpDDRJ_6 : 2 ;
+/*     7211 */  } MergedBits ;
+/*     7212 */  } DDRJSTR ;
+/*     7213 */  extern volatile DDRJSTR _DDRJ @ ( 0x0000 + 0x0000026A ) ;
+/*     7226 */  typedef union {
+/*     7227 */  byte Byte ;
+/*     7228 */  struct {
+/*     7229 */  byte : 1 ;
+/*     7230 */  byte : 1 ;
+/*     7231 */  byte : 1 ;
+/*     7232 */  byte : 1 ;
+/*     7233 */  byte : 1 ;
+/*     7234 */  byte : 1 ;
+/*     7235 */  byte RDRJ6 : 1 ;
+/*     7236 */  byte RDRJ7 : 1 ;
+/*     7237 */  } Bits ;
+/*     7238 */  struct {
+/*     7239 */  byte : 1 ;
+/*     7240 */  byte : 1 ;
+/*     7241 */  byte : 1 ;
+/*     7242 */  byte : 1 ;
+/*     7243 */  byte : 1 ;
+/*     7244 */  byte : 1 ;
+/*     7245 */  byte grpRDRJ_6 : 2 ;
+/*     7246 */  } MergedBits ;
+/*     7247 */  } RDRJSTR ;
+/*     7248 */  extern volatile RDRJSTR _RDRJ @ ( 0x0000 + 0x0000026B ) ;
+/*     7261 */  typedef union {
+/*     7262 */  byte Byte ;
+/*     7263 */  struct {
+/*     7264 */  byte : 1 ;
+/*     7265 */  byte : 1 ;
+/*     7266 */  byte : 1 ;
+/*     7267 */  byte : 1 ;
+/*     7268 */  byte : 1 ;
+/*     7269 */  byte : 1 ;
+/*     7270 */  byte PERJ6 : 1 ;
+/*     7271 */  byte PERJ7 : 1 ;
+/*     7272 */  } Bits ;
+/*     7273 */  struct {
+/*     7274 */  byte : 1 ;
+/*     7275 */  byte : 1 ;
+/*     7276 */  byte : 1 ;
+/*     7277 */  byte : 1 ;
+/*     7278 */  byte : 1 ;
+/*     7279 */  byte : 1 ;
+/*     7280 */  byte grpPERJ_6 : 2 ;
+/*     7281 */  } MergedBits ;
+/*     7282 */  } PERJSTR ;
+/*     7283 */  extern volatile PERJSTR _PERJ @ ( 0x0000 + 0x0000026C ) ;
+/*     7296 */  typedef union {
+/*     7297 */  byte Byte ;
+/*     7298 */  struct {
+/*     7299 */  byte : 1 ;
+/*     7300 */  byte : 1 ;
+/*     7301 */  byte : 1 ;
+/*     7302 */  byte : 1 ;
+/*     7303 */  byte : 1 ;
+/*     7304 */  byte : 1 ;
+/*     7305 */  byte PPSJ6 : 1 ;
+/*     7306 */  byte PPSJ7 : 1 ;
+/*     7307 */  } Bits ;
+/*     7308 */  struct {
+/*     7309 */  byte : 1 ;
+/*     7310 */  byte : 1 ;
+/*     7311 */  byte : 1 ;
+/*     7312 */  byte : 1 ;
+/*     7313 */  byte : 1 ;
+/*     7314 */  byte : 1 ;
+/*     7315 */  byte grpPPSJ_6 : 2 ;
+/*     7316 */  } MergedBits ;
+/*     7317 */  } PPSJSTR ;
+/*     7318 */  extern volatile PPSJSTR _PPSJ @ ( 0x0000 + 0x0000026D ) ;
+/*     7331 */  typedef union {
+/*     7332 */  byte Byte ;
+/*     7333 */  struct {
+/*     7334 */  byte : 1 ;
+/*     7335 */  byte : 1 ;
+/*     7336 */  byte : 1 ;
+/*     7337 */  byte : 1 ;
+/*     7338 */  byte : 1 ;
+/*     7339 */  byte : 1 ;
+/*     7340 */  byte PIEJ6 : 1 ;
+/*     7341 */  byte PIEJ7 : 1 ;
+/*     7342 */  } Bits ;
+/*     7343 */  struct {
+/*     7344 */  byte : 1 ;
+/*     7345 */  byte : 1 ;
+/*     7346 */  byte : 1 ;
+/*     7347 */  byte : 1 ;
+/*     7348 */  byte : 1 ;
+/*     7349 */  byte : 1 ;
+/*     7350 */  byte grpPIEJ_6 : 2 ;
+/*     7351 */  } MergedBits ;
+/*     7352 */  } PIEJSTR ;
+/*     7353 */  extern volatile PIEJSTR _PIEJ @ ( 0x0000 + 0x0000026E ) ;
+/*     7366 */  typedef union {
+/*     7367 */  byte Byte ;
+/*     7368 */  struct {
+/*     7369 */  byte : 1 ;
+/*     7370 */  byte : 1 ;
+/*     7371 */  byte : 1 ;
+/*     7372 */  byte : 1 ;
+/*     7373 */  byte : 1 ;
+/*     7374 */  byte : 1 ;
+/*     7375 */  byte PIFJ6 : 1 ;
+/*     7376 */  byte PIFJ7 : 1 ;
+/*     7377 */  } Bits ;
+/*     7378 */  struct {
+/*     7379 */  byte : 1 ;
+/*     7380 */  byte : 1 ;
+/*     7381 */  byte : 1 ;
+/*     7382 */  byte : 1 ;
+/*     7383 */  byte : 1 ;
+/*     7384 */  byte : 1 ;
+/*     7385 */  byte grpPIFJ_6 : 2 ;
+/*     7386 */  } MergedBits ;
+/*     7387 */  } PIFJSTR ;
+/*     7388 */  extern volatile PIFJSTR _PIFJ @ ( 0x0000 + 0x0000026F ) ;
+/*     7401 */  typedef union {
+/*     7402 */  byte Byte ;
+/*     7403 */  struct {
+/*     7404 */  byte PTAD0 : 1 ;
+/*     7405 */  byte PTAD1 : 1 ;
+/*     7406 */  byte PTAD2 : 1 ;
+/*     7407 */  byte PTAD3 : 1 ;
+/*     7408 */  byte PTAD4 : 1 ;
+/*     7409 */  byte PTAD5 : 1 ;
+/*     7410 */  byte PTAD6 : 1 ;
+/*     7411 */  byte PTAD7 : 1 ;
+/*     7412 */  } Bits ;
+/*     7413 */  } PTADSTR ;
+/*     7414 */  extern volatile PTADSTR _PTAD @ ( 0x0000 + 0x00000270 ) ;
+/*     7436 */  typedef union {
+/*     7437 */  byte Byte ;
+/*     7438 */  struct {
+/*     7439 */  byte PTIAD0 : 1 ;
+/*     7440 */  byte PTIAD1 : 1 ;
+/*     7441 */  byte PTIAD2 : 1 ;
+/*     7442 */  byte PTIAD3 : 1 ;
+/*     7443 */  byte PTIAD4 : 1 ;
+/*     7444 */  byte PTIAD5 : 1 ;
+/*     7445 */  byte PTIAD6 : 1 ;
+/*     7446 */  byte PTIAD7 : 1 ;
+/*     7447 */  } Bits ;
+/*     7448 */  } PTIADSTR ;
+/*     7449 */  extern volatile PTIADSTR _PTIAD @ ( 0x0000 + 0x00000271 ) ;
+/*     7471 */  typedef union {
+/*     7472 */  byte Byte ;
+/*     7473 */  struct {
+/*     7474 */  byte DDRAD0 : 1 ;
+/*     7475 */  byte DDRAD1 : 1 ;
+/*     7476 */  byte DDRAD2 : 1 ;
+/*     7477 */  byte DDRAD3 : 1 ;
+/*     7478 */  byte DDRAD4 : 1 ;
+/*     7479 */  byte DDRAD5 : 1 ;
+/*     7480 */  byte DDRAD6 : 1 ;
+/*     7481 */  byte DDRAD7 : 1 ;
+/*     7482 */  } Bits ;
+/*     7483 */  } DDRADSTR ;
+/*     7484 */  extern volatile DDRADSTR _DDRAD @ ( 0x0000 + 0x00000272 ) ;
+/*     7506 */  typedef union {
+/*     7507 */  byte Byte ;
+/*     7508 */  struct {
+/*     7509 */  byte RDRAD0 : 1 ;
+/*     7510 */  byte RDRAD1 : 1 ;
+/*     7511 */  byte RDRAD2 : 1 ;
+/*     7512 */  byte RDRAD3 : 1 ;
+/*     7513 */  byte RDRAD4 : 1 ;
+/*     7514 */  byte RDRAD5 : 1 ;
+/*     7515 */  byte RDRAD6 : 1 ;
+/*     7516 */  byte RDRAD7 : 1 ;
+/*     7517 */  } Bits ;
+/*     7518 */  } RDRADSTR ;
+/*     7519 */  extern volatile RDRADSTR _RDRAD @ ( 0x0000 + 0x00000273 ) ;
+/*     7541 */  typedef union {
+/*     7542 */  byte Byte ;
+/*     7543 */  struct {
+/*     7544 */  byte PERAD0 : 1 ;
+/*     7545 */  byte PERAD1 : 1 ;
+/*     7546 */  byte PERAD2 : 1 ;
+/*     7547 */  byte PERAD3 : 1 ;
+/*     7548 */  byte PERAD4 : 1 ;
+/*     7549 */  byte PERAD5 : 1 ;
+/*     7550 */  byte PERAD6 : 1 ;
+/*     7551 */  byte PERAD7 : 1 ;
+/*     7552 */  } Bits ;
+/*     7553 */  } PERADSTR ;
+/*     7554 */  extern volatile PERADSTR _PERAD @ ( 0x0000 + 0x00000274 ) ;
+/*     7576 */  typedef union {
+/*     7577 */  byte Byte ;
+/*     7578 */  struct {
+/*     7579 */  byte PPSAD0 : 1 ;
+/*     7580 */  byte PPSAD1 : 1 ;
+/*     7581 */  byte PPSAD2 : 1 ;
+/*     7582 */  byte PPSAD3 : 1 ;
+/*     7583 */  byte PPSAD4 : 1 ;
+/*     7584 */  byte PPSAD5 : 1 ;
+/*     7585 */  byte PPSAD6 : 1 ;
+/*     7586 */  byte PPSAD7 : 1 ;
+/*     7587 */  } Bits ;
+/*     7588 */  } PPSADSTR ;
+/*     7589 */  extern volatile PPSADSTR _PPSAD @ ( 0x0000 + 0x00000275 ) ;
+/*     7611 */  typedef union {
+/*     7612 */  word Word ;
+/*     7613 */  struct {
+/*     7614 */  word KEY0 : 1 ;
+/*     7615 */  word KEY1 : 1 ;
+/*     7616 */  word KEY2 : 1 ;
+/*     7617 */  word KEY3 : 1 ;
+/*     7618 */  word KEY4 : 1 ;
+/*     7619 */  word KEY5 : 1 ;
+/*     7620 */  word KEY6 : 1 ;
+/*     7621 */  word KEY7 : 1 ;
+/*     7622 */  word KEY8 : 1 ;
+/*     7623 */  word KEY9 : 1 ;
+/*     7624 */  word KEY10 : 1 ;
+/*     7625 */  word KEY11 : 1 ;
+/*     7626 */  word KEY12 : 1 ;
+/*     7627 */  word KEY13 : 1 ;
+/*     7628 */  word KEY14 : 1 ;
+/*     7629 */  word KEY15 : 1 ;
+/*     7630 */  } Bits ;
+/*     7631 */  } BAKEY0STR ;
+/*     7673 */  typedef union {
+/*     7674 */  word Word ;
+/*     7675 */  struct {
+/*     7676 */  word KEY0 : 1 ;
+/*     7677 */  word KEY1 : 1 ;
+/*     7678 */  word KEY2 : 1 ;
+/*     7679 */  word KEY3 : 1 ;
+/*     7680 */  word KEY4 : 1 ;
+/*     7681 */  word KEY5 : 1 ;
+/*     7682 */  word KEY6 : 1 ;
+/*     7683 */  word KEY7 : 1 ;
+/*     7684 */  word KEY8 : 1 ;
+/*     7685 */  word KEY9 : 1 ;
+/*     7686 */  word KEY10 : 1 ;
+/*     7687 */  word KEY11 : 1 ;
+/*     7688 */  word KEY12 : 1 ;
+/*     7689 */  word KEY13 : 1 ;
+/*     7690 */  word KEY14 : 1 ;
+/*     7691 */  word KEY15 : 1 ;
+/*     7692 */  } Bits ;
+/*     7693 */  } BAKEY1STR ;
+/*     7733 */  typedef union {
+/*     7734 */  word Word ;
+/*     7735 */  struct {
+/*     7736 */  word KEY0 : 1 ;
+/*     7737 */  word KEY1 : 1 ;
+/*     7738 */  word KEY2 : 1 ;
+/*     7739 */  word KEY3 : 1 ;
+/*     7740 */  word KEY4 : 1 ;
+/*     7741 */  word KEY5 : 1 ;
+/*     7742 */  word KEY6 : 1 ;
+/*     7743 */  word KEY7 : 1 ;
+/*     7744 */  word KEY8 : 1 ;
+/*     7745 */  word KEY9 : 1 ;
+/*     7746 */  word KEY10 : 1 ;
+/*     7747 */  word KEY11 : 1 ;
+/*     7748 */  word KEY12 : 1 ;
+/*     7749 */  word KEY13 : 1 ;
+/*     7750 */  word KEY14 : 1 ;
+/*     7751 */  word KEY15 : 1 ;
+/*     7752 */  } Bits ;
+/*     7753 */  } BAKEY2STR ;
+/*     7793 */  typedef union {
+/*     7794 */  word Word ;
+/*     7795 */  struct {
+/*     7796 */  word KEY0 : 1 ;
+/*     7797 */  word KEY1 : 1 ;
+/*     7798 */  word KEY2 : 1 ;
+/*     7799 */  word KEY3 : 1 ;
+/*     7800 */  word KEY4 : 1 ;
+/*     7801 */  word KEY5 : 1 ;
+/*     7802 */  word KEY6 : 1 ;
+/*     7803 */  word KEY7 : 1 ;
+/*     7804 */  word KEY8 : 1 ;
+/*     7805 */  word KEY9 : 1 ;
+/*     7806 */  word KEY10 : 1 ;
+/*     7807 */  word KEY11 : 1 ;
+/*     7808 */  word KEY12 : 1 ;
+/*     7809 */  word KEY13 : 1 ;
+/*     7810 */  word KEY14 : 1 ;
+/*     7811 */  word KEY15 : 1 ;
+/*     7812 */  } Bits ;
+/*     7813 */  } BAKEY3STR ;
+/*     7853 */  typedef union {
+/*     7854 */  byte Byte ;
+/*     7855 */  struct {
+/*     7856 */  byte FPLS0 : 1 ;
+/*     7857 */  byte FPLS1 : 1 ;
+/*     7858 */  byte FPLDIS : 1 ;
+/*     7859 */  byte FPHS0 : 1 ;
+/*     7860 */  byte FPHS1 : 1 ;
+/*     7861 */  byte FPHDIS : 1 ;
+/*     7862 */  byte NV6 : 1 ;
+/*     7863 */  byte FPOPEN : 1 ;
+/*     7864 */  } Bits ;
+/*     7865 */  struct {
+/*     7866 */  byte grpFPLS : 2 ;
+/*     7867 */  byte : 1 ;
+/*     7868 */  byte grpFPHS : 2 ;
+/*     7869 */  byte : 1 ;
+/*     7870 */  byte grpNV_6 : 1 ;
+/*     7871 */  byte : 1 ;
+/*     7872 */  } MergedBits ;
+/*     7873 */  } NVFPROT0STR ;
+/*     7903 */  typedef union {
+/*     7904 */  byte Byte ;
+/*     7905 */  struct {
+/*     7906 */  byte SEC0 : 1 ;
+/*     7907 */  byte SEC1 : 1 ;
+/*     7908 */  byte NV2 : 1 ;
+/*     7909 */  byte NV3 : 1 ;
+/*     7910 */  byte NV4 : 1 ;
+/*     7911 */  byte NV5 : 1 ;
+/*     7912 */  byte NV6 : 1 ;
+/*     7913 */  byte KEYEN : 1 ;
+/*     7914 */  } Bits ;
+/*     7915 */  struct {
+/*     7916 */  byte grpSEC : 2 ;
+/*     7917 */  byte grpNV_2 : 5 ;
+/*     7918 */  byte : 1 ;
+/*     7919 */  } MergedBits ;
+/*     7920 */  } NVFSECSTR ;
+/*     7968 */  #pragma OPTION DEL V30toV31Compatible
+/*     7974 */ 
+
+/**** FILE 'Cpu.h' */
+
+
+/*       41 */ 
+
+/**** FILE 'PE_Timer.h' */
+
+
+/*       33 */  void PE_Timer_LngMul ( dword va1 , dword va2 , dlong * var ) ;
+/*       45 */  bool PE_Timer_LngHi3 ( dword High , dword Low , word * Out ) ;
+/*       57 */  bool PE_Timer_LngHi4 ( dword High , dword Low , word * Out ) ;
+/*       81 */ 
+
+/**** FILE 'Cpu.h' */
+
+
+/*       45 */  #pragma DATA_SEG DEFAULT
+/*       59 */  extern volatile byte CCR_reg ;
+/*       62 */  #pragma CODE_SEG __NEAR_SEG NON_BANKED
+/*       63 */  extern "C" void _EntryPoint ( void ) ;
+/*       79 */  __interrupt void Cpu_Interrupt ( void ) ;
+/*       81 */  #pragma CODE_SEG DEFAULT
+/*      136 */  void PE_low_level_init ( void ) ;
+/*      162 */ 
+
+/**** FILE 'WDog1.h' */
+
+
+/*       64 */  #pragma CODE_SEG WDog1_CODE
+/*       84 */  #pragma CODE_SEG DEFAULT
+/*       99 */ 
+
+/**** FILE 'D:\versionR51\microsdhacel\soft micros\Codigo\codigo portable\Sensor\SensorTermoPT100.cpp' */
+
+
+/*        8 */ 
+
+/**** FILE 'Math.h' */
+
+
+/*        7 */  int pow10 ( byte expo ) ;
+/*       18 */  int get_Decimales ( int val ) ;
+/*       25 */  char get_HexDig ( word val ) ;
+/*       30 */ 
+
+/**** FILE 'D:\versionR51\microsdhacel\soft micros\Codigo\codigo portable\Sensor\SensorTermoPT100.cpp' */
+
+
+/*        9 */ 
+
+/**** FILE 'funciones.h' */
+
+
+/*        6 */ 
+
+/**** FILE 'stdtypes.h' */
+
+
+/*      176 */ 
+
+/**** FILE 'funciones.h' */
+
+
+/*        7 */  void MedidorFunciones_setDeltaTiempo ( uint delta ) ;
+/*        9 */  int filtrar ( int val_x ,
+/*       10 */  int Tf ,
+/*       11 */  int DEL_T ,
+/*       12 */  int TfMAX ,
+/*       13 */  long * buffer_fil
+/*       14 */  ) ;
+/*       16 */  long filtrarL ( long val_x , int Tf , int DEL_T , int TfMAX , long * buffer_fil ) ;
+/*       20 */  int duty_prop ( int valcontrol ,
+/*       21 */  int ab ,
+/*       22 */  int pinf ,
+/*       23 */  int psup
+/*       24 */  ) ;
+/*       26 */  int duty_onoff ( int valcontrol ,
+/*       27 */  int his
+/*       28 */  ) ;
+/*       30 */  int integral ( int vp ,
+/*       31 */  int spl ,
+/*       32 */  int abinf ,
+/*       33 */  int absup ,
+/*       34 */  int kintl ,
+/*       35 */  long * suminteg
+/*       36 */  ) ;
+/*       38 */  int int_Trapecios ( int * vp ,
+/*       39 */  int sp ,
+/*       40 */  int abinf ,
+/*       41 */  int absup ,
+/*       42 */  int kintl ,
+/*       43 */  long * suminteg
+/*       44 */  ) ;
+/*       47 */  int derivada ( int val_x ,
+/*       48 */  int val_x_ant ,
+/*       49 */  int kder ,
+/*       50 */  long * buffer_deriv
+/*       51 */  ) ;
+/*       53 */  int derivada3p ( int * val_T ,
+/*       54 */  int kder
+/*       55 */  ) ;
+/*       57 */  int proporcional ( int val_x ,
+/*       58 */  int reset ,
+/*       59 */  int spt
+/*       60 */  ) ;
+/*       66 */ 
+
+/**** FILE 'D:\versionR51\microsdhacel\soft micros\Codigo\codigo portable\Sensor\SensorTermoPT100.cpp' */
+
+
+/*       10 */ 
+
+/**** FILE 'str_lib.h' */
+
+
+/*        5 */ 
+
+/**** FILE 'stdlib.h' */
+
+
+/*       13 */  extern "C" {
+/*       17 */ 
+
+/**** FILE 'stddef.h' */
+
+
+/*       75 */ 
+
+/**** FILE 'stdlib.h' */
+
+
+/*       19 */  typedef struct _div_t {
+/*       20 */  int quot , rem ;
+/*       21 */  } div_t ;
+/*       23 */  typedef struct _ldiv_t {
+/*       24 */  long int quot , rem ;
+/*       25 */  } ldiv_t ;
+/*       49 */  LIBDEF_StringPtr _itoa ( int val , LIBDEF_StringPtr buf , int radix ) ;
+/*       53 */  extern double strtod ( LIBDEF_ConstStringPtr s , LIBDEF_StringPtr * end ) ;
+/*       54 */  extern long int strtol ( LIBDEF_ConstStringPtr s , LIBDEF_StringPtr * end , int base ) ;
+/*       55 */  extern unsigned long int strtoul ( LIBDEF_ConstStringPtr s , LIBDEF_StringPtr * end , int base ) ;
+/*       58 */  extern int rand ( void ) ;
+/*       59 */  extern void srand ( unsigned int seed ) ;
+/*       62 */  extern void * calloc ( size_t n , size_t size ) ;
+/*       63 */  extern void free ( void * ptr ) ;
+/*       64 */  extern void * malloc ( size_t size ) ;
+/*       65 */  extern void * realloc ( void * ptr , size_t size ) ;
+/*       68 */  extern void abort ( void ) ;
+/*       69 */  extern int atexit ( void ( * func ) ( void ) ) ;
+/*       70 */  extern void exit ( int status ) ;
+/*       73 */  extern LIBDEF_StringPtr getenv ( LIBDEF_ConstStringPtr name ) ;
+/*       74 */  extern int system ( LIBDEF_ConstStringPtr cmd ) ;
+/*       77 */  extern LIBDEF_MemPtr bsearch ( LIBDEF_ConstMemPtr look_for ,
+/*       78 */  LIBDEF_ConstMemPtr base_addr ,
+/*       79 */  size_t n , size_t size ,
+/*       80 */  int ( * cmp ) ( LIBDEF_ConstMemPtr , LIBDEF_ConstMemPtr ) ) ;
+/*       81 */  extern void qsort ( LIBDEF_ConstMemPtr base ,
+/*       82 */  size_t n , size_t size ,
+/*       83 */  int ( * cmp ) ( LIBDEF_ConstMemPtr , LIBDEF_ConstMemPtr ) ) ;
+/*       89 */  extern int abs ( int j ) ;
+/*       90 */  extern long int labs ( long int j ) ;
+/*       92 */  extern div_t div ( int dividend , int divisor ) ;
+/*       93 */  extern ldiv_t ldiv ( long int dividend , long int divisor ) ;
+/*       97 */  extern int mblen ( LIBDEF_ConstStringPtr mbs , size_t n ) ;
+/*       98 */  extern int mbtowc ( wchar_t * wc , LIBDEF_ConstStringPtr mb , size_t n ) ;
+/*       99 */  extern int wctomb ( LIBDEF_StringPtr mb , wchar_t wc ) ;
+/*      100 */  extern size_t mbstowcs ( wchar_t * wc , LIBDEF_ConstStringPtr mb , size_t n ) ;
+/*      101 */  extern size_t wcstombs ( LIBDEF_StringPtr mb , const wchar_t * wc , size_t n ) ;
+/*      104 */  }
+/*      113 */ 
+
+/**** FILE 'str_lib.h' */
+
+
+/*        7 */  char * IntToStr ( int integer , char * str , int max_size ) ;
+/*       26 */  void FloatToStr ( int integer , char * str , int max_size , int decimales ) ;
+/*       31 */ 
+
+/**** FILE 'D:\versionR51\microsdhacel\soft micros\Codigo\codigo portable\Sensor\SensorTermoPT100.cpp' */
+
+
+/*       11 */ 
+
+/**** FILE 'PTSL.h' */
+
+
+/*       62 */  #pragma CODE_SEG PTSL_CODE
+/*       78 */  void PTSL_PutBit ( byte Bit , bool Val ) ;
+/*       80 */  #pragma CODE_SEG DEFAULT
+/*       94 */ 
+
+/**** FILE 'D:\versionR51\microsdhacel\soft micros\Codigo\codigo portable\Sensor\SensorTermoPT100.cpp' */
+
+
+/*       12 */ 
+
+/**** FILE 'ADC.h' */
+
+
+/*       73 */  #pragma DATA_SEG ADC_DATA
+/*       74 */  #pragma CODE_SEG ADC_CODE
+/*       76 */  #pragma CREATE_ASM_LISTING ON
+/*      111 */  byte ADC_Enable ( void ) ;
+/*      129 */  byte ADC_Disable ( void ) ;
+/*      256 */  #pragma CODE_SEG __NEAR_SEG NON_BANKED
+/*      257 */  __interrupt void ADC_Interrupt ( void ) ;
+/*      258 */  #pragma CODE_SEG ADC_CODE
+/*      272 */  bool ADC_isread ( byte chan ) ;
+/*      286 */  int ADC_getVal ( byte chan ) ;
+/*      298 */  #pragma INLINE
+/*      299 */  int ADC_getTA ( void ) ;
+/*      322 */  byte ADC_Start ( void ) ;
+/*      325 */  byte ADC_Select ( char chan ) ;
+/*      351 */  byte ADC_Stop ( void ) ;
+/*      377 */  void ADC_Init ( void ) ;
+/*      388 */  #pragma CODE_SEG DEFAULT
+/*      403 */ 
+
+/**** FILE 'D:\versionR51\microsdhacel\soft micros\Codigo\codigo portable\Sensor\SensorTermoPT100.cpp' */
+
+
+/*       13 */  int * SensorTermoPT100 :: compensacionTempAmb = ( ( void * ) 0 ) ;
+/*       15 */  SensorTermoPT100 :: SensorTermoPT100 ( IAdc & _adc , const SensorTermoPT100 :: TConfSensor & _conf , struct ManejadorMemoria & _manejadorMemoria ) : adc ( _adc ) , configuracion ( _conf ) , manejadorMemoria ( _manejadorMemoria ) {
+/*       16 */  while ( ! adc . isNewVal ( ) )
+/*       17 */  ( _ARMCOP . Byte = 85 , _ARMCOP . Byte = 170 , 0 ) ;
+/*       19 */  setSensor ( getSensor ( ) ) ;
+/*       20 */  procesar ( ) ;
+/*       21 */  }
+/*       23 */  unsigned char SensorTermoPT100 :: getDecimales ( ) {
+/*       24 */  return sensorConf [ getSensor ( ) ] . decimales_mostrar ; ;
+/*       25 */  }
+/*       27 */  Sensor :: TSensorState SensorTermoPT100 :: getEstado ( ) {
+/*       28 */  return estado ;
+/*       29 */  }
+/*       31 */  int SensorTermoPT100 :: getLimiteInferior ( ) {
+/*       32 */  int min_sens = sensorConf [ getSensor ( ) ] . ydat [ 0 ] ;
+/*       33 */  byte decimal_chan = sensorConf [ getSensor ( ) ] . decimales_max ;
+/*       34 */  byte decimales = getDecimales ( ) ;
+/*       36 */  return min_sens / pow10 ( decimal_chan - decimales ) ;
+/*       37 */  }
+/*       39 */  int SensorTermoPT100 :: getLimiteSuperior ( ) {
+/*       40 */  int max_sens = sensorConf [ getSensor ( ) ] . ydat [ sensorConf [ getSensor ( ) ] . max_array ] ;
+/*       41 */  byte decimal_chan = sensorConf [ getSensor ( ) ] . decimales_max ;
+/*       42 */  byte decimales = getDecimales ( ) ;
+/*       44 */  if ( SENSOR_is_Lineal ( getSensor ( ) ) )
+/*       45 */  return max_sens ;
+/*       46 */  else
+/*       47 */  return max_sens / pow10 ( decimal_chan - decimales ) ;
+/*       48 */  }
+/*       50 */  int SensorTermoPT100 :: getVal ( ) {
+/*       51 */  return valor ;
+/*       52 */  }
+/*       57 */  void SensorTermoPT100 :: checkADC ( )
+/*       58 */  {
+/*       59 */  if ( adc . isNewVal ( ) )
+/*       60 */  procesar ( ) ;
+/*       61 */  }
+/*       63 */  void SensorTermoPT100 :: procesar ( ) {
+/*       64 */  long ValProv ;
+/*       65 */  int ValLin ;
+/*       66 */  TSensorState err ;
+/*       67 */  long vx = adc . getVal ( ) ;
+/*       68 */  t_sensor sensor = configuracion . sensor ;
+/*       69 */  int ceroTP = configuracion . ceroTermopar ;
+/*       70 */  int ganTP = configuracion . gananciaTermopar ;
+/*       71 */  int ceroPT = configuracion . ceroPT100 ;
+/*       72 */  int ganPT = configuracion . gananciaPT100 ;
+/*       73 */  int offset = configuracion . offset ;
+/*       74 */  int ganancia = configuracion . ganancia ;
+/*       75 */  int filtro = configuracion . filtro ;
+/*       76 */  int CompTempAmb = 0 ;
+/*       78 */  if ( sensor < SENSOR_PT ) {
+/*       79 */  int Ta_Temp = adc . getTemperaturaAmbiente ( ) + * compensacionTempAmb * 10 / pow10 ( sensorConf [ sensor ] . decimales_max ) ;
+/*       80 */  Sens_getColdComp ( Ta_Temp , & CompTempAmb , sensor ) ;
+/*       81 */  }
+/*       82 */  vx = ( vx + ceroTP ) * ( 1000 + ganTP ) / 1000 ;
+/*       83 */  vx = vx * 5000 / 10000 ;
+/*       84 */  err = Linealizar ( vx + CompTempAmb , sensor , & ValLin ) ;
+/*       85 */  ValProv = ValLin ;
+/*       86 */  if ( sensor == SENSOR_PT )
+/*       87 */  ValProv = ( ( ValProv + ceroPT ) * ( 1000 + ganPT ) / 1000 ) ;
+/*       89 */  ValProv = ( ValProv + offset ) * ganancia / 1000 ;
+/*       90 */  ValProv = filtrar ( ( int ) ValProv , filtro , 10 , 200 , & bufferFiltro ) ;
+/*       92 */  { __asm sei ; } ;
+/*       93 */  valor = ValProv ;
+/*       94 */  estado = err ;
+/*       95 */  { __asm cli ; } ;
+/*       98 */  callOnNuevoValorListeners ( ) ;
+/*      100 */  }
+/*      102 */  void SensorTermoPT100 :: print ( OutputStream & os ) {
+/*      103 */  byte sensor = getSensor ( ) ;
+/*      104 */  byte decimales = sensorConf [ sensor ] . decimales_mostrar ;
+/*      105 */  int Val = valor ;
+/*      107 */  Val /= pow10 ( sensorConf [ sensor ] . decimales_max - decimales ) ;
+/*      109 */  switch ( estado ) {
+/*      110 */  case SENSOR_OK :
+/*      111 */  char str [ 5 ] ;
+/*      112 */  FloatToStr ( Val , str , 5 , decimales ) ;
+/*      113 */  os . write ( str ) ;
+/*      114 */  break ;
+/*      116 */  case SENSOR_OF :
+/*      117 */  os . write ( " OF " ) ;
+/*      118 */  break ;
+/*      120 */  case SENSOR_UF :
+/*      121 */  os . write ( " UF " ) ;
+/*      122 */  break ;
+/*      123 */  }
+/*      124 */  }
+/*      126 */  static void SensorTermoPT100 :: setConfiguracionTemperaturaAmbiente ( int * ta ) {
+/*      128 */  compensacionTempAmb = ta ;
+/*      129 */  }
+/*      132 */  int SensorTermoPT100 :: getSensor ( ) {
+/*      133 */  return TConfSensor . sensor ;
+/*      134 */  }
+/*      136 */  void SensorTermoPT100 :: setSensor ( int _sensor ) {
+/*      137 */  char err ;
+/*      139 */  err = ( ( * ( struct ManejadorMemoriaClass * * ) & manejadorMemoria ) -> setByte ) ( & manejadorMemoria , & TConfSensor . sensor , ( int ) _sensor ) ;
+/*      140 */  if ( ! err ) {
+/*      141 */  err = onSensorChange ( _sensor ) ;
+/*      142 */  }
+/*      144 */  }
+/*      146 */  int SensorTermoPT100 :: getLimSupSensor ( ) {
+/*      147 */  return 14 + 0 - 1 ;
+/*      148 */  }
+/*      150 */  char SensorTermoPT100 :: onSensorChange ( int val ) {
+/*      151 */  byte Lim_Dec ;
+/*      153 */  if ( val == SENSOR_PT )
+/*      154 */  PTSL_PutBit ( _adc . pin , 1 ) ;
+/*      155 */  else
+/*      156 */  PTSL_PutBit ( _adc . pin , 0 ) ;
+/*      158 */  Lim_Dec = sensorConf [ val ] . decimales_max ;
+/*      160 */  bufferFiltro = 0 ;
+/*      169 */  return 0 ;
+/*      171 */  }
+/*      173 */  unsigned char SensorTermoPT100 :: getFiltro ( ) {
+/*      174 */  return TConfSensor . filtro ;
+/*      175 */  }
+/*      177 */  void SensorTermoPT100 :: setFiltro ( unsigned char val ) {
+/*      178 */  ( ( * ( struct ManejadorMemoriaClass * * ) & manejadorMemoria ) -> setByte ) ( & manejadorMemoria , & TConfSensor . filtro , val ) ;
+/*      180 */  }
+/*      182 */  int SensorTermoPT100 :: getOffset ( ) {
+/*      183 */  return TConfSensor . offset ;
+/*      184 */  }
+/*      186 */  void SensorTermoPT100 :: setOffset ( int valor ) {
+/*      187 */  ( ( * ( struct ManejadorMemoriaClass * * ) & manejadorMemoria ) -> setWord ) ( & manejadorMemoria , ( unsigned int * const ) & TConfSensor . offset , valor ) ;
+/*      188 */  }
+/*      190 */  int SensorTermoPT100 :: getGanancia ( ) {
+/*      191 */  return TConfSensor . ganancia ;
+/*      192 */  }
+/*      194 */  void SensorTermoPT100 :: setGanancia ( int valor ) {
+/*      195 */  _MANEJADOR_MEMORIA_SET_WORD ( & manejadorMemoria , ( unsigned int * const ) & ( TConfSensor . ganancia , valor ) ;
+/*      196 */  }
+/*      198 */  int SensorTermoPT100 :: getCeroTermopar ( ) {
+/*      199 */  return TConfSensor . ceroTermopar ;
+/*      200 */  }
+/*      202 */  void SensorTermoPT100 :: setCeroTermopar ( int valor ) {
+/*      203 */  _MANEJADOR_MEMORIA_SET_WORD ( & manejadorMemoria , ( unsigned int * const ) & TConfSensor . ceroTermopar , valor ) ;
+/*      204 */  }
+/*      206 */  int SensorTermoPT100 :: getGananciaTermopar ( ) {
+/*      207 */  return TConfSensor . gananciaTermopar ;
+/*      208 */  }
+/*      210 */  void SensorTermoPT100 :: setGananciaTermopar ( int valor ) {
+/*      211 */  _MANEJADOR_MEMORIA_SET_WORD ( & manejadorMemoria , ( unsigned int * const ) & TConfSensor . gananciaTermopar , valor ) ;
+/*      212 */  }
+/*      214 */  int SensorTermoPT100 :: getCeroPT100 ( ) {
+/*      215 */  return TConfSensor . ceroPT100 ;
+/*      216 */  }
+/*      218 */  void SensorTermoPT100 :: setCeroPT100 ( int valor ) {
+/*      219 */  _MANEJADOR_MEMORIA_SET_WORD ( & manejadorMemoria , ( unsigned int * const ) & TConfSensor . ceroPT100 , valor ) ;
+/*      220 */  }
+/*      222 */  int SensorTermoPT100 :: getGananciaPT100 ( ) {
+/*      223 */  return TConfSensor . gananciaPT100 ;
+/*      224 */  }
+/*      226 */  void SensorTermoPT100 :: setGananciaPT100 ( int valor ) {
+/*      227 */  _MANEJADOR_MEMORIA_SET_WORD ( & manejadorMemoria , ( unsigned int * const ) & TConfSensor . gananciaPT100 , valor ) ;
+/*      228 */  }
+/*      230 */  int SensorTermoPT100 :: getAjusteTemperaturaAmbiente ( ) {
+/*      231 */  return * compensacionTempAmb
+/*      232 */  }
+/*      234 */  void SensorTermoPT100 :: setAjusteTemperaturaAmbiente ( int valor ) {
+/*      235 */  _MANEJADOR_MEMORIA_SET_WORD ( & manejadorMemoria , ( unsigned int * const ) compensacionTempAmb , valor ) ;
+/*      236 */  }
+/*      238 */  int SensorTermoPT100 :: getTiempoMuestreo ( ) {
+/*      239 */  return _TIEMPO_AD_EN_MILISEGUNDOS ;
+/*      240 */  }
