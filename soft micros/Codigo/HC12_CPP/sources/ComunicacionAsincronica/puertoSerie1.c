@@ -339,11 +339,11 @@ ISR(AS1_Interrupt)
   }
   if (StatReg & SCISR1_RDRF_MASK) {    /* Is the receiver interrupt flag set? */
        #ifdef DEBUG
-  O6_PutVal(1);
+  //O6_PutVal(1);
   #endif
     AS1_InterruptRx();                 /* If yes, then invoke the internal service routine. This routine is inlined. */
       #ifdef DEBUG
-      O6_PutVal(0);
+      //O6_PutVal(0);
       #endif
     return;
   }
