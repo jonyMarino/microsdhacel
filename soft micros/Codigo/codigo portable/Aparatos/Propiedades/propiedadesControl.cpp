@@ -1,3 +1,4 @@
+#include "propiedadesControl.hpp"
 #include "comunicacionControl.hpp"
 #include "ControlPID.hpp"
 #include "SensorTermoPT100.hpp"
@@ -64,17 +65,8 @@ int getLimiteSupPotManual(void*control){
   return ((ControlPID*)control)->getLimiteSuperiorPotenciaManual();
 }
 
- int getPotencia (void * control){
+static int getPotencia (void * control){
    return ((ControlPID*)control)->getSalida().getPotencia();
-}
-
-
-
-uchar nextLimProp (void * obj){
-  if(((CoordinadorControladorSintonizador*)obj)->getModo() == AUTOSINTONIA)
-    return 0;
-  else
-    return 5;
 }
 
 /*uchar nextSetProp (void * obj){

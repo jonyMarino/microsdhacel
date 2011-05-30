@@ -1,6 +1,6 @@
 #include "configuracionControlPID.hpp"
  
-ConfiguracionControlPID::ConfiguracionControlPID( ControlConf &_conf_,SetPoint *_setPoint, struct ManejadorMemoria & _manejadorMemoria):configuracion(_conf_),setPoint(_setPoint),manejadorMemoria(_manejadorMemoria){
+ConfiguracionControlPID::ConfiguracionControlPID( ControlConf &_conf_,SetPoint *_setPoint, ManejadorMemoria & _manejadorMemoria):configuracion(_conf_),setPoint(_setPoint),manejadorMemoria(_manejadorMemoria){
 }
     
 int ConfiguracionControlPID::getSetPoint(){

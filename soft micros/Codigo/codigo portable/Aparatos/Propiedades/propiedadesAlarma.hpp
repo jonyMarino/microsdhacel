@@ -11,6 +11,8 @@
 #include "PropDescripcionVariable.hpp"
 #include "PropDescripcionVariablePV.hpp"
 
+extern const struct ConstructorPropGetterNumerico cPropiedadGetPotencia;
+
 extern const struct ConstructorPropiedadTextual cPropiedadModoAlarma;
 extern const struct ConstructorPropiedadTextual cPropiedadTipoCtrlAlarma;
 extern const struct ConstructorPropiedadTextual cPropiedadTipoLazo;

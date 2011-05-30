@@ -23,7 +23,7 @@ class ConfiguracionControlPID: public ConfiguracionControl{
           int iPotenciaManual;
           }ControlConf;
       
-         ConfiguracionControlPID( ControlConf &_conf_, SetPoint *_setPoint, struct ManejadorMemoria & _manejadorMemoria);
+         ConfiguracionControlPID( ControlConf &_conf_, SetPoint *_setPoint, ManejadorMemoria & _manejadorMemoria);
          int getSetPoint();
          void setSetPoint(int);
          int getLimiteInferiorSetPoint();

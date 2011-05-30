@@ -8,10 +8,8 @@ const void * costructoresPropiedadesControl[] = {
     &cPropiedadIntegral,
     &cPropiedadDerivada,
     &cPropiedadSetPoint,
-    &cPropiedadSetPointAutoSintonia,
     &cPropiedadModoSalida,
     &cPropiedadPotManual,
-    &cPropiedadGetPotenciaInst,
     &cPropiedadLimInfPot,
     &cPropiedadLimSupPot,
     &cPropiedadLimInfSp,
@@ -28,4 +26,15 @@ const NEW_ARRAY( arrayCostructoresPropiedadesControl,costructoresPropiedadesCont
 const GetsProps getPropiedadesControl={
   &arrayCostructoresPropiedadesControl,
   TRUE
+};
+
+const void * costructoresGettersControl[] = {
+  &cPropiedadGetPotenciaInst
+};
+
+const NEW_ARRAY( arrayCostructoresGettersControl,costructoresGettersControl) ;
+
+const GetsProps getGettersControl={
+  &arrayCostructoresGettersControl,
+  FALSE
 };

@@ -11,7 +11,7 @@
 #pragma CODE_SEG ModBus_CODE 
 #pragma CONST_SEG DEFAULT
 
-#define ESPERA_ENTRE_CARACTER_MS 3
+#define ESPERA_ENTRE_CARACTER_MS 5
 
 
 
@@ -76,7 +76,7 @@ static void* ModBus::escribirDatoEnColaIntermedia(void*_self){
 **         Inicializacion de la comunicacion
 ** ===================================================================
 */
-ModBus::ModBus(ConfiguracionModBus& conf,const struct Array/*<NodoICModBus>*/ *_comProps,PromBkp*_prom):configuracion(conf),comProps(_comProps),prom(_prom),timer(ESPERA_ENTRE_CARACTER_MS),step(0),pEscrituraDemorada(NULL){
+ModBus::ModBus(const ConfiguracionModBus& conf,const struct Array/*<NodoICModBus>*/ *_comProps,PromBkp*_prom):configuracion(conf),comProps(_comProps),prom(_prom),timer(ESPERA_ENTRE_CARACTER_MS),step(0),pEscrituraDemorada(NULL){
   asTx=FALSE;
   timer.stop();
   AS1_Init(this);

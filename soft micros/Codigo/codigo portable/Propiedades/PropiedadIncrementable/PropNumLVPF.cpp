@@ -1,6 +1,10 @@
 #include "PropNumLVPF.hpp"
 //#include "PE/include/PE_Types.h"
 
+#pragma DATA_SEG PROPIEDAD_TEXTUAL_DATA                                            
+#pragma CODE_SEG PROPIEDAD_TEXTUAL_CODE 
+#pragma CONST_SEG DEFAULT
+
 const struct PropNumLVPFFactory propNumLVPFFactory;
 
 PropNumLVPF::PropNumLVPF(void*obj,const struct ArgumentosPropNumLVPF* args,uchar numObjeto):PropiedadNumerica(obj,(const struct ArgumentosPropiedadIncrementable*)args,numObjeto){}

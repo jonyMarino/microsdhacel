@@ -12,16 +12,17 @@
 #include "PropiedadTextual.hpp"
 #include "PropGetterNumerico.hpp"
 
+//extern const struct ConstructorPropGetterNumericoPV cPropiedadSetPointAutoSintonia;
+extern const struct ConstructorPropGetterNumerico cPropiedadGetPotenciaInst;
+
 extern const struct ConstructorPropiedadTextual cPropiedadModos;
 extern const struct ConstructorPropNumLFPV cPropiedadReset;
 extern const struct ConstructorPropDescripcionVariablePV cPropiedadHisteresis;
 extern const struct ConstructorPropNumLFPF cPropiedadIntegral;
 extern const struct ConstructorPropNumLFPF cPropiedadDerivada;
 extern const struct ConstructorPropNumLFPV cPropiedadSetPoint;
-extern const struct ConstructorPropGetterNumericoPV cPropiedadSetPointAutoSintonia;
 extern const struct ConstructorPropiedadTextual cPropiedadModoSalida;
 extern const struct ConstructorPropNumLVPF cPropiedadPotManual;
-extern const struct ConstructorPropGetterNumerico cPropiedadGetPotenciaInst;
 extern const struct ConstructorPropNumLFPF cPropiedadLimInfPot;
 extern const struct ConstructorPropNumLFPF cPropiedadLimSupPot;
 extern const struct ConstructorPropNumLFPV cPropiedadLimInfSp;

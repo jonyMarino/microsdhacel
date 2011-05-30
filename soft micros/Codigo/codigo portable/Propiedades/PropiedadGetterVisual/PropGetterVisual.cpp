@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "PropGetterVisual.hpp"
 
+const struct PropGetterVisualFactory propGetterVisualFactory;
 
 PropGetterVisualFactory::PropGetterVisualFactory(){
 }

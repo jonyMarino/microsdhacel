@@ -7,6 +7,9 @@
 #include "PropNumLFPF.hpp"
 #include "PropiedadTextual.hpp"
 
+extern const struct ConstructorPropGetterVisual cGetterValSen;
+extern const struct ConstructorPropGetterVisual cGetterEstado;
+
 extern const struct ConstructorPropiedadTextual cPropiedadTipoSensor;
 extern const struct ConstructorPropNumLFPF cPropiedadFiltro;
 extern const struct ConstructorPropNumLFPV cPropiedadOffset;

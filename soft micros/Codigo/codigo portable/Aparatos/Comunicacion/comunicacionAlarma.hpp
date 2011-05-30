@@ -4,5 +4,6 @@
 #include "modbus.hpp"
 
 extern const GetsProps getPropiedadesAlarma;
+extern const GetsProps getGettersAlarma;
 
 #endif

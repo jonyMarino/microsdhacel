@@ -4,6 +4,7 @@
 #include "modbus.hpp"
 
 extern const GetsProps getPropiedadesControl;
+extern const GetsProps getGettersControl;
 
 #endif
 

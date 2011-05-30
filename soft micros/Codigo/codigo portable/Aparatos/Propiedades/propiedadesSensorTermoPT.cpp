@@ -16,27 +16,39 @@
     ((SensorTermoPT100*)sensor)->METODO(valor); \
   }   
 
+int getValor(void*sensor){           
+  return ((SensorTermoPT100*)sensor)->getVal();
+}
+
 uchar getDecimalesMostrados(void*sensor){           
   return ((SensorTermoPT100*)sensor)->getDecimales();
 }
 
-  
+int getEstado(void*sensor){           
+  return ((SensorTermoPT100*)sensor)->getEstado();
+}
+
+
 /*****************************/
 /********PROPIEDADES**********/
 /*****************************/
 
   //Valor del Sensor
-/*  const struct GetterGenerico GetterValSen={
-    (const struct Class * const)&GetterGenerico,SenTPT_getValue
+  const struct ConstructorPropGetterVisual cGetterValSen={
+    &propGetterVisualFactory,getValor,"VAL"
+  };
+  
+  //Valor del Sensor
+  const struct ConstructorPropGetterVisual cGetterEstado={
+    &propGetterVisualFactory,getEstado,"EStAdo"
   };
   
   //Decimales
-  extern int SenTPT_getDecimales(const struct TSensor_TermoPT * self);
-  const struct GetterGenerico GetterDecimales={
-    (const struct Class * const)&GetterGenerico,SenTPT_getDecimales
-  }; 
+  /*const struct ConstructorPropGetterVisual GetterDecimales={
+    (const struct Class * const)&GetterGenerico,getDecimalesMostrados
+  };*/ 
   
-  */
+  
   //Sensor
   int  getTipoSensor(void*sensor){
     return ((SensorTermoPT100*)sensor)->getSensor();
