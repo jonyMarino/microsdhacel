@@ -77,3 +77,7 @@ AlarmaControl& CoordinadorLazosAlCntrRet::getAlarmaControl(){
   return *(AlarmaControl *)lazo;
 }
 
+ISalida& CoordinadorLazosAlCntrRet::getSalida(){
+  return pwm;
+}
+

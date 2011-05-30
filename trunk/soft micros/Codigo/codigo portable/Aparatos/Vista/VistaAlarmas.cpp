@@ -1,10 +1,10 @@
+#include "propiedadesAlarma.hpp"
 #include "BoxLineal.hpp"
 #include "BoxSaltoCondicional.hpp"
 #include "BoxPropiedadEntradaCondicional.hpp"
 #include "BoxLinealCondicional.hpp"
 #include "VistaAlarmas.hpp"
-//#include "VistaSetContrasenia.hpp"
-//#include "VistaControl.hpp"
+#include "CoordinadorLazosAlCntrRet.hpp"
 
 
   

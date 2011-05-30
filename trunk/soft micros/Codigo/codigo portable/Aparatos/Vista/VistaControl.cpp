@@ -175,6 +175,14 @@ const struct ConstructorPropGetterVisual *const propLimites[]=	{
   			  NULL
 };
 
+
+uchar nextLimProp (void * obj){
+  if(((CoordinadorControladorSintonizador*)obj)->getModo() == AUTOSINTONIA)
+    return 0;
+  else
+    return 5;
+}
+
 const struct ConstructorBoxLinealCondicional cBoxesLimites={
         &boxLinealCondicionalFactory,						       
   		  propLimites,

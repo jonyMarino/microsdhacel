@@ -38,7 +38,7 @@ struct ConstructorPropGetterVisual{
     PropiedadGetter& getPropiedad(void*obj,uchar numObjeto)const;
 };
 
-
+extern const struct PropGetterVisualFactory propGetterVisualFactory;
 
 
 #pragma DATA_SEG DEFAULT                                            

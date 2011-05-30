@@ -7,7 +7,7 @@ class Math{
   public:
     static unsigned int pow10(byte exponente); /*exponente esta entre 0 y 4*/
   private:
-    static unsigned int div_dec[5];
+    static const unsigned int div_dec[5];
 };
 
 

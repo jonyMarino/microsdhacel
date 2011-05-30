@@ -4,5 +4,6 @@
 #include "modbus.hpp"
 
 extern const GetsProps getPropiedadesSensorTermoPT;
+extern const GetsProps getGettersSensorTermoPT;
 
 #endif

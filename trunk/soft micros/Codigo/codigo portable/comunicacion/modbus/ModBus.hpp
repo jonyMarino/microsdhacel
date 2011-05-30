@@ -23,13 +23,13 @@
 
 class ConfiguracionModBus{
   public:
-    virtual int getId()=0;
+    virtual byte getId()=0;
 };
 
 class ModBus{
   public:
-    ModBus(ConfiguracionModBus& configuracion,const struct Array/*<NodoICModBus>*/ *comProps,PromBkp*prom=NULL);
-    
+    ModBus(const ConfiguracionModBus& configuracion,const struct Array/*<NodoICModBus>*/ *comProps,PromBkp*prom=NULL);
+    ~ModBus(){}
     /*
     ** ===================================================================
     **     Method      :  ModBus_Send
@@ -95,7 +95,7 @@ class ModBus{
     };
 
     
-    ConfiguracionModBus& configuracion;
+    const ConfiguracionModBus& configuracion;
     const struct Array/*<NodoICModBus>*/ *comProps;
     //EscrituraDemorada escrituraDemorada;
     EscrituraDemorada * pEscrituraDemorada;

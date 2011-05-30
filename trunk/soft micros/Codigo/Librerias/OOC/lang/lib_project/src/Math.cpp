@@ -1,6 +1,6 @@
 #include "Math.hpp"
 
-unsigned int Math::div_dec[5]={
+const unsigned int Math::div_dec[5]={
   1,10,100,1000,10000  
 };
 

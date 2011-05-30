@@ -1,10 +1,11 @@
+#include "VistaPWM.hpp"
+#include "propiedadesPWM.hpp"
 #include "BoxLineal.hpp"
 #include "BoxSaltoCondicional.hpp"
-#include "PropDescripcionVariable.hpp"
 #include "BoxLinealCondicional.hpp"
 
 
-#include "VistaPWM.hpp"
+
 
 
   

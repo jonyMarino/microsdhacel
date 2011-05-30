@@ -1,6 +1,11 @@
 #include "comunicacionSensorTermoPT.hpp"
 #include "propiedadesSensorTermoPT.hpp"
 
+const void * costructoresGettersSensorTermoPT[] = {
+    &cGetterValSen,
+    &cGetterEstado
+};
+
 const void * costructoresPropiedadesSensorTermoPT[] = {
     &cPropiedadTipoSensor,
     &cPropiedadFiltro,
@@ -18,4 +23,11 @@ const NEW_ARRAY( arrayCostructoresPropiedadesSensorTermoPT,costructoresPropiedad
 const GetsProps getPropiedadesSensorTermoPT={
   &arrayCostructoresPropiedadesSensorTermoPT,
   TRUE
+};
+
+const NEW_ARRAY( arrayCostructoresGettersSensorTermoPT,costructoresGettersSensorTermoPT) ;
+
+const GetsProps getGettersSensorTermoPT={
+  &arrayCostructoresGettersSensorTermoPT,
+  FALSE
 };

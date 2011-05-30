@@ -3,7 +3,6 @@
 
 #include "AlarmaControl.hpp"
 #include "Retransmision.hpp"
-//#include "CoordinadorControladorSintonizador.hpp"
 
 typedef enum{
   ALARMA,
@@ -30,7 +29,7 @@ class CoordinadorLazosAlCntrRet{
     AlarmaControl& getAlarmaControl();  //si no se encuentra en modo ALARMA devuelve NULL
     TipoLazo getLazo();
     void setLazo(TipoLazo);
-    
+    ISalida& getSalida();
     
   private:
     class RetransmisionOptMem:public Retransmision{

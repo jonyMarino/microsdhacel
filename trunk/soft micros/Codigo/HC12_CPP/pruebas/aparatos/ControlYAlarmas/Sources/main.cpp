@@ -45,6 +45,21 @@
 #include "CoordinadorControladorSintonizador.hpp"
 #include "AutoSintonia.hpp"
 
+#include "ConfModBusMemoria.hpp"
+#include "comunicacionAlarma.hpp"
+#include "comunicacionControl.hpp"
+#include "comunicacionPWM.hpp"
+#include "comunicacionSensorTermoPT.hpp"
+
+/*  Tiempo inicial en el que el control permanece desconectado  */
+#ifdef _COLADA_CALIENTE  
+  #define SALIDA_TIEMPO_DESCONECTADA 20000 
+#else
+  #define SALIDA_TIEMPO_DESCONECTADA 3000   //tiene que alcanzar para hacer 2 mediciones
+#endif
+
+
+
 void conectarSalidas(void * a);
 void OnTipoSalChange(void * b);
 void OnControlChange(void * c);
@@ -65,14 +80,9 @@ const LedsSalida::LedConfig* pConfiguracionLedsSalida[]={
 
 #pragma CONST_SEG PARAMETERS_PAGE
  
-
-/*  Tiempo inicial en el que el control permanece desconectado  */
-#ifdef _COLADA_CALIENTE  
-  #define SALIDA_TIEMPO_DESCONECTADA 20000 
-#else
-  #define SALIDA_TIEMPO_DESCONECTADA 3000   //tiene que alcanzar para hacer 2 mediciones
-#endif
-
+volatile const ConfModBusMemoria::ModBusConf modBusConf={
+  1
+};
 
 volatile const ConfiguracionControlPID::ControlConf control_config[CANTIDAD_CANALES]={
    ControlDefaultConf,
@@ -687,7 +697,7 @@ const struct BoxList *const boxListArray[]={
   &tun,
   &cal,
   &set,
-  &lim
+  //&lim
 };
 
 const NEW_ACCESS(accesoComun,boxListArray,"Cod",(const int*)&codigo);
@@ -716,6 +726,32 @@ struct Method cambioTipoSalida={
 struct Method cambioControl={
 &OnControlChange,NULL
 }; 
+
+/*Comunicacion*/
+const NodoICModBus nodoSensorTermoPT((void*)1000,getPropiedadesSensorTermoPT,&sensor0);
+const NodoICModBus nodoSensorTermoPTNoEscribible((void*)1050,getGettersSensorTermoPT,&sensor0);
+const NodoICModBus nodoControl((void*)1100,getPropiedadesControl,&control0);
+const NodoICModBus nodoControlNoEscribible((void*)1150,getGettersControl,&control0);
+const NodoICModBus nodoPWM((void*)1200,getPropiedadesPWM,&pwm23);
+const NodoICModBus nodoAlarma((void*)1300,getPropiedadesAlarma,&alarma0);
+const NodoICModBus nodoAlarmaNoEscribible((void*)1350,getGettersAlarma,&alarma0);
+
+
+const void* const nodosComunicacion[]={
+  &nodoSensorTermoPTNoEscribible,
+  &nodoSensorTermoPT,
+  &nodoControl,
+  &nodoControlNoEscribible,
+  &nodoPWM,
+  &nodoAlarma,
+  &nodoAlarmaNoEscribible
+};
+
+const NEW_ARRAY(comProps,nodosComunicacion);
+
+const ConfModBusMemoria confModBus(modBusConf,flash);
+const ModBus modbus(confModBus,&comProps,&flash);
+/*Fin Comunicacion*/
 
 void main(void) {
   

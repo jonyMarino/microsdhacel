@@ -71,6 +71,13 @@ uchar getDecimalesAlarma(void*alarma){
 /*****************************/
 /********PROPIEDADES**********/
 /*****************************/
+  //Potencia
+  static int getPotencia (void * alarma){
+   return ((CoordinadorLazosAlCntrRet*)alarma)-> getSalida().getPotencia();
+  }
+  const struct ConstructorPropGetterNumerico cPropiedadGetPotencia={
+    &propGetterNumericoFactory,getPotencia,"PotA",1
+  };
   
   
   //A
